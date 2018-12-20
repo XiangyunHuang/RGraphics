@@ -1,0 +1,29 @@
+bookdown::gitbook:
+  css: style.css
+  split_by: rmd
+  config:
+    toc:
+      collapse: section
+      before: |
+        <li><a href="./">数据可视化与R语言</a></li>
+      after: |
+        <li><a href="https://r4charts.netlify.com/" target="blank">Published with netlify</a></li>
+    download: ["pdf", "epub"]
+    edit:
+      link: https://github.com/XiangyunHuang/RGraphics/edit/master/%s
+      text: "Edit"    
+    sharing:
+      github: yes
+      facebook: no
+      twitter: no
+      all: []
+bookdown::pdf_book:
+  includes:
+    in_header: preamble.tex
+    before_body: before_body.tex
+    after_body: after_body.tex
+  latex_engine: xelatex
+  citation_package: natbib
+  pandoc_args: ["--top-level-division=chapter", "--lua-filter=sidebar.lua"]
+  quote_footer: ["\\begin{flushright}", "\\end{flushright}"]
+  toc_depth: 3

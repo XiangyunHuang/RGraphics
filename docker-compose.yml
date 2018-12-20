@@ -1,0 +1,32 @@
+version: "3.6" # Docker Engine 18.02.0+
+services:
+
+   ck:
+     image: yandex/clickhouse-server
+     ports:
+       - "8787:8123"
+   
+   psql:
+     image: postgres
+     ports:
+       - "8080:5432"
+   
+   book:
+     depends_on:
+       - psql
+       - ck
+     image: xiangyunhuang/rgraphics
+     container_name: rgraphics
+     command: 
+       - /bin/bash
+       - -c
+       - |
+         cp odbc.ini ~/.odbc.ini
+         sh ./_build.sh
+         make pdf
+     environment:
+       - TRAVIS
+       - DOCKER_HOST_IP
+       - PWD
+     volumes:
+       - ${PWD}:/home/docker/workspace

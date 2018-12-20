@@ -1,0 +1,17 @@
+book_filename: "RGraphics"
+delete_merged_file: true
+language:
+  label:
+    fig: "图 "
+    tab: "表 "
+  ui:
+    edit: "编辑"
+    chapter_name: ["第 ", " 章"]
+
+output_dir: _book
+new_session: yes   
+before_chapter_script: ["_common.R"]
+rmd_files: 
+- "index.Rmd"
+
+- "99-references.Rmd"

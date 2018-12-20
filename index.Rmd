@@ -1,0 +1,251 @@
+---
+title: "数据可视化与R语言"
+subtitle: "Data Visualization with R"
+author: "黄湘云"
+date: "`r format(Sys.time(), tz = 'Asia/Taipei', usetz = TRUE)`"
+site: bookdown::bookdown_site
+documentclass: book
+geometry: margin=1.18in
+colorlinks: yes
+classoption: "UTF8,oneside"
+bibliography: ["refer.bib"]
+biblio-style: apalike
+link-citations: yes
+subparagraph: true
+description: "数据操作、数据分析、数据建模和数据可视化"
+github-repo: XiangyunHuang/RGraphics
+url: 'https\://bookdown.org/xiangyun/RGraphics/'
+---
+
+`r if (knitr::is_latex_output()) '<!--'` 
+
+# 欢迎 {#welcome .unnumbered}
+
+::: warning
+这本书还处于一个很早期的阶段
+:::
+
+clickhouse 和 RPostgres 包已经安装， RSQLite 无需密码可直接连接操作，故而不再介绍
+
+## PostgreSQL
+
+`docker-machine.exe ip default` 可以获得本地 Docker 的 IP，比如 192.168.99.101。 Travis 上 `ip addr` 可以查看 Docker 的 IP，如 172.17.0.1
+
+```{r,echo=TRUE}
+library(DBI)
+con <- dbConnect(RPostgres::Postgres(),
+  dbname = "postgres",
+  host = ifelse(is_on_travis, Sys.getenv("DOCKER_HOST_IP"), "192.168.99.101"),
+  port = 8080,
+  user = "postgres",
+  password = "default"
+)
+```
+
+列出数据库中的所有表
+
+```{r}
+dbListTables(con)
+```
+
+第一次启动从 Docker Hub 上下载的镜像，默认的数据库是 postgres 里面没有任何表，所以将 R 环境中的 mtcars 数据集写入 postgres 数据库
+
+```{r}
+dbWriteTable(con, "mtcars", mtcars, overwrite = TRUE)
+```
+
+现在可以看到数据表 mtcars 的各个字段
+
+```{r}
+dbListFields(con, "mtcars")
+```
+
+最后执行一条 SQL 语句
+
+```{r}
+res <- dbSendQuery(con, "SELECT * FROM mtcars WHERE cyl = 4") # 发送 SQL 语句
+dbFetch(res) # 获取查询结果
+dbClearResult(res) # 清理查询通道
+```
+
+或者一条命令搞定
+
+```{r}
+dbGetQuery(con, "SELECT * FROM mtcars WHERE cyl = 4")
+```
+
+最后用完数据库查询要记得关闭连接
+
+```{r}
+dbDisconnect(conn = con)
+```
+
+## ClickHouse
+
+```{r,cache=FALSE}
+library(DBI)
+con <- dbConnect(clickhouse::clickhouse(),
+  host = ifelse(is_on_travis, Sys.getenv("DOCKER_HOST_IP"), "192.168.99.101"),
+  port = 8787,
+  db = "default",
+  user = "default",
+  password = "", # 默认账户的默认密码为空
+  compression = "lz4"
+)
+```
+
+基本操作，写入表的操作也不能缓存，即不能缓存数据库中的表 mtcars
+
+```{r,cache=FALSE}
+dbWriteTable(con, "mtcars", mtcars, overwrite = TRUE)
+dbListTables(con)
+```
+
+SQL 查询操作
+
+```{r}
+dbGetQuery(con, "SELECT cyl, AVG(mpg) AS mpg FROM mtcars GROUP BY cyl ORDER BY cyl")
+aggregate(mpg ~ cyl, data = mtcars, mean)
+```
+
+得益于 knitr [@xie_2015_knitr] 开发的钩子，这里直接写 SQL 语句块，打印出来见表 \@ref(tab:mtcars)，值得注意的是 SQL 代码块不能启用缓存
+
+```{sql mtcars, connection=con, cache = FALSE, tab.cap = "表格标题"}
+SELECT cyl, AVG(mpg) AS mpg FROM mtcars GROUP BY cyl ORDER BY cyl
+```
+
+如果将查询结果导出到变量，在 Chunk 设置 `output.var = "agg_cyl"` 可以使用缓存，下面将 mpg 按 cyl 分组聚合的结果打印出来
+
+```{sql mtcars2, connection=con, cache = TRUE, output.var = "agg_cyl", ref.label = "mtcars", echo=FALSE}
+```
+```{r}
+agg_cyl
+```
+
+同样地，用完后需要把数据库的连接通道关闭
+
+```{r}
+dbDisconnect(con)
+```
+
+## odbc {#odbc} 
+
+首先安装 PostgreSQL 的 ODBC 驱动
+
+```bash
+apt-get install odbc-postgresql
+```
+
+查看配置系统文件路径
+
+```bash
+odbcinst -j 
+```
+```
+unixODBC 2.3.6
+DRIVERS............: /etc/odbcinst.ini
+SYSTEM DATA SOURCES: /etc/odbc.ini
+FILE DATA SOURCES..: /etc/ODBCDataSources
+USER DATA SOURCES..: /root/.odbc.ini
+SQLULEN Size.......: 8
+SQLLEN Size........: 8
+SQLSETPOSIROW Size.: 8
+```
+
+不推荐修改全局配置文件，可设置 `ODBCSYSINI` 环境变量指定配置文件路径，如 `ODBCSYSINI=~/ODBC` <http://www.unixodbc.org/odbcinst.html>
+
+安装完驱动程序，`/etc/odbcinst.ini` 文件内容自动更新，我们可以不必修改，如果你想自定义不妨手动修改，我们查看在 R 环境中注册的数据库，可以看到 PostgreSQL 的驱动已经配置好
+
+```r
+odbc::odbcListDrivers()
+```
+```
+                 name   attribute                                    value
+1     PostgreSQL ANSI Description    PostgreSQL ODBC driver (ANSI version)
+2     PostgreSQL ANSI      Driver                             psqlodbca.so
+3     PostgreSQL ANSI       Setup                          libodbcpsqlS.so
+4     PostgreSQL ANSI       Debug                                        0
+5     PostgreSQL ANSI     CommLog                                        1
+6     PostgreSQL ANSI  UsageCount                                        1
+7  PostgreSQL Unicode Description PostgreSQL ODBC driver (Unicode version)
+8  PostgreSQL Unicode      Driver                             psqlodbcw.so
+9  PostgreSQL Unicode       Setup                          libodbcpsqlS.so
+10 PostgreSQL Unicode       Debug                                        0
+11 PostgreSQL Unicode     CommLog                                        1
+12 PostgreSQL Unicode  UsageCount                                        1
+```
+
+系统配置文件 `/etc/odbcinst.ini` 已经包含有 PostgreSQL 的驱动配置，无需再重复配置
+
+```
+[PostgreSQL ANSI]
+Description=PostgreSQL ODBC driver (ANSI version)
+Driver=psqlodbca.so
+Setup=libodbcpsqlS.so
+Debug=0
+CommLog=1
+UsageCount=1
+
+[PostgreSQL Unicode]
+Description=PostgreSQL ODBC driver (Unicode version)
+Driver=psqlodbcw.so
+Setup=libodbcpsqlS.so
+Debug=0
+CommLog=1
+UsageCount=1
+```
+
+只需将如下内容存放在 `~/.odbc.ini` 文件中，
+
+```
+[PostgreSQL]
+Driver              = PostgreSQL Unicode
+Database            = postgres
+Servername          = 172.17.0.1
+UserName            = postgres
+Password            = default
+Port                = 8080
+```
+
+最后，一行命令 DNS 配置连接 <https://github.com/r-dbi/odbc> 这样就实现了代码中无任何敏感信息，这里为了展示这个配置过程故而把相关信息公开。
+
+> 注意下面的内容需要在容器中运行， Windows 环境下的配置 PostgreSQL 的驱动有点麻烦就不搞了，意义也不大，现在数据库基本都是跑在 Linux 系统上
+
+```{r,cache=FALSE}
+library(DBI)
+con <- dbConnect(odbc::odbc(), "PostgreSQL")
+```
+
+列出数据库中的表，将数据集 mtcars 写入 PostgreSQL 数据库中
+
+```{r}
+dbListTables(con)
+dbWriteTable(con, "mtcars", mtcars, overwrite = TRUE)
+```
+
+查询操作
+
+```{r}
+dbGetQuery(con, "SELECT cyl, AVG(mpg) AS mpg FROM mtcars GROUP BY cyl ORDER BY cyl")
+```
+
+这种基于 odbc 的方式的好处就不需要再安装 R 包 RPostgres，最后用完也是要关闭连接通道的
+
+```{r}
+dbDisconnect(con)
+```
+
+## 运行环境 {#session-info}
+
+```{r}
+xfun::session_info(c("rmarkdown", "bookdown", "odbc", "clickhouse", "RPostgres"))
+```
+
+::: rmdnote
+本书要求 R 软件版本 `r getRversion()` 因为书中涉及 `barplot` 新增的公式方法，新增多维数组操作函数 `asplit`， `axis` 函数的 `gap.axis` ，新增 `hcl.colors` 函数等，完整列表见官网 [What's New?](https://cran.r-project.org/doc/manuals/r-release/NEWS.html)
+:::
+
+
+书籍同时使用 [bookdown.org](https://bookdown.org) 和 [netlify](https://www.netlify.com) 部署，网址分别是 <https://bookdown.org/xiangyun/RGraphics/> 和 <https://r-graphics.netlify.com/>
+
+`r if (knitr::is_latex_output()) '-->'`
