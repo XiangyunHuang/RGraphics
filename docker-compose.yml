@@ -1,0 +1,27 @@
+version: "3"
+services:
+
+   ck:
+     image: yandex/clickhouse-server
+     ports:
+       - "8787:8123"
+     restart: always
+   
+   psql:
+     image: postgres
+     ports:
+       - "8080:5432"
+     restart: always
+   
+   book:
+     depends_on:
+       - psql
+       - ck
+     image: xiangyunhuang/rgraphics
+     container_name: rgraphics
+     environment:
+       - TRAVIS
+       - DOCKER_HOST_IP
+     restart: always
+     volumes:
+       - ./:/home/docker/workspace

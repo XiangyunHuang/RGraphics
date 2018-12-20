@@ -1,0 +1,36 @@
+language: r
+dist: xenial
+services:
+  - docker
+cache:
+  packages: true
+  directories:
+    - _bookdown_files
+    - $HOME/.npm
+    
+latex: false
+pandoc: false
+
+env:
+  - R_VERSION=3.6.1
+
+before_script:
+  - nvm install stable
+  - npm install netlify-cli -g
+  - export COMMIT_MSG=$(git log -1 --format='%h %<(50,trunc)%s')
+  - echo $COMMIT_MSG
+  - export DEPLOY_MSG=${COMMIT_MSG//[\'\"\`]/}
+  - echo $DEPLOY_MSG
+  - export DOCKER_HOST_IP=$(ip route|awk '/docker0/ { print $9 }')
+  - echo $DOCKER_HOST_IP
+  - chmod +x ./_build.sh
+
+script:
+  - docker-compose up -d
+  - docker-compose run book sh ./_build.sh
+  - docker-compose down
+
+deploy:
+  provider: script
+  script: netlify deploy --prod --dir _book --message "$DEPLOY_MSG"
+  skip_cleanup: true

@@ -1,0 +1,146 @@
+---
+title: "数据可视化与R语言"
+subtitle: "Data Visualization with R"
+author: "黄湘云"
+date: "`r format(Sys.time(), tz = 'Asia/Taipei', usetz = TRUE)`"
+site: bookdown::bookdown_site
+documentclass: book
+geometry: margin=1.18in
+colorlinks: yes
+classoption: "UTF8,oneside"
+bibliography: ["refer.bib"]
+biblio-style: apalike
+link-citations: yes
+subparagraph: true
+description: "数据操作、数据分析、数据建模和数据可视化"
+github-repo: XiangyunHuang/RGraphics
+url: 'https\://bookdown.org/xiangyun/RGraphics/'
+---
+
+`r if (knitr::is_latex_output()) '<!--'` 
+
+# 欢迎 {#welcome .unnumbered}
+
+::: warning
+这本书还处于一个很早期的阶段
+:::
+
+clickhouse, RPostgres 和 RSQLite 包已经安装
+
+## RSQLite
+
+## PostgreSQL
+
+`docker-machine.exe ip default` 可以获得本地 Docker 的 IP，比如 192.168.99.101。 Travis 上 `ip addr` 可以查看 Docker 的 IP，如 172.17.0.1
+
+```{r,echo=TRUE}
+library(DBI)
+con <- dbConnect(RPostgres::Postgres(),
+  dbname = "postgres",
+  host = ifelse(is_on_travis, "172.17.0.1", "192.168.99.101"),
+  port = 8080,
+  user = "postgres",
+  password = "default"
+)
+```
+
+列出数据库中的所有表
+
+```{r}
+dbListTables(con)
+```
+
+第一次启动从 Docker Hub 上下载的镜像，默认的数据库是 postgres 里面没有任何表，所以将 R 环境中的 mtcars 数据集写入 postgres 数据库
+
+```{r}
+dbWriteTable(con, "mtcars", mtcars, overwrite = TRUE)
+```
+
+现在可以看到数据表 mtcars 的各个字段
+
+```{r}
+dbListFields(con, "mtcars")
+```
+
+最后执行一条 SQL 语句
+
+```{r}
+res <- dbSendQuery(con, "SELECT * FROM mtcars WHERE cyl = 4") # 发送 SQL 语句
+dbFetch(res) # 获取查询结果
+dbClearResult(res) # 清理查询通道
+```
+
+或者一条命令搞定
+
+```{r}
+dbGetQuery(con, "SELECT * FROM mtcars WHERE cyl = 4")
+```
+
+最后用完数据库查询要记得关闭连接
+
+```{r}
+dbDisconnect(conn = con)
+```
+
+
+## ClickHouse
+
+我们从这个连接中用 knitr 钩子传递 SQL 语句块，那么语句块不能缓存，而且连接也不能缓存，否则报错，这个是 knitr 目前的局限
+
+```{r,cache=FALSE}
+library(DBI)
+con <- dbConnect(clickhouse::clickhouse(),
+  host = ifelse(is_on_travis, Sys.getenv("DOCKER_HOST_IP"), "192.168.99.101"),
+  port = 8787,
+  db = "default",
+  user = "default",
+  password = "", # 默认账户的默认密码为空
+  compression = "lz4"
+)
+```
+
+基本操作，写入表的操作也不能缓存，即不能缓存数据库中的表 mtcars
+
+```{r,cache=FALSE}
+dbWriteTable(con, "mtcars", mtcars, overwrite = TRUE)
+dbListTables(con)
+```
+
+SQL 查询操作
+
+```{r}
+dbGetQuery(con, "SELECT cyl, AVG(mpg) AS avg_mpg FROM mtcars GROUP BY cyl ORDER BY cyl")
+aggregate(mpg ~ cyl, data = mtcars, mean)
+```
+
+得益于 knitr [@xie_2015_knitr] 开发的钩子，这里直接写 SQL 语句块，查询的结果保存到变量 `agg_cyl`，打印出来见下表（这个表不能使用交叉引用），值得注意的是， SQL 代码块不能启用缓存 
+
+```{sql connection=con, cache = FALSE, tab.cap = "表格标题", output.var = "agg_cyl"}
+SELECT cyl, AVG(mpg) AS avg_mpg FROM mtcars GROUP BY cyl ORDER BY cyl
+```
+
+mpg 按 cyl 分组聚合的结果
+
+```{r}
+agg_cyl
+```
+
+同样地，用完后需要把数据库的连接通道关闭
+
+```{r}
+dbDisconnect(con)
+```
+
+书籍同时使用 [bookdown.org](https://bookdown.org) 和 [netlify](https://www.netlify.com) 部署，网址分别是 <https://bookdown.org/xiangyun/RGraphics/> 和 <https://r-graphics.netlify.com/>
+
+## 运行环境 {#session-info}
+
+```{r}
+xfun::session_info(c("rmarkdown", "bookdown", "clickhouse", "RPostgres"))
+```
+
+::: rmdnote
+本书要求 R 软件版本 `r getRversion()` 因为书中涉及 `barplot` 新增的公式方法，新增多维数组操作函数 `asplit`， `axis` 函数的 `gap.axis` ，新增 `hcl.colors` 函数等，完整列表见官网 [What's New?](https://cran.r-project.org/doc/manuals/r-release/NEWS.html)
+:::
+
+`r if (knitr::is_latex_output()) '-->'`

@@ -1,0 +1,7 @@
+Package: placeholder
+Type: Book
+Title: placeholder.
+Version: 0.0.0.9999
+Imports: remotes
+URL: https://r-graphics.netlify.com, https://bookdown.org/xiangyun/RGraphics/
+BugReports: https://github.com/XiangyunHuang/RGraphics/issues
