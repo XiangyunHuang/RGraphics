@@ -1392,9 +1392,69 @@ subset(sub_pdb, subset = grepl("Matt Dowle", sub_pdb[, "Maintainer"]), select = 
 综合上面的分析，社区的主要推动者是余下的 1/3，他们相互之间的合作应该比较多，我们接下来想分析一下他们之间的贡献网络。
 
 ```{r}
-
+net_pdb <- subset(pdb, select = c("Maintainer", "Author"))
+net_pdb[, "Maintainer"] <- clean_maintainer(net_pdb[, "Maintainer"])
+total_maintainer <- unique(net_pdb[, "Maintainer"])
+clean_author <- function(maintainer) {
+  sapply(net_pdb[, "Author"], grepl, pattern = paste0("(", maintainer, ")"))
+}
 ```
 
+接下来是非常耗时的一步，实际是两层循环 1.2 亿次左右的查找计算， `grepl` 耗时 30分钟左右，正则表达式本身的性能优化问题，`maintainer_author` 逻辑型矩阵占用内存空间 430 M 左右
+
+```{r,eval=FALSE}
+maintainer_author <- Reduce("cbind", lapply(total_maintainer, clean_author))
+colnames(maintainer_author) <- total_maintainer
+rownames(maintainer_author) <- net_pdb[, "Maintainer"]
+# 查看占用内存空间的大小
+format(object.size(maintainer_author), units = "auto")
+saveRDS(maintainer_author, file = "data/maintainer_author.rds")
+write.table(maintainer_author,file = "maintainer_author.csv", row.names = TRUE, col.names = TRUE)
+```
+```{r,echo=FALSE}
+maintainer_author <- readRDS(file = "data/maintainer_author.rds")
+```
+
+看几个数字
+
+```{r}
+# 贡献者最多的 R 包有 62 名，这个 R 包的粉丝真的是多
+max(rowSums(maintainer_author))
+# 有一个开发者对 137 个 R 包的做出过贡献，其中包括自己开发的 R 包
+# 快来快来抓住他
+max(colSums(maintainer_author))
+```
+
+继续看看每个开发者对外贡献的量的分布情况，由图可知，绝大部分开发者对外输出不超过 3，其表示对其它 R 包的贡献不超过 3个
+
+```{r}
+hist(colSums(maintainer_author)[colSums(maintainer_author) <= 10], 
+     probability = FALSE, xlab = "", main = "")
+```
+
+每个 R 包参与贡献的人数分布又是如何呢？如图所示，基本集中在1~2个人的样子
+
+```{r}
+hist(rowSums(maintainer_author)[rowSums(maintainer_author) <= 20], 
+     xlab = "", main = "",probability = FALSE)
+```
+
+好了，接下来我们要深入挖掘贡献协作网络中的结构特点，看看是不是由几位领导人在完全掌控，还有一大群人其实是自己搞自己的那点事，写论文、发布 R 包、投稿等如此循环。其实这就是 R 社区的特点，也决定了它不会像 Python 那样应用性强，有足够多的工程开发人员加入。大多数人写 R 包只是为了配合发论文而已，并不关心有没有人来用自己的 R 包！此外，没有人来做功能整合和持续维护，所以发展缓慢！各自造轮子的事情太多！
+
+接着，先从表面看看开发者和贡献者的关系矩阵，`maintainer_author` 是一个大型的超稀疏矩阵，非零元素最多的行、列分别只占 0.79\% 和 0.95\%，都不到百分之一。
+
+```{r}
+# 非零元素最多的行
+max(rowMeans(maintainer_author))
+# 非零元素最多的列
+max(colMeans(maintainer_author))
+```
+
+> 用稀疏索引的方式重新编码矩阵，然后用[社群检测的算法][community-detection]找到其中的结构，网络关系图用 Gephi 画，igraph 肯定是不行了，参考文献 [社会网络分析：探索人人网好友推荐系统](https://cosx.org/2011/04/exploring-renren-social-network)
+
+
+
+[community-detection]: https://bommaritollc.com/2012/06/17/summary-community-detection-algorithms-igraph-0-6/
 
 (ref:top-maintainers) 维护R包数量最多的20个人[^orphaned]
 
