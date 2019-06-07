@@ -184,7 +184,7 @@ parsed
 
 `notables` 是一个长度为2的字符串向量，所以获得两组匹配，捕捉到匹配开始的位置 `capture.start` 和匹配的长度 `capture.length` 都是两组，按列来看，字符 B 出现在字符串 `  Ben Franklin and Jefferson Davis` 的第三个位置，匹配的长度 Ben 是三个字符，长度是 3，如图 \@ref(fig:name-capture) 所示，需要注意的是一定要设置 `perl = TRUE` 才能使用命名捕捉功能，函数 `sub` 不支持命名反向引用 Named backreferences
 
-```{r name-capture,fig.cap="命名捕捉"}
+```{r name-capture,fig.cap="命名捕捉",echo=FALSE}
 knitr::include_graphics(path = "figures/name-capture.png")
 ```
 
@@ -195,8 +195,9 @@ Atomic grouping 原子分组, possessive qualifiers 占有限定 and conditional
 [^char-byte]: `useBytes = TRUE` 表示把字符看作字节。字符、字节和比特的关系是，一个字节 byte 八个比特 bit，一个英文字符 character 用一个字节表示，而一个中、日、韩文字符需要两个字节表示 
 [^learn-regex]: 推荐的学习正则表达式的路径可以见统计之都论坛 <https://d.cosx.org/d/420410>
 
-
-![(\#fig:regex-xkcd) 正则表达式漫画](https://imgs.xkcd.com/comics/regular_expressions.png)
+```{r regex-xkcd,fig.cap="正则表达式漫画",fig.link="https://imgs.xkcd.com/comics/regular_expressions.png",echo=FALSE}
+knitr::include_graphics(path = "figures/regexp-comics.png")
+```
 
 正则表达式的直观解释 <https://github.com/gadenbuie/regexplain>
 

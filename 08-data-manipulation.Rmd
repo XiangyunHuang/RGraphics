@@ -96,7 +96,7 @@ head(village)
 
 transform 对数据框中的某些列做计算，取对数，将计算的结果单存一列加到数据框中
 
-```{r}
+```{r,out.lines=6}
 transform(iris, scale.sl = (max(Sepal.Length) - Sepal.Length) / (max(Sepal.Length) - min(Sepal.Length)))
 ```
 
@@ -118,7 +118,7 @@ subset(x, subset, select, drop = FALSE, ...)
 
 参数 `subset`代表行操作，`select` 代表列操作，函数 `subset` 从数据框中提取部分数据
 
-```{r}
+```{r,out.lines=6}
 subset(iris, Species == "virginica")
 # summary(iris$Sepal.Length)  mean(iris$Sepal.Length)
 # 且的逻辑
@@ -153,7 +153,7 @@ subset(state.x77, grepl("^M", rownames(state.x77)), Illiteracy:Murder)
 
 使用索引 `[` 
 
-```{r}
+```{r,out.lines=6}
 iris[iris$Species == "virginica", ]
 iris[iris$Species == "virginica" &
   iris$Sepal.Length > mean(iris$Sepal.Length), ]
@@ -701,7 +701,7 @@ formula(PlantGrowth)
 
 现在再将变量 pg 堆叠起来，还可以指定要堆叠的列
 
-```{r}
+```{r,out.lines=6}
 stack(pg)
 stack(pg, select = -ctrl)
 ```

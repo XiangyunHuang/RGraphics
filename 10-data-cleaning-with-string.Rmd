@@ -344,7 +344,7 @@ regmatches(x, m)
 
 我们可以在 <https://regex101.com/> 上测试表达式，如图\@ref(fig:regex101)所示，表达式 `^(([^:]+)://)?([^:/]+)(:([0-9]+))?(/.*)` 包含7个组，每个组的匹配结果见图的右下角，这样我们不难理解，函数 `regmatches` 返回的第列表中，第3个位置是传输协议 protocol `http` ，第4个位置是主机 host `stat.umn.edu`， 第6个位置是端口 port `80` ，第7个位置是路径 path `/xyz`，所以函数 `regmatches` 的作用就是根据函数 `regexec` 匹配的结果抽取子字符串。
 
-```{r regex101,fig.cap="正则表达式匹配结果",fig.link="https://regex101.com/"}
+```{r regex101,fig.cap="正则表达式匹配结果",fig.link="https://regex101.com/",echo=FALSE}
 knitr::include_graphics(path = "figures/regexp.png")
 ```
 
@@ -450,7 +450,7 @@ strwrap(x, width = 0.9 * getOption("width"), indent = 0,
 
 该函数把一个字符串当成一个段落的文字（不管字符串中是否有换行符），按照段落的格式（缩进和长度）和断字方式进行分行，每一行是结果中的一个字符串。
 
-```{r}
+```{r,out.lines=20}
 # 读取一段文本
 x <- paste(readLines(file.path(R.home("doc"), "THANKS")), collapse = "\n")
 ## 将文本拆分为段落，且移除前三段
