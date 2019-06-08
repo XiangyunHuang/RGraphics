@@ -36,3 +36,11 @@
 > **warning**
 > 
 > Early drafts of the book.
+
+---
+
+The book is deployed by [Github Pages](https://pages.github.com/), [bookdown.org](https://bookdown.org) and [netlify](https://www.netlify.com). The online version of the book is hosted at
+
+1. <https://xiangyunhuang.github.io/RGraphics/>
+1. <https://bookdown.org/xiangyun/RGraphics/> (Recommended)
+1. <https://r-graphics.netlify.com/>
