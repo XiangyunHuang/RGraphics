@@ -959,13 +959,15 @@ ggplot(east_asia, aes(x = long, y = lat, group = group, fill = region)) +
 
 ## 网络数据 {#ggplot2-network}
 
+> 介绍图的基本概念，出度、入度、有向图，邻接矩阵等，如何用 igraph 绘图表示
+
 [igraph](https://igraph.org/) 提供了 R 和 Python 接口 <https://github.com/igraph>。 [qgraph](https://github.com/SachaEpskamp/qgraph) 开发者 [Sacha Epskamp](http://sachaepskamp.com) 在个人主页上提供了很多网络数据分析的学习资料， [Rgraphviz](https://www.bioconductor.org/packages/release/bioc/html/Rgraphviz.html) 基于 [Graphviz](https://www.graphviz.org/)
 
 ```{r,eval=FALSE}
-BiocManager::install("Rgraphviz", version = "3.8")
+BiocManager::install("Rgraphviz", version = "3.9")
 ```
 
-Gephi [@ICWSM_2009_Gephi] 和 igraph 能处理的最大网络，R 包和作者依赖关系图 14000+ 包和 7000+ 作者，CRAN 是全球R包开发者之网，自发布 R 1.0.0 (February, 2000) 距今19年
+Gephi [@ICWSM_2009_Gephi] 和 igraph 能处理的最大网络，R 包和作者依赖关系图 14000+ 包和 7000+ 作者，CRAN 是全球R包开发者之网，自发布 R 1.0.0 (February, 2000) 距今 19 年
 
 案例学习
 
@@ -975,8 +977,7 @@ Gephi [@ICWSM_2009_Gephi] 和 igraph 能处理的最大网络，R 包和作者�
 
 ```{r,eval=FALSE}
 library(DiagrammeR)
-library(DiagrammeRsvg)
-svg <- export_svg(
+svg <- DiagrammeRsvg::export_svg(
   grViz("
 digraph neato {
 
@@ -1009,7 +1010,6 @@ HTML(svg) # 将输出结果保存在svg格式矢量文件 即可
 html_print(HTML(svg))
 ```
 
-- [igraph 使用](https://smallstats.blogspot.com/search/label/igraph)
 
 ```{r,eval=FALSE}
 # https://smallstats.blogspot.jp/2012/12/loading-huge-graphs-with-igraph-and-r.html
@@ -1109,14 +1109,14 @@ core_pdb <- subset(pdb,
 dim(core_pdb[order(core_pdb[, "Maintainer"]), ])
 ```
 
-这么少，是不是有点意外，因为有些人有自己的邮箱，比如 Paul Murrell， 他的邮箱是 <paul@stat.auckland.ac.nz>
+这么少，是不是有点意外，看来很多大佬更喜欢用自己的邮箱，比如 Paul Murrell， 他的邮箱是 <paul@stat.auckland.ac.nz>
 
 ```{r}
 subset(pdb, subset = grepl(x = pdb[, "Maintainer"], pattern = "(Paul Murrell)"), 
                    select = c("Package", "Maintainer"))
 ```
 
-所以这种方式不行了，只能列举所有 R Core Team 成员，挨个去匹配，`contributors()` 函数已经收集了成员名单，不需要我们去官网找了。
+所以这种方式不行了，只能列举所有 R Core Team 成员，挨个去匹配，幸好 `contributors()` 函数已经收集了成员名单，不需要我们去官网找了。
 
 ```{r}
 core_team <- read.table(
@@ -1156,15 +1156,6 @@ Simon Wood
 R 核心团队维护的 R 包及其最新发布的日期
 
 ```{r}
-clean_maintainer <- function(x) {
-  # 去掉邮箱
-  x <- gsub("<([^<>]*)>", "", x)
-  # 去掉 \n \t \' \" 和 '
-  x <- gsub("(\\\")", "", x)
-}
-```
-
-```{r r-core-team}
 core_pdb <- subset(pdb,
   subset = grepl(
     x = pdb[, "Maintainer"],
@@ -1172,11 +1163,31 @@ core_pdb <- subset(pdb,
   ),
   select = c("Package", "Maintainer", "Published")
 )
+```
 
+清理 Maintainer 字段中的邮箱部分，方便表格展示
+
+```{r r-core-team}
+clean_maintainer <- function(x) {
+  # 去掉邮箱
+  x <- gsub("<([^<>]*)>", "", x)
+  # 去掉 \n \t \' \" 和 '
+  x <- gsub("(\\\n)|(\\\t)|(\\\")|(\\\')|(')", "", x)
+  # 去掉末尾空格
+  x <- gsub(" +$", "", x)
+}
 core_pdb[, "Maintainer"] <- clean_maintainer(core_pdb[, "Maintainer"])
+```
 
+我们可以看到 R 核心团队总共开发维护有 `r dim(core_pdb)[1]` 个 R 包
+
+```{r r-core-team}
 dim(core_pdb)
+```
 
+篇幅所限，我们就展示部分人和R包
+
+```{r r-core-team}
 knitr::kable(head(core_pdb[order(
   core_pdb[, "Maintainer"],
   core_pdb[, "Published"]
@@ -1184,7 +1195,6 @@ knitr::kable(head(core_pdb[order(
 caption = "R Core Team 维护的 R 包（展示部分）", booktabs = TRUE
 )
 ```
-
 
 分组计数，看看每个核心开发者维护的 R 包有多少
 
@@ -1228,20 +1238,7 @@ subset(pdb,
 )
 ```
 
-因此，有必要先把 Maintainer 字段中的邮箱部分去掉
-
-```{r}
-clean_maintainer <- function(x) {
-  # 去掉邮箱
-  x <- gsub("<([^<>]*)>", "", x)
-  # 去掉 \n \t \' \" 和 '
-  x <- gsub("(\\\n)|(\\\t)|(\\\")|(\\\')|(')", "", x)
-  # 去掉末尾空格
-  x <- gsub(" +$", "", x)
-}
-```
-
-这样我们可以得到比较靠谱的R包维护者数量了！
+因此，有必要先把 Maintainer 字段中的邮箱部分去掉，这样我们可以得到比较靠谱的R包维护者数量了！
 
 ```{r}
 pdb[, "Maintainer"] <- clean_maintainer(pdb[, "Maintainer"])
@@ -1406,22 +1403,28 @@ clean_author <- function(maintainer) {
 maintainer_author <- Reduce("cbind", lapply(total_maintainer, clean_author))
 colnames(maintainer_author) <- total_maintainer
 rownames(maintainer_author) <- net_pdb[, "Maintainer"]
-# 查看占用内存空间的大小
-format(object.size(maintainer_author), units = "auto")
+```
+
+为了重复运行这段耗时很长的代码，我们将中间结果保存到磁盘，推荐保存为 R 支持的序列化后的数据格式 `*.rds`，相比于 `*.csv` 格式能极大地减少磁盘存储空间，读者可运行下面两行保存数据的代码，比较看看！ 
+
+```{r,eval=FALSE}
 saveRDS(maintainer_author, file = "data/maintainer_author.rds")
-write.table(maintainer_author,file = "maintainer_author.csv", row.names = TRUE, col.names = TRUE)
+write.table(maintainer_author,file = "data/maintainer_author.csv", row.names = TRUE, col.names = TRUE)
 ```
 ```{r,echo=FALSE}
 maintainer_author <- readRDS(file = "data/maintainer_author.rds")
 ```
 
-看几个数字
+查看 `maintainer_author` 数据集占用内存空间的大小
 
 ```{r}
-# 贡献者最多的 R 包有 62 名，这个 R 包的粉丝真的是多
+format(object.size(maintainer_author), units = "auto")
+```
+
+看几个数字，R 包贡献者最多的有 62 人,这个 R 包的粉丝是真多！有一个开发者对 137 个 R 包的做出过贡献，其中包括自己开发的 R 包，快来快来抓住他！
+
+```{r}
 max(rowSums(maintainer_author))
-# 有一个开发者对 137 个 R 包的做出过贡献，其中包括自己开发的 R 包
-# 快来快来抓住他
 max(colSums(maintainer_author))
 ```
 
@@ -1452,12 +1455,24 @@ max(colMeans(maintainer_author))
 
 > 用稀疏索引的方式重新编码矩阵，然后用[社群检测的算法][community-detection]找到其中的结构，网络关系图用 Gephi 画，igraph 肯定是不行了，参考文献 [社会网络分析：探索人人网好友推荐系统](https://cosx.org/2011/04/exploring-renren-social-network)
 
+Katherine Ognyanova 的博文网络分析和可视化与 R 语言、igraph 包的介绍 [^intro-igraph]
+
+Sam Tyner、 François Briatte 和 Heike Hofmann 总结了基于 ggplot2 的网络可视化工具包[@RJ_2017_Tyner]
+
+Bodong Chen 编写的教材 [Applied Social Network Analysis in Education](https://bookdown.org/chen/snaEd/)
+
+[François Briatte](https://briatte.github.io/) 介绍 [ggnet2: network visualization with ggplot2](https://briatte.github.io/ggnet/) 以及整理的 [网络分析资源大列表](https://github.com/briatte/awesome-network-analysis)
+
+
+
 
 
 [community-detection]: https://bommaritollc.com/2012/06/17/summary-community-detection-algorithms-igraph-0-6/
 
 (ref:top-maintainers) 维护R包数量最多的20个人[^orphaned]
 
+[^statnet]: Statistical Modeling of Networks in R <https://user2010.org/Invited/handcockuser2010.pdf>
+[^intro-igraph]: Network Analysis and Visualization with R and igraph <https://kateto.net/networks-r-igraph> with [PDF](https://kateto.net/wp-content/uploads/2016/01/NetSciX_2016_Workshop.pdf)
 [^orphaned]: 其中 Orphaned 表示之前的R包维护者不愿意继续维护了，后来有人接手维护，Orphaned 表示这一类接盘侠
 [^download-cran-metadata]: 现在有更加方便的方式获取 R 包元数据 `pdb <- tools::CRAN_package_db()` 返回一个 `data.frame`
 
@@ -1492,7 +1507,59 @@ subset(sub_pdb, subset = sub_pdb[, "Published"] == min(sub_pdb[, "Published"]))
 sub_pdb[which.min(as.Date(sub_pdb[, "Published"])), 1]
 ```
 
+### 使用许可证 {#Package-Licenses}
 
+> 列举 R 社区使用的许可证及其区别和联系
+R 开源还体现在许可证信息，顺便谈谈美国和中国技术封锁，开源社区可能面临的风险
+
+
+```{r}
+license_pdb <- head(sort(table(pdb[, "License"]), decreasing = TRUE), 20)
+par(mar = c(2, 12, 0.5, 0))
+plot(c(1, 1e1, 1e2, 1e3, 1e4), c(1, 5, 10, 15, 20),
+     type = "n",panel.first = grid(),
+     ann = FALSE, log = "x", axes = FALSE
+)
+axis(1,
+     at = c(1, 1e1, 1e2, 1e3, 1e4),
+     labels = expression(1, 10^1, 10^2, 10^3, 10^4)
+)
+text(
+  y = seq(length(license_pdb)), x = 1, cex = 1, offset = 1,
+  pos = 2, labels = names(license_pdb), xpd = TRUE
+)
+text(1e3, 15, "CRAN")
+segments(x0 = 1, y0 = seq(length(license_pdb)), 
+         x1 = license_pdb, y1 = seq(length(license_pdb)), 
+         col = "lightblue", lwd = 4)
+```
+
+
+```{r}
+rforge_pdb <- available.packages(repos = "http://R-Forge.R-project.org")
+license_rforge_pdb <- head(sort(table(rforge_pdb[, "License"]), decreasing = TRUE), 20)
+par(mar = c(2, 12, 0.5, 0))
+plot(c(1, 1e1, 1e2, 1e3), seq(from = 1, to = 20,length.out = 4),
+  type = "n",panel.first = grid(),
+  ann = FALSE, log = "x", axes = FALSE
+)
+axis(1,
+  at = c(1, 1e1, 1e2, 1e3),
+  labels = expression(1, 10^1, 10^2, 10^3)
+)
+
+text(
+  y = seq(length(license_rforge_pdb)), x = 1, cex = 1, offset = 1,
+  pos = 2, labels = names(license_rforge_pdb), xpd = TRUE
+)
+text(1e2, 15, "R-Forge")
+segments(x0 = 1, y0 = seq(length(license_rforge_pdb)), 
+         x1 = license_rforge_pdb, y1 = seq(length(license_rforge_pdb)), 
+         lwd = 4, col = "lightblue")
+```
+
+
+> 改进的方向是含义相同的进行合并，这需要研究一下各个许可证
 
 ## 软件信息  {#ggplot2-session-info}
 
