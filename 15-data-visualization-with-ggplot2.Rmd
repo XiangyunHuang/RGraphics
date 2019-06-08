@@ -1167,7 +1167,7 @@ core_pdb <- subset(pdb,
 
 清理 Maintainer 字段中的邮箱部分，方便表格展示
 
-```{r r-core-team}
+```{r}
 clean_maintainer <- function(x) {
   # 去掉邮箱
   x <- gsub("<([^<>]*)>", "", x)
@@ -1181,7 +1181,7 @@ core_pdb[, "Maintainer"] <- clean_maintainer(core_pdb[, "Maintainer"])
 
 我们可以看到 R 核心团队总共开发维护有 `r dim(core_pdb)[1]` 个 R 包
 
-```{r r-core-team}
+```{r}
 dim(core_pdb)
 ```
 
@@ -1512,6 +1512,7 @@ sub_pdb[which.min(as.Date(sub_pdb[, "Published"])), 1]
 > 列举 R 社区使用的许可证及其区别和联系
 R 开源还体现在许可证信息，顺便谈谈美国和中国技术封锁，开源社区可能面临的风险
 
+社区主要使用 GPL 及其相关授权协议，因为 R 软件本身也是授权在 GPL-2 或 GPL-3 下
 
 ```{r}
 license_pdb <- head(sort(table(pdb[, "License"]), decreasing = TRUE), 20)
@@ -1559,7 +1560,7 @@ segments(x0 = 1, y0 = seq(length(license_rforge_pdb)),
 ```
 
 
-> 改进的方向是含义相同的进行合并，这需要研究一下各个许可证
+> 改进的方向是含义相同的进行合并，这需要研究一下各个许可证，然后使用对比型条形图合并上面两个图
 
 ## 软件信息  {#ggplot2-session-info}
 
