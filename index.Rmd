@@ -27,17 +27,21 @@ url: 'https\://bookdown.org/xiangyun/RGraphics/'
 `r if (knitr::is_latex_output()) '<!--'` 
 
 ```{r setup,include=FALSE}
-packages = desc::desc_get_deps()$package
+packages <- desc::desc_get_deps()$package
 lapply(packages, function(pkg) {
-  if (system.file(package = pkg) == '') install.packages(pkg)
+  if (system.file(package = pkg) == "") install.packages(pkg)
 })
-if(!require(firatheme)) remotes::install_github('vankesteren/firatheme')
-if(!require(patchwork)) remotes::install_github('thomasp85/patchwork')
+if (!require(firatheme)) remotes::install_github("vankesteren/firatheme")
+if (!require(patchwork)) remotes::install_github("thomasp85/patchwork")
 ```
 
 # 欢迎 {#welcome .unnumbered}
 
-写作动机，如何加入写作，版权声明
+::: warning
+这本书还处于一个很早期的阶段，很多代码有待替换和改进，特别是部分代码和例子直接从网上复制，这部分肯定会被替换掉
+:::
+
+写作动机，版权声明
 
 强调图的作用，检验模型的重要性
 
@@ -60,9 +64,10 @@ mtext("Anscombe's 4 Regression data sets", outer = TRUE, cex = 1.5)
 par(op)
 ```
 
-书籍同时使用 [bookdown.org](https://bookdown.org) 和 [netlify](https://www.netlify.com) 部署，网址分别是 <https://bookdown.org/xiangyun/RGraphics/> 和 <https://r-graphics.netlify.com/>
+书籍同时使用 [Github Pages](https://pages.github.com/)、 [bookdown.org](https://bookdown.org) 和 [netlify](https://www.netlify.com) 部署，网址分别是 <https://xiangyunhuang.github.io/RGraphics/>、 <https://bookdown.org/xiangyun/RGraphics/> 和 <https://r-graphics.netlify.com/>
 
-注意
-: 本书要求复现环境是 R 3.6.0 因为书中涉及 `barplot` 新增的公式方法，新增多维数组操作函数 `asplit`， `axis` 函数的 `gap.axis` ，新增 `hcl.colors` 函数等，完整列表见官网 [What's New?](https://cran.r-project.org/doc/manuals/r-release/NEWS.html)
+> **注意**
+>
+> 本书要求复现环境是 R 3.6.0 因为书中涉及 `barplot` 新增的公式方法，新增多维数组操作函数 `asplit`， `axis` 函数的 `gap.axis` ，新增 `hcl.colors` 函数等，完整列表见官网 [What's New?](https://cran.r-project.org/doc/manuals/r-release/NEWS.html)
 
 `r if (knitr::is_latex_output()) '-->'`
