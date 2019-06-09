@@ -25,7 +25,9 @@
 - [List of Data Science Cheatsheets to rule the world](https://github.com/FavioVazquez/ds-cheatsheets#r)
 - [Getting to Know Grid Graphics](https://www.stat.auckland.ac.nz/~paul/useR2015-grid/)
 - [R Reference Card (Chinese version)](https://github.com/sunbjt/r_reference) by [Sizhe Liu](https://www.bjt.name/)
-- [Frequently asked questionsR](https://cran.r-project.org/doc/contrib/Liu-FAQ.pdf) by [Sizhe Liu](https://www.bjt.name/)
+- [Frequently asked questionsR (Chinese version)](https://cran.r-project.org/doc/contrib/Liu-FAQ.pdf) by [Sizhe Liu](https://www.bjt.name/)
+- [An Introduction to R (Chinese version)](https://github.com/DingGuohui/R-intro-cn) by [Guohui Ding](https://github.com/DingGuohui)
+- [R for beginer (Chinese version)](https://github.com/DingGuohui/R-for-beginer) by [Guohui Ding](https://github.com/DingGuohui)
 - [Graphical Parameters](https://tech.hohoweiya.xyz/R/r-graphical-parameters-cheatsheet.pdf) `par` Visual cheat sheet for some plot parameters in R
 - [parallel computation cheat sheet](https://github.com/rstudio/cheatsheets/raw/master/parallel_computation.pdf)
 - [permits *apply() style dispatch for HPC](https://prs.ism.ac.jp/~nakama/Rhpc/Documents/Rhpc_0.15-177.pdf) High-Performance and Parallel Computing
