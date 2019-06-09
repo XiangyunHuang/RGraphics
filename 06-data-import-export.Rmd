@@ -869,3 +869,4 @@ sparkR.session(master = "local[*]", sparkConfig = list(spark.driver.memory = "2g
 [^dataio]: https://rstudio-education.github.io/hopr/dataio.html
 [^sql-engine]: https://bookdown.org/yihui/rmarkdown/language-engines.html#sql
 [rstudio-spark]: https://spark.rstudio.com/
+[rmarkdown-teaching-demo]: https://stackoverflow.com/questions/35459166
