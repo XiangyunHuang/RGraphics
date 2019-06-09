@@ -1,9 +1,9 @@
 ## ----include=FALSE-------------------------------------------------------
-library(tidyverse)
+library(ggplot2)
+library(magrittr)
 
 
 ## ----awesome-ggplot2,fig.cap="简洁美观"----------------------------------
-library(ggplot2)
 ggplot(mpg, aes(displ, hwy)) +
   geom_point(aes(color = class)) +
   geom_smooth(se = TRUE, method = "loess") +
@@ -93,17 +93,18 @@ ggplot(diamonds, aes(x = carat), color = "steelblue")
 
 
 ## ----scatter,fig.cap="添加数据图层"--------------------------------------
-ggplot(diamonds, aes(x = carat, y = price)) +
+sub_diamonds <- diamonds[sample(1:dim(diamonds)[1], 1000), ]
+ggplot(sub_diamonds, aes(x = carat, y = price)) +
   geom_point()
 
 
 ## ----scatter-color-1,fig.cap="散点图配色"--------------------------------
-ggplot(diamonds, aes(x = carat, y = price)) +
+ggplot(sub_diamonds, aes(x = carat, y = price)) +
   geom_point(color = "steelblue")
 
 
 ## ----scatter-scale-1,fig.cap="格式化坐标轴刻度标签"----------------------
-ggplot(diamonds, aes(x = carat, y = price)) +
+ggplot(sub_diamonds, aes(x = carat, y = price)) +
   geom_point(color = "steelblue") +
   scale_y_continuous(
     labels = scales::unit_format(unit = "k", scale = 1e-3),
@@ -112,72 +113,71 @@ ggplot(diamonds, aes(x = carat, y = price)) +
 
 
 ## ----scatter-color-2,fig.cap="分类散点图"--------------------------------
-ggplot(diamonds, aes(x = carat, y = price, color = cut)) +
+ggplot(sub_diamonds, aes(x = carat, y = price, color = cut)) +
   geom_point()
 
 
 ## ----scatter-group,fig.cap="分组"----------------------------------------
-ggplot(diamonds, aes(x = carat, y = price, group = cut)) +
+ggplot(sub_diamonds, aes(x = carat, y = price, group = cut)) +
   geom_point()
 
 
 ## ----group-lm,fig.cap="分组线性回归",fig.ncol=1--------------------------
-ggplot(diamonds, aes(x = carat, y = price)) +
+ggplot(sub_diamonds, aes(x = carat, y = price)) +
   geom_point() +
   geom_smooth(method = "lm")
-ggplot(diamonds, aes(x = carat, y = price, group = cut)) +
+ggplot(sub_diamonds, aes(x = carat, y = price, group = cut)) +
   geom_point() +
   geom_smooth(method = "lm")
 
 
-## ----eval=FALSE----------------------------------------------------------
-## ggplot(diamonds, aes(x = carat, y = price, group = cut)) +
-##   geom_point() +
-##   geom_smooth(method = "loess")
+## ----fig.cap="局部多项式平滑"--------------------------------------------
+ggplot(sub_diamonds, aes(x = carat, y = price, group = cut)) +
+  geom_point() +
+  geom_smooth(method = "loess")
 
 ## ----group-gam,fig.cap="数据分组应用广义可加平滑"------------------------
-ggplot(diamonds, aes(x = carat, y = price, group = cut)) +
+ggplot(sub_diamonds, aes(x = carat, y = price, group = cut)) +
   geom_point() +
   geom_smooth(method = "gam", formula = y ~ s(x, bs = "cs"))
 
 
 ## ----group-facet,fig.cap=c("分组分面","分组配色"),fig.ncol=1-------------
-ggplot(diamonds, aes(x = carat, y = price, group = cut)) +
+ggplot(sub_diamonds, aes(x = carat, y = price, group = cut)) +
   geom_point() +
   geom_smooth(method = "gam", formula = y ~ s(x, bs = "cs")) +
   facet_grid(~cut)
-ggplot(diamonds, aes(x = carat, y = price, group = cut, color = cut)) +
+ggplot(sub_diamonds, aes(x = carat, y = price, group = cut, color = cut)) +
   geom_point() +
   geom_smooth(method = "gam", formula = y ~ s(x, bs = "cs"))
 
 
 ## ----scatter-facet,fig.cap="分面散点图"----------------------------------
-ggplot(diamonds, aes(x = carat, y = price)) +
+ggplot(sub_diamonds, aes(x = carat, y = price)) +
   geom_point() +
   facet_grid(~cut)
 
 
 ## ----scatter-facet-color-1,fig.cap="给分面散点图上色"--------------------
-ggplot(diamonds, aes(x = carat, y = price)) +
+ggplot(sub_diamonds, aes(x = carat, y = price)) +
   geom_point(color = "steelblue") +
   facet_grid(~cut)
 
 
 ## ----scatter-facet-color-2,fig.cap="给不同的类上不同的颜色"--------------
-ggplot(diamonds, aes(x = carat, y = price, color = cut)) +
+ggplot(sub_diamonds, aes(x = carat, y = price, color = cut)) +
   geom_point() +
   facet_grid(~cut)
 
 
 ## ----scatter-facet-color-3,fig.cap="去掉图例"----------------------------
-ggplot(diamonds, aes(x = carat, y = price, color = cut)) +
+ggplot(sub_diamonds, aes(x = carat, y = price, color = cut)) +
   geom_point(show.legend = FALSE) +
   facet_grid(~cut)
 
 
 ## ----fig.cap="多个图例"--------------------------------------------------
-library(nlme)
-data(Wheat2) # Wheat Yield Trials
+data(Wheat2, package = "nlme") # Wheat Yield Trials
 library(colorspace)
 ggplot(Wheat2, aes(longitude, latitude)) +
   geom_point(aes(size = yield, colour = Block)) +
@@ -368,7 +368,8 @@ ggplot(mpg, aes(class, cty)) +
 
 
 ## ------------------------------------------------------------------------
-ggplot(mpg, aes(x = class, y = hwy, color = class)) + ggbeeswarm::geom_quasirandom()
+ggplot(mpg, aes(x = class, y = hwy, color = class)) +
+  ggbeeswarm::geom_quasirandom()
 
 
 ## ------------------------------------------------------------------------
@@ -376,11 +377,11 @@ ggplot(mpg, aes(x = class, y = hwy, color = class)) + geom_jitter()
 
 
 ## ----fig.cap="抖动图的反例"----------------------------------------------
-ggplot(diamonds, aes(x = cut, y = price)) + geom_jitter()
+ggplot(sub_diamonds, aes(x = cut, y = price)) + geom_jitter()
 
 
 ## ----fig.cap="根据钻石颜色上色"------------------------------------------
-ggplot(diamonds, aes(x = color, y = price, color = color)) +
+ggplot(sub_diamonds, aes(x = color, y = price, color = color)) +
   geom_jitter() +
   facet_grid(clarity ~ cut)
 
@@ -425,7 +426,8 @@ ggplot(diamonds, aes(x = price, fill = cut)) + geom_density(alpha = 0.5)
 
 
 ## ----stack-density,fig.cap="堆积密度图"----------------------------------
-ggplot(diamonds, aes(x = price, fill = cut)) + geom_density(position = "stack")
+ggplot(diamonds, aes(x = price, fill = cut)) + 
+  geom_density(position = "stack")
 
 
 ## ----fig.cap="条件密度估计图"--------------------------------------------
@@ -517,7 +519,7 @@ ggplot(crimesm, aes(map_id = state)) +
 ## ----pickcolor,fig.cap="viridis 和 Spectral对比"-------------------------
 dat <- as.data.frame(cbind(rep(1948 + seq(12), each = 12), rep(seq(12), 12), AirPassengers))
 colnames(dat) <- c("year", "month", "passengers")
-library(colormap)
+# library(colormap)
 ggplot(data = dat, aes(as.factor(year), as.factor(month))) +
   geom_point(aes(colour = passengers), pch = 15, size = 8) +
   scale_colour_distiller(palette = "Spectral") +
@@ -535,7 +537,7 @@ erupt <- ggplot(faithfuld, aes(waiting, eruptions, fill = density)) +
 erupt1 <- erupt + scale_fill_gradientn(colours = gray.colors(7))
 erupt2 <- erupt + scale_fill_distiller(palette = "Spectral")
 erupt3 <- erupt + scale_fill_gradientn(colours = terrain.colors(7))
-erupt4 <- erupt + scale_fill_colormap(colormap = colormaps$RdBu)
+erupt4 <- erupt
 grid.arrange(erupt1, erupt2, erupt3, erupt4, ncol = 2)
 
 
@@ -658,29 +660,29 @@ spplot(nc, c("SID74", "SID79"),
 )
 
 
-## ------------------------------------------------------------------------
-nc <- system.file("gpkg/nc.gpkg", package = "sf") %>% read_sf()
-nc2 <- nc %>%
-  select(SID74, SID79) %>%
-  gather(VAR, SID, -geom)
-ggplot() +
-  geom_sf(data = nc2, aes(fill = SID)) +
-  facet_wrap(~VAR, ncol = 1)
+## ----eval=FALSE----------------------------------------------------------
+## # library(dplyr, warn.conflicts = FALSE)
+## nc <- system.file("gpkg/nc.gpkg", package = "sf") %>% read_sf()
+## nc2 <- nc %>%
+##   dplyr::select(SID74, SID79) %>%
+##   tidyr::gather(VAR, SID, -geom)
+## ggplot() +
+##   geom_sf(data = nc2, aes(fill = SID)) +
+##   facet_wrap(~VAR, ncol = 1)
 
 
 ## ----eval=FALSE----------------------------------------------------------
-## library(GADMTools)
+## library(GADMTools) # 会自动加载 tidyverse 包
 ## data("Corsica")
 ## # basefile 文件存放路径
 ## # FRA Corse 的国家代码
-## map <- gadm_sf_loadCountries("FRA", basefile = "./")
-## gadm_plot(map) + theme_minimal()
+## gadm_sf_loadCountries("FRA", basefile = "./data/") %>%
+##   gadm_plot(map) + theme_minimal()
 
 
 ## ------------------------------------------------------------------------
 library(maps) # For map data
 library(mapdata)
-library(ggplot2)
 east_asia <- map_data("worldHires", region = c("Japan", "China", "North Korea", "South Korea"))
 
 # Map region to fill color
@@ -690,13 +692,12 @@ ggplot(east_asia, aes(x = long, y = lat, group = group, fill = region)) +
 
 
 ## ----eval=FALSE----------------------------------------------------------
-## BiocManager::install("Rgraphviz", version = "3.8")
+## BiocManager::install("Rgraphviz", version = "3.9")
 
 
 ## ----eval=FALSE----------------------------------------------------------
 ## library(DiagrammeR)
-## library(DiagrammeRsvg)
-## svg <- export_svg(
+## svg <- DiagrammeRsvg::export_svg(
 ##   grViz("
 ## digraph neato {
 ## 
@@ -783,7 +784,7 @@ if (file.exists("data/packages.rds")) {
 
 
 ## ------------------------------------------------------------------------
-pdb[, "Package"] %>% length()
+length(pdb[, "Package"])
 
 
 ## ------------------------------------------------------------------------
@@ -791,33 +792,71 @@ pdb[, "Package"][duplicated(pdb[, "Package"])]
 
 
 ## ------------------------------------------------------------------------
-subset(pdb, subset = !duplicated(pdb[, "Package"]), select = c("Package")) %>% length()
-
-
-## ----rmarkdown-eco-------------------------------------------------------
-yihui_pkg <- subset(pdb,
-  subset = grepl("Yihui Xie", pdb[, "Maintainer"]),
-  select = c("Package", "Maintainer", "Title")
-)
-yihui_pkg[, "Title"] <- gsub("(\\\n)", " ", yihui_pkg[, "Title"])
-
-yihui_pkg %>%
-  knitr::kable(caption = "谢益辉维护的 R Markdown 生态", booktabs = TRUE)
+dim(subset(pdb, subset = !duplicated(pdb[, "Package"])))[1]
 
 
 ## ------------------------------------------------------------------------
-subset(pdb,
-  subset = !duplicated(pdb[, "Package"]),
-  select = "Maintainer"
-) %>%
-  unique() %>%
-  length()
+pdb <- subset(pdb, subset = !duplicated(pdb[, "Package"]))
 
 
 ## ------------------------------------------------------------------------
-subset(pdb,
-  subset = grepl("Hadley Wickham", pdb[, "Maintainer"]),
+core_pdb <- subset(pdb,
+  subset = grepl(
+    x = pdb[, "Maintainer"],
+    pattern = "(@R-project\\.org)"
+  ),
   select = c("Package", "Maintainer")
+)
+dim(core_pdb[order(core_pdb[, "Maintainer"]), ])
+
+
+## ------------------------------------------------------------------------
+subset(pdb, subset = grepl(x = pdb[, "Maintainer"], pattern = "(Paul Murrell)"), 
+                   select = c("Package", "Maintainer"))
+
+
+## ------------------------------------------------------------------------
+core_team <- read.table(
+  text = "
+Douglas Bates
+John Chambers
+Peter Dalgaard
+Robert Gentleman
+Kurt Hornik
+Ross Ihaka
+Tomas Kalibera
+Michael Lawrence
+Friedrich Leisch
+Uwe Ligges
+Thomas Lumley
+Martin Maechler
+Martin Morgan
+Paul Murrell
+Martyn Plummer
+Brian Ripley
+Deepayan Sarkar
+Duncan Temple Lang
+Luke Tierney
+Simon Urbanek
+Heiner Schwarte
+Guido Masarotto
+Stefano Iacus
+Seth Falcon
+Duncan Murdoch
+David Meyer
+Simon Wood
+", header = FALSE, sep = "\n", check.names = FALSE, stringsAsFactors = FALSE,
+  colClasses = "character", comment.char = "", col.names = "name"
+)
+
+
+## ------------------------------------------------------------------------
+core_pdb <- subset(pdb,
+  subset = grepl(
+    x = pdb[, "Maintainer"],
+    pattern = paste("(", core_team$name, ")", collapse = "|", sep = "")
+  ),
+  select = c("Package", "Maintainer", "Published")
 )
 
 
@@ -830,34 +869,82 @@ clean_maintainer <- function(x) {
   # 去掉末尾空格
   x <- gsub(" +$", "", x)
 }
+core_pdb[, "Maintainer"] <- clean_maintainer(core_pdb[, "Maintainer"])
 
 
 ## ------------------------------------------------------------------------
-# 去重之后
-cran_maintainers <- subset(pdb,
-  subset = !duplicated(pdb[, "Package"]),
-  select = "Maintainer"
-) %>%
-  lapply(clean_maintainer) %>% # 清理 Maintainer 字段
-  unlist() # 列表转成字符串向量
-cran_maintainers %>%
-  unique() %>% # 去重
-  length()
+dim(core_pdb)
+
+
+## ----r-core-team---------------------------------------------------------
+knitr::kable(head(core_pdb[order(
+  core_pdb[, "Maintainer"],
+  core_pdb[, "Published"]
+), ], 10),
+caption = "R Core Team 维护的 R 包（展示部分）", booktabs = TRUE
+)
+
+
+## ------------------------------------------------------------------------
+sort(table(core_pdb[, "Maintainer"]), decreasing = TRUE)
+
+
+## ----rmarkdown-ecology---------------------------------------------------
+yihui_pdb <- subset(pdb,
+  subset = grepl("Yihui Xie", pdb[, "Maintainer"]),
+  select = c("Package", "Maintainer", "Title")
+)
+yihui_pdb[, "Title"] <- gsub("(\\\n)", " ", yihui_pdb[, "Title"])
+knitr::kable(yihui_pdb, caption = "谢益辉维护的 R Markdown 生态", booktabs = TRUE)
+
+
+## ------------------------------------------------------------------------
+subset(pdb, subset = grepl("Jeroen Ooms", pdb[, "Maintainer"]),
+       select = 'Package', drop = TRUE)
+
+
+## ------------------------------------------------------------------------
+subset(pdb, subset = grepl("Dirk Eddelbuettel", pdb[, "Maintainer"]),
+       select = 'Package', drop = TRUE)
+
+
+## ------------------------------------------------------------------------
+subset(pdb, subset = grepl("Hadley Wickham", pdb[, "Maintainer"]),
+       select = 'Package', drop = TRUE)
+
+
+## ------------------------------------------------------------------------
+subset(pdb, subset = grepl("Scott Chamberlain", pdb[, "Maintainer"]),
+       select = 'Package', drop = TRUE)
+
+
+## ------------------------------------------------------------------------
+length(unique(pdb[, "Maintainer"]))
+
+
+## ------------------------------------------------------------------------
+subset(pdb,
+  subset = grepl("Hadley Wickham", pdb[, "Maintainer"]),
+  select = c("Package", "Maintainer")
+)
+
+
+## ------------------------------------------------------------------------
+pdb[, "Maintainer"] <- clean_maintainer(pdb[, "Maintainer"])
+length(unique(pdb[, "Maintainer"]))
 
 
 ## ----top-maintainers,fig.cap="(ref:top-maintainers)",fig.asp=1,fig.width=5.5,out.width="55%"----
-myData <- cran_maintainers %>%
-  table() %>% # 按照维护者分组计数
-  sort(decreasing = T) %>% # 降序排列
-  head(20) # 取 Top 20
+top_maintainer <- head(sort(table(pdb[, "Maintainer"]), decreasing = TRUE), 20)
+
 par(mar = c(2, 7, 1, 1))
-barCenters <- barplot(myData,
+barCenters <- barplot(top_maintainer,
   col = "lightblue", axes = FALSE,
   axisnames = FALSE, horiz = TRUE, border = "white"
 )
 text(
   y = barCenters, x = par("usr")[3],
-  adj = 1, labels = names(myData), xpd = TRUE
+  adj = 1, labels = names(top_maintainer), xpd = TRUE
 )
 axis(1,
   labels = seq(0, 90, by = 10), at = seq(0, 90, by = 10),
@@ -867,9 +954,10 @@ grid()
 
 
 ## ------------------------------------------------------------------------
-myData <- as.data.frame(myData)
-colnames(myData) <- c("Maintainer", "Freq")
-ggplot(myData) +
+top_maintainer <- as.data.frame(top_maintainer)
+colnames(top_maintainer) <- c("Maintainer", "Freq")
+
+ggplot(top_maintainer) +
   geom_bar(aes(x = Maintainer, y = Freq), stat = "identity") +
   coord_flip() +
   xlab("Maintainer") +
@@ -877,44 +965,210 @@ ggplot(myData) +
 
 
 ## ------------------------------------------------------------------------
-ggplot(myData, aes(x = Freq, y = Maintainer)) +
+ggplot(top_maintainer, aes(x = Freq, y = Maintainer)) +
   geom_segment(aes(x = 20, xend = Freq, yend = Maintainer), colour = "grey50") +
   geom_point(size = 2, colour = "red") +
   labs(x = " # of Packages ", y = " Maintainer ")
 
 
 ## ------------------------------------------------------------------------
-cran_maintainers %>%
-  table() %>% 
-  table %>% 
-  barplot(col = "lightblue", log = "y", border = "white", 
-          xlab = "# of Packages", ylab = "# of Maintainers (log)",
-          panel.first = grid())
+barplot(table(table(pdb[, "Maintainer"])), 
+        col = "lightblue", log = "y", border = "white", 
+        xlab = "# of Packages", ylab = "# of Maintainers (log)",
+        panel.first = grid())
 
 
 ## ------------------------------------------------------------------------
-with(pdb, table( Maintainer, Package)
+sub_pdb <- subset(pdb, select = c("Package", "Maintainer", "Author"))
+
+
+## ------------------------------------------------------------------------
+clean_author <- function(x) {
+  # 去掉中括号及其内容 [aut] [aut, cre]
+  x <- gsub("(\\[.*?\\])", "", x)
+  # 去掉小括号及其内容 ()
+  x <- gsub("(\\(.*?\\))", "", x)
+  # 去掉尖括号及其内容 < >
+  x <- gsub("(<.*?>)", "", x)
+  # 去掉 \n
+  x <- gsub("(\\\n)", "", x)
+  # 去掉制表符、双引号、单引号和 \'，如 'Hadley Wickham' 中的单引号 ' 等
+  x <- gsub("(\\\t)|(\\\")|(\\\')|(')|(\\))", "", x)
+  # Christian P. Robert, Universite Paris Dauphine, and Jean-Michel\n        Marin, Universite Montpellier 2
+  x <- gsub("(and)", "", x)
+  # 两个以上的空格替换为一个空格
+  x <- gsub("( {2,})"," ",x)
+  x
+}
+
+sub_pdb[, "Maintainer"] <- clean_maintainer(sub_pdb[, "Maintainer"])
+sub_pdb[, "Author"] <- clean_author(sub_pdb[, "Author"])
+
+
+## ------------------------------------------------------------------------
+length(unique(sub_pdb[, "Maintainer"][duplicated(sub_pdb[, "Maintainer"])]))
+
+
+## ------------------------------------------------------------------------
+first_ctb <- setdiff(
+  sub_pdb[, "Maintainer"][!duplicated(sub_pdb[, "Maintainer"])],
+  unique(sub_pdb[, "Maintainer"][duplicated(sub_pdb[, "Maintainer"])])
+)
+
+
+## ------------------------------------------------------------------------
+ctb_num <- unlist(
+  lapply(
+    strsplit(
+      subset(sub_pdb,
+             subset = sub_pdb[, "Maintainer"] %in% first_ctb,
+             select = "Author"
+      ),
+      split = ","
+    ), length
+  )
+) 
+hist(ctb_num, col = "lightblue", border = "white", probability = TRUE, labels = TRUE,
+     xlab = "# of Contributors", ylab = "Proportion", main = "",
+     panel.first = grid(), xlim = c(0, 10))
+
+
+## ------------------------------------------------------------------------
+table(ctb_num)
+
+
+## ------------------------------------------------------------------------
+# 找到开发者
+first_ctb[which.max(ctb_num)]
+# 找到 R 包
+subset(sub_pdb, subset = grepl("Matt Dowle", sub_pdb[, "Maintainer"]), select = "Package")
+
+
+## ------------------------------------------------------------------------
+net_pdb <- subset(pdb, select = c("Maintainer", "Author"))
+net_pdb[, "Maintainer"] <- clean_maintainer(net_pdb[, "Maintainer"])
+total_maintainer <- unique(net_pdb[, "Maintainer"])
+clean_author <- function(maintainer) {
+  sapply(net_pdb[, "Author"], grepl, pattern = paste0("(", maintainer, ")"))
+}
 
 
 ## ----eval=FALSE----------------------------------------------------------
-## # 为这张图寻求一个完美的解释
-## # 每天更新的 R包数量随日期的分布，发布数量最多的日期，好好想想是不是这样
-## largest_update_num <- sort(table(pdb$Published), decreasing = T)[1]
-## smallest_update_num <- sort(table(pdb$Published), decreasing = F)[1]
-## pdb_df <- as.data.frame(pdb)
-## ggplot(pdb_df[, c("Package", "Published")], aes(as.Date(Published))) +
-##   geom_bar(color = "firebrick") +
-##   geom_line(
-##     data = data.frame(
-##       date = as.Date(c("2011-01-01", "2012-10-20")),
-##       count = c(130, 155)
-##     ), aes(x = date, y = count),
-##     arrow = arrow(angle = 15, length = unit(0.15, "inches"))
-##   ) +
-##   annotate("text", x = as.Date("2010-11-01"), y = 128, label = "(2012-10-29,172)") +
-##   scale_x_date(date_breaks = "1 year", date_labels = "%Y") +
-##   labs(x = "Published Date", y = "Count") +
-##   theme_minimal()
+## maintainer_author <- Reduce("cbind", lapply(total_maintainer, clean_author))
+## colnames(maintainer_author) <- total_maintainer
+## rownames(maintainer_author) <- net_pdb[, "Maintainer"]
+
+
+## ----eval=FALSE----------------------------------------------------------
+## saveRDS(maintainer_author, file = "data/maintainer_author.rds")
+## write.table(maintainer_author,file = "data/maintainer_author.csv", row.names = TRUE, col.names = TRUE)
+
+## ----echo=FALSE----------------------------------------------------------
+maintainer_author <- readRDS(file = "data/maintainer_author.rds")
+
+
+## ------------------------------------------------------------------------
+format(object.size(maintainer_author), units = "auto")
+
+
+## ------------------------------------------------------------------------
+max(rowSums(maintainer_author))
+max(colSums(maintainer_author))
+
+
+## ------------------------------------------------------------------------
+hist(colSums(maintainer_author)[colSums(maintainer_author) <= 10], 
+     probability = FALSE, xlab = "", main = "")
+
+
+## ------------------------------------------------------------------------
+hist(rowSums(maintainer_author)[rowSums(maintainer_author) <= 20], 
+     xlab = "", main = "",probability = FALSE)
+
+
+## ------------------------------------------------------------------------
+# 非零元素最多的行
+max(rowMeans(maintainer_author))
+# 非零元素最多的列
+max(colMeans(maintainer_author))
+
+
+## ------------------------------------------------------------------------
+library(Matrix)
+spM <- spMatrix(3, 4, i = c(1, 1, 2, 3, 3), 
+                j = c(4, 1, 2, 1, 3),
+                x = c(4, 4, 1, 4, 8))
+spM
+image(spM)
+
+
+## ------------------------------------------------------------------------
+update_pdb <- as.data.frame(pdb[, c("Package", "Published")], stringsAsFactors = FALSE)
+# 这天要更新的R包最多
+sort(table(update_pdb[,"Published"]), decreasing = TRUE)[1]
+
+ggplot(update_pdb, aes(as.Date(Published))) +
+  geom_bar(color = "skyblue4") +
+  geom_line(
+    data = data.frame(
+      date = as.Date(c("2011-01-01", "2012-10-20")),
+      count = c(80, 100)
+    ), aes(x = date, y = count),
+    arrow = arrow(angle = 15, length = unit(0.15, "inches"))
+  ) +
+  annotate("text", x = as.Date("2010-11-01"), y = 75, label = "(2012-10-29,130)") +
+  scale_x_date(date_breaks = "1 year", date_labels = "%Y") +
+  labs(x = "Published Date", y = "Count") +
+  theme_minimal()
+
+
+## ----eval=FALSE,echo=FALSE-----------------------------------------------
+## subset(update_pdb, subset = update_pdb[, "Published"] == min(update_pdb[, "Published"]))
+## update_pdb[which.min(as.Date(update_pdb[, "Published"])), 1]
+
+
+## ------------------------------------------------------------------------
+license_pdb <- head(sort(table(pdb[, "License"]), decreasing = TRUE), 20)
+par(mar = c(2, 12, 0.5, 0))
+plot(c(1, 1e1, 1e2, 1e3, 1e4), c(1, 5, 10, 15, 20),
+     type = "n",panel.first = grid(),
+     ann = FALSE, log = "x", axes = FALSE
+)
+axis(1,
+     at = c(1, 1e1, 1e2, 1e3, 1e4),
+     labels = expression(1, 10^1, 10^2, 10^3, 10^4)
+)
+text(
+  y = seq(length(license_pdb)), x = 1, cex = 1, offset = 1,
+  pos = 2, labels = names(license_pdb), xpd = TRUE
+)
+text(1e3, 15, "CRAN")
+segments(x0 = 1, y0 = seq(length(license_pdb)), 
+         x1 = license_pdb, y1 = seq(length(license_pdb)), 
+         col = "lightblue", lwd = 4)
+
+
+## ------------------------------------------------------------------------
+rforge_pdb <- available.packages(repos = "http://R-Forge.R-project.org")
+license_rforge_pdb <- head(sort(table(rforge_pdb[, "License"]), decreasing = TRUE), 20)
+par(mar = c(2, 12, 0.5, 0))
+plot(c(1, 1e1, 1e2, 1e3), seq(from = 1, to = 20,length.out = 4),
+  type = "n",panel.first = grid(),
+  ann = FALSE, log = "x", axes = FALSE
+)
+axis(1,
+  at = c(1, 1e1, 1e2, 1e3),
+  labels = expression(1, 10^1, 10^2, 10^3)
+)
+
+text(
+  y = seq(length(license_rforge_pdb)), x = 1, cex = 1, offset = 1,
+  pos = 2, labels = names(license_rforge_pdb), xpd = TRUE
+)
+text(1e2, 15, "R-Forge")
+segments(x0 = 1, y0 = seq(length(license_rforge_pdb)), 
+         x1 = license_rforge_pdb, y1 = seq(length(license_rforge_pdb)), 
+         lwd = 4, col = "lightblue")
 
 
 ## ------------------------------------------------------------------------

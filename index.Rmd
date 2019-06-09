@@ -64,7 +64,7 @@ mtext("Anscombe's 4 Regression data sets", outer = TRUE, cex = 1.5)
 par(op)
 ```
 
-书籍同时使用 [Github Pages](https://pages.github.com/)、 [bookdown.org](https://bookdown.org) 和 [netlify](https://www.netlify.com) 部署，网址分别是 <https://xiangyunhuang.github.io/RGraphics/>、 <https://bookdown.org/xiangyun/RGraphics/> 和 <https://r-graphics.netlify.com/>
+书籍同时使用 [Github Pages](https://pages.github.com/)、 [bookdown.org](https://bookdown.org) 和 [netlify](https://www.netlify.com) 部署，网址分别是 <https://xiangyunhuang.github.io/RGraphics/> 和 <https://bookdown.org/xiangyun/RGraphics/> 以及 <https://r-graphics.netlify.com/>
 
 > **注意**
 >
