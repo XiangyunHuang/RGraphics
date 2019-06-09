@@ -1,7 +1,8 @@
 # 数据可视化 {#ggplot2-visualization}
 
 ```{r,include=FALSE}
-library(tidyverse)
+library(ggplot2)
+library(magrittr)
 ```
 
 David Robinson 给出为何使用 ggplot2 [^why-ggplot2] 当然也有 Jeff Leek 指出在某些重要场合不适合 ggplot2 [^why-not-ggplot2] 并且给出强有力的 [证据](http://motioninsocial.com/tufte/)，其实不管怎么样，适合自己的才是好的。也不枉费 Garrick Aden-Buie 花费 160 页幻灯片逐步分解介绍 [优雅的ggplot2](https://pkg.garrickadenbuie.com/gentle-ggplot2)，[Malcolm Barrett](https://malco.io/) 也介绍了 [ggplot2 基础用法](https://malco.io/slides/hs_ggplot2)，还有 Selva Prabhakaran 精心总结给出了 50 个 ggplot2 数据可视化的 [例子](https://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html) 以及 Victor Perrier 为小白用 ggplot2 操碎了心地开发 RStudio 插件 [esquisse](https://github.com/dreamRs/esquisse) 包，Claus O. Wilke 教你一步步创建出版级的图形 <https://github.com/clauswilke/practical_ggplot2>。
@@ -9,7 +10,6 @@ David Robinson 给出为何使用 ggplot2 [^why-ggplot2] 当然也有 Jeff Leek 
 GGplot2 是十分方便的统计作图工具，相比 Base R，为了一张出版级的图形，不需要去调整每个参数，实现快速出图。集成了很多其它统计计算的 R 包，支持丰富的统计分析和计算功能，如回归、平滑等，实现了作图和模型的无缝连接。比如图\@ref(fig:awesome-ggplot2)，使用 loess 局部多项式平滑得到数据的趋势，不仅仅是散点图，代码量也非常少。
 
 ```{r awesome-ggplot2,fig.cap="简洁美观"}
-library(ggplot2)
 ggplot(mpg, aes(displ, hwy)) +
   geom_point(aes(color = class)) +
   geom_smooth(se = TRUE, method = "loess") +
@@ -155,20 +155,21 @@ ggplot(diamonds, aes(x = carat), color = "steelblue")
 图 \@ref(fig:diamonds-axis) 的基础上添加数据图层
 
 ```{r scatter,fig.cap="添加数据图层"}
-ggplot(diamonds, aes(x = carat, y = price)) +
+sub_diamonds <- diamonds[sample(1:dim(diamonds)[1], 1000), ]
+ggplot(sub_diamonds, aes(x = carat, y = price)) +
   geom_point()
 ```
 
 给散点图\@ref(fig:scatter)上色
 
 ```{r scatter-color-1,fig.cap="散点图配色"}
-ggplot(diamonds, aes(x = carat, y = price)) +
+ggplot(sub_diamonds, aes(x = carat, y = price)) +
   geom_point(color = "steelblue")
 ```
 
 
 ```{r scatter-scale-1,fig.cap="格式化坐标轴刻度标签"}
-ggplot(diamonds, aes(x = carat, y = price)) +
+ggplot(sub_diamonds, aes(x = carat, y = price)) +
   geom_point(color = "steelblue") +
   scale_y_continuous(
     labels = scales::unit_format(unit = "k", scale = 1e-3),
@@ -179,37 +180,37 @@ ggplot(diamonds, aes(x = carat, y = price)) +
 让另一变量 cut 作为颜色分类指标
 
 ```{r scatter-color-2,fig.cap="分类散点图"}
-ggplot(diamonds, aes(x = carat, y = price, color = cut)) +
+ggplot(sub_diamonds, aes(x = carat, y = price, color = cut)) +
   geom_point()
 ```
 
 当然还有一种类似的表示就是分组，默认情况下，ggplot2将所有观测点视为一组，以分类变量 cut 来分组
 
 ```{r scatter-group,fig.cap="分组"}
-ggplot(diamonds, aes(x = carat, y = price, group = cut)) +
+ggplot(sub_diamonds, aes(x = carat, y = price, group = cut)) +
   geom_point()
 ```
 
 在图\@ref(fig:scatter-group) 上没有体现出来分组的意思，下面以 cut 分组线性回归为例
 
 ```{r group-lm,fig.cap="分组线性回归",fig.ncol=1}
-ggplot(diamonds, aes(x = carat, y = price)) +
+ggplot(sub_diamonds, aes(x = carat, y = price)) +
   geom_point() +
   geom_smooth(method = "lm")
-ggplot(diamonds, aes(x = carat, y = price, group = cut)) +
+ggplot(sub_diamonds, aes(x = carat, y = price, group = cut)) +
   geom_point() +
   geom_smooth(method = "lm")
 ```
 
 我们当然可以选择更加合适的拟合方式，如局部多项式平滑 `loess` 但是该方法不太适用观测值比较多的情况，因为它会占用比较多的内存，建议使用广义可加模型作平滑拟合
 
-```{r,eval=FALSE}
-ggplot(diamonds, aes(x = carat, y = price, group = cut)) +
+```{r,fig.cap="局部多项式平滑"}
+ggplot(sub_diamonds, aes(x = carat, y = price, group = cut)) +
   geom_point() +
   geom_smooth(method = "loess")
 ```
 ```{r group-gam,fig.cap="数据分组应用广义可加平滑"}
-ggplot(diamonds, aes(x = carat, y = price, group = cut)) +
+ggplot(sub_diamonds, aes(x = carat, y = price, group = cut)) +
   geom_point() +
   geom_smooth(method = "gam", formula = y ~ s(x, bs = "cs"))
 ```
@@ -221,11 +222,11 @@ ggplot(diamonds, aes(x = carat, y = price, group = cut)) +
 为了更好地区分开组别，我们在图\@ref(fig:group-gam)的基础上分面或者配色
 
 ```{r group-facet,fig.cap=c("分组分面","分组配色"),fig.ncol=1}
-ggplot(diamonds, aes(x = carat, y = price, group = cut)) +
+ggplot(sub_diamonds, aes(x = carat, y = price, group = cut)) +
   geom_point() +
   geom_smooth(method = "gam", formula = y ~ s(x, bs = "cs")) +
   facet_grid(~cut)
-ggplot(diamonds, aes(x = carat, y = price, group = cut, color = cut)) +
+ggplot(sub_diamonds, aes(x = carat, y = price, group = cut, color = cut)) +
   geom_point() +
   geom_smooth(method = "gam", formula = y ~ s(x, bs = "cs"))
 ```
@@ -233,7 +234,7 @@ ggplot(diamonds, aes(x = carat, y = price, group = cut, color = cut)) +
 在分类散点图的另一种表示方法就是分面图，以 cut 变量作为分面的依据
 
 ```{r scatter-facet,fig.cap="分面散点图"}
-ggplot(diamonds, aes(x = carat, y = price)) +
+ggplot(sub_diamonds, aes(x = carat, y = price)) +
   geom_point() +
   facet_grid(~cut)
 ```
@@ -241,7 +242,7 @@ ggplot(diamonds, aes(x = carat, y = price)) +
 给图 \@ref(fig:scatter-facet) 上色
 
 ```{r scatter-facet-color-1,fig.cap="给分面散点图上色"}
-ggplot(diamonds, aes(x = carat, y = price)) +
+ggplot(sub_diamonds, aes(x = carat, y = price)) +
   geom_point(color = "steelblue") +
   facet_grid(~cut)
 ```
@@ -249,7 +250,7 @@ ggplot(diamonds, aes(x = carat, y = price)) +
 在图\@ref(fig:scatter-facet-color-1)的基础上，给不同的类上不同的颜色
 
 ```{r scatter-facet-color-2,fig.cap="给不同的类上不同的颜色"}
-ggplot(diamonds, aes(x = carat, y = price, color = cut)) +
+ggplot(sub_diamonds, aes(x = carat, y = price, color = cut)) +
   geom_point() +
   facet_grid(~cut)
 ```
@@ -257,7 +258,7 @@ ggplot(diamonds, aes(x = carat, y = price, color = cut)) +
 去掉图例，此时图例属于冗余信息了
 
 ```{r scatter-facet-color-3,fig.cap="去掉图例"}
-ggplot(diamonds, aes(x = carat, y = price, color = cut)) +
+ggplot(sub_diamonds, aes(x = carat, y = price, color = cut)) +
   geom_point(show.legend = FALSE) +
   facet_grid(~cut)
 ```
@@ -265,8 +266,7 @@ ggplot(diamonds, aes(x = carat, y = price, color = cut)) +
 四块土地，所施肥料不同，肥力大小顺序 4 < 2 < 3 < 1 小麦产量随肥力的变化
 
 ```{r,fig.cap="多个图例"}
-library(nlme)
-data(Wheat2) # Wheat Yield Trials
+data(Wheat2, package = "nlme") # Wheat Yield Trials
 library(colorspace)
 ggplot(Wheat2, aes(longitude, latitude)) +
   geom_point(aes(size = yield, colour = Block)) +
@@ -514,7 +514,8 @@ ggplot(mpg, aes(class, cty)) +
 蜂群图 [ggbeeswarm](https://github.com/eclarke/ggbeeswarm) 是分类散点图加箱线图的合体
 
 ```{r}
-ggplot(mpg, aes(x = class, y = hwy, color = class)) + ggbeeswarm::geom_quasirandom()
+ggplot(mpg, aes(x = class, y = hwy, color = class)) +
+  ggbeeswarm::geom_quasirandom()
 ```
 
 
@@ -532,13 +533,13 @@ ggplot(mpg, aes(x = class, y = hwy, color = class)) + geom_jitter()
 在数据量比较大的时候，可以用箱线图、密度图、提琴图
 
 ```{r,fig.cap="抖动图的反例"}
-ggplot(diamonds, aes(x = cut, y = price)) + geom_jitter()
+ggplot(sub_diamonds, aes(x = cut, y = price)) + geom_jitter()
 ```
 
 上色和分面都不好使的抖动图，因为区分度变小
 
 ```{r,fig.cap="根据钻石颜色上色"}
-ggplot(diamonds, aes(x = color, y = price, color = color)) +
+ggplot(sub_diamonds, aes(x = color, y = price, color = color)) +
   geom_jitter() +
   facet_grid(clarity ~ cut)
 ```
@@ -594,7 +595,8 @@ ggplot(diamonds, aes(x = price, fill = cut)) + geom_density(alpha = 0.5)
 堆积密度图
 
 ```{r stack-density,fig.cap="堆积密度图"}
-ggplot(diamonds, aes(x = price, fill = cut)) + geom_density(position = "stack")
+ggplot(diamonds, aes(x = price, fill = cut)) + 
+  geom_density(position = "stack")
 ```
 
 条件密度估计
@@ -731,7 +733,7 @@ ggplot(crimesm, aes(map_id = state)) +
 ```{r pickcolor,fig.cap="viridis 和 Spectral对比"}
 dat <- as.data.frame(cbind(rep(1948 + seq(12), each = 12), rep(seq(12), 12), AirPassengers))
 colnames(dat) <- c("year", "month", "passengers")
-library(colormap)
+# library(colormap)
 ggplot(data = dat, aes(as.factor(year), as.factor(month))) +
   geom_point(aes(colour = passengers), pch = 15, size = 8) +
   scale_colour_distiller(palette = "Spectral") +
@@ -751,7 +753,7 @@ erupt <- ggplot(faithfuld, aes(waiting, eruptions, fill = density)) +
 erupt1 <- erupt + scale_fill_gradientn(colours = gray.colors(7))
 erupt2 <- erupt + scale_fill_distiller(palette = "Spectral")
 erupt3 <- erupt + scale_fill_gradientn(colours = terrain.colors(7))
-erupt4 <- erupt + scale_fill_colormap(colormap = colormaps$RdBu)
+erupt4 <- erupt
 grid.arrange(erupt1, erupt2, erupt3, erupt4, ncol = 2)
 ```
 
@@ -926,29 +928,29 @@ maptools 提供的 `readShapePoly` 函数去读取 shp 文件的方式已经过�
 - ggmap
 - sf
 
-```{r}
+```{r,eval=FALSE}
+# library(dplyr, warn.conflicts = FALSE)
 nc <- system.file("gpkg/nc.gpkg", package = "sf") %>% read_sf()
 nc2 <- nc %>%
-  select(SID74, SID79) %>%
-  gather(VAR, SID, -geom)
+  dplyr::select(SID74, SID79) %>%
+  tidyr::gather(VAR, SID, -geom)
 ggplot() +
   geom_sf(data = nc2, aes(fill = SID)) +
   facet_wrap(~VAR, ncol = 1)
 ```
 
 ```{r,eval=FALSE}
-library(GADMTools)
+library(GADMTools) # 会自动加载 tidyverse 包
 data("Corsica")
 # basefile 文件存放路径
 # FRA Corse 的国家代码
-map <- gadm_sf_loadCountries("FRA", basefile = "./")
-gadm_plot(map) + theme_minimal()
+gadm_sf_loadCountries("FRA", basefile = "./data/") %>% 
+  gadm_plot(map) + theme_minimal()
 ```
 
 ```{r}
 library(maps) # For map data
 library(mapdata)
-library(ggplot2)
 east_asia <- map_data("worldHires", region = c("Japan", "China", "North Korea", "South Korea"))
 
 # Map region to fill color
@@ -1414,7 +1416,7 @@ subset(sub_pdb, subset = grepl("Matt Dowle", sub_pdb[, "Maintainer"]), select = 
 
 <!-- 综合上面的分析，社区的主要推动者是余下的 1/3，他们相互之间的合作应该比较多，我们接下来想分析一下他们之间的贡献网络。 -->
 
-接下来进入本章最核心的部分，分析所有的开发者之间的贡献网络，在第\@ref(first-commit)节清理 Author 字段的正则表达式几乎不可能覆盖到所有的情况，所以既然 Maintainer 字段是比较好清理的，不妨以它作为匹配的模式去匹配 Author 字段，这样做的代价就是迭代次数会很多，增加一定的计算负担，但是为了更加准确的清理结果，也是拼了！
+接下来进入本节最核心的部分，分析所有的开发者之间的贡献网络，在第\@ref(first-commit)节清理 Author 字段的正则表达式几乎不可能覆盖到所有的情况，所以既然 Maintainer 字段是比较好清理的，不妨以它作为匹配的模式去匹配 Author 字段，这样做的代价就是迭代次数会很多，增加一定的计算负担，但是为了更加准确的清理结果，也是拼了！
 
 ```{r}
 net_pdb <- subset(pdb, select = c("Maintainer", "Author"))
@@ -1490,6 +1492,7 @@ library(Matrix)
 spM <- spMatrix(3, 4, i = c(1, 1, 2, 3, 3), 
                 j = c(4, 1, 2, 1, 3),
                 x = c(4, 4, 1, 4, 8))
+spM
 image(spM)
 ```
 
