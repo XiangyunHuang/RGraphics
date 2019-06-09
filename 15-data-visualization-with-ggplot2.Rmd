@@ -961,6 +961,8 @@ ggplot(east_asia, aes(x = long, y = lat, group = group, fill = region)) +
 
 > 介绍图的基本概念，出度、入度、有向图，邻接矩阵等，如何用 igraph 绘图表示
 
+参考 Katherine Ognyanova 的博文网络分析和可视化与 R 语言、igraph 包的介绍 [^intro-igraph]，Sam Tyner、 François Briatte 和 Heike Hofmann 总结了基于 ggplot2 的网络可视化工具包[@RJ_2017_Tyner]，Bodong Chen 编写的教材 [Applied Social Network Analysis in Education](https://bookdown.org/chen/snaEd/)，[François Briatte](https://briatte.github.io/) 介绍 [ggnet2: network visualization with ggplot2](https://briatte.github.io/ggnet/) 以及整理的 [网络分析资源大列表](https://github.com/briatte/awesome-network-analysis)。
+
 [igraph](https://igraph.org/) 提供了 R 和 Python 接口 <https://github.com/igraph>。 [qgraph](https://github.com/SachaEpskamp/qgraph) 开发者 [Sacha Epskamp](http://sachaepskamp.com) 在个人主页上提供了很多网络数据分析的学习资料， [Rgraphviz](https://www.bioconductor.org/packages/release/bioc/html/Rgraphviz.html) 基于 [Graphviz](https://www.graphviz.org/)
 
 ```{r,eval=FALSE}
@@ -1203,7 +1205,9 @@ sort(table(core_pdb[, "Maintainer"]), decreasing = TRUE)
 ```
 
 
-### R Markdown 生态 {#R-Markdown-Ecology}
+### 金字塔顶的人 {#Top-Creators}
+
+> 这些人的个人简介
 
 接下来，我们再来查看一些比较高产的 R 包开发者谢益辉都维护了哪些R包，如表 \@ref(tab:rmarkdown-ecology) 所示
 
@@ -1216,17 +1220,40 @@ yihui_pdb[, "Title"] <- gsub("(\\\n)", " ", yihui_pdb[, "Title"])
 knitr::kable(yihui_pdb, caption = "谢益辉维护的 R Markdown 生态", booktabs = TRUE)
 ```
 
+Jeroen Ooms 维护从 C++ 世界搬运进来的库，如图像处理 magick 包、 视频处理 av 包、 PDF 文档操作 qpdf 包
+
+```{r}
+subset(pdb, subset = grepl("Jeroen Ooms", pdb[, "Maintainer"]),
+       select = 'Package', drop = TRUE)
+```
+
+Dirk Eddelbuettel 维护 Rcpp 生态
+
+```{r}
+subset(pdb, subset = grepl("Dirk Eddelbuettel", pdb[, "Maintainer"]),
+       select = 'Package', drop = TRUE)
+```
+
+Hadley Wickham 维护 tidyverse 生态 
+
+```{r}
+subset(pdb, subset = grepl("Hadley Wickham", pdb[, "Maintainer"]),
+       select = 'Package', drop = TRUE)
+```
+
+[Scott Chamberlain](https://scottchamberlain.info/) 是非营利性组织 [rOpenSci](https://ropensci.org/) 的联合创始人，但是没几个 R 包听说过
+
+```{r}
+subset(pdb, subset = grepl("Scott Chamberlain", pdb[, "Maintainer"]),
+       select = 'Package', drop = TRUE)
+```
+
 ### 社区开发者 {#R-Package-Developers}
 
 接下来，我们想看看 R 包维护者数量有多少
 
 ```{r}
-subset(pdb,
-  subset = !duplicated(pdb[, "Package"]),
-  select = "Maintainer"
-) %>%
-  unique() %>%
-  length()
+length(unique(pdb[, "Maintainer"]))
 ```
 
 可实际上没有这么多的开发者，因为存在这样的情况，以 R 包维护者 Hadley Wickham 为例，由于他曾使用过不同的邮箱，所以在维护者字段出现了不一致的情况，实际却是同一个人。
@@ -1266,11 +1293,12 @@ axis(1,
 grid()
 ```
 
-调用 ggplot2 包绘图要求输入的数据类型是 data.frame，所以我们首先将 top_maintainer 转化为数据框类型
+调用 ggplot2 包绘图要求输入的数据类型是 `data.frame`，所以我们首先将 `top_maintainer` 转化为数据框类型
 
 ```{r}
 top_maintainer <- as.data.frame(top_maintainer)
 colnames(top_maintainer) <- c("Maintainer", "Freq")
+
 ggplot(top_maintainer) +
   geom_bar(aes(x = Maintainer, y = Freq), stat = "identity") +
   coord_flip() +
@@ -1290,12 +1318,10 @@ ggplot(top_maintainer, aes(x = Freq, y = Maintainer)) +
 接下来，我们想看看开发者维护的 R 包数量的分布，仅从上图，我们知道有的人能维护 80 多个 R 包，总体的分布情况又是如何呢？如图所示，我们将纵轴刻度设置为 log 模式，随着开发的R包数量的增加，开发者人数是指数级递减，可见开发R包依然是一个门槛很高的工作！
 
 ```{r}
-pdb[, "Maintainer"] %>%
-  table() %>% 
-  table %>% 
-  barplot(col = "lightblue", log = "y", border = "white", 
-          xlab = "# of Packages", ylab = "# of Maintainers (log)",
-          panel.first = grid())
+barplot(table(table(pdb[, "Maintainer"])), 
+        col = "lightblue", log = "y", border = "white", 
+        xlab = "# of Packages", ylab = "# of Maintainers (log)",
+        panel.first = grid())
 ```
 
 只开发一个 R 包的人数达到 5276 人，占开发者总数的 67.31\%，约为2/3。
@@ -1305,7 +1331,7 @@ pdb[, "Maintainer"] %>%
 我们还想进一步了解这些人是不是就自己开发自己维护，基本没有其他人参与，答案是 Almost Sure. 这些人其实占了大部分，相比于前面的 R 核心开发团队或者 R Markdown 生态的维护者，他们绝大部分属于金字塔底部的人，二八定律似乎在这里再次得到印证。
 
 ```{r}
-sub_pdb <- subset(pdb, subset = !duplicated(pdb[, "Package"]), select = c("Package", "Maintainer", "Author"))
+sub_pdb <- subset(pdb, select = c("Package", "Maintainer", "Author"))
 ```
 
 接着先清理一下 Maintainer 和 Author 字段，Author 字段的内容比起 Maintainer 复杂一些
@@ -1386,7 +1412,9 @@ subset(sub_pdb, subset = grepl("Matt Dowle", sub_pdb[, "Maintainer"]), select = 
 
 ### 贡献关系网络 {#Contribution-Network}
 
-综合上面的分析，社区的主要推动者是余下的 1/3，他们相互之间的合作应该比较多，我们接下来想分析一下他们之间的贡献网络。
+<!-- 综合上面的分析，社区的主要推动者是余下的 1/3，他们相互之间的合作应该比较多，我们接下来想分析一下他们之间的贡献网络。 -->
+
+接下来进入本章最核心的部分，分析所有的开发者之间的贡献网络，在第\@ref(first-commit)节清理 Author 字段的正则表达式几乎不可能覆盖到所有的情况，所以既然 Maintainer 字段是比较好清理的，不妨以它作为匹配的模式去匹配 Author 字段，这样做的代价就是迭代次数会很多，增加一定的计算负担，但是为了更加准确的清理结果，也是拼了！
 
 ```{r}
 net_pdb <- subset(pdb, select = c("Maintainer", "Author"))
@@ -1455,14 +1483,17 @@ max(colMeans(maintainer_author))
 
 > 用稀疏索引的方式重新编码矩阵，然后用[社群检测的算法][community-detection]找到其中的结构，网络关系图用 Gephi 画，igraph 肯定是不行了，参考文献 [社会网络分析：探索人人网好友推荐系统](https://cosx.org/2011/04/exploring-renren-social-network)
 
-Katherine Ognyanova 的博文网络分析和可视化与 R 语言、igraph 包的介绍 [^intro-igraph]
+重新获取 `maintainer_author` 矩阵，存储指标向量，然后调用 Matrix 生成稀疏矩阵，后续的数据操作就好办了，因为 Matrix 包是内置的，它定义的稀疏矩阵类其它 R 包也都支持。先以一个简单的例子说明构造稀疏矩阵的过程
 
-Sam Tyner、 François Briatte 和 Heike Hofmann 总结了基于 ggplot2 的网络可视化工具包[@RJ_2017_Tyner]
+```{r}
+library(Matrix)
+spM <- spMatrix(3, 4, i = c(1, 1, 2, 3, 3), 
+                j = c(4, 1, 2, 1, 3),
+                x = c(4, 4, 1, 4, 8))
+image(spM)
+```
 
-Bodong Chen 编写的教材 [Applied Social Network Analysis in Education](https://bookdown.org/chen/snaEd/)
-
-[François Briatte](https://briatte.github.io/) 介绍 [ggnet2: network visualization with ggplot2](https://briatte.github.io/ggnet/) 以及整理的 [网络分析资源大列表](https://github.com/briatte/awesome-network-analysis)
-
+`i` 和 `j` 表示矩阵中有值的位置，`x` 表示对应位置上的值，`i`，`j` 和 `x` 是三个长度相等的数值型向量，我们还可以调用 `image `函数，把稀疏矩阵可视化出来，对于大型稀疏矩阵可视化其稀疏模式是重要的。
 
 
 
@@ -1481,11 +1512,11 @@ Bodong Chen 编写的教材 [Applied Social Network Analysis in Education](https
 这节标题取其字面意思表达 CRAN 服务器的特殊日子 2012-10-29，那天 CRAN 更新了一大波 R 包，像一根擎天柱一样支撑这幅图！
 
 ```{r}
-sub_pdb <- as.data.frame(pdb[, c("Package", "Published")], stringsAsFactors = FALSE)
+update_pdb <- as.data.frame(pdb[, c("Package", "Published")], stringsAsFactors = FALSE)
 # 这天要更新的R包最多
-sort(table(sub_pdb[,"Published"]), decreasing = TRUE)[1]
+sort(table(update_pdb[,"Published"]), decreasing = TRUE)[1]
 
-ggplot(sub_pdb, aes(as.Date(Published))) +
+ggplot(update_pdb, aes(as.Date(Published))) +
   geom_bar(color = "skyblue4") +
   geom_line(
     data = data.frame(
@@ -1500,11 +1531,11 @@ ggplot(sub_pdb, aes(as.Date(Published))) +
   theme_minimal()
 ```
 
-当日发布的R包，不论是新增还是更新之前发布的R包都视为最新版，当日之前的都是旧版本，它们可能存在已经修复的 BUG！这句子好奇怪是吧，因为很多 R 包要么托管在 Github 上，要么托管在 [R-Forge](https://r-forge.r-project.org/) 上开发，而 CRAN 上的版本除了发布日外，一般来讲都会落后。如图所示待更新的 R 包在日期上的分布，有的已经10来年没有更新了，最老的 R 包可以追溯到 `r min(pdb[, "Published"])`，它是 `r sub_pdb[which.min(as.Date(sub_pdb[, "Published"])), 1]`！！
+当日发布的R包，不论是新增还是更新之前发布的R包都视为最新版，当日之前的都是旧版本，它们可能存在已经修复的 BUG！这句子好奇怪是吧，因为很多 R 包要么托管在 Github 上，要么托管在 [R-Forge](https://r-forge.r-project.org/) 上开发，而 CRAN 上的版本除了发布日外，一般来讲都会落后。如图所示待更新的 R 包在日期上的分布，有的已经10来年没有更新了，最老的 R 包可以追溯到 `r min(pdb[, "Published"])`，它是 `r update_pdb[which.min(as.Date(update_pdb[, "Published"])), 1]`！！
 
 ```{r,eval=FALSE,echo=FALSE}
-subset(sub_pdb, subset = sub_pdb[, "Published"] == min(sub_pdb[, "Published"]))
-sub_pdb[which.min(as.Date(sub_pdb[, "Published"])), 1]
+subset(update_pdb, subset = update_pdb[, "Published"] == min(update_pdb[, "Published"]))
+update_pdb[which.min(as.Date(update_pdb[, "Published"])), 1]
 ```
 
 ### 使用许可证 {#Package-Licenses}
