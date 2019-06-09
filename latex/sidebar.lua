@@ -26,6 +26,14 @@ function Div(el)
     }
   end
 
+  if el.classes:includes("tidyverse") then
+    return {
+      pandoc.RawBlock("latex", "\\begin{kframe} \\textbf{In Tidyverse}"),
+      el,
+      pandoc.RawBlock("latex", "\\end{kframe}")
+    }
+  end
+
   if el.classes:includes("warning") then
     return {
       pandoc.RawBlock("latex", "\\begin{kframe} \\textbf{警告}"),

@@ -16,7 +16,7 @@ pre code {
 
 /* Sidebar formating --------------------------------------------*/
 
-.sidebar, .base, .warning {
+.sidebar, .base, .tidyverse, .warning {
   border: 1px solid #ccc;
   border-left-width: 5px;
   border-radius: 5px;
@@ -25,12 +25,14 @@ pre code {
 }
 
 .book .book-body .page-wrapper .page-inner section.normal div.base > :first-child,
+.book .book-body .page-wrapper .page-inner section.normal div.tidyverse > :first-child,
 .book .book-body .page-wrapper .page-inner section.normal div.warning > :first-child,
 .book .book-body .page-wrapper .page-inner section.normal div.sidebar > :first-child {
   margin-top: 0;
 }
 
 .book .book-body .page-wrapper .page-inner section.normal div.base > :last-child,
+.book .book-body .page-wrapper .page-inner section.normal div.tidyverse > :last-child,
 .book .book-body .page-wrapper .page-inner section.normal div.warning > :last-child,
 .book .book-body .page-wrapper .page-inner section.normal div.sidebar > :last-child {
   margin-bottom: 0;
@@ -39,6 +41,15 @@ pre code {
 div.base::before {
   display: block;
   content: "In base R";
+  font-size: 1.1em;
+  font-weight: 700;
+  margin-bottom: 0.25em;
+  color: #333;
+}
+
+div.tidyverse::before {
+  display: block;
+  content: "In tidyverse";
   font-size: 1.1em;
   font-weight: 700;
   margin-bottom: 0.25em;

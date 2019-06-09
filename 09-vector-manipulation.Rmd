@@ -32,7 +32,7 @@ Charlotte Wickham 的课程 A introduction to purrr [purrr-tutorial](https://git
 - [fastmap](https://github.com/wch/fastmap) 实现键值存储，提供新的数据结构
 - [Roaring bitmaps](https://github.com/RoaringBitmap/CRoaring) Bitsets, also called bitmaps, are commonly used as fast data structures.
 
-```{r, echo=TRUE}
+```{r}
 library(tidyverse)
 ```
 

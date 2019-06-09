@@ -2,12 +2,12 @@
 
 > 参考 Data Manipulation With R [@Spector_2008_Manipulation] 重新捋一遍本章
 
-```{r,R.options=list(tidyverse.quiet = TRUE),include=FALSE}
+```{r}
 library(tidyverse)
 ```
 
 ::: sidebar
-主要介绍 Base R 提供的数据操作，关于采用 Base R 还是 tidyverse 做数据操作的 [讨论](https://d.cosx.org/d/420697)
+首先介绍 Base R 提供的数据操作，关于采用 Base R 还是 tidyverse 做数据操作的 [讨论](https://d.cosx.org/d/420697)， 每个数据操作都提供 tidyverse 的等价表示
 :::
 
 什么是 Base R? Base R 指的是 R 语言/软件的核心组件，由 R Core Team 维护
