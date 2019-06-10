@@ -117,7 +117,9 @@ ggplot(airquality) + geom_point(aes(x = Temp, y = Ozone)) + facet_wrap(~ as.orde
 ggplot(airquality) + geom_point(aes(x = Temp, y = Ozone)) + facet_wrap(~ as.ordered(Month), nrow = 1)
 ```
 
-gridExtra 和 patchwork
+gridExtra 和 patchwork 
+
+[cowplot](https://github.com/wilkelab/cowplot) 是以作者 Claus O. Wilke 命名的
 
 
 ### 坐标系 {#ggplot2-coord}
@@ -1014,51 +1016,6 @@ HTML(svg) # 将输出结果保存在svg格式矢量文件 即可
 html_print(HTML(svg))
 ```
 
-
-```{r,eval=FALSE}
-# https://smallstats.blogspot.jp/2012/12/loading-huge-graphs-with-igraph-and-r.html
-# Loading huge graphs with igraph and R
-df <- data.frame(
-  src = sample(1:1000, 1000000, replace = TRUE),
-
-  dst = sample(1:1000, 1000000, replace = TRUE)
-)
-
-library(igraph)
-cat("--- Creating data.frame ---")
-start <- proc.time()
-df <- data.frame(
-  src = sample(1:1000, 10000000, replace = TRUE),
-  dst = sample(1:1000, 10000000, replace = TRUE)
-)
-
-cat(sprintf("— elapsed time: %fs ", (proc.time() - start)[1]))
-cat("— Creating graph… ")
-start <- proc.time()
-G <- graph.data.frame(df, directed = TRUE)
-cat(sprintf("---elapsed user-time: %fs ", (proc.time() - start)[1]))
-
-
-cat("...Creating graph...")
-
-start <- proc.time()
-
-vertex.attrs <- list(name = unique(c(df$src, df$dst)))
-edges <- rbind(
-  match(df$src, vertex.attrs$name),
-  match(df$dst, vertex.attrs$name)
-)
-
-G <- graph.empty(n = 0, directed = T)
-G <- add.vertices(G, length(vertex.attrs$name), attr = vertex.attrs)
-G <- add.edges(G, edges)
-
-remove(edges)
-remove(vertex.attrs)
-
-cat(sprintf("--- elapsed user-time: %fs ", (proc.time() - start)[1]))
-```
-
 ## 案例：分析 CRAN {#Analysis-CRAN}
 
 > ggraph 和 igraph 可视化
@@ -1498,8 +1455,73 @@ image(spM)
 
 `i` 和 `j` 表示矩阵中有值的位置，`x` 表示对应位置上的值，`i`，`j` 和 `x` 是三个长度相等的数值型向量，我们还可以调用 `image `函数，把稀疏矩阵可视化出来，对于大型稀疏矩阵可视化其稀疏模式是重要的。
 
+> 贡献网络可视化
+
+```{r}
+clean_net_pdb <- function(maintainer) {
+  index <- clean_author(maintainer)
+  if (sum(index) == 0) {
+    return(NULL)
+  }
+  data.frame(
+    from_id = maintainer,
+    to_id = net_pdb[, "Maintainer"][index],
+    stringsAsFactors = FALSE
+  )
+}
+```
+
+```{r,eval=FALSE}
+# maintainer_author <- data.table::rbindlist(lapply(total_maintainer, clean_net_pdb))
+# saveRDS(maintainer_author, file = "data/maintainer_author.rds")
+toc <- system.time({
+  maintainer_author <- Reduce("rbind", lapply(total_maintainer, clean_net_pdb))  
+}, gcFirst = TRUE)
+```
+```{r,echo=FALSE}
+maintainer_author <- readRDS(file = "data/maintainer_author.rds")
+```
+
+分组统计开发者之间贡献次数，从开发者到
+
+```{r}
+maintainer_author$weight <- 1
+edges <- aggregate(weight ~ from_id + to_id, data = maintainer_author, sum)
+```
+
+```{r}
+dup_edges <- edges[edges[, 1] != edges[, 2], ]
+```
+
+```{r,eval=FALSE}
+library(geomnet)
+ggplot(data = dup_edges, aes(from_id = from_id, to_id = to_id)) +
+  geom_net(aes(linewidth = weight),
+    layout.alg = "kamadakawai",
+    labelon = FALSE, directed = TRUE, show.legend = FALSE, ealpha = 1,
+    ecolour = "grey70", arrowsize = 0.1, size = 0.5
+  ) +
+  theme_net()
+```
 
 
+```{r,eval=FALSE}
+# https://smallstats.blogspot.jp/2012/12/loading-huge-graphs-with-igraph-and-r.html
+library(igraph)
+
+# 贡献矩阵
+ctb_df <- graph.data.frame(maintainer_author, directed = TRUE)
+
+vertex.attrs <- list(name = unique(c(ctb_df$from_id, ctb_df$to_id)))
+edges <- rbind(
+  match(ctb_df$from_id, vertex.attrs$name),
+  match(ctb_df$to_id, vertex.attrs$name)
+)
+
+ctb_net <- graph.empty(n = 0, directed = T)
+ctb_net <- add.vertices(ctb_net, length(vertex.attrs$name), attr = vertex.attrs)
+ctb_net <- add.edges(ctb_net, edges)
+```
 
 [community-detection]: https://bommaritollc.com/2012/06/17/summary-community-detection-algorithms-igraph-0-6/
 
