@@ -9,7 +9,7 @@ packages.bib
 .project
 _book/
 _bookdown_files/
-
+tmp/
 *-tikzDictionary
 temp.Rmd
 book/

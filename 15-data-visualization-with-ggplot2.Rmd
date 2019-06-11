@@ -3,6 +3,10 @@
 ```{r,include=FALSE}
 library(ggplot2)
 library(magrittr)
+options(
+  ggplot2.continuous.colour = "viridis",
+  ggplot2.continuous.fill = "viridis"
+)
 ```
 
 David Robinson 给出为何使用 ggplot2 [^why-ggplot2] 当然也有 Jeff Leek 指出在某些重要场合不适合 ggplot2 [^why-not-ggplot2] 并且给出强有力的 [证据](http://motioninsocial.com/tufte/)，其实不管怎么样，适合自己的才是好的。也不枉费 Garrick Aden-Buie 花费 160 页幻灯片逐步分解介绍 [优雅的ggplot2](https://pkg.garrickadenbuie.com/gentle-ggplot2)，[Malcolm Barrett](https://malco.io/) 也介绍了 [ggplot2 基础用法](https://malco.io/slides/hs_ggplot2)，还有 Selva Prabhakaran 精心总结给出了 50 个 ggplot2 数据可视化的 [例子](https://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html) 以及 Victor Perrier 为小白用 ggplot2 操碎了心地开发 RStudio 插件 [esquisse](https://github.com/dreamRs/esquisse) 包，Claus O. Wilke 教你一步步创建出版级的图形 <https://github.com/clauswilke/practical_ggplot2>。
@@ -619,19 +623,21 @@ ggplot(diamonds) +
 
 二维的密度图又是一种延伸
 
-```{r}
+```{r,out.width="90%",eval=FALSE}
 ggplot(diamonds, aes(x = carat, y = price)) +
   geom_density_2d(aes(color = cut)) +
-  facet_grid(~cut) +
-  scale_fill_viridis_d()
+  facet_grid(~cut)
 ```
 
 `stat` 函数，特别是 nlevel 参数，在密度曲线之间填充我们又可以得到热力图
 
-```{r}
+```{r,eval=FALSE}
 ggplot(diamonds, aes(x = carat, y = price)) +
   stat_density_2d(aes(fill = stat(nlevel)), geom = "polygon") +
-  facet_grid(. ~ cut) + scale_fill_viridis_c()
+  facet_grid(. ~ cut)
+```
+```{r,echo=FALSE}
+knitr::include_graphics(path = "figures/ggplot2-density-2d.png")
 ```
 
 `gemo_hex` 也是二维密度图的一种变体，特别适合数据量比较大的情形
@@ -1164,7 +1170,7 @@ sort(table(core_pdb[, "Maintainer"]), decreasing = TRUE)
 ```
 
 
-### 金字塔顶的人 {#Top-Creators}
+### 高产的开发者 {#Top-Creators}
 
 > 这些人的个人简介
 
@@ -1285,7 +1291,7 @@ barplot(table(table(pdb[, "Maintainer"])),
 
 只开发一个 R 包的人数达到 5276 人，占开发者总数的 67.31\%，约为2/3。
 
-### 金字塔底的人 {#first-commit}
+### 首次贡献R包 {#first-commit}
 
 我们还想进一步了解这些人是不是就自己开发自己维护，基本没有其他人参与，答案是 Almost Sure. 这些人其实占了大部分，相比于前面的 R 核心开发团队或者 R Markdown 生态的维护者，他们绝大部分属于金字塔底部的人，二八定律似乎在这里再次得到印证。
 
@@ -1475,18 +1481,18 @@ clean_net_pdb <- function(maintainer) {
 # maintainer_author <- data.table::rbindlist(lapply(total_maintainer, clean_net_pdb))
 # saveRDS(maintainer_author, file = "data/maintainer_author.rds")
 toc <- system.time({
-  maintainer_author <- Reduce("rbind", lapply(total_maintainer, clean_net_pdb))  
+  maintainer_author_net <- Reduce("rbind", lapply(total_maintainer, clean_net_pdb))  
 }, gcFirst = TRUE)
 ```
 ```{r,echo=FALSE}
-maintainer_author <- readRDS(file = "data/maintainer_author.rds")
+maintainer_author_net <- readRDS(file = "data/maintainer_author_net.rds")
 ```
 
 分组统计开发者之间贡献次数，从开发者到
 
 ```{r}
-maintainer_author$weight <- 1
-edges <- aggregate(weight ~ from_id + to_id, data = maintainer_author, sum)
+maintainer_author_net$weight <- 1
+edges <- aggregate(weight ~ from_id + to_id, data = maintainer_author_net, sum)
 ```
 
 ```{r}
@@ -1508,7 +1514,6 @@ ggplot(data = dup_edges, aes(from_id = from_id, to_id = to_id)) +
 ```{r,eval=FALSE}
 # https://smallstats.blogspot.jp/2012/12/loading-huge-graphs-with-igraph-and-r.html
 library(igraph)
-
 # 贡献矩阵
 ctb_df <- graph.data.frame(maintainer_author, directed = TRUE)
 
