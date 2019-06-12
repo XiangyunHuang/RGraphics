@@ -4,14 +4,7 @@
 
 这里写每章的主要内容介绍
 
-1. R包数量增长如此之快  R包如此之多
-2. R包之间依赖关系如此之复杂
-3. 每个base R包内的函数如此之多，函数参数之多，`ls("package:base") %>% length`
-4. 数据处理和可视化常用基本包  ggplot2  dplyr 
-5. 程序设计风格如此之多，面向对象s3 s4 RC R5 R6、过程（函数调用）、响应式 shiny 动态图形、函数式编程（数据操作）
-6. 数据结构如此之多  列表list sp sf 
-7. 统计学家的程序设计思维如此难懂
-8. 数据交换接口如此之多，数据库、网页、编程语言 python 等 
+
 
 
 ## 本书结构 {#structure-of-book .unnumbered}
@@ -20,7 +13,7 @@
 
 ## 关于作者 {#about-author .unnumbered}
 
-热心开源事业，统计之都现任理事、副主编 Associated Editor of Captial of Statistics，经常混迹于统计之都论坛、Github 和爆栈网。个人主页 <https://www.xiangyunhuang.com.cn/>
+热心开源事业，统计之都副主编，经常混迹于统计之都论坛、Github 和爆栈网。个人主页 <https://www.xiangyunhuang.com.cn/>
 
 ```{r eval=!is_latex,out.width="90%",echo=FALSE}
 knitr::include_graphics(path = 'https://ghchart.rshah.org/XiangyunHuang.svg')
