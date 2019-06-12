@@ -1,0 +1,122 @@
+# 案例：个人信用借贷 {#case-lend-loan}
+
+> 这次使用 tidyverse 和数据库打造数据分析流，以真实的个人借贷记录分析220多万条个人信用借贷记录，数据来源于 Kaggle 比赛官网 <https://www.kaggle.com/wendykan/lending-club-loan-data>，它存储在 SQLite 数据库中，分析期间需要编写一定的 SQL 语句[^sqlite-intro]
+
+::: sidebar
+[Michael W. Kearney](https://mikewk.com/) 开发了 [kaggler](https://github.com/mkearney/kaggler) 包提供 Kaggle 数据集下载的客户端，目前只能在 Github 上安装
+
+```r
+remotes::install_packages("mkearney/kaggler")
+```
+
+还可用此 API 提交比赛结果。
+:::
+
+```{r}
+options(tidyverse.quiet = TRUE)
+library(tidyverse)
+library(DBI)
+```
+
+```{r}
+con <- dbConnect(RSQLite::SQLite(), "G:/lend-loan/lending-club-loan-data/database.sqlite")
+```
+
+查看数据库中有哪些表
+
+```{r}
+dbListTables(con)
+```
+
+列出表 loan 中的各个字段，一共 145 个字段
+
+```{r}
+dbListFields(con, "loan")
+```
+
+查看 loan 中的记录总数，count 命令有点费时间，220多万，确切地说一共 2260668 条记录， 
+
+```{r}
+dbGetQuery(con, "SELECT count(*) FROM loan")
+```
+
+查看俩个字段的前10个记录，是不是很奇怪为什么都是空的，因为匿名处理了，真实的 ID 都被处理了
+
+```{r}
+dbGetQuery(con, "SELECT id,member_id FROM loan LIMIT 10")
+```
+
+接下来还要看看其它字段的缺失情况，所以实际上数据集 loan 只有 143 个字段
+
+```{r}
+dbGetQuery(con, "
+SELECT application_type, SUM(loan_amnt) as sum_loan_amnt
+FROM loan 
+GROUP BY application_type
+LIMIT 10
+")
+```
+
+或者
+
+```{r}
+tbl(con, "loan") %>% 
+  group_by(application_type) %>% 
+  summarise(total_amnt = sum(loan_amnt, na.rm = TRUE))
+```
+
+::: sidebar
+**注意**
+
+在 SQL 中，缺失值默认不进入计算，在上述语句中，`sum(loan_amnt, na.rm = TRUE)`，如果不显式地指定 `na.rm = TRUE` 程序运行结束会有伴随一个警告提醒，并且在每次连接中出现一次。所以，我们推荐还是应该指定缺失值得处理方式
+:::
+
+
+按照 `application_type` 分组计算 `total_amnt` 的平均值
+
+```{r}
+tbl(con, "loan") %>% 
+  group_by(application_type) %>% 
+  summarise(total_amnt = mean(loan_amnt, na.rm = TRUE))
+```
+
+统计 `application_type` 的使用数量
+
+```{r}
+tbl(con, "loan") %>% 
+  count(application_type)
+```
+
+我们再查一个字段 `loan_amnt` 贷款数额，哈哈，不是空的了吧！
+
+```{r}
+dbGetQuery(con, "SELECT id,member_id,loan_amnt FROM loan LIMIT 10")
+```
+
+调用 dplyr 中的 tbl 函数，查看 loan 表中的各个字段的部分记录
+
+```{r}
+tbl(con, "loan")
+```
+
+以此数据集介绍 DBI 包内各个函数。接下来要正式开始分析了，首先要明确分析的目标是什么，分析的流程是什么
+
+1. 数据查询
+1. 数据探索性分析
+1. 数据建模
+1. 模型评估和选择
+1. 模型部署和维护
+1. 模型优化
+
+
+::: warning
+使用完就不要占用与数据库连接的进程，最后记得断开与数据库的连接
+
+```{r}
+dbDisconnect(con)
+```
+:::
+
+
+[^sqlite-intro]: https://www.runoob.com/sqlite/sqlite-intro.html
+
