@@ -1,0 +1,27 @@
+# 社交网络分析 {#case-weibo}
+
+[李舰](https://github.com/lijian13) 基于新浪微博提供的 OAuth 2.0 及其 [API 文档](https://open.weibo.com/wiki) 开发的 [Rweibo 包](https://r-forge.r-project.org/projects/rweibo)
+
+```{r,eval=FALSE}
+install.packages("Rweibo", repos="https://R-Forge.R-project.org")
+```
+
+[朱雪宁](https://xueningzhu.github.io/) 用 Rweibo 分析了新浪微博 [案例](https://github.com/XueningZhu/Rweibo)
+
+```{r}
+library(Rweibo)
+```
+
+RCurl bitops rjson XML 依赖不少
+
+微博用户影响力评价的 H-Index 指数 陈丽云
+
+https://cosx.org/2013/04/weibo-influence-hindex
+
+
+新浪微博文本分析初探 v0.1 郝智恒
+https://cosx.org/2013/01/analysis-of-weibo
+
+社会网络分析：探索人人网好友推荐系统
+陈逸波
+https://cosx.org/2011/04/exploring-renren-social-network
