@@ -4,15 +4,15 @@
 
 ## Why R {#why-r}
 
-GNU R 是发布在 GPL-2/3 下的开源自由软件，意味着只要你遵循该协议，就可以自由地获取、修改和发布R 源代码，R 本身的这种开源自由的属性，决定你可以免费地使用它。《The Art of R Programming》的作者 Norm Matloff 给出使用 R 语言的四个优势：它是统计学家开发的，也是为统计学家打造的；内建的矩阵类型和矩阵操作非常高效；提供强大的绘图功能，不管是来自基础 R 还是 CRAN 上的绘图包；以及优秀的并行能力[^r-over-python]。关于 R 语言和 Python 语言的对比，网络上充斥着很多的文章，除了赞扬，还有表示反对的声音，如 R语言采用的对 GPL 协议 [^python-over-r-gpl]，甚至有人列举了逃离 R 语言阵营的10大上榜理由[^top-ten-bad-r]，datacamp 提供了一份较为完整的对比图，仅供参考[^r-vs-python]。如果你是学统计的学生或者数据分析师，我都建议你先学习 R，如果你是社会科学的学生和研究者， R 社区开发了 GUI 工具，如 [Rcmdr](https://socialsciences.mcmaster.ca/jfox/Misc/Rcmdr/) 和 [rattle](https://rattle.togaware.com/)，还有基于 Shiny 的分析工具 [radiant](https://github.com/radiant-rstats/radiant) 和类似 SPSS 的 [JASP](https://jasp-stats.org/)。
+GNU R 是发布在 GPL-2/3 下的开源自由软件，意味着只要你遵循该协议，就可以自由地获取、修改和发布R 源代码，R 本身的这种开源自由的属性，决定你可以免费地使用它。《The Art of R Programming》的作者 Norm Matloff 给出使用 R 语言的四个优势：它是统计学家开发的，也是为统计学家打造的；内建的矩阵类型和矩阵操作非常高效；提供强大的绘图功能，不管是来自基础 R 还是 CRAN 上的绘图包；以及优秀的并行能力[^r-over-python]。关于 R 语言和 Python 语言的对比，网络上充斥着很多的文章，除了赞扬，还有表示反对的声音，如 R语言采用的对 GPL 协议 [^python-over-r-gpl]，甚至有人列举了逃离 R 语言阵营的10大上榜理由[^top-ten-bad-r]，datacamp 提供了一份较为完整的对比图，仅供参考[^r-vs-python]。如果你是学统计的学生或者数据分析师，我都建议你先学习 R[^why-r]，如果你是社会科学的学生和研究者， R 社区开发了 GUI 工具，如 [Rcmdr](https://socialsciences.mcmaster.ca/jfox/Misc/Rcmdr/) 和 [rattle](https://rattle.togaware.com/)，还有基于 Shiny 的分析工具 [radiant](https://github.com/radiant-rstats/radiant) 和类似 SPSS 的 [JASP](https://jasp-stats.org/)。
 
 R 语言比较遭人诟病的大概有：
 
 1. R 包总体数量已达到 15000+，年度增长速度大约在 4.6\% 左右，很多 R 包都在重复造轮子，且 R 包之间依赖关系非常复杂。若与 Python 作一个对比，所有的 R 包和 Python 模块必须处于活跃维护，拥有大批粉丝，维护者在社区内享有声誉，有厂子或科研经费支持。我们不打嘴仗，不下结论，只做对比，不完善之处还请大家指出并补充，见表 \@ref(tab:r-vs-python)。
 1. 每个 Base R 包内的函数非常多，参数也非常多，功能涉及方方面面，初学者学习起来难度非常大！数据处理和可视化常用基本包最流行的 tidyverse 系列和基础 R 系统存在很多不一致，在不清楚的情况下很难掌握，而陷于已有的函数不能自拔！ 
 1. R 是面向对象的程序设计语言，是解释性的语言，也是函数式编程语言，包含的程序设计风格非常多，仅面向对象的设计就有 S3、 S4、 RC、 R5 和 R6。每一个操作都是函数调用，一切皆是对象的环境和闭包概念简洁又复杂。
-1. R 内置的数据结构非常多，原子类型的有字符、布尔、整型、复数、双精度浮点、单精度浮点等，此外常见的还有数据框、列表。每个特定的领域往往还有特殊的类型，如时间序列 ts、zoo等， 空间对象 sp、 raster 和 sf 等。
-1. 深入学习 R 实现的统计模型，如 lm、glm 等，你可能会发现统计学家的程序设计思维如此难懂。
+1. R 内置的数据结构非常多，原子类型的有字符、布尔、整型、复数、双精度浮点、单精度浮点等，此外常见的还有数据框、列表。每个特定的领域往往还有特殊的类型，如时间序列 ts、zoo 等， 空间对象 sp、 raster 和 sf 等。
+1. 深入学习 R 实现的统计模型，如 `lm`、`glm` 等，你可能会发现统计学家的程序设计思维如此难懂。
 
 
 Table: (\#tab:r-vs-python) R 与 Python 常用模块对照表
@@ -69,9 +69,8 @@ GNU R 最初由 [Ross Ihaka](https://en.wikipedia.org/wiki/Ross_Ihaka) 和 [Robe
 
 ## 软件信息 {#softwares-rsession-info}
 
-重现本节书籍内容需要的 R 包列表如下
+重现书籍本节内容需要的 R 包列表如下
 
 ```{r}
 sessionInfo()
 ```
-

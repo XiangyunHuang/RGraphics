@@ -1,16 +1,11 @@
 # 三维可视化 {#plot-3d}
 
-画图 graphics 使用基础 R 包和基于基础包的扩展包绘图 **plotrix** [@Plotrix_2006_Lemon]
+画图 graphics 使用基础 R 包和基于基础包的扩展包绘图 **plotrix** [@Plotrix_2006_Lemon]， **plotrix** 饼图 pie3D  **scatterplot3d** 三维图形 **plot3D** 三维图形 **barsurf** 三维条形图、曲面图
 
-- **plotrix** 包含 231 页手册 pie3D 
-- **scatterplot3d** 三维图形
-- **plot3D** 三维图形
-- **barsurf** 三维条形图 barsurf: Bar, Surface and Other Plots
-
-```{r,eval=FALSE}
+```{r}
 library(barsurf)
 library(plotrix)
-library(scatterplot3d) 
+library(scatterplot3d)
 library(plot3D)
 library(MBA)
 ```
@@ -90,7 +85,7 @@ for (i in 1:25) {
     k <- k + 1
   }
 }
-# library(rsm)
+library(rsm)
 data.lm <- lm(z ~ poly(x, y, degree = 2), data = d)
 persp(data.lm, x ~ y,
   zlim = c(0, max(z)),
@@ -321,7 +316,7 @@ zfacet <- z[-1, -1] + z[-1, -ncz] + z[-nrz, -1] + z[-nrz, -ncz]
 # z 分量用颜色表示
 facetcol <- cut(zfacet, nbcol)
 # png(file="mba.png",res=300,width = 680,height = 680)
-par(mar=rep(0,4))
+par(mar = rep(0, 4))
 ## 透视图
 persp(mba.int,
   theta = 90, phi = 20, col = color[facetcol], scale = FALSE,
@@ -333,13 +328,12 @@ image(mba.int, xaxs = "r", yaxs = "r", col = gray(seq(1, 0, l = 101)))
 
 
 
-```{r,eval=FALSE}
+```{r}
 library(barsurf)
 x <- y <- 1:4
 f <- function(x, y) x^2 + y^2
 z <- outer(x, y, f)
 plot3d.bar(, , z)
-
 plot3d.bar(, , volcano)
 plot3d.surf(, , volcano)
 ```
