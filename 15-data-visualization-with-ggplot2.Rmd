@@ -144,7 +144,7 @@ ls("package:ggplot2", pattern = "^coord_")
 
 下面以 diamonds 数据集为例展示 ggplot2 的绘图过程，首先加载 diamonds 数据集，查看数据集的内容
 
-```{r load-data}
+```{r}
 data(diamonds)
 str(diamonds)
 ```
@@ -536,6 +536,23 @@ ggplot(mpg, aes(x = class, y = hwy, color = class)) +
 ggplot(mpg, aes(x = class, y = hwy, color = class)) + geom_jitter()
 ```
 
+抖不抖，还是抖一下
+
+```{r}
+ggplot(iris, aes(x = Species, y = Sepal.Length)) +
+  geom_point(aes(fill = Species), size = 5, shape = 21, colour = "grey20") +
+  # geom_boxplot(outlier.colour = NA, fill = NA, colour = "grey20") +
+  labs(title = "Not Jittered")
+
+ggplot(iris, aes(x = Species, y = Sepal.Length)) +
+  geom_point(aes(fill = Species),
+    size = 5, shape = 21, colour = "grey20",
+    position = position_jitter(width = 0.2, height = 0.1)
+  ) +
+  # geom_boxplot(outlier.colour = NA, fill = NA, colour = "grey20") +
+  labs(title = "Jittered")
+```
+
 在数据量比较大的时候，可以用箱线图、密度图、提琴图
 
 ```{r,fig.cap="抖动图的反例"}
@@ -601,7 +618,7 @@ ggplot(diamonds, aes(x = price, fill = cut)) + geom_density(alpha = 0.5)
 堆积密度图
 
 ```{r stack-density,fig.cap="堆积密度图"}
-ggplot(diamonds, aes(x = price, fill = cut)) + 
+ggplot(diamonds, aes(x = price, fill = cut)) +
   geom_density(position = "stack")
 ```
 
