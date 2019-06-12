@@ -2,6 +2,19 @@
 
 画图 graphics 使用基础 R 包和基于基础包的扩展包绘图 **plotrix** [@Plotrix_2006_Lemon]
 
+- **plotrix** 包含 231 页手册 pie3D 
+- **scatterplot3d** 三维图形
+- **plot3D** 三维图形
+- **barsurf** 三维条形图 barsurf: Bar, Surface and Other Plots
+
+```{r,eval=FALSE}
+library(barsurf)
+library(plotrix)
+library(scatterplot3d) 
+library(plot3D)
+library(MBA)
+```
+
 ## 饼图 {#pie-3d}
 
 ## 柱形图 {#bar-3d}
@@ -12,10 +25,128 @@
 
 ## 透视图 {#persp-3d}
 
+```{r}
+x <- seq(-10, 10, length = 30)
+y <- x
+f <- function(x, y) {
+  r <- sqrt(x^2 + y^2)
+  10 * sin(r) / r
+}
+z <- outer(x, y, f)
+z[is.na(z)] <- 1
+op <- par(bg = "white")
+nrz <- nrow(z)
+ncz <- ncol(z)
+jet.colors <- colorRampPalette(c("gray80", "gray10"))
+nbcol <- 100
+color <- jet.colors(nbcol)
+zfacet <- z[-1, -1] + z[-1, -ncz] + z[-nrz, -1] + z[-nrz, -ncz]
+facetcol <- cut(zfacet, nbcol)
+
+persp(x, y, z,
+  theta = 30, phi = 30,
+  expand = 0.5, col = color[facetcol]
+)
+```
+
+```{r}
+persp(x, y, z, xaxs = "i", expand = 0.5, phi = 20, theta = 60, col = color[facetcol])
+```
+
+```{r}
+persp(x, y, z,
+  theta = 45, phi = 20,
+  expand = 0.5, col = color[facetcol],
+  r = 180,
+  ltheta = 120,
+  shade = 0.75,
+  # ticktype = "detailed", # 坐标轴上刻度数字
+  # box=FALSE, # 长方体框线
+  # nticks=6, # 刻度间隔数目
+  xlab = "X", ylab = "Y", zlab = "Sinc( r )"
+  # border=30
+)
+```
+
+`theta`参数给出了主要方向，控制三维图的左右，`phi`给出纬度，`expand` 控制三维图的立体性
+
+安装 rsm 包，添加拟合曲线，响应面曲线
+
+```{r}
+x <- seq(-3, 3, by = 0.25)
+y <- seq(-3, 3, by = 0.25)
+d <- expand.grid(x = x, y = y)
+z <- c(data = NA, 1089)
+b0 <- 5.628
+b1 <- 0
+b2 <- 0
+b3 <- -.1
+b4 <- .1
+b5 <- -.1
+k <- 1
+for (i in 1:25) {
+  for (j in 1:25) {
+    z[k] <- b0 + b1 * x[i] + b2 * y[j] + b3 * x[i] * x[i] + b4 * x[i] * y[j] + b5 * y[j] * y[j]
+    k <- k + 1
+  }
+}
+# library(rsm)
+data.lm <- lm(z ~ poly(x, y, degree = 2), data = d)
+persp(data.lm, x ~ y,
+  zlim = c(0, max(z)),
+  contour = list(z = "bottom", col = "colors"), theta = -55, phi = 25
+)
+```
+
+```{r}
+res1 <- persp(data.lm, x ~ y,
+  zlim = c(0, max(z)),
+  contour = list(z = "bottom", col = "colors"), theta = -55, phi = 25
+)
+xy <- matrix(c((-3 - 8) / 5, -3, (3 - 8) / 5, 3), ncol = 2, byrow = T)
+lines(trans3d(xy[, 2], xy[, 1], 0, pmat = res1$`y ~ x`$transf), col = 3)
+```
+
+
+单个总体的最大似然估计，生成总体服从指数分布的随机数
+
+```{r}
+set.seed(1234)
+n <- 20 # 随机数的个数
+x <- rexp(n, rate = 5)
+m <- 40 # 网格数
+mv <- seq(mean(x) - 1.5 * sd(x) / sqrt(n),
+  mean(x) + 1.5 * sd(x) / sqrt(n),
+  length.out = m
+) # mu 均值范围
+sv <- seq(0.8 * sd(x), 1.5 * sd(x), length.out = m) # 标准差的范围
+z <- matrix(NA, m, m)
+loglikelihood <- function(b) {
+  -sum(dnorm(x, b[1], b[2], log = TRUE))
+}
+
+for (i in 1:m) {
+  for (j in 1:m) {
+    z[i, j] <- -loglikelihood(c(mv[i], sv[j]))
+  }
+}
+
+nbcol <- 100
+color <- hcl.colors(nbcol)
+zfacet <- z[-1, -1] + z[-1, -m] + z[-m, -1] + z[-m, -m]
+facetcol <- cut(zfacet, nbcol)
+# "\n" adds one line before the label
+persp(mv, sv, z,
+  xlab = "\n mu", ylab = "\n sigma", zlab = "\n log-likelihood",
+  phi = 35, theta = -30, col = color[facetcol]
+)
+```
+
+
 第一个例子来自 Eric Lecoutre 的图库^[<http://www.ejwagenmakers.com/misc/Plotting_3d_in_R.pdf>]，这是我见过的图形中含有巨量公式，并且用 R 实现的例子。在他的基础上我修改了颜色，设置图片尺寸，基于 persp 实现的透视图，唯一不足的是 persp 不支持表达式形式的坐标轴标签。
 
 ```{r bivariate-normal-density-1,fig.cap="二元正态概率密度函数",fig.asp=1}
-# library(latex2exp)
+library(latex2exp)
 # 代码来自  http://www.ejwagenmakers.com/misc/Plotting_3d_in_R.pdf
 mu1 <- 0 # setting the expected value of x1
 mu2 <- 0 # setting the expected value of x2
@@ -25,7 +156,7 @@ s22 <- 10 # setting the variance of x2
 rho <- 0.5 # setting the correlation coefficient between x1 and x2
 x1 <- seq(-10, 10, length = 41) # generating the vector series x1
 x2 <- x1 # copying x1 to x2
- # setting up the function of the multivariate normal density
+# setting up the function of the multivariate normal density
 f <- function(x1, x2) {
   term1 <- 1 / (2 * pi * sqrt(s11 * s22 * (1 - rho^2)))
   term2 <- -1 / (2 * (1 - rho^2))
@@ -51,28 +182,34 @@ persp(x1, x2, z,
   zlab = "\n\n f(x1,x2)",
   # xlab = TeX('$x_{1}$'), # latex2exp 其实是使用 LaTeX 语法将 LaTeX 公式翻译为 R 能接受的表达式形式
   # ylab = TeX('$x_{2}$'),
-  # zlab = TeX('$f(x_{1},x_{2})$'),  
+  # zlab = TeX('$f(x_{1},x_{2})$'),
   main = "Two dimensional Normal Distribution",
   col = color[facetcol], border = NA, theta = 30, phi = 20,
   r = 50, d = 0.1, expand = 0.5, ltheta = 90, lphi = 180,
   shade = 0.1, ticktype = "detailed", nticks = 5, box = TRUE
-) 
-mtext(expression(list(mu[1] == 0, mu[2] == 0, sigma[11] == 10, 
-                      sigma[22] == 10, sigma[12] == 15, rho == 0.5)), 
-      side = 3)
+)
+mtext(expression(list(
+  mu[1] == 0, mu[2] == 0, sigma[11] == 10,
+  sigma[22] == 10, sigma[12] == 15, rho == 0.5
+)),
+side = 3
+)
 
-mtext(expression(italic(f) ~ group("(",list(x[1],x[2]),")") == frac(1, 2 ~ pi ~ sqrt(sigma[11] ~ sigma[22] ~ (1 - rho^2))) ~ exp ~
-  bgroup("{", 
-         paste(
-           - frac(1, 2(1 - rho^2)) * phantom(0),
-               bgroup("[",  
-                          frac((x[1] ~ -~mu[1])^2, sigma[11]) ~ 
-                        -~2 ~ rho ~ frac(x[1] ~ -~mu[1], sqrt(sigma[11])) ~ frac(x[2] ~ -~mu[2], sqrt(sigma[22])) ~ 
-                        +~frac((x[2] ~ -~mu[2])^2, sigma[22]),
-                      "]")
-               ),
-    "}")
-  ), side = 1, line = 3)
+mtext(expression(italic(f) ~ group("(", list(x[1], x[2]), ")") == frac(1, 2 ~ pi ~ sqrt(sigma[11] ~ sigma[22] ~ (1 - rho^2))) ~ exp ~
+bgroup(
+  "{",
+  paste(
+    -frac(1, 2(1 - rho^2)) * phantom(0),
+    bgroup(
+      "[",
+      frac((x[1] ~ -~ mu[1])^2, sigma[11]) ~
+      -~2 ~ rho ~ frac(x[1] ~ -~ mu[1], sqrt(sigma[11])) ~ frac(x[2] ~ -~ mu[2], sqrt(sigma[22])) ~
+      +~ frac((x[2] ~ -~ mu[2])^2, sigma[22]),
+      "]"
+    )
+  ),
+  "}"
+)), side = 1, line = 3)
 ```
 
 早在 2006 年的时候，Paul Murrell 就提出来一种解决方法^[<https://www.stat.auckland.ac.nz/~paul/Talks/fonts.pdf>]，可是比较复杂，后来谢大大接手了 [tikzDevice](https://github.com/daqana/tikzDevice) 包的开发，算是比较好的解决了这个问题，目前该 R 包由 Ralf Stubner 接手维护。
@@ -106,17 +243,18 @@ zfacet <- z[-1, -1] + z[-1, -ncz] + z[-nrz, -1] + z[-nrz, -ncz]
 facetcol <- cut(zfacet, nbcol)
 par(mar = c(4.1, 4.1, 4.5, 1.5))
 persp(x1, x2, z,
-      xlab = "$x_{1}$",
-      ylab = "$x_{2}$",
-      zlab = "$f(x_{1},x_{2})$",
-      main = "Two dimensional Normal Distribution",
-      col = color[facetcol], border = NA, theta = 30, phi = 20,
-      r = 50, d = 0.1, expand = 0.5, ltheta = 90, lphi = 180,
-      shade = 0.1, ticktype = "detailed", nticks = 5, box = TRUE
+  xlab = "$x_{1}$",
+  ylab = "$x_{2}$",
+  zlab = "$f(x_{1},x_{2})$",
+  main = "Two dimensional Normal Distribution",
+  col = color[facetcol], border = NA, theta = 30, phi = 20,
+  r = 50, d = 0.1, expand = 0.5, ltheta = 90, lphi = 180,
+  shade = 0.1, ticktype = "detailed", nticks = 5, box = TRUE
 )
 mtext("$\\mu_1 = 0,\\mu_2 = 0,\\sigma_{11} = 10,\\sigma_{22} = 10,\\sigma_{12} = 15, \\rho = 0.5$", side = 3)
-mtext("$f(x_{1},x_{2}) = \\frac{1}{2\\pi\\sqrt{\\sigma_{11}\\sigma_{22}(1-\\rho^2)}}\\exp\\big\\{-\\frac{1}{2(1-\\rho^2)}[\\frac{(x_1 - \\mu_1)^2}{\\sigma_{11}} - 2\\rho\\frac{(x_1 - \\mu_1)(x_2 - \\mu_2)}{\\sqrt{\\sigma_{11}}\\sqrt{\\sigma_{22}}} + \\frac{(x_2 - \\mu_2)^2}{\\sigma_{22}}]\\big\\}$", 
-      side = 1, line = 2, cex = 1.5)
+mtext("$f(x_{1},x_{2}) = \\frac{1}{2\\pi\\sqrt{\\sigma_{11}\\sigma_{22}(1-\\rho^2)}}\\exp\\big\\{-\\frac{1}{2(1-\\rho^2)}[\\frac{(x_1 - \\mu_1)^2}{\\sigma_{11}} - 2\\rho\\frac{(x_1 - \\mu_1)(x_2 - \\mu_2)}{\\sqrt{\\sigma_{11}}\\sqrt{\\sigma_{22}}} + \\frac{(x_2 - \\mu_2)^2}{\\sigma_{22}}]\\big\\}$",
+  side = 1, line = 2, cex = 1.5
+)
 ```
 
 
@@ -125,15 +263,18 @@ library(lattice)
 wireframe(z ~ x1 + x2,
   data = data.frame(x1 = x1, x2 = rep(x2, each = length(x1)), z = z),
   xlab = expression(x[1]), ylab = expression(x[2]),
-  zlab = expression(italic(f) ~ group("(",list(x[1],x[2]),")")),
-  colorkey = TRUE, drape = TRUE)
+  zlab = expression(italic(f) ~ group("(", list(x[1], x[2]), ")")),
+  colorkey = TRUE, drape = TRUE
+)
 ```
 
 ```{r}
 ## volcano  ## 87 x 61 matrix
-wireframe(volcano, shade = TRUE,
-          aspect = c(61/87, 0.4),
-          light.source = c(10,0,10))
+wireframe(volcano,
+  shade = TRUE,
+  aspect = c(61 / 87, 0.4),
+  light.source = c(10, 0, 10)
+)
 ```
 
 希腊字母用 unicode 字符代替，不要使用 `pdf` 不然数学符号 $\sigma$ 不能正确渲染，推荐选择 `cairo_pdf`
@@ -155,31 +296,45 @@ persp(x, y, z,
 )
 ```
 
-- **plotrix** 包含231页手册 pie3D 
-- **scatterplot3d** 三维图形
-- **plot3D** 三维图形
-- **barsurf** 三维条形图 barsurf: Bar, Surface and Other Plots
+透视图案例，插值 LIDAR 数据集包含 10123 组观测值，每组观测包含经度、维度和海拔三个分量, `mba.surf` 使用多水平 B-样条近似曲面
 
-```{r,eval=FALSE}
-library(barsurf) # 
-ls("package:barsurf")
+```{r}
+library(MBA)
+data(LIDAR) # 一小部分光探测和测距雷达数据，美国威斯康辛州森林景观
 
-library(plotrix)
-ls("package:plotrix") # 161 个函数
+mba.int <- mba.surf(LIDAR, 300, 300, extend = TRUE)$xyz.est
 
-library(scatterplot3d) # 1 个函数
-ls("package:scatterplot3d")
+image(mba.int, xaxs = "r", yaxs = "r")
+# 透视图
+persp(mba.int,
+  theta = 90, phi = 20, col = "green3", scale = FALSE,
+  ltheta = -120, shade = 0.75, expand = 10, border = NA, box = FALSE
+)
 
-
-library(plot3D)
-ls("package:plot3D") # 51个函数
-
-library(rgl)
+z <- mba.int$z
+nrz <- nrow(z)
+ncz <- ncol(z)
+nbcol <- 100
+color <- hcl.colors(nbcol)
+# Compute the z-value at the facet centres
+zfacet <- z[-1, -1] + z[-1, -ncz] + z[-nrz, -1] + z[-nrz, -ncz]
+# z 分量用颜色表示
+facetcol <- cut(zfacet, nbcol)
+# png(file="mba.png",res=300,width = 680,height = 680)
+par(mar=rep(0,4))
+## 透视图
+persp(mba.int,
+  theta = 90, phi = 20, col = color[facetcol], scale = FALSE,
+  ltheta = -120, shade = 0.75, expand = 20, border = NA, box = FALSE
+)
+# 热图
+image(mba.int, xaxs = "r", yaxs = "r", col = gray(seq(1, 0, l = 101)))
 ```
+
+
 
 ```{r,eval=FALSE}
 library(barsurf)
-library(colorspace)
 x <- y <- 1:4
 f <- function(x, y) x^2 + y^2
 z <- outer(x, y, f)
@@ -187,4 +342,12 @@ plot3d.bar(, , z)
 
 plot3d.bar(, , volcano)
 plot3d.surf(, , volcano)
+```
+
+
+## 软件信息 {#plot3d-sessionInfo}
+
+
+```{r}
+sessionInfo()
 ```
