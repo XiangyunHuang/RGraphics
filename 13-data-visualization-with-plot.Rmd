@@ -166,12 +166,12 @@ for (k in 1:nt) {
 
 ```{r,title.mar=TRUE}
 x <- rnorm(1000)
-hist(x, xlim = c(-4,4))
+hist(x, xlim = c(-4, 4))
 usr <- par("usr")
 clip(usr[1], -2, usr[3], usr[4])
-hist(x, col = 'red', add = TRUE)
+hist(x, col = "red", add = TRUE)
 clip(2, usr[2], usr[3], usr[4])
-hist(x, col = 'blue', add = TRUE)
+hist(x, col = "blue", add = TRUE)
 do.call("clip", as.list(usr)) # reset to plot region
 ```
 
@@ -257,17 +257,72 @@ title(bquote(hat(a) == .(ahat)))
 
 ```{r bg-grid-lines,fig.cap="添加背景参考线",fig.asp=.8,fig.width=5}
 # modified from https://yihui.name/cn/2018/02/cohen-s-d/
-n = 30  # 样本量（只是一个例子）
-x = seq(0, 12, 0.01)
+n <- 30 # 样本量（只是一个例子）
+x <- seq(0, 12, 0.01)
 par(mar = c(4, 4, 0.2, 0.1))
-plot(x/sqrt(n), 2 * (1 - pt(x, n - 1)), 
-     xlab = expression(d = x/sqrt(n)),
-  type = "l", panel.first = grid())
+plot(x / sqrt(n), 2 * (1 - pt(x, n - 1)),
+  xlab = expression(d = x / sqrt(n)),
+  type = "l", panel.first = grid()
+)
 abline(v = c(0.01, 0.2, 0.5, 0.8, 1.2, 2), lty = 2)
 ```
 
 
+
 ### 坐标轴 {#base-axis}
+
+图形控制参数默认设置下 `par` 通常的一幅图形，改变坐标轴标签是很简单的
+
+```{r}
+x <- 1:100
+y <- runif(100, -2, 2)
+plot(x, y)
+plot(x, y, xlab = "Index", ylab = "Uniform draws")
+```
+
+改变坐标轴标签和标题
+
+```{r}
+op <- par(no.readonly = TRUE) # 保存默认的 par 设置
+par(cex.lab = 1.5, cex.axis = 1.3)
+plot(x, y, xlab = "Index", ylab = "Uniform draws")
+
+# 设置更大的坐标轴标签内容
+par(mar = c(6, 6, 3, 3), cex.axis = 1.5, cex.lab = 2)
+plot(x, y, xlab = "Index", ylab = "Uniform draws")
+```
+
+使用 axis 函数可以更加精细地控制坐标轴
+
+```{r}
+par(op) # 恢复默认的 par 设置
+plot(x, y, xaxt = "n") # 去掉 x 轴
+axis(side = 1, at = c(5, 50, 100)) # 添加指定的刻度标签
+```
+
+指定刻度标签的内容
+
+```{r}
+plot(x, y, yaxt = "n")
+axis(side = 2, at = c(-2, 0, 2), labels = c("Small", "Medium", "Big"))
+```
+
+控制刻度线和轴线和刻度标签
+
+```{r}
+plot(x, y)
+axis(side = 3, at = c(5, 25, 75), lwd = 4, lwd.ticks = 2, col.ticks = "red")
+```
+
+还可以把 box 移除，绘图区域的边框去掉，只保留坐标轴
+
+```{r}
+plot(x, y, bty = "n", xaxt = "n", yaxt = "n")
+axis(side = 1, at = seq(0, 100, 20), lwd = 3)
+axis(side = 2, at = seq(-2, 2, 2), lwd = 3)
+```
+
+
 
 ```{r,title.mar=TRUE,fig.cap="两个 Y 轴",fig.asp=1,fig.width=5.5,out.width="55%"}
 # 双Y轴
@@ -302,21 +357,27 @@ mtext("Second Y axis", 4, line = 2, col = "red", cex = 1.2)
 
 ```{r gap-axis,fig.asp=1,fig.cap="gap.axis用法",title.mar=TRUE,fig.width=5.5,out.width="55%"}
 ## Changing default gap between labels:
-plot(c(0,100),c(0,50), type="n", axes=FALSE, ann=FALSE)
-title(quote("axis(1, .., gap.axis = f)," ~~ f >= 0))
-axis(2, at = 5*(0:10), las = 1, gap.axis = 1/4)
-gaps <- c(4, 2, 1, 1/2, 1/4, 0.1, 0)
-chG <- paste0(ifelse(gaps == 1, "default:  ", ""),
-              "gap.axis=", formatC(gaps))
+plot(c(0, 100), c(0, 50), type = "n", axes = FALSE, ann = FALSE)
+title(quote("axis(1, .., gap.axis = f)," ~ ~ f >= 0))
+axis(2, at = 5 * (0:10), las = 1, gap.axis = 1 / 4)
+gaps <- c(4, 2, 1, 1 / 2, 1 / 4, 0.1, 0)
+chG <- paste0(
+  ifelse(gaps == 1, "default:  ", ""),
+  "gap.axis=", formatC(gaps)
+)
 jj <- seq_along(gaps)
-linG <- -2.5*(jj-1)
-for(j in jj) {
-    isD <- gaps[j] == 1 # is default
-    axis (1, at=5*(0:20), gap.axis = gaps[j], padj=-1, line = linG[j],
-          col.axis = if(isD) "forest green" else 1, font.axis= 1+isD)
+linG <- -2.5 * (jj - 1)
+for (j in jj) {
+  isD <- gaps[j] == 1 # is default
+  axis(1,
+    at = 5 * (0:20), gap.axis = gaps[j], padj = -1, line = linG[j],
+    col.axis = if (isD) "forest green" else 1, font.axis = 1 + isD
+  )
 }
-mtext(chG, side=1, padj=-1, line = linG -1/2, cex=3/4,
-      col = ifelse(gaps == 1, "forest green", "blue3"))
+mtext(chG,
+  side = 1, padj = -1, line = linG - 1 / 2, cex = 3 / 4,
+  col = ifelse(gaps == 1, "forest green", "blue3")
+)
 ## now shrink the window (in x- and y-direction) and observe the axis labels drawn
 ```
 
@@ -369,6 +430,27 @@ mtext(side = 1, text = "X Axis Label", line = 4)
 ```
 
 `srt = 45` 表示文本旋转角度， `xpd = TRUE` 允许文本越出绘图区域，`adj = 1` to place the right end of text at the tick marks；You can adjust the value of the 0.5 offset as required to move the axis labels up or down relative to the x axis. 详细地参考 [@Paul_2003_Integrating]
+
+### 刻度线 {#base-tick}
+
+
+```{r}
+# tick marks finer control goes through par or axis
+par(tcl = 0.4, mgp = c(1.5, 0, 0)) # tcl control the length of the tick marks
+# positive values will make the tick being drawn inside the plot
+# negative values will make tick go outside
+# mgp takes three values, the first one control how much line between plot and axis title
+# the second between plot and axis labels and the third between plot and axis line
+plot(x, y)
+# another example using axis
+par(op)
+plot(x, y, xaxt = "n", yaxt = "n", xlab = "", ylab = "")
+axis(side = 1, at = seq(5, 95, 30), tcl = 0.4, lwd.ticks = 3, mgp = c(0, 0.5, 0))
+mtext(side = 1, text = "X axis", line = 1.5) # cannot set the axis title with axis so need to use mtext
+axis(side = 2, at = seq(-2, 2, 2), tcl = 0.3, lwd.ticks = 3, col.ticks = "orange", mgp = c(0, 0, 2))
+mtext(side = 2, text = "Numbers taken randomly", line = 2.2)
+```
+
 
 ### 标题 {#base-title}
 
@@ -561,6 +643,8 @@ Hmisc 包的 labcurve 函数可以在曲线上放置名称，而不是遥远的�
 
 ### 边空 {#base-par}
 
+`line` 第一行
+
 ```{r,fig.cap="外边空在图的边缘添加文字",title.mar=TRUE}
 N <- 200
 x <- runif(N, -4, 4)
@@ -572,10 +656,9 @@ plot(x, y,
     paste(rep(" ", 60), collapse = "")
   )
 )
-mtext("Line 0", 3, line = 0)
-mtext("Line 1", 3, line = 1)
-mtext("Line 2", 3, line = 2)
-mtext("Line 3", 3, line = 3)
+for (i in seq(from = 0, to = 1, by = 1)) {
+  mtext(paste("Line", i), 3, line = i)
+}
 ```
 
 
@@ -588,30 +671,104 @@ op <- par(
   mfrow = c(2, 2),
   oma = c(0, 0, 4, 0) # Outer margins
 )
-for (i in 1:4)
+for (i in 1:4) {
   plot(runif(20), runif(20),
     main = paste("random plot (", i, ")", sep = "")
   )
+}
 par(op)
 mtext("Four plots, without enough room for this title",
   side = 3, font = 2, cex = 1.5, col = "red"
 ) # 总/大标题放不下
 ```
 
-`par` 的 oma 用来设置外边空的大小
+`par` 的 oma 用来设置外边空的大小，默认情形下没有外边空的
+
+```{r}
+par()$oma
+```
+
+我们可以自己设置外边空
 
 ```{r,fig.cap="设置外边空放置大标题",fig.asp=1,title.mar=TRUE}
 op <- par(
   mfrow = c(2, 2),
   oma = c(0, 0, 3, 0) # Outer margins
 )
-for (i in 1:4)
+for (i in 1:4) {
   plot(runif(20), runif(20),
     main = paste("random plot (", i, ")", sep = "")
   )
+}
 par(op)
 mtext("Four plots, with some room for this title",
   side = 3, line = 1.5, font = 1, cex = 1.5, col = "red"
+)
+```
+
+除了内边空还有外边空，内外边空用来放注释说明
+
+```{r}
+op <- par(no.readonly = TRUE)
+par(oma = c(2, 2, 2, 2))
+plot(1, 1, type = "n", xlab = "", ylab = "", xaxt = "n", yaxt = "n")
+for (side in 1:4) {
+  inner <- round(par()$mar[side], 0) - 1
+  for (line in 0:inner) {
+    mtext(text = paste0("Inner line ", line), side = side, line = line)
+  }
+  outer <- round(par()$oma[side], 0) - 1
+  for (line in 0:inner) {
+    mtext(text = paste0("Outer line ", line), side = side, line = line, outer = TRUE)
+  }
+}
+```
+
+外边空可以用来放图例
+
+```{r}
+set.seed(1234)
+x <- runif(10)
+y <- runif(10)
+cols <- rep(hcl.colors(5), each = 2)
+op <- par(oma = c(2, 2, 0, 4), mar = c(3, 3, 2, 0), mfrow = c(2, 2), pch = 16)
+for (i in 1:4) {
+  plot(x, y, col = cols, ylab = "", xlab = "")
+}
+mtext(text = "A common x-axis label", side = 1, line = 0, outer = TRUE)
+mtext(text = "A common y-axis label", side = 2, line = 0, outer = TRUE)
+legend(
+  x = 1, y = 1.2, legend = LETTERS[1:5],
+  col = unique(cols), pch = 16, bty = "n", xpd = NA
+)
+par(op)
+```
+
+坐标轴标签 `xlab` 和 `ylab` 的内容很长的时候需要内边空
+
+```{r}
+par(cex.lab = 1.7)
+plot(1, 1,
+  ylab = "A very very long axis title\nthat need special care",
+  xlab = "", type = "n"
+)
+
+# 增加内边空的大小
+par(mar = c(5, 7, 4, 2))
+plot(1, 1,
+  ylab = "A very very long axis title\nthat need special care",
+  xlab = "", type = "n"
+)
+```
+
+有时候，仅仅增加内边空还不够，坐标轴标签内容甚至可以出现在绘图区域外面，设置 `outer = TRUE`
+
+```{r}
+par(oma = c(0, 4, 0, 0))
+plot(1, 1, ylab = "", xlab = "", type = "n")
+mtext(
+  text = "A very very long axis title\nthat need special care",
+  side = 2, line = 0, outer = TRUE, cex = 1.7
 )
 ```
 
@@ -622,17 +779,17 @@ op <- par(
   oma = c(0, 0, 3, 0),
   mar = c(3, 3, 4, 1) + .1 # Margins
 )
-for (i in 1:4)
+for (i in 1:4) {
   plot(runif(20), runif(20),
     xlab = "", ylab = "",
     main = paste("random plot (", i, ")", sep = "")
   )
+}
 par(op)
 mtext("Title",
   side = 3, line = 1.5, font = 2, cex = 2, col = "red"
 )
 ```
-
 
 
 ### 图层 {#base-layer}
@@ -816,27 +973,35 @@ box(col = "gray")
 
 
 ```{r barplot-VADeaths-1,fig.cap="复合条形图"}
-par(mar = c(4.1,2.1,0.5,4.5))
-barplot(VADeaths, border = "white", horiz = FALSE, col = hcl.colors(5),
-        legend.text = rownames(VADeaths), xpd = TRUE, beside = TRUE,
-        cex.names = 0.9,
-        args.legend = list(x = "right",border = "white", title = "Age",
-                           box.col = NA, horiz = FALSE, inset = c(-.2, 0),
-                           xpd = TRUE), 
-        panel.first = grid(nx = 0, ny=7)) 
+par(mar = c(4.1, 2.1, 0.5, 4.5))
+barplot(VADeaths,
+  border = "white", horiz = FALSE, col = hcl.colors(5),
+  legend.text = rownames(VADeaths), xpd = TRUE, beside = TRUE,
+  cex.names = 0.9,
+  args.legend = list(
+    x = "right", border = "white", title = "Age",
+    box.col = NA, horiz = FALSE, inset = c(-.2, 0),
+    xpd = TRUE
+  ),
+  panel.first = grid(nx = 0, ny = 7)
+)
 ```
 
 堆积条形图
 
 ```{r barplot-VADeaths-2,fig.cap="堆积条形图"}
-par(mar = c(4.1,2.1,0.5,4.5))
-barplot(VADeaths, border = "white", horiz = FALSE, col = hcl.colors(5),
-        legend.text = rownames(VADeaths), xpd = TRUE, beside = FALSE,
-        cex.names = 0.9,
-        args.legend = list(x = "right",border = "white", title = "Age",
-                           box.col = NA, horiz = FALSE, inset = c(-.2, 0),
-                           xpd = TRUE), 
-        panel.first = grid(nx = 0, ny=4))
+par(mar = c(4.1, 2.1, 0.5, 4.5))
+barplot(VADeaths,
+  border = "white", horiz = FALSE, col = hcl.colors(5),
+  legend.text = rownames(VADeaths), xpd = TRUE, beside = FALSE,
+  cex.names = 0.9,
+  args.legend = list(
+    x = "right", border = "white", title = "Age",
+    box.col = NA, horiz = FALSE, inset = c(-.2, 0),
+    xpd = TRUE
+  ),
+  panel.first = grid(nx = 0, ny = 4)
+)
 ```
 
 - 堆积条形图 spineplot
@@ -844,16 +1009,20 @@ barplot(VADeaths, border = "white", horiz = FALSE, col = hcl.colors(5),
 简单条形图
 
 ```{r barplot-BOD, small.mar = TRUE}
-barplot(data = BOD, demand ~ Time, ylim = c(0, 20),
-        border = "white", horiz = FALSE, col = hcl.colors(1))
+barplot(
+  data = BOD, demand ~ Time, ylim = c(0, 20),
+  border = "white", horiz = FALSE, col = hcl.colors(1)
+)
 ```
 
 
 
 ```{r barplot-PlantGrowth, small.mar = TRUE}
-pg_mean = aggregate(weight ~ group, data = PlantGrowth, mean)
-barplot(data = pg_mean, weight ~ group,
-        border = "white", horiz = FALSE, col = hcl.colors(3))
+pg_mean <- aggregate(weight ~ group, data = PlantGrowth, mean)
+barplot(
+  data = pg_mean, weight ~ group,
+  border = "white", horiz = FALSE, col = hcl.colors(3)
+)
 ```
 
 Titanic 数据集是 table 数据类型
@@ -863,27 +1032,35 @@ Titanic 数据集是 table 数据类型
 复合条形图
 
 ```{r, small.mar = TRUE,fig.asp=.8}
-barplot(Freq ~ Class + Survived, data = Titanic,
-        subset = Age == "Adult" & Sex == "Male",
-        beside = TRUE,
-        border = "white", horiz = FALSE, col = hcl.colors(4),
-        args.legend = list(border = "white", title = "Class",
-                           box.col = NA, horiz = FALSE,
-                           xpd = TRUE),   
-        ylab = "# {passengers}", legend = TRUE)
+barplot(Freq ~ Class + Survived,
+  data = Titanic,
+  subset = Age == "Adult" & Sex == "Male",
+  beside = TRUE,
+  border = "white", horiz = FALSE, col = hcl.colors(4),
+  args.legend = list(
+    border = "white", title = "Class",
+    box.col = NA, horiz = FALSE,
+    xpd = TRUE
+  ),
+  ylab = "# {passengers}", legend = TRUE
+)
 ```
 
 
 堆积条形图
 
 ```{r, small.mar = TRUE,fig.asp=.9}
-barplot(Freq ~ Class + Survived, data = Titanic,
-        subset = Age == "Adult" & Sex == "Male",
-        border = "white", horiz = FALSE, col = hcl.colors(4),
-        args.legend = list(border = "white", title = "Class",
-                           box.col = NA, horiz = FALSE,
-                           xpd = TRUE),         
-        ylab = "# {passengers}", legend = TRUE)
+barplot(Freq ~ Class + Survived,
+  data = Titanic,
+  subset = Age == "Adult" & Sex == "Male",
+  border = "white", horiz = FALSE, col = hcl.colors(4),
+  args.legend = list(
+    border = "white", title = "Class",
+    box.col = NA, horiz = FALSE,
+    xpd = TRUE
+  ),
+  ylab = "# {passengers}", legend = TRUE
+)
 ```
 
 ### 直方图 {#plot-hist}
@@ -903,10 +1080,26 @@ axis(2, labels = ylim, at = ylim, las = 0) # y 轴
 box(col = "gray")
 ```
 
+
+```{r}
+with(faithful, plot(eruptions ~ waiting, pch = 16))
+```
+
+```{r}
+with(faithful, hist(waiting,
+  main = "Time between Old Faithful eruptions",
+  xlab = "Minutes", ylab = "",
+  cex.main = 1.5, cex.lab = 1.5, cex.axis = 1.4
+))
+```
+
+
 ```{r eruptions,fig.cap="老忠实泉间歇性喷水的时间间隔分布"}
 with(data = faithful, {
-  hist(eruptions, seq(1.6, 5.2, 0.2), prob = TRUE, 
-       main = "", col = "lightblue", border = "white")
+  hist(eruptions, seq(1.6, 5.2, 0.2),
+    prob = TRUE,
+    main = "", col = "lightblue", border = "white"
+  )
   lines(density(eruptions, bw = 0.1), col = "#EA4335")
   rug(eruptions, col = "#EA4335") # 添加数据点
 })
@@ -1126,9 +1319,10 @@ box(col = "gray")
 
 ```{r,eval=FALSE}
 library(car)
-scatterplot(Sepal.Length ~ Sepal.Width, col = c("black","red","blue"), pch=c(16,16,16),
-            smooth = TRUE, boxplots = "xy", groups = iris$Species, 
-            xlab = "Sepal.Width", ylab = "Sepal.Length", data = iris
+scatterplot(Sepal.Length ~ Sepal.Width,
+  col = c("black", "red", "blue"), pch = c(16, 16, 16),
+  smooth = TRUE, boxplots = "xy", groups = iris$Species,
+  xlab = "Sepal.Width", ylab = "Sepal.Length", data = iris
 )
 ```
 
@@ -1159,8 +1353,10 @@ stripchart(Petal.Length ~ Species,
 如果存在大量散点
 
 ```{r,eval=FALSE}
-densCols(x, y = NULL, nbin = 128, bandwidth,
-         colramp = colorRampPalette(blues9[-(1:3)]))
+densCols(x,
+  y = NULL, nbin = 128, bandwidth,
+  colramp = colorRampPalette(blues9[-(1:3)])
+)
 ```
 
 `densCols` 函数根据点的局部密度生成颜色，密度估计采用核平滑法，由 **KernSmooth** 包的 `bkde2D` 函数实现。参数 `colramp` 传递一个函数，`colorRampPalette` 根据给定的几种颜色生成函数，参数 `bandwidth` 实际上是传给 `bkde2D` 函数
@@ -1184,21 +1380,65 @@ plot(Volume ~ Height,
 box(col = "gray")
 ```
 
+气泡图
+
+```{r}
+# 空白画布
+plot(c(1, 5, 10), c(1, 5, 10), panel.first = grid(10, 10), type = "n", axes = FALSE, ann = FALSE)
+# 添加坐标轴
+axis(1, at = seq(10), labels = TRUE)
+axis(2, at = seq(10), labels = TRUE)
+par(new = TRUE) # 在当前图形上添加图形
+# axes 坐标轴上的刻度 "xaxt" or "yaxt"  ann 坐标轴和标题的标签
+set.seed(1234)
+plot(rnorm(100, 5, 1), rnorm(100, 5, 1),
+  cex = runif(100, 0, 2),
+  col = hcl.colors(4)[rep(seq(4), 100)],
+  bg = paste0("gray", replicate(100, sample(seq(100), 1, replace = TRUE))),
+  axes = FALSE, ann = FALSE, pch = 21, lwd = 2
+)
+legend("top",
+  legend = paste0("class", seq(4)), col = hcl.colors(4),
+  pt.lwd = 2, pch = 21, box.col = "gray", horiz = TRUE
+)
+```
+
+除了`par(new=TRUE)`设置外，有些函数本身就具有 `add` 选项
+
+```{r}
+set.seed(1234)
+plot(dist ~ speed, data = cars, pch = 17, col = "red", cex = 1)
+with(cars, symbols(dist ~ speed,
+  circles = runif(length(speed), 0, 1),
+  pch = 16, inches = .5, add = TRUE
+))
+z <- lm(dist ~ speed, data = cars)
+abline(z, col = "blue")
+curve(tan, from = 0, to = 8 * pi, n = 100, add = TRUE)
+lines(stats::lowess(cars))
+points(10, 100, pch = 16, cex = 3, col = "green")
+text(10, 80, "text here", cex = 3)
+```
+
 ### 抖动图 {#base-jitter}
 
 抖动散点图
 
 ```{r jitter-scatter,fig.cap="抖动散点图",fig.asp=1}
-mat <- matrix(1:length(colors()), ncol = 9, byrow= TRUE)
-df <- data.frame(col = colors(), 
-	x = as.integer(cut(1:length(colors()), 9)),
-	y = rep(1:73, 9), stringsAsFactors=FALSE)
+mat <- matrix(1:length(colors()), ncol = 9, byrow = TRUE)
+df <- data.frame(
+  col = colors(),
+  x = as.integer(cut(1:length(colors()), 9)),
+  y = rep(1:73, 9), stringsAsFactors = FALSE
+)
 par(mar = c(4, 4, 1, 0.1))
-plot(y ~ jitter(x), data = df, col = df$col,
- 	pch=16, main = "Visualizing colors() split in 9 groups",
- 	xlab = "Group", 
-	ylab = "Element of the group (min = 1, max = 73)",
-	sub = "x = 3, y = 1 means that it's the 2 * 73 + 1 = 147th color")
+plot(y ~ jitter(x),
+  data = df, col = df$col,
+  pch = 16, main = "Visualizing colors() split in 9 groups",
+  xlab = "Group",
+  ylab = "Element of the group (min = 1, max = 73)",
+  sub = "x = 3, y = 1 means that it's the 2 * 73 + 1 = 147th color"
+)
 ```
 
 ### 箱线图 {#plot-box}
@@ -1271,13 +1511,67 @@ boxplot(count ~ spray,
 )
 ```
 
+Notched Boxplots
+
+```{r}
+set.seed(1234)
+n <- 8
+g <- gl(n, 100, n * 100) # n水平个数 100是重复次数
+x <- rnorm(n * 100) + sqrt(as.numeric(g))
+boxplot(split(x, g), col = hcl.colors(n), notch = TRUE)
+title(
+  main = "Notched Boxplots", xlab = "Group",
+  font.main = 4, font.lab = 1
+)
+```
+
+真实的情况是这样的
+
+```{r}
+cumcm2011A <- readRDS(file = "data/cumcm2011A.RDS")
+par(mfrow = c(2, 4), mar = c(4, 3, 1, 1))
+with(cumcm2011A, boxplot(As, xlab = "As"))
+abline(h = c(1.8, 3.6, 5.4), col = c("green", "blue", "red"), lty = 2)
+
+with(cumcm2011A, boxplot(Cd, xlab = "Cd"))
+abline(h = c(70, 130, 190), col = c("green", "blue", "red"), lty = 2)
+
+with(cumcm2011A, boxplot(Cr, xlab = "Cr"))
+abline(h = c(13, 31, 49), col = c("green", "blue", "red"), lty = 2)
+
+with(cumcm2011A, boxplot(Cu, xlab = "Cu"))
+abline(h = c(6.0, 13.2, 20.4), col = c("green", "blue", "red"), lty = 2)
+
+with(cumcm2011A, boxplot(Hg, xlab = "Hg"))
+abline(h = c(19, 35, 51), col = c("green", "blue", "red"), lty = 2)
+
+with(cumcm2011A, boxplot(Ni, xlab = "Ni"))
+abline(h = c(4.7, 12.3, 19.9), col = c("green", "blue", "red"), lty = 2)
+
+with(cumcm2011A, boxplot(Pb, xlab = "Pb"))
+abline(h = c(19, 31, 43), col = c("green", "blue", "red"), lty = 2)
+
+with(cumcm2011A, boxplot(Zn, xlab = "Zn"))
+abline(h = c(41, 69, 97), col = c("green", "blue", "red"), lty = 2)
+```
+
+```{r}
+boxplot(As ~ area,
+  data = cumcm2011A,
+  col = hcl.colors(5)
+)
+abline(
+  h = c(1.8, 3.6, 5.4), col = c("green", "blue", "red"),
+  lty = 2, lwd = 2
+)
+```
 
 ### 残差图 {#error-bars}
 
 iris 四个测量指标
 
 ```{r,fig.cap="带标准差的均值散点图",fig.asp=.8,fig.width=5}
-vec_mean <- colMeans(iris[,-5])
+vec_mean <- colMeans(iris[, -5])
 vec_sd <- apply(iris[, -5], 2, sd)
 plot(seq(4), vec_mean,
   ylim = range(c(vec_mean - vec_sd, vec_mean + vec_sd)),
@@ -1461,11 +1755,13 @@ plot(elevation, asp = NA)
 
 ```{r, fig.cap="image 图形",fig.asp=1}
 # A prettier display of the volcano
-x <- 10*(1:nrow(volcano))
-y <- 10*(1:ncol(volcano))
+x <- 10 * (1:nrow(volcano))
+y <- 10 * (1:ncol(volcano))
 image(x, y, volcano, col = terrain.colors(100), axes = FALSE)
-contour(x, y, volcano, levels = seq(90, 200, by = 5),
-        add = TRUE, col = "peru")
+contour(x, y, volcano,
+  levels = seq(90, 200, by = 5),
+  add = TRUE, col = "peru"
+)
 axis(1, at = seq(100, 800, by = 100))
 axis(2, at = seq(100, 600, by = 100))
 box()
