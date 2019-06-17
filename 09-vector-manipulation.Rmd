@@ -12,6 +12,8 @@
 Charlotte Wickham 的课程 A introduction to purrr [purrr-tutorial](https://github.com/cwickham/purrr-tutorial)
 
 关于引用 [quotation](https://github.com/cwickham/quotation)
+
+相比于 SQL， dplyr 在数据库操作的不足，这是一些比较难的部分 <https://dbi.r-dbi.org/articles/dbi-1#sec:open-issues>
 :::
 
 函数式编程 Functional Programming Languages 用于数据处理，向量化运算、并行运算和分布式运算

@@ -4,7 +4,7 @@
 
 ## Why R {#why-r}
 
-GNU R 是发布在 GPL-2/3 下的开源自由软件，意味着只要你遵循该协议，就可以自由地获取、修改和发布R 源代码，R 本身的这种开源自由的属性，决定你可以免费地使用它。《The Art of R Programming》的作者 Norm Matloff 给出使用 R 语言的四个优势：它是统计学家开发的，也是为统计学家打造的；内建的矩阵类型和矩阵操作非常高效；提供强大的绘图功能，不管是来自基础 R 还是 CRAN 上的绘图包；以及优秀的并行能力[^r-over-python]。关于 R 语言和 Python 语言的对比，网络上充斥着很多的文章，除了赞扬，还有表示反对的声音，如 R语言采用的对 GPL 协议 [^python-over-r-gpl]，甚至有人列举了逃离 R 语言阵营的10大上榜理由[^top-ten-bad-r]，datacamp 提供了一份较为完整的对比图，仅供参考[^r-vs-python]。如果你是学统计的学生或者数据分析师，我都建议你先学习 R[^why-r]，如果你是社会科学的学生和研究者， R 社区开发了 GUI 工具，如 [Rcmdr](https://socialsciences.mcmaster.ca/jfox/Misc/Rcmdr/) 和 [rattle](https://rattle.togaware.com/)，还有基于 Shiny 的分析工具 [radiant](https://github.com/radiant-rstats/radiant) 和类似 SPSS 的 [JASP](https://jasp-stats.org/)。
+GNU R 是发布在 GPL-2/3 下的开源自由软件，意味着只要你遵循该协议，就可以自由地获取、修改和发布R 源代码，R 本身的这种开源自由的属性，决定你可以免费地使用它。《The Art of R Programming》的作者 Norm Matloff 给出使用 R 语言的四个优势：它是统计学家开发的，也是为统计学家打造的；内建的矩阵类型和矩阵操作非常高效；不管是来自基础 R 还是 CRAN 上的绘图包，都提供强大的绘图功能；还有优秀的并行能力[^r-over-python]，最近他更是在数据科学中全面比较了 R 与 Python[^r-vs-python-ds]。关于 R 语言和 Python 语言的对比，网络上充斥着很多的文章，除了赞扬，还有表示反对的声音，如 R语言采用的对 GPL 协议 [^python-over-r-gpl]，甚至有人列举了逃离 R 语言阵营的10大上榜理由[^top-ten-bad-r]，datacamp 提供了一份较为完整的对比图，仅供参考[^r-vs-python]。如果你是学统计的学生或者数据分析师，我都建议你先学习 R[^why-r]，如果你是社会科学的学生和研究者， R 社区开发了 GUI 工具，如 [Rcmdr](https://socialsciences.mcmaster.ca/jfox/Misc/Rcmdr/) 和 [rattle](https://rattle.togaware.com/)，还有基于 Shiny 的分析工具 [radiant](https://github.com/radiant-rstats/radiant) 和类似 SPSS 的 [JASP](https://jasp-stats.org/)。
 
 R 语言比较遭人诟病的大概有：
 
@@ -14,6 +14,7 @@ R 语言比较遭人诟病的大概有：
 1. R 内置的数据结构非常多，原子类型的有字符、布尔、整型、复数、双精度浮点、单精度浮点等，此外常见的还有数据框、列表。每个特定的领域往往还有特殊的类型，如时间序列 ts、zoo 等， 空间对象 sp、 raster 和 sf 等。
 1. 深入学习 R 实现的统计模型，如 `lm`、`glm` 等，你可能会发现统计学家的程序设计思维如此难懂。
 
+Thomas Lumley, "R Fundamentals and Programming Techniques" <https://faculty.washington.edu/tlumley/Rcourse/R-fundamentals.pdf>
 
 Table: (\#tab:r-vs-python) R 与 Python 常用模块对照表
 
@@ -42,6 +43,7 @@ Table: (\#tab:r-vs-python) R 与 Python 常用模块对照表
 [^why-r]: https://www.ejwagenmakers.com/misc/HortonEtAl2004.pdf
 [^python-over-r-gpl]: https://r-posts.com/how-gpl-makes-me-leave-r-for-python/
 [^top-ten-bad-r]: https://decisionstats.com/2009/01/10/top-ten-rrreasons-r-is-bad-for-you/
+[^r-vs-python-ds]: https://github.com/matloff/R-vs.-Python-for-Data-Science
 
 ## 目标读者 {#who-read-this-book}
 

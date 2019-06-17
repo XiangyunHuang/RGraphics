@@ -1,6 +1,11 @@
 # 案例：个人信用借贷 {#case-lend-loan}
 
 > 这次使用 tidyverse 和数据库打造数据分析流，以真实的个人借贷记录分析220多万条个人信用借贷记录，数据来源于 Kaggle 比赛官网 <https://www.kaggle.com/wendykan/lending-club-loan-data>，它存储在 SQLite 数据库中，分析期间需要编写一定的 SQL 语句[^sqlite-intro]
+> [inspectdf](https://github.com/alastairrushworth/inspectdf) 逐列探索、比较和可视化数据框
+> - [机器学习方法和性能比较](http://rpubs.com/m3cinc/Benchmarking_20_Machine_Learning_Models_Accuracy_and_Speed)
+> - 来自微软的案例 [Data Science Accelerator for Credit Risk Prediction](https://blog.revolutionanalytics.com/2017/07/credit-risk-prediction.html)
+> - [基于微软的开发工具链打造的业务模型](https://github.com/microsoft/acceleratoRs)
+> Big Data with R - Exercise book <https://rstudio.github.io/bigdataclass/>
 
 ::: sidebar
 [Michael W. Kearney](https://mikewk.com/) 开发了 [kaggler](https://github.com/mkearney/kaggler) 包提供 Kaggle 数据集下载的客户端，目前只能在 Github 上安装
@@ -10,12 +15,17 @@ remotes::install_packages("mkearney/kaggler")
 ```
 
 还可用此 API 提交比赛结果。
+
+数据探索性分析 [DataExplorer](https://github.com/boxuancui/DataExplorer)
 :::
 
 ```{r}
 options(tidyverse.quiet = TRUE)
 library(tidyverse)
 library(DBI)
+knitr::opts_chunk$set(
+  cache = FALSE
+)
 ```
 
 ```{r}
@@ -60,6 +70,27 @@ LIMIT 10
 或者
 
 ```{r}
+dbGetQuery(con, paste(
+  "SELECT application_type, SUM(loan_amnt) as sum_loan_amnt",
+  "FROM loan",
+  "GROUP BY application_type",
+  "LIMIT 10"
+))
+```
+
+或者
+
+```{sql connection=con}
+SELECT application_type, SUM(loan_amnt) as sum_loan_amnt
+FROM loan 
+GROUP BY application_type
+LIMIT 10
+```
+
+
+或者
+
+```{r}
 tbl(con, "loan") %>% 
   group_by(application_type) %>% 
   summarise(total_amnt = sum(loan_amnt, na.rm = TRUE))
@@ -98,6 +129,25 @@ dbGetQuery(con, "SELECT id,member_id,loan_amnt FROM loan LIMIT 10")
 ```{r}
 tbl(con, "loan")
 ```
+
+或者这样
+
+```{r}
+tbl(con, "loan") %>% 
+  glimpse()
+```
+
+
+```{r}
+res <- dbSendQuery(con, paste(
+  "SELECT g.id, g.mirror, g.diam, e.voltage",
+  "FROM geom_table as g, elec_measures as e",
+  "WHERE g.id = e.id and g.mirrortype = 'inside'",
+  "ORDER BY g.diam"
+))
+```
+
+
 
 以此数据集介绍 DBI 包内各个函数。接下来要正式开始分析了，首先要明确分析的目标是什么，分析的流程是什么
 

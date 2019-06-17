@@ -6,7 +6,7 @@
 
 数据可视化是一种重要的数据分析手段， R 提供了两套图形系统，分别是 graphics 包提供的基础绘图系统和 grid 包提供的栅格绘图系统，后者主要以两个 R 包为大家所熟知，一个是 lattice 包，另一个是 ggplot2 包。
 
-Base 图形系统的扩展包 [prettyB](https://github.com/jumpingrivers/prettyB) 和 [gridGraphics](https://github.com/pmur002/gridgraphics)
+Base 图形系统的扩展包 [basetheme](https://github.com/KKPMW/basetheme) 可以设置主题，[prettyB](https://github.com/jumpingrivers/prettyB) 和 [gridGraphics](https://github.com/pmur002/gridgraphics)
 
 为了方便记忆函数 `par` 的各个参数，Paul Murrell 整理了一份 [助记符](https://www.stat.auckland.ac.nz/~paul/R/parMemnonics.html)，此外，LaTeX 宏包 [geometry](https://github.com/latexstudio/LaTeXPackages-CN) 对版面设置有很多专业的说明
 

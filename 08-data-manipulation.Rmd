@@ -1,13 +1,14 @@
 # 数据操作手 {#data-manipulator}
 
 > 参考 Data Manipulation With R [@Spector_2008_Manipulation] 重新捋一遍本章
+> 本章的操作对象是 data.frame
 
-```{r}
+```{r,eval=FALSE}
 library(tidyverse)
 ```
 
 ::: sidebar
-首先介绍 Base R 提供的数据操作，关于采用 Base R 还是 tidyverse 做数据操作的 [讨论](https://d.cosx.org/d/420697)， 每个数据操作都提供 tidyverse 的等价表示
+首先介绍 Base R 提供的数据操作，关于采用 Base R 还是 tidyverse 做数据操作的 [讨论](https://d.cosx.org/d/420697)，等 Base R 的数据操作部分写完，每个数据操作都提供 tidyverse 的等价表示
 :::
 
 什么是 Base R? Base R 指的是 R 语言/软件的核心组件，由 R Core Team 维护
@@ -74,17 +75,42 @@ str(Indometh)
 summary(Indometh)
 ```
 ```{r}
+# 长的变宽
 wide <- reshape(Indometh,
   v.names = "conc", idvar = "Subject",
   timevar = "time", direction = "wide"
 )
 wide[, 1:6]
+
+# 宽的变长
+reshape(wide, direction = "long")
 ```
 
-长 long 变 wide 宽格式
 
-```{r,eval=FALSE}
-data(gambia, package = "geoR")
+长的格式变成宽的格式 <https://stackoverflow.com/questions/5890584/>
+
+```{r}
+set.seed(45)
+dat <- data.frame(
+    name = rep(c("Orange", "Apple"), each=4),
+    numbers = rep(1:4, 2),
+    value = rnorm(8))
+dat
+
+reshape(dat, idvar = "name", timevar = "numbers", direction = "wide")
+```
+
+更加复杂的例子， gambia 数据集
+
+```{r}
+# data(gambia, package = "geoR")
+gambia <- read.table(
+  file =
+    paste("http://www.leg.ufpr.br/lib/exe/fetch.php",
+      "pessoais:paulojus:mbgbook:datasets:gambia.txt",
+      sep = "/"
+    ), header = TRUE
+)
 # Building a "village-level" data frame
 ind <- paste("x", gambia[, 1], "y", gambia[, 2], sep = "")
 village <- gambia[!duplicated(ind), c(1:2, 7:8)]
@@ -340,11 +366,10 @@ merge(books, authors, by.x = "name", by.y = "surname")
 
 为了比较清楚地观察几种合并的区别，这里提供对应的动画展示 <https://github.com/gadenbuie/tidyexplain>
 
-cbind
-rbind
+(inner, outer, left, right, cross) join 共5种合并方式详情请看 <https://stackoverflow.com/questions/1299871>
 
-left join
-right join
+cbind 和 rbind 分别是按列和行合并数据框
+
 
 ## 数据去重 {#base-duplicated}
 
@@ -635,7 +660,7 @@ lapply(asplit(array(1:27, c(3, 3, 3)), 3), apply, 2, sum)
 
 成对的数据操作有 `list` 与 `unlist`、`stack` 与 `unstack`、`class` 与 `unclass`、`attach` 与 `detach` 以及 `with` 和 `within`，它们在数据操作过程中有时会起到一定的补充作用。
 
-### 列表属性 {#list-or-unlist}
+### 列表属性 {#relist-or-unlist}
 
 ```{r,eval=FALSE}
 # 创建列表
@@ -669,6 +694,9 @@ unlist(x, recursive = TRUE, use.names = TRUE)
 unlist(tmp)
 unlist(tmp, use.names = FALSE)
 ```
+
+unlist 的逆操作是 relist
+
 
 ### 堆叠向量 {#stack-or-unstack}
 

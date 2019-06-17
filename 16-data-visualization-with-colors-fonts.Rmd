@@ -1,8 +1,54 @@
 # 色彩与字体 {#colors-fonts}
 
-## 配色 {#colors}
+## 颜色 {#colors-in-r}
+
+在 R 语言中，如何表示颜色，
+
+1. 使用内置的颜色名称，如 `red` 表示红色，`green` 表示绿色，而 `blue` 表示蓝色，完整的颜色名称列表，见 `colors()` 或者 `colours()`，有人整理了一张 R 内置的颜色名称和对应颜色图 <https://stat.columbia.edu/~tzheng/files/Rcolor.pdf>，可供参考
+1. 用十六进制的字符串表示颜色，如 `#000000` 表示黑色，`#FF0000` 表示红色，`#00FF00` 表示绿色
+
+如何构造颜色
+
+1. `rgb` 函数是最常用的
+
+红(red)、绿(green)、蓝(blue)是三原色，由他们的不同配比可以构成大千世界里五光十色
+
+```{r,eval=FALSE}
+rgb(red, green, blue, alpha, names = NULL, maxColorValue = 1)
+```
+
+函数参数说明：
+
+- `red, blue, green` 取值范围$[0,M]$，$M$ 是 `maxColorValue` 默认情况下参数 `maxColorValue` 为 1
+- `names` 字符向量，给这组颜色值取名
+- `maxColorValue` 红，绿，蓝三色范围的最大值 
+- `alpha` 是颜色的透明度
+
+rgb 产生一种颜色，如 `rgb(255, 0, 0, maxColorValue = 255)` 的颜色是 `"#FF0000"` ，这是一串16进制数，每两个一组，那么一组有 $16^2 = 256$ 种组合，整个一串有 $256^3 = 16777216$ 种组合，这就是RGB表达的所有颜色，一个标准的 RGB 颜色空间，即 sRGB (IEC
+standard 61966)。用色条示意，如图 \@ref(fig:rgb-rainbow)
+
+```{r}
+# 黑色 红色 绿色 黄色 蓝色 紫色 青色 白色
+rgb(expand.grid(r = c(0, 1), g = c(0, 1), b = c(0, 1)))
+```
+
+`palette("default")` 默认的调色板将灰色替换上述白色
+
+```{r default-palette,fig.cap="默认的调色板"}
+barplot(seq(8), col = palette("default"), border = "white")
+```
+
+```{r rgb-rainbow,fig.cap="内置的彩虹系调色板"}
+barplot(rep(1, times = 100), col = rainbow(100), border = FALSE, axes = FALSE)
+```
+
+
+## 配色 {#choose-colors}
 
 调色板合集 [paletteer](https://github.com/EmilHvitfeldt/paletteer)，其收录了很多 R 包制作的调色板，其中包括 [r-color-palettes](https://github.com/EmilHvitfeldt/r-color-palettes) 和 [wesanderson](https://github.com/karthik/wesanderson)，根据电影 Harry Potter 制作的调色板 [harrypotter](https://github.com/aljrico/harrypotter)，根据网站 [CARTO](https://carto.com/) 设计的 [rcartocolor](https://github.com/Nowosad/rcartocolor) 包
+
+
+不同的颜色模式，从 RGB 到 HCL 的基本操作 <https://stat545.com/block018_colors.html>
 
 ```{r,fig.cap="HCL调色",R.options=list(tidyverse.quiet = TRUE)}
 # https://github.com/hadley/ggplot2-book
@@ -158,61 +204,6 @@ ggplot(mtcars, aes(x = mpg * 0.43, y = wt * 0.4535924, colour = factor(cyl))) +
   ) +
   theme_fira() +
   scale_colour_fira()
-```
-
-在 Ubuntu 系统上安装微软字体
-
-```bash
-sudo apt-get install ttf-mscorefonts-installer
-```
-
-如果因为网络原因，下载出现问题，可能是长期没有维护更新，默认字体下载链接失效了
-
-```{r missing-fonts,fig.cap="字体缺失",eval=FALSE,echo=FALSE}
-knitr::include_graphics(path = "figures/msfonts.png")
-```
-
-因此，需要手动下载字体到目录 `~/msfonts/`下
-
-```{r,eval=FALSE}
-baseurl <- "https://nchc.dl.sourceforge.net/project/corefonts/the%20fonts/final"
-fonts <- c(
-  "webdin32", "verdan32", "trebuc32", "times32",
-  "impact32", "georgi32", "courie32", "comic32",
-  "arialb32", "arial32", "andale32"
-)
-fonts_exe <- paste0(fonts, ".exe")
-fonts_url <- paste(baseurl, fonts_exe, sep = "/")
-
-if (!dir.exists("~/msfonts")) {
-  dir.create("~/msfonts")
-}
-
-for (i in seq(length(fonts)))
-  download.file(
-    url = fonts_url[i],
-    destfile = paste("~/msfonts", fonts_exe[i], sep = "/"),
-    method = "auto"
-  )
-```
-
-字体下载完后，手动配置字体
-
-```bash
-sudo dpkg-reconfigure ttf-mscorefonts-installer
-```
-
-注意要输入字体存放的完整路径 `/home/ubuntu/msfonts` 而不是相对路径 `~/msfonts`，安装完成后，字体存放在系统目录`/usr/share/fonts/truetype/msttcorefonts/`下，接下来可以查看已经安装的字体
-
-```bash
-fc-list :lang=zh | sort
-fc-list :lang=en | sort
-```
-
-此外，安装常见的等宽字体 inconsolata
-
-```bash
-sudo apt install fonts-inconsolata
 ```
 
 以常用的新罗马字体为例，在 R 绘图代码中全局设置字体 `par(family="Times")` 或者 `par(family="serif")`，数据集 cars 的含义，散点图 \@ref(fig:times-font) 表达的统计意义

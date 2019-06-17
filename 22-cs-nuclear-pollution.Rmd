@@ -1,0 +1,96 @@
+# 案例：核污染预测 {#case-ronglap}
+
+朗格拉普岛上的核污染分布
+
+## 模拟泊松线性模型
+
+$$Y \sim \mathrm{Possion}(\lambda)$$
+$$\log(\lambda) = \beta_0 + \beta_1 * X$$
+这里，$(X,Y)$代表一组观察值
+
+模拟上述简单泊松广义线性模型如下：
+
+```{r}
+set.seed(2018)
+n <- 1000 # 样本量
+x <- rnorm(n)
+beta_0 <- 0.5
+beta_1 <- 0.3
+log.lambda <- beta_0 + beta_1 * x
+y <- rpois(n, lambda = exp(log.lambda))
+```
+
+制作 Y 关于 X 的关系图
+
+```{r}
+plot(y ~ x)
+```
+
+根据观察值$(X,Y)$和对应的模型，使用优化算法，求解 $\beta_0$, $\beta_1$ 和 $\lambda$
+
+```{r}
+glm.possion <- glm(y ~ x, family = poisson(link = "log"))
+summary(glm.possion)
+```
+
+## 朗格拉普岛上的核污染浓度分布
+
+根据维基百科资料显示 <https://en.wikipedia.org/wiki/Rongelap_Atoll>
+
+数据集来源
+
+```{r}
+rongelap <- read.table(
+  file =
+    paste("http://www.leg.ufpr.br/lib/exe/fetch.php",
+      "pessoais:paulojus:mbgbook:datasets:rongelap.txt",
+      sep = "/"
+    )
+)
+# 转 UTM 坐标
+```
+
+再将投影坐标系(UTM)转化为地理坐标系(WGS84)
+
+```{r}
+library(Matrix)
+library(raster)
+library(sp)
+library(geostatsp)
+data("rongelapUTM")
+plot(rongelapUTM, main = "Rongelap island")
+
+# sp class 马绍尔群岛
+gadm <- readRDS(file = url("https://biogeo.ucdavis.edu/data/gadm3.6/Rsp/gadm36_MHL_0_sp.rds"))
+
+rongelapLL <- spTransform(rongelapUTM, gadm@proj4string) # UTM 转 WGS84
+plot(rongelapLL)
+
+plot(gadm, add = T)
+
+library(ggplot2)
+
+
+library(rgdal) # 需要调整坐标参考系 可能不是 UTM
+sps <- SpatialPoints(dat[, c("x", "y")], proj4string = CRS("+proj=utm +zone=28"))
+spst <- spTransform(sps, CRS("+proj=longlat +datum=WGS84"))
+dat[, c("long", "lat")] <- coordinates(spst)
+
+
+
+# 转成 ggplot2 作图
+# 添加景观背景或者 leaflet 地图背景
+```
+
+提出蒙特卡罗极大似然方法估计不带块金效应的响应变量服从泊松分布的空间广义混合效应模型 (见模型  )的参数，分析了朗格拉普岛上核污染浓度的空间分布，后来， [@Christensen2004] ，因此在 Peter J. Diggle 等 (1998年) [@Diggle1998] 的基础上添加了块金效应，见模型 \@ref(eq:rongelap-with-nugget-effect)， 同样使用蒙特卡罗极大似然方法估计了模型中的参数。
+
+ 
+伽马射线在时间间隔 units.m 内放射的粒子数目为 y，d1 和 d2 分别为测量坐标
+ 
+ 核污染残留浓度是其中一项 [@Bordner2016]。
+ 
+ 
+ 
+ 第\@ref(case-rongelap)节将分别基于蒙特卡罗极大似然算法和贝叶斯 STAN-MCMC 算法估计该泊松型空间广义线性混合效应模型的参数。
+
+ 具有重要的地位，除了采矿业，还可应用于卫生统计、 气象统计和空间经济统计等领域，如分析地区范围内的疟疾分布，有限气象站点条件下，预测地区 PM2.5 污染物浓度分布等。

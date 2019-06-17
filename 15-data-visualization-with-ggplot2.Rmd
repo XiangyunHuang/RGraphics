@@ -28,9 +28,9 @@ ggplot(mpg, aes(displ, hwy)) +
 
 1. Pablo Barberá 的 [Data Visualization with R and ggplot2](https://github.com/pablobarbera/Rdataviz)
 2. Kieran Healy 的新书 [Data Visualization: A Practical Introduction](https://kieranhealy.org/publications/dataviz/)
-3. Matt Leonawicz 的新作 [mapmate](https://github.com/leonawicz/mapmate), 可以去其主页欣赏系列作品^[<https://leonawicz.github.io/>]
-1. [bbplot](https://github.com/bbc/bbplot)
+3. Matt Leonawicz 的新作 [mapmate](https://github.com/leonawicz/mapmate), 可以去其主页欣赏系列作品^[<https://leonawicz.github.io/>] 
 1. [tidytuesday 可视化挑战官方项目](https://github.com/rfordatascience/tidytuesday) 还有 [tidytuesday](https://github.com/abichat/tidytuesday)
+1. [ggstatsplot](https://github.com/IndrajeetPatil/ggstatsplot) 可视化统计检验、模型的结果
 
 [^why-ggplot2]: http://varianceexplained.org/r/why-I-use-ggplot2/
 [^why-not-ggplot2]: https://simplystatistics.org/2016/02/11/why-i-dont-use-ggplot2/
@@ -57,7 +57,7 @@ ggplot(airquality, aes(x = Temp, y = Ozone)) + geom_point()
 ls("package:ggplot2", pattern = "^theme_")
 ```
 
-这里只展示 `theme_bw()` `theme_void()` `theme_minimal() ` 和 `theme_void()` 等四个常见主题，更多主题参考 [ggthemes](https://github.com/jrnold/ggthemes) 、[hrbrthemes](https://github.com/hrbrmstr/hrbrthemes) 和 [ggthemr](https://github.com/cttobin/ggthemr) 包
+这里只展示 `theme_bw()` `theme_void()` `theme_minimal() ` 和 `theme_void()` 等四个常见主题，更多主题参考 [ggsci](https://github.com/nanxstats/ggsci)、[ggthemes](https://github.com/jrnold/ggthemes) 、[hrbrthemes](https://github.com/hrbrmstr/hrbrthemes) 和 [ggthemr](https://github.com/cttobin/ggthemr) 包
 
 ```{r}
 ggplot(airquality, aes(x = Temp, y = Ozone)) + geom_point() + theme_bw()
@@ -65,6 +65,8 @@ ggplot(airquality, aes(x = Temp, y = Ozone)) + geom_point() + theme_void()
 ggplot(airquality, aes(x = Temp, y = Ozone)) + geom_point() + theme_minimal()
 ggplot(airquality, aes(x = Temp, y = Ozone)) + geom_point() + theme_void()
 ```
+
+除主题之外，还有一类提供一整套统一的风格样式来绘制各种统计图形，如 [ggpubr](https://github.com/kassambara/ggpubr) 和 [bbplot](https://github.com/bbc/bbplot)
 
 ### 配色 {#ggplot2-color}
 
@@ -121,9 +123,8 @@ ggplot(airquality) + geom_point(aes(x = Temp, y = Ozone)) + facet_wrap(~ as.orde
 ggplot(airquality) + geom_point(aes(x = Temp, y = Ozone)) + facet_wrap(~ as.ordered(Month), nrow = 1)
 ```
 
-gridExtra 和 patchwork 
+[cowplot](https://github.com/wilkelab/cowplot) 是以作者 [Claus O. Wilke](https://wilkelab.org/) 命名的，用来组合 ggplot 对象画图，类似的组合图形的功能包还有 [baptiste auguié](https://baptiste.github.io/) 开发的[gridExtra](https://CRAN.R-project.org/package=gridExtra) 和 [egg](https://github.com/baptiste/egg)，[Thomas Lin Pedersen](https://www.data-imaginist.com/) 开发的 [patchwork](https://github.com/thomasp85/patchwork)
 
-[cowplot](https://github.com/wilkelab/cowplot) 是以作者 Claus O. Wilke 命名的
 
 
 ### 坐标系 {#ggplot2-coord}

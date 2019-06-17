@@ -10,7 +10,7 @@
 - [Manipulating strings with the stringr package](https://www.brodrigues.co/blog/2019-02-10-stringr_package/)
 - [filesstrings](https://github.com/rorynolan/filesstrings) 基于 stringr 操作字符串
 - [strex](https://github.com/rorynolan/strex) 一些没有包含在 stringr 或者 stringi 中的字符串操作函数
-
+- [tidytext](https://github.com/juliasilge/tidytext) Text mining using dplyr, ggplot2, and other tidy tools
 
 ## 处理性能 {#performance}
 
@@ -46,6 +46,8 @@ libcurlVersion()
 抓取地震台信息
 
 [^RCurl]: Jeroen Ooms 已经确认 RCurl 早已经不再维护，取代它的是 curl/httr，不要使用不再维护的 R 包 <https://frie.codes/curl-vs-rcurl/>
+
+[一个爬网页的练习：看看 R 邮件列表中最热门的讨论是什么](https://d.cosx.org/d/420739)
 
 ## 文本挖掘 {#text-mining}
 

@@ -1,0 +1,203 @@
+# 案例：热带流行病 {#case-spatial-epidemiology}
+
+## 模拟二项线性模型
+
+二项分布即 n 重伯努利分布（或称0-1分布）
+
+$$Y \sim \mathrm{Binomial}(p)$$
+$$\log\{\frac{p}{1-p}\} = \beta_0 + \beta_1 * X$$
+
+模拟观察值
+
+```{r}
+set.seed(2018)
+n <- 1000 # 样本量
+x <- rnorm(n)  
+beta_0 <- 0.5
+beta_1 <- 0.3
+log.p <- beta_0 + beta_1 * x 
+y <- rbinom(n, 1 , prob = exp(beta_0 + beta_1 * x)/(1 + exp(beta_0 + beta_1 * x))) 
+```
+
+```{r}
+head(y)
+```
+
+
+绘图
+
+```{r}
+plot(y~x)
+```
+
+估计参数
+
+```{r}
+glm.binomial <- glm(y ~ x, family = binomial(link = "logit"))
+summary(glm.binomial)
+```
+
+预测
+
+```{r}
+plot(y~x)
+points(predict.glm(glm.binomial,type = "response")~x, col = 'red')
+```
+
+```{r}
+head(predict.glm(glm.binomial,type = "response"))
+```
+
+
+## 喀麦隆及周边地区盘尾丝虫病的空间分布 {#case-loaloa}
+
+
+```{r}
+loaloa <- read.table(
+  file =
+    paste("http://www.leg.ufpr.br/lib/exe/fetch.php",
+      "pessoais:paulojus:mbgbook:datasets:loaloa.txt",
+      sep = "/"
+    )
+)
+```
+
+
+
+盘尾丝虫病是由一种可致盲的热带疾病，非洲盘尾丝虫病控制项目 APOC (African Programme for Onchocerciasis Control) 搜集了 $N=168$ 个村庄的 $M = 21938$ 个血液样本，每个村庄抽取的样本量为 $m_i=\mathrm{NO\_EXAM}$， 其中感染了的 NO_INF 人， 在该村庄 （坐标 $x_i$）观察到的感染比例 $p(x_i) = \mathrm{NO\_INF/NO\_EXAM}$ ， 在村庄 1 公里的范围内添加了周围环境的指标， 有从美国地质调查局获得的海拔信息 ELEVATION (<https://www.usgs.gov/>) 和卫星在 1999 年至 2001 年间测得的植被绿色度数据 NDVI (<http://free.vgt.vito.be>)， NDVI 分四个指标， 分别是所有 NDVI 的平均值 MEAN9901，最大值 MAX9901，最小值 MIN9901，标准差 STDEV9901。 样本采集的区域如图 \@ref(fig:loaloa-map) 所示
+
+```{r loaloa-map,echo=FALSE,out.width="90%",fig.asp=1,fig.cap="红色加号标注样本所在的村庄",eval=FALSE}
+knitr::include_graphics(path = "figures/map-loaloa.png")
+```
+
+为了分析 loaloa 数据集，我们建立响应变量 $Y$ 服从二项分布的空间广义线性混合效应模型
+
+\begin{equation*}
+\begin{split}
+\log\big\{ \frac{ p(x_i)}{ 1-p(x_i)} \big\} = 
+               & \beta_{0} + \beta_{1} \times \mathrm{ELEVATION}_{i} + \beta_{2} \times \mathrm{MEAN9901}_{i} + \beta_{3} \times \mathrm{MAX9901}_{i} + \\
+               & \beta_{4} \times \mathrm{MIN9901}_{i} +  \beta_{5} \times \mathrm{STDEV9901}_{i} + S(x_{i})
+\end{split}
+\end{equation*}
+
+其中，$\beta_0$ 是截距，$\beta_{1},\beta_{2}, \beta_{3},\beta_{4}, \beta_{5}$ 是各指标的系数，$Y_{i} \sim \mathrm{Binomial}(m_{i},p(x_i))$，平稳空间高斯过程 $\mathcal{S} = S(x), x = ( \mathrm{LONGITUDE}, \mathrm{LATITUDE}) \in \mathbb{R}^2$ 的均值为 0，自协方差函数为
+
+\[
+\mathrm{Cov}(S(x_i),S(x_j)) = \sigma^2 \big\{2^{\kappa-1}\Gamma(\kappa)\big\}^{-1}(u_{ij}/\phi)^{\kappa}K_{\kappa}(u_{ij}/\phi), \kappa = 2
+\] 
+
+在实际数据分析中，选择一组合适的初始值可以缩短各算法迭代的过程。我们分两步获取 $\beta = (\beta_{0},\beta_{1},\beta_{2}, \beta_{3},\beta_{4}, \beta_{5})$ 和 $\boldsymbol{\theta} = (\sigma^2,\phi)$ 的初始值。第一步，离散自协方差函数中的 $\kappa$，再调用 **PrevMap** 包中的 `shape.matern` 函数选择一个 $\kappa$；第二步，在去掉空间效应 $S(x)$ 的情况下，以广义线性模型拟合数据得到 $\beta$的初始估计值。然后分别使用贝叶斯 MCMC 算法和贝叶斯 STAN-MCMC 算法估计参数 $\beta = (\beta_{0},\beta_{1},\beta_{2}, \beta_{3},\beta_{4}, \beta_{5})$ 和 $\boldsymbol{\theta} = (\sigma^2,\phi)$，结果如表 \@ref(tab:loaloa-estimation2) 和表 \@ref(tab:loaloa-estimation3)所示。
+
+Table: (\#tab:loaloa-estimation1) MCML算法估计模型的参数
+
+| 参数        | 估计        | 标准差      |   标准误    |
+| :---------: | :--------:  | :---------: | :------:    |
+| $\beta_{0}$ | -11.120     | 1.447       | 8.268e-03   |
+| $\beta_{1}$ | -0.001      | 3.155e-04   | 1.023e-05   |
+| $\beta_{2}$ | 13.513      | 2.223       | 4.877e-02   |
+| $\beta_{3}$ | 1.454       | 2.013       | 3.094e-02   |
+| $\beta_{4}$ | -0.576      | 1.315       | 1.016e-02   |
+| $\beta_{5}$ | 11.216      | 5.181       | 5.321e-02   |
+| $\sigma^2$  | 1.171       | 0.272       | 1.300e-03   |
+| $\phi$      | 0.486       | 0.353       | 2.344e-03   |
+
+通过表 \@ref(tab:loaloa-estimation1) 的 P 值，可以看出 $\beta_{0},\beta_{1},\beta_{2}$ 是显著的，分别对应模型的截距项，海拔 (ELEVATION)和 NDVI 的平均值 (MEAN9901)，在这组数据中，刻画 NDVI 指标使用平均值比较能体现村庄周围植被的整体绿色度，而最大值 MAX9901，最小值 MIN9901，标准差 STDEV9901 与影响不显著。
+
+Table: (\#tab:loaloa-estimation2) 贝叶斯 MCMC 算法估计模型的参数
+
+| 参数        | 估计        | 标准差      |   均方误差  |
+| :---------: | :--------:  | :---------: | :------:    |
+| $\beta_{0}$ | -11.562     | 0.681       | 5.563e-03   |
+| $\beta_{1}$ | -8.721e-04  | 1.415e-04   | 1.155e-06   |
+| $\beta_{2}$ | 8.426       | 2.064       | 1.686e-02   |
+| $\beta_{3}$ | 4.857       | 1.334       | 1.090e-02   |
+| $\beta_{4}$ | 0.233       | 1.367       | 1.116e-02   |
+| $\beta_{5}$ | 11.087      | 3.565       | 2.911e-02   |
+| $\sigma^2$  | 1.096       | 0.170       | 1.390e-03   |
+| $\phi$      | 3.675       | 0.582       | 4.754e-03   |
+
+Table: (\#tab:loaloa-estimation3) 贝叶斯 STAN-MCMC 算法估计模型的参数
+
+| 参数        | 估计        | 标准差      |   均方误差  |
+| :---------: | :--------:  | :---------: | :------:    |
+| $\beta_{0}$ | -12.878     | 1.460       | 3.515e-03   |
+| $\beta_{1}$ | -6.596e-04  | 3.188e-04   | 7.733e-07   |
+| $\beta_{2}$ | 9.647       | 2.136       | 5.222e-03   |
+| $\beta_{3}$ | 4.380       | 1.993       | 5.026e-03   |
+| $\beta_{4}$ | -0.102      | 1.159       | 2.822e-03   |
+| $\beta_{5}$ | 11.216      | 5.539       | 1.343e-02   |
+| $\sigma^2$  | 1.027       | 0.09        | 2.171e-04   |
+| $\phi$      | 1.157e-02   | 1.292e-03   | 3.244e-06   |
+
+比较表 \@ref(tab:loaloa-estimation2) 和表 \@ref(tab:loaloa-estimation3)， 发现贝叶斯 STAN-MCMC 算法比贝叶斯 MCMC 算法稍好一点， 多半的参数估计的标准差要小一些， 均方误差普遍要小一点。
+
+
+在过去的几十年当中， SGLMM 模型的似然分析一直是主要的研究内容，而 N. E. Breslow 和 D. G. Clayton (1993年) [@Breslow1993] 关于惩罚拟似然和边际拟似然的研究基本是 SGLMM 模型的似然分析的初始点。
+
+下面如无特殊说明， 算法描述对象都是模型 \@ref(eq:BL-SGLMM)。
+
+Charles J. Geyer (1994年) 在用极大似然法估计指数族中的参数时，蒙特卡罗积分近似对数似然函数， 提出并证明了蒙特卡罗极大似然算法的收敛性和相应估计的相合性和渐近正态性 [@Geyer1994On]，这为算法的应用打开了局面。
+
+随后，似然估计的统计性质和随机模拟算法的收敛性和应用成为研究的重点。 
+
+近年来，在大数据的背景下， 寻求高效的算法成为一个新的方向，2009 年 Rue 等人提出基于近似贝叶斯推断的集成嵌套拉普拉斯算法，简称 INLA[@INLA2009]， 并将其应用于空间数据建模[@INLA2015]，还推广到一般的贝叶斯计算[@INLA2017]。2013年，Liang 等人将重抽样的技术用于大规模地质统计数据分析，相比贝叶斯方法[@Diggle1998]，它可以更加快速地获得准确的结果[@Resampling2013]。同时， 涉及空间数据分析和建模的书籍也越来越多， 用于空间数据分析的分层模型 [@Banerjee2015]和基于 `R-INLA` 软件的空间和时空贝叶斯模型 [@Blangiardo2015]。
+2016 年 Bonat 和 Ribeiro Jr. 综合比较了 MCML、贝叶斯 MCMC 和 近似拉普拉斯算法 方法 [@Bonat2016Practical]。
+
+并且参数集 $\theta$ 有唯一的极大值点 $\hat{\theta}$ 。
+
+高斯过程是连续的随机过程，可解释为连续随机变量函数上的概率分布，可看作不可数无穷多个随机变量的集合。
+
+我们知道简单的多元正态分布由均值向量和协方差矩阵决定，与此不同的是高斯过程由均值函数和协方差函数决定
+
+[非信息先验分布，扁平先验 flat prior，模糊先验]{.todo}
+
+以标准线性模型为例介绍贝叶斯分析及其基本概念 [@Rasmussen2006]，为什么不用 MSE 均方误差，WAIC pDIC 模型选择 loo K-CV  
+
+关于马氏链的数学定义 马氏链的平稳分布 MCMC 方法的基础  细致平稳条件
+
+
+在提出 SGLMM 模型之前，先介绍空间高斯过程，然后是平稳空间高斯过程和SGLMM模型结构，以步步推进的方式引入各成分的假设条件，其后着重阐述了空间效应的自相关函数，它决定空间效应，包含模型中的待估参数。
+
+近年来，高维乃至超高维稀疏线性模型成为热门的研究方向，相关的 R 包也越来越多，比较流行的有 **glmnet** [@glmnet2011JSS] 和 **SIS** [@SIS2016JSS]
+
+
+作为模型 \@ref(eq:SGLMM) 求解和展示的首选工具 --- R 语言在空间数据分析与可视化方面呈现越来越流行的趋势，从早些年的 lattice 图形 [@lattice2008] 到如今的 ggplot2 图形 [@ggplot2016]，操作空间数据的 sp 对象也发展为 sf 对象，还整合了不少第三方软件和服务，如基于 Google Maps 和 Google Earth 的交互式空间可视化。下面就求解模型 \@ref(eq:SGLMM)的三类算法 --- 贝叶斯方法、似然方法和低秩近似方法进行详细阐述。
+
+
+贝叶斯方法构造马尔科夫链，需要很多次反复迭代，收敛速度慢，求解模型 \@ref(eq:SGLMM) 需要花费很多时间， 极大似然和重要性采样相结合的方法出现了，称之为蒙特卡罗极大似然法，简称 MCML。 1994年 Charles J. Geyer 首先从理论证明 MCML 方法的收敛性及相关似然估计的正态性， 为后续算法的开发、改进以及应用提供了理论支持 [@Geyer1994On]。 2002 年 Hao Zhang 在做模型的估计和预测的时候提出蒙特卡罗期望极大梯度 (Monte Carlo EM Gradient) 算法 [@Zhang2002On]。2016 年 Fatemeh Hosseini 在 MCEMG 的基础上提出近似蒙特卡罗期望极大梯度 (Approximate Monte Carlo EM Gradient) 算法[@Hosseini2016]。2004 年 Ole F Christensen 将 MCML 方法用于 SGLMM 模型 [@Christensen2004]，2016 年 Peter J. Diggle 和 Emanuele Giorgi  将 MCML 方法应用于分析西非流行病调查数据。
+
+低秩近似的想法源于 1996 年 Trevor Hastie 在 [@Pseudosplines1996] 
+
+凡是贝叶斯推断，必然用到 MCMC 算法，常见的有 Metropolis-Hastings 算法 [@Diggle1998; @Diggle2002Childhood] Langevin-Hastings 算法 （geoRglm/geoCount 实现） 汉密尔顿蒙特卡罗算法 （Stan/PrevMap 实现）
+
+
+一般地，我们假定在给定 $\beta$ 和 $S(x_i)$ 的条件下，响应变量 $Y_i$ 服从指数族，这里不失一般性地讨论空间广义线性混合效应模型的极大似然估计。条件概率密度函数 $Y_i|\beta,\mu_i$ 为
+$$f(y_i|\beta,S(x_i))=\exp\{ [y_{i}\mu_i-b(\mu_i)] + c(y_i) \}$$
+其中，$\mu_i = \mathrm{E}\big[Y_i|\beta,S(x_i)\big]$ 是典则参数，$Y_i \sim N(\mu,\sigma^2)$ 时，
+
+$T = (T_1,T_2,\ldots,T_n)'$ 是多元正态分布 $N(D\beta,\Sigma(\boldsymbol{\theta}))$，参数$\beta,\boldsymbol{\theta}$ 的似然函数
+
+\begin{equation}
+L(\beta',\boldsymbol{\theta}';y) = \int \prod_{i=1}^{n}f(y_i|t_i)f(T|\beta',\boldsymbol{\theta}')dt (\#eq:likelihood-function)
+\end{equation}
+
+[@Bonat2016Practical]
+注意到参数 $\tau$ 和 $\psi$ 是不可识别的。 
+
+表示潜变量 (latent variable，又称随机效应，random effect)
+
+#### 空间高斯过程的近似 {#low-rank-gp}
+
+#### 低秩近似算法
+
+**gstat** 包迁移自 S 语言，提供了克里金插值方法 [@gstat2016]
+
+模拟空间广义线性混合效应模型 \@ref(eq:sim-sglmm) 分三节进行，第一节模拟空间高斯过程 $S(x)$，第二节模拟响应变量 $Y$ 服从二项分布 ，第三节模拟响应变量 $Y$ 服从正态分布。空间高斯过程在模型 \@ref(eq:sim-sglmm) 中作为随机效应存在，不同于一般随机效应的地方在于它与样本的空间位置有关，一般地，假定 $S(x)$ 服从 $N$ 元高斯分布 $N(\mu_{S},G)$，$x = (d_1,d_2) \in \mathbb{R}^2$， $\mu_{S} = \mathbf{0}_{N\times1}$， $G_{(ij)} = \mathrm{Cov}(S(x_i),S(x_j))=\sigma^2*\rho(u_{ij})$， $S(x)$ 的相关函数 $\rho(u_{ij}) = \exp(-u_{ij}/\phi), u_{ij} \equiv \|x_{i}-x_{j}\|_2$，其中 $\phi$ 和 $\sigma^2$ 都是未知待估参数。可见采样点的位置 $(d_1,d_2)$ 和相关函数 $\rho(u)$ 一起决定空间高斯过程的形式，并且 $S(x)$ 的维度就是采样点的数目 $N$。这样通常导致空间效应的维度比协变量的数目大很多，模型 \@ref(eq:sim-sglmm) 的估计问题也比一般的广义线性混合效应模型困难。
+
+\begin{equation}
+g(\mu_i) = d(x_i)'\beta + S(x_i) + Z_i (\#eq:sim-sglmm)
+\end{equation}
+
+添加偏差、置信区间长度、时间花费
+
+
