@@ -296,9 +296,10 @@ embedFonts(
 )
 ```
 
-参考 [@Paul_2006_fonts] fontcm 字体
+fontcm 包 [@Paul_2006_fonts] 实现在 Base R 图形中嵌入数学字体 [^cmr-fonts]，图形中嵌入重音字符[^accent-fonts]
 
-[cmr-fonts]: https://www.stat.auckland.ac.nz/~paul/R/CM/CMR.html
+[^cmr-fonts]: https://www.stat.auckland.ac.nz/~paul/R/CM/CMR.html
+[^accent-fonts]: https://www.stat.auckland.ac.nz/~paul/Reports/maori/maori.html
 
 调用系统字体，安装使用网络字体
 

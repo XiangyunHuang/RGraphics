@@ -36,6 +36,9 @@
 - [permits *apply() style dispatch for HPC](https://prs.ism.ac.jp/~nakama/Rhpc/Documents/Rhpc_0.15-177.pdf) High-Performance and Parallel Computing
 - [Data Visualization in R](http://datavis.ca/courses/RGraphics/)
 
+- [Lattice Graphics](https://www.stat.auckland.ac.nz/~paul/Talks/dsc2001.pdf)
+- [color in plot](https://www.stat.auckland.ac.nz/~paul/Talks/colour.pdf)
+
 ## 部分博客列表
 
 |作者                          |主页                                                  |

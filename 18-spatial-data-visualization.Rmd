@@ -21,6 +21,10 @@ options(
 1. [2017-Mapping oil production by country in R](http://sharpsightlabs.com/blog/map-oil-production-country-r/) 石油产量在全球的分布
 1. [2017-How to highlight countries on a map](https://www.sharpsightlabs.com/blog/highlight-countries-on-map/) 高亮地图上的国家
 1. [2017-Mapping With Sf: Part 3](https://ryanpeek.github.io/2017-11-21-mapping-with-sf-part-3/) 
+1. [Data Visualization Shiny Apps](https://ignaciomsarmiento.github.io/software.html) 数据可视化核密度估计 In this app I identify crime hotspots using a bivariate density estimation strategy
+1. [Association of Statisticians of American Religious Bodies (ASARB) viridis USA map](http://www.rpubs.com/cgarey/ProjectOneFinal)
+1. [出租车行车轨迹数据](https://www1.nyc.gov/site/tlc/about/tlc-trip-record-data.page)
+1. [Geospatial processing with Clickhouse-CARTO Blog](https://carto.com/blog/geospatial-processing-with-clickhouse/)
 
 ## map
 
