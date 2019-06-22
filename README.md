@@ -1,12 +1,4 @@
-[![Build Status](https://travis-ci.com/XiangyunHuang/RGraphics.svg?token=JzZLZhzXpgpzucseAyh4&branch=master)](https://travis-ci.com/XiangyunHuang/RGraphics) [![Netlify Status](https://api.netlify.com/api/v1/badges/6c069b09-a414-40f9-a0cf-3921fa547f28/deploy-status)](https://app.netlify.com/sites/r-graphics/deploys) [![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental) [![GitHub All Releases](https://img.shields.io/github/downloads/XiangyunHuang/RGraphics/total.svg)](https://github.com/XiangyunHuang/RGraphics)
-
----
-
-> **警告**
->
-> 本书采用 [知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议](https://creativecommons.org/licenses/by-nc-nd/4.0/) 许可，请君自重，别没事儿拿去传个什么新浪爱问、百度文库以及 XX 经济论坛，项目中代码使用 [MIT 协议](https://github.com/XiangyunHuang/RGraphics/blob/master/LICENSE) 开源
-
-<img src="figures/by-nc-nd.png" width="120" align="right" />
+[![Build Status](https://travis-ci.com/XiangyunHuang/RGraphics.svg?token=JzZLZhzXpgpzucseAyh4&branch=master)](https://travis-ci.com/XiangyunHuang/RGraphics) [![Netlify Status](https://api.netlify.com/api/v1/badges/6c069b09-a414-40f9-a0cf-3921fa547f28/deploy-status)](https://app.netlify.com/sites/r-graphics/deploys) [![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental) [![GitHub All Releases](https://img.shields.io/github/downloads/XiangyunHuang/RGraphics/total.svg)](https://github.com/XiangyunHuang/RGraphics) [![License: CC BY NC ND 4.0](https://img.shields.io/badge/License-CC%20BY%20NC%20ND%204.0-blue.svg)](https://creativecommons.org/licenses/by-nc-nd/4.0/)
 
 ---
 
@@ -41,7 +33,7 @@
 
 ## 部分博客列表
 
-|作者                          |主页                                                  |
+|作者  Authors                 |主页  homepage                                        |
 |:-----------------------------|:-----------------------------------------------------|
 |Emil Hvitfeldt                |https://www.hvitfeldt.me                              |
 |Jean-Philippe COene           |https://john-coene.com/                               |
@@ -56,7 +48,7 @@
 |Carl Boettiger                |https://www.carlboettiger.info/                       |
 |Ryan Hafen                    |https://ryanhafen.com/                                |
 |Nathan Yau                    |https://flowingdata.com/                              |
-|Ma<U+00EB>lle Salmon          |https://masalmon.eu/                                  |
+|Maëlle Salmon                 |https://masalmon.eu/                                  |
 |Kristoffer Magnusson          |https://rpsychologist.com/                            |
 |Gaston Sanchez                |https://www.gastonsanchez.com/                        |
 |Achim Zeileis                 |https://eeecon.uibk.ac.at/~zeileis/                   |
@@ -86,14 +78,14 @@
 |statistics.com                |https://www.statistics.com/blog/                      |
 |Lijia Yu                      |https://yulijia.net                                   |
 |Julie Josse                   |http://juliejosse.com/                                |
-|Fran<U+00E7>ois Husson               |https://husson.github.io/                             |
+|François Husson               |https://husson.github.io/                             |
 |Erik-Jan van Kesteren         |https://erikjanvankesteren.nl/                        |
 |Zhifei Yang                   |https://zhifei.me/                                    |
 |Lei Chen                      |https://herechen.github.io/                           |
 |Andor Chen                    |https://about.ac/                                     |
 |Andrew Ba Tran                |https://learn.r-journalism.com/en/                    |
 |Bob Muenchen                  |https://r4stats.com/                                  |
-|Fran<U+00E7>ois Husson               |https://francoishusson.wordpress.com/                 |
+|François Husson               |https://francoishusson.wordpress.com/                 |
 |Jean-Paul Fox                 |http://www.jean-paulfox.com/                          |
 |Arthur Charpentier            |https://freakonometrics.github.io                     |
 |Arthur Charpentier            |https://freakonometrics.hypotheses.org                |
@@ -121,7 +113,7 @@
 |Suresh K. Gorakala            |https://www.dataperspective.info/                     |
 |Peter Ellis                   |http://freerangestats.info/                           |
 |Guy Abel                      |https://guyabel.com/                                  |
-|Rasmus B<U+00E5><U+00E5>th                  |http://sumsar.net/                                    |
+|Rasmus Bååth                  |http://sumsar.net/                                    |
 |Dustin Tran                   |http://dustintran.com/                                |
 |Alexey Radul                  |https://alexey.radul.name/                            |
 |Daniel P. Martin              |https://dpmartin42.github.io/                         |
