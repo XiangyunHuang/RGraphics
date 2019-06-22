@@ -1,4 +1,4 @@
-library(methods)
+library(methods) # avoids weird broom error
 set.seed(2018)
 
 knitr::knit_hooks$set(
@@ -66,6 +66,7 @@ options(
   ),
   knitr.graphics.auto_pdf = FALSE,
   tidyverse.quiet = TRUE,
+  memory.profiling = TRUE,
   width = 79,
   str = utils::strOptions(strict.width = "cut"),
   tikzDefaultEngine = "pdftex",
