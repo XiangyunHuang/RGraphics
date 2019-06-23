@@ -52,7 +52,7 @@ rongelap <- read.table(
 
 再将投影坐标系(UTM)转化为地理坐标系(WGS84)
 
-```{r}
+```{r,eval=FALSE}
 library(Matrix)
 library(raster)
 library(sp)

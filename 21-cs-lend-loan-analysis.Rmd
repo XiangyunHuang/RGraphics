@@ -23,13 +23,7 @@ remotes::install_packages("mkearney/kaggler")
 options(tidyverse.quiet = TRUE)
 library(tidyverse)
 library(DBI)
-knitr::opts_chunk$set(
-  cache = FALSE
-)
-```
-
-```{r}
-con <- dbConnect(RSQLite::SQLite(), "G:/lend-loan/lending-club-loan-data/database.sqlite")
+con <- dbConnect(RSQLite::SQLite(), "F:/lend-loan/lending-club-loan-data/database.sqlite")
 ```
 
 查看数据库中有哪些表
@@ -136,17 +130,6 @@ tbl(con, "loan")
 tbl(con, "loan") %>% 
   glimpse()
 ```
-
-
-```{r}
-res <- dbSendQuery(con, paste(
-  "SELECT g.id, g.mirror, g.diam, e.voltage",
-  "FROM geom_table as g, elec_measures as e",
-  "WHERE g.id = e.id and g.mirrortype = 'inside'",
-  "ORDER BY g.diam"
-))
-```
-
 
 
 以此数据集介绍 DBI 包内各个函数。接下来要正式开始分析了，首先要明确分析的目标是什么，分析的流程是什么

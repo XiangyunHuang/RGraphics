@@ -82,6 +82,7 @@ ggplot(airquality, aes(x = Temp, y = Ozone, color = as.ordered(Month))) +
 ```
 
 
+
 ### 刻度 {#ggplot2-scale}
 
 ```{r}
@@ -116,6 +117,8 @@ ggplot(airquality, aes(x = Temp, y = Ozone)) + geom_point() +
 
 ### 图例 {#ggplot2-legend}
 
+二维的图例 [biscale](https://github.com/slu-openGIS/biscale) 
+
 ### 组合 {#ggplot2-grid}
 
 ```{r}
@@ -125,9 +128,10 @@ ggplot(airquality) + geom_point(aes(x = Temp, y = Ozone)) + facet_wrap(~ as.orde
 
 [cowplot](https://github.com/wilkelab/cowplot) 是以作者 [Claus O. Wilke](https://wilkelab.org/) 命名的，用来组合 ggplot 对象画图，类似的组合图形的功能包还有 [baptiste auguié](https://baptiste.github.io/) 开发的[gridExtra](https://CRAN.R-project.org/package=gridExtra) 和 [egg](https://github.com/baptiste/egg)，[Thomas Lin Pedersen](https://www.data-imaginist.com/) 开发的 [patchwork](https://github.com/thomasp85/patchwork)
 
+[ggExtra](https://github.com/daattali/ggExtra) 在图的边界添加密度估计曲线，直方图
 
 
-### 坐标系 {#ggplot2-coord}
+### 坐标 {#ggplot2-coord}
 
 极坐标，直角坐标
 

@@ -1,8 +1,21 @@
 # 案例：热带流行病 {#case-spatial-epidemiology}
 
+[Barry Rowlingson](https://barry.rowlingson.com/research.html) Gambia 数据集
+
 ## 模拟二项线性模型
 
-二项分布即 n 重伯努利分布（或称0-1分布）
+伯努利分布，也称0-1分布，如表\@ref(tab:Bernoulli-distribution)所示
+
+Table: (\#tab:Bernoulli-distribution) 伯努利分布列
+
+|  0  |   1   |
+| :-: | :---: |
+| $p$ | $1-p$ |
+
+指数形式，如何与逻辑变换对应上
+
+
+二项分布即 n 重伯努利分布
 
 $$Y \sim \mathrm{Binomial}(p)$$
 $$\log\{\frac{p}{1-p}\} = \beta_0 + \beta_1 * X$$
@@ -18,6 +31,7 @@ beta_1 <- 0.3
 log.p <- beta_0 + beta_1 * x 
 y <- rbinom(n, 1 , prob = exp(beta_0 + beta_1 * x)/(1 + exp(beta_0 + beta_1 * x))) 
 ```
+
 
 ```{r}
 head(y)
@@ -186,9 +200,9 @@ L(\beta',\boldsymbol{\theta}';y) = \int \prod_{i=1}^{n}f(y_i|t_i)f(T|\beta',\bol
 
 表示潜变量 (latent variable，又称随机效应，random effect)
 
-#### 空间高斯过程的近似 {#low-rank-gp}
+## 空间高斯过程的近似 {#low-rank-gp}
 
-#### 低秩近似算法
+### 低秩近似算法
 
 **gstat** 包迁移自 S 语言，提供了克里金插值方法 [@gstat2016]
 

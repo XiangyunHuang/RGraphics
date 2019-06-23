@@ -608,6 +608,7 @@ segments(x0 = 1, y0 = seq(length(license_rforge_pdb)),
 
 > 改进的方向是含义相同的进行合并，这需要研究一下各个许可证，然后使用对比型条形图合并上面两个图
 
+CRAN 会检测 R 包的授权，只有授权协议包含在数据库中的才可以在 CRAN 上发布 <https://svn.r-project.org/R/trunk/share/licenses/license.db>
 
 ## 软件信息 {#cs-network-sessioninfo}
 

@@ -3,12 +3,8 @@
 > 参考 Data Manipulation With R [@Spector_2008_Manipulation] 重新捋一遍本章
 > 本章的操作对象是 data.frame
 
-```{r,eval=FALSE}
-library(tidyverse)
-```
-
 ::: sidebar
-首先介绍 Base R 提供的数据操作，关于采用 Base R 还是 tidyverse 做数据操作的 [讨论](https://d.cosx.org/d/420697)，等 Base R 的数据操作部分写完，每个数据操作都提供 tidyverse 的等价表示
+介绍 Base R 提供的数据操作，关于采用 Base R 还是 tidyverse 做数据操作的 [讨论](https://d.cosx.org/d/420697)
 :::
 
 什么是 Base R? Base R 指的是 R 语言/软件的核心组件，由 R Core Team 维护
@@ -86,6 +82,7 @@ wide[, 1:6]
 reshape(wide, direction = "long")
 ```
 
+宽的格式变成长的格式 <https://stackoverflow.com/questions/2185252>
 
 长的格式变成宽的格式 <https://stackoverflow.com/questions/5890584/>
 
@@ -410,6 +407,8 @@ df %>%
 [^dplyr-duplicated]: https://stackoverflow.com/questions/22959635/
 
 ## 数据聚合 {#base-aggregate}
+
+分组求和 <https://stackoverflow.com/questions/1660124>
 
 主要是分组统计
 
