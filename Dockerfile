@@ -138,7 +138,7 @@ RUN apt-get install -y --no-install-recommends gzip \
   && mkdir -p /opt/pandoc \
   && url_prefix="https://github.com/jgm/pandoc/releases/download" \
   && wget -q --no-check-certificate $url_prefix/${PANDOC_VERSION}/pandoc-${PANDOC_VERSION}-linux.tar.gz -P /opt/pandoc/ \
-  && tar -xzf /opt/pandoc/pandoc-${PANDOC_VERSION}-linux.tar.gz \
+  && tar -xzf /opt/pandoc/pandoc-${PANDOC_VERSION}-linux.tar.gz -C /opt/pandoc \
   && ln -s /opt/pandoc/pandoc-${PANDOC_VERSION}/bin/pandoc /usr/local/bin \
   && ln -s /opt/pandoc/pandoc-${PANDOC_VERSION}/bin/pandoc-citeproc /usr/local/bin \
   && rm /opt/pandoc/pandoc-${PANDOC_VERSION}-linux.tar.gz
