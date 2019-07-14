@@ -1,17 +1,15 @@
-version: "3"
+version: "3.6" # Docker Engine 18.02.0+
 services:
 
    ck:
      image: yandex/clickhouse-server
      ports:
        - "8787:8123"
-     restart: always
    
    psql:
      image: postgres
      ports:
        - "8080:5432"
-     restart: always
    
    book:
      depends_on:
@@ -19,9 +17,10 @@ services:
        - ck
      image: xiangyunhuang/rgraphics
      container_name: rgraphics
+     command: sh ./_build.sh
      environment:
        - TRAVIS
        - DOCKER_HOST_IP
-     restart: always
+       - PWD
      volumes:
-       - ./:/home/docker/workspace
+       - ${PWD}:/home/docker/workspace

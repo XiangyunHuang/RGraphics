@@ -27,7 +27,7 @@ before_script:
 
 script:
   - docker-compose up -d
-  - docker-compose run book sh ./_build.sh
+  - docker-compose run book make pdf
   - docker-compose down
 
 deploy:
