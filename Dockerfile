@@ -134,7 +134,7 @@ RUN mkdir -p /usr/share/fonts/opentype/adobe ~/.fonts \
   && fc-cache -fsv
 
 # Install pandoc
-RUN apt-get install -y --no-install-recommends gzip \
+RUN echo "LANG=en_US.UTF-8" >> /usr/lib/R/etc/Renviron.site \
   && mkdir -p /opt/pandoc \
   && url_prefix="https://github.com/jgm/pandoc/releases/download" \
   && wget -q --no-check-certificate $url_prefix/${PANDOC_VERSION}/pandoc-${PANDOC_VERSION}-linux.tar.gz -P /opt/pandoc/ \
