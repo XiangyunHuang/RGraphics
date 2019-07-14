@@ -12,32 +12,22 @@ RUN useradd docker \
 	&& chown docker:docker /home/docker \
 	&& addgroup docker staff
 
-ENV LC_ALL=en_US.UTF-8 \
-    LANG=en_US.UTF-8 \
-	LANGUAGE=en_US.UTF-8 \
-    TERM=xterm \
-    DEBIAN_FRONTEND=noninteractive
-
 RUN apt-get update \
-  && apt-get install -y --no-install-recommends \
+  && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
     apt-utils \
     gnupg \
     wget \
     ca-certificates \
     locales \
+  ## Configure default locale, see https://github.com/rocker-org/rocker/issues/19
+  && sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && \
+    dpkg-reconfigure --frontend=noninteractive locales && \
+    update-locale LANG=en_US.UTF-8 \
+  ## Install r-base-dev
   && apt-key adv --keyserver keys.gnupg.net --recv-key 'E19F5F87128899B192B1A2C2AD5F960A256A04AF' \
   && echo "deb https://cloud.r-project.org/bin/linux/debian buster-cran35/" >> /etc/apt/sources.list \
-  ## Configure default locale, see https://github.com/rocker-org/rocker/issues/19
-  && echo "export LANGUAGE='en_US.UTF-8'" >> ~/.bashrc \
-  && echo "export LANG='en_US.UTF-8'"  >> ~/.bashrc \
-  && echo "export LC_ALL='en_US.UTF-8'"  >> ~/.bashrc \
-  && /bin/bash -c "source ~/.bashrc" \
-  && echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen \
-  && locale-gen en_US.utf8 \
-  && /usr/sbin/update-locale LANG=en_US.UTF-8 \
-  ## Install r-base-dev
   && apt-get update \
-  && apt-get install -y --no-install-recommends \
+  && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
     r-base-dev \
   ## Add a default CRAN mirror
   && echo "options(repos = c(CRAN = 'https://cran.rstudio.com/'), download.file.method = 'libcurl')" >> /usr/lib/R/etc/Rprofile.site \
@@ -46,7 +36,7 @@ RUN apt-get update \
   && chown root:staff /usr/local/lib/R/site-library \
   && chmod g+wx /usr/local/lib/R/site-library \
   ## Use littler installation scripts
-  && Rscript -e "install.packages('littler')" \
+  && Rscript -e "install.packages(c('littler','codetools'))" \
   && ln -s /usr/local/lib/R/site-library/littler/examples/install2.r /usr/local/bin/install2.r \
   && ln -s /usr/local/lib/R/site-library/littler/examples/install.r /usr/local/bin/install.r \
   && ln -s /usr/local/lib/R/site-library/littler/examples/installGithub.r /usr/local/bin/installGithub.r \
@@ -131,37 +121,41 @@ RUN apt-get install -y --no-install-recommends \
   mapview \
   tmap
 
+# Install adobe fonts
+RUN mkdir -p /usr/share/fonts/opentype/adobe ~/.fonts \
+  && wget -q --no-check-certificate http://simonsoftware.se/other/xkcd.ttf -P ~/.fonts/ \
+  && Rscript -e "extrafont::font_import(paths = '~/.fonts', pattern = '[X/x]kcd', prompt = FALSE)" \
+  && path_prefix="/usr/share/fonts/opentype/adobe" \
+  && url_prefix="https://cs.fit.edu/code/projects/ndworld/repository/revisions/11/raw/Resources/Fonts" \
+  && wget -q --no-check-certificate $url_prefix/AdobeFangsongStd-Regular.otf -P $path_prefix \
+  && wget -q --no-check-certificate $url_prefix/AdobeHeitiStd-Regular.otf -P $path_prefix \
+  && wget -q --no-check-certificate $url_prefix/AdobeKaitiStd-Regular.otf -P $path_prefix \
+  && wget -q --no-check-certificate $url_prefix/AdobeSongStd-Light.otf -P $path_prefix \
+  && fc-cache -fsv
+
 # Install pandoc
 RUN apt-get install -y --no-install-recommends gzip \
   && mkdir -p /opt/pandoc \
   && url_prefix="https://github.com/jgm/pandoc/releases/download" \
-  && wget --no-check-certificate $url_prefix/${PANDOC_VERSION}/pandoc-${PANDOC_VERSION}-linux.tar.gz -P /opt/pandoc/ \
+  && wget -q --no-check-certificate $url_prefix/${PANDOC_VERSION}/pandoc-${PANDOC_VERSION}-linux.tar.gz -P /opt/pandoc/ \
   && tar -xzf /opt/pandoc/pandoc-${PANDOC_VERSION}-linux.tar.gz \
   && ln -s /opt/pandoc/pandoc-${PANDOC_VERSION}/bin/pandoc /usr/local/bin \
   && ln -s /opt/pandoc/pandoc-${PANDOC_VERSION}/bin/pandoc-citeproc /usr/local/bin \
   && rm /opt/pandoc/pandoc-${PANDOC_VERSION}-linux.tar.gz
 
-# Install adobe fonts
-RUN mkdir -p /usr/share/fonts/opentype/adobe ~/.fonts \
-  && wget --no-check-certificate http://simonsoftware.se/other/xkcd.ttf -P ~/.fonts/ \
-  && Rscript -e "extrafont::font_import(paths = '~/.fonts', pattern = '[X/x]kcd', prompt = FALSE)" \
-  && path_prefix="/usr/share/fonts/opentype/adobe" \
-  && url_prefix="https://cs.fit.edu/code/projects/ndworld/repository/revisions/11/raw/Resources/Fonts" \
-  && wget --no-check-certificate $url_prefix/AdobeFangsongStd-Regular.otf -P $path_prefix \
-  && wget --no-check-certificate $url_prefix/AdobeHeitiStd-Regular.otf -P $path_prefix \
-  && wget --no-check-certificate $url_prefix/AdobeKaitiStd-Regular.otf -P $path_prefix \
-  && wget --no-check-certificate $url_prefix/AdobeSongStd-Light.otf -P $path_prefix \
-  && fc-cache -fsv  
-
 # Install TinyTeX
 RUN wget -qO- "https://yihui.name/gh/tinytex/tools/install-unx.sh" | sh -s - --admin --no-path && \
     mv ~/.TinyTeX /opt/TinyTeX && \
     /opt/TinyTeX/bin/*/tlmgr path add && \
-    tlmgr install ctex xecjk xetex-def framed times helvetic \
-    courier courier-scaled tocbibind subfig titling fandol savesym \
+    tlmgr install ctex xecjk courier courier-scaled tocbibind subfig savesym \
+      colortbl dvipng dvisvgm environ fancyhdr jknapltx listings \
+      makecell mathdesign metalogo microtype ms multirow parskip pdfcrop \
+      pgf placeins preview psnfss realscripts relsize rsfs setspace soul \
+      standalone subfig symbol tabu tex4ht threeparttable threeparttablex \
+      titlesec tocbibind tocloft trimspaces ulem varwidth wrapfig xcolor xltxtra zhnumber \
   && apt-get clean all \
   && rm -rf /var/lib/apt/lists/*
-  
+
 EXPOSE 8787 8080 8181 8282
 
 RUN mkdir /home/docker/workspace
