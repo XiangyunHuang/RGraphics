@@ -7,29 +7,27 @@ LABEL org.label-schema.license="GPL-2.0" \
 
 ARG PANDOC_VERSION=2.7.3
 
+ENV TERM=xterm \
+    DEBIAN_FRONTEND=noninteractive \
+    APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE=DontWarn
+
 RUN useradd docker \
-	&& mkdir /home/docker \
-	&& chown docker:docker /home/docker \
-	&& addgroup docker staff
-
-ENV LC_ALL=en_US.UTF-8 \
-    LANG=en_US.UTF-8 \
-    LANGUAGE=en_US.UTF-8 \
-    TERM=xterm \
-    DEBIAN_FRONTEND=noninteractive
-
-RUN apt-get update \
+  && mkdir /home/docker \
+  && chown docker:docker /home/docker \
+  && addgroup docker staff \
+  && mkdir /home/docker/workspace \
+  && apt-get update \
+  && apt-get install -yq --no-install-recommends apt-utils \
   && apt-get install -y --no-install-recommends \
     wget \
     gnupg \
     dialog \
     locales \
-    apt-utils \
     ca-certificates \
   ## Configure default locale, see https://github.com/rocker-org/rocker/issues/19
-  && sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && \
-    dpkg-reconfigure locales && \
-    update-locale LANG=en_US.UTF-8 \
+  && sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen \
+  && dpkg-reconfigure locales \
+  && update-locale LANG=en_US.UTF-8 \
   ## Install r-base-dev
   && apt-key adv --keyserver keys.gnupg.net --recv-key 'E19F5F87128899B192B1A2C2AD5F960A256A04AF' \
   && echo "deb https://cloud.r-project.org/bin/linux/debian buster-cran35/" >> /etc/apt/sources.list \
@@ -55,9 +53,8 @@ RUN apt-get update \
   && echo "CXX14 = g++" >> ~/.R/Makevars \
   && echo "CXX14FLAGS = -fPIC -flto=2 -mtune=native -march=native" >> ~/.R/Makevars \
   && echo "CXX14FLAGS += -Wno-unused-variable -Wno-unused-function -Wno-unused-local-typedefs" >> ~/.R/Makevars \
-  && echo "CXX14FLAGS += -Wno-ignored-attributes -Wno-deprecated-declarations -Wno-attributes -O3" >> ~/.R/Makevars
-
-RUN apt-get install -y --no-install-recommends \
+  && echo "CXX14FLAGS += -Wno-ignored-attributes -Wno-deprecated-declarations -Wno-attributes -O3" >> ~/.R/Makevars \
+  && apt-get install -y --no-install-recommends \
 ## install nloptr
   libnlopt-dev \
 ## install Cairo plotly
@@ -77,8 +74,6 @@ RUN apt-get install -y --no-install-recommends \
 ## install DBI odbc 
   unixodbc-dev \
   odbc-postgresql \
-## install RPostgres
-  libpq-dev \  
 ## install webshot
   phantomjs \
   optipng \
@@ -86,6 +81,11 @@ RUN apt-get install -y --no-install-recommends \
   ghostscript \
 ## install magick
   libmagick++-dev \
+## install sf
+  libudunits2-dev \
+  libproj-dev \
+  libgeos-dev \
+  libgdal-dev \
   && install2.r --error \
   bookdown \
   ggplot2 \
@@ -105,25 +105,14 @@ RUN apt-get install -y --no-install-recommends \
   scatterplot3d \
   magick \
   odbc \
-  RPostgres \
   extrafont \
   fontcm \
   showtext \
-  && installGithub.r vankesteren/firatheme \ 
-  && installGithub.r hannesmuehleisen/clickhouse-r
-
 ## install spatial packages
-RUN apt-get install -y --no-install-recommends \
-  ## install sf
-  libudunits2-dev \
-  libproj-dev \
-  libgeos-dev \
-  libgdal-dev \
-  && install2.r --error \
   sp \
   gstat \
-  spdep \
   spatialreg \
+  spdep \
   sf \
   stars \
   raster \
@@ -131,10 +120,8 @@ RUN apt-get install -y --no-install-recommends \
   leaflet \
   cartography \
   mapview \
-  tmap
-
+  tmap \
 ## install modeling packages
-RUN install2.r --error \
   tidyverse \
   tidymodels
 
@@ -173,7 +160,10 @@ RUN mkdir -p /usr/share/fonts/opentype/adobe ~/.fonts \
   && apt-get clean all \
   && rm -rf /var/lib/apt/lists/*
 
+ENV LC_ALL=en_US.UTF-8 \
+    LANG=en_US.UTF-8 \
+    LANGUAGE=en_US.UTF-8
+
 EXPOSE 8787 8080 8181 8282
 
-RUN mkdir /home/docker/workspace
 WORKDIR /home/docker/workspace

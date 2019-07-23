@@ -1,11 +1,6 @@
 version: "3.6" # Docker Engine 18.02.0+
 services:
 
-   ck:
-     image: yandex/clickhouse-server
-     ports:
-       - "8787:8123"
-   
    psql:
      image: postgres
      ports:
@@ -14,7 +9,6 @@ services:
    book:
      depends_on:
        - psql
-       - ck
      image: xiangyunhuang/rgraphics
      container_name: rgraphics
      command: 
