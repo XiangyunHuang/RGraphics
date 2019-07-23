@@ -12,8 +12,14 @@ RUN useradd docker \
 	&& chown docker:docker /home/docker \
 	&& addgroup docker staff
 
+ENV LC_ALL=en_US.UTF-8 \
+    LANG=en_US.UTF-8 \
+    LANGUAGE=en_US.UTF-8 \
+    TERM=xterm \
+    DEBIAN_FRONTEND=noninteractive
+
 RUN apt-get update \
-  && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+  && apt-get install -y --no-install-recommends \
     wget \
     gnupg \
     dialog \
@@ -22,7 +28,7 @@ RUN apt-get update \
     ca-certificates \
   ## Configure default locale, see https://github.com/rocker-org/rocker/issues/19
   && sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && \
-    dpkg-reconfigure --frontend=noninteractive locales && \
+    dpkg-reconfigure locales && \
     update-locale LANG=en_US.UTF-8 \
   ## Install r-base-dev
   && apt-key adv --keyserver keys.gnupg.net --recv-key 'E19F5F87128899B192B1A2C2AD5F960A256A04AF' \
