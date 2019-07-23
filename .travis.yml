@@ -12,7 +12,9 @@ latex: false
 pandoc: false
 
 env:
-  - R_VERSION=3.6.1
+  global:
+    - MAKEFLAGS="-j 2"
+    - R_VERSION=3.6.1
 
 before_script:
   - nvm install stable

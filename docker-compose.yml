@@ -28,5 +28,6 @@ services:
        - TRAVIS
        - DOCKER_HOST_IP
        - PWD
+       - MAKEFLAGS
      volumes:
        - ${PWD}:/home/docker/workspace
