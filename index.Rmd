@@ -98,7 +98,7 @@ UsageCount=1
 [PostgreSQL]
 Driver              = PostgreSQL Unicode
 Database            = postgres
-Servername          = ${DOCKER_HOST_IP}
+Servername          = 172.17.0.1
 UserName            = postgres
 Password            = default
 Port                = 8080
