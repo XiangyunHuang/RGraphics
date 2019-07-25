@@ -138,6 +138,7 @@ RUN mkdir -p /usr/share/fonts/opentype/adobe ~/.fonts \
   && wget -q --no-check-certificate http://simonsoftware.se/other/xkcd.ttf -P ~/.fonts/ \
   && Rscript -e "extrafont::font_import(paths = '~/.fonts', pattern = '[X/x]kcd', prompt = FALSE)" \
   && Rscript -e "extrafont::font_import(prompt = FALSE)" \
+  && Rscript -e "extrafont::font_install('fontcm', prompt = FALSE)" \
   && Rscript -e "library(showtext);font_install(source_han_serif());font_install(source_han_sans())" \
 ## Install pandoc
   && mkdir -p /opt/pandoc \
