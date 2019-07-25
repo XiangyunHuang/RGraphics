@@ -57,6 +57,8 @@ RUN useradd docker \
   && apt-get install -y --no-install-recommends \
 ## install nloptr
   libnlopt-dev \
+## install rjags runjags
+  jags \  
 ## install Cairo plotly
   libcairo2-dev \
 ## install xml2 igraph
@@ -123,6 +125,12 @@ RUN useradd docker \
   tmap \
 ## install modeling packages
   tidyverse \
+  glmnet \
+  caret \
+  xgboost \
+  prophet \
+  brms \
+  BANOVA \
   tidymodels
 
 ## Install adobe fonts
