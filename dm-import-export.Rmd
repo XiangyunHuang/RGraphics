@@ -646,7 +646,7 @@ dat <- split(mtcars, mtcars$cyl)
 dat
 ```
 
-将 xlsx 表格初始化，创建空白的工作薄
+将 xlsx 表格初始化，创建空白的工作薄， [openxlsx](https://github.com/awalker89/openxlsx) 包不依赖 Java 环境，读写效率也高
 
 ```{r,eval=FALSE}
 ## 加载 openxlsx 包
@@ -670,8 +670,7 @@ Map(function(data, name){
 ```{r,eval=FALSE}
 saveWorkbook(wb, file = "data/matcars.xlsx", overwrite = TRUE)
 ```
-
-```{r batch-export-xlsx,fig.cap="批量导出数据"}
+```{r batch-export-xlsx,fig.cap="批量导出数据",echo=FALSE}
 knitr::include_graphics(path = 'figures/dm-batch-export-xlsx.png')
 ```
 
@@ -751,14 +750,18 @@ cat(readLines('data/AirPassengers.txt'), sep = "\n")
 
 `dput` 函数类似 `dump` 函数，保存数据对象到磁盘文件
 
-```{r}
+```{r,comment=NA}
+# 将 R 对象保存/导出到磁盘
 dput(AirPassengers, file = 'data/AirPassengers.dat')
-# AirPassengers <- dget(file = 'data/AirPassengers.dat')
+AirPassengers
+# dget 作用与 dput 相反
+AirPassengers2 <- dget(file = 'data/AirPassengers.dat')
+AirPassengers2
 ```
 
 同样地，现在我们观察 `dput` 函数保存的文件 `AirPassengers.dat` 内容，和`dump` 函数保存的文件 `AirPassengers.txt`相比，就缺一个赋值变量
 
-```{r}
+```{r,comment=NA}
 cat(readLines('data/AirPassengers.dat'), sep = "\n")
 ```
 
