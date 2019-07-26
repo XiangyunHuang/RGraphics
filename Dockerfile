@@ -112,6 +112,10 @@ RUN useradd docker \
   showtext \
 ## install spatial packages
   sp \
+  maps \
+  mapdata \
+  mapproj \
+  maptools \
   gstat \
   spatialreg \
   spdep \

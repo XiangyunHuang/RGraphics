@@ -17,4 +17,8 @@ rmd_files:
 - "dm-base-r.Rmd"
 - "dm-dplyr.Rmd"
 
+
+- "dv-spatio-temporal.Rmd"
+
+
 - "99-references.Rmd"
