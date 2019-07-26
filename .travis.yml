@@ -23,12 +23,17 @@ before_script:
   - export DEPLOY_MSG=${COMMIT_MSG//[\'\"\`]/}
   - export DOCKER_HOST_IP=$(ip route|awk '/docker0/ { print $9 }')
   - chmod +x ./_build.sh
+  - chmod +x ./_deploy.sh
 
 script:
-  - docker-compose up -d
+  #- docker-compose up -d
+  - docker-compose run book bash -c "cp odbc.ini ~/.odbc.ini;sh ./_build.sh"
   - docker-compose down
+  - ./_deploy.sh
 
-deploy:
-  provider: script
-  script: netlify deploy --prod --dir _book --message "$DEPLOY_MSG"
-  skip_cleanup: true
+#deploy:
+#  provider: script
+#  script: netlify deploy --prod --dir _book --message "$DEPLOY_MSG"
+#  skip_cleanup: true
+#  on:
+#    branch: master

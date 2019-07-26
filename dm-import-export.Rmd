@@ -210,6 +210,11 @@ Table: (\#tab:fst-vs-others) fst 序列化数据框对象性能比较 BaseR、 d
 
 ## 其它数据格式 {#other-data-source}
 
+来自其它格式的数据形式，如 JSON、XML、YAML 需要转化清理成 R 中数据框的形式 data.frame 
+
+1. [Data Rectangling with jq](https://www.carlboettiger.info/2017/12/11/data-rectangling-with-jq/)
+1. [Mongolite User Manual](https://jeroen.github.io/mongolite/) introduction to using MongoDB with the mongolite client in R
+
 [jsonlite](https://github.com/jeroen/jsonlite) 读取 `*.json` 格式的文件，`jsonlite::write_json` 函数将 R对象保存为 JSON 文件，`jsonlite::fromJSON` 将 json 字符串或文件转化为 R 对象，`jsonlite::toJSON` 函数正好与之相反
 
 ```{r}
@@ -767,7 +772,7 @@ cat(readLines('data/AirPassengers.dat'), sep = "\n")
 
 <!-- 记得删除文件 AirPassengers.txt 和 AirPassengers.dat -->
 
-## 本章运行环境 {#dm-session-info}
+## 运行环境 {#dm-session-info}
 
 ```{r}
 xfun::session_info(c("jsonlite", "yaml", "odbc"))

@@ -1,4 +1,3 @@
-book_filename: "RGraphics"
 delete_merged_file: true
 language:
   label:
@@ -13,8 +12,9 @@ new_session: yes
 before_chapter_script: ["_common.R"]
 rmd_files: 
 - "index.Rmd"
-
+- "preface.Rmd"
 - "dm-import-export.Rmd"
-
+- "dm-base-r.Rmd"
+- "dm-dplyr.Rmd"
 
 - "99-references.Rmd"

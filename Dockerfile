@@ -133,7 +133,8 @@ RUN useradd docker \
   BANOVA \
   tidymodels \
 ## install other packages
-  openxlsx
+  openxlsx \
+  microbenchmark
 
 ## Install adobe fonts
 RUN mkdir -p /usr/share/fonts/opentype/adobe ~/.fonts \
