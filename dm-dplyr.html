@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>第 3 章 净土化操作 | 数据可视化与R语言</title>
+  <meta name="description" content="数据操作、数据分析、数据建模和数据可视化" />
+  <meta name="generator" content="bookdown 0.12 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="第 3 章 净土化操作 | 数据可视化与R语言" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="https://bookdown.org/xiangyun/RGraphics/" />
+  
+  <meta property="og:description" content="数据操作、数据分析、数据建模和数据可视化" />
+  <meta name="github-repo" content="XiangyunHuang/RGraphics" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="第 3 章 净土化操作 | 数据可视化与R语言" />
+  
+  <meta name="twitter:description" content="数据操作、数据分析、数据建模和数据可视化" />
+  
+
+<meta name="author" content="黄湘云" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="dm-base-r.html">
+<link rel="next" href="99-references.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">数据可视化与R语言</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>欢迎</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#why-r"><i class="fa fa-check"></i>Why R</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#who-read-this-book"><i class="fa fa-check"></i>目标读者</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#Getting-Help-with-R"><i class="fa fa-check"></i>获取帮助</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#history-of-r"><i class="fa fa-check"></i>发展历史</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#conventions"><i class="fa fa-check"></i>记号约定</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#session-info"><i class="fa fa-check"></i>运行环境</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>前言</a><ul>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#what-talk-about"><i class="fa fa-check"></i>关于本书</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#structure-of-book"><i class="fa fa-check"></i>本书结构</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#about-author"><i class="fa fa-check"></i>关于作者</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="dm-import-export.html"><a href="dm-import-export.html"><i class="fa fa-check"></i><b>1</b> 数据搬运工</a><ul>
+<li class="chapter" data-level="1.1" data-path="dm-import-export.html"><a href="dm-import-export.html#import-data"><i class="fa fa-check"></i><b>1.1</b> 导入数据</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="dm-import-export.html"><a href="dm-import-export.html#scan-file"><i class="fa fa-check"></i><b>1.1.1</b> <code>scan</code></a></li>
+<li class="chapter" data-level="1.1.2" data-path="dm-import-export.html"><a href="dm-import-export.html#read-write-table"><i class="fa fa-check"></i><b>1.1.2</b> <code>read.table</code></a></li>
+<li class="chapter" data-level="1.1.3" data-path="dm-import-export.html"><a href="dm-import-export.html#read-write-lines"><i class="fa fa-check"></i><b>1.1.3</b> <code>readLines</code></a></li>
+<li class="chapter" data-level="1.1.4" data-path="dm-import-export.html"><a href="dm-import-export.html#read-save-rds"><i class="fa fa-check"></i><b>1.1.4</b> <code>readRDS</code></a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="dm-import-export.html"><a href="dm-import-export.html#other-data-source"><i class="fa fa-check"></i><b>1.2</b> 其它数据格式</a></li>
+<li class="chapter" data-level="1.3" data-path="dm-import-export.html"><a href="dm-import-export.html#import-large-dataset"><i class="fa fa-check"></i><b>1.3</b> 导入大数据集</a></li>
+<li class="chapter" data-level="1.4" data-path="dm-import-export.html"><a href="dm-import-export.html#import-data-from-database"><i class="fa fa-check"></i><b>1.4</b> 从数据库导入</a><ul>
+<li class="chapter" data-level="1.4.1" data-path="dm-import-export.html"><a href="dm-import-export.html#postgresql"><i class="fa fa-check"></i><b>1.4.1</b> PostgreSQL</a></li>
+<li class="chapter" data-level="1.4.2" data-path="dm-import-export.html"><a href="dm-import-export.html#mysql"><i class="fa fa-check"></i><b>1.4.2</b> MySQL</a></li>
+<li class="chapter" data-level="1.4.3" data-path="dm-import-export.html"><a href="dm-import-export.html#spark"><i class="fa fa-check"></i><b>1.4.3</b> Spark</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="dm-import-export.html"><a href="dm-import-export.html#batch-import-data"><i class="fa fa-check"></i><b>1.5</b> 批量导入数据</a></li>
+<li class="chapter" data-level="1.6" data-path="dm-import-export.html"><a href="dm-import-export.html#batch-export-data"><i class="fa fa-check"></i><b>1.6</b> 批量导出数据</a></li>
+<li class="chapter" data-level="1.7" data-path="dm-import-export.html"><a href="dm-import-export.html#export-data"><i class="fa fa-check"></i><b>1.7</b> 导出数据</a><ul>
+<li class="chapter" data-level="1.7.1" data-path="dm-import-export.html"><a href="dm-import-export.html#export-output"><i class="fa fa-check"></i><b>1.7.1</b> 导出运行结果</a></li>
+<li class="chapter" data-level="1.7.2" data-path="dm-import-export.html"><a href="dm-import-export.html#export-data-object"><i class="fa fa-check"></i><b>1.7.2</b> 导出数据对象</a></li>
+</ul></li>
+<li class="chapter" data-level="1.8" data-path="dm-import-export.html"><a href="dm-import-export.html#dm-session-info"><i class="fa fa-check"></i><b>1.8</b> 运行环境</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="dm-base-r.html"><a href="dm-base-r.html"><i class="fa fa-check"></i><b>2</b> 数据操作手</a><ul>
+<li class="chapter" data-level="2.1" data-path="dm-base-r.html"><a href="dm-base-r.html#show"><i class="fa fa-check"></i><b>2.1</b> 查看数据</a></li>
+<li class="chapter" data-level="2.2" data-path="dm-base-r.html"><a href="dm-base-r.html#base-reshape"><i class="fa fa-check"></i><b>2.2</b> 数据变形</a></li>
+<li class="chapter" data-level="2.3" data-path="dm-base-r.html"><a href="dm-base-r.html#base-transform"><i class="fa fa-check"></i><b>2.3</b> 数据转换</a></li>
+<li class="chapter" data-level="2.4" data-path="dm-base-r.html"><a href="dm-base-r.html#base-subset"><i class="fa fa-check"></i><b>2.4</b> 提取子集</a></li>
+<li class="chapter" data-level="2.5" data-path="dm-base-r.html"><a href="dm-base-r.html#base-order"><i class="fa fa-check"></i><b>2.5</b> 按列排序</a></li>
+<li class="chapter" data-level="2.6" data-path="dm-base-r.html"><a href="dm-base-r.html#base-split"><i class="fa fa-check"></i><b>2.6</b> 数据拆分</a></li>
+<li class="chapter" data-level="2.7" data-path="dm-base-r.html"><a href="dm-base-r.html#base-merge"><i class="fa fa-check"></i><b>2.7</b> 数据合并</a></li>
+<li class="chapter" data-level="2.8" data-path="dm-base-r.html"><a href="dm-base-r.html#base-duplicated"><i class="fa fa-check"></i><b>2.8</b> 数据去重</a></li>
+<li class="chapter" data-level="2.9" data-path="dm-base-r.html"><a href="dm-base-r.html#base-aggregate"><i class="fa fa-check"></i><b>2.9</b> 数据聚合</a></li>
+<li class="chapter" data-level="2.10" data-path="dm-base-r.html"><a href="dm-base-r.html#base-table"><i class="fa fa-check"></i><b>2.10</b> 表格统计</a></li>
+<li class="chapter" data-level="2.11" data-path="dm-base-r.html"><a href="dm-base-r.html#base-index"><i class="fa fa-check"></i><b>2.11</b> 索引访问</a></li>
+<li class="chapter" data-level="2.12" data-path="dm-base-r.html"><a href="dm-base-r.html#base-array"><i class="fa fa-check"></i><b>2.12</b> 多维数组</a></li>
+<li class="chapter" data-level="2.13" data-path="dm-base-r.html"><a href="dm-base-r.html#base-others"><i class="fa fa-check"></i><b>2.13</b> 其它操作</a><ul>
+<li class="chapter" data-level="2.13.1" data-path="dm-base-r.html"><a href="dm-base-r.html#relist-or-unlist"><i class="fa fa-check"></i><b>2.13.1</b> 列表属性</a></li>
+<li class="chapter" data-level="2.13.2" data-path="dm-base-r.html"><a href="dm-base-r.html#stack-or-unstack"><i class="fa fa-check"></i><b>2.13.2</b> 堆叠向量</a></li>
+<li class="chapter" data-level="2.13.3" data-path="dm-base-r.html"><a href="dm-base-r.html#class-or-unclass"><i class="fa fa-check"></i><b>2.13.3</b> 属性转化</a></li>
+<li class="chapter" data-level="2.13.4" data-path="dm-base-r.html"><a href="dm-base-r.html#attach-or-detach"><i class="fa fa-check"></i><b>2.13.4</b> 绑定环境</a></li>
+<li class="chapter" data-level="2.13.5" data-path="dm-base-r.html"><a href="dm-base-r.html#with-or-within"><i class="fa fa-check"></i><b>2.13.5</b> 数据环境</a></li>
+</ul></li>
+<li class="chapter" data-level="2.14" data-path="dm-base-r.html"><a href="dm-base-r.html#dm-base-session-info"><i class="fa fa-check"></i><b>2.14</b> 运行环境</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="dm-dplyr.html"><a href="dm-dplyr.html"><i class="fa fa-check"></i><b>3</b> 净土化操作</a><ul>
+<li class="chapter" data-level="3.1" data-path="dm-dplyr.html"><a href="dm-dplyr.html#common-operations"><i class="fa fa-check"></i><b>3.1</b> 常用操作</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="dm-dplyr.html"><a href="dm-dplyr.html#tibble-show"><i class="fa fa-check"></i><b>3.1.1</b> 查看</a></li>
+<li class="chapter" data-level="3.1.2" data-path="dm-dplyr.html"><a href="dm-dplyr.html#dplyr-subset"><i class="fa fa-check"></i><b>3.1.2</b> 筛选</a></li>
+<li class="chapter" data-level="3.1.3" data-path="dm-dplyr.html"><a href="dm-dplyr.html#dplyr-order"><i class="fa fa-check"></i><b>3.1.3</b> 排序</a></li>
+<li class="chapter" data-level="3.1.4" data-path="dm-dplyr.html"><a href="dm-dplyr.html#dplyr-aggregate"><i class="fa fa-check"></i><b>3.1.4</b> 聚合</a></li>
+<li class="chapter" data-level="3.1.5" data-path="dm-dplyr.html"><a href="dm-dplyr.html#dplyr-merge"><i class="fa fa-check"></i><b>3.1.5</b> 合并</a></li>
+<li class="chapter" data-level="3.1.6" data-path="dm-dplyr.html"><a href="dm-dplyr.html#dplyr-reshape"><i class="fa fa-check"></i><b>3.1.6</b> 重塑</a></li>
+<li class="chapter" data-level="3.1.7" data-path="dm-dplyr.html"><a href="dm-dplyr.html#dplyr-transform"><i class="fa fa-check"></i><b>3.1.7</b> 变换</a></li>
+<li class="chapter" data-level="3.1.8" data-path="dm-dplyr.html"><a href="dm-dplyr.html#dplyr-duplicated"><i class="fa fa-check"></i><b>3.1.8</b> 去重</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="dm-dplyr.html"><a href="dm-dplyr.html#common-dataframe-operations"><i class="fa fa-check"></i><b>3.2</b> 高频问题</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="dm-dplyr.html"><a href="dm-dplyr.html#create-empty-dataframe"><i class="fa fa-check"></i><b>3.2.1</b> 初始化数据框</a></li>
+<li class="chapter" data-level="3.2.2" data-path="dm-dplyr.html"><a href="dm-dplyr.html#remove-missing-values"><i class="fa fa-check"></i><b>3.2.2</b> 移除缺失记录</a></li>
+<li class="chapter" data-level="3.2.3" data-path="dm-dplyr.html"><a href="dm-dplyr.html#coerce-data-type"><i class="fa fa-check"></i><b>3.2.3</b> 数据类型转化</a></li>
+<li class="chapter" data-level="3.2.4" data-path="dm-dplyr.html"><a href="dm-dplyr.html#cross-group-by"><i class="fa fa-check"></i><b>3.2.4</b> 跨列分组求和</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="dm-dplyr.html"><a href="dm-dplyr.html#pipe-manipulation"><i class="fa fa-check"></i><b>3.3</b> 管道操作</a></li>
+<li class="chapter" data-level="3.4" data-path="dm-dplyr.html"><a href="dm-dplyr.html#dm-dplyr-session-info"><i class="fa fa-check"></i><b>3.4</b> 运行环境</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="99-references.html"><a href="99-references.html"><i class="fa fa-check"></i>参考文献</a></li>
+<li class="divider"></li>
+<li><a href="https://r4charts.netlify.com/" target="blank">Published with netlify</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">数据可视化与R语言</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="dplyr-manipulation" class="section level1">
+<h1><span class="header-section-number">第 3 章</span> 净土化操作</h1>
+<blockquote>
+<p>常用操作和高频问题需要合并进之前的 data-manipulation，本章只介绍向量化计算
+以 dplyr 为核心的 tidyverse 风数据操作 管道风操作</p>
+</blockquote>
+<p>在不同规模的数据集上，Base R，dplyr 和 data.table 的处理性能应该属于低、中、高档搭配的情形</p>
+<div class="sidebar">
+<p>更加高级的数据变形操作，特别是数据类型的一致性，方便后续的可视化和建模，引入 tidyverse，数据处理或者叫特征工程 Base R vs data.table vs dplyr 它们各有优点，所以都加以介绍 参考 <a href="https://jozef.io/categories/rcase4base/">Jozef Hajnala</a> 博文。</p>
+<p>关于 tidyverse 提供的数据操作不要移动到 Base R 对应的章节，这二者已经越行越远，本章主要讲并行或分布式数据操作工具，如 SparkR sparklyr 针对大数据集上的操</p>
+<p>data.table 诞生于2006年4月15日（以在 CRAN 上发布的第一个版本时间为准），是基于 <code>data.frame</code> 的扩展和 Base R 的数据操作连贯一些，dplyr 诞生于2014年1月29日，号称数据操作的语法，其实二者套路一致，都是借用 SQL 语言的设计，实现方式不同罢了，前者主要依靠 C 语言完成底层数据操作，总代码量1.29M，C 占65.6%，后者主要依靠 C++ 语言完成底层数据操作，总代码量1.2M，C++ 占34.4%，上层的高级操作接口都是 R 语言。像这样的大神在写代码，码力应该差不多，编程语言会对数据操作的性能有比较大的影响，我想这也是为什么在很多场合下 data.table 霸榜！</p>
+<p>关于 data.table 和 dplyr 的对比，参看爆栈网的帖子 <a href="https://stackoverflow.com/questions/21435339" class="uri">https://stackoverflow.com/questions/21435339</a></p>
+<p>Base R 的数据操作的一致性问题参见统计之都帖子 <a href="https://d.cosx.org/d/420763" class="uri">https://d.cosx.org/d/420763</a></p>
+<p><a href="https://malco.io/">Malcolm Barrett</a> 以幻灯片的形式呈现 <a href="https://malco.io/slides/hs_dplyr/">dplyr</a> 和 <a href="https://malco.io/slides/hs_purrr/">purrr</a> 的基础用法</p>
+<p>Charlotte Wickham 的课程 A introduction to purrr <a href="https://github.com/cwickham/purrr-tutorial">purrr-tutorial</a></p>
+<p>关于引用 <a href="https://github.com/cwickham/quotation">quotation</a></p>
+<p>相比于 SQL， dplyr 在数据库操作的不足，这是一些比较难的部分 <a href="https://dbi.r-dbi.org/articles/dbi-1#sec:open-issues" class="uri">https://dbi.r-dbi.org/articles/dbi-1#sec:open-issues</a></p>
+</div>
+<p>函数式编程 Functional Programming Languages 用于数据处理</p>
+<ul>
+<li><a href="https://github.com/smartinsightsfromdata/rpivotTable">rpivotTable</a> 动态数据透视表</li>
+<li><a href="https://github.com/dgrtwo/fuzzyjoin">fuzzyjoin</a> Join tables together on inexact matching</li>
+<li><a href="https://github.com/hadley/dtplyr">dtplyr</a> dtplyr is the data.table backend for dplyr. It provides S3 methods for data.table objects so that dplyr works the way you expect.</li>
+<li><a href="https://github.com/yonicd/bplyr">bplyr</a> basic dplyr and tidyr functionality without the tidyverse dependencies</li>
+<li><a href="https://github.com/OHDSI/SqlRender">SqlRender</a> 基于 Java 语言，借助 rJava 包支持参数化的 SQL 语句，并且可以将一种 SQL 语句（如 Microsoft SQL Server）转化为多种SQL语句（如Oracle, PostgreSQL, Amazon RedShift, Impala, IBM Netezza, Google BigQuery, Microsoft PDW, and SQLite）</li>
+<li><a href="https://github.com/wch/fastmap">fastmap</a> 实现键值存储，提供新的数据结构</li>
+<li><a href="https://github.com/RoaringBitmap/CRoaring">Roaring bitmaps</a> Bitsets, also called bitmaps, are commonly used as fast data structures.</li>
+</ul>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="dm-dplyr.html#cb155-1"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
+<p>数据操作的语法</p>
+<p>第一代</p>
+<ol style="list-style-type: decimal">
+<li>Base R 数据操作已在第 <a href="dm-base-r.html#data-manipulator">2</a> 章详细介绍</li>
+</ol>
+<p>第二代</p>
+<ol style="list-style-type: decimal">
+<li>reshape （退休）使用函数 <code>melt</code> 和 <code>cast</code> 重构(restructure)和聚合(aggregate)数据</li>
+<li>reshape2 （退休）是 reshape 的继任者，功能和 reshape 类似，提供两个函数 <code>melt</code> 和 <code>cast</code> 聚合数据，因此不再介绍 reshape，而鉴于 reshape2 还在活跃使用中，故而以它为例介绍 <code>melt</code> 和 <code>cast</code> 函数</li>
+<li>plyr （退休）统一拆分(split)，计算(apply)，合并(combine)的数据处理流，由 dplyr（用于data.frame） 和 purrr （用于 list）继任</li>
+</ol>
+<p>第三代</p>
+<ol style="list-style-type: decimal">
+<li>dplyr 操作数据的语法及其扩展</li>
+<li>sparklyr 给 dplyr 提供 Spark 接口支持</li>
+<li>dbplyr 给 dplyr 提供 DBI 数据库接口支持</li>
+<li>dtplyr 给 dplyr 提供 data.table 支持</li>
+<li>tidyr 提供 <code>spread</code> 和 <code>gather</code> 两个函数清洗数据</li>
+</ol>
+<p>Garrett Grolemund 在 RStudio 主要从事教育教学，参考 <a href="https://github.com/rstudio-education/teach-tidy">Materials for the Tidyverse Train-the-trainer workshop</a> 和 <a href="https://rstudio-education.github.io/tidyverse-cookbook/">The Tidyverse Cookbook</a></p>
+<p>Dirk Eddelbuettel 的 <a href="https://github.com/eddelbuettel/gsir-te">Getting Started in R – Tinyverse Edition</a></p>
+<div id="common-operations" class="section level2">
+<h2><span class="header-section-number">3.1</span> 常用操作</h2>
+<p>dplyr 由 Hadley Wickham 主要由开发和维护，是Rstudio公司开源的用于数据处理的一大利器，该包号称“数据操作的语法”，与 ggplot2 对应，也就是说数据处理那一套已经建立完整的和SQL一样的功能。它们都遵循同样的处理逻辑，只不过一个用SQL写，一个用R语言写，处理效率差不多，R语言写的 SQL 会被翻译为 SQL 语句，再传至数据库查询，当然它也支持内存内的数据操作。目前 dplyr 以 dbplyr 为后端支持的数据库有：MySQL、PostgreSQL，SQLite等，完整的支持列表请看 <a href="https://dplyr.tidyverse.org">这里</a>，连接特定数据库，都是基于 DBI，DBI 即 Database Interface， 是使用C/C++开发的底层数据库接口，是一个统一的关系型数据库连接框架，需要根据不同的具体的数据库进行实例化，才可使用。</p>
+<p>dplyr 常用的函数是6个： <code>arrange</code> 排序 <code>filter</code> 过滤 <code>select</code> 选择 <code>mutate</code> 变换 <code>summarise</code> 汇总 <code>group_by</code> 分组</p>
+<p>以 GGplot2 自带的钻石数据集diamonds为例介绍</p>
+<div id="tibble-show" class="section level3">
+<h3><span class="header-section-number">3.1.1</span> 查看</h3>
+<p>除了直接打印数据集的前几行，tibble 包还提供 glimpse 函数查看数据集，而 Base R 默认查看方式是调用 str 函数</p>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="dm-dplyr.html#cb156-1"></a>diamonds</span>
+<span id="cb156-2"><a href="dm-dplyr.html#cb156-2"></a><span class="co">#&gt; # A tibble: 53,940 x 10</span></span>
+<span id="cb156-3"><a href="dm-dplyr.html#cb156-3"></a><span class="co">#&gt;   carat cut       color clarity depth table price     x     y     z</span></span>
+<span id="cb156-4"><a href="dm-dplyr.html#cb156-4"></a><span class="co">#&gt;   &lt;dbl&gt; &lt;ord&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span id="cb156-5"><a href="dm-dplyr.html#cb156-5"></a><span class="co">#&gt; 1 0.23  Ideal     E     SI2      61.5    55   326  3.95  3.98  2.43</span></span>
+<span id="cb156-6"><a href="dm-dplyr.html#cb156-6"></a><span class="co">#&gt; 2 0.21  Premium   E     SI1      59.8    61   326  3.89  3.84  2.31</span></span>
+<span id="cb156-7"><a href="dm-dplyr.html#cb156-7"></a><span class="co">#&gt; 3 0.23  Good      E     VS1      56.9    65   327  4.05  4.07  2.31</span></span>
+<span id="cb156-8"><a href="dm-dplyr.html#cb156-8"></a><span class="co">#&gt; 4 0.290 Premium   I     VS2      62.4    58   334  4.2   4.23  2.63</span></span>
+<span id="cb156-9"><a href="dm-dplyr.html#cb156-9"></a><span class="co">#&gt; 5 0.31  Good      J     SI2      63.3    58   335  4.34  4.35  2.75</span></span>
+<span id="cb156-10"><a href="dm-dplyr.html#cb156-10"></a><span class="co">#&gt; 6 0.24  Very Good J     VVS2     62.8    57   336  3.94  3.96  2.48</span></span>
+<span id="cb156-11"><a href="dm-dplyr.html#cb156-11"></a><span class="co">#&gt; # … with 5.393e+04 more rows</span></span>
+<span id="cb156-12"><a href="dm-dplyr.html#cb156-12"></a><span class="kw">glimpse</span>(diamonds)</span>
+<span id="cb156-13"><a href="dm-dplyr.html#cb156-13"></a><span class="co">#&gt; Observations: 53,940</span></span>
+<span id="cb156-14"><a href="dm-dplyr.html#cb156-14"></a><span class="co">#&gt; Variables: 10</span></span>
+<span id="cb156-15"><a href="dm-dplyr.html#cb156-15"></a><span class="co">#&gt; $ carat   &lt;dbl&gt; 0.23, 0.21, 0.23, 0.29, 0.31, 0.24, 0.24, 0.26, 0.22, 0.…</span></span>
+<span id="cb156-16"><a href="dm-dplyr.html#cb156-16"></a><span class="co">#&gt; $ cut     &lt;ord&gt; Ideal, Premium, Good, Premium, Good, Very Good, Very Goo…</span></span>
+<span id="cb156-17"><a href="dm-dplyr.html#cb156-17"></a><span class="co">#&gt; $ color   &lt;ord&gt; E, E, E, I, J, J, I, H, E, H, J, J, F, J, E, E, I, J, J,…</span></span>
+<span id="cb156-18"><a href="dm-dplyr.html#cb156-18"></a><span class="co">#&gt; $ clarity &lt;ord&gt; SI2, SI1, VS1, VS2, SI2, VVS2, VVS1, SI1, VS2, VS1, SI1,…</span></span>
+<span id="cb156-19"><a href="dm-dplyr.html#cb156-19"></a><span class="co">#&gt; $ depth   &lt;dbl&gt; 61.5, 59.8, 56.9, 62.4, 63.3, 62.8, 62.3, 61.9, 65.1, 59…</span></span>
+<span id="cb156-20"><a href="dm-dplyr.html#cb156-20"></a><span class="co">#&gt; $ table   &lt;dbl&gt; 55, 61, 65, 58, 58, 57, 57, 55, 61, 61, 55, 56, 61, 54, …</span></span>
+<span id="cb156-21"><a href="dm-dplyr.html#cb156-21"></a><span class="co">#&gt; $ price   &lt;int&gt; 326, 326, 327, 334, 335, 336, 336, 337, 337, 338, 339, 3…</span></span>
+<span id="cb156-22"><a href="dm-dplyr.html#cb156-22"></a><span class="co">#&gt; $ x       &lt;dbl&gt; 3.95, 3.89, 4.05, 4.20, 4.34, 3.94, 3.95, 4.07, 3.87, 4.…</span></span>
+<span id="cb156-23"><a href="dm-dplyr.html#cb156-23"></a><span class="co">#&gt; $ y       &lt;dbl&gt; 3.98, 3.84, 4.07, 4.23, 4.35, 3.96, 3.98, 4.11, 3.78, 4.…</span></span>
+<span id="cb156-24"><a href="dm-dplyr.html#cb156-24"></a><span class="co">#&gt; $ z       &lt;dbl&gt; 2.43, 2.31, 2.31, 2.63, 2.75, 2.48, 2.47, 2.53, 2.49, 2.…</span></span></code></pre></div>
+<table>
+<caption><span id="tab:dplyr-object-type">表 3.1: </span> dplyr 定义的数据对象类型</caption>
+<thead>
+<tr class="header">
+<th align="left">类型</th>
+<th align="left">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">int</td>
+<td align="left">整型 integer</td>
+</tr>
+<tr class="even">
+<td align="left">dbl</td>
+<td align="left">（单）双精度浮点类型</td>
+</tr>
+<tr class="odd">
+<td align="left">chr</td>
+<td align="left">字符（串）类型</td>
+</tr>
+<tr class="even">
+<td align="left">dttm</td>
+<td align="left">data-time 类型</td>
+</tr>
+<tr class="odd">
+<td align="left">lgl</td>
+<td align="left">布尔类型</td>
+</tr>
+<tr class="even">
+<td align="left">fctr</td>
+<td align="left">因子类型 factor</td>
+</tr>
+<tr class="odd">
+<td align="left">date</td>
+<td align="left">日期类型</td>
+</tr>
+</tbody>
+</table>
+<p>表 <a href="dm-dplyr.html#tab:dplyr-object-type">3.1</a> 中 dttm 和 date 类型代指 lubridate 包指定的日期对象 POSIXct、 POSIXlt、 Date、 chron、 yearmon、 yearqtr、 zoo、 zooreg、 timeDate、 xts、 its、 ti、 jul、 timeSeries 和 fts。</p>
+</div>
+<div id="dplyr-subset" class="section level3">
+<h3><span class="header-section-number">3.1.2</span> 筛选</h3>
+</div>
+<div id="dplyr-order" class="section level3">
+<h3><span class="header-section-number">3.1.3</span> 排序</h3>
+</div>
+<div id="dplyr-aggregate" class="section level3">
+<h3><span class="header-section-number">3.1.4</span> 聚合</h3>
+</div>
+<div id="dplyr-merge" class="section level3">
+<h3><span class="header-section-number">3.1.5</span> 合并</h3>
+</div>
+<div id="dplyr-reshape" class="section level3">
+<h3><span class="header-section-number">3.1.6</span> 重塑</h3>
+</div>
+<div id="dplyr-transform" class="section level3">
+<h3><span class="header-section-number">3.1.7</span> 变换</h3>
+</div>
+<div id="dplyr-duplicated" class="section level3">
+<h3><span class="header-section-number">3.1.8</span> 去重</h3>
+<p>数据去重在 dplyr 中的实现<a href="99-references.html#fn18" class="footnote-ref" id="fnref18"><sup>18</sup></a>。</p>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="dm-dplyr.html#cb157-1"></a><span class="kw">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb157-2"><a href="dm-dplyr.html#cb157-2"></a>df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</span>
+<span id="cb157-3"><a href="dm-dplyr.html#cb157-3"></a>  <span class="dt">x =</span> <span class="kw">sample</span>(<span class="dv">0</span><span class="op">:</span><span class="dv">1</span>, <span class="dv">10</span>, <span class="dt">replace =</span> T),</span>
+<span id="cb157-4"><a href="dm-dplyr.html#cb157-4"></a>  <span class="dt">y =</span> <span class="kw">sample</span>(<span class="dv">0</span><span class="op">:</span><span class="dv">1</span>, <span class="dv">10</span>, <span class="dt">replace =</span> T),</span>
+<span id="cb157-5"><a href="dm-dplyr.html#cb157-5"></a>  <span class="dt">z =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span></span>
+<span id="cb157-6"><a href="dm-dplyr.html#cb157-6"></a>)</span>
+<span id="cb157-7"><a href="dm-dplyr.html#cb157-7"></a>df</span>
+<span id="cb157-8"><a href="dm-dplyr.html#cb157-8"></a><span class="co">#&gt;    x y  z</span></span>
+<span id="cb157-9"><a href="dm-dplyr.html#cb157-9"></a><span class="co">#&gt; 1  0 1  1</span></span>
+<span id="cb157-10"><a href="dm-dplyr.html#cb157-10"></a><span class="co">#&gt; 2  0 1  2</span></span>
+<span id="cb157-11"><a href="dm-dplyr.html#cb157-11"></a><span class="co">#&gt; 3  0 1  3</span></span>
+<span id="cb157-12"><a href="dm-dplyr.html#cb157-12"></a><span class="co">#&gt; 4  1 0  4</span></span>
+<span id="cb157-13"><a href="dm-dplyr.html#cb157-13"></a><span class="co">#&gt; 5  0 1  5</span></span>
+<span id="cb157-14"><a href="dm-dplyr.html#cb157-14"></a><span class="co">#&gt; 6  1 0  6</span></span>
+<span id="cb157-15"><a href="dm-dplyr.html#cb157-15"></a><span class="co">#&gt; 7  1 1  7</span></span>
+<span id="cb157-16"><a href="dm-dplyr.html#cb157-16"></a><span class="co">#&gt; 8  1 0  8</span></span>
+<span id="cb157-17"><a href="dm-dplyr.html#cb157-17"></a><span class="co">#&gt; 9  0 0  9</span></span>
+<span id="cb157-18"><a href="dm-dplyr.html#cb157-18"></a><span class="co">#&gt; 10 0 0 10</span></span>
+<span id="cb157-19"><a href="dm-dplyr.html#cb157-19"></a>df <span class="op">%&gt;%</span></span>
+<span id="cb157-20"><a href="dm-dplyr.html#cb157-20"></a><span class="st">  </span><span class="kw">group_by</span>(x, y) <span class="op">%&gt;%</span></span>
+<span id="cb157-21"><a href="dm-dplyr.html#cb157-21"></a><span class="st">  </span><span class="kw">filter</span>(<span class="kw">row_number</span>(z) <span class="op">==</span><span class="st"> </span><span class="dv">1</span>)</span>
+<span id="cb157-22"><a href="dm-dplyr.html#cb157-22"></a><span class="co">#&gt; # A tibble: 4 x 3</span></span>
+<span id="cb157-23"><a href="dm-dplyr.html#cb157-23"></a><span class="co">#&gt; # Groups:   x, y [4]</span></span>
+<span id="cb157-24"><a href="dm-dplyr.html#cb157-24"></a><span class="co">#&gt;       x     y     z</span></span>
+<span id="cb157-25"><a href="dm-dplyr.html#cb157-25"></a><span class="co">#&gt;   &lt;int&gt; &lt;int&gt; &lt;int&gt;</span></span>
+<span id="cb157-26"><a href="dm-dplyr.html#cb157-26"></a><span class="co">#&gt; 1     0     1     1</span></span>
+<span id="cb157-27"><a href="dm-dplyr.html#cb157-27"></a><span class="co">#&gt; 2     1     0     4</span></span>
+<span id="cb157-28"><a href="dm-dplyr.html#cb157-28"></a><span class="co">#&gt; 3     1     1     7</span></span>
+<span id="cb157-29"><a href="dm-dplyr.html#cb157-29"></a><span class="co">#&gt; 4     0     0     9</span></span></code></pre></div>
+</div>
+</div>
+<div id="common-dataframe-operations" class="section level2">
+<h2><span class="header-section-number">3.2</span> 高频问题</h2>
+<p>常用的数据操作包含</p>
+<ol style="list-style-type: decimal">
+<li>创建空的数据框或者说初始化一个数据框，</li>
+<li>按指定的列对数据框排序，</li>
+<li>选择特定的一些列，复杂情况是可能需要正则表达式从列名或者值中筛选</li>
+<li>合并两个数据框，分为 (inner outer left right) 四种情况</li>
+</ol>
+<div id="create-empty-dataframe" class="section level3">
+<h3><span class="header-section-number">3.2.1</span> 初始化数据框</h3>
+<p>创建空的数据框，就是不包含任何行、记录[^create-an-empty-data-frame]</p>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="dm-dplyr.html#cb158-1"></a>empty_df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</span>
+<span id="cb158-2"><a href="dm-dplyr.html#cb158-2"></a>  <span class="dt">Doubles =</span> <span class="kw">double</span>(),</span>
+<span id="cb158-3"><a href="dm-dplyr.html#cb158-3"></a>  <span class="dt">Ints =</span> <span class="kw">integer</span>(),</span>
+<span id="cb158-4"><a href="dm-dplyr.html#cb158-4"></a>  <span class="dt">Factors =</span> <span class="kw">factor</span>(),</span>
+<span id="cb158-5"><a href="dm-dplyr.html#cb158-5"></a>  <span class="dt">Logicals =</span> <span class="kw">logical</span>(),</span>
+<span id="cb158-6"><a href="dm-dplyr.html#cb158-6"></a>  <span class="dt">Characters =</span> <span class="kw">character</span>(),</span>
+<span id="cb158-7"><a href="dm-dplyr.html#cb158-7"></a>  <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span></span>
+<span id="cb158-8"><a href="dm-dplyr.html#cb158-8"></a>)</span>
+<span id="cb158-9"><a href="dm-dplyr.html#cb158-9"></a><span class="kw">str</span>(empty_df)</span>
+<span id="cb158-10"><a href="dm-dplyr.html#cb158-10"></a><span class="co">#&gt; &#39;data.frame&#39;:    0 obs. of  5 variables:</span></span>
+<span id="cb158-11"><a href="dm-dplyr.html#cb158-11"></a><span class="co">#&gt;  $ Doubles   : num </span></span>
+<span id="cb158-12"><a href="dm-dplyr.html#cb158-12"></a><span class="co">#&gt;  $ Ints      : int </span></span>
+<span id="cb158-13"><a href="dm-dplyr.html#cb158-13"></a><span class="co">#&gt;  $ Factors   : Factor w/ 0 levels: </span></span>
+<span id="cb158-14"><a href="dm-dplyr.html#cb158-14"></a><span class="co">#&gt;  $ Logicals  : logi </span></span>
+<span id="cb158-15"><a href="dm-dplyr.html#cb158-15"></a><span class="co">#&gt;  $ Characters: chr</span></span></code></pre></div>
+<p>如果数据框 df 包含数据，现在要依据它创建一个空的数据框</p>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="dm-dplyr.html#cb159-1"></a>empty_df =<span class="st"> </span>df[<span class="ot">FALSE</span>,]</span></code></pre></div>
+<p>还可以使用 structure 构造一个数据框，并且我们发现它的效率更高</p>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="dm-dplyr.html#cb160-1"></a>s &lt;-<span class="st"> </span><span class="cf">function</span>() <span class="kw">structure</span>(<span class="kw">list</span>(</span>
+<span id="cb160-2"><a href="dm-dplyr.html#cb160-2"></a>    <span class="dt">Date =</span> <span class="kw">as.Date</span>(<span class="kw">character</span>()),</span>
+<span id="cb160-3"><a href="dm-dplyr.html#cb160-3"></a>    <span class="dt">File =</span> <span class="kw">character</span>(),</span>
+<span id="cb160-4"><a href="dm-dplyr.html#cb160-4"></a>    <span class="dt">User =</span> <span class="kw">character</span>()</span>
+<span id="cb160-5"><a href="dm-dplyr.html#cb160-5"></a>  ),</span>
+<span id="cb160-6"><a href="dm-dplyr.html#cb160-6"></a>  <span class="dt">class =</span> <span class="st">&quot;data.frame&quot;</span></span>
+<span id="cb160-7"><a href="dm-dplyr.html#cb160-7"></a>  )</span>
+<span id="cb160-8"><a href="dm-dplyr.html#cb160-8"></a>d &lt;-<span class="st"> </span><span class="cf">function</span>() <span class="kw">data.frame</span>(</span>
+<span id="cb160-9"><a href="dm-dplyr.html#cb160-9"></a>    <span class="dt">Date =</span> <span class="kw">as.Date</span>(<span class="kw">character</span>()),</span>
+<span id="cb160-10"><a href="dm-dplyr.html#cb160-10"></a>    <span class="dt">File =</span> <span class="kw">character</span>(),</span>
+<span id="cb160-11"><a href="dm-dplyr.html#cb160-11"></a>    <span class="dt">User =</span> <span class="kw">character</span>(),</span>
+<span id="cb160-12"><a href="dm-dplyr.html#cb160-12"></a>    <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span></span>
+<span id="cb160-13"><a href="dm-dplyr.html#cb160-13"></a>  )</span>
+<span id="cb160-14"><a href="dm-dplyr.html#cb160-14"></a><span class="co"># microbenchmark::microbenchmark(s(), d())</span></span></code></pre></div>
+</div>
+<div id="remove-missing-values" class="section level3">
+<h3><span class="header-section-number">3.2.2</span> 移除缺失记录</h3>
+<p>只要行中包含缺失值，我们就把这样的行移除出去</p>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="dm-dplyr.html#cb161-1"></a>airquality[<span class="kw">complete.cases</span>(airquality), ]</span>
+<span id="cb161-2"><a href="dm-dplyr.html#cb161-2"></a><span class="co">#&gt;     Ozone Solar.R Wind Temp Month Day</span></span>
+<span id="cb161-3"><a href="dm-dplyr.html#cb161-3"></a><span class="co">#&gt; 1      41     190  7.4   67     5   1</span></span>
+<span id="cb161-4"><a href="dm-dplyr.html#cb161-4"></a><span class="co">#&gt; 2      36     118  8.0   72     5   2</span></span>
+<span id="cb161-5"><a href="dm-dplyr.html#cb161-5"></a><span class="co">#&gt; 3      12     149 12.6   74     5   3</span></span>
+<span id="cb161-6"><a href="dm-dplyr.html#cb161-6"></a><span class="co">#&gt; 4      18     313 11.5   62     5   4</span></span>
+<span id="cb161-7"><a href="dm-dplyr.html#cb161-7"></a><span class="co">#&gt; 7      23     299  8.6   65     5   7</span></span>
+<span id="cb161-8"><a href="dm-dplyr.html#cb161-8"></a><span class="co">#&gt; 8      19      99 13.8   59     5   8</span></span>
+<span id="cb161-9"><a href="dm-dplyr.html#cb161-9"></a><span class="co">#&gt; 9       8      19 20.1   61     5   9</span></span>
+<span id="cb161-10"><a href="dm-dplyr.html#cb161-10"></a><span class="co">#&gt; 12     16     256  9.7   69     5  12</span></span>
+<span id="cb161-11"><a href="dm-dplyr.html#cb161-11"></a><span class="co">#&gt; 13     11     290  9.2   66     5  13</span></span>
+<span id="cb161-12"><a href="dm-dplyr.html#cb161-12"></a>....</span></code></pre></div>
+</div>
+<div id="coerce-data-type" class="section level3">
+<h3><span class="header-section-number">3.2.3</span> 数据类型转化</h3>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="dm-dplyr.html#cb162-1"></a><span class="kw">str</span>(PlantGrowth)</span>
+<span id="cb162-2"><a href="dm-dplyr.html#cb162-2"></a><span class="co">#&gt; &#39;data.frame&#39;:    30 obs. of  2 variables:</span></span>
+<span id="cb162-3"><a href="dm-dplyr.html#cb162-3"></a><span class="co">#&gt;  $ weight: num  4.17 5.58 5.18 6.11 4.5 4.61 5.17 4.53 5.33 5.14 ...</span></span>
+<span id="cb162-4"><a href="dm-dplyr.html#cb162-4"></a><span class="co">#&gt;  $ group : Factor w/ 3 levels &quot;ctrl&quot;,&quot;trt1&quot;,..: 1 1 1 1 1 1 1 1 1 1 ...</span></span>
+<span id="cb162-5"><a href="dm-dplyr.html#cb162-5"></a>bob &lt;-<span class="st"> </span>PlantGrowth</span>
+<span id="cb162-6"><a href="dm-dplyr.html#cb162-6"></a>i &lt;-<span class="st"> </span><span class="kw">sapply</span>(bob, is.factor)</span>
+<span id="cb162-7"><a href="dm-dplyr.html#cb162-7"></a>bob[i] &lt;-<span class="st"> </span><span class="kw">lapply</span>(bob[i], as.character)</span>
+<span id="cb162-8"><a href="dm-dplyr.html#cb162-8"></a><span class="kw">str</span>(bob)</span>
+<span id="cb162-9"><a href="dm-dplyr.html#cb162-9"></a><span class="co">#&gt; &#39;data.frame&#39;:    30 obs. of  2 variables:</span></span>
+<span id="cb162-10"><a href="dm-dplyr.html#cb162-10"></a><span class="co">#&gt;  $ weight: num  4.17 5.58 5.18 6.11 4.5 4.61 5.17 4.53 5.33 5.14 ...</span></span>
+<span id="cb162-11"><a href="dm-dplyr.html#cb162-11"></a><span class="co">#&gt;  $ group : chr  &quot;ctrl&quot; &quot;ctrl&quot; &quot;ctrl&quot; &quot;ctrl&quot; ...</span></span></code></pre></div>
+</div>
+<div id="cross-group-by" class="section level3">
+<h3><span class="header-section-number">3.2.4</span> 跨列分组求和</h3>
+<p>输入是一个数据框 data.frame，按照其中某一变量分组，然后计算任意数量的变量的行和和列和。</p>
+<p>空气质量数据集 airquality 按月份 Month 分组，然后求取满足条件的列的和</p>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="dm-dplyr.html#cb163-1"></a><span class="kw">Reduce</span>(rbind, <span class="kw">lapply</span>(<span class="kw">unique</span>(airquality<span class="op">$</span>Month), <span class="cf">function</span>(gv) {</span>
+<span id="cb163-2"><a href="dm-dplyr.html#cb163-2"></a>  subdta &lt;-<span class="st"> </span><span class="kw">subset</span>(airquality, <span class="dt">subset =</span> Month <span class="op">==</span><span class="st"> </span>gv)</span>
+<span id="cb163-3"><a href="dm-dplyr.html#cb163-3"></a>  <span class="kw">data.frame</span>(</span>
+<span id="cb163-4"><a href="dm-dplyr.html#cb163-4"></a>    <span class="dt">Colsum =</span> <span class="kw">as.numeric</span>(</span>
+<span id="cb163-5"><a href="dm-dplyr.html#cb163-5"></a>      <span class="kw">colSums</span>(subdta[, <span class="kw">grepl</span>(<span class="st">&quot;[mM]&quot;</span>, <span class="kw">names</span>(airquality))], <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb163-6"><a href="dm-dplyr.html#cb163-6"></a>    ),</span>
+<span id="cb163-7"><a href="dm-dplyr.html#cb163-7"></a>    <span class="dt">Month =</span> gv</span>
+<span id="cb163-8"><a href="dm-dplyr.html#cb163-8"></a>  )</span>
+<span id="cb163-9"><a href="dm-dplyr.html#cb163-9"></a>}))</span>
+<span id="cb163-10"><a href="dm-dplyr.html#cb163-10"></a><span class="co">#&gt;    Colsum Month</span></span>
+<span id="cb163-11"><a href="dm-dplyr.html#cb163-11"></a><span class="co">#&gt; 1    2032     5</span></span>
+<span id="cb163-12"><a href="dm-dplyr.html#cb163-12"></a><span class="co">#&gt; 2     155     5</span></span>
+<span id="cb163-13"><a href="dm-dplyr.html#cb163-13"></a><span class="co">#&gt; 3    2373     6</span></span>
+<span id="cb163-14"><a href="dm-dplyr.html#cb163-14"></a><span class="co">#&gt; 4     180     6</span></span>
+<span id="cb163-15"><a href="dm-dplyr.html#cb163-15"></a><span class="co">#&gt; 5    2601     7</span></span>
+<span id="cb163-16"><a href="dm-dplyr.html#cb163-16"></a><span class="co">#&gt; 6     217     7</span></span>
+<span id="cb163-17"><a href="dm-dplyr.html#cb163-17"></a><span class="co">#&gt; 7    2603     8</span></span>
+<span id="cb163-18"><a href="dm-dplyr.html#cb163-18"></a><span class="co">#&gt; 8     248     8</span></span>
+<span id="cb163-19"><a href="dm-dplyr.html#cb163-19"></a><span class="co">#&gt; 9    2307     9</span></span>
+<span id="cb163-20"><a href="dm-dplyr.html#cb163-20"></a><span class="co">#&gt; 10    270     9</span></span></code></pre></div>
+<p>什么是函数式编程，R 语言环境下的函数式编程是如何操作的</p>
+</div>
+</div>
+<div id="pipe-manipulation" class="section level2">
+<h2><span class="header-section-number">3.3</span> 管道操作</h2>
+<p><a href="http://stefanbache.dk/">Stefan Milton Bache</a> 开发了 <a href="https://github.com/tidyverse/magrittr">magrittr</a> 包实现管道操作，增加代码的可读性和维护性，但是这个 R 包的名字取的太奇葩，因为 <a href="https://d.cosx.org/d/420697/21">记不住</a>，它其实是一个复杂的<a href="https://magrittr.tidyverse.org/articles/magrittr.html">法语发音</a>，中式英语就叫它马格里特吧！这下应该好记多了吧！</p>
+<p>我要查看是否需要新添加一个 R 包依赖，假设该 R 包是 reticulate 没有出现在 DESCRIPTION 文件中，但是可能已经被其中某（个）些 R 包依赖了</p>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="dm-dplyr.html#cb164-1"></a><span class="st">&quot;reticulate&quot;</span> <span class="op">%in%</span><span class="st"> </span><span class="kw">sort</span>(<span class="kw">unique</span>(<span class="kw">unlist</span>(tools<span class="op">::</span><span class="kw">package_dependencies</span>(desc<span class="op">::</span><span class="kw">desc_get_deps</span>()<span class="op">$</span>package, <span class="dt">recursive =</span> <span class="ot">TRUE</span>))))</span>
+<span id="cb164-2"><a href="dm-dplyr.html#cb164-2"></a><span class="co">#&gt; [1] FALSE</span></span></code></pre></div>
+<p>安装 pkg 的依赖</p>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="dm-dplyr.html#cb165-1"></a>pkg &lt;-<span class="st"> </span><span class="kw">c</span>(</span>
+<span id="cb165-2"><a href="dm-dplyr.html#cb165-2"></a>  <span class="st">&quot;bookdown&quot;</span>,</span>
+<span id="cb165-3"><a href="dm-dplyr.html#cb165-3"></a>  <span class="st">&quot;e1071&quot;</span>,</span>
+<span id="cb165-4"><a href="dm-dplyr.html#cb165-4"></a>  <span class="st">&quot;formatR&quot;</span>,</span>
+<span id="cb165-5"><a href="dm-dplyr.html#cb165-5"></a>  <span class="st">&quot;lme4&quot;</span>,</span>
+<span id="cb165-6"><a href="dm-dplyr.html#cb165-6"></a>  <span class="st">&quot;mvtnorm&quot;</span>,</span>
+<span id="cb165-7"><a href="dm-dplyr.html#cb165-7"></a>  <span class="st">&quot;prettydoc&quot;</span>, <span class="st">&quot;psych&quot;</span>,</span>
+<span id="cb165-8"><a href="dm-dplyr.html#cb165-8"></a>  <span class="st">&quot;reticulate&quot;</span>, <span class="st">&quot;rstan&quot;</span>, <span class="st">&quot;rstanarm&quot;</span>, <span class="st">&quot;rticles&quot;</span>,</span>
+<span id="cb165-9"><a href="dm-dplyr.html#cb165-9"></a>  <span class="st">&quot;svglite&quot;</span>,</span>
+<span id="cb165-10"><a href="dm-dplyr.html#cb165-10"></a>  <span class="st">&quot;TMB&quot;</span>, <span class="st">&quot;glmmTMB&quot;</span></span>
+<span id="cb165-11"><a href="dm-dplyr.html#cb165-11"></a>)</span>
+<span id="cb165-12"><a href="dm-dplyr.html#cb165-12"></a><span class="co"># 获取 pkg 的所有依赖</span></span>
+<span id="cb165-13"><a href="dm-dplyr.html#cb165-13"></a>dep_pkg &lt;-<span class="st"> </span>tools<span class="op">::</span><span class="kw">package_dependencies</span>(pkg, <span class="dt">recursive =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb165-14"><a href="dm-dplyr.html#cb165-14"></a><span class="co"># 将列表 list 合并为向量 vector</span></span>
+<span id="cb165-15"><a href="dm-dplyr.html#cb165-15"></a>merge_pkg &lt;-<span class="st"> </span><span class="kw">Reduce</span>(<span class="st">&quot;c&quot;</span>, dep_pkg, <span class="dt">accumulate =</span> <span class="ot">FALSE</span>)</span>
+<span id="cb165-16"><a href="dm-dplyr.html#cb165-16"></a><span class="co"># 所有未安装的 R 包</span></span>
+<span id="cb165-17"><a href="dm-dplyr.html#cb165-17"></a>miss_pkg &lt;-<span class="st"> </span><span class="kw">setdiff</span>(<span class="kw">unique</span>(merge_pkg), <span class="kw">unique</span>(<span class="kw">.packages</span>(<span class="ot">TRUE</span>)))</span>
+<span id="cb165-18"><a href="dm-dplyr.html#cb165-18"></a><span class="co"># 除了 pkg 外，未安装的 R 包，安装 pkg 的依赖</span></span>
+<span id="cb165-19"><a href="dm-dplyr.html#cb165-19"></a><span class="kw">sort</span>(<span class="kw">setdiff</span>(miss_pkg, pkg))</span>
+<span id="cb165-20"><a href="dm-dplyr.html#cb165-20"></a><span class="co">#&gt; [1] &quot;foreign&quot; &quot;mnormt&quot;</span></span></code></pre></div>
+<p>转化为管道操作，增加可读性，[^pipe-r]</p>
+<blockquote>
+<p>再举一个关于数据模拟的例子</p>
+</blockquote>
+<p>模拟 0-1 序列，</p>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="dm-dplyr.html#cb166-1"></a><span class="kw">set.seed</span>(<span class="dv">2019</span>)</span>
+<span id="cb166-2"><a href="dm-dplyr.html#cb166-2"></a>binom_sample &lt;-<span class="st"> </span><span class="cf">function</span>(n) {</span>
+<span id="cb166-3"><a href="dm-dplyr.html#cb166-3"></a>  <span class="kw">sum</span>(<span class="kw">sample</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="dt">size =</span> n, <span class="dt">prob =</span> <span class="kw">c</span>(<span class="fl">0.8</span>, <span class="fl">0.2</span>), <span class="dt">replace =</span> <span class="ot">TRUE</span>))<span class="op">/</span>n</span>
+<span id="cb166-4"><a href="dm-dplyr.html#cb166-4"></a>}</span>
+<span id="cb166-5"><a href="dm-dplyr.html#cb166-5"></a><span class="co"># 频率估计概率</span></span>
+<span id="cb166-6"><a href="dm-dplyr.html#cb166-6"></a>one_prob &lt;-<span class="st"> </span><span class="kw">sapply</span>(<span class="dv">10</span><span class="op">^</span>(<span class="kw">seq</span>(<span class="dv">8</span>)), binom_sample)</span>
+<span id="cb166-7"><a href="dm-dplyr.html#cb166-7"></a><span class="co"># 估计的误差</span></span>
+<span id="cb166-8"><a href="dm-dplyr.html#cb166-8"></a>one_abs &lt;-<span class="st"> </span><span class="kw">abs</span>(one_prob <span class="op">-</span><span class="st"> </span><span class="fl">0.2</span>)</span>
+<span id="cb166-9"><a href="dm-dplyr.html#cb166-9"></a>one_abs</span>
+<span id="cb166-10"><a href="dm-dplyr.html#cb166-10"></a><span class="co">#&gt; [1] 1.000e-01 1.000e-02 1.100e-02 4.400e-03 1.460e-03 3.980e-04 4.700e-06</span></span>
+<span id="cb166-11"><a href="dm-dplyr.html#cb166-11"></a><span class="co">#&gt; [8] 9.552e-05</span></span></code></pre></div>
+<p>似然估计</p>
+</div>
+<div id="dm-dplyr-session-info" class="section level2">
+<h2><span class="header-section-number">3.4</span> 运行环境</h2>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="dm-dplyr.html#cb167-1"></a>xfun<span class="op">::</span><span class="kw">session_info</span>(<span class="st">&#39;tidyverse&#39;</span>)</span>
+<span id="cb167-2"><a href="dm-dplyr.html#cb167-2"></a><span class="co">#&gt; R version 3.6.1 (2019-07-05)</span></span>
+<span id="cb167-3"><a href="dm-dplyr.html#cb167-3"></a><span class="co">#&gt; Platform: x86_64-pc-linux-gnu (64-bit)</span></span>
+<span id="cb167-4"><a href="dm-dplyr.html#cb167-4"></a><span class="co">#&gt; Running under: Debian GNU/Linux 10 (buster)</span></span>
+<span id="cb167-5"><a href="dm-dplyr.html#cb167-5"></a><span class="co">#&gt; </span></span>
+<span id="cb167-6"><a href="dm-dplyr.html#cb167-6"></a><span class="co">#&gt; Locale:</span></span>
+<span id="cb167-7"><a href="dm-dplyr.html#cb167-7"></a><span class="co">#&gt;   LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              </span></span>
+<span id="cb167-8"><a href="dm-dplyr.html#cb167-8"></a><span class="co">#&gt;   LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    </span></span>
+<span id="cb167-9"><a href="dm-dplyr.html#cb167-9"></a><span class="co">#&gt;   LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   </span></span>
+<span id="cb167-10"><a href="dm-dplyr.html#cb167-10"></a><span class="co">#&gt;   LC_PAPER=en_US.UTF-8       LC_NAME=C                 </span></span>
+<span id="cb167-11"><a href="dm-dplyr.html#cb167-11"></a><span class="co">#&gt;   LC_ADDRESS=C               LC_TELEPHONE=C            </span></span>
+<span id="cb167-12"><a href="dm-dplyr.html#cb167-12"></a><span class="co">#&gt;   LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       </span></span>
+<span id="cb167-13"><a href="dm-dplyr.html#cb167-13"></a><span class="co">#&gt; </span></span>
+<span id="cb167-14"><a href="dm-dplyr.html#cb167-14"></a><span class="co">#&gt; Package version:</span></span>
+<span id="cb167-15"><a href="dm-dplyr.html#cb167-15"></a><span class="co">#&gt;   askpass_1.1        assertthat_0.2.1   backports_1.1.4   </span></span>
+<span id="cb167-16"><a href="dm-dplyr.html#cb167-16"></a><span class="co">#&gt;   base64enc_0.1.3    BH_1.69.0.1        broom_0.5.2       </span></span>
+<span id="cb167-17"><a href="dm-dplyr.html#cb167-17"></a><span class="co">#&gt;   callr_3.3.1        cellranger_1.1.0   cli_1.1.0         </span></span>
+<span id="cb167-18"><a href="dm-dplyr.html#cb167-18"></a><span class="co">#&gt;   clipr_0.7.0        colorspace_1.4.1   crayon_1.3.4      </span></span>
+<span id="cb167-19"><a href="dm-dplyr.html#cb167-19"></a><span class="co">#&gt;   curl_4.0           DBI_1.0.0          dbplyr_1.4.2      </span></span>
+<span id="cb167-20"><a href="dm-dplyr.html#cb167-20"></a><span class="co">#&gt;   digest_0.6.20      dplyr_0.8.3        ellipsis_0.2.0.1  </span></span>
+<span id="cb167-21"><a href="dm-dplyr.html#cb167-21"></a><span class="co">#&gt;   evaluate_0.14      fansi_0.4.0        forcats_0.4.0     </span></span>
+<span id="cb167-22"><a href="dm-dplyr.html#cb167-22"></a><span class="co">#&gt;   fs_1.3.1           generics_0.0.2     ggplot2_3.2.0     </span></span>
+<span id="cb167-23"><a href="dm-dplyr.html#cb167-23"></a><span class="co">#&gt;   glue_1.3.1         graphics_3.6.1     grDevices_3.6.1   </span></span>
+<span id="cb167-24"><a href="dm-dplyr.html#cb167-24"></a><span class="co">#&gt;   grid_3.6.1         gtable_0.3.0       haven_2.1.1       </span></span>
+<span id="cb167-25"><a href="dm-dplyr.html#cb167-25"></a><span class="co">#&gt;   highr_0.8          hms_0.5.0          htmltools_0.3.6   </span></span>
+<span id="cb167-26"><a href="dm-dplyr.html#cb167-26"></a><span class="co">#&gt;   httr_1.4.0         jsonlite_1.6       knitr_1.23        </span></span>
+<span id="cb167-27"><a href="dm-dplyr.html#cb167-27"></a><span class="co">#&gt;   labeling_0.3       lattice_0.20.38    lazyeval_0.2.2    </span></span>
+<span id="cb167-28"><a href="dm-dplyr.html#cb167-28"></a><span class="co">#&gt;   lubridate_1.7.4    magrittr_1.5       markdown_1.0      </span></span>
+<span id="cb167-29"><a href="dm-dplyr.html#cb167-29"></a><span class="co">#&gt;   MASS_7.3.51.4      Matrix_1.2.17      methods_3.6.1     </span></span>
+<span id="cb167-30"><a href="dm-dplyr.html#cb167-30"></a><span class="co">#&gt;   mgcv_1.8.28        mime_0.7           modelr_0.1.4      </span></span>
+<span id="cb167-31"><a href="dm-dplyr.html#cb167-31"></a><span class="co">#&gt;   munsell_0.5.0      nlme_3.1.140       openssl_1.4.1     </span></span>
+<span id="cb167-32"><a href="dm-dplyr.html#cb167-32"></a><span class="co">#&gt;   pillar_1.4.2       pkgconfig_2.0.2    plogr_0.2.0       </span></span>
+<span id="cb167-33"><a href="dm-dplyr.html#cb167-33"></a><span class="co">#&gt;   plyr_1.8.4         prettyunits_1.0.2  processx_3.4.1    </span></span>
+<span id="cb167-34"><a href="dm-dplyr.html#cb167-34"></a><span class="co">#&gt;   progress_1.2.2     ps_1.3.0           purrr_0.3.2       </span></span>
+<span id="cb167-35"><a href="dm-dplyr.html#cb167-35"></a><span class="co">#&gt;   R6_2.4.0           RColorBrewer_1.1.2 Rcpp_1.0.2        </span></span>
+<span id="cb167-36"><a href="dm-dplyr.html#cb167-36"></a><span class="co">#&gt;   readr_1.3.1        readxl_1.3.1       rematch_1.0.1     </span></span>
+<span id="cb167-37"><a href="dm-dplyr.html#cb167-37"></a><span class="co">#&gt;   reprex_0.3.0       reshape2_1.4.3     rlang_0.4.0       </span></span>
+<span id="cb167-38"><a href="dm-dplyr.html#cb167-38"></a><span class="co">#&gt;   rmarkdown_1.14     rstudioapi_0.10    rvest_0.3.4       </span></span>
+<span id="cb167-39"><a href="dm-dplyr.html#cb167-39"></a><span class="co">#&gt;   scales_1.0.0       selectr_0.4.1      splines_3.6.1     </span></span>
+<span id="cb167-40"><a href="dm-dplyr.html#cb167-40"></a><span class="co">#&gt;   stats_3.6.1        stringi_1.4.3      stringr_1.4.0     </span></span>
+<span id="cb167-41"><a href="dm-dplyr.html#cb167-41"></a><span class="co">#&gt;   sys_3.2            tibble_2.1.3       tidyr_0.8.3       </span></span>
+<span id="cb167-42"><a href="dm-dplyr.html#cb167-42"></a><span class="co">#&gt;   tidyselect_0.2.5   tidyverse_1.2.1    tinytex_0.14      </span></span>
+<span id="cb167-43"><a href="dm-dplyr.html#cb167-43"></a><span class="co">#&gt;   tools_3.6.1        utf8_1.1.4         utils_3.6.1       </span></span>
+<span id="cb167-44"><a href="dm-dplyr.html#cb167-44"></a><span class="co">#&gt;   vctrs_0.2.0        viridisLite_0.3.0  whisker_0.3.2     </span></span>
+<span id="cb167-45"><a href="dm-dplyr.html#cb167-45"></a><span class="co">#&gt;   withr_2.1.2        xfun_0.8           xml2_1.2.0        </span></span>
+<span id="cb167-46"><a href="dm-dplyr.html#cb167-46"></a><span class="co">#&gt;   yaml_2.2.0         zeallot_0.1.0</span></span></code></pre></div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="dm-base-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="99-references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": false,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": {}
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/XiangyunHuang/RGraphics/edit/master/dm-dplyr.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
