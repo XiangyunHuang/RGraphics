@@ -17,8 +17,6 @@ env:
     - R_VERSION=3.6.1
 
 before_script:
-  - nvm install stable
-  - npm install netlify-cli -g
   - export COMMIT_MSG=$(git log -1 --format='%h %<(50,trunc)%s')
   - export DEPLOY_MSG=${COMMIT_MSG//[\'\"\`]/}
   - export DOCKER_HOST_IP=$(ip route|awk '/docker0/ { print $9 }')
@@ -31,9 +29,11 @@ script:
   - docker-compose down
   - ./_deploy.sh
 
-#deploy:
-#  provider: script
-#  script: netlify deploy --prod --dir _book --message "$DEPLOY_MSG"
-#  skip_cleanup: true
-#  on:
-#    branch: master
+after_success:
+- nvm install stable
+- npm install netlify-cli -g
+
+deploy:
+  provider: script
+  script: netlify deploy --prod --dir _book --message "$DEPLOY_MSG"
+  skip_cleanup: true

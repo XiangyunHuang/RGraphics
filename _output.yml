@@ -7,7 +7,7 @@ bookdown::gitbook:
       before: |
         <li><a href="./">数据可视化与R语言</a></li>
       after: |
-        <li><a href="https://r4charts.netlify.com/" target="blank">Published with netlify</a></li>
+        <li><a href="https://r-graphics.netlify.com/" target="blank">Published with netlify</a></li>
     download: ["pdf", "epub"]
     edit:
       link: https://github.com/XiangyunHuang/RGraphics/edit/master/%s
