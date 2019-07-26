@@ -131,7 +131,9 @@ RUN useradd docker \
   prophet \
   brms \
   BANOVA \
-  tidymodels
+  tidymodels \
+## install other packages
+  openxlsx
 
 ## Install adobe fonts
 RUN mkdir -p /usr/share/fonts/opentype/adobe ~/.fonts \
