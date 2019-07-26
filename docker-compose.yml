@@ -17,7 +17,6 @@ services:
        - |
          cp odbc.ini ~/.odbc.ini
          sh ./_build.sh
-         make pdf
      environment:
        - TRAVIS
        - DOCKER_HOST_IP
