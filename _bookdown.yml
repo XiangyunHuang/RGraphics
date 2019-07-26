@@ -14,4 +14,7 @@ before_chapter_script: ["_common.R"]
 rmd_files: 
 - "index.Rmd"
 
+- "dm-import-export.Rmd"
+
+
 - "99-references.Rmd"
