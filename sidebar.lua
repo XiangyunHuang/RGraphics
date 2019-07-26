@@ -12,25 +12,25 @@ end
 function Div(el)
   if el.classes:includes("sidebar") then
     return {
-      pandoc.RawBlock("latex", "\\begin{kframe}"),
+      pandoc.RawBlock("latex", "\\begin{shaded}"),
       el,
-      pandoc.RawBlock("latex", "\\end{kframe}")
+      pandoc.RawBlock("latex", "\\end{shaded}")
     }
   end
 
   if el.classes:includes("base") then
     return {
-      pandoc.RawBlock("latex", "\\begin{kframe} \\textbf{In Base R}"),
+      pandoc.RawBlock("latex", "\\begin{shaded} \\textbf{In Base R}"),
       el,
-      pandoc.RawBlock("latex", "\\end{kframe}")
+      pandoc.RawBlock("latex", "\\end{shaded}")
     }
   end
 
   if el.classes:includes("tidyverse") then
     return {
-      pandoc.RawBlock("latex", "\\begin{kframe} \\textbf{In Tidyverse}"),
+      pandoc.RawBlock("latex", "\\begin{shaded} \\textbf{In Tidyverse}"),
       el,
-      pandoc.RawBlock("latex", "\\end{kframe}")
+      pandoc.RawBlock("latex", "\\end{shaded}")
     }
   end
 
@@ -44,9 +44,9 @@ function Div(el)
 
   if el.classes:includes("warning") then
     return {
-      pandoc.RawBlock("latex", "\\begin{kframe} \\textcolor{red}{\\textbf{警告}}"),
+      pandoc.RawBlock("latex", "\\begin{shaded} \\textcolor{red}{\\textbf{警告}}"),
       el,
-      pandoc.RawBlock("latex", "\\end{kframe}")
+      pandoc.RawBlock("latex", "\\end{shaded}")
     }
   end
 end
