@@ -429,7 +429,7 @@ max(colMeans(maintainer_author))
 
 重新获取 `maintainer_author` 矩阵，存储指标向量，然后调用 Matrix 生成稀疏矩阵，后续的数据操作就好办了，因为 Matrix 包是内置的，它定义的稀疏矩阵类其它 R 包也都支持。先以一个简单的例子说明构造稀疏矩阵的过程
 
-```{r}
+```{r vis-sparse-mat,fig.cap="稀疏矩阵的图表示"}
 library(Matrix)
 spM <- spMatrix(3, 4, i = c(1, 1, 2, 3, 3), 
                 j = c(4, 1, 2, 1, 3),
@@ -440,7 +440,7 @@ image(spM)
 
 `i` 和 `j` 表示矩阵中有值的位置，`x` 表示对应位置上的值，`i`，`j` 和 `x` 是三个长度相等的数值型向量，我们还可以调用 `image `函数，把稀疏矩阵可视化出来，对于大型稀疏矩阵可视化其稀疏模式是重要的。
 
-> 贡献网络可视化
+> 贡献网络可视化 [^intro-igraph]
 
 ```{r}
 clean_net_pdb <- function(maintainer) {
@@ -516,7 +516,7 @@ ctb_net <- add.edges(ctb_net, edges)
 
 这节标题取其字面意思表达 CRAN 服务器的特殊日子 2012-10-29，那天 CRAN 更新了一大波 R 包，像一根擎天柱一样支撑这幅图！
 
-```{r}
+```{r pdb-update-history,fig.cap="R 包更新历史"}
 update_pdb <- as.data.frame(pdb[, c("Package", "Published")], stringsAsFactors = FALSE)
 # 这天要更新的R包最多
 sort(table(update_pdb[,"Published"]), decreasing = TRUE)[1]
@@ -550,7 +550,7 @@ R 开源还体现在许可证信息，顺便谈谈美国和中国技术封锁，
 
 社区主要使用 GPL 及其相关授权协议，因为 R 软件本身也是授权在 GPL-2 或 GPL-3 下
 
-```{r}
+```{r license-cran,fig.cap="CRAN 上采用的发布协议"}
 license_pdb <- head(sort(table(pdb[, "License"]), decreasing = TRUE), 20)
 par(mar = c(2, 12, 0.5, 0))
 plot(c(1, 1e1, 1e2, 1e3, 1e4), c(1, 5, 10, 15, 20),
@@ -572,7 +572,7 @@ segments(x0 = 1, y0 = seq(length(license_pdb)),
 ```
 
 
-```{r}
+```{r license-rforge,fig.cap="R-Forge 开发者采用的发布协议"}
 rforge_pdb <- available.packages(repos = "http://R-Forge.R-project.org")
 license_rforge_pdb <- head(sort(table(rforge_pdb[, "License"]), decreasing = TRUE), 20)
 par(mar = c(2, 12, 0.5, 0))
