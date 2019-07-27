@@ -17,7 +17,8 @@ rmd_files:
 - "dm-base-r.Rmd"
 - "dm-dplyr.Rmd"
 
-
+- "dv-plot.Rmd"
+- "dv-ggplot2.Rmd"
 - "dv-spatio-temporal.Rmd"
 
 
