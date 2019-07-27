@@ -1127,11 +1127,10 @@ hist(longley$Unemployed, density = 3, angle = 45, main = "")
 
 
 ```{r}
-library(MASS)
-data(galaxies)
+data(galaxies, package = "MASS")
 galaxies <- galaxies / 1000
 # Bandwidth Selection by Pilot Estimation of Derivatives
-c(width.SJ(galaxies, method = "dpi"), width.SJ(galaxies))
+c(MASS::width.SJ(galaxies, method = "dpi"), MASS::width.SJ(galaxies))
 plot(
   x = c(5, 40), y = c(0, 0.2), type = "n", bty = "l",
   xlab = "velocity of galaxy (km/s)", ylab = "density"
@@ -1286,7 +1285,7 @@ plot(y ~ x,
 
 散点图也适合分类数据的展示，在图中用不同颜色或符号标记数据点所属类别，即在普通散点图的基础上添加一分类变量的描述
 
-```{r category-base, fig.cap="分类散点图",fig.asp=0.8}
+```{r category-base, fig.cap="分类散点图"}
 plot(mpg ~ hp,
   data = subset(mtcars, am == 1), pch = 16, col = "blue",
   xlim = c(50, 350), ylim = c(10, 35)
@@ -1303,7 +1302,9 @@ legend(300, 35,
 )
 ```
 
-```{r,fig.cap="分类散点图"}
+iris 数据
+
+```{r iris-scatter,fig.cap="分类散点图"}
 plot(Sepal.Length ~ Sepal.Width, data = iris, col = Species, pch = 16)
 legend("topright",
   legend = unique(iris$Species), box.col = "gray",
@@ -1315,6 +1316,7 @@ box(col = "gray")
 分组散点图和平滑
 
 ```{r,eval=FALSE}
+library(carData)
 library(car)
 scatterplot(Sepal.Length ~ Sepal.Width,
   col = c("black", "red", "blue"), pch = c(16, 16, 16),
@@ -1379,9 +1381,10 @@ box(col = "gray")
 
 气泡图
 
-```{r}
+```{r,fig.asp=0.8}
 # 空白画布
-plot(c(1, 5, 10), c(1, 5, 10), panel.first = grid(10, 10), type = "n", axes = FALSE, ann = FALSE)
+plot(c(1, 5, 10), c(1, 5, 10), panel.first = grid(10, 10),
+     type = "n", axes = FALSE, ann = FALSE)
 # 添加坐标轴
 axis(1, at = seq(10), labels = TRUE)
 axis(2, at = seq(10), labels = TRUE)
@@ -1402,7 +1405,7 @@ legend("top",
 
 除了`par(new=TRUE)`设置外，有些函数本身就具有 `add` 选项
 
-```{r}
+```{r,fig.asp=0.8}
 set.seed(1234)
 plot(dist ~ speed, data = cars, pch = 17, col = "red", cex = 1)
 with(cars, symbols(dist ~ speed,
@@ -1440,14 +1443,9 @@ plot(y ~ jitter(x),
 
 ### 箱线图 {#plot-box}
 
-boxplotdbl: Double Box Plot for Two-Axes Correlation
+boxplotdbl: Double Box Plot for Two-Axes Correlation. Correlation chart of two set (x and y) of data. Using Quartiles with boxplot style. Visualize the effect of factor. 
 
-Correlation chart of two set (x and y) of data. Using Quartiles with boxplot style. Visualize the effect of factor.
-
-复合箱线图
-
-https://tomizonor.wordpress.com/2013/11/24/double-box-plot-1-2/
-https://tomizonor.wordpress.com/2013/03/15/double-box-plot/
+[复合箱线图](https://tomizonor.wordpress.com/2013/03/15/double-box-plot/)
 
 
 ```{r boxplot}
@@ -1599,8 +1597,8 @@ topo 是地形数据
 函数曲线，样条曲线，核密度曲线，平行坐标图
 
 - 折线图
-  - 点线图 `plot(type="b")` 函数曲线图 `curve` `matplot`  X 样条曲线 `xspline`
-  - 时序图 
+- 点线图 `plot(type="b")` 函数曲线图 `curve` `matplot`  X 样条曲线 `xspline`
+- 时序图 
 
 太阳黑子活动数据
 

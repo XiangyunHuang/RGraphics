@@ -145,13 +145,19 @@ RUN apt-get install -y --no-install-recommends \
   libcgal-dev \ 
   libglu1-mesa-dev \ 
   libx11-dev \
+  tk-dev \
+  tcl-dev \
+  libxpm-dev \
+  libxaw7-dev \
+  graphviz \
+  file \
   && install2.r --error \
      BiocManager \
      pracma \
   && Rscript -e "BiocManager::install(c('Rgraphviz','graph'), update = FALSE, ask = FALSE)" \
   && install2.r --error --repos https://inla.r-inla-download.org/R/testing/ --deps TRUE \
     INLA \
-    inlabru \
+  && install2.r --error inlabru \
   && install2.r --error --repos https://nowosad.github.io/drat/ \
     spDataLarge
   

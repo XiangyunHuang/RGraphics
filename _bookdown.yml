@@ -26,5 +26,6 @@ rmd_files:
 - "dv-ggplot2.Rmd"
 - "dv-spatio-temporal.Rmd"
 
+- "cs-cran-network.Rmd"
 
 - "99-references.Rmd"

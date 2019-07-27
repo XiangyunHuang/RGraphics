@@ -576,7 +576,7 @@ ggplot(sub_diamonds, aes(x = cut, y = price)) + geom_jitter()
 
 上色和分面都不好使的抖动图，因为区分度变小
 
-```{r,fig.cap="根据钻石颜色上色"}
+```{r,fig.cap="根据钻石颜色上色",fig.asp=1}
 ggplot(sub_diamonds, aes(x = color, y = price, color = color)) +
   geom_jitter() +
   facet_grid(clarity ~ cut)
