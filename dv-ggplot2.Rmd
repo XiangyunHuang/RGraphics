@@ -165,7 +165,7 @@ str(diamonds)
 
 数值型变量 carat 作为 x 轴
 
-```{r diamonds-axis,fig.cap=c("指定 x 轴","数值变量 price 作为纵轴","有序分类变量 cut 指定颜色","指定统一颜色"),out.width="35%",fig.align='center',fig.ncol=2,fig.width=3}
+```{r diamonds-axis,fig.subcap=c("指定 x 轴","数值变量 price 作为纵轴","有序分类变量 cut 指定颜色","指定统一颜色"),fig.cap="绘图过程",out.width="35%",fig.align='center',fig.ncol=2,fig.width=3}
 ggplot(diamonds, aes(x = carat))
 ggplot(diamonds, aes(x = carat, y = price))
 ggplot(diamonds, aes(x = carat, color = cut))
