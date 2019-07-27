@@ -900,13 +900,12 @@ Hmisc 包的 labcurve 函数可以在曲线上放置名称，而不是遥远的�
 
 \begin{figure}[!htb]
 
-{\centering \includegraphics[width=0.35\linewidth]{/usr/lib/R/library/graphics/help/figures/mai} 
+{\centering \subfloat[内边空(\#fig:par-mai-oma1)]{\includegraphics[width=0.33\linewidth]{/usr/lib/R/library/graphics/help/figures/mai} }\subfloat[外边空(\#fig:par-mai-oma2)]{\includegraphics[width=0.33\linewidth]{/usr/lib/R/library/graphics/help/figures/omai} }
 
 }
 
-\caption{内边空和外边空}(\#fig:mai-oma)
+\caption{边空}(\#fig:par-mai-oma)
 \end{figure}
-\includegraphics[width=0.35\linewidth]{/usr/lib/R/library/graphics/help/figures/oma} 
 
 
 `line` 第一行

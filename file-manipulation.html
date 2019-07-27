@@ -435,7 +435,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>recursive: 是否递归的方式列出目录，如果是的话，目录下的子目录也会列出</li>
 </ul></li>
 <li><p><code>file.show(..., header = rep("", nfiles), title = "R Information", delete.file = FALSE, pager = getOption("pager"),encoding = "")</code></p>
-<p>打开文件内容，<code>file.show</code> 会在R终端中新开一个窗口显示文件，如图<a href="#fig:show-file"><strong>??</strong></a>所示</p>
+<p>打开文件内容，<code>file.show</code> 会在R终端中新开一个窗口显示文件</p>
 <div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="file-manipulation.html#cb33-1"></a>rinternals &lt;-<span class="st"> </span><span class="kw">file.path</span>(<span class="kw">R.home</span>(<span class="st">&quot;include&quot;</span>), <span class="st">&quot;Rinternals.h&quot;</span>)</span>
 <span id="cb33-2"><a href="file-manipulation.html#cb33-2"></a><span class="co"># file.show(rinternals)</span></span></code></pre></div></li>
 <li><p><code>file.info(..., extra_cols = TRUE)</code></p>

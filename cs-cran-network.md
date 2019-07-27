@@ -697,13 +697,18 @@ spM
 image(spM)
 ```
 
+\begin{figure}[!htb]
 
+{\centering \includegraphics[width=0.7\linewidth]{cs-cran-network_files/figure-latex/vis-sparse-mat-1} 
 
-\begin{center}\includegraphics[width=0.7\linewidth]{cs-cran-network_files/figure-latex/unnamed-chunk-41-1} \end{center}
+}
+
+\caption{稀疏矩阵的图表示}(\#fig:vis-sparse-mat)
+\end{figure}
 
 `i` 和 `j` 表示矩阵中有值的位置，`x` 表示对应位置上的值，`i`，`j` 和 `x` 是三个长度相等的数值型向量，我们还可以调用 `image `函数，把稀疏矩阵可视化出来，对于大型稀疏矩阵可视化其稀疏模式是重要的。
 
-> 贡献网络可视化
+> 贡献网络可视化 [^intro-igraph]
 
 
 ```r
@@ -804,9 +809,14 @@ ggplot(update_pdb, aes(as.Date(Published))) +
   theme_minimal()
 ```
 
+\begin{figure}[!htb]
 
+{\centering \includegraphics[width=0.7\linewidth]{cs-cran-network_files/figure-latex/pdb-update-history-1} 
 
-\begin{center}\includegraphics[width=0.7\linewidth]{cs-cran-network_files/figure-latex/unnamed-chunk-47-1} \end{center}
+}
+
+\caption{R 包更新历史}(\#fig:pdb-update-history)
+\end{figure}
 
 当日发布的R包，不论是新增还是更新之前发布的R包都视为最新版，当日之前的都是旧版本，它们可能存在已经修复的 BUG！这句子好奇怪是吧，因为很多 R 包要么托管在 Github 上，要么托管在 [R-Forge](https://r-forge.r-project.org/) 上开发，而 CRAN 上的版本除了发布日外，一般来讲都会落后。如图所示待更新的 R 包在日期上的分布，有的已经10来年没有更新了，最老的 R 包可以追溯到 2006-03-15，它是 coxrobust！！
 
@@ -841,9 +851,14 @@ segments(x0 = 1, y0 = seq(length(license_pdb)),
          col = "lightblue", lwd = 4)
 ```
 
+\begin{figure}[!htb]
 
+{\centering \includegraphics[width=0.7\linewidth]{cs-cran-network_files/figure-latex/license-cran-1} 
 
-\begin{center}\includegraphics[width=0.7\linewidth]{cs-cran-network_files/figure-latex/unnamed-chunk-49-1} \end{center}
+}
+
+\caption{CRAN 上采用的发布协议}(\#fig:license-cran)
+\end{figure}
 
 
 
@@ -870,9 +885,14 @@ segments(x0 = 1, y0 = seq(length(license_rforge_pdb)),
          lwd = 4, col = "lightblue")
 ```
 
+\begin{figure}[!htb]
 
+{\centering \includegraphics[width=0.7\linewidth]{cs-cran-network_files/figure-latex/license-rforge-1} 
 
-\begin{center}\includegraphics[width=0.7\linewidth]{cs-cran-network_files/figure-latex/unnamed-chunk-50-1} \end{center}
+}
+
+\caption{R-Forge 开发者采用的发布协议}(\#fig:license-rforge)
+\end{figure}
 
 
 > 改进的方向是含义相同的进行合并，这需要研究一下各个许可证，然后使用对比型条形图合并上面两个图

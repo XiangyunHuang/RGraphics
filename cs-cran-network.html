@@ -863,9 +863,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb550-15"><a href="cs-cran-network.html#cb550-15"></a>)</span>
 <span id="cb550-16"><a href="cs-cran-network.html#cb550-16"></a><span class="kw">grid</span>()</span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:top-maintainers"></span>
-<img src="cs-cran-network_files/figure-html/top-maintainers-1.png" alt="维护R包数量最多的20个人35" width="55%" />
+<img src="cs-cran-network_files/figure-html/top-maintainers-1.png" alt="维护R包数量最多的20个人36" width="55%" />
 <p class="caption">
-图 11.1: 维护R包数量最多的20个人<a href="99-references.html#fn35" class="footnote-ref" id="fnref35"><sup>35</sup></a>
+图 11.1: 维护R包数量最多的20个人<a href="99-references.html#fn36" class="footnote-ref" id="fnref36"><sup>36</sup></a>
 </p>
 </div>
 <p>调用 ggplot2 包绘图要求输入的数据类型是 <code>data.frame</code>，所以我们首先将 <code>top_maintainer</code> 转化为数据框类型</p>
@@ -1015,10 +1015,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb569-9"><a href="cs-cran-network.html#cb569-9"></a><span class="co">#&gt; [2,] . 1 . .</span></span>
 <span id="cb569-10"><a href="cs-cran-network.html#cb569-10"></a><span class="co">#&gt; [3,] 4 . 8 .</span></span>
 <span id="cb569-11"><a href="cs-cran-network.html#cb569-11"></a><span class="kw">image</span>(spM)</span></code></pre></div>
-<p><img src="cs-cran-network_files/figure-html/unnamed-chunk-41-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<div class="figure" style="text-align: center"><span id="fig:vis-sparse-mat"></span>
+<img src="cs-cran-network_files/figure-html/vis-sparse-mat-1.png" alt="稀疏矩阵的图表示" width="70%" />
+<p class="caption">
+图 11.2: 稀疏矩阵的图表示
+</p>
+</div>
 <p><code>i</code> 和 <code>j</code> 表示矩阵中有值的位置，<code>x</code> 表示对应位置上的值，<code>i</code>，<code>j</code> 和 <code>x</code> 是三个长度相等的数值型向量，我们还可以调用 <code>image</code>函数，把稀疏矩阵可视化出来，对于大型稀疏矩阵可视化其稀疏模式是重要的。</p>
 <blockquote>
-<p>贡献网络可视化</p>
+<p>贡献网络可视化<a href="99-references.html#fn35" class="footnote-ref" id="fnref35"><sup>35</sup></a></p>
 </blockquote>
 <div class="sourceCode" id="cb570"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb570-1"><a href="cs-cran-network.html#cb570-1"></a>clean_net_pdb &lt;-<span class="st"> </span><span class="cf">function</span>(maintainer) {</span>
 <span id="cb570-2"><a href="cs-cran-network.html#cb570-2"></a>  index &lt;-<span class="st"> </span><span class="kw">clean_author</span>(maintainer)</span>
@@ -1088,7 +1093,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb574-17"><a href="cs-cran-network.html#cb574-17"></a><span class="st">  </span><span class="kw">scale_x_date</span>(<span class="dt">date_breaks =</span> <span class="st">&quot;1 year&quot;</span>, <span class="dt">date_labels =</span> <span class="st">&quot;%Y&quot;</span>) <span class="op">+</span></span>
 <span id="cb574-18"><a href="cs-cran-network.html#cb574-18"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Published Date&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Count&quot;</span>) <span class="op">+</span></span>
 <span id="cb574-19"><a href="cs-cran-network.html#cb574-19"></a><span class="st">  </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
-<p><img src="cs-cran-network_files/figure-html/unnamed-chunk-47-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<div class="figure" style="text-align: center"><span id="fig:pdb-update-history"></span>
+<img src="cs-cran-network_files/figure-html/pdb-update-history-1.png" alt="R 包更新历史" width="70%" />
+<p class="caption">
+图 11.3: R 包更新历史
+</p>
+</div>
 <p>当日发布的R包，不论是新增还是更新之前发布的R包都视为最新版，当日之前的都是旧版本，它们可能存在已经修复的 BUG！这句子好奇怪是吧，因为很多 R 包要么托管在 Github 上，要么托管在 <a href="https://r-forge.r-project.org/">R-Forge</a> 上开发，而 CRAN 上的版本除了发布日外，一般来讲都会落后。如图所示待更新的 R 包在日期上的分布，有的已经10来年没有更新了，最老的 R 包可以追溯到 2006-03-15，它是 coxrobust！！</p>
 </div>
 <div id="Package-Licenses" class="section level2">
@@ -1116,7 +1126,12 @@ R 开源还体现在许可证信息，顺便谈谈美国和中国技术封锁，
 <span id="cb575-16"><a href="cs-cran-network.html#cb575-16"></a><span class="kw">segments</span>(<span class="dt">x0 =</span> <span class="dv">1</span>, <span class="dt">y0 =</span> <span class="kw">seq</span>(<span class="kw">length</span>(license_pdb)), </span>
 <span id="cb575-17"><a href="cs-cran-network.html#cb575-17"></a>         <span class="dt">x1 =</span> license_pdb, <span class="dt">y1 =</span> <span class="kw">seq</span>(<span class="kw">length</span>(license_pdb)), </span>
 <span id="cb575-18"><a href="cs-cran-network.html#cb575-18"></a>         <span class="dt">col =</span> <span class="st">&quot;lightblue&quot;</span>, <span class="dt">lwd =</span> <span class="dv">4</span>)</span></code></pre></div>
-<p><img src="cs-cran-network_files/figure-html/unnamed-chunk-49-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<div class="figure" style="text-align: center"><span id="fig:license-cran"></span>
+<img src="cs-cran-network_files/figure-html/license-cran-1.png" alt="CRAN 上采用的发布协议" width="70%" />
+<p class="caption">
+图 11.4: CRAN 上采用的发布协议
+</p>
+</div>
 <div class="sourceCode" id="cb576"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb576-1"><a href="cs-cran-network.html#cb576-1"></a>rforge_pdb &lt;-<span class="st"> </span><span class="kw">available.packages</span>(<span class="dt">repos =</span> <span class="st">&quot;http://R-Forge.R-project.org&quot;</span>)</span>
 <span id="cb576-2"><a href="cs-cran-network.html#cb576-2"></a>license_rforge_pdb &lt;-<span class="st"> </span><span class="kw">head</span>(<span class="kw">sort</span>(<span class="kw">table</span>(rforge_pdb[, <span class="st">&quot;License&quot;</span>]), <span class="dt">decreasing =</span> <span class="ot">TRUE</span>), <span class="dv">20</span>)</span>
 <span id="cb576-3"><a href="cs-cran-network.html#cb576-3"></a><span class="kw">par</span>(<span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">12</span>, <span class="fl">0.5</span>, <span class="dv">0</span>))</span>
@@ -1137,7 +1152,12 @@ R 开源还体现在许可证信息，顺便谈谈美国和中国技术封锁，
 <span id="cb576-18"><a href="cs-cran-network.html#cb576-18"></a><span class="kw">segments</span>(<span class="dt">x0 =</span> <span class="dv">1</span>, <span class="dt">y0 =</span> <span class="kw">seq</span>(<span class="kw">length</span>(license_rforge_pdb)), </span>
 <span id="cb576-19"><a href="cs-cran-network.html#cb576-19"></a>         <span class="dt">x1 =</span> license_rforge_pdb, <span class="dt">y1 =</span> <span class="kw">seq</span>(<span class="kw">length</span>(license_rforge_pdb)), </span>
 <span id="cb576-20"><a href="cs-cran-network.html#cb576-20"></a>         <span class="dt">lwd =</span> <span class="dv">4</span>, <span class="dt">col =</span> <span class="st">&quot;lightblue&quot;</span>)</span></code></pre></div>
-<p><img src="cs-cran-network_files/figure-html/unnamed-chunk-50-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<div class="figure" style="text-align: center"><span id="fig:license-rforge"></span>
+<img src="cs-cran-network_files/figure-html/license-rforge-1.png" alt="R-Forge 开发者采用的发布协议" width="70%" />
+<p class="caption">
+图 11.5: R-Forge 开发者采用的发布协议
+</p>
+</div>
 <blockquote>
 <p>改进的方向是含义相同的进行合并，这需要研究一下各个许可证，然后使用对比型条形图合并上面两个图</p>
 </blockquote>
