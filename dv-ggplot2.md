@@ -1159,14 +1159,14 @@ ggplot(diamonds, aes(x = color, y = price, color = color)) +
 
 \begin{figure}[!htb]
 
-{\centering \includegraphics[width=0.7\linewidth]{dv-ggplot2_files/figure-latex/unnamed-chunk-34-1} 
+{\centering \includegraphics[width=0.7\linewidth]{dv-ggplot2_files/figure-latex/boxplot-facet-cut-clarity-1} 
 
 }
 
-\caption{箱线图}(\#fig:unnamed-chunk-34)
+\caption{箱线图}(\#fig:boxplot-facet-cut-clarity)
 \end{figure}
 
-所以这样更好
+所以这样更好，先按纯净度分面，再对比不同的颜色，钻石价格的差异
 
 
 ```r
@@ -1175,11 +1175,16 @@ ggplot(diamonds, aes(x = color, y = price, color = color)) +
   facet_grid(~clarity)
 ```
 
+\begin{figure}[!htb]
 
+{\centering \includegraphics[width=0.7\linewidth]{dv-ggplot2_files/figure-latex/boxplot-facet-clarity-1} 
 
-\begin{center}\includegraphics[width=0.7\linewidth]{dv-ggplot2_files/figure-latex/unnamed-chunk-35-1} \end{center}
+}
 
-最好只比较一个维度
+\caption{钻石按纯净度分面}(\#fig:boxplot-facet-clarity)
+\end{figure}
+
+最好只比较一个维度，不同颜色钻石的价格对比
 
 
 ```r
@@ -1187,9 +1192,14 @@ ggplot(diamonds, aes(x = color, y = price, color = color)) +
   geom_boxplot()
 ```
 
+\begin{figure}[!htb]
 
+{\centering \includegraphics[width=0.7\linewidth]{dv-ggplot2_files/figure-latex/boxplot-color-1} 
 
-\begin{center}\includegraphics[width=0.7\linewidth]{dv-ggplot2_files/figure-latex/unnamed-chunk-36-1} \end{center}
+}
+
+\caption{不同颜色钻石的价格比较}(\#fig:boxplot-color)
+\end{figure}
 
 ### 密度图 {#ggplot2-ridge}
 
@@ -1209,11 +1219,11 @@ ggplot(mpg, aes(cty)) +
 
 \begin{figure}[!htb]
 
-{\centering \includegraphics[width=0.7\linewidth]{dv-ggplot2_files/figure-latex/unnamed-chunk-37-1} 
+{\centering \includegraphics[width=0.7\linewidth]{dv-ggplot2_files/figure-latex/mpg-cyl-density-1} 
 
 }
 
-\caption{按汽缸数分组的城市里程}(\#fig:unnamed-chunk-37)
+\caption{按汽缸数分组的城市里程}(\#fig:mpg-cyl-density)
 \end{figure}
 
 添加透明度，解决遮挡
@@ -1261,11 +1271,11 @@ ggplot(diamonds, aes(carat, stat(count), fill = cut)) +
 
 \begin{figure}[!htb]
 
-{\centering \includegraphics[width=0.7\linewidth]{dv-ggplot2_files/figure-latex/unnamed-chunk-38-1} 
+{\centering \includegraphics[width=0.7\linewidth]{dv-ggplot2_files/figure-latex/unnamed-chunk-34-1} 
 
 }
 
-\caption{条件密度估计图}(\#fig:unnamed-chunk-38)
+\caption{条件密度估计图}(\#fig:unnamed-chunk-34)
 \end{figure}
 
 
@@ -1280,7 +1290,7 @@ ggplot(diamonds) +
 
 
 
-\begin{center}\includegraphics[width=0.7\linewidth]{dv-ggplot2_files/figure-latex/unnamed-chunk-39-1} \end{center}
+\begin{center}\includegraphics[width=0.7\linewidth]{dv-ggplot2_files/figure-latex/unnamed-chunk-35-1} \end{center}
 
 二维的密度图又是一种延伸
 
@@ -1293,7 +1303,7 @@ ggplot(diamonds, aes(x = carat, y = price)) +
 
 
 
-\begin{center}\includegraphics[width=0.7\linewidth]{dv-ggplot2_files/figure-latex/unnamed-chunk-40-1} \end{center}
+\begin{center}\includegraphics[width=0.7\linewidth]{dv-ggplot2_files/figure-latex/unnamed-chunk-36-1} \end{center}
 
 `stat` 函数，特别是 nlevel 参数，在密度曲线之间填充我们又可以得到热力图
 
@@ -1306,7 +1316,7 @@ ggplot(diamonds, aes(x = carat, y = price)) +
 
 
 
-\begin{center}\includegraphics[width=0.7\linewidth]{dv-ggplot2_files/figure-latex/unnamed-chunk-41-1} \end{center}
+\begin{center}\includegraphics[width=0.7\linewidth]{dv-ggplot2_files/figure-latex/unnamed-chunk-37-1} \end{center}
 
 `gemo_hex` 也是二维密度图的一种变体，特别适合数据量比较大的情形
 
@@ -1318,7 +1328,7 @@ ggplot(diamonds, aes(x = carat, y = price)) + geom_hex() +
 
 
 
-\begin{center}\includegraphics[width=0.7\linewidth]{dv-ggplot2_files/figure-latex/unnamed-chunk-42-1} \end{center}
+\begin{center}\includegraphics[width=0.7\linewidth]{dv-ggplot2_files/figure-latex/unnamed-chunk-38-1} \end{center}
 
 ### 玫瑰图 {#ggplot2-rose}
 
@@ -1378,7 +1388,7 @@ p + geom_bar(position = "fill") +
 
 
 
-\begin{center}\includegraphics[width=0.7\linewidth]{dv-ggplot2_files/figure-latex/unnamed-chunk-43-1} \end{center}
+\begin{center}\includegraphics[width=0.7\linewidth]{dv-ggplot2_files/figure-latex/unnamed-chunk-39-1} \end{center}
 
 
 [^nightingale-rose]: https://mbostock.github.io/protovis/ex/crimea-rose-full.html
@@ -1422,8 +1432,8 @@ xfun::session_info(
 #>   grid_3.6.1         gtable_0.3.0       hexbin_1.27.3     
 #>   labeling_0.3       lattice_0.20.38    lazyeval_0.2.2    
 #>   magrittr_1.5       MASS_7.3.51.4      Matrix_1.2.17     
-#>   methods_3.6.1      mgcv_1.8-28        munsell_0.5.0     
-#>   nlme_3.1-140       pillar_1.4.2       pkgconfig_2.0.2   
+#>   methods_3.6.1      mgcv_1.8.28        munsell_0.5.0     
+#>   nlme_3.1.140       pillar_1.4.2       pkgconfig_2.0.2   
 #>   plyr_1.8.4         R6_2.4.0           RColorBrewer_1.1.2
 #>   Rcpp_1.0.2         reshape2_1.4.3     rlang_0.4.0       
 #>   scales_1.0.0       splines_3.6.1      stats_3.6.1       
