@@ -584,23 +584,23 @@ ggplot(sub_diamonds, aes(x = color, y = price, color = color)) +
 
 箱线图此时不宜分的过细
 
-```{r,fig.cap="箱线图"}
+```{r boxplot-facet-cut-clarity,fig.cap="箱线图",fig.asp=1}
 ggplot(diamonds, aes(x = color, y = price, color = color)) +
   geom_boxplot() +
   facet_grid(cut ~ clarity)
 ```
 
-所以这样更好
+所以这样更好，先按纯净度分面，再对比不同的颜色，钻石价格的差异
 
-```{r}
+```{r boxplot-facet-clarity,fig.cap="钻石按纯净度分面",fig.asp=1}
 ggplot(diamonds, aes(x = color, y = price, color = color)) +
   geom_boxplot() +
   facet_grid(~clarity)
 ```
 
-最好只比较一个维度
+最好只比较一个维度，不同颜色钻石的价格对比
 
-```{r}
+```{r boxplot-color,fig.cap="不同颜色钻石的价格比较"}
 ggplot(diamonds, aes(x = color, y = price, color = color)) +
   geom_boxplot()
 ```
@@ -608,7 +608,7 @@ ggplot(diamonds, aes(x = color, y = price, color = color)) +
 ### 密度图 {#ggplot2-ridge}
 
 
-```{r,fig.cap="按汽缸数分组的城市里程"}
+```{r mpg-cyl-density,fig.cap="按汽缸数分组的城市里程"}
 ggplot(mpg, aes(cty)) +
   geom_density(aes(fill = factor(cyl)), alpha = 0.8) +
   labs(

@@ -152,8 +152,11 @@ RUN apt-get install -y --no-install-recommends \
   graphviz \
   file \
   && install2.r --error \
-     BiocManager \
-     pracma \
+    BiocManager \
+    pracma \
+    rms \
+    car \
+    mlr3 \
   && Rscript -e "BiocManager::install(c('Rgraphviz','graph'), update = FALSE, ask = FALSE)" \
   && install2.r --error --repos https://inla.r-inla-download.org/R/testing/ --deps TRUE \
     INLA \
