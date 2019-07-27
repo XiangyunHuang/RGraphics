@@ -44,7 +44,7 @@ library(fs)
 
 * `file.show(..., header = rep("", nfiles), title = "R Information", delete.file = FALSE, pager = getOption("pager"),encoding = "")` 
 
-   打开文件内容，`file.show` 会在R终端中新开一个窗口显示文件，如图\@ref(fig:show-file)所示
+   打开文件内容，`file.show` 会在R终端中新开一个窗口显示文件
 
     ```{r}
     rinternals <- file.path(R.home("include"), "Rinternals.h")

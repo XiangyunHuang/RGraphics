@@ -642,9 +642,12 @@ Hmisc 包的 labcurve 函数可以在曲线上放置名称，而不是遥远的�
 
 边空分为内边空和外边空
 
-```{r mai-oma,echo=FALSE,fig.cap="内边空和外边空",out.width="35%",fig.align='center',fig.ncol=2,fig.width=3}
-knitr::include_graphics(path = system.file("help/figures/mai.png", package = "graphics"))
-knitr::include_graphics(path = system.file("help/figures/oma.png", package = "graphics"))
+```{r par-mai-oma,echo=FALSE,fig.cap="边空",fig.subcap=c("内边空","外边空"),out.width="33%"}
+knitr::include_graphics(path = paste(
+  system.file("help/figures", package = "graphics"),
+  c("mai.png", "omai.png"),
+  sep = "/"
+))
 ```
 
 
