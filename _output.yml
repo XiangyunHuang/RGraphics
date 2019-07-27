@@ -27,3 +27,4 @@ bookdown::pdf_book:
   pandoc_args: ["--top-level-division=chapter", "--lua-filter=sidebar.lua"]
   quote_footer: ["\\begin{flushright}", "\\end{flushright}"]
   toc_depth: 3
+  dev: "cairo_pdf"
