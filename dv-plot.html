@@ -319,7 +319,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="8.3" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-session-info"><i class="fa fa-check"></i><b>8.3</b> 运行环境</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html"><i class="fa fa-check"></i><b>9</b> 时空数据可视化</a><ul>
+<li class="chapter" data-level="9" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html"><i class="fa fa-check"></i><b>9</b> 时空可视化</a><ul>
 <li class="chapter" data-level="9.1" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#map"><i class="fa fa-check"></i><b>9.1</b> 地图</a><ul>
 <li class="chapter" data-level="9.1.1" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#project-orientation"><i class="fa fa-check"></i><b>9.1.1</b> 投影和观察方位</a></li>
 <li class="chapter" data-level="9.1.2" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#USA-crime-rates"><i class="fa fa-check"></i><b>9.1.2</b> 美国各州犯罪率</a></li>
@@ -767,7 +767,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb270-22"><a href="dv-plot.html#cb270-22"></a><span class="kw">par</span>(op)</span>
 <span id="cb270-23"><a href="dv-plot.html#cb270-23"></a><span class="co"># dev.off()</span></span></code></pre></div>
 <p><img src="dv-plot_files/figure-html/unnamed-chunk-16-1.png" width="70%" style="display: block; margin: auto;" /></p>
-<p>旋转坐标抽标签的例子来自手册《R FAQ》的第7章第27个问题 <span class="citation">(<span class="citeproc-not-found" data-reference-id="R-FAQ"><strong>???</strong></span>)</span>，在基础图形中，旋转坐标轴标签需要 <code>text()</code> 而不是 <code>mtext()</code>，因为后者不支持<code>par("srt")</code></p>
+<p>旋转坐标抽标签的例子来自手册《R FAQ》的第7章第27个问题 <span class="citation">(Hornik <a href="#ref-R-FAQ" role="doc-biblioref">2018</a>)</span>，在基础图形中，旋转坐标轴标签需要 <code>text()</code> 而不是 <code>mtext()</code>，因为后者不支持<code>par("srt")</code></p>
 <div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="dv-plot.html#cb271-1"></a><span class="co">## Increase bottom margin to make room for rotated labels</span></span>
 <span id="cb271-2"><a href="dv-plot.html#cb271-2"></a><span class="kw">par</span>(<span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">4</span>, <span class="fl">.5</span>, <span class="dv">2</span>) <span class="op">+</span><span class="st"> </span><span class="fl">0.1</span>)</span>
 <span id="cb271-3"><a href="dv-plot.html#cb271-3"></a><span class="co">## Create plot with no x axis and no x axis label</span></span>
@@ -789,7 +789,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 图 7.13: 旋转坐标轴标签
 </p>
 </div>
-<p><code>srt = 45</code> 表示文本旋转角度， <code>xpd = TRUE</code> 允许文本越出绘图区域，<code>adj = 1</code> to place the right end of text at the tick marks；You can adjust the value of the 0.5 offset as required to move the axis labels up or down relative to the x axis. 详细地参考 <span class="citation">(<span class="citeproc-not-found" data-reference-id="Paul_2003_Integrating"><strong>???</strong></span>)</span></p>
+<p><code>srt = 45</code> 表示文本旋转角度， <code>xpd = TRUE</code> 允许文本越出绘图区域，<code>adj = 1</code> to place the right end of text at the tick marks；You can adjust the value of the 0.5 offset as required to move the axis labels up or down relative to the x axis. 详细地参考 <span class="citation">(Murrell <a href="#ref-Paul_2003_Integrating" role="doc-biblioref">2003</a>)</span></p>
 </div>
 <div id="base-tick" class="section level3">
 <h3><span class="header-section-number">7.1.5</span> 刻度线</h3>
@@ -826,7 +826,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="base-annotation" class="section level3">
 <h3><span class="header-section-number">7.1.7</span> 注释</h3>
-<p>数学符号注释，图<a href="dv-plot.html#fig:math-annotation">7.15</a> 自定义坐标轴 <span class="citation">(<span class="citeproc-not-found" data-reference-id="Paul_2000_Approach"><strong>???</strong></span>)</span>。</p>
+<p>数学符号注释，图<a href="dv-plot.html#fig:math-annotation">7.15</a> 自定义坐标轴 <span class="citation">(Murrell and Ihaka <a href="#ref-Paul_2000_Approach" role="doc-biblioref">2000</a>)</span>。</p>
 <div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="dv-plot.html#cb274-1"></a><span class="co"># 自定义坐标轴</span></span>
 <span id="cb274-2"><a href="dv-plot.html#cb274-2"></a><span class="kw">plot</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="fl">1e6</span>), <span class="kw">c</span>(<span class="op">-</span>pi, pi),</span>
 <span id="cb274-3"><a href="dv-plot.html#cb274-3"></a>  <span class="dt">type =</span> <span class="st">&quot;n&quot;</span>,</span>
@@ -1672,19 +1672,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="plot-density" class="section level3">
 <h3><span class="header-section-number">7.2.3</span> 密度图</h3>
-<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="dv-plot.html#cb309-1"></a><span class="kw">library</span>(MASS)</span>
-<span id="cb309-2"><a href="dv-plot.html#cb309-2"></a><span class="kw">data</span>(galaxies)</span>
-<span id="cb309-3"><a href="dv-plot.html#cb309-3"></a>galaxies &lt;-<span class="st"> </span>galaxies <span class="op">/</span><span class="st"> </span><span class="dv">1000</span></span>
-<span id="cb309-4"><a href="dv-plot.html#cb309-4"></a><span class="co"># Bandwidth Selection by Pilot Estimation of Derivatives</span></span>
-<span id="cb309-5"><a href="dv-plot.html#cb309-5"></a><span class="kw">c</span>(<span class="kw">width.SJ</span>(galaxies, <span class="dt">method =</span> <span class="st">&quot;dpi&quot;</span>), <span class="kw">width.SJ</span>(galaxies))</span>
-<span id="cb309-6"><a href="dv-plot.html#cb309-6"></a><span class="co">#&gt; [1] 3.256151 2.566423</span></span>
-<span id="cb309-7"><a href="dv-plot.html#cb309-7"></a><span class="kw">plot</span>(</span>
-<span id="cb309-8"><a href="dv-plot.html#cb309-8"></a>  <span class="dt">x =</span> <span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">40</span>), <span class="dt">y =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">0.2</span>), <span class="dt">type =</span> <span class="st">&quot;n&quot;</span>, <span class="dt">bty =</span> <span class="st">&quot;l&quot;</span>,</span>
-<span id="cb309-9"><a href="dv-plot.html#cb309-9"></a>  <span class="dt">xlab =</span> <span class="st">&quot;velocity of galaxy (km/s)&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;density&quot;</span></span>
-<span id="cb309-10"><a href="dv-plot.html#cb309-10"></a>)</span>
-<span id="cb309-11"><a href="dv-plot.html#cb309-11"></a><span class="kw">rug</span>(galaxies)</span>
-<span id="cb309-12"><a href="dv-plot.html#cb309-12"></a><span class="kw">lines</span>(<span class="kw">density</span>(galaxies, <span class="dt">width =</span> <span class="fl">3.25</span>, <span class="dt">n =</span> <span class="dv">200</span>), <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">lty =</span> <span class="dv">1</span>)</span>
-<span id="cb309-13"><a href="dv-plot.html#cb309-13"></a><span class="kw">lines</span>(<span class="kw">density</span>(galaxies, <span class="dt">width =</span> <span class="fl">2.56</span>, <span class="dt">n =</span> <span class="dv">200</span>), <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">lty =</span> <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="dv-plot.html#cb309-1"></a><span class="kw">data</span>(galaxies, <span class="dt">package =</span> <span class="st">&quot;MASS&quot;</span>)</span>
+<span id="cb309-2"><a href="dv-plot.html#cb309-2"></a>galaxies &lt;-<span class="st"> </span>galaxies <span class="op">/</span><span class="st"> </span><span class="dv">1000</span></span>
+<span id="cb309-3"><a href="dv-plot.html#cb309-3"></a><span class="co"># Bandwidth Selection by Pilot Estimation of Derivatives</span></span>
+<span id="cb309-4"><a href="dv-plot.html#cb309-4"></a><span class="kw">c</span>(MASS<span class="op">::</span><span class="kw">width.SJ</span>(galaxies, <span class="dt">method =</span> <span class="st">&quot;dpi&quot;</span>), MASS<span class="op">::</span><span class="kw">width.SJ</span>(galaxies))</span>
+<span id="cb309-5"><a href="dv-plot.html#cb309-5"></a><span class="co">#&gt; [1] 3.256151 2.566423</span></span>
+<span id="cb309-6"><a href="dv-plot.html#cb309-6"></a><span class="kw">plot</span>(</span>
+<span id="cb309-7"><a href="dv-plot.html#cb309-7"></a>  <span class="dt">x =</span> <span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">40</span>), <span class="dt">y =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">0.2</span>), <span class="dt">type =</span> <span class="st">&quot;n&quot;</span>, <span class="dt">bty =</span> <span class="st">&quot;l&quot;</span>,</span>
+<span id="cb309-8"><a href="dv-plot.html#cb309-8"></a>  <span class="dt">xlab =</span> <span class="st">&quot;velocity of galaxy (km/s)&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;density&quot;</span></span>
+<span id="cb309-9"><a href="dv-plot.html#cb309-9"></a>)</span>
+<span id="cb309-10"><a href="dv-plot.html#cb309-10"></a><span class="kw">rug</span>(galaxies)</span>
+<span id="cb309-11"><a href="dv-plot.html#cb309-11"></a><span class="kw">lines</span>(<span class="kw">density</span>(galaxies, <span class="dt">width =</span> <span class="fl">3.25</span>, <span class="dt">n =</span> <span class="dv">200</span>), <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">lty =</span> <span class="dv">1</span>)</span>
+<span id="cb309-12"><a href="dv-plot.html#cb309-12"></a><span class="kw">lines</span>(<span class="kw">density</span>(galaxies, <span class="dt">width =</span> <span class="fl">2.56</span>, <span class="dt">n =</span> <span class="dv">200</span>), <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">lty =</span> <span class="dv">3</span>)</span></code></pre></div>
 <p><img src="dv-plot_files/figure-html/unnamed-chunk-47-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="dv-plot.html#cb310-1"></a>x &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dt">from =</span> <span class="dv">110</span>, <span class="dt">to =</span> <span class="dv">174</span>, <span class="dt">by =</span> <span class="fl">0.5</span>)</span>
 <span id="cb310-2"><a href="dv-plot.html#cb310-2"></a>y1 &lt;-<span class="st"> </span><span class="kw">dnorm</span>(x, <span class="dt">mean =</span> <span class="dv">145</span>, <span class="dt">sd =</span> <span class="dv">9</span>)</span>
@@ -1854,25 +1853,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 图 7.43: 分类散点图
 </p>
 </div>
+<p>iris 数据</p>
 <div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb322-1"><a href="dv-plot.html#cb322-1"></a><span class="kw">plot</span>(Sepal.Length <span class="op">~</span><span class="st"> </span>Sepal.Width, <span class="dt">data =</span> iris, <span class="dt">col =</span> Species, <span class="dt">pch =</span> <span class="dv">16</span>)</span>
 <span id="cb322-2"><a href="dv-plot.html#cb322-2"></a><span class="kw">legend</span>(<span class="st">&quot;topright&quot;</span>,</span>
 <span id="cb322-3"><a href="dv-plot.html#cb322-3"></a>  <span class="dt">legend =</span> <span class="kw">unique</span>(iris<span class="op">$</span>Species), <span class="dt">box.col =</span> <span class="st">&quot;gray&quot;</span>,</span>
 <span id="cb322-4"><a href="dv-plot.html#cb322-4"></a>  <span class="dt">pch =</span> <span class="dv">16</span>, <span class="dt">col =</span> <span class="kw">unique</span>(iris<span class="op">$</span>Species)</span>
 <span id="cb322-5"><a href="dv-plot.html#cb322-5"></a>)</span>
 <span id="cb322-6"><a href="dv-plot.html#cb322-6"></a><span class="kw">box</span>(<span class="dt">col =</span> <span class="st">&quot;gray&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-57"></span>
-<img src="dv-plot_files/figure-html/unnamed-chunk-57-1.png" alt="分类散点图" width="70%" />
+<div class="figure" style="text-align: center"><span id="fig:iris-scatter"></span>
+<img src="dv-plot_files/figure-html/iris-scatter-1.png" alt="分类散点图" width="70%" />
 <p class="caption">
 图 7.44: 分类散点图
 </p>
 </div>
 <p>分组散点图和平滑</p>
-<div class="sourceCode" id="cb323"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb323-1"><a href="dv-plot.html#cb323-1"></a><span class="kw">library</span>(car)</span>
-<span id="cb323-2"><a href="dv-plot.html#cb323-2"></a><span class="kw">scatterplot</span>(Sepal.Length <span class="op">~</span><span class="st"> </span>Sepal.Width,</span>
-<span id="cb323-3"><a href="dv-plot.html#cb323-3"></a>  <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&quot;black&quot;</span>, <span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>), <span class="dt">pch =</span> <span class="kw">c</span>(<span class="dv">16</span>, <span class="dv">16</span>, <span class="dv">16</span>),</span>
-<span id="cb323-4"><a href="dv-plot.html#cb323-4"></a>  <span class="dt">smooth =</span> <span class="ot">TRUE</span>, <span class="dt">boxplots =</span> <span class="st">&quot;xy&quot;</span>, <span class="dt">groups =</span> iris<span class="op">$</span>Species,</span>
-<span id="cb323-5"><a href="dv-plot.html#cb323-5"></a>  <span class="dt">xlab =</span> <span class="st">&quot;Sepal.Width&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Sepal.Length&quot;</span>, <span class="dt">data =</span> iris</span>
-<span id="cb323-6"><a href="dv-plot.html#cb323-6"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb323"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb323-1"><a href="dv-plot.html#cb323-1"></a><span class="kw">library</span>(carData)</span>
+<span id="cb323-2"><a href="dv-plot.html#cb323-2"></a><span class="kw">library</span>(car)</span>
+<span id="cb323-3"><a href="dv-plot.html#cb323-3"></a><span class="kw">scatterplot</span>(Sepal.Length <span class="op">~</span><span class="st"> </span>Sepal.Width,</span>
+<span id="cb323-4"><a href="dv-plot.html#cb323-4"></a>  <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&quot;black&quot;</span>, <span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>), <span class="dt">pch =</span> <span class="kw">c</span>(<span class="dv">16</span>, <span class="dv">16</span>, <span class="dv">16</span>),</span>
+<span id="cb323-5"><a href="dv-plot.html#cb323-5"></a>  <span class="dt">smooth =</span> <span class="ot">TRUE</span>, <span class="dt">boxplots =</span> <span class="st">&quot;xy&quot;</span>, <span class="dt">groups =</span> iris<span class="op">$</span>Species,</span>
+<span id="cb323-6"><a href="dv-plot.html#cb323-6"></a>  <span class="dt">xlab =</span> <span class="st">&quot;Sepal.Width&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Sepal.Length&quot;</span>, <span class="dt">data =</span> iris</span>
+<span id="cb323-7"><a href="dv-plot.html#cb323-7"></a>)</span></code></pre></div>
 <p>有时为了实现特定的目的，需要高亮其中某些点，按类别或者因子变量分组绘制散点图，这里继续采用 <code>stripchart</code> 函数绘制二维散点图<a href="dv-plot.html#fig:scatter-iris">7.45</a>， 由左图可知，函数 <code>stripchart</code> 提供的参数 <code>pch</code> 不接受向量，实际只是取了前三个值 16 16 17 对应于 Species 的三类，关键是高亮的分界点是有区分意义的</p>
 <div class="sourceCode" id="cb324"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb324-1"><a href="dv-plot.html#cb324-1"></a><span class="kw">data</span>(<span class="st">&quot;iris&quot;</span>)</span>
 <span id="cb324-2"><a href="dv-plot.html#cb324-2"></a>pch &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="dv">16</span>, <span class="kw">length</span>(iris<span class="op">$</span>Petal.Length))</span>
@@ -1923,32 +1924,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb327-3"><a href="dv-plot.html#cb327-3"></a>  <span class="dt">col =</span> <span class="kw">rev</span>(<span class="kw">terrain.colors</span>(<span class="kw">nrow</span>(trees), <span class="dt">alpha =</span> <span class="fl">.5</span>))</span>
 <span id="cb327-4"><a href="dv-plot.html#cb327-4"></a>)</span>
 <span id="cb327-5"><a href="dv-plot.html#cb327-5"></a><span class="kw">box</span>(<span class="dt">col =</span> <span class="st">&quot;gray&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-60"></span>
-<img src="dv-plot_files/figure-html/unnamed-chunk-60-1.png" alt="气泡图" width="70%" />
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-59"></span>
+<img src="dv-plot_files/figure-html/unnamed-chunk-59-1.png" alt="气泡图" width="70%" />
 <p class="caption">
 图 7.47: 气泡图
 </p>
 </div>
 <p>气泡图</p>
 <div class="sourceCode" id="cb328"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb328-1"><a href="dv-plot.html#cb328-1"></a><span class="co"># 空白画布</span></span>
-<span id="cb328-2"><a href="dv-plot.html#cb328-2"></a><span class="kw">plot</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">10</span>), <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">10</span>), <span class="dt">panel.first =</span> <span class="kw">grid</span>(<span class="dv">10</span>, <span class="dv">10</span>), <span class="dt">type =</span> <span class="st">&quot;n&quot;</span>, <span class="dt">axes =</span> <span class="ot">FALSE</span>, <span class="dt">ann =</span> <span class="ot">FALSE</span>)</span>
-<span id="cb328-3"><a href="dv-plot.html#cb328-3"></a><span class="co"># 添加坐标轴</span></span>
-<span id="cb328-4"><a href="dv-plot.html#cb328-4"></a><span class="kw">axis</span>(<span class="dv">1</span>, <span class="dt">at =</span> <span class="kw">seq</span>(<span class="dv">10</span>), <span class="dt">labels =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb328-5"><a href="dv-plot.html#cb328-5"></a><span class="kw">axis</span>(<span class="dv">2</span>, <span class="dt">at =</span> <span class="kw">seq</span>(<span class="dv">10</span>), <span class="dt">labels =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb328-6"><a href="dv-plot.html#cb328-6"></a><span class="kw">par</span>(<span class="dt">new =</span> <span class="ot">TRUE</span>) <span class="co"># 在当前图形上添加图形</span></span>
-<span id="cb328-7"><a href="dv-plot.html#cb328-7"></a><span class="co"># axes 坐标轴上的刻度 &quot;xaxt&quot; or &quot;yaxt&quot;  ann 坐标轴和标题的标签</span></span>
-<span id="cb328-8"><a href="dv-plot.html#cb328-8"></a><span class="kw">set.seed</span>(<span class="dv">1234</span>)</span>
-<span id="cb328-9"><a href="dv-plot.html#cb328-9"></a><span class="kw">plot</span>(<span class="kw">rnorm</span>(<span class="dv">100</span>, <span class="dv">5</span>, <span class="dv">1</span>), <span class="kw">rnorm</span>(<span class="dv">100</span>, <span class="dv">5</span>, <span class="dv">1</span>),</span>
-<span id="cb328-10"><a href="dv-plot.html#cb328-10"></a>  <span class="dt">cex =</span> <span class="kw">runif</span>(<span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">2</span>),</span>
-<span id="cb328-11"><a href="dv-plot.html#cb328-11"></a>  <span class="dt">col =</span> <span class="kw">hcl.colors</span>(<span class="dv">4</span>)[<span class="kw">rep</span>(<span class="kw">seq</span>(<span class="dv">4</span>), <span class="dv">100</span>)],</span>
-<span id="cb328-12"><a href="dv-plot.html#cb328-12"></a>  <span class="dt">bg =</span> <span class="kw">paste0</span>(<span class="st">&quot;gray&quot;</span>, <span class="kw">replicate</span>(<span class="dv">100</span>, <span class="kw">sample</span>(<span class="kw">seq</span>(<span class="dv">100</span>), <span class="dv">1</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>))),</span>
-<span id="cb328-13"><a href="dv-plot.html#cb328-13"></a>  <span class="dt">axes =</span> <span class="ot">FALSE</span>, <span class="dt">ann =</span> <span class="ot">FALSE</span>, <span class="dt">pch =</span> <span class="dv">21</span>, <span class="dt">lwd =</span> <span class="dv">2</span></span>
-<span id="cb328-14"><a href="dv-plot.html#cb328-14"></a>)</span>
-<span id="cb328-15"><a href="dv-plot.html#cb328-15"></a><span class="kw">legend</span>(<span class="st">&quot;top&quot;</span>,</span>
-<span id="cb328-16"><a href="dv-plot.html#cb328-16"></a>  <span class="dt">legend =</span> <span class="kw">paste0</span>(<span class="st">&quot;class&quot;</span>, <span class="kw">seq</span>(<span class="dv">4</span>)), <span class="dt">col =</span> <span class="kw">hcl.colors</span>(<span class="dv">4</span>),</span>
-<span id="cb328-17"><a href="dv-plot.html#cb328-17"></a>  <span class="dt">pt.lwd =</span> <span class="dv">2</span>, <span class="dt">pch =</span> <span class="dv">21</span>, <span class="dt">box.col =</span> <span class="st">&quot;gray&quot;</span>, <span class="dt">horiz =</span> <span class="ot">TRUE</span></span>
-<span id="cb328-18"><a href="dv-plot.html#cb328-18"></a>)</span></code></pre></div>
-<p><img src="dv-plot_files/figure-html/unnamed-chunk-61-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<span id="cb328-2"><a href="dv-plot.html#cb328-2"></a><span class="kw">plot</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">10</span>), <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">10</span>), <span class="dt">panel.first =</span> <span class="kw">grid</span>(<span class="dv">10</span>, <span class="dv">10</span>),</span>
+<span id="cb328-3"><a href="dv-plot.html#cb328-3"></a>     <span class="dt">type =</span> <span class="st">&quot;n&quot;</span>, <span class="dt">axes =</span> <span class="ot">FALSE</span>, <span class="dt">ann =</span> <span class="ot">FALSE</span>)</span>
+<span id="cb328-4"><a href="dv-plot.html#cb328-4"></a><span class="co"># 添加坐标轴</span></span>
+<span id="cb328-5"><a href="dv-plot.html#cb328-5"></a><span class="kw">axis</span>(<span class="dv">1</span>, <span class="dt">at =</span> <span class="kw">seq</span>(<span class="dv">10</span>), <span class="dt">labels =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb328-6"><a href="dv-plot.html#cb328-6"></a><span class="kw">axis</span>(<span class="dv">2</span>, <span class="dt">at =</span> <span class="kw">seq</span>(<span class="dv">10</span>), <span class="dt">labels =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb328-7"><a href="dv-plot.html#cb328-7"></a><span class="kw">par</span>(<span class="dt">new =</span> <span class="ot">TRUE</span>) <span class="co"># 在当前图形上添加图形</span></span>
+<span id="cb328-8"><a href="dv-plot.html#cb328-8"></a><span class="co"># axes 坐标轴上的刻度 &quot;xaxt&quot; or &quot;yaxt&quot;  ann 坐标轴和标题的标签</span></span>
+<span id="cb328-9"><a href="dv-plot.html#cb328-9"></a><span class="kw">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb328-10"><a href="dv-plot.html#cb328-10"></a><span class="kw">plot</span>(<span class="kw">rnorm</span>(<span class="dv">100</span>, <span class="dv">5</span>, <span class="dv">1</span>), <span class="kw">rnorm</span>(<span class="dv">100</span>, <span class="dv">5</span>, <span class="dv">1</span>),</span>
+<span id="cb328-11"><a href="dv-plot.html#cb328-11"></a>  <span class="dt">cex =</span> <span class="kw">runif</span>(<span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">2</span>),</span>
+<span id="cb328-12"><a href="dv-plot.html#cb328-12"></a>  <span class="dt">col =</span> <span class="kw">hcl.colors</span>(<span class="dv">4</span>)[<span class="kw">rep</span>(<span class="kw">seq</span>(<span class="dv">4</span>), <span class="dv">100</span>)],</span>
+<span id="cb328-13"><a href="dv-plot.html#cb328-13"></a>  <span class="dt">bg =</span> <span class="kw">paste0</span>(<span class="st">&quot;gray&quot;</span>, <span class="kw">replicate</span>(<span class="dv">100</span>, <span class="kw">sample</span>(<span class="kw">seq</span>(<span class="dv">100</span>), <span class="dv">1</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>))),</span>
+<span id="cb328-14"><a href="dv-plot.html#cb328-14"></a>  <span class="dt">axes =</span> <span class="ot">FALSE</span>, <span class="dt">ann =</span> <span class="ot">FALSE</span>, <span class="dt">pch =</span> <span class="dv">21</span>, <span class="dt">lwd =</span> <span class="dv">2</span></span>
+<span id="cb328-15"><a href="dv-plot.html#cb328-15"></a>)</span>
+<span id="cb328-16"><a href="dv-plot.html#cb328-16"></a><span class="kw">legend</span>(<span class="st">&quot;top&quot;</span>,</span>
+<span id="cb328-17"><a href="dv-plot.html#cb328-17"></a>  <span class="dt">legend =</span> <span class="kw">paste0</span>(<span class="st">&quot;class&quot;</span>, <span class="kw">seq</span>(<span class="dv">4</span>)), <span class="dt">col =</span> <span class="kw">hcl.colors</span>(<span class="dv">4</span>),</span>
+<span id="cb328-18"><a href="dv-plot.html#cb328-18"></a>  <span class="dt">pt.lwd =</span> <span class="dv">2</span>, <span class="dt">pch =</span> <span class="dv">21</span>, <span class="dt">box.col =</span> <span class="st">&quot;gray&quot;</span>, <span class="dt">horiz =</span> <span class="ot">TRUE</span></span>
+<span id="cb328-19"><a href="dv-plot.html#cb328-19"></a>)</span></code></pre></div>
+<p><img src="dv-plot_files/figure-html/unnamed-chunk-60-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>除了<code>par(new=TRUE)</code>设置外，有些函数本身就具有 <code>add</code> 选项</p>
 <div class="sourceCode" id="cb329"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb329-1"><a href="dv-plot.html#cb329-1"></a><span class="kw">set.seed</span>(<span class="dv">1234</span>)</span>
 <span id="cb329-2"><a href="dv-plot.html#cb329-2"></a><span class="kw">plot</span>(dist <span class="op">~</span><span class="st"> </span>speed, <span class="dt">data =</span> cars, <span class="dt">pch =</span> <span class="dv">17</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">cex =</span> <span class="dv">1</span>)</span>
@@ -1962,7 +1964,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb329-10"><a href="dv-plot.html#cb329-10"></a><span class="kw">lines</span>(stats<span class="op">::</span><span class="kw">lowess</span>(cars))</span>
 <span id="cb329-11"><a href="dv-plot.html#cb329-11"></a><span class="kw">points</span>(<span class="dv">10</span>, <span class="dv">100</span>, <span class="dt">pch =</span> <span class="dv">16</span>, <span class="dt">cex =</span> <span class="dv">3</span>, <span class="dt">col =</span> <span class="st">&quot;green&quot;</span>)</span>
 <span id="cb329-12"><a href="dv-plot.html#cb329-12"></a><span class="kw">text</span>(<span class="dv">10</span>, <span class="dv">80</span>, <span class="st">&quot;text here&quot;</span>, <span class="dt">cex =</span> <span class="dv">3</span>)</span></code></pre></div>
-<p><img src="dv-plot_files/figure-html/unnamed-chunk-62-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="dv-plot_files/figure-html/unnamed-chunk-61-1.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="base-jitter" class="section level3">
 <h3><span class="header-section-number">7.2.10</span> 抖动图</h3>
@@ -1990,11 +1992,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="plot-box" class="section level3">
 <h3><span class="header-section-number">7.2.11</span> 箱线图</h3>
-<p>boxplotdbl: Double Box Plot for Two-Axes Correlation</p>
-<p>Correlation chart of two set (x and y) of data. Using Quartiles with boxplot style. Visualize the effect of factor.</p>
-<p>复合箱线图</p>
-<p><a href="https://tomizonor.wordpress.com/2013/11/24/double-box-plot-1-2/" class="uri">https://tomizonor.wordpress.com/2013/11/24/double-box-plot-1-2/</a>
-<a href="https://tomizonor.wordpress.com/2013/03/15/double-box-plot/" class="uri">https://tomizonor.wordpress.com/2013/03/15/double-box-plot/</a></p>
+<p>boxplotdbl: Double Box Plot for Two-Axes Correlation. Correlation chart of two set (x and y) of data. Using Quartiles with boxplot style. Visualize the effect of factor.</p>
+<p><a href="https://tomizonor.wordpress.com/2013/03/15/double-box-plot/">复合箱线图</a></p>
 <div class="sourceCode" id="cb331"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb331-1"><a href="dv-plot.html#cb331-1"></a>A &lt;-<span class="st"> </span><span class="kw">c</span>(</span>
 <span id="cb331-2"><a href="dv-plot.html#cb331-2"></a>  <span class="fl">79.98</span>, <span class="fl">80.04</span>, <span class="fl">80.02</span>, <span class="fl">80.04</span>, <span class="fl">80.03</span>, <span class="fl">80.03</span>, <span class="fl">80.04</span>, <span class="fl">79.97</span>,</span>
 <span id="cb331-3"><a href="dv-plot.html#cb331-3"></a>  <span class="fl">80.05</span>, <span class="fl">80.03</span>, <span class="fl">80.02</span>, <span class="dv">80</span>, <span class="fl">80.02</span></span>
@@ -2025,7 +2024,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb333-5"><a href="dv-plot.html#cb333-5"></a>  <span class="dt">col =</span> <span class="st">&quot;pink&quot;</span>,</span>
 <span id="cb333-6"><a href="dv-plot.html#cb333-6"></a>  <span class="dt">main =</span> <span class="st">&quot;&quot;</span></span>
 <span id="cb333-7"><a href="dv-plot.html#cb333-7"></a>)</span></code></pre></div>
-<p><img src="dv-plot_files/figure-html/unnamed-chunk-63-1.png" width="70%" style="display: block; margin: auto;" /><img src="dv-plot_files/figure-html/unnamed-chunk-63-2.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="dv-plot_files/figure-html/unnamed-chunk-62-1.png" width="70%" style="display: block; margin: auto;" /><img src="dv-plot_files/figure-html/unnamed-chunk-62-2.png" width="70%" style="display: block; margin: auto;" /></p>
 <div class="sourceCode" id="cb334"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb334-1"><a href="dv-plot.html#cb334-1"></a><span class="kw">data</span>(InsectSprays)</span>
 <span id="cb334-2"><a href="dv-plot.html#cb334-2"></a><span class="kw">boxplot</span>(count <span class="op">~</span><span class="st"> </span>spray,</span>
 <span id="cb334-3"><a href="dv-plot.html#cb334-3"></a>  <span class="dt">data =</span> InsectSprays,</span>
@@ -2034,7 +2033,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb334-6"><a href="dv-plot.html#cb334-6"></a>  <span class="dt">ylab =</span> <span class="st">&quot;Count&quot;</span>,</span>
 <span id="cb334-7"><a href="dv-plot.html#cb334-7"></a>  <span class="dt">main =</span> <span class="st">&quot;&quot;</span></span>
 <span id="cb334-8"><a href="dv-plot.html#cb334-8"></a>)</span></code></pre></div>
-<p><img src="dv-plot_files/figure-html/unnamed-chunk-64-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="dv-plot_files/figure-html/unnamed-chunk-63-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>水平放置</p>
 <div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb335-1"><a href="dv-plot.html#cb335-1"></a><span class="kw">boxplot</span>(count <span class="op">~</span><span class="st"> </span>spray,</span>
 <span id="cb335-2"><a href="dv-plot.html#cb335-2"></a>  <span class="dt">data =</span> InsectSprays,</span>
@@ -2045,7 +2044,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb335-7"><a href="dv-plot.html#cb335-7"></a>  <span class="dt">ylab =</span> <span class="st">&quot;Spray&quot;</span>,</span>
 <span id="cb335-8"><a href="dv-plot.html#cb335-8"></a>  <span class="dt">main =</span> <span class="st">&quot;&quot;</span></span>
 <span id="cb335-9"><a href="dv-plot.html#cb335-9"></a>)</span></code></pre></div>
-<p><img src="dv-plot_files/figure-html/unnamed-chunk-65-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="dv-plot_files/figure-html/unnamed-chunk-64-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Notched Boxplots</p>
 <div class="sourceCode" id="cb336"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb336-1"><a href="dv-plot.html#cb336-1"></a><span class="kw">set.seed</span>(<span class="dv">1234</span>)</span>
 <span id="cb336-2"><a href="dv-plot.html#cb336-2"></a>n &lt;-<span class="st"> </span><span class="dv">8</span></span>
@@ -2056,7 +2055,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb336-7"><a href="dv-plot.html#cb336-7"></a>  <span class="dt">main =</span> <span class="st">&quot;Notched Boxplots&quot;</span>, <span class="dt">xlab =</span> <span class="st">&quot;Group&quot;</span>,</span>
 <span id="cb336-8"><a href="dv-plot.html#cb336-8"></a>  <span class="dt">font.main =</span> <span class="dv">4</span>, <span class="dt">font.lab =</span> <span class="dv">1</span></span>
 <span id="cb336-9"><a href="dv-plot.html#cb336-9"></a>)</span></code></pre></div>
-<p><img src="dv-plot_files/figure-html/unnamed-chunk-66-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="dv-plot_files/figure-html/unnamed-chunk-65-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>真实的情况是这样的</p>
 <div class="sourceCode" id="cb337"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb337-1"><a href="dv-plot.html#cb337-1"></a>cumcm2011A &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="dt">file =</span> <span class="st">&quot;cumcm2011A.RDS&quot;</span>)</span>
 <span id="cb337-2"><a href="dv-plot.html#cb337-2"></a><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">4</span>), <span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">1</span>))</span>
@@ -2083,7 +2082,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb337-23"><a href="dv-plot.html#cb337-23"></a></span>
 <span id="cb337-24"><a href="dv-plot.html#cb337-24"></a><span class="kw">with</span>(cumcm2011A, <span class="kw">boxplot</span>(Zn, <span class="dt">xlab =</span> <span class="st">&quot;Zn&quot;</span>))</span>
 <span id="cb337-25"><a href="dv-plot.html#cb337-25"></a><span class="kw">abline</span>(<span class="dt">h =</span> <span class="kw">c</span>(<span class="dv">41</span>, <span class="dv">69</span>, <span class="dv">97</span>), <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&quot;green&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;red&quot;</span>), <span class="dt">lty =</span> <span class="dv">2</span>)</span></code></pre></div>
-<p><img src="dv-plot_files/figure-html/unnamed-chunk-67-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="dv-plot_files/figure-html/unnamed-chunk-66-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <div class="sourceCode" id="cb338"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb338-1"><a href="dv-plot.html#cb338-1"></a><span class="kw">boxplot</span>(As <span class="op">~</span><span class="st"> </span>area,</span>
 <span id="cb338-2"><a href="dv-plot.html#cb338-2"></a>  <span class="dt">data =</span> cumcm2011A,</span>
 <span id="cb338-3"><a href="dv-plot.html#cb338-3"></a>  <span class="dt">col =</span> <span class="kw">hcl.colors</span>(<span class="dv">5</span>)</span>
@@ -2092,7 +2091,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb338-6"><a href="dv-plot.html#cb338-6"></a>  <span class="dt">h =</span> <span class="kw">c</span>(<span class="fl">1.8</span>, <span class="fl">3.6</span>, <span class="fl">5.4</span>), <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&quot;green&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;red&quot;</span>),</span>
 <span id="cb338-7"><a href="dv-plot.html#cb338-7"></a>  <span class="dt">lty =</span> <span class="dv">2</span>, <span class="dt">lwd =</span> <span class="dv">2</span></span>
 <span id="cb338-8"><a href="dv-plot.html#cb338-8"></a>)</span></code></pre></div>
-<p><img src="dv-plot_files/figure-html/unnamed-chunk-68-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="dv-plot_files/figure-html/unnamed-chunk-67-1.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="error-bars" class="section level3">
 <h3><span class="header-section-number">7.2.12</span> 残差图</h3>
@@ -2110,8 +2109,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb339-11"><a href="dv-plot.html#cb339-11"></a>  <span class="dt">length =</span> <span class="fl">0.05</span>, <span class="dt">angle =</span> <span class="dv">90</span>, <span class="dt">code =</span> <span class="dv">3</span></span>
 <span id="cb339-12"><a href="dv-plot.html#cb339-12"></a>)</span>
 <span id="cb339-13"><a href="dv-plot.html#cb339-13"></a><span class="kw">box</span>()</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-69"></span>
-<img src="dv-plot_files/figure-html/unnamed-chunk-69-1.png" alt="带标准差的均值散点图" width="70%" />
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-68"></span>
+<img src="dv-plot_files/figure-html/unnamed-chunk-68-1.png" alt="带标准差的均值散点图" width="70%" />
 <p class="caption">
 图 7.50: 带标准差的均值散点图
 </p>
@@ -2130,11 +2129,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">7.2.15</span> 折线图</h3>
 <p>函数曲线，样条曲线，核密度曲线，平行坐标图</p>
 <ul>
-<li>折线图
-<ul>
+<li>折线图</li>
 <li>点线图 <code>plot(type="b")</code> 函数曲线图 <code>curve</code> <code>matplot</code> X 样条曲线 <code>xspline</code></li>
 <li>时序图</li>
-</ul></li>
 </ul>
 <p>太阳黑子活动数据</p>
 <p>sunspot.month Monthly Sunspot Data, from 1749 to “Present”
@@ -2142,8 +2139,8 @@ sunspot.year Yearly Sunspot Data, 1700-1988
 sunspots Monthly Sunspot Numbers, 1749-1983</p>
 <div class="sourceCode" id="cb340"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb340-1"><a href="dv-plot.html#cb340-1"></a><span class="kw">plot</span>(AirPassengers)</span>
 <span id="cb340-2"><a href="dv-plot.html#cb340-2"></a><span class="kw">box</span>(<span class="dt">col =</span> <span class="st">&quot;gray&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-70"></span>
-<img src="dv-plot_files/figure-html/unnamed-chunk-70-1.png" alt="折线图" width="70%" />
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-69"></span>
+<img src="dv-plot_files/figure-html/unnamed-chunk-69-1.png" alt="折线图" width="70%" />
 <p class="caption">
 图 7.51: 折线图
 </p>
@@ -2171,15 +2168,15 @@ sunspots Monthly Sunspot Numbers, 1749-1983</p>
 <span id="cb341-18"><a href="dv-plot.html#cb341-18"></a><span class="kw">legend</span>(<span class="dv">0</span>, <span class="fl">2.4</span>, <span class="kw">c</span>(<span class="st">&quot;real part&quot;</span>, <span class="st">&quot;imaginary part&quot;</span>, <span class="st">&quot;absolute value&quot;</span>),</span>
 <span id="cb341-19"><a href="dv-plot.html#cb341-19"></a>  <span class="dt">lty =</span> <span class="dv">1</span>, <span class="dt">lwd =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>), <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;darkgreen&quot;</span>, <span class="st">&quot;red&quot;</span>)</span>
 <span id="cb341-20"><a href="dv-plot.html#cb341-20"></a>)</span></code></pre></div>
-<p><img src="dv-plot_files/figure-html/unnamed-chunk-71-1.png" width="65%" style="display: block; margin: auto;" /></p>
+<p><img src="dv-plot_files/figure-html/unnamed-chunk-70-1.png" width="65%" style="display: block; margin: auto;" /></p>
 <p>还有 eta 函数和 gammaz 函数</p>
 </div>
 <div id="plot-mosaic" class="section level3">
 <h3><span class="header-section-number">7.2.17</span> 马赛克图</h3>
 <p>马赛克图 mosaicplot</p>
 <div class="sourceCode" id="cb342"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb342-1"><a href="dv-plot.html#cb342-1"></a><span class="kw">plot</span>(HairEyeColor, <span class="dt">col =</span> <span class="st">&quot;lightblue&quot;</span>, <span class="dt">border =</span> <span class="st">&quot;white&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-72"></span>
-<img src="dv-plot_files/figure-html/unnamed-chunk-72-1.png" alt="马赛克图" width="70%" />
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-71"></span>
+<img src="dv-plot_files/figure-html/unnamed-chunk-71-1.png" alt="马赛克图" width="70%" />
 <p class="caption">
 图 7.52: 马赛克图
 </p>
@@ -2210,16 +2207,16 @@ sunspots Monthly Sunspot Numbers, 1749-1983</p>
 <span id="cb343-15"><a href="dv-plot.html#cb343-15"></a>    <span class="kw">rug</span>(x)</span>
 <span id="cb343-16"><a href="dv-plot.html#cb343-16"></a>  }</span>
 <span id="cb343-17"><a href="dv-plot.html#cb343-17"></a>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-73"></span>
-<img src="dv-plot_files/figure-html/unnamed-chunk-73-1.png" alt="变量关系" width="70%" />
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-72"></span>
+<img src="dv-plot_files/figure-html/unnamed-chunk-72-1.png" alt="变量关系" width="70%" />
 <p class="caption">
 图 7.53: 变量关系
 </p>
 </div>
 <div class="sourceCode" id="cb344"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb344-1"><a href="dv-plot.html#cb344-1"></a><span class="co"># 自带 layout</span></span>
 <span id="cb344-2"><a href="dv-plot.html#cb344-2"></a><span class="kw">plot</span>(iris[, <span class="dv">-5</span>], <span class="dt">col =</span> iris<span class="op">$</span>Species)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-74"></span>
-<img src="dv-plot_files/figure-html/unnamed-chunk-74-1.png" alt="矩阵图" width="70%" />
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-73"></span>
+<img src="dv-plot_files/figure-html/unnamed-chunk-73-1.png" alt="矩阵图" width="70%" />
 <p class="caption">
 图 7.54: 矩阵图
 </p>
@@ -2247,15 +2244,10 @@ sunspots Monthly Sunspot Numbers, 1749-1983</p>
 <p>raster 图形，Elevation raster data from SRTM of the Zion National Park area</p>
 <div class="sourceCode" id="cb346"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb346-1"><a href="dv-plot.html#cb346-1"></a><span class="kw">library</span>(sp)</span>
 <span id="cb346-2"><a href="dv-plot.html#cb346-2"></a><span class="kw">library</span>(raster)</span>
-<span id="cb346-3"><a href="dv-plot.html#cb346-3"></a><span class="co">#&gt; </span></span>
-<span id="cb346-4"><a href="dv-plot.html#cb346-4"></a><span class="co">#&gt; Attaching package: &#39;raster&#39;</span></span>
-<span id="cb346-5"><a href="dv-plot.html#cb346-5"></a><span class="co">#&gt; The following objects are masked from &#39;package:MASS&#39;:</span></span>
-<span id="cb346-6"><a href="dv-plot.html#cb346-6"></a><span class="co">#&gt; </span></span>
-<span id="cb346-7"><a href="dv-plot.html#cb346-7"></a><span class="co">#&gt;     area, select</span></span>
-<span id="cb346-8"><a href="dv-plot.html#cb346-8"></a><span class="kw">library</span>(spDataLarge)</span>
-<span id="cb346-9"><a href="dv-plot.html#cb346-9"></a><span class="kw">plot</span>(elevation, <span class="dt">asp =</span> <span class="ot">NA</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-76"></span>
-<img src="dv-plot_files/figure-html/unnamed-chunk-76-1.png" alt="raster 图形" width="70%" />
+<span id="cb346-3"><a href="dv-plot.html#cb346-3"></a><span class="kw">library</span>(spDataLarge)</span>
+<span id="cb346-4"><a href="dv-plot.html#cb346-4"></a><span class="kw">plot</span>(elevation, <span class="dt">asp =</span> <span class="ot">NA</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-75"></span>
+<img src="dv-plot_files/figure-html/unnamed-chunk-75-1.png" alt="raster 图形" width="70%" />
 <p class="caption">
 图 7.55: raster 图形
 </p>
@@ -2273,8 +2265,8 @@ sunspots Monthly Sunspot Numbers, 1749-1983</p>
 <span id="cb347-10"><a href="dv-plot.html#cb347-10"></a><span class="kw">axis</span>(<span class="dv">2</span>, <span class="dt">at =</span> <span class="kw">seq</span>(<span class="dv">100</span>, <span class="dv">600</span>, <span class="dt">by =</span> <span class="dv">100</span>))</span>
 <span id="cb347-11"><a href="dv-plot.html#cb347-11"></a><span class="kw">box</span>()</span>
 <span id="cb347-12"><a href="dv-plot.html#cb347-12"></a><span class="kw">title</span>(<span class="dt">main =</span> <span class="st">&quot;Maunga Whau Volcano&quot;</span>, <span class="dt">font.main =</span> <span class="dv">4</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-77"></span>
-<img src="dv-plot_files/figure-html/unnamed-chunk-77-1.png" alt="image 图形" width="70%" />
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-76"></span>
+<img src="dv-plot_files/figure-html/unnamed-chunk-76-1.png" alt="image 图形" width="70%" />
 <p class="caption">
 图 7.56: image 图形
 </p>
@@ -2311,6 +2303,18 @@ sunspots Monthly Sunspot Numbers, 1749-1983</p>
 <span id="cb348-26"><a href="dv-plot.html#cb348-26"></a><span class="co">#&gt;   survival_2.44-1.1 tinytex_0.14      tools_3.6.1      </span></span>
 <span id="cb348-27"><a href="dv-plot.html#cb348-27"></a><span class="co">#&gt;   utils_3.6.1       xfun_0.8          yaml_2.2.0</span></span></code></pre></div>
 
+</div>
+</div>
+<h3>参考文献</h3>
+<div id="refs" class="references">
+<div id="ref-R-FAQ">
+<p>Hornik, Kurt. 2018. “R FAQ.” <a href="https://CRAN.R-project.org/doc/FAQ/R-FAQ.html">https://CRAN.R-project.org/doc/FAQ/R-FAQ.html</a>.</p>
+</div>
+<div id="ref-Paul_2003_Integrating">
+<p>Murrell, Paul. 2003. “Integrating Grid Graphics Output with Base Graphics Output.” <em>R News</em> 3 (2): 7–12.</p>
+</div>
+<div id="ref-Paul_2000_Approach">
+<p>Murrell, Paul, and Ross Ihaka. 2000. “An Approach to Providing Mathematical Annotation in Plots.” <em>Journal of Computational and Graphical Statistics</em> 9 (3): 582–99.</p>
 </div>
 </div>
             </section>

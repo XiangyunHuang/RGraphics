@@ -1612,11 +1612,10 @@ hist(longley$Unemployed, density = 3, angle = 45, main = "")
 
 
 ```r
-library(MASS)
-data(galaxies)
+data(galaxies, package = "MASS")
 galaxies <- galaxies / 1000
 # Bandwidth Selection by Pilot Estimation of Derivatives
-c(width.SJ(galaxies, method = "dpi"), width.SJ(galaxies))
+c(MASS::width.SJ(galaxies, method = "dpi"), MASS::width.SJ(galaxies))
 #> [1] 3.256151 2.566423
 plot(
   x = c(5, 40), y = c(0, 0.2), type = "n", bty = "l",
@@ -1882,6 +1881,8 @@ legend(300, 35,
 \caption{分类散点图}(\#fig:category-base)
 \end{figure}
 
+iris 数据
+
 
 ```r
 plot(Sepal.Length ~ Sepal.Width, data = iris, col = Species, pch = 16)
@@ -1894,17 +1895,18 @@ box(col = "gray")
 
 \begin{figure}[!htb]
 
-{\centering \includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-57-1} 
+{\centering \includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/iris-scatter-1} 
 
 }
 
-\caption{分类散点图}(\#fig:unnamed-chunk-57)
+\caption{分类散点图}(\#fig:iris-scatter)
 \end{figure}
 
 分组散点图和平滑
 
 
 ```r
+library(carData)
 library(car)
 scatterplot(Sepal.Length ~ Sepal.Width,
   col = c("black", "red", "blue"), pch = c(16, 16, 16),
@@ -1991,11 +1993,11 @@ box(col = "gray")
 
 \begin{figure}[!htb]
 
-{\centering \includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-60-1} 
+{\centering \includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-59-1} 
 
 }
 
-\caption{气泡图}(\#fig:unnamed-chunk-60)
+\caption{气泡图}(\#fig:unnamed-chunk-59)
 \end{figure}
 
 气泡图
@@ -2003,7 +2005,8 @@ box(col = "gray")
 
 ```r
 # 空白画布
-plot(c(1, 5, 10), c(1, 5, 10), panel.first = grid(10, 10), type = "n", axes = FALSE, ann = FALSE)
+plot(c(1, 5, 10), c(1, 5, 10), panel.first = grid(10, 10),
+     type = "n", axes = FALSE, ann = FALSE)
 # 添加坐标轴
 axis(1, at = seq(10), labels = TRUE)
 axis(2, at = seq(10), labels = TRUE)
@@ -2024,7 +2027,7 @@ legend("top",
 
 
 
-\begin{center}\includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-61-1} \end{center}
+\begin{center}\includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-60-1} \end{center}
 
 除了`par(new=TRUE)`设置外，有些函数本身就具有 `add` 选项
 
@@ -2046,7 +2049,7 @@ text(10, 80, "text here", cex = 3)
 
 
 
-\begin{center}\includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-62-1} \end{center}
+\begin{center}\includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-61-1} \end{center}
 
 ### 抖动图 {#base-jitter}
 
@@ -2081,14 +2084,9 @@ plot(y ~ jitter(x),
 
 ### 箱线图 {#plot-box}
 
-boxplotdbl: Double Box Plot for Two-Axes Correlation
+boxplotdbl: Double Box Plot for Two-Axes Correlation. Correlation chart of two set (x and y) of data. Using Quartiles with boxplot style. Visualize the effect of factor. 
 
-Correlation chart of two set (x and y) of data. Using Quartiles with boxplot style. Visualize the effect of factor.
-
-复合箱线图
-
-https://tomizonor.wordpress.com/2013/11/24/double-box-plot-1-2/
-https://tomizonor.wordpress.com/2013/03/15/double-box-plot/
+[复合箱线图](https://tomizonor.wordpress.com/2013/03/15/double-box-plot/)
 
 
 
@@ -2142,7 +2140,7 @@ boxplot(longley$Unemployed,
 
 
 
-\begin{center}\includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-63-1} \includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-63-2} \end{center}
+\begin{center}\includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-62-1} \includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-62-2} \end{center}
 
 
 ```r
@@ -2158,7 +2156,7 @@ boxplot(count ~ spray,
 
 
 
-\begin{center}\includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-64-1} \end{center}
+\begin{center}\includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-63-1} \end{center}
 
 水平放置
 
@@ -2177,7 +2175,7 @@ boxplot(count ~ spray,
 
 
 
-\begin{center}\includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-65-1} \end{center}
+\begin{center}\includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-64-1} \end{center}
 
 Notched Boxplots
 
@@ -2196,7 +2194,7 @@ title(
 
 
 
-\begin{center}\includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-66-1} \end{center}
+\begin{center}\includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-65-1} \end{center}
 
 真实的情况是这样的
 
@@ -2231,7 +2229,7 @@ abline(h = c(41, 69, 97), col = c("green", "blue", "red"), lty = 2)
 
 
 
-\begin{center}\includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-67-1} \end{center}
+\begin{center}\includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-66-1} \end{center}
 
 
 ```r
@@ -2247,7 +2245,7 @@ abline(
 
 
 
-\begin{center}\includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-68-1} \end{center}
+\begin{center}\includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-67-1} \end{center}
 
 ### 残差图 {#error-bars}
 
@@ -2272,11 +2270,11 @@ box()
 
 \begin{figure}[!htb]
 
-{\centering \includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-69-1} 
+{\centering \includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-68-1} 
 
 }
 
-\caption{带标准差的均值散点图}(\#fig:unnamed-chunk-69)
+\caption{带标准差的均值散点图}(\#fig:unnamed-chunk-68)
 \end{figure}
 
 
@@ -2295,8 +2293,8 @@ topo 是地形数据
 函数曲线，样条曲线，核密度曲线，平行坐标图
 
 - 折线图
-  - 点线图 `plot(type="b")` 函数曲线图 `curve` `matplot`  X 样条曲线 `xspline`
-  - 时序图 
+- 点线图 `plot(type="b")` 函数曲线图 `curve` `matplot`  X 样条曲线 `xspline`
+- 时序图 
 
 太阳黑子活动数据
 
@@ -2312,11 +2310,11 @@ box(col = "gray")
 
 \begin{figure}[!htb]
 
-{\centering \includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-70-1} 
+{\centering \includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-69-1} 
 
 }
 
-\caption{折线图}(\#fig:unnamed-chunk-70)
+\caption{折线图}(\#fig:unnamed-chunk-69)
 \end{figure}
 
 ### 函数图 {#function}
@@ -2347,7 +2345,7 @@ legend(0, 2.4, c("real part", "imaginary part", "absolute value"),
 
 
 
-\begin{center}\includegraphics[width=0.65\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-71-1} \end{center}
+\begin{center}\includegraphics[width=0.65\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-70-1} \end{center}
 
 还有 eta 函数和 gammaz 函数
 
@@ -2365,11 +2363,11 @@ plot(HairEyeColor, col = "lightblue", border = "white", main = "")
 
 \begin{figure}[!htb]
 
-{\centering \includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-72-1} 
+{\centering \includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-71-1} 
 
 }
 
-\caption{马赛克图}(\#fig:unnamed-chunk-72)
+\caption{马赛克图}(\#fig:unnamed-chunk-71)
 \end{figure}
 
 ### 克利夫兰点图 {#plot-dotchart}
@@ -2406,11 +2404,11 @@ pairs(longley,
 
 \begin{figure}[!htb]
 
-{\centering \includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-73-1} 
+{\centering \includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-72-1} 
 
 }
 
-\caption{变量关系}(\#fig:unnamed-chunk-73)
+\caption{变量关系}(\#fig:unnamed-chunk-72)
 \end{figure}
 
 
@@ -2421,11 +2419,11 @@ plot(iris[, -5], col = iris$Species)
 
 \begin{figure}[!htb]
 
-{\centering \includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-74-1} 
+{\centering \includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-73-1} 
 
 }
 
-\caption{矩阵图}(\#fig:unnamed-chunk-74)
+\caption{矩阵图}(\#fig:unnamed-chunk-73)
 \end{figure}
 
 
@@ -2456,22 +2454,17 @@ raster 图形，Elevation raster data from SRTM of the Zion National Park area
 ```r
 library(sp)
 library(raster)
-#> 
-#> Attaching package: 'raster'
-#> The following objects are masked from 'package:MASS':
-#> 
-#>     area, select
 library(spDataLarge)
 plot(elevation, asp = NA)
 ```
 
 \begin{figure}[!htb]
 
-{\centering \includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-76-1} 
+{\centering \includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-75-1} 
 
 }
 
-\caption{raster 图形}(\#fig:unnamed-chunk-76)
+\caption{raster 图形}(\#fig:unnamed-chunk-75)
 \end{figure}
 
 注意与 image 函数区别
@@ -2494,11 +2487,11 @@ title(main = "Maunga Whau Volcano", font.main = 4)
 
 \begin{figure}[!htb]
 
-{\centering \includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-77-1} 
+{\centering \includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-76-1} 
 
 }
 
-\caption{image 图形}(\#fig:unnamed-chunk-77)
+\caption{image 图形}(\#fig:unnamed-chunk-76)
 \end{figure}
 
 
@@ -2520,19 +2513,18 @@ xfun::session_info()
 #>   LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
 #> 
 #> Package version:
-#>   base64enc_0.1.3    bookdown_0.12      codetools_0.2-16  
-#>   compiler_3.6.1     curl_4.0           digest_0.6.20     
-#>   evaluate_0.14      glue_1.3.1         graphics_3.6.1    
-#>   grDevices_3.6.1    grid_3.6.1         highr_0.8         
-#>   htmltools_0.3.6    jsonlite_1.6       KernSmooth_2.23-15
-#>   knitr_1.23         lattice_0.20-38    magrittr_1.5      
-#>   markdown_1.0       MASS_7.3-51.4      Matrix_1.2-17     
-#>   methods_3.6.1      mime_0.7           pracma_2.2.5      
-#>   raster_2.9-23      Rcpp_1.0.2         rgdal_1.4-4       
-#>   rmarkdown_1.14     sp_1.3-1           spDataLarge_0.3.1 
-#>   splines_3.6.1      stats_3.6.1        stringi_1.4.3     
-#>   stringr_1.4.0      survival_2.44-1.1  tinytex_0.14      
-#>   tools_3.6.1        utils_3.6.1        xfun_0.8          
-#>   yaml_2.2.0
+#>   base64enc_0.1.3   bookdown_0.12     codetools_0.2-16 
+#>   compiler_3.6.1    curl_4.0          digest_0.6.20    
+#>   evaluate_0.14     glue_1.3.1        graphics_3.6.1   
+#>   grDevices_3.6.1   grid_3.6.1        highr_0.8        
+#>   htmltools_0.3.6   jsonlite_1.6      knitr_1.23       
+#>   lattice_0.20-38   magrittr_1.5      markdown_1.0     
+#>   MASS_7.3-51.4     Matrix_1.2-17     methods_3.6.1    
+#>   mime_0.7          pracma_2.2.5      raster_2.9-23    
+#>   Rcpp_1.0.2        rgdal_1.4-4       rmarkdown_1.14   
+#>   sp_1.3-1          spDataLarge_0.3.1 splines_3.6.1    
+#>   stats_3.6.1       stringi_1.4.3     stringr_1.4.0    
+#>   survival_2.44-1.1 tinytex_0.14      tools_3.6.1      
+#>   utils_3.6.1       xfun_0.8          yaml_2.2.0
 ```
 

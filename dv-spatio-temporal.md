@@ -1,5 +1,5 @@
 
-# 时空数据可视化 {#ggplot2-Spatio-Temporal-Data-Visualization}
+# 时空可视化 {#ggplot2-Spatio-Temporal-Data-Visualization}
 
 
 ```r
