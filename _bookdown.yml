@@ -13,6 +13,8 @@ before_chapter_script: ["_common.R"]
 rmd_files: 
 - "index.Rmd"
 - "preface.Rmd"
+- "setup-startup.Rmd"
+
 - "dm-import-export.Rmd"
 - "dm-base-r.Rmd"
 - "dm-dplyr.Rmd"
