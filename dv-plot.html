@@ -1209,6 +1209,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="base-par" class="section level3">
 <h3><span class="header-section-number">8.1.9</span> 边空</h3>
+<p>边空分为内边空和外边空</p>
+<div class="figure" style="text-align: center"><span id="fig:mai-oma"></span>
+<img src="/usr/lib/R/library/graphics/help/figures/mai.png" alt="内边空和外边空" width="35%" />
+<p class="caption">
+图 8.22: 内边空和外边空
+</p>
+</div>
+<p><img src="/usr/lib/R/library/graphics/help/figures/oma.png" alt="内边空和外边空" width="35%" /></p>
 <p><code>line</code> 第一行</p>
 <div class="sourceCode" id="cb360"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb360-1"><a href="dv-plot.html#cb360-1"></a>N &lt;-<span class="st"> </span><span class="dv">200</span></span>
 <span id="cb360-2"><a href="dv-plot.html#cb360-2"></a>x &lt;-<span class="st"> </span><span class="kw">runif</span>(N, <span class="dv">-4</span>, <span class="dv">4</span>)</span>
@@ -1226,7 +1234,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-25"></span>
 <img src="dv-plot_files/figure-html/unnamed-chunk-25-1.png" alt="外边空在图的边缘添加文字" width="70%" />
 <p class="caption">
-图 8.22: 外边空在图的边缘添加文字
+图 8.23: 外边空在图的边缘添加文字
 </p>
 </div>
 <p><code>par</code></p>
@@ -1248,7 +1256,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-26"></span>
 <img src="dv-plot_files/figure-html/unnamed-chunk-26-1.png" alt="多图排列共享一个大标题" width="70%" />
 <p class="caption">
-图 8.23: 多图排列共享一个大标题
+图 8.24: 多图排列共享一个大标题
 </p>
 </div>
 <p><code>par</code> 的 oma 用来设置外边空的大小，默认情形下没有外边空的</p>
@@ -1271,7 +1279,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-28"></span>
 <img src="dv-plot_files/figure-html/unnamed-chunk-28-1.png" alt="设置外边空放置大标题" width="70%" />
 <p class="caption">
-图 8.24: 设置外边空放置大标题
+图 8.25: 设置外边空放置大标题
 </p>
 </div>
 <p>除了内边空还有外边空，内外边空用来放注释说明</p>
@@ -1346,7 +1354,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-33"></span>
 <img src="dv-plot_files/figure-html/unnamed-chunk-33-1.png" alt="设置每个子图的边空 mar" width="70%" />
 <p class="caption">
-图 8.25: 设置每个子图的边空 mar
+图 8.26: 设置每个子图的边空 mar
 </p>
 </div>
 </div>
@@ -1367,7 +1375,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-34"></span>
 <img src="dv-plot_files/figure-html/unnamed-chunk-34-1.png" alt="添加图层" width="70%" />
 <p class="caption">
-图 8.26: 添加图层
+图 8.27: 添加图层
 </p>
 </div>
 </div>
@@ -1391,7 +1399,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-35"></span>
 <img src="dv-plot_files/figure-html/unnamed-chunk-35-1.png" alt="更加复杂的组合图形" width="70%" />
 <p class="caption">
-图 8.27: 更加复杂的组合图形
+图 8.28: 更加复杂的组合图形
 </p>
 </div>
 </div>
@@ -1410,7 +1418,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-36"></span>
 <img src="dv-plot_files/figure-html/unnamed-chunk-36-1.png" alt="多图叠加" width="70%" />
 <p class="caption">
-图 8.28: 多图叠加
+图 8.29: 多图叠加
 </p>
 </div>
 <p><code>fig</code> 参数控制图形的位置，用来绘制组合图形</p>
@@ -1439,7 +1447,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-37"></span>
 <img src="dv-plot_files/figure-html/unnamed-chunk-37-1.png" alt="组合图形" width="70%" />
 <p class="caption">
-图 8.29: 组合图形
+图 8.30: 组合图形
 </p>
 </div>
 </div>
@@ -1482,7 +1490,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-38"></span>
 <img src="dv-plot_files/figure-html/unnamed-chunk-38-1.png" alt="分屏" width="70%" />
 <p class="caption">
-图 8.30: 分屏
+图 8.31: 分屏
 </p>
 </div>
 </div>
@@ -1519,7 +1527,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="figure" style="text-align: center"><span id="fig:diamonds-base-barplot"></span>
 <img src="dv-plot_files/figure-html/diamonds-base-barplot-1.png" alt="条形图" width="70%" />
 <p class="caption">
-图 8.31: 条形图
+图 8.32: 条形图
 </p>
 </div>
 <p>简单柱形图</p>
@@ -1530,7 +1538,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-39"></span>
 <img src="dv-plot_files/figure-html/unnamed-chunk-39-1.png" alt="柱形图" width="70%" />
 <p class="caption">
-图 8.32: 柱形图
+图 8.33: 柱形图
 </p>
 </div>
 <p>复合条形图</p>
@@ -1549,7 +1557,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="figure" style="text-align: center"><span id="fig:barplot-VADeaths-1"></span>
 <img src="dv-plot_files/figure-html/barplot-VADeaths-1-1.png" alt="复合条形图" width="70%" />
 <p class="caption">
-图 8.33: 复合条形图
+图 8.34: 复合条形图
 </p>
 </div>
 <p>堆积条形图</p>
@@ -1568,7 +1576,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="figure" style="text-align: center"><span id="fig:barplot-VADeaths-2"></span>
 <img src="dv-plot_files/figure-html/barplot-VADeaths-2-1.png" alt="堆积条形图" width="70%" />
 <p class="caption">
-图 8.34: 堆积条形图
+图 8.35: 堆积条形图
 </p>
 </div>
 <ul>
@@ -1633,7 +1641,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-42"></span>
 <img src="dv-plot_files/figure-html/unnamed-chunk-42-1.png" alt="直方图" width="55%" />
 <p class="caption">
-图 8.35: 直方图
+图 8.36: 直方图
 </p>
 </div>
 <div class="sourceCode" id="cb383"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb383-1"><a href="dv-plot.html#cb383-1"></a><span class="kw">with</span>(faithful, <span class="kw">plot</span>(eruptions <span class="op">~</span><span class="st"> </span>waiting, <span class="dt">pch =</span> <span class="dv">16</span>))</span></code></pre></div>
@@ -1655,7 +1663,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="figure" style="text-align: center"><span id="fig:eruptions"></span>
 <img src="dv-plot_files/figure-html/eruptions-1.png" alt="老忠实泉间歇性喷水的时间间隔分布" width="70%" />
 <p class="caption">
-图 8.36: 老忠实泉间歇性喷水的时间间隔分布
+图 8.37: 老忠实泉间歇性喷水的时间间隔分布
 </p>
 </div>
 <div class="sourceCode" id="cb386"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb386-1"><a href="dv-plot.html#cb386-1"></a><span class="kw">hist</span>(longley<span class="op">$</span>Unemployed,</span>
@@ -1670,7 +1678,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-45"></span>
 <img src="dv-plot_files/figure-html/unnamed-chunk-45-1.png" alt="概率密度分布" width="70%" />
 <p class="caption">
-图 8.37: 概率密度分布
+图 8.38: 概率密度分布
 </p>
 </div>
 <p>直方图有很多花样的，添加阴影线，angle 控制倾斜的角度</p>
@@ -1681,7 +1689,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-46"></span>
 <img src="dv-plot_files/figure-html/unnamed-chunk-46-1.png" alt="density 数值越大阴影线越密" width="70%" />
 <p class="caption">
-图 8.38: density 数值越大阴影线越密
+图 8.39: density 数值越大阴影线越密
 </p>
 </div>
 </div>
@@ -1760,7 +1768,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="figure" style="text-align: center"><span id="fig:faithful"></span>
 <img src="dv-plot_files/figure-html/faithful-1.png" alt="累积经验分布图" width="70%" />
 <p class="caption">
-图 8.39: 累积经验分布图
+图 8.40: 累积经验分布图
 </p>
 </div>
 </div>
@@ -1787,7 +1795,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <img src="dv-plot_files/figure-html/unnamed-chunk-51-1.png" alt="1991–1998年间主要欧洲股票市场日闭市价格指数图 
  德国 DAX (Ibis), Switzerland SMI, 法国 CAC 和 英国 FTSE" width="70%" />
 <p class="caption">
-图 8.40: 1991–1998年间主要欧洲股票市场日闭市价格指数图
+图 8.41: 1991–1998年间主要欧洲股票市场日闭市价格指数图
 德国 DAX (Ibis), Switzerland SMI, 法国 CAC 和 英国 FTSE
 </p>
 </div>
@@ -1824,7 +1832,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-54"></span>
 <img src="dv-plot_files/figure-html/unnamed-chunk-54-1.png" alt="一维散点图" width="70%" /><img src="dv-plot_files/figure-html/unnamed-chunk-54-2.png" alt="一维散点图" width="70%" />
 <p class="caption">
-图 8.41: 一维散点图
+图 8.42: 一维散点图
 </p>
 </div>
 <p>气泡图是二维散点图的一种变体，气泡的大小可以用来描述第三个变量，下面以数据集 topo 为例展示气泡图</p>
@@ -1844,7 +1852,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-56"></span>
 <img src="dv-plot_files/figure-html/unnamed-chunk-56-1.png" alt="地形图之海拔高度" width="70%" />
 <p class="caption">
-图 8.42: 地形图之海拔高度
+图 8.43: 地形图之海拔高度
 </p>
 </div>
 <p>散点图也适合分类数据的展示，在图中用不同颜色或符号标记数据点所属类别，即在普通散点图的基础上添加一分类变量的描述</p>
@@ -1865,7 +1873,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="figure" style="text-align: center"><span id="fig:category-base"></span>
 <img src="dv-plot_files/figure-html/category-base-1.png" alt="分类散点图" width="70%" />
 <p class="caption">
-图 8.43: 分类散点图
+图 8.44: 分类散点图
 </p>
 </div>
 <p>iris 数据</p>
@@ -1878,7 +1886,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="figure" style="text-align: center"><span id="fig:iris-scatter"></span>
 <img src="dv-plot_files/figure-html/iris-scatter-1.png" alt="分类散点图" width="70%" />
 <p class="caption">
-图 8.44: 分类散点图
+图 8.45: 分类散点图
 </p>
 </div>
 <p>分组散点图和平滑</p>
@@ -1889,7 +1897,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb402-5"><a href="dv-plot.html#cb402-5"></a>  <span class="dt">smooth =</span> <span class="ot">TRUE</span>, <span class="dt">boxplots =</span> <span class="st">&quot;xy&quot;</span>, <span class="dt">groups =</span> iris<span class="op">$</span>Species,</span>
 <span id="cb402-6"><a href="dv-plot.html#cb402-6"></a>  <span class="dt">xlab =</span> <span class="st">&quot;Sepal.Width&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Sepal.Length&quot;</span>, <span class="dt">data =</span> iris</span>
 <span id="cb402-7"><a href="dv-plot.html#cb402-7"></a>)</span></code></pre></div>
-<p>有时为了实现特定的目的，需要高亮其中某些点，按类别或者因子变量分组绘制散点图，这里继续采用 <code>stripchart</code> 函数绘制二维散点图<a href="dv-plot.html#fig:scatter-iris">8.45</a>， 由左图可知，函数 <code>stripchart</code> 提供的参数 <code>pch</code> 不接受向量，实际只是取了前三个值 16 16 17 对应于 Species 的三类，关键是高亮的分界点是有区分意义的</p>
+<p>有时为了实现特定的目的，需要高亮其中某些点，按类别或者因子变量分组绘制散点图，这里继续采用 <code>stripchart</code> 函数绘制二维散点图<a href="dv-plot.html#fig:scatter-iris">8.46</a>， 由左图可知，函数 <code>stripchart</code> 提供的参数 <code>pch</code> 不接受向量，实际只是取了前三个值 16 16 17 对应于 Species 的三类，关键是高亮的分界点是有区分意义的</p>
 <div class="sourceCode" id="cb403"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb403-1"><a href="dv-plot.html#cb403-1"></a><span class="kw">data</span>(<span class="st">&quot;iris&quot;</span>)</span>
 <span id="cb403-2"><a href="dv-plot.html#cb403-2"></a>pch &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="dv">16</span>, <span class="kw">length</span>(iris<span class="op">$</span>Petal.Length))</span>
 <span id="cb403-3"><a href="dv-plot.html#cb403-3"></a>pch[<span class="kw">which</span>(iris<span class="op">$</span>Petal.Length <span class="op">&lt;</span><span class="st"> </span><span class="fl">1.4</span>)] &lt;-<span class="st"> </span><span class="dv">17</span></span>
@@ -1912,7 +1920,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="figure" style="text-align: center"><span id="fig:scatter-iris"></span>
 <img src="dv-plot_files/figure-html/scatter-iris-1.png" alt="高亮图中部分散点" width="35%" /><img src="dv-plot_files/figure-html/scatter-iris-2.png" alt="高亮图中部分散点" width="35%" />
 <p class="caption">
-图 8.45: 高亮图中部分散点
+图 8.46: 高亮图中部分散点
 </p>
 </div>
 <p>如果存在大量散点</p>
@@ -1930,7 +1938,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="figure" style="text-align: center"><span id="fig:densCols"></span>
 <img src="dv-plot_files/figure-html/densCols-1.png" alt="根据点的密度生成颜色" width="45%" />
 <p class="caption">
-图 8.46: 根据点的密度生成颜色
+图 8.47: 根据点的密度生成颜色
 </p>
 </div>
 <p>气泡图也是散点图的一种</p>
@@ -1942,7 +1950,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-59"></span>
 <img src="dv-plot_files/figure-html/unnamed-chunk-59-1.png" alt="气泡图" width="70%" />
 <p class="caption">
-图 8.47: 气泡图
+图 8.48: 气泡图
 </p>
 </div>
 <p>气泡图</p>
@@ -2001,7 +2009,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="figure" style="text-align: center"><span id="fig:jitter-scatter"></span>
 <img src="dv-plot_files/figure-html/jitter-scatter-1.png" alt="抖动散点图" width="70%" />
 <p class="caption">
-图 8.48: 抖动散点图
+图 8.49: 抖动散点图
 </p>
 </div>
 </div>
@@ -2028,7 +2036,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="figure" style="text-align: center"><span id="fig:iris"></span>
 <img src="dv-plot_files/figure-html/iris-1.png" alt="安德森的鸢尾花数据" width="70%" />
 <p class="caption">
-图 8.49: 安德森的鸢尾花数据
+图 8.50: 安德森的鸢尾花数据
 </p>
 </div>
 <p>箱线图的花样也很多</p>
@@ -2127,7 +2135,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-68"></span>
 <img src="dv-plot_files/figure-html/unnamed-chunk-68-1.png" alt="带标准差的均值散点图" width="70%" />
 <p class="caption">
-图 8.50: 带标准差的均值散点图
+图 8.51: 带标准差的均值散点图
 </p>
 </div>
 </div>
@@ -2157,7 +2165,7 @@ sunspots Monthly Sunspot Numbers, 1749-1983</p>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-69"></span>
 <img src="dv-plot_files/figure-html/unnamed-chunk-69-1.png" alt="折线图" width="70%" />
 <p class="caption">
-图 8.51: 折线图
+图 8.52: 折线图
 </p>
 </div>
 </div>
@@ -2193,7 +2201,7 @@ sunspots Monthly Sunspot Numbers, 1749-1983</p>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-71"></span>
 <img src="dv-plot_files/figure-html/unnamed-chunk-71-1.png" alt="马赛克图" width="70%" />
 <p class="caption">
-图 8.52: 马赛克图
+图 8.53: 马赛克图
 </p>
 </div>
 </div>
@@ -2225,7 +2233,7 @@ sunspots Monthly Sunspot Numbers, 1749-1983</p>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-72"></span>
 <img src="dv-plot_files/figure-html/unnamed-chunk-72-1.png" alt="变量关系" width="70%" />
 <p class="caption">
-图 8.53: 变量关系
+图 8.54: 变量关系
 </p>
 </div>
 <div class="sourceCode" id="cb423"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb423-1"><a href="dv-plot.html#cb423-1"></a><span class="co"># 自带 layout</span></span>
@@ -2233,7 +2241,7 @@ sunspots Monthly Sunspot Numbers, 1749-1983</p>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-73"></span>
 <img src="dv-plot_files/figure-html/unnamed-chunk-73-1.png" alt="矩阵图" width="70%" />
 <p class="caption">
-图 8.54: 矩阵图
+图 8.55: 矩阵图
 </p>
 </div>
 </div>
@@ -2264,7 +2272,7 @@ sunspots Monthly Sunspot Numbers, 1749-1983</p>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-75"></span>
 <img src="dv-plot_files/figure-html/unnamed-chunk-75-1.png" alt="raster 图形" width="70%" />
 <p class="caption">
-图 8.55: raster 图形
+图 8.56: raster 图形
 </p>
 </div>
 <p>注意与 image 函数区别</p>
@@ -2283,7 +2291,7 @@ sunspots Monthly Sunspot Numbers, 1749-1983</p>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-76"></span>
 <img src="dv-plot_files/figure-html/unnamed-chunk-76-1.png" alt="image 图形" width="70%" />
 <p class="caption">
-图 8.56: image 图形
+图 8.57: image 图形
 </p>
 </div>
 </div>

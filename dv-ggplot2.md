@@ -286,11 +286,11 @@ ggplot(diamonds, aes(x = carat), color = "steelblue")
 
 \begin{figure}[!htb]
 
-{\centering \includegraphics[width=0.35\linewidth]{dv-ggplot2_files/figure-latex/diamonds-axis-1} \includegraphics[width=0.35\linewidth]{dv-ggplot2_files/figure-latex/diamonds-axis-2} \includegraphics[width=0.35\linewidth]{dv-ggplot2_files/figure-latex/diamonds-axis-3} \includegraphics[width=0.35\linewidth]{dv-ggplot2_files/figure-latex/diamonds-axis-4} 
+{\centering \subfloat[指定 x 轴(\#fig:diamonds-axis1)]{\includegraphics[width=0.35\linewidth]{dv-ggplot2_files/figure-latex/diamonds-axis-1} }\subfloat[数值变量 price 作为纵轴(\#fig:diamonds-axis2)]{\includegraphics[width=0.35\linewidth]{dv-ggplot2_files/figure-latex/diamonds-axis-2} }\newline\subfloat[有序分类变量 cut 指定颜色(\#fig:diamonds-axis3)]{\includegraphics[width=0.35\linewidth]{dv-ggplot2_files/figure-latex/diamonds-axis-3} }\subfloat[指定统一颜色(\#fig:diamonds-axis4)]{\includegraphics[width=0.35\linewidth]{dv-ggplot2_files/figure-latex/diamonds-axis-4} }
 
 }
 
-\caption{指定统一颜色}(\#fig:diamonds-axis)
+\caption{绘图过程}(\#fig:diamonds-axis)
 \end{figure}
 
 图 \@ref(fig:diamonds-axis) 的基础上添加数据图层

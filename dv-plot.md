@@ -896,6 +896,19 @@ Hmisc 包的 labcurve 函数可以在曲线上放置名称，而不是遥远的�
 
 ### 边空 {#base-par}
 
+边空分为内边空和外边空
+
+\begin{figure}[!htb]
+
+{\centering \includegraphics[width=0.35\linewidth]{/usr/lib/R/library/graphics/help/figures/mai} 
+
+}
+
+\caption{内边空和外边空}(\#fig:mai-oma)
+\end{figure}
+\includegraphics[width=0.35\linewidth]{/usr/lib/R/library/graphics/help/figures/oma} 
+
+
 `line` 第一行
 
 
