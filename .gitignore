@@ -2,7 +2,7 @@
 .Rhistory
 .RData
 .Ruserdata
-*.rds
+_main.rds
 *.log
 rsconnect
 packages.bib
