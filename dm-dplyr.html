@@ -250,8 +250,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sidebar">
 <p>更加高级的数据变形操作，特别是数据类型的一致性，方便后续的可视化和建模，引入 tidyverse，数据处理或者叫特征工程 Base R vs data.table vs dplyr 它们各有优点，所以都加以介绍 参考 <a href="https://jozef.io/categories/rcase4base/">Jozef Hajnala</a> 博文。</p>
 <p>关于 tidyverse 提供的数据操作不要移动到 Base R 对应的章节，这二者已经越行越远，本章主要讲并行或分布式数据操作工具，如 SparkR sparklyr 针对大数据集上的操</p>
-<p>data.table 诞生于2006年4月15日（以在 CRAN 上发布的第一个版本时间为准），是基于 <code>data.frame</code> 的扩展和 Base R 的数据操作连贯一些，dplyr 诞生于2014年1月29日，号称数据操作的语法，其实二者套路一致，都是借用 SQL 语言的设计，实现方式不同罢了，前者主要依靠 C 语言完成底层数据操作，总代码量1.29M，C 占65.6%，后者主要依靠 C++ 语言完成底层数据操作，总代码量1.2M，C++ 占34.4%，上层的高级操作接口都是 R 语言。像这样的大神在写代码，码力应该差不多，编程语言会对数据操作的性能有比较大的影响，我想这也是为什么在很多场合下 data.table 霸榜！</p>
-<p>关于 data.table 和 dplyr 的对比，参看爆栈网的帖子 <a href="https://stackoverflow.com/questions/21435339" class="uri">https://stackoverflow.com/questions/21435339</a></p>
 <p>Base R 的数据操作的一致性问题参见统计之都帖子 <a href="https://d.cosx.org/d/420763" class="uri">https://d.cosx.org/d/420763</a></p>
 <p><a href="https://malco.io/">Malcolm Barrett</a> 以幻灯片的形式呈现 <a href="https://malco.io/slides/hs_dplyr/">dplyr</a> 和 <a href="https://malco.io/slides/hs_purrr/">purrr</a> 的基础用法</p>
 <p>Charlotte Wickham 的课程 A introduction to purrr <a href="https://github.com/cwickham/purrr-tutorial">purrr-tutorial</a></p>

@@ -249,10 +249,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb168-5"><a href="dv-spatio-temporal.html#cb168-5"></a>  <span class="dt">ggplot2.continuous.fill =</span> <span class="st">&quot;viridis&quot;</span></span>
 <span id="cb168-6"><a href="dv-spatio-temporal.html#cb168-6"></a>)</span></code></pre></div>
 <blockquote>
-<p>Robert J. Hijmans [^Robert-Hijmans] 开发了 <a href="https://github.com/rspatial/raster">raster</a> 包用于网格空间数据的读、写、操作、分析和建模，同时维护了空间数据分析的网站 <a href="https://www.rspatial.org" class="uri">https://www.rspatial.org</a></p>
+<p>Robert J. Hijmans<a href="99-references.html#fn19" class="footnote-ref" id="fnref19"><sup>19</sup></a> 开发了 <a href="https://github.com/rspatial/raster">raster</a> 包用于网格空间数据的读、写、操作、分析和建模，同时维护了空间数据分析的网站 <a href="https://www.rspatial.org" class="uri">https://www.rspatial.org</a></p>
 </blockquote>
 <blockquote>
-<p>Edzer Pebesma [^Edzer-Pebesma] 和 Roger Bivand 等创建了 <a href="https://github.com/edzer/sp/">sp</a> 包定义了空间数据类型和方法，提供了大量的空间数据操作方法，同时维护了空间数据对象 sp 的绘图网站 <a href="https://edzer.github.io/sp/" class="uri">https://edzer.github.io/sp/</a>，他们也一起合作写了新书 <a href="https://keen-swartz-3146c4.netlify.com/">Spatial Data Science</a>，提供了在线 <a href="https://www.r-spatial.org/book/">网页版</a>书籍及其 <a href="https://github.com/edzer/sdsr">源代码</a></p>
+<p>Edzer Pebesma<a href="99-references.html#fn20" class="footnote-ref" id="fnref20"><sup>20</sup></a> 和 Roger Bivand 等创建了 <a href="https://github.com/edzer/sp/">sp</a> 包定义了空间数据类型和方法，提供了大量的空间数据操作方法，同时维护了空间数据对象 sp 的绘图网站 <a href="https://edzer.github.io/sp/" class="uri">https://edzer.github.io/sp/</a>，他们也一起合作写了新书 <a href="https://keen-swartz-3146c4.netlify.com/">Spatial Data Science</a>，提供了在线 <a href="https://www.r-spatial.org/book/">网页版</a> 书籍及其 <a href="https://github.com/edzer/sdsr">源代码</a></p>
 </blockquote>
 <blockquote>
 <p>Edzer Pebesma 后来开发了 <a href="https://github.com/r-spatial/sf/">sf</a> 包重新定义了空间数据对象和操作方法，并维护了空间数据分析、建模和可视化网站 <a href="https://www.r-spatial.org/" class="uri">https://www.r-spatial.org/</a></p>
@@ -494,7 +494,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">4.2</span> 空间数据对象</h2>
 <div id="ggplot2-sp" class="section level3">
 <h3><span class="header-section-number">4.2.1</span> sp</h3>
-<p>空间数据对象，以类 sp 方式存储 <span class="citation">(<span class="citeproc-not-found" data-reference-id="Pebesma_2005_sp"><strong>???</strong></span>)</span></p>
+<p>空间数据对象，以类 sp 方式存储 <span class="citation">(Pebesma and Bivand <a href="#ref-Pebesma_2005_sp" role="doc-biblioref">2005</a>)</span></p>
 <div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="dv-spatio-temporal.html#cb180-1"></a><span class="kw">library</span>(sp)</span>
 <span id="cb180-2"><a href="dv-spatio-temporal.html#cb180-2"></a>crs =<span class="st"> </span><span class="kw">CRS</span>(<span class="st">&quot;+init=epsg:28992&quot;</span>)</span>
 <span id="cb180-3"><a href="dv-spatio-temporal.html#cb180-3"></a><span class="kw">data</span>(<span class="st">&quot;meuse&quot;</span>)</span>
@@ -700,6 +700,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="dv-spatio-temporal_files/figure-html/unnamed-chunk-22-1.png" width="70%" style="display: block; margin: auto;" /></p>
 
 </div>
+</div>
+</div>
+<h3>参考文献</h3>
+<div id="refs" class="references">
+<div id="ref-Pebesma_2005_sp">
+<p>Pebesma, Edzer J., and Roger S. Bivand. 2005. “Classes and Methods for Spatial Data in R.” <em>R News</em> 5 (2): 9–13. <a href="https://cran.r-project.org/doc/Rnews/Rnews_2005-2.pdf">https://cran.r-project.org/doc/Rnews/Rnews_2005-2.pdf</a>.</p>
 </div>
 </div>
             </section>
