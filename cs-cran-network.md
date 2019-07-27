@@ -23,7 +23,7 @@ pdb <- tools::CRAN_package_db()
 
 ```r
 length(pdb[, "Package"])
-#> [1] 14634
+#> [1] 14635
 ```
 
 经过与官网发布的数据来对比，我们发现这里计算的结果与实际不符，多出来了几十个R包，所以我们再观察一下是否有重复的 R 包描述信息
@@ -41,7 +41,7 @@ pdb[, "Package"][duplicated(pdb[, "Package"])]
 
 ```r
 dim(subset(pdb, subset = !duplicated(pdb[, "Package"])))[1]
-#> [1] 14619
+#> [1] 14620
 ```
 
 接下来就是分析去掉重复信息后的数据矩阵 pdb
@@ -76,14 +76,14 @@ subset(pdb, subset = grepl(x = pdb[, "Maintainer"], pattern = "(Paul Murrell)"),
                    select = c("Package", "Maintainer"))
 #>            Package                              Maintainer
 #> 2000       compare Paul Murrell <p.murrell@auckland.ac.nz>
-#> 5035    graphicsQC Paul Murrell <paul@stat.auckland.ac.nz>
-#> 5067      gridBase Paul Murrell <paul@stat.auckland.ac.nz>
-#> 5068    gridBezier Paul Murrell <paul@stat.auckland.ac.nz>
-#> 5069     gridDebug Paul Murrell <p.murrell@auckland.ac.nz>
-#> 5071  gridGeometry Paul Murrell <paul@stat.auckland.ac.nz>
-#> 5072  gridGraphics Paul Murrell <paul@stat.auckland.ac.nz>
-#> 5073  gridGraphviz Paul Murrell <p.murrell@auckland.ac.nz>
-#> 5076       gridSVG Paul Murrell <paul@stat.auckland.ac.nz>
+#> 5036    graphicsQC Paul Murrell <paul@stat.auckland.ac.nz>
+#> 5068      gridBase Paul Murrell <paul@stat.auckland.ac.nz>
+#> 5069    gridBezier Paul Murrell <paul@stat.auckland.ac.nz>
+#> 5070     gridDebug Paul Murrell <p.murrell@auckland.ac.nz>
+#> 5072  gridGeometry Paul Murrell <paul@stat.auckland.ac.nz>
+#> 5073  gridGraphics Paul Murrell <paul@stat.auckland.ac.nz>
+#> 5074  gridGraphviz Paul Murrell <p.murrell@auckland.ac.nz>
+#> 5077       gridSVG Paul Murrell <paul@stat.auckland.ac.nz>
 ....
 ```
 
@@ -181,17 +181,17 @@ caption = "R Core Team 维护的 R 包（展示部分）", booktabs = TRUE
 \toprule
   & Package & Maintainer & Published\\
 \midrule
-4505 & gee & Brian Ripley & 2015-06-29\\
-6225 & KernSmooth & Brian Ripley & 2015-06-29\\
-12592 & spatial & Brian Ripley & 2015-08-30\\
-8290 & nnet & Brian Ripley & 2016-02-02\\
-11161 & RODBC & Brian Ripley & 2017-05-05\\
+4506 & gee & Brian Ripley & 2015-06-29\\
+6226 & KernSmooth & Brian Ripley & 2015-06-29\\
+12593 & spatial & Brian Ripley & 2015-08-30\\
+8291 & nnet & Brian Ripley & 2016-02-02\\
+11162 & RODBC & Brian Ripley & 2017-05-05\\
 \addlinespace
-7473 & mix & Brian Ripley & 2017-06-12\\
-9785 & pspline & Brian Ripley & 2017-06-12\\
+7474 & mix & Brian Ripley & 2017-06-12\\
+9786 & pspline & Brian Ripley & 2017-06-12\\
 1742 & class & Brian Ripley & 2019-01-01\\
-6986 & MASS & Brian Ripley & 2019-04-26\\
-13702 & tree & Brian Ripley & 2019-04-26\\
+6987 & MASS & Brian Ripley & 2019-04-26\\
+13703 & tree & Brian Ripley & 2019-04-26\\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -246,31 +246,31 @@ knitr::kable(yihui_pdb, caption = "谢益辉维护的 R Markdown 生态", bookta
 296 & animation & Yihui Xie <xie@yihui.name> & A Gallery of Animations in Statistics and Utilities to Create Animations\\
 1135 & blogdown & Yihui Xie <xie@yihui.name> & Create Blogs and Websites with R Markdown\\
 1199 & bookdown & Yihui Xie <xie@yihui.name> & Authoring Books and Technical Documents with R Markdown\\
-3124 & DT & Yihui Xie <xie@yihui.name> & A Wrapper of the JavaScript Library 'DataTables'\\
-3675 & evaluate & Yihui Xie <xie@yihui.name> & Parsing and Evaluation Tools that Provide More Details than the Default\\
+3125 & DT & Yihui Xie <xie@yihui.name> & A Wrapper of the JavaScript Library 'DataTables'\\
+3676 & evaluate & Yihui Xie <xie@yihui.name> & Parsing and Evaluation Tools that Provide More Details than the Default\\
 \addlinespace
-4194 & formatR & Yihui Xie <xie@yihui.name> & Format R Code Automatically\\
-4311 & fun & Yihui Xie <xie@yihui.name> & Use R for Fun\\
-5382 & highr & Yihui Xie <xie@yihui.name> & Syntax Highlighting for R Source Code\\
-6276 & knitr & Yihui Xie <xie@yihui.name> & A General-Purpose Package for Dynamic Report Generation in R\\
-6970 & markdown & Yihui Xie <xie@yihui.name> & Render Markdown with the C Library 'Sundown'\\
+4195 & formatR & Yihui Xie <xie@yihui.name> & Format R Code Automatically\\
+4312 & fun & Yihui Xie <xie@yihui.name> & Use R for Fun\\
+5383 & highr & Yihui Xie <xie@yihui.name> & Syntax Highlighting for R Source Code\\
+6277 & knitr & Yihui Xie <xie@yihui.name> & A General-Purpose Package for Dynamic Report Generation in R\\
+6971 & markdown & Yihui Xie <xie@yihui.name> & Render Markdown with the C Library 'Sundown'\\
 \addlinespace
-7405 & mime & Yihui Xie <xie@yihui.name> & Map Filenames to MIME Types\\
-7826 & MSG & Yihui Xie <xie@yihui.name> & Data and Functions for the Book Modern Statistical Graphics\\
-8780 & pagedown & Yihui Xie <xie@yihui.name> & Paginate the HTML Output of R Markdown with CSS for Print\\
-9641 & printr & Yihui Xie <xie@yihui.name> & Automatically Print R Objects to Appropriate Formats According to the 'knitr' Output Format\\
-10450 & Rd2roxygen & Yihui Xie <xie@yihui.name> & Convert Rd to 'Roxygen' Documentation\\
+7406 & mime & Yihui Xie <xie@yihui.name> & Map Filenames to MIME Types\\
+7827 & MSG & Yihui Xie <xie@yihui.name> & Data and Functions for the Book Modern Statistical Graphics\\
+8781 & pagedown & Yihui Xie <xie@yihui.name> & Paginate the HTML Output of R Markdown with CSS for Print\\
+9642 & printr & Yihui Xie <xie@yihui.name> & Automatically Print R Objects to Appropriate Formats According to the 'knitr' Output Format\\
+10451 & Rd2roxygen & Yihui Xie <xie@yihui.name> & Convert Rd to 'Roxygen' Documentation\\
 \addlinespace
-11003 & rmarkdown & Yihui Xie <xie@yihui.name> & Dynamic Documents for R\\
-11191 & rolldown & Yihui Xie <xie@yihui.name> & R Markdown Output Formats for Storytelling\\
-11498 & rticles & Yihui Xie <xie@yihui.name> & Article Formats for R Markdown\\
-12000 & servr & Yihui Xie <xie@yihui.name> & A Simple HTTP Server to Serve Static Files or Dynamic Documents\\
-13398 & testit & Yihui Xie <xie@yihui.name> & A Simple Package for Testing R Packages\\
+11004 & rmarkdown & Yihui Xie <xie@yihui.name> & Dynamic Documents for R\\
+11192 & rolldown & Yihui Xie <xie@yihui.name> & R Markdown Output Formats for Storytelling\\
+11499 & rticles & Yihui Xie <xie@yihui.name> & Article Formats for R Markdown\\
+12001 & servr & Yihui Xie <xie@yihui.name> & A Simple HTTP Server to Serve Static Files or Dynamic Documents\\
+13399 & testit & Yihui Xie <xie@yihui.name> & A Simple Package for Testing R Packages\\
 \addlinespace
-13566 & tinytex & Yihui Xie <xie@yihui.name> & Helper Functions to Install and Maintain 'TeX Live', and Compile 'LaTeX' Documents\\
-13870 & tufte & Yihui Xie <xie@yihui.name> & Tufte's Styles for R Markdown Documents\\
-14472 & xaringan & Yihui Xie <xie@yihui.name> & Presentation Ninja\\
-14479 & xfun & Yihui Xie <xie@yihui.name> & Miscellaneous Functions by 'Yihui Xie'\\
+13567 & tinytex & Yihui Xie <xie@yihui.name> & Helper Functions to Install and Maintain 'TeX Live', and Compile 'LaTeX' Documents\\
+13871 & tufte & Yihui Xie <xie@yihui.name> & Tufte's Styles for R Markdown Documents\\
+14473 & xaringan & Yihui Xie <xie@yihui.name> & Presentation Ninja\\
+14480 & xfun & Yihui Xie <xie@yihui.name> & Miscellaneous Functions by 'Yihui Xie'\\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -371,7 +371,7 @@ subset(pdb, subset = grepl("Scott Chamberlain", pdb[, "Maintainer"]),
 
 ```r
 length(unique(pdb[, "Maintainer"]))
-#> [1] 8629
+#> [1] 8630
 ```
 
 可实际上没有这么多的开发者，因为存在这样的情况，以 R 包维护者 Hadley Wickham 为例，由于他曾使用过不同的邮箱，所以在维护者字段出现了不一致的情况，实际却是同一个人。
@@ -389,9 +389,9 @@ subset(pdb,
 #> 1747      classifly   Hadley Wickham <h.wickham@gmail.com>
 #> 1826     clusterfly   Hadley Wickham <h.wickham@gmail.com>
 #> 2070     conflicted    Hadley Wickham <hadley@rstudio.com>
-#> 2580         dbplyr    Hadley Wickham <hadley@rstudio.com>
-#> 3057          dplyr    Hadley Wickham <hadley@rstudio.com>
-#> 3416       ellipsis    Hadley Wickham <hadley@rstudio.com>
+#> 2581         dbplyr    Hadley Wickham <hadley@rstudio.com>
+#> 3058          dplyr    Hadley Wickham <hadley@rstudio.com>
+#> 3417       ellipsis    Hadley Wickham <hadley@rstudio.com>
 ....
 ```
 
@@ -401,7 +401,7 @@ subset(pdb,
 ```r
 pdb[, "Maintainer"] <- clean_maintainer(pdb[, "Maintainer"])
 length(unique(pdb[, "Maintainer"]))
-#> [1] 7992
+#> [1] 7993
 ```
 
 接下来，我们还想把 R 包维护者，按照其维护的R包数量排个序，用条形图\@ref(fig:top-maintainers) 表示
@@ -568,7 +568,7 @@ hist(ctb_num, col = "lightblue", border = "white", probability = TRUE, labels = 
 table(ctb_num)
 #> ctb_num
 #>    1    2    3    4    5    6    7    8    9   10   11   12   13   14   15 
-#> 2663 1118  695  417  178  109   72   47   25   24    7    8    4    4    3 
+#> 2664 1118  695  417  178  109   72   47   25   24    7    8    4    4    3 
 #>   16   17   18   19   21   22   37 
 #>    3    3    2    2    2    2    1
 ```
@@ -583,7 +583,7 @@ first_ctb[which.max(ctb_num)]
 # 找到 R 包
 subset(sub_pdb, subset = grepl("Matt Dowle", sub_pdb[, "Maintainer"]), select = "Package")
 #>         Package
-#> 2502 data.table
+#> 2503 data.table
 ```
 
 哇，大名鼎鼎的 [data.table](https://github.com/Rdatatable/data.table) 包！！ I JUST find it!! 这是个异数，我们知道 data.table 在R社区享有盛名，影响范围很广，从 Matt Dowle 的 [Github 主页](https://github.com/mattdowle) 来看，他确实只开发了这一个 R 包！黑天鹅在这里出现了！如果按照谁的贡献者多谁影响力大的规律来看，有 10 个以上贡献者的其它几个 R 包也必定是名器！这里留给读者把它找出来吧！

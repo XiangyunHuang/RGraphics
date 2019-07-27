@@ -11,33 +11,42 @@ Base R 针对不同的数据格式文件，提供了大量的数据导入和导�
 ```r
 # 当前环境的搜索路径
 searchpaths()
-#> [1] ".GlobalEnv"                   "/usr/lib/R/library/stats"    
-#> [3] "/usr/lib/R/library/graphics"  "/usr/lib/R/library/grDevices"
-#> [5] "/usr/lib/R/library/utils"     "/usr/lib/R/library/datasets" 
-#> [7] "/usr/lib/R/library/methods"   "Autoloads"                   
-#> [9] "/usr/lib/R/library/base"
+#>  [1] ".GlobalEnv"                            
+#>  [2] "/usr/local/lib/R/site-library/DBI"     
+#>  [3] "/usr/local/lib/R/site-library/yaml"    
+#>  [4] "/usr/local/lib/R/site-library/jsonlite"
+#>  [5] "/usr/lib/R/library/stats"              
+#>  [6] "/usr/lib/R/library/graphics"           
+#>  [7] "/usr/lib/R/library/grDevices"          
+#>  [8] "/usr/lib/R/library/utils"              
+#>  [9] "/usr/lib/R/library/datasets"           
+#> [10] "/usr/lib/R/library/methods"            
+#> [11] "Autoloads"                             
+#> [12] "/usr/lib/R/library/base"
 # 返回匹配结果及其所在路径的编号
 apropos("^(read|write)", where = TRUE, mode = "function")
-#>                  5                  5                  9 
-#>         "read.csv"        "read.csv2"         "read.dcf" 
-#>                  5                  5                  5 
-#>       "read.delim"      "read.delim2"         "read.DIF" 
-#>                  5                  2                  5 
-#>     "read.fortran"      "read.ftable"         "read.fwf" 
-#>                  5                  5                  9 
-#>      "read.socket"       "read.table"          "readBin" 
-#>                  9                  5                  9 
-#>         "readChar" "readCitationFile"         "readline" 
-#>                  9                  9                  9 
-#>        "readLines"          "readRDS"     "readRenviron" 
-#>                  9                  5                  5 
-#>            "write"        "write.csv"       "write.csv2" 
-#>                  9                  2                  5 
-#>        "write.dcf"     "write.ftable"     "write.socket" 
-#>                  5                  9                  9 
-#>      "write.table"         "writeBin"        "writeChar" 
-#>                  9 
-#>       "writeLines"
+#>                  4                  3                  8 
+#>        "read_json"        "read_yaml"         "read.csv" 
+#>                  8                 12                  8 
+#>        "read.csv2"         "read.dcf"       "read.delim" 
+#>                  8                  8                  8 
+#>      "read.delim2"         "read.DIF"     "read.fortran" 
+#>                  5                  8                  8 
+#>      "read.ftable"         "read.fwf"      "read.socket" 
+#>                  8                 12                 12 
+#>       "read.table"          "readBin"         "readChar" 
+#>                  8                 12                 12 
+#> "readCitationFile"         "readline"        "readLines" 
+#>                 12                 12                 12 
+#>          "readRDS"     "readRenviron"            "write" 
+#>                  4                  3                  8 
+#>       "write_json"       "write_yaml"        "write.csv" 
+#>                  8                 12                  5 
+#>       "write.csv2"        "write.dcf"     "write.ftable" 
+#>                  8                  8                 12 
+#>     "write.socket"      "write.table"         "writeBin" 
+#>                 12                 12 
+#>        "writeChar"       "writeLines"
 ```
 
 ### `scan` {#scan-file}
@@ -217,7 +226,7 @@ fil <- tempfile(fileext = ".data")
 cat("TITLE extra line", "2 3 5 7", "", "11 13 17", file = fil,
     sep = "\n")
 fil
-#> [1] "/tmp/RtmpulzaSd/filedb561e15da.data"
+#> [1] "/tmp/Rtmpg5mpXO/file1c3f4a28f8.data"
 ```
 
 设置参数 `n = -1` 表示将文件 fil 的内容从头读到尾
@@ -249,7 +258,7 @@ cat("123\nabc")
 fil <- tempfile("test")
 cat("123\nabc\n", file = fil, append = TRUE)
 fil
-#> [1] "/tmp/RtmpulzaSd/testdb2e010d94"
+#> [1] "/tmp/Rtmpg5mpXO/test1c32eb4b28"
 readLines(fil)
 #> [1] "123" "abc"
 ```
@@ -368,8 +377,13 @@ yaml::read_yaml(file = '_bookdown.yml')
 #> [1] "_common.R"
 #> 
 #> $rmd_files
-#> [1] "index.Rmd"            "preface.Rmd"          "dm-import-export.Rmd"
-#> [4] "dm-base-r.Rmd"        "dm-dplyr.Rmd"         "99-references.Rmd"
+#>  [1] "index.Rmd"                  "preface.Rmd"               
+#>  [3] "setup-startup.Rmd"          "file-manipulation.Rmd"     
+#>  [5] "dm-import-export.Rmd"       "dm-base-r.Rmd"             
+#>  [7] "dm-dplyr.Rmd"               "dc-string-manipulation.Rmd"
+#>  [9] "dc-regular-expressions.Rmd" "dv-plot.Rmd"               
+#> [11] "dv-ggplot2.Rmd"             "dv-spatio-temporal.Rmd"    
+#> [13] "cs-cran-network.Rmd"        "99-references.Rmd"
 ```
 
 Table: (\#tab:other-softwares) 导入来自其它数据分析软件产生的数据集

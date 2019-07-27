@@ -392,7 +392,6 @@ plot(meuse.longlat, axes = TRUE)
 
 ```r
 library(maptools)
-#> Checking rgeos availability: TRUE
 fname <- system.file("shapes/sids.shp", package = "maptools")
 p4s <- CRS("+proj=longlat +datum=NAD27")
 nc <- readShapePoly(fname, proj4string = p4s)
@@ -443,50 +442,75 @@ raster 包定义了获取和操作空间 raster 类型数据集的类和方法�
 methods(plot)
 #>  [1] plot,ANY,ANY-method                       
 #>  [2] plot,color,ANY-method                     
-#>  [3] plot,Spatial,missing-method               
-#>  [4] plot,SpatialGrid,missing-method           
-#>  [5] plot,SpatialGridDataFrame,missing-method  
-#>  [6] plot,SpatialLines,missing-method          
-#>  [7] plot,SpatialMultiPoints,missing-method    
-#>  [8] plot,SpatialPixels,missing-method         
-#>  [9] plot,SpatialPixelsDataFrame,missing-method
-#> [10] plot,SpatialPoints,missing-method         
-#> [11] plot,SpatialPolygons,missing-method       
-#> [12] plot.acf*                                 
-#> [13] plot.data.frame*                          
-#> [14] plot.decomposed.ts*                       
-#> [15] plot.default                              
-#> [16] plot.dendrogram*                          
-#> [17] plot.density*                             
-#> [18] plot.ecdf                                 
-#> [19] plot.factor*                              
-#> [20] plot.formula*                             
-#> [21] plot.function                             
-#> [22] plot.ggplot*                              
-#> [23] plot.gtable*                              
-#> [24] plot.hcl_palettes*                        
-#> [25] plot.hclust*                              
-#> [26] plot.histogram*                           
-#> [27] plot.HoltWinters*                         
-#> [28] plot.isoreg*                              
-#> [29] plot.lm*                                  
-#> [30] plot.medpolish*                           
-#> [31] plot.mlm*                                 
-#> [32] plot.ppr*                                 
-#> [33] plot.prcomp*                              
-#> [34] plot.princomp*                            
-#> [35] plot.profile.nls*                         
-#> [36] plot.R6*                                  
-#> [37] plot.raster*                              
-#> [38] plot.shingle*                             
-#> [39] plot.spec*                                
-#> [40] plot.stepfun                              
-#> [41] plot.stl*                                 
-#> [42] plot.table*                               
-#> [43] plot.trellis*                             
-#> [44] plot.ts                                   
-#> [45] plot.tskernel*                            
-#> [46] plot.TukeyHSD*                            
+#>  [3] plot,Extent,missing-method                
+#>  [4] plot,Raster,ANY-method                    
+#>  [5] plot,Raster,Raster-method                 
+#>  [6] plot,Spatial,missing-method               
+#>  [7] plot,SpatialGrid,missing-method           
+#>  [8] plot,SpatialGridDataFrame,missing-method  
+#>  [9] plot,SpatialLines,missing-method          
+#> [10] plot,SpatialMultiPoints,missing-method    
+#> [11] plot,SpatialPixels,missing-method         
+#> [12] plot,SpatialPixelsDataFrame,missing-method
+#> [13] plot,SpatialPoints,missing-method         
+#> [14] plot,SpatialPolygons,missing-method       
+#> [15] plot.acf*                                 
+#> [16] plot.bclust*                              
+#> [17] plot.classIntervals*                      
+#> [18] plot.data.frame*                          
+#> [19] plot.decomposed.ts*                       
+#> [20] plot.default                              
+#> [21] plot.dendrogram*                          
+#> [22] plot.density*                             
+#> [23] plot.ecdf                                 
+#> [24] plot.factor*                              
+#> [25] plot.formula*                             
+#> [26] plot.function                             
+#> [27] plot.ggplot*                              
+#> [28] plot.gtable*                              
+#> [29] plot.hcl_palettes*                        
+#> [30] plot.hclust*                              
+#> [31] plot.histogram*                           
+#> [32] plot.HoltWinters*                         
+#> [33] plot.ica*                                 
+#> [34] plot.isoreg*                              
+#> [35] plot.lm*                                  
+#> [36] plot.medpolish*                           
+#> [37] plot.mlm*                                 
+#> [38] plot.ppr*                                 
+#> [39] plot.prcomp*                              
+#> [40] plot.princomp*                            
+#> [41] plot.profile.nls*                         
+#> [42] plot.R6*                                  
+#> [43] plot.raster*                              
+#> [44] plot.sf*                                  
+#> [45] plot.sfc_CIRCULARSTRING*                  
+#> [46] plot.sfc_GEOMETRY*                        
+#> [47] plot.sfc_GEOMETRYCOLLECTION*              
+#> [48] plot.sfc_LINESTRING*                      
+#> [49] plot.sfc_MULTILINESTRING*                 
+#> [50] plot.sfc_MULTIPOINT*                      
+#> [51] plot.sfc_MULTIPOLYGON*                    
+#> [52] plot.sfc_POINT*                           
+#> [53] plot.sfc_POLYGON*                         
+#> [54] plot.sfg*                                 
+#> [55] plot.shingle*                             
+#> [56] plot.SOM*                                 
+#> [57] plot.somgrid*                             
+#> [58] plot.spec*                                
+#> [59] plot.stars*                               
+#> [60] plot.stars_proxy*                         
+#> [61] plot.stepfun                              
+#> [62] plot.stft*                                
+#> [63] plot.stl*                                 
+#> [64] plot.svm*                                 
+#> [65] plot.table*                               
+#> [66] plot.trellis*                             
+#> [67] plot.ts                                   
+#> [68] plot.tskernel*                            
+#> [69] plot.TukeyHSD*                            
+#> [70] plot.tune*                                
+#> [71] plot.units*                               
 #> see '?methods' for accessing help and source code
 ```
 
@@ -511,7 +535,7 @@ getAnywhere(plot.raster)
 #>     }
 #>     rasterImage(x, 0, 0, ncol(x), nrow(x), ...)
 #> }
-#> <bytecode: 0x55d115375468>
+#> <bytecode: 0x55e5bfcb5f08>
 #> <environment: namespace:graphics>
 ```
 
@@ -535,7 +559,7 @@ getAnywhere(rasterImage)
 #>         ...)
 #>     invisible()
 #> }
-#> <bytecode: 0x55d1161d2f50>
+#> <bytecode: 0x55e5bf6cde20>
 #> <environment: namespace:graphics>
 ```
 
@@ -566,11 +590,6 @@ rasterImage(image, 200, 400, 250, 450, angle = 15, interpolate = FALSE)
 
 ```r
 library(raster)
-#> 
-#> Attaching package: 'raster'
-#> The following object is masked from 'package:magrittr':
-#> 
-#>     extract
 meuse.test <- raster(x = system.file("external/test.grd", package="raster"))
 class(meuse.test)
 #> [1] "RasterLayer"
@@ -600,7 +619,6 @@ Edzer Pebesma 开发了 stars 包
 # https://resources.rstudio.com/rstudio-conf-2019/spatial-data-science-in-the-tidyverse
 library(abind)
 library(sf)
-#> Linking to GEOS 3.7.1, GDAL 2.4.0, PROJ 5.2.0
 library(stars)
 x <- system.file("tif/L7_ETMs.tif", package = "stars") %>%
   read_stars()

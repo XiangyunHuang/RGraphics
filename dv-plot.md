@@ -90,10 +90,6 @@ TestChars <- function(sign = 1, font = 1, ...) {
 TestChars()
 try(TestChars(sign = -1))
 TestChars(font = 5) # Euro might be at 160 (0+10*16).
-#> Warning in plot.xy(xy.coords(x, y), type = type, ...): font width unknown
-#> for character 0xf0
-#> Warning in plot.xy(xy.coords(x, y), type = type, ...): font metrics unknown
-#> for character 0xf0
 # macOS has apple at 240 (0+15*16).
 try(TestChars(-1, font = 2)) # bold
 ```
@@ -2513,18 +2509,19 @@ xfun::session_info()
 #>   LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
 #> 
 #> Package version:
-#>   base64enc_0.1.3   bookdown_0.12     codetools_0.2-16 
-#>   compiler_3.6.1    curl_4.0          digest_0.6.20    
-#>   evaluate_0.14     glue_1.3.1        graphics_3.6.1   
-#>   grDevices_3.6.1   grid_3.6.1        highr_0.8        
-#>   htmltools_0.3.6   jsonlite_1.6      knitr_1.23       
-#>   lattice_0.20-38   magrittr_1.5      markdown_1.0     
-#>   MASS_7.3-51.4     Matrix_1.2-17     methods_3.6.1    
-#>   mime_0.7          pracma_2.2.5      raster_2.9-23    
-#>   Rcpp_1.0.2        rgdal_1.4-4       rmarkdown_1.14   
-#>   sp_1.3-1          spDataLarge_0.3.1 splines_3.6.1    
-#>   stats_3.6.1       stringi_1.4.3     stringr_1.4.0    
-#>   survival_2.44-1.1 tinytex_0.14      tools_3.6.1      
-#>   utils_3.6.1       xfun_0.8          yaml_2.2.0
+#>   base64enc_0.1.3    bookdown_0.12      codetools_0.2-16  
+#>   compiler_3.6.1     curl_4.0           digest_0.6.20     
+#>   evaluate_0.14      glue_1.3.1         graphics_3.6.1    
+#>   grDevices_3.6.1    grid_3.6.1         highr_0.8         
+#>   htmltools_0.3.6    jsonlite_1.6       KernSmooth_2.23-15
+#>   knitr_1.23         lattice_0.20-38    magrittr_1.5      
+#>   markdown_1.0       MASS_7.3-51.4      Matrix_1.2-17     
+#>   methods_3.6.1      mime_0.7           pracma_2.2.5      
+#>   raster_2.9-23      Rcpp_1.0.2         rgdal_1.4-4       
+#>   rmarkdown_1.14     sp_1.3-1           spDataLarge_0.3.1 
+#>   splines_3.6.1      stats_3.6.1        stringi_1.4.3     
+#>   stringr_1.4.0      survival_2.44-1.1  tinytex_0.14      
+#>   tools_3.6.1        utils_3.6.1        xfun_0.8          
+#>   yaml_2.2.0
 ```
 

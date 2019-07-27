@@ -3,7 +3,7 @@
 title: "数据可视化与R语言"
 subtitle: "Data Visualization with R"
 author: "黄湘云"
-date: "2019-07-27 13:14:59 CST"
+date: "2019-07-27 15:58:47 CST"
 site: bookdown::bookdown_site
 documentclass: book
 geometry: margin=1.18in
