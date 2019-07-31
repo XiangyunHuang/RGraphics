@@ -23,7 +23,7 @@ pdb <- tools::CRAN_package_db()
 
 ```r
 length(pdb[, "Package"])
-#> [1] 14662
+#> [1] 14634
 ```
 
 经过与官网发布的数据来对比，我们发现这里计算的结果与实际不符，多出来了几十个R包，所以我们再观察一下是否有重复的 R 包描述信息
@@ -41,7 +41,7 @@ pdb[, "Package"][duplicated(pdb[, "Package"])]
 
 ```r
 dim(subset(pdb, subset = !duplicated(pdb[, "Package"])))[1]
-#> [1] 14647
+#> [1] 14619
 ```
 
 接下来就是分析去掉重复信息后的数据矩阵 pdb
@@ -75,15 +75,15 @@ dim(core_pdb[order(core_pdb[, "Maintainer"]), ])
 subset(pdb, subset = grepl(x = pdb[, "Maintainer"], pattern = "(Paul Murrell)"), 
                    select = c("Package", "Maintainer"))
 #>            Package                              Maintainer
-#> 2003       compare Paul Murrell <p.murrell@auckland.ac.nz>
-#> 5045    graphicsQC Paul Murrell <paul@stat.auckland.ac.nz>
-#> 5077      gridBase Paul Murrell <paul@stat.auckland.ac.nz>
-#> 5078    gridBezier Paul Murrell <paul@stat.auckland.ac.nz>
-#> 5079     gridDebug Paul Murrell <p.murrell@auckland.ac.nz>
-#> 5081  gridGeometry Paul Murrell <paul@stat.auckland.ac.nz>
-#> 5082  gridGraphics Paul Murrell <paul@stat.auckland.ac.nz>
-#> 5083  gridGraphviz Paul Murrell <p.murrell@auckland.ac.nz>
-#> 5086       gridSVG Paul Murrell <paul@stat.auckland.ac.nz>
+#> 2000       compare Paul Murrell <p.murrell@auckland.ac.nz>
+#> 5035    graphicsQC Paul Murrell <paul@stat.auckland.ac.nz>
+#> 5067      gridBase Paul Murrell <paul@stat.auckland.ac.nz>
+#> 5068    gridBezier Paul Murrell <paul@stat.auckland.ac.nz>
+#> 5069     gridDebug Paul Murrell <p.murrell@auckland.ac.nz>
+#> 5071  gridGeometry Paul Murrell <paul@stat.auckland.ac.nz>
+#> 5072  gridGraphics Paul Murrell <paul@stat.auckland.ac.nz>
+#> 5073  gridGraphviz Paul Murrell <p.murrell@auckland.ac.nz>
+#> 5076       gridSVG Paul Murrell <paul@stat.auckland.ac.nz>
 ....
 ```
 
@@ -179,16 +179,16 @@ Table: (\#tab:r-core-team)R Core Team 维护的 R 包（展示部分）
 
         Package      Maintainer     Published  
 ------  -----------  -------------  -----------
-4513    gee          Brian Ripley   2015-06-29 
-6236    KernSmooth   Brian Ripley   2015-06-29 
-12619   spatial      Brian Ripley   2015-08-30 
-8310    nnet         Brian Ripley   2016-02-02 
-11184   RODBC        Brian Ripley   2017-05-05 
-7488    mix          Brian Ripley   2017-06-12 
-9806    pspline      Brian Ripley   2017-06-12 
-1744    class        Brian Ripley   2019-01-01 
-6998    MASS         Brian Ripley   2019-04-26 
-13729   tree         Brian Ripley   2019-04-26 
+4505    gee          Brian Ripley   2015-06-29 
+6225    KernSmooth   Brian Ripley   2015-06-29 
+12592   spatial      Brian Ripley   2015-08-30 
+8290    nnet         Brian Ripley   2016-02-02 
+11161   RODBC        Brian Ripley   2017-05-05 
+7473    mix          Brian Ripley   2017-06-12 
+9785    pspline      Brian Ripley   2017-06-12 
+1742    class        Brian Ripley   2019-01-01 
+6986    MASS         Brian Ripley   2019-04-26 
+13702   tree         Brian Ripley   2019-04-26 
 
 分组计数，看看每个核心开发者维护的 R 包有多少
 
@@ -235,30 +235,30 @@ Table: (\#tab:rmarkdown-ecology)谢益辉维护的 R Markdown 生态
 
         Package      Maintainer                   Title                                                                                       
 ------  -----------  ---------------------------  --------------------------------------------------------------------------------------------
-298     animation    Yihui Xie <xie@yihui.name>   A Gallery of Animations in Statistics and Utilities to Create Animations                    
-1137    blogdown     Yihui Xie <xie@yihui.name>   Create Blogs and Websites with R Markdown                                                   
-1201    bookdown     Yihui Xie <xie@yihui.name>   Authoring Books and Technical Documents with R Markdown                                     
-3128    DT           Yihui Xie <xie@yihui.name>   A Wrapper of the JavaScript Library 'DataTables'                                            
-3679    evaluate     Yihui Xie <xie@yihui.name>   Parsing and Evaluation Tools that Provide More Details than the Default                     
-4202    formatR      Yihui Xie <xie@yihui.name>   Format R Code Automatically                                                                 
-4319    fun          Yihui Xie <xie@yihui.name>   Use R for Fun                                                                               
-5392    highr        Yihui Xie <xie@yihui.name>   Syntax Highlighting for R Source Code                                                       
-6287    knitr        Yihui Xie <xie@yihui.name>   A General-Purpose Package for Dynamic Report Generation in R                                
-6982    markdown     Yihui Xie <xie@yihui.name>   Render Markdown with the C Library 'Sundown'                                                
-7420    mime         Yihui Xie <xie@yihui.name>   Map Filenames to MIME Types                                                                 
-7844    MSG          Yihui Xie <xie@yihui.name>   Data and Functions for the Book Modern Statistical Graphics                                 
-8802    pagedown     Yihui Xie <xie@yihui.name>   Paginate the HTML Output of R Markdown with CSS for Print                                   
-9663    printr       Yihui Xie <xie@yihui.name>   Automatically Print R Objects to Appropriate Formats According to the 'knitr' Output Format 
-10472   Rd2roxygen   Yihui Xie <xie@yihui.name>   Convert Rd to 'Roxygen' Documentation                                                       
-11025   rmarkdown    Yihui Xie <xie@yihui.name>   Dynamic Documents for R                                                                     
-11214   rolldown     Yihui Xie <xie@yihui.name>   R Markdown Output Formats for Storytelling                                                  
-11522   rticles      Yihui Xie <xie@yihui.name>   Article Formats for R Markdown                                                              
-12027   servr        Yihui Xie <xie@yihui.name>   A Simple HTTP Server to Serve Static Files or Dynamic Documents                             
-13425   testit       Yihui Xie <xie@yihui.name>   A Simple Package for Testing R Packages                                                     
-13593   tinytex      Yihui Xie <xie@yihui.name>   Helper Functions to Install and Maintain 'TeX Live', and Compile 'LaTeX' Documents          
-13898   tufte        Yihui Xie <xie@yihui.name>   Tufte's Styles for R Markdown Documents                                                     
-14500   xaringan     Yihui Xie <xie@yihui.name>   Presentation Ninja                                                                          
-14507   xfun         Yihui Xie <xie@yihui.name>   Miscellaneous Functions by 'Yihui Xie'                                                      
+296     animation    Yihui Xie <xie@yihui.name>   A Gallery of Animations in Statistics and Utilities to Create Animations                    
+1135    blogdown     Yihui Xie <xie@yihui.name>   Create Blogs and Websites with R Markdown                                                   
+1199    bookdown     Yihui Xie <xie@yihui.name>   Authoring Books and Technical Documents with R Markdown                                     
+3124    DT           Yihui Xie <xie@yihui.name>   A Wrapper of the JavaScript Library 'DataTables'                                            
+3675    evaluate     Yihui Xie <xie@yihui.name>   Parsing and Evaluation Tools that Provide More Details than the Default                     
+4194    formatR      Yihui Xie <xie@yihui.name>   Format R Code Automatically                                                                 
+4311    fun          Yihui Xie <xie@yihui.name>   Use R for Fun                                                                               
+5382    highr        Yihui Xie <xie@yihui.name>   Syntax Highlighting for R Source Code                                                       
+6276    knitr        Yihui Xie <xie@yihui.name>   A General-Purpose Package for Dynamic Report Generation in R                                
+6970    markdown     Yihui Xie <xie@yihui.name>   Render Markdown with the C Library 'Sundown'                                                
+7405    mime         Yihui Xie <xie@yihui.name>   Map Filenames to MIME Types                                                                 
+7826    MSG          Yihui Xie <xie@yihui.name>   Data and Functions for the Book Modern Statistical Graphics                                 
+8780    pagedown     Yihui Xie <xie@yihui.name>   Paginate the HTML Output of R Markdown with CSS for Print                                   
+9641    printr       Yihui Xie <xie@yihui.name>   Automatically Print R Objects to Appropriate Formats According to the 'knitr' Output Format 
+10450   Rd2roxygen   Yihui Xie <xie@yihui.name>   Convert Rd to 'Roxygen' Documentation                                                       
+11003   rmarkdown    Yihui Xie <xie@yihui.name>   Dynamic Documents for R                                                                     
+11191   rolldown     Yihui Xie <xie@yihui.name>   R Markdown Output Formats for Storytelling                                                  
+11498   rticles      Yihui Xie <xie@yihui.name>   Article Formats for R Markdown                                                              
+12000   servr        Yihui Xie <xie@yihui.name>   A Simple HTTP Server to Serve Static Files or Dynamic Documents                             
+13398   testit       Yihui Xie <xie@yihui.name>   A Simple Package for Testing R Packages                                                     
+13566   tinytex      Yihui Xie <xie@yihui.name>   Helper Functions to Install and Maintain 'TeX Live', and Compile 'LaTeX' Documents          
+13870   tufte        Yihui Xie <xie@yihui.name>   Tufte's Styles for R Markdown Documents                                                     
+14472   xaringan     Yihui Xie <xie@yihui.name>   Presentation Ninja                                                                          
+14479   xfun         Yihui Xie <xie@yihui.name>   Miscellaneous Functions by 'Yihui Xie'                                                      
 
 Jeroen Ooms 维护从 C++ 世界搬运进来的库，如图像处理 magick 包、 视频处理 av 包、 PDF 文档操作 qpdf 包
 
@@ -356,7 +356,7 @@ subset(pdb, subset = grepl("Scott Chamberlain", pdb[, "Maintainer"]),
 
 ```r
 length(unique(pdb[, "Maintainer"]))
-#> [1] 8644
+#> [1] 8629
 ```
 
 可实际上没有这么多的开发者，因为存在这样的情况，以 R 包维护者 Hadley Wickham 为例，由于他曾使用过不同的邮箱，所以在维护者字段出现了不一致的情况，实际却是同一个人。
@@ -368,15 +368,15 @@ subset(pdb,
   select = c("Package", "Maintainer")
 )
 #>             Package                             Maintainer
-#> 489      assertthat    Hadley Wickham <hadley@rstudio.com>
-#> 613       babynames    Hadley Wickham <hadley@rstudio.com>
-#> 970       bigrquery    Hadley Wickham <hadley@rstudio.com>
-#> 1749      classifly   Hadley Wickham <h.wickham@gmail.com>
-#> 1829     clusterfly   Hadley Wickham <h.wickham@gmail.com>
-#> 2073     conflicted    Hadley Wickham <hadley@rstudio.com>
-#> 2584         dbplyr    Hadley Wickham <hadley@rstudio.com>
-#> 3061          dplyr    Hadley Wickham <hadley@rstudio.com>
-#> 3420       ellipsis    Hadley Wickham <hadley@rstudio.com>
+#> 486      assertthat    Hadley Wickham <hadley@rstudio.com>
+#> 611       babynames    Hadley Wickham <hadley@rstudio.com>
+#> 968       bigrquery    Hadley Wickham <hadley@rstudio.com>
+#> 1747      classifly   Hadley Wickham <h.wickham@gmail.com>
+#> 1826     clusterfly   Hadley Wickham <h.wickham@gmail.com>
+#> 2070     conflicted    Hadley Wickham <hadley@rstudio.com>
+#> 2580         dbplyr    Hadley Wickham <hadley@rstudio.com>
+#> 3057          dplyr    Hadley Wickham <hadley@rstudio.com>
+#> 3416       ellipsis    Hadley Wickham <hadley@rstudio.com>
 ....
 ```
 
@@ -386,7 +386,7 @@ subset(pdb,
 ```r
 pdb[, "Maintainer"] <- clean_maintainer(pdb[, "Maintainer"])
 length(unique(pdb[, "Maintainer"]))
-#> [1] 8006
+#> [1] 7992
 ```
 
 接下来，我们还想把 R 包维护者，按照其维护的R包数量排个序，用条形图\@ref(fig:top-maintainers) 表示
@@ -412,7 +412,7 @@ grid()
 ```
 
 <div class="figure" style="text-align: center">
-<img src="cs-cran-network_files/figure-epub3/top-maintainers-1.png" alt="(ref:top-maintainers)" width="55%" />
+<img src="cs-cran-network_files/figure-html/top-maintainers-1.png" alt="(ref:top-maintainers)" width="55%" />
 <p class="caption">(\#fig:top-maintainers)(ref:top-maintainers)</p>
 </div>
 
@@ -430,7 +430,7 @@ ggplot(top_maintainer) +
   ylab("Numbers of Package")
 ```
 
-<img src="cs-cran-network_files/figure-epub3/unnamed-chunk-22-1.png" width="70%" style="display: block; margin: auto;" />
+<img src="cs-cran-network_files/figure-html/unnamed-chunk-22-1.png" width="70%" style="display: block; margin: auto;" />
 
 条形图在柱子很多的情况下，点线图是一种更加简洁的替代方式
 
@@ -442,7 +442,7 @@ ggplot(top_maintainer, aes(x = Freq, y = Maintainer)) +
   labs(x = " # of Packages ", y = " Maintainer ")
 ```
 
-<img src="cs-cran-network_files/figure-epub3/unnamed-chunk-23-1.png" width="70%" style="display: block; margin: auto;" />
+<img src="cs-cran-network_files/figure-html/unnamed-chunk-23-1.png" width="70%" style="display: block; margin: auto;" />
 
 接下来，我们想看看开发者维护的 R 包数量的分布，仅从上图，我们知道有的人能维护 80 多个 R 包，总体的分布情况又是如何呢？如图所示，我们将纵轴刻度设置为 log 模式，随着开发的R包数量的增加，开发者人数是指数级递减，可见开发R包依然是一个门槛很高的工作！
 
@@ -455,7 +455,7 @@ barplot(table(table(pdb[, "Maintainer"])),
 )
 ```
 
-<img src="cs-cran-network_files/figure-epub3/unnamed-chunk-24-1.png" width="70%" style="display: block; margin: auto;" />
+<img src="cs-cran-network_files/figure-html/unnamed-chunk-24-1.png" width="70%" style="display: block; margin: auto;" />
 
 只开发一个 R 包的人数达到 5276 人，占开发者总数的 67.31\%，约为2/3。
 
@@ -499,7 +499,7 @@ sub_pdb[, "Author"] <- clean_author(sub_pdb[, "Author"])
 
 ```r
 length(unique(sub_pdb[, "Maintainer"][duplicated(sub_pdb[, "Maintainer"])]))
-#> [1] 2608
+#> [1] 2603
 ```
 
 总的开发者中去掉开发了多个R包的人，就剩下只维护1个R包的开发者，共有 
@@ -532,7 +532,7 @@ hist(ctb_num, col = "lightblue", border = "white", probability = TRUE, labels = 
      panel.first = grid(), xlim = c(0, 10))
 ```
 
-<img src="cs-cran-network_files/figure-epub3/unnamed-chunk-29-1.png" width="70%" style="display: block; margin: auto;" />
+<img src="cs-cran-network_files/figure-html/unnamed-chunk-29-1.png" width="70%" style="display: block; margin: auto;" />
 
 这些基本单干的R包开发者是否参与其它 R 包的贡献？如果不参与，则他们对社区的贡献非常有限，仅限于为社区带来数量上的堆积！
 
@@ -541,7 +541,7 @@ hist(ctb_num, col = "lightblue", border = "white", probability = TRUE, labels = 
 table(ctb_num)
 #> ctb_num
 #>    1    2    3    4    5    6    7    8    9   10   11   12   13   14   15 
-#> 2667 1121  696  419  180  107   72   46   25   24    7    8    4    4    3 
+#> 2663 1118  695  417  178  109   72   47   25   24    7    8    4    4    3 
 #>   16   17   18   19   21   22   37 
 #>    3    3    2    2    2    2    1
 ```
@@ -556,7 +556,7 @@ first_ctb[which.max(ctb_num)]
 # 找到 R 包
 subset(sub_pdb, subset = grepl("Matt Dowle", sub_pdb[, "Maintainer"]), select = "Package")
 #>         Package
-#> 2506 data.table
+#> 2502 data.table
 ```
 
 哇，大名鼎鼎的 [data.table](https://github.com/Rdatatable/data.table) 包！！ I JUST find it!! 这是个异数，我们知道 data.table 在R社区享有盛名，影响范围很广，从 Matt Dowle 的 [Github 主页](https://github.com/mattdowle) 来看，他确实只开发了这一个 R 包！黑天鹅在这里出现了！如果按照谁的贡献者多谁影响力大的规律来看，有 10 个以上贡献者的其它几个 R 包也必定是名器！这里留给读者把它找出来吧！
@@ -621,7 +621,7 @@ hist(colSums(maintainer_author)[colSums(maintainer_author) <= 10],
      probability = FALSE, xlab = "", main = "")
 ```
 
-<img src="cs-cran-network_files/figure-epub3/unnamed-chunk-38-1.png" width="70%" style="display: block; margin: auto;" />
+<img src="cs-cran-network_files/figure-html/unnamed-chunk-38-1.png" width="70%" style="display: block; margin: auto;" />
 
 每个 R 包参与贡献的人数分布又是如何呢？如图所示，基本集中在1~2个人的样子
 
@@ -631,7 +631,7 @@ hist(rowSums(maintainer_author)[rowSums(maintainer_author) <= 20],
      xlab = "", main = "",probability = FALSE)
 ```
 
-<img src="cs-cran-network_files/figure-epub3/unnamed-chunk-39-1.png" width="70%" style="display: block; margin: auto;" />
+<img src="cs-cran-network_files/figure-html/unnamed-chunk-39-1.png" width="70%" style="display: block; margin: auto;" />
 
 好了，接下来我们要深入挖掘贡献协作网络中的结构特点，看看是不是由几位领导人在完全掌控，还有一大群人其实是自己搞自己的那点事，写论文、发布 R 包、投稿等如此循环。其实这就是 R 社区的特点，也决定了它不会像 Python 那样应用性强，有足够多的工程开发人员加入。大多数人写 R 包只是为了配合发论文而已，并不关心有没有人来用自己的 R 包！此外，没有人来做功能整合和持续维护，所以发展缓慢！各自造轮子的事情太多！
 
@@ -667,7 +667,7 @@ image(spM)
 ```
 
 <div class="figure" style="text-align: center">
-<img src="cs-cran-network_files/figure-epub3/vis-sparse-mat-1.png" alt="稀疏矩阵的图表示" width="70%" />
+<img src="cs-cran-network_files/figure-html/vis-sparse-mat-1.png" alt="稀疏矩阵的图表示" width="70%" />
 <p class="caption">(\#fig:vis-sparse-mat)稀疏矩阵的图表示</p>
 </div>
 
@@ -775,7 +775,7 @@ ggplot(update_pdb, aes(as.Date(Published))) +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="cs-cran-network_files/figure-epub3/pdb-update-history-1.png" alt="R 包更新历史" width="70%" />
+<img src="cs-cran-network_files/figure-html/pdb-update-history-1.png" alt="R 包更新历史" width="70%" />
 <p class="caption">(\#fig:pdb-update-history)R 包更新历史</p>
 </div>
 
@@ -813,7 +813,7 @@ segments(x0 = 1, y0 = seq(length(license_pdb)),
 ```
 
 <div class="figure" style="text-align: center">
-<img src="cs-cran-network_files/figure-epub3/license-cran-1.png" alt="CRAN 上采用的发布协议" width="70%" />
+<img src="cs-cran-network_files/figure-html/license-cran-1.png" alt="CRAN 上采用的发布协议" width="70%" />
 <p class="caption">(\#fig:license-cran)CRAN 上采用的发布协议</p>
 </div>
 
@@ -843,7 +843,7 @@ segments(x0 = 1, y0 = seq(length(license_rforge_pdb)),
 ```
 
 <div class="figure" style="text-align: center">
-<img src="cs-cran-network_files/figure-epub3/license-rforge-1.png" alt="R-Forge 开发者采用的发布协议" width="70%" />
+<img src="cs-cran-network_files/figure-html/license-rforge-1.png" alt="R-Forge 开发者采用的发布协议" width="70%" />
 <p class="caption">(\#fig:license-rforge)R-Forge 开发者采用的发布协议</p>
 </div>
 

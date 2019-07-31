@@ -217,7 +217,7 @@ fil <- tempfile(fileext = ".data")
 cat("TITLE extra line", "2 3 5 7", "", "11 13 17", file = fil,
     sep = "\n")
 fil
-#> [1] "/tmp/RtmpPFtGCJ/file2044473ec3.data"
+#> [1] "/tmp/RtmpLmW61g/file486bd74aa1.data"
 ```
 
 设置参数 `n = -1` 表示将文件 fil 的内容从头读到尾
@@ -249,7 +249,7 @@ cat("123\nabc")
 fil <- tempfile("test")
 cat("123\nabc\n", file = fil, append = TRUE)
 fil
-#> [1] "/tmp/RtmpPFtGCJ/test204616ef66c"
+#> [1] "/tmp/RtmpLmW61g/test4834174019"
 readLines(fil)
 #> [1] "123" "abc"
 ```
@@ -368,14 +368,8 @@ yaml::read_yaml(file = '_bookdown.yml')
 #> [1] "_common.R"
 #> 
 #> $rmd_files
-#>  [1] "index.Rmd"                  "preface.Rmd"               
-#>  [3] "setup-startup.Rmd"          "file-manipulation.Rmd"     
-#>  [5] "dm-import-export.Rmd"       "dm-base-r.Rmd"             
-#>  [7] "dm-dplyr.Rmd"               "dc-string-manipulation.Rmd"
-#>  [9] "dc-regular-expressions.Rmd" "dv-plot.Rmd"               
-#> [11] "dv-ggplot2.Rmd"             "dv-plotly.Rmd"             
-#> [13] "dv-spatio-temporal.Rmd"     "cs-cran-network.Rmd"       
-#> [15] "99-references.Rmd"
+#> [1] "index.Rmd"            "preface.Rmd"          "dm-import-export.Rmd"
+#> [4] "dm-base-r.Rmd"        "dm-dplyr.Rmd"         "99-references.Rmd"
 ```
 
 Table: (\#tab:other-softwares) 导入来自其它数据分析软件产生的数据集
@@ -565,7 +559,7 @@ con <- dbConnect(odbc::odbc(), "PostgreSQL")
 
 ```r
 dbListTables(con)
-#> [1] "mtcars"
+#> character(0)
 ```
 
 第一次启动从 Docker Hub 上下载的镜像，默认的数据库是 postgres 里面没有任何表，所以将 R 环境中的 mtcars 数据集写入 postgres 数据库

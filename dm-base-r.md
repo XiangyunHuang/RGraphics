@@ -562,7 +562,7 @@ hist(Z, breaks = -6:6)
 ```
 
 <div class="figure" style="text-align: center">
-<img src="dm-base-r_files/figure-epub3/cut-1.png" alt="连续型变量分组统计" width="35%" /><img src="dm-base-r_files/figure-epub3/cut-2.png" alt="连续型变量分组统计" width="35%" />
+<img src="dm-base-r_files/figure-html/cut-1.png" alt="连续型变量分组统计" width="35%" /><img src="dm-base-r_files/figure-html/cut-2.png" alt="连续型变量分组统计" width="35%" />
 <p class="caption">(\#fig:cut)连续型变量分组统计</p>
 </div>
 
@@ -1709,7 +1709,7 @@ with(ToothGrowth, {
 })
 ```
 
-<img src="dm-base-r_files/figure-epub3/subset-in-boxplot-1.png" width="70%" style="display: block; margin: auto;" />
+<img src="dm-base-r_files/figure-html/subset-in-boxplot-1.png" width="70%" style="display: block; margin: auto;" />
 
 将 `boxplot` 函数的 `subset` 参数单独提出来，调用数据子集选择函数 `subset` ，这里 `with` 中只包含一个表达式，所以也可以不用大括号
 
@@ -1736,7 +1736,7 @@ legend(2, 9, c("Ascorbic acid", "Orange juice"),
 )
 ```
 
-<img src="dm-base-r_files/figure-epub3/subset-out-boxplot-1.png" width="70%" style="display: block; margin: auto;" />
+<img src="dm-base-r_files/figure-html/subset-out-boxplot-1.png" width="70%" style="display: block; margin: auto;" />
 
 ## 运行环境 {#dm-base-session-info}
 

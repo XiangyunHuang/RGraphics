@@ -334,7 +334,7 @@ merge_pkg <- Reduce("c", dep_pkg, accumulate = FALSE)
 miss_pkg <- setdiff(unique(merge_pkg), unique(.packages(TRUE)))
 # 除了 pkg 外，未安装的 R 包，安装 pkg 的依赖
 sort(setdiff(miss_pkg, pkg))
-#> [1] "mnormt"
+#> [1] "foreign" "mnormt"
 ```
 
 转化为管道操作，增加可读性，[^pipe-r]

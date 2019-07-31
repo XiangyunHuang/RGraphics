@@ -20,7 +20,7 @@ ggplot(mpg, aes(displ, hwy)) +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="dv-ggplot2_files/figure-epub3/awesome-ggplot2-1.png" alt="简洁美观" width="70%" />
+<img src="dv-ggplot2_files/figure-html/awesome-ggplot2-1.png" alt="简洁美观" width="70%" />
 <p class="caption">(\#fig:awesome-ggplot2)简洁美观</p>
 </div>
 
@@ -71,7 +71,7 @@ ggplot(airquality, aes(x = Temp, y = Ozone)) + geom_point()
 #> Warning: Removed 37 rows containing missing values (geom_point).
 ```
 
-<img src="dv-ggplot2_files/figure-epub3/unnamed-chunk-4-1.png" width="70%" style="display: block; margin: auto;" />
+<img src="dv-ggplot2_files/figure-html/unnamed-chunk-4-1.png" width="70%" style="display: block; margin: auto;" />
 
 ### 主题 {#ggplot2-theme}
 
@@ -98,7 +98,7 @@ ggplot(airquality, aes(x = Temp, y = Ozone)) + geom_point() + theme_void()
 #> Warning: Removed 37 rows containing missing values (geom_point).
 ```
 
-<img src="dv-ggplot2_files/figure-epub3/unnamed-chunk-6-1.png" width="70%" style="display: block; margin: auto;" /><img src="dv-ggplot2_files/figure-epub3/unnamed-chunk-6-2.png" width="70%" style="display: block; margin: auto;" /><img src="dv-ggplot2_files/figure-epub3/unnamed-chunk-6-3.png" width="70%" style="display: block; margin: auto;" /><img src="dv-ggplot2_files/figure-epub3/unnamed-chunk-6-4.png" width="70%" style="display: block; margin: auto;" />
+<img src="dv-ggplot2_files/figure-html/unnamed-chunk-6-1.png" width="70%" style="display: block; margin: auto;" /><img src="dv-ggplot2_files/figure-html/unnamed-chunk-6-2.png" width="70%" style="display: block; margin: auto;" /><img src="dv-ggplot2_files/figure-html/unnamed-chunk-6-3.png" width="70%" style="display: block; margin: auto;" /><img src="dv-ggplot2_files/figure-html/unnamed-chunk-6-4.png" width="70%" style="display: block; margin: auto;" />
 
 除主题之外，还有一类提供一整套统一的风格样式来绘制各种统计图形，如 [ggpubr](https://github.com/kassambara/ggpubr) 和 [bbplot](https://github.com/bbc/bbplot)
 
@@ -132,7 +132,7 @@ ggplot(airquality, aes(x = Temp, y = Ozone, color = as.ordered(Month))) +
   geom_point(na.rm = TRUE)
 ```
 
-<img src="dv-ggplot2_files/figure-epub3/unnamed-chunk-8-1.png" width="70%" style="display: block; margin: auto;" /><img src="dv-ggplot2_files/figure-epub3/unnamed-chunk-8-2.png" width="70%" style="display: block; margin: auto;" />
+<img src="dv-ggplot2_files/figure-html/unnamed-chunk-8-1.png" width="70%" style="display: block; margin: auto;" /><img src="dv-ggplot2_files/figure-html/unnamed-chunk-8-2.png" width="70%" style="display: block; margin: auto;" />
 
 
 
@@ -161,7 +161,7 @@ ggplot(airquality, aes(x = Temp, y = Ozone)) +
   scale_y_continuous(breaks = seq(0, 200, 20))
 ```
 
-<img src="dv-ggplot2_files/figure-epub3/unnamed-chunk-10-1.png" width="70%" style="display: block; margin: auto;" />
+<img src="dv-ggplot2_files/figure-html/unnamed-chunk-10-1.png" width="70%" style="display: block; margin: auto;" />
 
 ### 注释 {#ggplot2-annotate}
 
@@ -178,7 +178,7 @@ ggplot(airquality, aes(x = Temp, y = Ozone)) +
   geom_point(na.rm = TRUE)
 ```
 
-<img src="dv-ggplot2_files/figure-epub3/unnamed-chunk-12-1.png" width="70%" style="display: block; margin: auto;" />
+<img src="dv-ggplot2_files/figure-html/unnamed-chunk-12-1.png" width="70%" style="display: block; margin: auto;" />
 
 
 
@@ -190,7 +190,7 @@ ggplot(airquality, aes(x = Temp, y = Ozone)) +
     d * italic(t) + lambda * d * italic(B)[italic(t)]), list(lambda = 4)))
 ```
 
-<img src="dv-ggplot2_files/figure-epub3/math-expr-r-1.png" width="70%" style="display: block; margin: auto;" />
+<img src="dv-ggplot2_files/figure-html/math-expr-r-1.png" width="70%" style="display: block; margin: auto;" />
 
 ### 图例 {#ggplot2-legend}
 
@@ -209,7 +209,7 @@ ggplot(airquality) +
   facet_wrap(~ as.ordered(Month), nrow = 1)
 ```
 
-<img src="dv-ggplot2_files/figure-epub3/unnamed-chunk-13-1.png" width="70%" style="display: block; margin: auto;" /><img src="dv-ggplot2_files/figure-epub3/unnamed-chunk-13-2.png" width="70%" style="display: block; margin: auto;" />
+<img src="dv-ggplot2_files/figure-html/unnamed-chunk-13-1.png" width="70%" style="display: block; margin: auto;" /><img src="dv-ggplot2_files/figure-html/unnamed-chunk-13-2.png" width="70%" style="display: block; margin: auto;" />
 
 [cowplot](https://github.com/wilkelab/cowplot) 是以作者 [Claus O. Wilke](https://wilkelab.org/) 命名的，用来组合 ggplot 对象画图，类似的组合图形的功能包还有 [baptiste auguié](https://baptiste.github.io/) 开发的 [gridExtra](https://CRAN.R-project.org/package=gridExtra) 和 [egg](https://github.com/baptiste/egg)， [Thomas Lin Pedersen](https://www.data-imaginist.com/) 开发的 [patchwork](https://github.com/thomasp85/patchwork)
 
@@ -267,7 +267,7 @@ ggplot(diamonds, aes(x = carat), color = "steelblue")
 ```
 
 <div class="figure" style="text-align: center">
-<img src="dv-ggplot2_files/figure-epub3/diamonds-axis-1.png" alt="绘图过程" width="35%" /><img src="dv-ggplot2_files/figure-epub3/diamonds-axis-2.png" alt="绘图过程" width="35%" /><img src="dv-ggplot2_files/figure-epub3/diamonds-axis-3.png" alt="绘图过程" width="35%" /><img src="dv-ggplot2_files/figure-epub3/diamonds-axis-4.png" alt="绘图过程" width="35%" />
+<img src="dv-ggplot2_files/figure-html/diamonds-axis-1.png" alt="绘图过程" width="35%" /><img src="dv-ggplot2_files/figure-html/diamonds-axis-2.png" alt="绘图过程" width="35%" /><img src="dv-ggplot2_files/figure-html/diamonds-axis-3.png" alt="绘图过程" width="35%" /><img src="dv-ggplot2_files/figure-html/diamonds-axis-4.png" alt="绘图过程" width="35%" />
 <p class="caption">(\#fig:diamonds-axis)绘图过程</p>
 </div>
 
@@ -281,7 +281,7 @@ ggplot(sub_diamonds, aes(x = carat, y = price)) +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="dv-ggplot2_files/figure-epub3/scatter-1.png" alt="添加数据图层" width="70%" />
+<img src="dv-ggplot2_files/figure-html/scatter-1.png" alt="添加数据图层" width="70%" />
 <p class="caption">(\#fig:scatter)添加数据图层</p>
 </div>
 
@@ -294,7 +294,7 @@ ggplot(sub_diamonds, aes(x = carat, y = price)) +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="dv-ggplot2_files/figure-epub3/scatter-color-1-1.png" alt="散点图配色" width="70%" />
+<img src="dv-ggplot2_files/figure-html/scatter-color-1-1.png" alt="散点图配色" width="70%" />
 <p class="caption">(\#fig:scatter-color-1)散点图配色</p>
 </div>
 
@@ -310,7 +310,7 @@ ggplot(sub_diamonds, aes(x = carat, y = price)) +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="dv-ggplot2_files/figure-epub3/scatter-scale-1-1.png" alt="格式化坐标轴刻度标签" width="70%" />
+<img src="dv-ggplot2_files/figure-html/scatter-scale-1-1.png" alt="格式化坐标轴刻度标签" width="70%" />
 <p class="caption">(\#fig:scatter-scale-1)格式化坐标轴刻度标签</p>
 </div>
 
@@ -323,7 +323,7 @@ ggplot(sub_diamonds, aes(x = carat, y = price, color = cut)) +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="dv-ggplot2_files/figure-epub3/scatter-color-2-1.png" alt="分类散点图" width="70%" />
+<img src="dv-ggplot2_files/figure-html/scatter-color-2-1.png" alt="分类散点图" width="70%" />
 <p class="caption">(\#fig:scatter-color-2)分类散点图</p>
 </div>
 
@@ -336,7 +336,7 @@ ggplot(sub_diamonds, aes(x = carat, y = price, group = cut)) +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="dv-ggplot2_files/figure-epub3/scatter-group-1.png" alt="分组" width="70%" />
+<img src="dv-ggplot2_files/figure-html/scatter-group-1.png" alt="分组" width="70%" />
 <p class="caption">(\#fig:scatter-group)分组</p>
 </div>
 
@@ -353,7 +353,7 @@ ggplot(sub_diamonds, aes(x = carat, y = price, group = cut)) +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="dv-ggplot2_files/figure-epub3/group-lm-1.png" alt="分组线性回归" width="70%" /><img src="dv-ggplot2_files/figure-epub3/group-lm-2.png" alt="分组线性回归" width="70%" />
+<img src="dv-ggplot2_files/figure-html/group-lm-1.png" alt="分组线性回归" width="70%" /><img src="dv-ggplot2_files/figure-html/group-lm-2.png" alt="分组线性回归" width="70%" />
 <p class="caption">(\#fig:group-lm)分组线性回归</p>
 </div>
 
@@ -367,7 +367,7 @@ ggplot(sub_diamonds, aes(x = carat, y = price, group = cut)) +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="dv-ggplot2_files/figure-epub3/unnamed-chunk-16-1.png" alt="局部多项式平滑" width="70%" />
+<img src="dv-ggplot2_files/figure-html/unnamed-chunk-16-1.png" alt="局部多项式平滑" width="70%" />
 <p class="caption">(\#fig:unnamed-chunk-16)局部多项式平滑</p>
 </div>
 
@@ -379,7 +379,7 @@ ggplot(sub_diamonds, aes(x = carat, y = price, group = cut)) +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="dv-ggplot2_files/figure-epub3/group-gam-1.png" alt="数据分组应用广义可加平滑" width="70%" />
+<img src="dv-ggplot2_files/figure-html/group-gam-1.png" alt="数据分组应用广义可加平滑" width="70%" />
 <p class="caption">(\#fig:group-gam)数据分组应用广义可加平滑</p>
 </div>
 
@@ -401,7 +401,7 @@ ggplot(sub_diamonds, aes(x = carat, y = price, group = cut, color = cut)) +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="dv-ggplot2_files/figure-epub3/group-facet-1.png" alt="分组分面" width="70%" /><img src="dv-ggplot2_files/figure-epub3/group-facet-2.png" alt="分组配色" width="70%" />
+<img src="dv-ggplot2_files/figure-html/group-facet-1.png" alt="分组分面" width="70%" /><img src="dv-ggplot2_files/figure-html/group-facet-2.png" alt="分组配色" width="70%" />
 <p class="caption">(\#fig:group-facet)分组配色</p>
 </div>
 
@@ -415,7 +415,7 @@ ggplot(sub_diamonds, aes(x = carat, y = price)) +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="dv-ggplot2_files/figure-epub3/scatter-facet-1.png" alt="分面散点图" width="70%" />
+<img src="dv-ggplot2_files/figure-html/scatter-facet-1.png" alt="分面散点图" width="70%" />
 <p class="caption">(\#fig:scatter-facet)分面散点图</p>
 </div>
 
@@ -429,7 +429,7 @@ ggplot(sub_diamonds, aes(x = carat, y = price)) +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="dv-ggplot2_files/figure-epub3/scatter-facet-color-1-1.png" alt="给分面散点图上色" width="70%" />
+<img src="dv-ggplot2_files/figure-html/scatter-facet-color-1-1.png" alt="给分面散点图上色" width="70%" />
 <p class="caption">(\#fig:scatter-facet-color-1)给分面散点图上色</p>
 </div>
 
@@ -443,7 +443,7 @@ ggplot(sub_diamonds, aes(x = carat, y = price, color = cut)) +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="dv-ggplot2_files/figure-epub3/scatter-facet-color-2-1.png" alt="给不同的类上不同的颜色" width="70%" />
+<img src="dv-ggplot2_files/figure-html/scatter-facet-color-2-1.png" alt="给不同的类上不同的颜色" width="70%" />
 <p class="caption">(\#fig:scatter-facet-color-2)给不同的类上不同的颜色</p>
 </div>
 
@@ -457,7 +457,7 @@ ggplot(sub_diamonds, aes(x = carat, y = price, color = cut)) +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="dv-ggplot2_files/figure-epub3/scatter-facet-color-3-1.png" alt="去掉图例" width="70%" />
+<img src="dv-ggplot2_files/figure-html/scatter-facet-color-3-1.png" alt="去掉图例" width="70%" />
 <p class="caption">(\#fig:scatter-facet-color-3)去掉图例</p>
 </div>
 
@@ -475,7 +475,7 @@ ggplot(Wheat2, aes(longitude, latitude)) +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="dv-ggplot2_files/figure-epub3/unnamed-chunk-17-1.png" alt="多个图例" width="70%" />
+<img src="dv-ggplot2_files/figure-html/unnamed-chunk-17-1.png" alt="多个图例" width="70%" />
 <p class="caption">(\#fig:unnamed-chunk-17)多个图例</p>
 </div>
   
@@ -486,7 +486,7 @@ ggplot(mtcars, aes(x = hp, y = mpg, color = factor(am))) +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="dv-ggplot2_files/figure-epub3/category-ggplot-1.png" alt="分类散点图" width="70%" />
+<img src="dv-ggplot2_files/figure-html/category-ggplot-1.png" alt="分类散点图" width="70%" />
 <p class="caption">(\#fig:category-ggplot)分类散点图</p>
 </div>
 
@@ -505,7 +505,7 @@ ggplot(data = dat, aes(x = as.factor(year), y = as.factor(month))) +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="dv-ggplot2_files/figure-epub3/unnamed-chunk-18-1.png" alt="1948年至1960年航班乘客人数变化" width="70%" />
+<img src="dv-ggplot2_files/figure-html/unnamed-chunk-18-1.png" alt="1948年至1960年航班乘客人数变化" width="70%" />
 <p class="caption">(\#fig:unnamed-chunk-18)1948年至1960年航班乘客人数变化</p>
 </div>
 
@@ -527,7 +527,7 @@ str(PlantGrowth)
 ggplot(data = PlantGrowth, aes(x = group, y = weight)) + geom_boxplot()
 ```
 
-<img src="dv-ggplot2_files/figure-epub3/PlantGrowth-boxplot-1.png" width="70%" style="display: block; margin: auto;" />
+<img src="dv-ggplot2_files/figure-html/PlantGrowth-boxplot-1.png" width="70%" style="display: block; margin: auto;" />
 
 PlantGrowth 数据量比较小，此时比较适合采用抖动散点图，抖动是为了避免点之间相互重叠，为了增加不同类别之间的识别性，我们可以用不同的点的形状或者不同的颜色来表示类别
 
@@ -537,7 +537,7 @@ ggplot(data = PlantGrowth, aes(x = group, y = weight, shape = group)) + geom_jit
 ggplot(data = PlantGrowth, aes(x = group, y = weight, color = group)) + geom_jitter()
 ```
 
-<img src="dv-ggplot2_files/figure-epub3/PlantGrowth-jitter-1.png" width="70%" style="display: block; margin: auto;" /><img src="dv-ggplot2_files/figure-epub3/PlantGrowth-jitter-2.png" width="70%" style="display: block; margin: auto;" />
+<img src="dv-ggplot2_files/figure-html/PlantGrowth-jitter-1.png" width="70%" style="display: block; margin: auto;" /><img src="dv-ggplot2_files/figure-html/PlantGrowth-jitter-2.png" width="70%" style="display: block; margin: auto;" />
 
 ::: base
 
@@ -549,7 +549,7 @@ boxplot(weight ~ group,
 )
 ```
 
-<img src="dv-ggplot2_files/figure-epub3/unnamed-chunk-20-1.png" width="70%" style="display: block; margin: auto;" />
+<img src="dv-ggplot2_files/figure-html/unnamed-chunk-20-1.png" width="70%" style="display: block; margin: auto;" />
 :::
 
 以钻石切割质量 cut 为分面依据，以钻石颜色类别 color 为 x 轴，钻石价格为 y 轴，绘制箱线图\@ref(fig:boxplot-facet-color)
@@ -562,7 +562,7 @@ ggplot(diamonds, aes(x = color, y = price, color = cut)) +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="dv-ggplot2_files/figure-epub3/boxplot-facet-color-1.png" alt="箱线图" width="70%" />
+<img src="dv-ggplot2_files/figure-html/boxplot-facet-color-1.png" alt="箱线图" width="70%" />
 <p class="caption">(\#fig:boxplot-facet-color)箱线图</p>
 </div>
 
@@ -576,7 +576,7 @@ ggplot(diamonds, aes(x = color, y = price, color = cut)) +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="dv-ggplot2_files/figure-epub3/boxplot-facet-color-clarity-1-1.png" alt="复合分面箱线图" width="70%" />
+<img src="dv-ggplot2_files/figure-html/boxplot-facet-color-clarity-1-1.png" alt="复合分面箱线图" width="70%" />
 <p class="caption">(\#fig:boxplot-facet-color-clarity-1)复合分面箱线图</p>
 </div>
 
@@ -593,7 +593,7 @@ ggplot(diamonds, aes(x = cut, y = price, color = color)) +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="dv-ggplot2_files/figure-epub3/boxplot-facet-color-clarity-2-1.png" alt="切割质量cut上色" width="70%" /><img src="dv-ggplot2_files/figure-epub3/boxplot-facet-color-clarity-2-2.png" alt="钻石颜色配色" width="70%" />
+<img src="dv-ggplot2_files/figure-html/boxplot-facet-color-clarity-2-1.png" alt="切割质量cut上色" width="70%" /><img src="dv-ggplot2_files/figure-html/boxplot-facet-color-clarity-2-2.png" alt="钻石颜色配色" width="70%" />
 <p class="caption">(\#fig:boxplot-facet-color-clarity-2)钻石颜色配色</p>
 </div>
 
@@ -612,14 +612,14 @@ cut_df <- as.data.frame(table(diamonds$cut))
 ggplot(cut_df, aes(x = Var1, y = Freq)) + geom_bar(stat = "identity")
 ```
 
-<img src="dv-ggplot2_files/figure-epub3/unnamed-chunk-21-1.png" width="70%" style="display: block; margin: auto;" />
+<img src="dv-ggplot2_files/figure-html/unnamed-chunk-21-1.png" width="70%" style="display: block; margin: auto;" />
 
 ```r
 ggplot(diamonds, aes(x = cut)) + geom_bar()
 ```
 
 <div class="figure" style="text-align: center">
-<img src="dv-ggplot2_files/figure-epub3/diamonds-barplot-1-1.png" alt="频数条形图" width="70%" />
+<img src="dv-ggplot2_files/figure-html/diamonds-barplot-1-1.png" alt="频数条形图" width="70%" />
 <p class="caption">(\#fig:diamonds-barplot-1)频数条形图</p>
 </div>
 
@@ -632,7 +632,7 @@ ggplot(diamonds, aes(x = cut, y = ..count..)) + geom_bar()
 ggplot(diamonds, aes(x = cut, y = stat(count))) + geom_bar()
 ```
 
-<img src="dv-ggplot2_files/figure-epub3/unnamed-chunk-22-1.png" width="70%" style="display: block; margin: auto;" /><img src="dv-ggplot2_files/figure-epub3/unnamed-chunk-22-2.png" width="70%" style="display: block; margin: auto;" /><img src="dv-ggplot2_files/figure-epub3/unnamed-chunk-22-3.png" width="70%" style="display: block; margin: auto;" />
+<img src="dv-ggplot2_files/figure-html/unnamed-chunk-22-1.png" width="70%" style="display: block; margin: auto;" /><img src="dv-ggplot2_files/figure-html/unnamed-chunk-22-2.png" width="70%" style="display: block; margin: auto;" /><img src="dv-ggplot2_files/figure-html/unnamed-chunk-22-3.png" width="70%" style="display: block; margin: auto;" />
 
 我们还可以在图 \@ref(fig:diamonds-barplot-1) 的基础上再添加一个分类变量钻石的纯净度 clarity，形成堆积条形图
 
@@ -642,7 +642,7 @@ ggplot(diamonds, aes(x = cut, fill = clarity)) + geom_bar()
 ```
 
 <div class="figure" style="text-align: center">
-<img src="dv-ggplot2_files/figure-epub3/diamonds-barplot-2-1.png" alt="堆积条形图" width="70%" />
+<img src="dv-ggplot2_files/figure-html/diamonds-barplot-2-1.png" alt="堆积条形图" width="70%" />
 <p class="caption">(\#fig:diamonds-barplot-2)堆积条形图</p>
 </div>
 
@@ -656,7 +656,7 @@ ggplot(diamonds, aes(x = color, fill = clarity)) +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="dv-ggplot2_files/figure-epub3/diamonds-barplot-3-1.png" alt="分面堆积条形图" width="70%" />
+<img src="dv-ggplot2_files/figure-html/diamonds-barplot-3-1.png" alt="分面堆积条形图" width="70%" />
 <p class="caption">(\#fig:diamonds-barplot-3)分面堆积条形图</p>
 </div>
 
@@ -684,7 +684,7 @@ ggplot(diamonds, aes(x = color, fill = clarity)) +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="dv-ggplot2_files/figure-epub3/diamonds-barplot-4-1.png" alt="比例堆积条形图" width="70%" />
+<img src="dv-ggplot2_files/figure-html/diamonds-barplot-4-1.png" alt="比例堆积条形图" width="70%" />
 <p class="caption">(\#fig:diamonds-barplot-4)比例堆积条形图</p>
 </div>
 
@@ -697,7 +697,7 @@ ggplot(diamonds, aes(x = color, fill = clarity)) +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="dv-ggplot2_files/figure-epub3/diamonds-barplot-5-1.png" alt="复合条形图" width="70%" />
+<img src="dv-ggplot2_files/figure-html/diamonds-barplot-5-1.png" alt="复合条形图" width="70%" />
 <p class="caption">(\#fig:diamonds-barplot-5)复合条形图</p>
 </div>
 
@@ -711,7 +711,7 @@ ggplot(diamonds, aes(x = color, fill = clarity)) +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="dv-ggplot2_files/figure-epub3/diamonds-barplot-6-1.png" alt="分面复合条形图" width="70%" />
+<img src="dv-ggplot2_files/figure-html/diamonds-barplot-6-1.png" alt="分面复合条形图" width="70%" />
 <p class="caption">(\#fig:diamonds-barplot-6)分面复合条形图</p>
 </div>
 
@@ -792,7 +792,7 @@ ggplot(economics, aes(date, unemploy)) + geom_line()
 ```
 
 <div class="figure" style="text-align: center">
-<img src="dv-ggplot2_files/figure-epub3/unnamed-chunk-25-1.png" alt="时序图" width="70%" />
+<img src="dv-ggplot2_files/figure-html/unnamed-chunk-25-1.png" alt="时序图" width="70%" />
 <p class="caption">(\#fig:unnamed-chunk-25)时序图</p>
 </div>
 
@@ -807,7 +807,7 @@ ggplot(diamonds, aes(price)) + geom_histogram(bins = 30)
 ```
 
 <div class="figure" style="text-align: center">
-<img src="dv-ggplot2_files/figure-epub3/unnamed-chunk-26-1.png" alt="钻石价格的分布" width="70%" />
+<img src="dv-ggplot2_files/figure-html/unnamed-chunk-26-1.png" alt="钻石价格的分布" width="70%" />
 <p class="caption">(\#fig:unnamed-chunk-26)钻石价格的分布</p>
 </div>
 
@@ -819,7 +819,7 @@ ggplot(diamonds, aes(x = price, fill = cut)) + geom_histogram(bins = 30)
 ```
 
 <div class="figure" style="text-align: center">
-<img src="dv-ggplot2_files/figure-epub3/unnamed-chunk-27-1.png" alt="钻石价格随切割质量的分布" width="70%" />
+<img src="dv-ggplot2_files/figure-html/unnamed-chunk-27-1.png" alt="钻石价格随切割质量的分布" width="70%" />
 <p class="caption">(\#fig:unnamed-chunk-27)钻石价格随切割质量的分布</p>
 </div>
 
@@ -867,7 +867,7 @@ ggplot(mtcars) +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="dv-ggplot2_files/figure-epub3/unnamed-chunk-28-1.png" alt="直方图" width="70%" /><img src="dv-ggplot2_files/figure-epub3/unnamed-chunk-28-2.png" alt="直方图" width="70%" />
+<img src="dv-ggplot2_files/figure-html/unnamed-chunk-28-1.png" alt="直方图" width="70%" /><img src="dv-ggplot2_files/figure-html/unnamed-chunk-28-2.png" alt="直方图" width="70%" />
 <p class="caption">(\#fig:unnamed-chunk-28)直方图</p>
 </div>
 
@@ -884,7 +884,7 @@ ggplot(diamonds, aes(x = cut, y = price)) + geom_violin()
 ```
 
 <div class="figure" style="text-align: center">
-<img src="dv-ggplot2_files/figure-epub3/violin-1.png" alt="箱线图" width="70%" /><img src="dv-ggplot2_files/figure-epub3/violin-2.png" alt="小提琴图" width="70%" />
+<img src="dv-ggplot2_files/figure-html/violin-1.png" alt="箱线图" width="70%" /><img src="dv-ggplot2_files/figure-html/violin-2.png" alt="小提琴图" width="70%" />
 <p class="caption">(\#fig:violin)小提琴图</p>
 </div>
 
@@ -903,7 +903,7 @@ ggplot(mpg, aes(class, cty)) +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="dv-ggplot2_files/figure-epub3/violin-mpg-1.png" alt="城市里程与车辆类别" width="70%" />
+<img src="dv-ggplot2_files/figure-html/violin-mpg-1.png" alt="城市里程与车辆类别" width="70%" />
 <p class="caption">(\#fig:violin-mpg)城市里程与车辆类别</p>
 </div>
 
@@ -915,7 +915,7 @@ ggplot(mpg, aes(x = class, y = hwy, color = class)) +
   ggbeeswarm::geom_quasirandom()
 ```
 
-<img src="dv-ggplot2_files/figure-epub3/unnamed-chunk-29-1.png" width="70%" style="display: block; margin: auto;" />
+<img src="dv-ggplot2_files/figure-html/unnamed-chunk-29-1.png" width="70%" style="display: block; margin: auto;" />
 
 
 
@@ -930,7 +930,7 @@ ggplot(mpg, aes(x = class, y = hwy, color = class)) +
 ggplot(mpg, aes(x = class, y = hwy, color = class)) + geom_jitter()
 ```
 
-<img src="dv-ggplot2_files/figure-epub3/unnamed-chunk-30-1.png" width="70%" style="display: block; margin: auto;" />
+<img src="dv-ggplot2_files/figure-html/unnamed-chunk-30-1.png" width="70%" style="display: block; margin: auto;" />
 
 抖不抖，还是抖一下
 
@@ -950,7 +950,7 @@ ggplot(iris, aes(x = Species, y = Sepal.Length)) +
   labs(title = "Jittered")
 ```
 
-<img src="dv-ggplot2_files/figure-epub3/unnamed-chunk-31-1.png" width="70%" style="display: block; margin: auto;" /><img src="dv-ggplot2_files/figure-epub3/unnamed-chunk-31-2.png" width="70%" style="display: block; margin: auto;" />
+<img src="dv-ggplot2_files/figure-html/unnamed-chunk-31-1.png" width="70%" style="display: block; margin: auto;" /><img src="dv-ggplot2_files/figure-html/unnamed-chunk-31-2.png" width="70%" style="display: block; margin: auto;" />
 
 在数据量比较大的时候，可以用箱线图、密度图、提琴图
 
@@ -960,7 +960,7 @@ ggplot(sub_diamonds, aes(x = cut, y = price)) + geom_jitter()
 ```
 
 <div class="figure" style="text-align: center">
-<img src="dv-ggplot2_files/figure-epub3/unnamed-chunk-32-1.png" alt="抖动图的反例" width="70%" />
+<img src="dv-ggplot2_files/figure-html/unnamed-chunk-32-1.png" alt="抖动图的反例" width="70%" />
 <p class="caption">(\#fig:unnamed-chunk-32)抖动图的反例</p>
 </div>
 
@@ -974,7 +974,7 @@ ggplot(sub_diamonds, aes(x = color, y = price, color = color)) +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="dv-ggplot2_files/figure-epub3/unnamed-chunk-33-1.png" alt="根据钻石颜色上色" width="70%" />
+<img src="dv-ggplot2_files/figure-html/unnamed-chunk-33-1.png" alt="根据钻石颜色上色" width="70%" />
 <p class="caption">(\#fig:unnamed-chunk-33)根据钻石颜色上色</p>
 </div>
 
@@ -988,7 +988,7 @@ ggplot(diamonds, aes(x = color, y = price, color = color)) +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="dv-ggplot2_files/figure-epub3/boxplot-facet-cut-clarity-1.png" alt="箱线图" width="70%" />
+<img src="dv-ggplot2_files/figure-html/boxplot-facet-cut-clarity-1.png" alt="箱线图" width="70%" />
 <p class="caption">(\#fig:boxplot-facet-cut-clarity)箱线图</p>
 </div>
 
@@ -1002,7 +1002,7 @@ ggplot(diamonds, aes(x = color, y = price, color = color)) +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="dv-ggplot2_files/figure-epub3/boxplot-facet-clarity-1.png" alt="钻石按纯净度分面" width="70%" />
+<img src="dv-ggplot2_files/figure-html/boxplot-facet-clarity-1.png" alt="钻石按纯净度分面" width="70%" />
 <p class="caption">(\#fig:boxplot-facet-clarity)钻石按纯净度分面</p>
 </div>
 
@@ -1015,7 +1015,7 @@ ggplot(diamonds, aes(x = color, y = price, color = color)) +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="dv-ggplot2_files/figure-epub3/boxplot-color-1.png" alt="不同颜色钻石的价格比较" width="70%" />
+<img src="dv-ggplot2_files/figure-html/boxplot-color-1.png" alt="不同颜色钻石的价格比较" width="70%" />
 <p class="caption">(\#fig:boxplot-color)不同颜色钻石的价格比较</p>
 </div>
 
@@ -1036,7 +1036,7 @@ ggplot(mpg, aes(cty)) +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="dv-ggplot2_files/figure-epub3/mpg-cyl-density-1.png" alt="按汽缸数分组的城市里程" width="70%" />
+<img src="dv-ggplot2_files/figure-html/mpg-cyl-density-1.png" alt="按汽缸数分组的城市里程" width="70%" />
 <p class="caption">(\#fig:mpg-cyl-density)按汽缸数分组的城市里程</p>
 </div>
 
@@ -1049,7 +1049,7 @@ ggplot(diamonds, aes(x = price, fill = cut)) + geom_density(alpha = 0.5)
 ```
 
 <div class="figure" style="text-align: center">
-<img src="dv-ggplot2_files/figure-epub3/density-1.png" alt="密度图" width="70%" /><img src="dv-ggplot2_files/figure-epub3/density-2.png" alt="添加透明度的密度图" width="70%" />
+<img src="dv-ggplot2_files/figure-html/density-1.png" alt="密度图" width="70%" /><img src="dv-ggplot2_files/figure-html/density-2.png" alt="添加透明度的密度图" width="70%" />
 <p class="caption">(\#fig:density)添加透明度的密度图</p>
 </div>
 
@@ -1062,7 +1062,7 @@ ggplot(diamonds, aes(x = price, fill = cut)) +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="dv-ggplot2_files/figure-epub3/stack-density-1.png" alt="堆积密度图" width="70%" />
+<img src="dv-ggplot2_files/figure-html/stack-density-1.png" alt="堆积密度图" width="70%" />
 <p class="caption">(\#fig:stack-density)堆积密度图</p>
 </div>
 
@@ -1076,7 +1076,7 @@ ggplot(diamonds, aes(carat, stat(count), fill = cut)) +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="dv-ggplot2_files/figure-epub3/unnamed-chunk-34-1.png" alt="条件密度估计图" width="70%" />
+<img src="dv-ggplot2_files/figure-html/unnamed-chunk-34-1.png" alt="条件密度估计图" width="70%" />
 <p class="caption">(\#fig:unnamed-chunk-34)条件密度估计图</p>
 </div>
 
@@ -1090,7 +1090,7 @@ ggplot(diamonds) +
 #> Picking joint bandwidth of 535
 ```
 
-<img src="dv-ggplot2_files/figure-epub3/unnamed-chunk-35-1.png" width="70%" style="display: block; margin: auto;" />
+<img src="dv-ggplot2_files/figure-html/unnamed-chunk-35-1.png" width="70%" style="display: block; margin: auto;" />
 
 二维的密度图又是一种延伸
 
@@ -1101,7 +1101,7 @@ ggplot(diamonds, aes(x = carat, y = price)) +
   facet_grid(~cut)
 ```
 
-<img src="dv-ggplot2_files/figure-epub3/unnamed-chunk-36-1.png" width="70%" style="display: block; margin: auto;" />
+<img src="dv-ggplot2_files/figure-html/unnamed-chunk-36-1.png" width="70%" style="display: block; margin: auto;" />
 
 `stat` 函数，特别是 nlevel 参数，在密度曲线之间填充我们又可以得到热力图
 
@@ -1112,7 +1112,7 @@ ggplot(diamonds, aes(x = carat, y = price)) +
   facet_grid(. ~ cut)
 ```
 
-<img src="dv-ggplot2_files/figure-epub3/unnamed-chunk-37-1.png" width="70%" style="display: block; margin: auto;" />
+<img src="dv-ggplot2_files/figure-html/unnamed-chunk-37-1.png" width="70%" style="display: block; margin: auto;" />
 
 `gemo_hex` 也是二维密度图的一种变体，特别适合数据量比较大的情形
 
@@ -1122,7 +1122,7 @@ ggplot(diamonds, aes(x = carat, y = price)) + geom_hex() +
   scale_fill_viridis_c()
 ```
 
-<img src="dv-ggplot2_files/figure-epub3/unnamed-chunk-38-1.png" width="70%" style="display: block; margin: auto;" />
+<img src="dv-ggplot2_files/figure-html/unnamed-chunk-38-1.png" width="70%" style="display: block; margin: auto;" />
 
 ### 玫瑰图 {#ggplot2-rose}
 
@@ -1138,7 +1138,7 @@ ggplot(diamonds, aes(x = color, fill = clarity)) +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="dv-ggplot2_files/figure-epub3/stack-to-rose-1.png" alt="堆积条形图转风玫瑰图" width="70%" /><img src="dv-ggplot2_files/figure-epub3/stack-to-rose-2.png" alt="堆积条形图转风玫瑰图" width="70%" />
+<img src="dv-ggplot2_files/figure-html/stack-to-rose-1.png" alt="堆积条形图转风玫瑰图" width="70%" /><img src="dv-ggplot2_files/figure-html/stack-to-rose-2.png" alt="堆积条形图转风玫瑰图" width="70%" />
 <p class="caption">(\#fig:stack-to-rose)堆积条形图转风玫瑰图</p>
 </div>
 
@@ -1160,7 +1160,7 @@ p + geom_bar(colour = "white") +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="dv-ggplot2_files/figure-epub3/wind-rose-1.png" alt="风玫瑰图" width="70%" />
+<img src="dv-ggplot2_files/figure-html/wind-rose-1.png" alt="风玫瑰图" width="70%" />
 <p class="caption">(\#fig:wind-rose)风玫瑰图</p>
 </div>
 
@@ -1172,7 +1172,7 @@ p + geom_bar(position = "fill") +
   labs(x = "", y = "", fill = "Magnitude")
 ```
 
-<img src="dv-ggplot2_files/figure-epub3/unnamed-chunk-39-1.png" width="70%" style="display: block; margin: auto;" />
+<img src="dv-ggplot2_files/figure-html/unnamed-chunk-39-1.png" width="70%" style="display: block; margin: auto;" />
 
 
 [^nightingale-rose]: https://mbostock.github.io/protovis/ex/crimea-rose-full.html
@@ -1216,8 +1216,8 @@ xfun::session_info(
 #>   grid_3.6.1         gtable_0.3.0       hexbin_1.27.3     
 #>   labeling_0.3       lattice_0.20.38    lazyeval_0.2.2    
 #>   magrittr_1.5       MASS_7.3.51.4      Matrix_1.2.17     
-#>   methods_3.6.1      mgcv_1.8-28        munsell_0.5.0     
-#>   nlme_3.1-140       pillar_1.4.2       pkgconfig_2.0.2   
+#>   methods_3.6.1      mgcv_1.8.28        munsell_0.5.0     
+#>   nlme_3.1.140       pillar_1.4.2       pkgconfig_2.0.2   
 #>   plyr_1.8.4         R6_2.4.0           RColorBrewer_1.1.2
 #>   Rcpp_1.0.2         reshape2_1.4.3     rlang_0.4.0       
 #>   scales_1.0.0       splines_3.6.1      stats_3.6.1       
