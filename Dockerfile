@@ -76,11 +76,14 @@ RUN useradd docker \
 ## install DBI odbc 
   unixodbc-dev \
   odbc-postgresql \
+  libsqliteodbc \
 ## install webshot
   phantomjs \
   optipng \
   imagemagick \
   ghostscript \
+## ebook-convert
+  calibre \
 ## install magick
   libmagick++-dev \
 ## install sf
@@ -88,6 +91,16 @@ RUN useradd docker \
   libproj-dev \
   libgeos-dev \
   libgdal-dev \
+## rgl  
+  libcgal-dev \ 
+  libglu1-mesa-dev \ 
+  libx11-dev \
+  tk-dev \
+  tcl-dev \
+  libxpm-dev \
+  libxaw7-dev \
+  graphviz \
+  file \  
   && install2.r --error \
   bookdown \
   ggplot2 \
@@ -129,38 +142,26 @@ RUN useradd docker \
   tmap \
 ## install modeling packages
   tidyverse \
-  glmnet \
-  caret \
-  xgboost \
-  prophet \
-  brms \
-  BANOVA \
-  tidymodels \
+##  glmnet \
+##  caret \
+##  xgboost \
+##  prophet \
+##  brms \
+##  BANOVA \
+##  rms \
+##  car \
+##  mlr3 \
+##  tidymodels \
 ## install other packages
   openxlsx \
-  microbenchmark
-
-
-RUN apt-get install -y --no-install-recommends \
-  libcgal-dev \ 
-  libglu1-mesa-dev \ 
-  libx11-dev \
-  tk-dev \
-  tcl-dev \
-  libxpm-dev \
-  libxaw7-dev \
-  graphviz \
-  file \
-  && install2.r --error \
-    BiocManager \
-    pracma \
-    rms \
-    car \
-    mlr3 \
-  && Rscript -e "BiocManager::install(c('Rgraphviz','graph'), update = FALSE, ask = FALSE)" \
-  && install2.r --error --repos https://inla.r-inla-download.org/R/testing/ --deps TRUE \
-    INLA \
-  && install2.r --error inlabru \
+  microbenchmark \
+  pracma \
+## spatial modeling
+##  BiocManager \
+##  && Rscript -e "BiocManager::install(c('Rgraphviz','graph'), update = FALSE, ask = FALSE)" \
+##  && install2.r --error --repos https://inla.r-inla-download.org/R/testing/ --deps TRUE \
+##    INLA \
+##  && install2.r --error inlabru \
   && install2.r --error --repos https://nowosad.github.io/drat/ \
     spDataLarge
   

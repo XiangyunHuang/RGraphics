@@ -20,7 +20,7 @@ options(
   bitmapType = "cairo",
   reprex.styler = TRUE,
   stringsAsFactors = FALSE,
-  knitr.graphics.auto_pdf = FALSE,
+  knitr.graphics.auto_pdf = TRUE,
   tidyverse.quiet = TRUE,
   tidymodels.quiet = TRUE,
   memory.profiling = TRUE,

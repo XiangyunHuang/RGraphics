@@ -18,26 +18,7 @@ for (fmt in formats) {
   res = bookdown:::Rscript(c('-e', shQuote(cmd)))
   if (res != 0) stop('Failed to compile the book to ', fmt)
   if (!travis && fmt == 'bookdown::epub_book')
-    bookdown::calibre('_book/RGraphics.epub', 'mobi')
+    bookdown::calibre('_book/_main.epub', 'mobi')
 }
-
-# r = '<body onload="window.location = \'https://bookdown.org/xiangyun\'+location.pathname">'
-# for (f in list.files('_book', '[.]html$', full.names = TRUE)) {
-#   x = readLines(f)
-#   if (length(i <- grep('^\\s*<body>\\s*$', x)) == 0) next
-#   # patch HTML files in gh-pages if built on Travis, to redirect to bookdown.org
-#   if (travis) x[i[1]] = r
-#   i = grep('<i class="fa fa-circle-o-notch fa-spin"></i><a href="./">.+</a>', x)[1]
-#   # shorter title on the toolbar
-#   if (!is.na(i)) x[i] = gsub('bookdown: ', '', x[i], fixed = TRUE)
-#   i = c(
-#     grep('^\\s*<meta name="generator" content="bookdown [.0-9]+ and GitBook [.0-9]+">$', x),
-#     grep('^<meta name="date" content="[-0-9]+">$', x)
-#   )
-#   if (travis && length(i)) x = x[-i]
-#   writeLines(x, f)
-# }
-
-# if (length(formats) > 1) bookdown::publish_book()
 
 setwd(owd)

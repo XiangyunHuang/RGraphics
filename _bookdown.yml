@@ -25,6 +25,8 @@ rmd_files:
 
 - "dv-plot.Rmd"
 - "dv-ggplot2.Rmd"
+- "dv-plotly.Rmd"
+#- "dv-plot3d.Rmd"
 - "dv-spatio-temporal.Rmd"
 
 - "cs-cran-network.Rmd"

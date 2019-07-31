@@ -24,8 +24,9 @@ before_script:
   - chmod +x ./_deploy.sh
 
 script:
+  - mkdir -p _book/interactives && cp -r interactives/* _book/interactives
   #- docker-compose up -d
-  - docker-compose run book bash -c "cp odbc.ini ~/.odbc.ini;sh ./_build.sh"
+  - docker-compose run book bash -c "cp odbc.ini ~/.odbc.ini;make all"
   - docker-compose down
   - ./_deploy.sh
 
