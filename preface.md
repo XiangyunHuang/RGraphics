@@ -18,4 +18,4 @@
 
 热心开源事业，统计之都副主编，经常混迹于统计之都论坛、Github 和爆栈网。个人主页 <https://www.xiangyunhuang.com.cn/>
 
-
+<img src="https://ghchart.rshah.org/XiangyunHuang.svg" width="90%" style="display: block; margin: auto;" />

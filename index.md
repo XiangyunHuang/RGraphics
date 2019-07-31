@@ -3,7 +3,7 @@
 title: "数据可视化与R语言"
 subtitle: "Data Visualization with R"
 author: "黄湘云"
-date: "2019-07-31 18:12:44 CST"
+date: "2019-07-31 21:55:30 CST"
 site: bookdown::bookdown_site
 documentclass: book
 geometry: margin=1.18in
@@ -18,7 +18,7 @@ github-repo: XiangyunHuang/RGraphics
 url: 'https\://bookdown.org/xiangyun/RGraphics/'
 ---
 
-<!-- 
+ 
 
 # 欢迎 {#welcome .unnumbered}
 
@@ -132,4 +132,4 @@ xfun::session_info(c("rmarkdown", "bookdown"))
 
 书籍同时使用 [bookdown.org](https://bookdown.org) 和 [netlify](https://www.netlify.com) 部署，网址分别是 <https://bookdown.org/xiangyun/RGraphics/> 和 <https://r-graphics.netlify.com/>
 
--->
+

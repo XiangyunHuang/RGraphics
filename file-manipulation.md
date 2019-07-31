@@ -43,9 +43,11 @@ library(fs)
    #> [11] "./dm-dplyr_cache"               "./dm-import-export_cache"      
    #> [13] "./dv-ggplot2_cache"             "./dv-ggplot2_files"            
    #> [15] "./dv-plot_cache"                "./dv-plot_files"               
-   #> [17] "./dv-spatio-temporal_cache"     "./dv-spatio-temporal_files"    
-   #> [19] "./figures"                      "./file-manipulation_cache"     
-   #> [21] "./index_cache"                  "./preface_cache"
+   #> [17] "./dv-plotly_cache"              "./dv-spatio-temporal_cache"    
+   #> [19] "./dv-spatio-temporal_files"     "./figures"                     
+   #> [21] "./file-manipulation_cache"      "./includes"                    
+   #> [23] "./index_cache"                  "./interactives"                
+   #> [25] "./preface_cache"
    list.dirs(path = '.', full.names = FALSE, recursive = FALSE)
    #>  [1] "_book"                        "_bookdown_files"             
    #>  [3] ".git"                         "cs-cran-network_cache"       
@@ -55,9 +57,11 @@ library(fs)
    #> [11] "dm-dplyr_cache"               "dm-import-export_cache"      
    #> [13] "dv-ggplot2_cache"             "dv-ggplot2_files"            
    #> [15] "dv-plot_cache"                "dv-plot_files"               
-   #> [17] "dv-spatio-temporal_cache"     "dv-spatio-temporal_files"    
-   #> [19] "figures"                      "file-manipulation_cache"     
-   #> [21] "index_cache"                  "preface_cache"
+   #> [17] "dv-plotly_cache"              "dv-spatio-temporal_cache"    
+   #> [19] "dv-spatio-temporal_files"     "figures"                     
+   #> [21] "file-manipulation_cache"      "includes"                    
+   #> [23] "index_cache"                  "interactives"                
+   #> [25] "preface_cache"
    ```
 
 *  `list.files(path = ".", pattern = NULL, all.files = FALSE, full.names = FALSE, recursive = FALSE,ignore.case = FALSE, include.dirs = FALSE, no.. = FALSE)`
@@ -88,7 +92,7 @@ library(fs)
     #>                                    size isdir mode               mtime
     #> /usr/share/R/include/Rinternals.h 57273 FALSE  644 2019-07-09 04:18:09
     #>                                                 ctime               atime
-    #> /usr/share/R/include/Rinternals.h 2019-07-27 07:56:05 2019-07-09 04:18:09
+    #> /usr/share/R/include/Rinternals.h 2019-07-31 13:53:26 2019-07-09 04:18:09
     #>                                   uid gid uname grname
     #> /usr/share/R/include/Rinternals.h   0   0  root   root
     file.mode(rinternals)
@@ -100,15 +104,15 @@ library(fs)
     # 查看当前目录的权限
     file.info(".")
     #>   size isdir mode               mtime               ctime
-    #> . 4096  TRUE  775 2019-07-27 07:58:49 2019-07-27 07:58:49
+    #> . 4096  TRUE  775 2019-07-31 13:55:31 2019-07-31 13:55:31
     #>                 atime  uid  gid uname grname
-    #> . 2019-07-27 07:58:50 2000 2000  <NA>   <NA>
+    #> . 2019-07-31 13:55:32 2000 2000  <NA>   <NA>
     # 查看指定目录权限
     file.info("./_book/")    
     #>          size isdir mode               mtime               ctime
-    #> ./_book/ 4096  TRUE  755 2019-07-27 07:58:47 2019-07-27 07:58:47
-    #>                        atime uid gid uname grname
-    #> ./_book/ 2019-07-27 07:58:47   0   0  root   root
+    #> ./_book/ 4096  TRUE  775 2019-07-31 13:55:29 2019-07-31 13:55:29
+    #>                        atime  uid  gid uname grname
+    #> ./_book/ 2019-07-31 13:55:29 2000 2000  <NA>   <NA>
     ```
 
 * `file.access(names, mode = 0)`  
@@ -152,18 +156,18 @@ library(fs)
     #>  [1] "_book"                        "_bookdown_files"             
     #>  [3] "_bookdown.yml"                "_build.sh"                   
     #>  [5] "_common.R"                    "_deploy.sh"                  
-    #>  [7] "_main.rds"                    "_output.yml"                 
-    #>  [9] "_render.R"                    "99-references.Rmd"           
-    #> [11] "after_body.tex"               "before_body.tex"             
+    #>  [7] "_main.log"                    "_main.rds"                   
+    #>  [9] "_output.yml"                  "_render.R"                   
+    #> [11] "99-references.Rmd"            "after_body.tex"              
     ....
     # 查看指定目录的子目录和文件
     dir(path = "./")
     #>  [1] "_book"                        "_bookdown_files"             
     #>  [3] "_bookdown.yml"                "_build.sh"                   
     #>  [5] "_common.R"                    "_deploy.sh"                  
-    #>  [7] "_main.rds"                    "_output.yml"                 
-    #>  [9] "_render.R"                    "99-references.Rmd"           
-    #> [11] "after_body.tex"               "before_body.tex"             
+    #>  [7] "_main.log"                    "_main.rds"                   
+    #>  [9] "_output.yml"                  "_render.R"                   
+    #> [11] "99-references.Rmd"            "after_body.tex"              
     ....
     # 只列出以字母R开头的子目录和文件
     dir(path = "./", pattern = "^R")
@@ -173,9 +177,9 @@ library(fs)
     #>  [1] "_book"                        "_bookdown_files"             
     #>  [3] "_bookdown.yml"                "_build.sh"                   
     #>  [5] "_common.R"                    "_deploy.sh"                  
-    #>  [7] "_main.rds"                    "_output.yml"                 
-    #>  [9] "_render.R"                    "."                           
-    #> [11] ".."                           ".git"                        
+    #>  [7] "_main.log"                    "_main.rds"                   
+    #>  [9] "_output.yml"                  "_render.R"                   
+    #> [11] "."                            ".."                          
     ....
     # 支持正则表达式
     dir(pattern = '^[A-Z]+[.]txt$', full.names=TRUE, system.file('doc', 'SuiteSparse', package='Matrix'))
@@ -262,7 +266,7 @@ apropos("^file.")
     
     ```r
     file.copy(from = 'Makefile', to = 'data/Makefile')
-    #> [1] FALSE
+    #> [1] TRUE
     ```
 
 1. `file.symlink(from, to)` 创建符号链接 `file.link(from, to)` 创建硬链接
@@ -520,7 +524,6 @@ help.search(keyword = "character", package = "base")
     
     ```r
     dir.create('./_book/tmp')
-    #> Warning in dir.create("./_book/tmp"): './_book/tmp' already exists
     ```
 
 1. `Sys.chmod(paths, mode = "0777", use_umask = TRUE)` 修改权限
@@ -634,7 +637,7 @@ help.search(keyword = "character", package = "base")
     
     ```r
     Sys.getpid()
-    #> [1] 417
+    #> [1] 492
     ```
 
 - `proc.time()` R 会话运行时间，常用于计算R程序在当前R控制台的运行时间
@@ -645,7 +648,7 @@ help.search(keyword = "character", package = "base")
     tmp <- rnorm(1e6)
     proc.time() - t1
     #>    user  system elapsed 
-    #>   0.080   0.004   0.084
+    #>   0.081   0.000   0.080
     ```
 
 - `system.time` 计算 R 表达式/程序块运行耗费的CPU时间
@@ -656,7 +659,7 @@ help.search(keyword = "character", package = "base")
       rnorm(1e6)
     }, gcFirst = TRUE)
     #>    user  system elapsed 
-    #>   0.075   0.000   0.075
+    #>   0.073   0.000   0.073
     ```
 
 - `gc.time`  报告垃圾回收耗费的时间
@@ -727,10 +730,10 @@ system2(command = 'pdflatex', args = '--version')
     ```r
     # 此时美国洛杉矶时间
     format(Sys.time(), tz = 'America/Los_Angeles', usetz = TRUE)
-    #> [1] "2019-07-27 00:58:52 PDT"
+    #> [1] "2019-07-31 06:55:33 PDT"
     # 此时加拿大东部时间
     format(Sys.time(), tz = 'Canada/Eastern', usetz = TRUE)
-    #> [1] "2019-07-27 03:58:52 EDT"
+    #> [1] "2019-07-31 09:55:33 EDT"
     ```
 
 1. `Sys.Date` 显示当前时区下的日期，精确到日，返回数据类型为 `date`
@@ -738,7 +741,7 @@ system2(command = 'pdflatex', args = '--version')
     
     ```r
     Sys.Date()
-    #> [1] "2019-07-27"
+    #> [1] "2019-07-31"
     ```
 
 1. `date` 返回当前系统日期和时间，数据类型是字符串
@@ -746,10 +749,10 @@ system2(command = 'pdflatex', args = '--version')
     
     ```r
     date()
-    #> [1] "Sat Jul 27 07:58:52 2019"
+    #> [1] "Wed Jul 31 13:55:33 2019"
     ## 也可以这样表示
     format(Sys.time(), "%a %b %d %H:%M:%S %Y")
-    #> [1] "Sat Jul 27 07:58:52 2019"
+    #> [1] "Wed Jul 31 13:55:33 2019"
     ```
 
 1. `as.POSIX*` 是一个 Date-time 转换函数
@@ -757,7 +760,7 @@ system2(command = 'pdflatex', args = '--version')
     
     ```r
     as.POSIXlt(Sys.time(), "GMT") # the current time in GMT
-    #> [1] "2019-07-27 07:58:52 GMT"
+    #> [1] "2019-07-31 13:55:33 GMT"
     ```
 
 1. 时间计算
@@ -765,10 +768,10 @@ system2(command = 'pdflatex', args = '--version')
     
     ```r
     (z <- Sys.time())             # the current date, as class "POSIXct"
-    #> [1] "2019-07-27 07:58:52 UTC"
+    #> [1] "2019-07-31 13:55:34 UTC"
     
     Sys.time() - 3600             # an hour ago
-    #> [1] "2019-07-27 06:58:52 UTC"
+    #> [1] "2019-07-31 12:55:34 UTC"
     ```
 
 1. `.leap.seconds` 是内置的日期序列
@@ -813,16 +816,16 @@ system2(command = 'pdflatex', args = '--version')
     # 修改时间前
     file.info('./_common.R')
     #>             size isdir mode               mtime               ctime
-    #> ./_common.R 2035 FALSE  664 2019-07-27 07:57:27 2019-07-27 07:57:27
+    #> ./_common.R 2035 FALSE  664 2019-07-31 13:51:22 2019-07-31 13:51:22
     #>                           atime  uid  gid uname grname
-    #> ./_common.R 2019-07-27 07:58:47 2000 2000  <NA>   <NA>
+    #> ./_common.R 2019-07-31 13:51:22 2000 2000  <NA>   <NA>
     # 修改时间后，对比一下
     Sys.setFileTime(path = './_common.R', time = Sys.time())
     file.info('./_common.R')
     #>             size isdir mode               mtime               ctime
-    #> ./_common.R 2035 FALSE  664 2019-07-27 07:58:52 2019-07-27 07:58:52
+    #> ./_common.R 2035 FALSE  664 2019-07-31 13:55:34 2019-07-31 13:55:34
     #>                           atime  uid  gid uname grname
-    #> ./_common.R 2019-07-27 07:58:52 2000 2000  <NA>   <NA>
+    #> ./_common.R 2019-07-31 13:55:34 2000 2000  <NA>   <NA>
     ```
 
 1. `strptime` 用于字符串与 `POSIXlt`、 `POSIXct` 类对象之间的转化，`format` 默认 `tz = ""` 且 `usetz = TRUE` 
@@ -834,11 +837,11 @@ system2(command = 'pdflatex', args = '--version')
     #> character(0)
     # 比较不同的打印方式
     strptime(Sys.time(), format ="%Y-%m-%d %H:%M:%S", tz = "Asia/Taipei")
-    #> [1] "2019-07-27 07:58:52 CST"
+    #> [1] "2019-07-31 13:55:34 CST"
     format(Sys.time(), format = "%Y-%m-%d %H:%M:%S") # 默认情形
-    #> [1] "2019-07-27 07:58:52"
+    #> [1] "2019-07-31 13:55:34"
     format(Sys.time(), format = "%Y-%m-%d %H:%M:%S", tz = "Asia/Taipei", usetz = TRUE)
-    #> [1] "2019-07-27 15:58:52 CST"
+    #> [1] "2019-07-31 21:55:34 CST"
     ```
 
 1. 设置时区
@@ -880,7 +883,7 @@ apropos('package')
     
     ```r
     .packages(T) %>% length()
-    #> [1] 297
+    #> [1] 322
     ```
    
 1. `available.packages` 查询可用的 R 包
@@ -944,9 +947,19 @@ apropos('package')
     ```r
     old.packages() %>% head()
     #>           Package     LibPath                         Installed Built  
+    #> deldir    "deldir"    "/usr/local/lib/R/site-library" "0.1-22"  "3.6.1"
+    #> foreach   "foreach"   "/usr/local/lib/R/site-library" "1.4.4"   "3.6.1"
     #> iterators "iterators" "/usr/local/lib/R/site-library" "1.0.10"  "3.6.1"
+    #> parsnip   "parsnip"   "/usr/local/lib/R/site-library" "0.0.2"   "3.6.1"
+    #> tidytext  "tidytext"  "/usr/local/lib/R/site-library" "0.2.1"   "3.6.1"
+    #> xml2      "xml2"      "/usr/local/lib/R/site-library" "1.2.0"   "3.6.1"
     #>           ReposVer Repository                            
+    #> deldir    "0.1-23" "https://cran.rstudio.com/src/contrib"
+    #> foreach   "1.4.7"  "https://cran.rstudio.com/src/contrib"
     #> iterators "1.0.12" "https://cran.rstudio.com/src/contrib"
+    #> parsnip   "0.0.3"  "https://cran.rstudio.com/src/contrib"
+    #> tidytext  "0.2.2"  "https://cran.rstudio.com/src/contrib"
+    #> xml2      "1.2.1"  "https://cran.rstudio.com/src/contrib"
     ```
 
 1. `new.packages` 还没有安装的 R 包 
@@ -966,14 +979,14 @@ apropos('package')
     #> Number of installed packages:
     #>                                
     #>                                  ok upgrade unavailable
-    #>   /usr/local/lib/R/site-library 276       1           6
+    #>   /usr/local/lib/R/site-library 296       6           6
     #>   /usr/lib/R/site-library         0       0           0
     #>   /usr/lib/R/library             14       0           0
     #> 
     #> Number of available packages (each package counted only once):
     #>                                       
     #>                                        installed not installed
-    #>   https://cran.rstudio.com/src/contrib       277         14330
+    #>   https://cran.rstudio.com/src/contrib       302         14332
     ```
     
 1. `packageDescription` 查询 R 包描述信息
@@ -1079,7 +1092,7 @@ body
 #>         fun <- get(fun, mode = "function", envir = parent.frame())
 #>     .Internal(body(fun))
 #> }
-#> <bytecode: 0x559a149c71f0>
+#> <bytecode: 0x55ed1c760100>
 #> <environment: namespace:base>
 ```
 

@@ -54,14 +54,10 @@ pchShow <-
 pchShow()
 ```
 
-\begin{figure}[!htb]
-
-{\centering \includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-2-1} 
-
-}
-
-\caption{不同的 pch 参数值}(\#fig:unnamed-chunk-2)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="dv-plot_files/figure-epub3/unnamed-chunk-2-1.png" alt="不同的 pch 参数值" width="70%" />
+<p class="caption">(\#fig:unnamed-chunk-2)不同的 pch 参数值</p>
+</div>
 
 
 
@@ -94,14 +90,10 @@ TestChars(font = 5) # Euro might be at 160 (0+10*16).
 try(TestChars(-1, font = 2)) # bold
 ```
 
-\begin{figure}[!htb]
-
-{\centering \includegraphics[width=0.45\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-3-1} \includegraphics[width=0.45\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-3-2} \includegraphics[width=0.45\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-3-3} \includegraphics[width=0.45\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-3-4} 
-
-}
-
-\caption{pch 支持的字符}(\#fig:unnamed-chunk-3)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="dv-plot_files/figure-epub3/unnamed-chunk-3-1.png" alt="pch 支持的字符" width="45%" /><img src="dv-plot_files/figure-epub3/unnamed-chunk-3-2.png" alt="pch 支持的字符" width="45%" /><img src="dv-plot_files/figure-epub3/unnamed-chunk-3-3.png" alt="pch 支持的字符" width="45%" /><img src="dv-plot_files/figure-epub3/unnamed-chunk-3-4.png" alt="pch 支持的字符" width="45%" />
+<p class="caption">(\#fig:unnamed-chunk-3)pch 支持的字符</p>
+</div>
 
 
 ```r
@@ -117,14 +109,10 @@ for (tp in c("p", "l", "b", "c", "o", "h", "s", "S", "n")) {
 }
 ```
 
-\begin{figure}[!htb]
-
-{\centering \includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-4-1} 
-
-}
-
-\caption{不同的 type 参数值}(\#fig:unnamed-chunk-4)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="dv-plot_files/figure-epub3/unnamed-chunk-4-1.png" alt="不同的 type 参数值" width="70%" />
+<p class="caption">(\#fig:unnamed-chunk-4)不同的 type 参数值</p>
+</div>
 
 颜色 col 连续型和离散型
 
@@ -150,14 +138,10 @@ text(5, 15, "serif", cex = 1.5, family = "serif", pos = 2, offset = .5)
 text(15, 15, "lend = square", pos = 4, offset = .5)
 ```
 
-\begin{figure}[!htb]
-
-{\centering \includegraphics[width=0.55\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-5-1} 
-
-}
-
-\caption{不同的线端样式}(\#fig:unnamed-chunk-5)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="dv-plot_files/figure-epub3/unnamed-chunk-5-1.png" alt="不同的线端样式" width="55%" />
+<p class="caption">(\#fig:unnamed-chunk-5)不同的线端样式</p>
+</div>
 
 
 lend：线端的样式，可用一个整数或字符串指定：
@@ -204,14 +188,10 @@ for (k in 1:nt) {
 }
 ```
 
-\begin{figure}[!htb]
-
-{\centering \includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-6-1} 
-
-}
-
-\caption{rect 函数画长方形}(\#fig:unnamed-chunk-6)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="dv-plot_files/figure-epub3/unnamed-chunk-6-1.png" alt="rect 函数画长方形" width="70%" />
+<p class="caption">(\#fig:unnamed-chunk-6)rect 函数画长方形</p>
+</div>
 
 `clip(x1, x2, y1, y2)` 在用户坐标中设置剪切区域
 
@@ -227,9 +207,7 @@ hist(x, col = "blue", add = TRUE)
 do.call("clip", as.list(usr)) # reset to plot region
 ```
 
-
-
-\begin{center}\includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-7-1} \end{center}
+<img src="dv-plot_files/figure-epub3/unnamed-chunk-7-1.png" width="70%" style="display: block; margin: auto;" />
 
 
 
@@ -257,14 +235,10 @@ my.col(function(x) x^2, function(x) x^2 + 10 * sin(x),
 )
 ```
 
-\begin{figure}[!htb]
-
-{\centering \includegraphics[width=0.55\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-8-1} 
-
-}
-
-\caption{区域重叠 polygon 函数}(\#fig:unnamed-chunk-8)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="dv-plot_files/figure-epub3/unnamed-chunk-8-1.png" alt="区域重叠 polygon 函数" width="55%" />
+<p class="caption">(\#fig:unnamed-chunk-8)区域重叠 polygon 函数</p>
+</div>
 
 
 各种符号 \@ref(fig:cex-symbol) 
@@ -288,14 +262,10 @@ for (i in 0:4) {
 }
 ```
 
-\begin{figure}[!htb]
-
-{\centering \includegraphics[width=0.55\linewidth]{dv-plot_files/figure-latex/cex-symbol-1} 
-
-}
-
-\caption{cex 支持的符号}(\#fig:cex-symbol)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="dv-plot_files/figure-epub3/cex-symbol-1.png" alt="cex 支持的符号" width="55%" />
+<p class="caption">(\#fig:cex-symbol)cex 支持的符号</p>
+</div>
 
 点、线、多边形和圆聚集在图 \@ref(fig:symbols) 中
 
@@ -312,14 +282,10 @@ symbols(c(70, 80, 90), c(20, 50, 80),
 )
 ```
 
-\begin{figure}[!htb]
-
-{\centering \includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/symbols-1} 
-
-}
-
-\caption{多边形和符号元素}(\#fig:symbols)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="dv-plot_files/figure-epub3/symbols-1.png" alt="多边形和符号元素" width="70%" />
+<p class="caption">(\#fig:symbols)多边形和符号元素</p>
+</div>
 
 在介绍各种统计图形之前，先介绍几个绘图函数 `plot` 和 `text` 还有 `par` 参数设置， 作为最简单的开始，尽量依次介绍其中的每个参数的含义并附上图形对比。
 
@@ -336,14 +302,10 @@ ahat <- "sigma"
 title(bquote(hat(a) == .(ahat)))
 ```
 
-\begin{figure}[!htb]
-
-{\centering \includegraphics[width=0.55\linewidth]{dv-plot_files/figure-latex/pos-1} 
-
-}
-
-\caption{pos 位置参数}(\#fig:pos)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="dv-plot_files/figure-epub3/pos-1.png" alt="pos 位置参数" width="55%" />
+<p class="caption">(\#fig:pos)pos 位置参数</p>
+</div>
 
 其中 labels， pos 都是向量化的参数
 
@@ -364,14 +326,10 @@ plot(x / sqrt(n), 2 * (1 - pt(x, n - 1)),
 abline(v = c(0.01, 0.2, 0.5, 0.8, 1.2, 2), lty = 2)
 ```
 
-\begin{figure}[!htb]
-
-{\centering \includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/bg-grid-lines-1} 
-
-}
-
-\caption{添加背景参考线}(\#fig:bg-grid-lines)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="dv-plot_files/figure-epub3/bg-grid-lines-1.png" alt="添加背景参考线" width="70%" />
+<p class="caption">(\#fig:bg-grid-lines)添加背景参考线</p>
+</div>
 
 
 
@@ -387,9 +345,7 @@ plot(x, y)
 plot(x, y, xlab = "Index", ylab = "Uniform draws")
 ```
 
-
-
-\begin{center}\includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-9-1} \includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-9-2} \end{center}
+<img src="dv-plot_files/figure-epub3/unnamed-chunk-9-1.png" width="70%" style="display: block; margin: auto;" /><img src="dv-plot_files/figure-epub3/unnamed-chunk-9-2.png" width="70%" style="display: block; margin: auto;" />
 
 改变坐标轴标签和标题
 
@@ -404,9 +360,7 @@ par(mar = c(6, 6, 3, 3), cex.axis = 1.5, cex.lab = 2)
 plot(x, y, xlab = "Index", ylab = "Uniform draws")
 ```
 
-
-
-\begin{center}\includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-10-1} \end{center}
+<img src="dv-plot_files/figure-epub3/unnamed-chunk-10-1.png" width="70%" style="display: block; margin: auto;" />
 
 使用 axis 函数可以更加精细地控制坐标轴
 
@@ -417,9 +371,7 @@ plot(x, y, xaxt = "n") # 去掉 x 轴
 axis(side = 1, at = c(5, 50, 100)) # 添加指定的刻度标签
 ```
 
-
-
-\begin{center}\includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-11-1} \end{center}
+<img src="dv-plot_files/figure-epub3/unnamed-chunk-11-1.png" width="70%" style="display: block; margin: auto;" />
 
 指定刻度标签的内容
 
@@ -429,9 +381,7 @@ plot(x, y, yaxt = "n")
 axis(side = 2, at = c(-2, 0, 2), labels = c("Small", "Medium", "Big"))
 ```
 
-
-
-\begin{center}\includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-12-1} \end{center}
+<img src="dv-plot_files/figure-epub3/unnamed-chunk-12-1.png" width="70%" style="display: block; margin: auto;" />
 
 控制刻度线和轴线和刻度标签
 
@@ -441,9 +391,7 @@ plot(x, y)
 axis(side = 3, at = c(5, 25, 75), lwd = 4, lwd.ticks = 2, col.ticks = "red")
 ```
 
-
-
-\begin{center}\includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-13-1} \end{center}
+<img src="dv-plot_files/figure-epub3/unnamed-chunk-13-1.png" width="70%" style="display: block; margin: auto;" />
 
 还可以把 box 移除，绘图区域的边框去掉，只保留坐标轴
 
@@ -454,9 +402,7 @@ axis(side = 1, at = seq(0, 100, 20), lwd = 3)
 axis(side = 2, at = seq(-2, 2, 2), lwd = 3)
 ```
 
-
-
-\begin{center}\includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-14-1} \end{center}
+<img src="dv-plot_files/figure-epub3/unnamed-chunk-14-1.png" width="70%" style="display: block; margin: auto;" />
 
 
 
@@ -490,14 +436,10 @@ mtext("Second Y axis", 4, line = 2, col = "red", cex = 1.2)
 # 1,2,3,4 分别代表下左上右四个位置
 ```
 
-\begin{figure}[!htb]
-
-{\centering \includegraphics[width=0.65\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-15-1} 
-
-}
-
-\caption{两个 Y 轴}(\#fig:unnamed-chunk-15)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="dv-plot_files/figure-epub3/unnamed-chunk-15-1.png" alt="两个 Y 轴" width="65%" />
+<p class="caption">(\#fig:unnamed-chunk-15)两个 Y 轴</p>
+</div>
 
 调整坐标轴标签的距离
 
@@ -528,14 +470,10 @@ mtext(chG,
 ## now shrink the window (in x- and y-direction) and observe the axis labels drawn
 ```
 
-\begin{figure}[!htb]
-
-{\centering \includegraphics[width=0.55\linewidth]{dv-plot_files/figure-latex/gap-axis-1} 
-
-}
-
-\caption{gap.axis用法}(\#fig:gap-axis)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="dv-plot_files/figure-epub3/gap-axis-1.png" alt="gap.axis用法" width="55%" />
+<p class="caption">(\#fig:gap-axis)gap.axis用法</p>
+</div>
 
 旋转坐标轴标签
 
@@ -566,9 +504,7 @@ par(op)
 # dev.off()
 ```
 
-
-
-\begin{center}\includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-16-1} \end{center}
+<img src="dv-plot_files/figure-epub3/unnamed-chunk-16-1.png" width="70%" style="display: block; margin: auto;" />
 
 旋转坐标抽标签的例子来自手册《R FAQ》的第7章第27个问题 [@R-FAQ]，在基础图形中，旋转坐标轴标签需要 `text()` 而不是 `mtext()`，因为后者不支持`par("srt")` 
 
@@ -591,14 +527,10 @@ text(1:8, par("usr")[3] - 0.5,
 mtext(side = 1, text = "X Axis Label", line = 4)
 ```
 
-\begin{figure}[!htb]
-
-{\centering \includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/rotate-axis-labels-1} 
-
-}
-
-\caption{旋转坐标轴标签}(\#fig:rotate-axis-labels)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="dv-plot_files/figure-epub3/rotate-axis-labels-1.png" alt="旋转坐标轴标签" width="70%" />
+<p class="caption">(\#fig:rotate-axis-labels)旋转坐标轴标签</p>
+</div>
 
 `srt = 45` 表示文本旋转角度， `xpd = TRUE` 允许文本越出绘图区域，`adj = 1` to place the right end of text at the tick marks；You can adjust the value of the 0.5 offset as required to move the axis labels up or down relative to the x axis. 详细地参考 [@Paul_2003_Integrating]
 
@@ -620,9 +552,7 @@ axis(side = 2, at = seq(-2, 2, 2), tcl = 0.3, lwd.ticks = 3, col.ticks = "orange
 mtext(side = 2, text = "Numbers taken randomly", line = 2.2)
 ```
 
-
-
-\begin{center}\includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-17-1} \includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-17-2} \end{center}
+<img src="dv-plot_files/figure-epub3/unnamed-chunk-17-1.png" width="70%" style="display: block; margin: auto;" /><img src="dv-plot_files/figure-epub3/unnamed-chunk-17-2.png" width="70%" style="display: block; margin: auto;" />
 
 
 ### 标题 {#base-title}
@@ -641,14 +571,10 @@ mtext("X axis", 1, line = 2.5, cex = 1.5)
 mtext("X axis subtitle", 1, line = 3.7)
 ```
 
-\begin{figure}[!htb]
-
-{\centering \includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-18-1} 
-
-}
-
-\caption{图标题/子标题 x轴标题/子标题}(\#fig:unnamed-chunk-18)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="dv-plot_files/figure-epub3/unnamed-chunk-18-1.png" alt="图标题/子标题 x轴标题/子标题" width="70%" />
+<p class="caption">(\#fig:unnamed-chunk-18)图标题/子标题 x轴标题/子标题</p>
+</div>
 
 ### 注释 {#base-annotation}
 
@@ -673,14 +599,10 @@ text(1e3, 0, expression(italic("Customized Axes")))
 box()
 ```
 
-\begin{figure}[!htb]
-
-{\centering \includegraphics[width=0.45\linewidth]{dv-plot_files/figure-latex/math-annotation-1} 
-
-}
-
-\caption{创建自定义的坐标轴和刻度标签}(\#fig:math-annotation)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="dv-plot_files/figure-epub3/math-annotation-1.png" alt="创建自定义的坐标轴和刻度标签" width="45%" />
+<p class="caption">(\#fig:math-annotation)创建自定义的坐标轴和刻度标签</p>
+</div>
 
 在标题中添加数学公式
 
@@ -697,14 +619,10 @@ title(main = expression(
 ))
 ```
 
-\begin{figure}[!htb]
-
-{\centering \includegraphics[width=0.45\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-19-1} 
-
-}
-
-\caption{标题含有数学公式}(\#fig:unnamed-chunk-19)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="dv-plot_files/figure-epub3/unnamed-chunk-19-1.png" alt="标题含有数学公式" width="45%" />
+<p class="caption">(\#fig:unnamed-chunk-19)标题含有数学公式</p>
+</div>
 
 修改参数使用 `substitute` 函数批量生成
 
@@ -728,14 +646,10 @@ for (i in 1:4) { # 画四个图
 }
 ```
 
-\begin{figure}[!htb]
-
-{\centering \includegraphics[width=0.45\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-20-1} \includegraphics[width=0.45\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-20-2} \includegraphics[width=0.45\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-20-3} \includegraphics[width=0.45\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-20-4} 
-
-}
-
-\caption{批量生成函数图形}(\#fig:unnamed-chunk-20)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="dv-plot_files/figure-epub3/unnamed-chunk-20-1.png" alt="批量生成函数图形" width="45%" /><img src="dv-plot_files/figure-epub3/unnamed-chunk-20-2.png" alt="批量生成函数图形" width="45%" /><img src="dv-plot_files/figure-epub3/unnamed-chunk-20-3.png" alt="批量生成函数图形" width="45%" /><img src="dv-plot_files/figure-epub3/unnamed-chunk-20-4.png" alt="批量生成函数图形" width="45%" />
+<p class="caption">(\#fig:unnamed-chunk-20)批量生成函数图形</p>
+</div>
 
 基础绘图函数，如 plot 标签 `xlab` 支持 Unicode 代码表示的希腊字母，常用字母表备查，公式环境下，也可以用在绘图中
 
@@ -798,14 +712,10 @@ legend(-6, -1,
 )
 ```
 
-\begin{figure}[!htb]
-
-{\centering \includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-21-1} 
-
-}
-
-\caption{三角函数添加图例}(\#fig:unnamed-chunk-21)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="dv-plot_files/figure-epub3/unnamed-chunk-21-1.png" alt="三角函数添加图例" width="70%" />
+<p class="caption">(\#fig:unnamed-chunk-21)三角函数添加图例</p>
+</div>
 
 
 ```r
@@ -827,14 +737,10 @@ legend("bottomleft",
 )
 ```
 
-\begin{figure}[!htb]
-
-{\centering \includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-22-1} 
-
-}
-
-\caption{设置图例的位置}(\#fig:unnamed-chunk-22)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="dv-plot_files/figure-epub3/unnamed-chunk-22-1.png" alt="设置图例的位置" width="70%" />
+<p class="caption">(\#fig:unnamed-chunk-22)设置图例的位置</p>
+</div>
 
 
 ```r
@@ -852,14 +758,10 @@ legend("bottomleft",
 )
 ```
 
-\begin{figure}[!htb]
-
-{\centering \includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-23-1} 
-
-}
-
-\caption{insert 函数微调图例位置}(\#fig:unnamed-chunk-23)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="dv-plot_files/figure-epub3/unnamed-chunk-23-1.png" alt="insert 函数微调图例位置" width="70%" />
+<p class="caption">(\#fig:unnamed-chunk-23)insert 函数微调图例位置</p>
+</div>
 
 
 
@@ -883,14 +785,10 @@ legend(par("usr")[1],
 par(op)
 ```
 
-\begin{figure}[!htb]
-
-{\centering \includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-24-1} 
-
-}
-
-\caption{将图例放在绘图区域外面}(\#fig:unnamed-chunk-24)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="dv-plot_files/figure-epub3/unnamed-chunk-24-1.png" alt="将图例放在绘图区域外面" width="70%" />
+<p class="caption">(\#fig:unnamed-chunk-24)将图例放在绘图区域外面</p>
+</div>
 
 Hmisc 包的 labcurve 函数可以在曲线上放置名称，而不是遥远的图例上
 
@@ -898,14 +796,10 @@ Hmisc 包的 labcurve 函数可以在曲线上放置名称，而不是遥远的�
 
 边空分为内边空和外边空
 
-\begin{figure}[!htb]
-
-{\centering \subfloat[内边空(\#fig:par-mai-oma1)]{\includegraphics[width=0.35\linewidth]{/usr/lib/R/library/graphics/help/figures/mai} }\subfloat[外边空(\#fig:par-mai-oma2)]{\includegraphics[width=0.35\linewidth]{/usr/lib/R/library/graphics/help/figures/oma} }
-
-}
-
-\caption{边空}(\#fig:par-mai-oma)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="/usr/lib/R/library/graphics/help/figures/mai.png" alt="边空" width="35%" /><img src="/usr/lib/R/library/graphics/help/figures/oma.png" alt="边空" width="35%" />
+<p class="caption">(\#fig:par-mai-oma)边空</p>
+</div>
 
 
 `line` 第一行
@@ -927,14 +821,10 @@ for (i in seq(from = 0, to = 1, by = 1)) {
 }
 ```
 
-\begin{figure}[!htb]
-
-{\centering \includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-25-1} 
-
-}
-
-\caption{外边空在图的边缘添加文字}(\#fig:unnamed-chunk-25)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="dv-plot_files/figure-epub3/unnamed-chunk-25-1.png" alt="外边空在图的边缘添加文字" width="70%" />
+<p class="caption">(\#fig:unnamed-chunk-25)外边空在图的边缘添加文字</p>
+</div>
 
 
 `par`
@@ -958,14 +848,10 @@ mtext("Four plots, without enough room for this title",
 ) # 总/大标题放不下
 ```
 
-\begin{figure}[!htb]
-
-{\centering \includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-26-1} 
-
-}
-
-\caption{多图排列共享一个大标题}(\#fig:unnamed-chunk-26)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="dv-plot_files/figure-epub3/unnamed-chunk-26-1.png" alt="多图排列共享一个大标题" width="70%" />
+<p class="caption">(\#fig:unnamed-chunk-26)多图排列共享一个大标题</p>
+</div>
 
 `par` 的 oma 用来设置外边空的大小，默认情形下没有外边空的
 
@@ -994,14 +880,10 @@ mtext("Four plots, with some room for this title",
 )
 ```
 
-\begin{figure}[!htb]
-
-{\centering \includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-28-1} 
-
-}
-
-\caption{设置外边空放置大标题}(\#fig:unnamed-chunk-28)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="dv-plot_files/figure-epub3/unnamed-chunk-28-1.png" alt="设置外边空放置大标题" width="70%" />
+<p class="caption">(\#fig:unnamed-chunk-28)设置外边空放置大标题</p>
+</div>
 
 除了内边空还有外边空，内外边空用来放注释说明
 
@@ -1022,9 +904,7 @@ for (side in 1:4) {
 }
 ```
 
-
-
-\begin{center}\includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-29-1} \end{center}
+<img src="dv-plot_files/figure-epub3/unnamed-chunk-29-1.png" width="70%" style="display: block; margin: auto;" />
 
 外边空可以用来放图例
 
@@ -1047,9 +927,7 @@ legend(
 par(op)
 ```
 
-
-
-\begin{center}\includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-30-1} \end{center}
+<img src="dv-plot_files/figure-epub3/unnamed-chunk-30-1.png" width="70%" style="display: block; margin: auto;" />
 
 坐标轴标签 `xlab` 和 `ylab` 的内容很长的时候需要内边空
 
@@ -1069,9 +947,7 @@ plot(1, 1,
 )
 ```
 
-
-
-\begin{center}\includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-31-1} \end{center}
+<img src="dv-plot_files/figure-epub3/unnamed-chunk-31-1.png" width="70%" style="display: block; margin: auto;" />
 
 有时候，仅仅增加内边空还不够，坐标轴标签内容甚至可以出现在绘图区域外面，设置 `outer = TRUE`
 
@@ -1085,9 +961,7 @@ mtext(
 )
 ```
 
-
-
-\begin{center}\includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-32-1} \end{center}
+<img src="dv-plot_files/figure-epub3/unnamed-chunk-32-1.png" width="70%" style="display: block; margin: auto;" />
 
 
 
@@ -1109,14 +983,10 @@ mtext("Title",
 )
 ```
 
-\begin{figure}[!htb]
-
-{\centering \includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-33-1} 
-
-}
-
-\caption{设置每个子图的边空 mar}(\#fig:unnamed-chunk-33)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="dv-plot_files/figure-epub3/unnamed-chunk-33-1.png" alt="设置每个子图的边空 mar" width="70%" />
+<p class="caption">(\#fig:unnamed-chunk-33)设置每个子图的边空 mar</p>
+</div>
 
 
 ### 图层 {#base-layer}
@@ -1138,14 +1008,10 @@ segments(runif(5), runif(5), runif(5), runif(5),
 title(main = "Overlaying points, segments, lines...")
 ```
 
-\begin{figure}[!htb]
-
-{\centering \includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-34-1} 
-
-}
-
-\caption{添加图层}(\#fig:unnamed-chunk-34)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="dv-plot_files/figure-epub3/unnamed-chunk-34-1.png" alt="添加图层" width="70%" />
+<p class="caption">(\#fig:unnamed-chunk-34)添加图层</p>
+</div>
 
 
 ### 布局 {#base-layout}
@@ -1170,14 +1036,10 @@ mtext("The \"layout\" function",
 )
 ```
 
-\begin{figure}[!htb]
-
-{\centering \includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-35-1} 
-
-}
-
-\caption{更加复杂的组合图形}(\#fig:unnamed-chunk-35)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="dv-plot_files/figure-epub3/unnamed-chunk-35-1.png" alt="更加复杂的组合图形" width="70%" />
+<p class="caption">(\#fig:unnamed-chunk-35)更加复杂的组合图形</p>
+</div>
 
 ### 组合 {#base-combine}
 
@@ -1196,14 +1058,10 @@ plot(6:10,
 )
 ```
 
-\begin{figure}[!htb]
-
-{\centering \includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-36-1} 
-
-}
-
-\caption{多图叠加}(\#fig:unnamed-chunk-36)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="dv-plot_files/figure-epub3/unnamed-chunk-36-1.png" alt="多图叠加" width="70%" />
+<p class="caption">(\#fig:unnamed-chunk-36)多图叠加</p>
+</div>
 
 `fig` 参数控制图形的位置，用来绘制组合图形
 
@@ -1233,14 +1091,10 @@ box(lwd = 2)
 par(op)
 ```
 
-\begin{figure}[!htb]
-
-{\centering \includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-37-1} 
-
-}
-
-\caption{组合图形}(\#fig:unnamed-chunk-37)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="dv-plot_files/figure-epub3/unnamed-chunk-37-1.png" alt="组合图形" width="70%" />
+<p class="caption">(\#fig:unnamed-chunk-37)组合图形</p>
+</div>
 
 
 ### 分屏 {#base-screen}
@@ -1284,14 +1138,10 @@ close.screen(all = TRUE)
 par(op)
 ```
 
-\begin{figure}[!htb]
-
-{\centering \includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-38-1} 
-
-}
-
-\caption{分屏}(\#fig:unnamed-chunk-38)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="dv-plot_files/figure-epub3/unnamed-chunk-38-1.png" alt="分屏" width="70%" />
+<p class="caption">(\#fig:unnamed-chunk-38)分屏</p>
+</div>
 
 
 
@@ -1334,14 +1184,10 @@ axis(1,
 grid()
 ```
 
-\begin{figure}[!htb]
-
-{\centering \includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/diamonds-base-barplot-1} 
-
-}
-
-\caption{条形图}(\#fig:diamonds-base-barplot)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="dv-plot_files/figure-epub3/diamonds-base-barplot-1.png" alt="条形图" width="70%" />
+<p class="caption">(\#fig:diamonds-base-barplot)条形图</p>
+</div>
 
 
 
@@ -1357,14 +1203,10 @@ plot(barPois, col = "lightblue", type = "h", lwd = 10, main = "")
 box(col = "gray")
 ```
 
-\begin{figure}[!htb]
-
-{\centering \includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-39-1} 
-
-}
-
-\caption{柱形图}(\#fig:unnamed-chunk-39)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="dv-plot_files/figure-epub3/unnamed-chunk-39-1.png" alt="柱形图" width="70%" />
+<p class="caption">(\#fig:unnamed-chunk-39)柱形图</p>
+</div>
 
 
 
@@ -1387,14 +1229,10 @@ barplot(VADeaths,
 )
 ```
 
-\begin{figure}[!htb]
-
-{\centering \includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/barplot-VADeaths-1-1} 
-
-}
-
-\caption{复合条形图}(\#fig:barplot-VADeaths-1)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="dv-plot_files/figure-epub3/barplot-VADeaths-1-1.png" alt="复合条形图" width="70%" />
+<p class="caption">(\#fig:barplot-VADeaths-1)复合条形图</p>
+</div>
 
 堆积条形图
 
@@ -1414,14 +1252,10 @@ barplot(VADeaths,
 )
 ```
 
-\begin{figure}[!htb]
-
-{\centering \includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/barplot-VADeaths-2-1} 
-
-}
-
-\caption{堆积条形图}(\#fig:barplot-VADeaths-2)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="dv-plot_files/figure-epub3/barplot-VADeaths-2-1.png" alt="堆积条形图" width="70%" />
+<p class="caption">(\#fig:barplot-VADeaths-2)堆积条形图</p>
+</div>
 
 - 堆积条形图 spineplot
 
@@ -1435,9 +1269,7 @@ barplot(
 )
 ```
 
-
-
-\begin{center}\includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/barplot-BOD-1} \end{center}
+<img src="dv-plot_files/figure-epub3/barplot-BOD-1.png" width="70%" style="display: block; margin: auto;" />
 
 
 
@@ -1450,9 +1282,7 @@ barplot(
 )
 ```
 
-
-
-\begin{center}\includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/barplot-PlantGrowth-1} \end{center}
+<img src="dv-plot_files/figure-epub3/barplot-PlantGrowth-1.png" width="70%" style="display: block; margin: auto;" />
 
 Titanic 数据集是 table 数据类型
 
@@ -1476,9 +1306,7 @@ barplot(Freq ~ Class + Survived,
 )
 ```
 
-
-
-\begin{center}\includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-40-1} \end{center}
+<img src="dv-plot_files/figure-epub3/unnamed-chunk-40-1.png" width="70%" style="display: block; margin: auto;" />
 
 
 堆积条形图
@@ -1498,9 +1326,7 @@ barplot(Freq ~ Class + Survived,
 )
 ```
 
-
-
-\begin{center}\includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-41-1} \end{center}
+<img src="dv-plot_files/figure-epub3/unnamed-chunk-41-1.png" width="70%" style="display: block; margin: auto;" />
 
 ### 直方图 {#plot-hist}
 
@@ -1520,14 +1346,10 @@ axis(2, labels = ylim, at = ylim, las = 0) # y 轴
 box(col = "gray")
 ```
 
-\begin{figure}[!htb]
-
-{\centering \includegraphics[width=0.55\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-42-1} 
-
-}
-
-\caption{直方图}(\#fig:unnamed-chunk-42)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="dv-plot_files/figure-epub3/unnamed-chunk-42-1.png" alt="直方图" width="55%" />
+<p class="caption">(\#fig:unnamed-chunk-42)直方图</p>
+</div>
 
 
 
@@ -1535,9 +1357,7 @@ box(col = "gray")
 with(faithful, plot(eruptions ~ waiting, pch = 16))
 ```
 
-
-
-\begin{center}\includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-43-1} \end{center}
+<img src="dv-plot_files/figure-epub3/unnamed-chunk-43-1.png" width="70%" style="display: block; margin: auto;" />
 
 
 ```r
@@ -1548,9 +1368,7 @@ with(faithful, hist(waiting,
 ))
 ```
 
-
-
-\begin{center}\includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-44-1} \end{center}
+<img src="dv-plot_files/figure-epub3/unnamed-chunk-44-1.png" width="70%" style="display: block; margin: auto;" />
 
 
 
@@ -1565,14 +1383,10 @@ with(data = faithful, {
 })
 ```
 
-\begin{figure}[!htb]
-
-{\centering \includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/eruptions-1} 
-
-}
-
-\caption{老忠实泉间歇性喷水的时间间隔分布}(\#fig:eruptions)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="dv-plot_files/figure-epub3/eruptions-1.png" alt="老忠实泉间歇性喷水的时间间隔分布" width="70%" />
+<p class="caption">(\#fig:eruptions)老忠实泉间歇性喷水的时间间隔分布</p>
+</div>
 
 
 ```r
@@ -1587,14 +1401,10 @@ lines(density(longley$Unemployed),
 )
 ```
 
-\begin{figure}[!htb]
-
-{\centering \includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-45-1} 
-
-}
-
-\caption{概率密度分布}(\#fig:unnamed-chunk-45)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="dv-plot_files/figure-epub3/unnamed-chunk-45-1.png" alt="概率密度分布" width="70%" />
+<p class="caption">(\#fig:unnamed-chunk-45)概率密度分布</p>
+</div>
 
 直方图有很多花样的，添加阴影线，angle 控制倾斜的角度
 
@@ -1606,14 +1416,10 @@ lines(density(longley$Unemployed),
 hist(longley$Unemployed, density = 3, angle = 45, main = "")
 ```
 
-\begin{figure}[!htb]
-
-{\centering \includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-46-1} 
-
-}
-
-\caption{density 数值越大阴影线越密}(\#fig:unnamed-chunk-46)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="dv-plot_files/figure-epub3/unnamed-chunk-46-1.png" alt="density 数值越大阴影线越密" width="70%" />
+<p class="caption">(\#fig:unnamed-chunk-46)density 数值越大阴影线越密</p>
+</div>
 
 ### 密度图 {#plot-density}
 
@@ -1634,9 +1440,7 @@ lines(density(galaxies, width = 3.25, n = 200), col = "blue", lty = 1)
 lines(density(galaxies, width = 2.56, n = 200), col = "red", lty = 3)
 ```
 
-
-
-\begin{center}\includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-47-1} \end{center}
+<img src="dv-plot_files/figure-epub3/unnamed-chunk-47-1.png" width="70%" style="display: block; margin: auto;" />
 
 
 ```r
@@ -1668,9 +1472,7 @@ points(109, 0.0445, pch = 15, col = "dodgerblue4")
 points(109, 0.0395, pch = 15, col = "firebrick3")
 ```
 
-
-
-\begin{center}\includegraphics[width=0.65\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-48-1} \end{center}
+<img src="dv-plot_files/figure-epub3/unnamed-chunk-48-1.png" width="65%" style="display: block; margin: auto;" />
 
 
 
@@ -1686,9 +1488,7 @@ plot(density(days, from = 0, to = 180, adjust = 0.2),
 )
 ```
 
-
-
-\begin{center}\includegraphics[width=0.55\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-49-1} \includegraphics[width=0.55\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-49-2} \end{center}
+<img src="dv-plot_files/figure-epub3/unnamed-chunk-49-1.png" width="55%" style="display: block; margin: auto;" /><img src="dv-plot_files/figure-epub3/unnamed-chunk-49-2.png" width="55%" style="display: block; margin: auto;" />
 
 
 ```r
@@ -1704,9 +1504,7 @@ plot(surv.fit,
 grid(20, 10, lwd = 2)
 ```
 
-
-
-\begin{center}\includegraphics[width=0.75\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-50-1} \end{center}
+<img src="dv-plot_files/figure-epub3/unnamed-chunk-50-1.png" width="75%" style="display: block; margin: auto;" />
 
 [visualize-distributions]: https://www.displayr.com/using-heatmap-coloring-density-plot-using-r-visualize-distributions/
 
@@ -1722,14 +1520,10 @@ with(data = faithful, {
 })
 ```
 
-\begin{figure}[!htb]
-
-{\centering \includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/faithful-1} 
-
-}
-
-\caption{累积经验分布图}(\#fig:faithful)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="dv-plot_files/figure-epub3/faithful-1.png" alt="累积经验分布图" width="70%" />
+<p class="caption">(\#fig:faithful)累积经验分布图</p>
+</div>
 
 ### QQ 图 {#plot-qqnorm}
 
@@ -1743,9 +1537,7 @@ with(data = faithful, {
 })
 ```
 
-
-
-\begin{center}\includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/faithful-eruptions-1} \end{center}
+<img src="dv-plot_files/figure-epub3/faithful-eruptions-1.png" width="70%" style="display: block; margin: auto;" />
 
 
 ### 时序图 {#plot-ts}
@@ -1762,15 +1554,12 @@ matplot(time(EuStockMarkets), EuStockMarkets,
 legend("topleft", colnames(EuStockMarkets), pch = 17, lty = 1, col = 1:4)
 ```
 
-\begin{figure}[!htb]
-
-{\centering \includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-51-1} 
-
-}
-
-\caption{1991–1998年间主要欧洲股票市场日闭市价格指数图 
- 德国 DAX (Ibis), Switzerland SMI, 法国 CAC 和 英国 FTSE}(\#fig:unnamed-chunk-51)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="dv-plot_files/figure-epub3/unnamed-chunk-51-1.png" alt="1991–1998年间主要欧洲股票市场日闭市价格指数图 
+ 德国 DAX (Ibis), Switzerland SMI, 法国 CAC 和 英国 FTSE" width="70%" />
+<p class="caption">(\#fig:unnamed-chunk-51)1991–1998年间主要欧洲股票市场日闭市价格指数图 
+ 德国 DAX (Ibis), Switzerland SMI, 法国 CAC 和 英国 FTSE</p>
+</div>
 
 ### 饼图 {#plot-pie}
 
@@ -1788,9 +1577,7 @@ segments(0, 0, 0, 1, col = "red", lwd = 2)
 text(0, 1, "init.angle = 90", col = "red")
 ```
 
-
-
-\begin{center}\includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-52-1} \end{center}
+<img src="dv-plot_files/figure-epub3/unnamed-chunk-52-1.png" width="70%" style="display: block; margin: auto;" />
 
 
 ### 茎叶图 {#plot-stem-leaf}
@@ -1818,14 +1605,10 @@ stripchart(longley$Unemployed, method = "jitter", jitter = 0.1, pch = 16, col = 
 stripchart(longley$Unemployed, method = "overplot", pch = 16, col = "lightblue")
 ```
 
-\begin{figure}[!htb]
-
-{\centering \subfloat[抖动图(\#fig:unnamed-chunk-541)]{\includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-54-1} }\subfloat[疏密图(\#fig:unnamed-chunk-542)]{\includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-54-2} }
-
-}
-
-\caption{一维散点图}(\#fig:unnamed-chunk-54)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="dv-plot_files/figure-epub3/unnamed-chunk-54-1.png" alt="一维散点图" width="70%" /><img src="dv-plot_files/figure-epub3/unnamed-chunk-54-2.png" alt="一维散点图" width="70%" />
+<p class="caption">(\#fig:unnamed-chunk-54)一维散点图</p>
+</div>
 
 气泡图是二维散点图的一种变体，气泡的大小可以用来描述第三个变量，下面以数据集 topo 为例展示气泡图
 
@@ -1851,14 +1634,10 @@ plot(y ~ x,
 )
 ```
 
-\begin{figure}[!htb]
-
-{\centering \includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-56-1} 
-
-}
-
-\caption{地形图之海拔高度}(\#fig:unnamed-chunk-56)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="dv-plot_files/figure-epub3/unnamed-chunk-56-1.png" alt="地形图之海拔高度" width="70%" />
+<p class="caption">(\#fig:unnamed-chunk-56)地形图之海拔高度</p>
+</div>
 
 散点图也适合分类数据的展示，在图中用不同颜色或符号标记数据点所属类别，即在普通散点图的基础上添加一分类变量的描述
 
@@ -1880,14 +1659,10 @@ legend(300, 35,
 )
 ```
 
-\begin{figure}[!htb]
-
-{\centering \includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/category-base-1} 
-
-}
-
-\caption{分类散点图}(\#fig:category-base)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="dv-plot_files/figure-epub3/category-base-1.png" alt="分类散点图" width="70%" />
+<p class="caption">(\#fig:category-base)分类散点图</p>
+</div>
 
 iris 数据
 
@@ -1901,14 +1676,10 @@ legend("topright",
 box(col = "gray")
 ```
 
-\begin{figure}[!htb]
-
-{\centering \includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/iris-scatter-1} 
-
-}
-
-\caption{分类散点图}(\#fig:iris-scatter)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="dv-plot_files/figure-epub3/iris-scatter-1.png" alt="分类散点图" width="70%" />
+<p class="caption">(\#fig:iris-scatter)分类散点图</p>
+</div>
 
 分组散点图和平滑
 
@@ -1948,14 +1719,10 @@ stripchart(Petal.Length ~ Species,
 )
 ```
 
-\begin{figure}[!htb]
-
-{\centering \includegraphics[width=0.35\linewidth]{dv-plot_files/figure-latex/scatter-iris-1} \includegraphics[width=0.35\linewidth]{dv-plot_files/figure-latex/scatter-iris-2} 
-
-}
-
-\caption{高亮图中部分散点}(\#fig:scatter-iris)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="dv-plot_files/figure-epub3/scatter-iris-1.png" alt="高亮图中部分散点" width="35%" /><img src="dv-plot_files/figure-epub3/scatter-iris-2.png" alt="高亮图中部分散点" width="35%" />
+<p class="caption">(\#fig:scatter-iris)高亮图中部分散点</p>
+</div>
 
 如果存在大量散点
 
@@ -1979,14 +1746,10 @@ graphics::plot(x, col = dcols, pch = 20, panel.first = grid())
 # title(main = "n = 1000", xpd = TRUE)
 ```
 
-\begin{figure}[!htb]
-
-{\centering \includegraphics[width=0.45\linewidth]{dv-plot_files/figure-latex/densCols-1} 
-
-}
-
-\caption{根据点的密度生成颜色}(\#fig:densCols)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="dv-plot_files/figure-epub3/densCols-1.png" alt="根据点的密度生成颜色" width="45%" />
+<p class="caption">(\#fig:densCols)根据点的密度生成颜色</p>
+</div>
 
 气泡图也是散点图的一种
 
@@ -1999,14 +1762,10 @@ plot(Volume ~ Height,
 box(col = "gray")
 ```
 
-\begin{figure}[!htb]
-
-{\centering \includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-59-1} 
-
-}
-
-\caption{气泡图}(\#fig:unnamed-chunk-59)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="dv-plot_files/figure-epub3/unnamed-chunk-59-1.png" alt="气泡图" width="70%" />
+<p class="caption">(\#fig:unnamed-chunk-59)气泡图</p>
+</div>
 
 气泡图
 
@@ -2033,9 +1792,7 @@ legend("top",
 )
 ```
 
-
-
-\begin{center}\includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-60-1} \end{center}
+<img src="dv-plot_files/figure-epub3/unnamed-chunk-60-1.png" width="70%" style="display: block; margin: auto;" />
 
 除了`par(new=TRUE)`设置外，有些函数本身就具有 `add` 选项
 
@@ -2055,9 +1812,7 @@ points(10, 100, pch = 16, cex = 3, col = "green")
 text(10, 80, "text here", cex = 3)
 ```
 
-
-
-\begin{center}\includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-61-1} \end{center}
+<img src="dv-plot_files/figure-epub3/unnamed-chunk-61-1.png" width="70%" style="display: block; margin: auto;" />
 
 ### 抖动图 {#base-jitter}
 
@@ -2081,14 +1836,10 @@ plot(y ~ jitter(x),
 )
 ```
 
-\begin{figure}[!htb]
-
-{\centering \includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/jitter-scatter-1} 
-
-}
-
-\caption{抖动散点图}(\#fig:jitter-scatter)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="dv-plot_files/figure-epub3/jitter-scatter-1.png" alt="抖动散点图" width="70%" />
+<p class="caption">(\#fig:jitter-scatter)抖动散点图</p>
+</div>
 
 ### 箱线图 {#plot-box}
 
@@ -2107,9 +1858,7 @@ B <- c(80.02, 79.94, 79.98, 79.97, 79.97, 80.03, 79.95, 79.97)
 boxplot(A, B)
 ```
 
-
-
-\begin{center}\includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/boxplot-1} \end{center}
+<img src="dv-plot_files/figure-epub3/boxplot-1.png" width="70%" style="display: block; margin: auto;" />
 
 
 ```r
@@ -2124,14 +1873,10 @@ with(data = iris, {
 })
 ```
 
-\begin{figure}[!htb]
-
-{\centering \includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/iris-1} 
-
-}
-
-\caption{安德森的鸢尾花数据}(\#fig:iris)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="dv-plot_files/figure-epub3/iris-1.png" alt="安德森的鸢尾花数据" width="70%" />
+<p class="caption">(\#fig:iris)安德森的鸢尾花数据</p>
+</div>
 
 箱线图的花样也很多
 
@@ -2146,9 +1891,7 @@ boxplot(longley$Unemployed,
 )
 ```
 
-
-
-\begin{center}\includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-62-1} \includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-62-2} \end{center}
+<img src="dv-plot_files/figure-epub3/unnamed-chunk-62-1.png" width="70%" style="display: block; margin: auto;" /><img src="dv-plot_files/figure-epub3/unnamed-chunk-62-2.png" width="70%" style="display: block; margin: auto;" />
 
 
 ```r
@@ -2162,9 +1905,7 @@ boxplot(count ~ spray,
 )
 ```
 
-
-
-\begin{center}\includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-63-1} \end{center}
+<img src="dv-plot_files/figure-epub3/unnamed-chunk-63-1.png" width="70%" style="display: block; margin: auto;" />
 
 水平放置
 
@@ -2181,9 +1922,7 @@ boxplot(count ~ spray,
 )
 ```
 
-
-
-\begin{center}\includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-64-1} \end{center}
+<img src="dv-plot_files/figure-epub3/unnamed-chunk-64-1.png" width="70%" style="display: block; margin: auto;" />
 
 Notched Boxplots
 
@@ -2200,9 +1939,7 @@ title(
 )
 ```
 
-
-
-\begin{center}\includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-65-1} \end{center}
+<img src="dv-plot_files/figure-epub3/unnamed-chunk-65-1.png" width="70%" style="display: block; margin: auto;" />
 
 真实的情况是这样的
 
@@ -2235,9 +1972,7 @@ with(cumcm2011A, boxplot(Zn, xlab = "Zn"))
 abline(h = c(41, 69, 97), col = c("green", "blue", "red"), lty = 2)
 ```
 
-
-
-\begin{center}\includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-66-1} \end{center}
+<img src="dv-plot_files/figure-epub3/unnamed-chunk-66-1.png" width="70%" style="display: block; margin: auto;" />
 
 
 ```r
@@ -2251,9 +1986,7 @@ abline(
 )
 ```
 
-
-
-\begin{center}\includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-67-1} \end{center}
+<img src="dv-plot_files/figure-epub3/unnamed-chunk-67-1.png" width="70%" style="display: block; margin: auto;" />
 
 ### 残差图 {#error-bars}
 
@@ -2276,14 +2009,10 @@ arrows(seq(4), vec_mean - vec_sd, seq(4), vec_mean + vec_sd,
 box()
 ```
 
-\begin{figure}[!htb]
-
-{\centering \includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-68-1} 
-
-}
-
-\caption{带标准差的均值散点图}(\#fig:unnamed-chunk-68)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="dv-plot_files/figure-epub3/unnamed-chunk-68-1.png" alt="带标准差的均值散点图" width="70%" />
+<p class="caption">(\#fig:unnamed-chunk-68)带标准差的均值散点图</p>
+</div>
 
 
 ### 提琴图 {#plot-violin}
@@ -2316,14 +2045,10 @@ plot(AirPassengers)
 box(col = "gray")
 ```
 
-\begin{figure}[!htb]
-
-{\centering \includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-69-1} 
-
-}
-
-\caption{折线图}(\#fig:unnamed-chunk-69)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="dv-plot_files/figure-epub3/unnamed-chunk-69-1.png" alt="折线图" width="70%" />
+<p class="caption">(\#fig:unnamed-chunk-69)折线图</p>
+</div>
 
 ### 函数图 {#function}
 
@@ -2351,9 +2076,7 @@ legend(0, 2.4, c("real part", "imaginary part", "absolute value"),
 )
 ```
 
-
-
-\begin{center}\includegraphics[width=0.65\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-70-1} \end{center}
+<img src="dv-plot_files/figure-epub3/unnamed-chunk-70-1.png" width="65%" style="display: block; margin: auto;" />
 
 还有 eta 函数和 gammaz 函数
 
@@ -2369,14 +2092,10 @@ legend(0, 2.4, c("real part", "imaginary part", "absolute value"),
 plot(HairEyeColor, col = "lightblue", border = "white", main = "")
 ```
 
-\begin{figure}[!htb]
-
-{\centering \includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-71-1} 
-
-}
-
-\caption{马赛克图}(\#fig:unnamed-chunk-71)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="dv-plot_files/figure-epub3/unnamed-chunk-71-1.png" alt="马赛克图" width="70%" />
+<p class="caption">(\#fig:unnamed-chunk-71)马赛克图</p>
+</div>
 
 ### 克利夫兰点图 {#plot-dotchart}
 
@@ -2410,14 +2129,10 @@ pairs(longley,
 )
 ```
 
-\begin{figure}[!htb]
-
-{\centering \includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-72-1} 
-
-}
-
-\caption{变量关系}(\#fig:unnamed-chunk-72)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="dv-plot_files/figure-epub3/unnamed-chunk-72-1.png" alt="变量关系" width="70%" />
+<p class="caption">(\#fig:unnamed-chunk-72)变量关系</p>
+</div>
 
 
 ```r
@@ -2425,14 +2140,10 @@ pairs(longley,
 plot(iris[, -5], col = iris$Species)
 ```
 
-\begin{figure}[!htb]
-
-{\centering \includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-73-1} 
-
-}
-
-\caption{矩阵图}(\#fig:unnamed-chunk-73)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="dv-plot_files/figure-epub3/unnamed-chunk-73-1.png" alt="矩阵图" width="70%" />
+<p class="caption">(\#fig:unnamed-chunk-73)矩阵图</p>
+</div>
 
 
 ### 雷达图 {#plot-radar}
@@ -2466,14 +2177,10 @@ library(spDataLarge)
 plot(elevation, asp = NA)
 ```
 
-\begin{figure}[!htb]
-
-{\centering \includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-75-1} 
-
-}
-
-\caption{raster 图形}(\#fig:unnamed-chunk-75)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="dv-plot_files/figure-epub3/unnamed-chunk-75-1.png" alt="raster 图形" width="70%" />
+<p class="caption">(\#fig:unnamed-chunk-75)raster 图形</p>
+</div>
 
 注意与 image 函数区别
 
@@ -2493,14 +2200,10 @@ box()
 title(main = "Maunga Whau Volcano", font.main = 4)
 ```
 
-\begin{figure}[!htb]
-
-{\centering \includegraphics[width=0.7\linewidth]{dv-plot_files/figure-latex/unnamed-chunk-76-1} 
-
-}
-
-\caption{image 图形}(\#fig:unnamed-chunk-76)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="dv-plot_files/figure-epub3/unnamed-chunk-76-1.png" alt="image 图形" width="70%" />
+<p class="caption">(\#fig:unnamed-chunk-76)image 图形</p>
+</div>
 
 
 ## 运行环境 {#plot-session-info}
