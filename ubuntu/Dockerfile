@@ -25,7 +25,6 @@ RUN useradd docker \
     libicu-dev \
     ca-certificates \
     locales \
-    gnupg \
     dialog \
   ## Configure default locale, see https://github.com/rocker-org/rocker/issues/19
   && sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen \
@@ -108,10 +107,6 @@ RUN apt-get install -y --no-install-recommends \
   libssl-dev \
 ## install curl
   libcurl4-openssl-dev \
-## install git2r
-  libgit2-dev \
-## install v8
-  libnode-dev \
 ## install DBI odbc 
   unixodbc-dev \
   odbc-postgresql \
@@ -120,13 +115,6 @@ RUN apt-get install -y --no-install-recommends \
   optipng \
   imagemagick \
   ghostscript \
-## install magick
-  libmagick++-dev \
-## install sf
-  libudunits2-dev \
-  libproj-dev \
-  libgeos-dev \
-  libgdal-dev \
   && install2.r --error \
   bookdown \
   cowplot \
@@ -137,7 +125,6 @@ RUN apt-get install -y --no-install-recommends \
   mapdata \
   mapproj \
   maptools \
-  sf \
   glmmTMB \
   nimble \
   rstan \
