@@ -20,7 +20,7 @@ RUN useradd docker \
   && mkdir /home/docker/workspace
 
 RUN apt-get update \
-  && apt-get install -y --no-install-recommends 
+  && apt-get install -y --no-install-recommends \
     apt-utils \
     wget \
     gnupg \
