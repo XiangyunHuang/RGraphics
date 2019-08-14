@@ -592,7 +592,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>接下来，我们再来查看一些比较高产的 R 包开发者谢益辉都维护了哪些R包，如表 <a href="cs-cran-network.html#tab:rmarkdown-ecology">12.2</a> 所示</p>
 <div class="sourceCode" id="cb543"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb543-1"><a href="cs-cran-network.html#cb543-1"></a>yihui_pdb &lt;-<span class="st"> </span><span class="kw">subset</span>(pdb,</span>
 <span id="cb543-2"><a href="cs-cran-network.html#cb543-2"></a>  <span class="dt">subset =</span> <span class="kw">grepl</span>(<span class="st">&quot;Yihui Xie&quot;</span>, pdb[, <span class="st">&quot;Maintainer&quot;</span>]),</span>
-<span id="cb543-3"><a href="cs-cran-network.html#cb543-3"></a>  <span class="dt">select =</span> <span class="kw">c</span>(<span class="st">&quot;Package&quot;</span>, <span class="st">&quot;Maintainer&quot;</span>, <span class="st">&quot;Title&quot;</span>)</span>
+<span id="cb543-3"><a href="cs-cran-network.html#cb543-3"></a>  <span class="dt">select =</span> <span class="kw">c</span>(<span class="st">&quot;Package&quot;</span>, <span class="st">&quot;Title&quot;</span>)</span>
 <span id="cb543-4"><a href="cs-cran-network.html#cb543-4"></a>)</span>
 <span id="cb543-5"><a href="cs-cran-network.html#cb543-5"></a>yihui_pdb[, <span class="st">&quot;Title&quot;</span>] &lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot;(</span><span class="ch">\\\n</span><span class="st">)&quot;</span>, <span class="st">&quot; &quot;</span>, yihui_pdb[, <span class="st">&quot;Title&quot;</span>])</span>
 <span id="cb543-6"><a href="cs-cran-network.html#cb543-6"></a>knitr<span class="op">::</span><span class="kw">kable</span>(yihui_pdb, <span class="dt">caption =</span> <span class="st">&quot;谢益辉维护的 R Markdown 生态&quot;</span>, <span class="dt">booktabs =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
@@ -602,7 +602,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <tr class="header">
 <th></th>
 <th align="left">Package</th>
-<th align="left">Maintainer</th>
 <th align="left">Title</th>
 </tr>
 </thead>
@@ -610,145 +609,121 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <tr class="odd">
 <td>296</td>
 <td align="left">animation</td>
-<td align="left">Yihui Xie <a href="mailto:xie@yihui.name" class="email">xie@yihui.name</a></td>
 <td align="left">A Gallery of Animations in Statistics and Utilities to Create Animations</td>
 </tr>
 <tr class="even">
 <td>1135</td>
 <td align="left">blogdown</td>
-<td align="left">Yihui Xie <a href="mailto:xie@yihui.name" class="email">xie@yihui.name</a></td>
 <td align="left">Create Blogs and Websites with R Markdown</td>
 </tr>
 <tr class="odd">
 <td>1199</td>
 <td align="left">bookdown</td>
-<td align="left">Yihui Xie <a href="mailto:xie@yihui.name" class="email">xie@yihui.name</a></td>
 <td align="left">Authoring Books and Technical Documents with R Markdown</td>
 </tr>
 <tr class="even">
 <td>3124</td>
 <td align="left">DT</td>
-<td align="left">Yihui Xie <a href="mailto:xie@yihui.name" class="email">xie@yihui.name</a></td>
 <td align="left">A Wrapper of the JavaScript Library ‘DataTables’</td>
 </tr>
 <tr class="odd">
 <td>3675</td>
 <td align="left">evaluate</td>
-<td align="left">Yihui Xie <a href="mailto:xie@yihui.name" class="email">xie@yihui.name</a></td>
 <td align="left">Parsing and Evaluation Tools that Provide More Details than the Default</td>
 </tr>
 <tr class="even">
 <td>4194</td>
 <td align="left">formatR</td>
-<td align="left">Yihui Xie <a href="mailto:xie@yihui.name" class="email">xie@yihui.name</a></td>
 <td align="left">Format R Code Automatically</td>
 </tr>
 <tr class="odd">
 <td>4311</td>
 <td align="left">fun</td>
-<td align="left">Yihui Xie <a href="mailto:xie@yihui.name" class="email">xie@yihui.name</a></td>
 <td align="left">Use R for Fun</td>
 </tr>
 <tr class="even">
 <td>5382</td>
 <td align="left">highr</td>
-<td align="left">Yihui Xie <a href="mailto:xie@yihui.name" class="email">xie@yihui.name</a></td>
 <td align="left">Syntax Highlighting for R Source Code</td>
 </tr>
 <tr class="odd">
 <td>6276</td>
 <td align="left">knitr</td>
-<td align="left">Yihui Xie <a href="mailto:xie@yihui.name" class="email">xie@yihui.name</a></td>
 <td align="left">A General-Purpose Package for Dynamic Report Generation in R</td>
 </tr>
 <tr class="even">
 <td>6970</td>
 <td align="left">markdown</td>
-<td align="left">Yihui Xie <a href="mailto:xie@yihui.name" class="email">xie@yihui.name</a></td>
 <td align="left">Render Markdown with the C Library ‘Sundown’</td>
 </tr>
 <tr class="odd">
 <td>7405</td>
 <td align="left">mime</td>
-<td align="left">Yihui Xie <a href="mailto:xie@yihui.name" class="email">xie@yihui.name</a></td>
 <td align="left">Map Filenames to MIME Types</td>
 </tr>
 <tr class="even">
 <td>7826</td>
 <td align="left">MSG</td>
-<td align="left">Yihui Xie <a href="mailto:xie@yihui.name" class="email">xie@yihui.name</a></td>
 <td align="left">Data and Functions for the Book Modern Statistical Graphics</td>
 </tr>
 <tr class="odd">
 <td>8780</td>
 <td align="left">pagedown</td>
-<td align="left">Yihui Xie <a href="mailto:xie@yihui.name" class="email">xie@yihui.name</a></td>
 <td align="left">Paginate the HTML Output of R Markdown with CSS for Print</td>
 </tr>
 <tr class="even">
 <td>9641</td>
 <td align="left">printr</td>
-<td align="left">Yihui Xie <a href="mailto:xie@yihui.name" class="email">xie@yihui.name</a></td>
 <td align="left">Automatically Print R Objects to Appropriate Formats According to the ‘knitr’ Output Format</td>
 </tr>
 <tr class="odd">
 <td>10450</td>
 <td align="left">Rd2roxygen</td>
-<td align="left">Yihui Xie <a href="mailto:xie@yihui.name" class="email">xie@yihui.name</a></td>
 <td align="left">Convert Rd to ‘Roxygen’ Documentation</td>
 </tr>
 <tr class="even">
 <td>11003</td>
 <td align="left">rmarkdown</td>
-<td align="left">Yihui Xie <a href="mailto:xie@yihui.name" class="email">xie@yihui.name</a></td>
 <td align="left">Dynamic Documents for R</td>
 </tr>
 <tr class="odd">
 <td>11191</td>
 <td align="left">rolldown</td>
-<td align="left">Yihui Xie <a href="mailto:xie@yihui.name" class="email">xie@yihui.name</a></td>
 <td align="left">R Markdown Output Formats for Storytelling</td>
 </tr>
 <tr class="even">
 <td>11498</td>
 <td align="left">rticles</td>
-<td align="left">Yihui Xie <a href="mailto:xie@yihui.name" class="email">xie@yihui.name</a></td>
 <td align="left">Article Formats for R Markdown</td>
 </tr>
 <tr class="odd">
 <td>12000</td>
 <td align="left">servr</td>
-<td align="left">Yihui Xie <a href="mailto:xie@yihui.name" class="email">xie@yihui.name</a></td>
 <td align="left">A Simple HTTP Server to Serve Static Files or Dynamic Documents</td>
 </tr>
 <tr class="even">
 <td>13398</td>
 <td align="left">testit</td>
-<td align="left">Yihui Xie <a href="mailto:xie@yihui.name" class="email">xie@yihui.name</a></td>
 <td align="left">A Simple Package for Testing R Packages</td>
 </tr>
 <tr class="odd">
 <td>13566</td>
 <td align="left">tinytex</td>
-<td align="left">Yihui Xie <a href="mailto:xie@yihui.name" class="email">xie@yihui.name</a></td>
 <td align="left">Helper Functions to Install and Maintain ‘TeX Live’, and Compile ‘LaTeX’ Documents</td>
 </tr>
 <tr class="even">
 <td>13870</td>
 <td align="left">tufte</td>
-<td align="left">Yihui Xie <a href="mailto:xie@yihui.name" class="email">xie@yihui.name</a></td>
 <td align="left">Tufte’s Styles for R Markdown Documents</td>
 </tr>
 <tr class="odd">
 <td>14472</td>
 <td align="left">xaringan</td>
-<td align="left">Yihui Xie <a href="mailto:xie@yihui.name" class="email">xie@yihui.name</a></td>
 <td align="left">Presentation Ninja</td>
 </tr>
 <tr class="even">
 <td>14479</td>
 <td align="left">xfun</td>
-<td align="left">Yihui Xie <a href="mailto:xie@yihui.name" class="email">xie@yihui.name</a></td>
 <td align="left">Miscellaneous Functions by ‘Yihui Xie’</td>
 </tr>
 </tbody>

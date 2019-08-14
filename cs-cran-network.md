@@ -223,7 +223,7 @@ sort(table(core_pdb[, "Maintainer"]), decreasing = TRUE)
 ```r
 yihui_pdb <- subset(pdb,
   subset = grepl("Yihui Xie", pdb[, "Maintainer"]),
-  select = c("Package", "Maintainer", "Title")
+  select = c("Package", "Title")
 )
 yihui_pdb[, "Title"] <- gsub("(\\\n)", " ", yihui_pdb[, "Title"])
 knitr::kable(yihui_pdb, caption = "谢益辉维护的 R Markdown 生态", booktabs = TRUE)
@@ -233,32 +233,32 @@ knitr::kable(yihui_pdb, caption = "谢益辉维护的 R Markdown 生态", bookta
 
 Table: (\#tab:rmarkdown-ecology)谢益辉维护的 R Markdown 生态
 
-        Package      Maintainer                   Title                                                                                       
-------  -----------  ---------------------------  --------------------------------------------------------------------------------------------
-296     animation    Yihui Xie <xie@yihui.name>   A Gallery of Animations in Statistics and Utilities to Create Animations                    
-1135    blogdown     Yihui Xie <xie@yihui.name>   Create Blogs and Websites with R Markdown                                                   
-1199    bookdown     Yihui Xie <xie@yihui.name>   Authoring Books and Technical Documents with R Markdown                                     
-3124    DT           Yihui Xie <xie@yihui.name>   A Wrapper of the JavaScript Library 'DataTables'                                            
-3675    evaluate     Yihui Xie <xie@yihui.name>   Parsing and Evaluation Tools that Provide More Details than the Default                     
-4194    formatR      Yihui Xie <xie@yihui.name>   Format R Code Automatically                                                                 
-4311    fun          Yihui Xie <xie@yihui.name>   Use R for Fun                                                                               
-5382    highr        Yihui Xie <xie@yihui.name>   Syntax Highlighting for R Source Code                                                       
-6276    knitr        Yihui Xie <xie@yihui.name>   A General-Purpose Package for Dynamic Report Generation in R                                
-6970    markdown     Yihui Xie <xie@yihui.name>   Render Markdown with the C Library 'Sundown'                                                
-7405    mime         Yihui Xie <xie@yihui.name>   Map Filenames to MIME Types                                                                 
-7826    MSG          Yihui Xie <xie@yihui.name>   Data and Functions for the Book Modern Statistical Graphics                                 
-8780    pagedown     Yihui Xie <xie@yihui.name>   Paginate the HTML Output of R Markdown with CSS for Print                                   
-9641    printr       Yihui Xie <xie@yihui.name>   Automatically Print R Objects to Appropriate Formats According to the 'knitr' Output Format 
-10450   Rd2roxygen   Yihui Xie <xie@yihui.name>   Convert Rd to 'Roxygen' Documentation                                                       
-11003   rmarkdown    Yihui Xie <xie@yihui.name>   Dynamic Documents for R                                                                     
-11191   rolldown     Yihui Xie <xie@yihui.name>   R Markdown Output Formats for Storytelling                                                  
-11498   rticles      Yihui Xie <xie@yihui.name>   Article Formats for R Markdown                                                              
-12000   servr        Yihui Xie <xie@yihui.name>   A Simple HTTP Server to Serve Static Files or Dynamic Documents                             
-13398   testit       Yihui Xie <xie@yihui.name>   A Simple Package for Testing R Packages                                                     
-13566   tinytex      Yihui Xie <xie@yihui.name>   Helper Functions to Install and Maintain 'TeX Live', and Compile 'LaTeX' Documents          
-13870   tufte        Yihui Xie <xie@yihui.name>   Tufte's Styles for R Markdown Documents                                                     
-14472   xaringan     Yihui Xie <xie@yihui.name>   Presentation Ninja                                                                          
-14479   xfun         Yihui Xie <xie@yihui.name>   Miscellaneous Functions by 'Yihui Xie'                                                      
+        Package      Title                                                                                       
+------  -----------  --------------------------------------------------------------------------------------------
+296     animation    A Gallery of Animations in Statistics and Utilities to Create Animations                    
+1135    blogdown     Create Blogs and Websites with R Markdown                                                   
+1199    bookdown     Authoring Books and Technical Documents with R Markdown                                     
+3124    DT           A Wrapper of the JavaScript Library 'DataTables'                                            
+3675    evaluate     Parsing and Evaluation Tools that Provide More Details than the Default                     
+4194    formatR      Format R Code Automatically                                                                 
+4311    fun          Use R for Fun                                                                               
+5382    highr        Syntax Highlighting for R Source Code                                                       
+6276    knitr        A General-Purpose Package for Dynamic Report Generation in R                                
+6970    markdown     Render Markdown with the C Library 'Sundown'                                                
+7405    mime         Map Filenames to MIME Types                                                                 
+7826    MSG          Data and Functions for the Book Modern Statistical Graphics                                 
+8780    pagedown     Paginate the HTML Output of R Markdown with CSS for Print                                   
+9641    printr       Automatically Print R Objects to Appropriate Formats According to the 'knitr' Output Format 
+10450   Rd2roxygen   Convert Rd to 'Roxygen' Documentation                                                       
+11003   rmarkdown    Dynamic Documents for R                                                                     
+11191   rolldown     R Markdown Output Formats for Storytelling                                                  
+11498   rticles      Article Formats for R Markdown                                                              
+12000   servr        A Simple HTTP Server to Serve Static Files or Dynamic Documents                             
+13398   testit       A Simple Package for Testing R Packages                                                     
+13566   tinytex      Helper Functions to Install and Maintain 'TeX Live', and Compile 'LaTeX' Documents          
+13870   tufte        Tufte's Styles for R Markdown Documents                                                     
+14472   xaringan     Presentation Ninja                                                                          
+14479   xfun         Miscellaneous Functions by 'Yihui Xie'                                                      
 
 Jeroen Ooms 维护从 C++ 世界搬运进来的库，如图像处理 magick 包、 视频处理 av 包、 PDF 文档操作 qpdf 包
 
