@@ -157,7 +157,7 @@ sort(table(core_pdb[, "Maintainer"]), decreasing = TRUE)
 ```{r rmarkdown-ecology}
 yihui_pdb <- subset(pdb,
   subset = grepl("Yihui Xie", pdb[, "Maintainer"]),
-  select = c("Package", "Maintainer", "Title")
+  select = c("Package", "Title")
 )
 yihui_pdb[, "Title"] <- gsub("(\\\n)", " ", yihui_pdb[, "Title"])
 knitr::kable(yihui_pdb, caption = "谢益辉维护的 R Markdown 生态", booktabs = TRUE)
