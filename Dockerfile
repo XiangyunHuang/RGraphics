@@ -6,6 +6,8 @@ LABEL org.label-schema.license="GPL-2.0" \
       maintainer="Xiangyun Huang <xiangyunfaith@outlook.com>"
 
 ARG PANDOC_VERSION=2.7.3
+ARG R_VERSION=3.6.1
+
 
 ENV TERM=xterm \
     DEBIAN_FRONTEND=noninteractive \
@@ -15,10 +17,11 @@ RUN useradd docker \
   && mkdir /home/docker \
   && chown docker:docker /home/docker \
   && addgroup docker staff \
-  && mkdir /home/docker/workspace \
-  && apt-get update \
-  && apt-get install -yq --no-install-recommends apt-utils \
-  && apt-get install -y --no-install-recommends \
+  && mkdir /home/docker/workspace
+
+RUN apt-get update \
+  && apt-get install -y --no-install-recommends 
+    apt-utils \
     wget \
     gnupg \
     dialog \
