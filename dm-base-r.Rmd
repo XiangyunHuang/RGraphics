@@ -869,6 +869,28 @@ legend(2, 9, c("Ascorbic acid", "Orange juice"),
 )
 ```
 
+可以作为数据变换 `transform` 的一种替代，它也比较像 **dplyr** 包的 `mutate` 函数
+
+```{r}
+within(mtcars[1:5,1:3],{
+  disp.cc <- disp * 2.54^3
+  disp.l <- disp.cc / 1e3
+})
+
+# 只能使用已有的列，刚生成的列不能用
+# transform(
+#   mtcars[1:5, 1:3],
+#   disp.cc = disp * 2.54^3,
+#   disp.l = disp.cc / 1e3
+# )
+transform(
+  mtcars[1:5, 1:3],
+  disp.cc = disp * 2.54^3
+)
+```
+
+`transform` 只能使用已有的列，变换中间生成的列不能用，所以相比于 `transform` 函数， `within` 显得更为灵活
+
 ## 运行环境 {#dm-base-session-info}
 
 ```{r}
