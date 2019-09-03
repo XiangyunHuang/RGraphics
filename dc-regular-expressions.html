@@ -405,15 +405,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>以下所述，都不考虑函数中参数 <code>perl=TRUE</code> 的情况，R 语言中提供了扩展的（默认的）和 Perl 风格 的两套正则表达式。作为入门，我们这里只关注前者，启用 Perl 正则表达式只需在函数如 <code>grep</code> 中将选项 <code>perl = TRUE</code> 即可，并将后者统一命名为 Perl 正则表达式<a href="99-references.html#fn24" class="footnote-ref" id="fnref24"><sup>24</sup></a>。</p>
 </div>
 <p>正则表达式 (<strong>reg</strong>ular <strong>exp</strong>ression，简称 regexp)， 函数 <code>regexpr</code> 和 <code>gregexpr</code> 的名称就好理解了，在控制台输入 <code>?regex</code> 查看 R 支持的正则表达式，这个文档看上百八十回也不过分。R 内支持正则表达式的函数有 <code>grep</code>、<code>grepl</code>、<code>sub</code>、<code>gsub</code>、<code>regexpr</code>、<code>gregexpr</code> 、 <code>regexec</code> 和 <code>strsplit</code>。函数 <code>apropos</code>，<code>browseEnv</code>，<code>help.search</code>，<code>list.files</code> 和 <code>ls</code> 是通过函数 <code>grep</code> 来使用正则表达式的，它们全都使用 extended regular expressions</p>
-<div class="sourceCode" id="cb324"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb324-1"><a href="dc-regular-expressions.html#cb324-1"></a><span class="kw">grep</span>(pattern, x, <span class="dt">ignore.case =</span> <span class="ot">FALSE</span>, <span class="dt">perl =</span> <span class="ot">FALSE</span>, <span class="dt">value =</span> <span class="ot">FALSE</span>,</span>
-<span id="cb324-2"><a href="dc-regular-expressions.html#cb324-2"></a>     <span class="dt">fixed =</span> <span class="ot">FALSE</span>, <span class="dt">useBytes =</span> <span class="ot">FALSE</span>, <span class="dt">invert =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb325"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb325-1"><a href="dc-regular-expressions.html#cb325-1"></a><span class="kw">grep</span>(pattern, x, <span class="dt">ignore.case =</span> <span class="ot">FALSE</span>, <span class="dt">perl =</span> <span class="ot">FALSE</span>, <span class="dt">value =</span> <span class="ot">FALSE</span>,</span>
+<span id="cb325-2"><a href="dc-regular-expressions.html#cb325-2"></a>     <span class="dt">fixed =</span> <span class="ot">FALSE</span>, <span class="dt">useBytes =</span> <span class="ot">FALSE</span>, <span class="dt">invert =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
 <p>匹配模式 pattern 的内容 可以用函数 <code>cat</code> 打印出来，注意反斜杠进入 R 字符串中时，需要用两个，反斜杠 <code>\</code> 本身是转义符，否则会报错。</p>
-<div class="sourceCode" id="cb325"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb325-1"><a href="dc-regular-expressions.html#cb325-1"></a><span class="kw">cat</span>(<span class="st">&quot;</span><span class="ch">\\</span><span class="st">&quot;</span>) <span class="co"># \ 反斜杠是转义字符</span></span>
-<span id="cb325-2"><a href="dc-regular-expressions.html#cb325-2"></a><span class="co">#&gt; \</span></span>
-<span id="cb325-3"><a href="dc-regular-expressions.html#cb325-3"></a><span class="kw">cat</span>(<span class="st">&quot;</span><span class="ch">\\</span><span class="st">.&quot;</span>)</span>
-<span id="cb325-4"><a href="dc-regular-expressions.html#cb325-4"></a><span class="co">#&gt; \.</span></span>
-<span id="cb325-5"><a href="dc-regular-expressions.html#cb325-5"></a><span class="kw">cat</span>(<span class="st">&quot;</span><span class="ch">\\\n</span><span class="st">&quot;</span>) <span class="co"># 注意 \n 表示换行</span></span>
-<span id="cb325-6"><a href="dc-regular-expressions.html#cb325-6"></a><span class="co">#&gt; \</span></span></code></pre></div>
+<div class="sourceCode" id="cb326"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb326-1"><a href="dc-regular-expressions.html#cb326-1"></a><span class="kw">cat</span>(<span class="st">&quot;</span><span class="ch">\\</span><span class="st">&quot;</span>) <span class="co"># \ 反斜杠是转义字符</span></span>
+<span id="cb326-2"><a href="dc-regular-expressions.html#cb326-2"></a><span class="co">#&gt; \</span></span>
+<span id="cb326-3"><a href="dc-regular-expressions.html#cb326-3"></a><span class="kw">cat</span>(<span class="st">&quot;</span><span class="ch">\\</span><span class="st">.&quot;</span>)</span>
+<span id="cb326-4"><a href="dc-regular-expressions.html#cb326-4"></a><span class="co">#&gt; \.</span></span>
+<span id="cb326-5"><a href="dc-regular-expressions.html#cb326-5"></a><span class="kw">cat</span>(<span class="st">&quot;</span><span class="ch">\\\n</span><span class="st">&quot;</span>) <span class="co"># 注意 \n 表示换行</span></span>
+<span id="cb326-6"><a href="dc-regular-expressions.html#cb326-6"></a><span class="co">#&gt; \</span></span></code></pre></div>
 <div id="character-constants" class="section level2">
 <h2><span class="header-section-number">7.1</span> 字符常量</h2>
 <p>单引号 <code>'</code> 双引号 <code>"</code> 和反引号 ` 三种类型的引用 (quotes) 是 R 语法的一部分<a href="99-references.html#fn25" class="footnote-ref" id="fnref25"><sup>25</sup></a>，此外反斜杠 <code>\</code> 用来转义下面的字符</p>
@@ -492,134 +492,134 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="environments" class="section level2">
 <h2><span class="header-section-number">7.2</span> 软件环境</h2>
 <p>R 内置的正则表达式实现是基于 PCRE ICU TRE iconv 等第三方库，搞清楚自己使用的版本信息是重要的，一些字符集的解释与区域环境有关，如 <code>[:alnum:]</code> 和 <code>[:alpha:]</code>等，所以获取当前的区域设置也很重要</p>
-<div class="sourceCode" id="cb326"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb326-1"><a href="dc-regular-expressions.html#cb326-1"></a><span class="co"># find a suitable coding for the current locale</span></span>
-<span id="cb326-2"><a href="dc-regular-expressions.html#cb326-2"></a><span class="kw">localeToCharset</span>(<span class="dt">locale =</span> <span class="kw">Sys.getlocale</span>(<span class="st">&quot;LC_CTYPE&quot;</span>))</span>
-<span id="cb326-3"><a href="dc-regular-expressions.html#cb326-3"></a><span class="co">#&gt; [1] &quot;UTF-8&quot;     &quot;ISO8859-1&quot;</span></span>
-<span id="cb326-4"><a href="dc-regular-expressions.html#cb326-4"></a><span class="co"># 软件版本信息</span></span>
-<span id="cb326-5"><a href="dc-regular-expressions.html#cb326-5"></a><span class="kw">extSoftVersion</span>()</span>
-<span id="cb326-6"><a href="dc-regular-expressions.html#cb326-6"></a><span class="co">#&gt;                                              zlib </span></span>
-<span id="cb326-7"><a href="dc-regular-expressions.html#cb326-7"></a><span class="co">#&gt;                                          &quot;1.2.11&quot; </span></span>
-<span id="cb326-8"><a href="dc-regular-expressions.html#cb326-8"></a><span class="co">#&gt;                                             bzlib </span></span>
-<span id="cb326-9"><a href="dc-regular-expressions.html#cb326-9"></a><span class="co">#&gt;                              &quot;1.0.6, 6-Sept-2010&quot; </span></span>
-<span id="cb326-10"><a href="dc-regular-expressions.html#cb326-10"></a><span class="co">#&gt;                                                xz </span></span>
-<span id="cb326-11"><a href="dc-regular-expressions.html#cb326-11"></a><span class="co">#&gt;                                           &quot;5.2.4&quot; </span></span>
-<span id="cb326-12"><a href="dc-regular-expressions.html#cb326-12"></a><span class="co">#&gt;                                              PCRE </span></span>
-<span id="cb326-13"><a href="dc-regular-expressions.html#cb326-13"></a><span class="co">#&gt;                                 &quot;8.39 2016-06-14&quot; </span></span>
-<span id="cb326-14"><a href="dc-regular-expressions.html#cb326-14"></a><span class="co">#&gt;                                               ICU </span></span>
-<span id="cb326-15"><a href="dc-regular-expressions.html#cb326-15"></a><span class="co">#&gt;                                            &quot;63.1&quot; </span></span>
-<span id="cb326-16"><a href="dc-regular-expressions.html#cb326-16"></a><span class="co">#&gt;                                               TRE </span></span>
-<span id="cb326-17"><a href="dc-regular-expressions.html#cb326-17"></a><span class="co">#&gt;                         &quot;TRE 0.8.0 R_fixes (BSD)&quot; </span></span>
-<span id="cb326-18"><a href="dc-regular-expressions.html#cb326-18"></a><span class="co">#&gt;                                             iconv </span></span>
-<span id="cb326-19"><a href="dc-regular-expressions.html#cb326-19"></a><span class="co">#&gt;                                      &quot;glibc 2.28&quot; </span></span>
-<span id="cb326-20"><a href="dc-regular-expressions.html#cb326-20"></a><span class="co">#&gt;                                          readline </span></span>
-<span id="cb326-21"><a href="dc-regular-expressions.html#cb326-21"></a><span class="co">#&gt;                                             &quot;7.0&quot; </span></span>
-<span id="cb326-22"><a href="dc-regular-expressions.html#cb326-22"></a><span class="co">#&gt;                                              BLAS </span></span>
-<span id="cb326-23"><a href="dc-regular-expressions.html#cb326-23"></a><span class="co">#&gt; &quot;/usr/lib/x86_64-linux-gnu/blas/libblas.so.3.8.0&quot;</span></span>
-<span id="cb326-24"><a href="dc-regular-expressions.html#cb326-24"></a><span class="co"># 区域及其编码信息</span></span>
-<span id="cb326-25"><a href="dc-regular-expressions.html#cb326-25"></a><span class="kw">l10n_info</span>()</span>
-<span id="cb326-26"><a href="dc-regular-expressions.html#cb326-26"></a><span class="co">#&gt; $MBCS</span></span>
-<span id="cb326-27"><a href="dc-regular-expressions.html#cb326-27"></a><span class="co">#&gt; [1] TRUE</span></span>
-<span id="cb326-28"><a href="dc-regular-expressions.html#cb326-28"></a><span class="co">#&gt; </span></span>
-<span id="cb326-29"><a href="dc-regular-expressions.html#cb326-29"></a><span class="co">#&gt; $`UTF-8`</span></span>
-<span id="cb326-30"><a href="dc-regular-expressions.html#cb326-30"></a><span class="co">#&gt; [1] TRUE</span></span>
-<span id="cb326-31"><a href="dc-regular-expressions.html#cb326-31"></a><span class="co">#&gt; </span></span>
-<span id="cb326-32"><a href="dc-regular-expressions.html#cb326-32"></a><span class="co">#&gt; $`Latin-1`</span></span>
-<span id="cb326-33"><a href="dc-regular-expressions.html#cb326-33"></a><span class="co">#&gt; [1] FALSE</span></span>
-<span id="cb326-34"><a href="dc-regular-expressions.html#cb326-34"></a><span class="co"># 表示数字、货币的细节</span></span>
-<span id="cb326-35"><a href="dc-regular-expressions.html#cb326-35"></a><span class="kw">Sys.localeconv</span>()</span>
-<span id="cb326-36"><a href="dc-regular-expressions.html#cb326-36"></a><span class="co">#&gt;     decimal_point     thousands_sep          grouping   int_curr_symbol </span></span>
-<span id="cb326-37"><a href="dc-regular-expressions.html#cb326-37"></a><span class="co">#&gt;               &quot;.&quot;                &quot;&quot;                &quot;&quot;            &quot;USD &quot; </span></span>
-<span id="cb326-38"><a href="dc-regular-expressions.html#cb326-38"></a><span class="co">#&gt;   currency_symbol mon_decimal_point mon_thousands_sep      mon_grouping </span></span>
-<span id="cb326-39"><a href="dc-regular-expressions.html#cb326-39"></a><span class="co">#&gt;               &quot;$&quot;               &quot;.&quot;               &quot;,&quot;        &quot;\003\003&quot; </span></span>
-<span id="cb326-40"><a href="dc-regular-expressions.html#cb326-40"></a><span class="co">#&gt;     positive_sign     negative_sign   int_frac_digits       frac_digits </span></span>
-<span id="cb326-41"><a href="dc-regular-expressions.html#cb326-41"></a><span class="co">#&gt;                &quot;&quot;               &quot;-&quot;               &quot;2&quot;               &quot;2&quot; </span></span>
-<span id="cb326-42"><a href="dc-regular-expressions.html#cb326-42"></a><span class="co">#&gt;     p_cs_precedes    p_sep_by_space     n_cs_precedes    n_sep_by_space </span></span>
-<span id="cb326-43"><a href="dc-regular-expressions.html#cb326-43"></a><span class="co">#&gt;               &quot;1&quot;               &quot;0&quot;               &quot;1&quot;               &quot;0&quot; </span></span>
-<span id="cb326-44"><a href="dc-regular-expressions.html#cb326-44"></a><span class="co">#&gt;       p_sign_posn       n_sign_posn </span></span>
-<span id="cb326-45"><a href="dc-regular-expressions.html#cb326-45"></a><span class="co">#&gt;               &quot;1&quot;               &quot;1&quot;</span></span>
-<span id="cb326-46"><a href="dc-regular-expressions.html#cb326-46"></a><span class="co"># PCRE 启用的配置选项</span></span>
-<span id="cb326-47"><a href="dc-regular-expressions.html#cb326-47"></a><span class="kw">pcre_config</span>()</span>
-<span id="cb326-48"><a href="dc-regular-expressions.html#cb326-48"></a><span class="co">#&gt;              UTF-8 Unicode properties                JIT </span></span>
-<span id="cb326-49"><a href="dc-regular-expressions.html#cb326-49"></a><span class="co">#&gt;               TRUE               TRUE               TRUE </span></span>
-<span id="cb326-50"><a href="dc-regular-expressions.html#cb326-50"></a><span class="co">#&gt;              stack </span></span>
-<span id="cb326-51"><a href="dc-regular-expressions.html#cb326-51"></a><span class="co">#&gt;               TRUE</span></span>
-<span id="cb326-52"><a href="dc-regular-expressions.html#cb326-52"></a><span class="co"># 比较全的字符信息</span></span>
-<span id="cb326-53"><a href="dc-regular-expressions.html#cb326-53"></a>stringi<span class="op">::</span><span class="kw">stri_info</span>()</span>
-<span id="cb326-54"><a href="dc-regular-expressions.html#cb326-54"></a><span class="co">#&gt; $Unicode.version</span></span>
-<span id="cb326-55"><a href="dc-regular-expressions.html#cb326-55"></a><span class="co">#&gt; [1] &quot;11.0&quot;</span></span>
-<span id="cb326-56"><a href="dc-regular-expressions.html#cb326-56"></a><span class="co">#&gt; </span></span>
-<span id="cb326-57"><a href="dc-regular-expressions.html#cb326-57"></a><span class="co">#&gt; $ICU.version</span></span>
-<span id="cb326-58"><a href="dc-regular-expressions.html#cb326-58"></a><span class="co">#&gt; [1] &quot;63.1&quot;</span></span>
-<span id="cb326-59"><a href="dc-regular-expressions.html#cb326-59"></a><span class="co">#&gt; </span></span>
-<span id="cb326-60"><a href="dc-regular-expressions.html#cb326-60"></a><span class="co">#&gt; $Locale</span></span>
-<span id="cb326-61"><a href="dc-regular-expressions.html#cb326-61"></a><span class="co">#&gt; $Locale$Language</span></span>
-<span id="cb326-62"><a href="dc-regular-expressions.html#cb326-62"></a><span class="co">#&gt; [1] &quot;en&quot;</span></span>
-<span id="cb326-63"><a href="dc-regular-expressions.html#cb326-63"></a><span class="co">#&gt; </span></span>
-<span id="cb326-64"><a href="dc-regular-expressions.html#cb326-64"></a><span class="co">#&gt; $Locale$Country</span></span>
-<span id="cb326-65"><a href="dc-regular-expressions.html#cb326-65"></a><span class="co">#&gt; [1] &quot;US&quot;</span></span>
-<span id="cb326-66"><a href="dc-regular-expressions.html#cb326-66"></a><span class="co">#&gt; </span></span>
-<span id="cb326-67"><a href="dc-regular-expressions.html#cb326-67"></a><span class="co">#&gt; $Locale$Variant</span></span>
-<span id="cb326-68"><a href="dc-regular-expressions.html#cb326-68"></a><span class="co">#&gt; [1] &quot;&quot;</span></span>
-<span id="cb326-69"><a href="dc-regular-expressions.html#cb326-69"></a><span class="co">#&gt; </span></span>
-<span id="cb326-70"><a href="dc-regular-expressions.html#cb326-70"></a><span class="co">#&gt; $Locale$Name</span></span>
-<span id="cb326-71"><a href="dc-regular-expressions.html#cb326-71"></a><span class="co">#&gt; [1] &quot;en_US&quot;</span></span>
-<span id="cb326-72"><a href="dc-regular-expressions.html#cb326-72"></a><span class="co">#&gt; </span></span>
-<span id="cb326-73"><a href="dc-regular-expressions.html#cb326-73"></a><span class="co">#&gt; </span></span>
-<span id="cb326-74"><a href="dc-regular-expressions.html#cb326-74"></a><span class="co">#&gt; $Charset.internal</span></span>
-<span id="cb326-75"><a href="dc-regular-expressions.html#cb326-75"></a><span class="co">#&gt; [1] &quot;UTF-8&quot;  &quot;UTF-16&quot;</span></span>
-<span id="cb326-76"><a href="dc-regular-expressions.html#cb326-76"></a><span class="co">#&gt; </span></span>
-<span id="cb326-77"><a href="dc-regular-expressions.html#cb326-77"></a><span class="co">#&gt; $Charset.native</span></span>
-<span id="cb326-78"><a href="dc-regular-expressions.html#cb326-78"></a><span class="co">#&gt; $Charset.native$Name.friendly</span></span>
-<span id="cb326-79"><a href="dc-regular-expressions.html#cb326-79"></a><span class="co">#&gt; [1] &quot;UTF-8&quot;</span></span>
-<span id="cb326-80"><a href="dc-regular-expressions.html#cb326-80"></a><span class="co">#&gt; </span></span>
-<span id="cb326-81"><a href="dc-regular-expressions.html#cb326-81"></a><span class="co">#&gt; $Charset.native$Name.ICU</span></span>
-<span id="cb326-82"><a href="dc-regular-expressions.html#cb326-82"></a><span class="co">#&gt; [1] &quot;UTF-8&quot;</span></span>
-<span id="cb326-83"><a href="dc-regular-expressions.html#cb326-83"></a><span class="co">#&gt; </span></span>
-<span id="cb326-84"><a href="dc-regular-expressions.html#cb326-84"></a><span class="co">#&gt; $Charset.native$Name.UTR22</span></span>
-<span id="cb326-85"><a href="dc-regular-expressions.html#cb326-85"></a><span class="co">#&gt; [1] NA</span></span>
-<span id="cb326-86"><a href="dc-regular-expressions.html#cb326-86"></a><span class="co">#&gt; </span></span>
-<span id="cb326-87"><a href="dc-regular-expressions.html#cb326-87"></a><span class="co">#&gt; $Charset.native$Name.IBM</span></span>
-<span id="cb326-88"><a href="dc-regular-expressions.html#cb326-88"></a><span class="co">#&gt; [1] &quot;ibm-1208&quot;</span></span>
-<span id="cb326-89"><a href="dc-regular-expressions.html#cb326-89"></a><span class="co">#&gt; </span></span>
-<span id="cb326-90"><a href="dc-regular-expressions.html#cb326-90"></a><span class="co">#&gt; $Charset.native$Name.WINDOWS</span></span>
-<span id="cb326-91"><a href="dc-regular-expressions.html#cb326-91"></a><span class="co">#&gt; [1] &quot;windows-65001&quot;</span></span>
-<span id="cb326-92"><a href="dc-regular-expressions.html#cb326-92"></a><span class="co">#&gt; </span></span>
-<span id="cb326-93"><a href="dc-regular-expressions.html#cb326-93"></a><span class="co">#&gt; $Charset.native$Name.JAVA</span></span>
-<span id="cb326-94"><a href="dc-regular-expressions.html#cb326-94"></a><span class="co">#&gt; [1] &quot;UTF-8&quot;</span></span>
-<span id="cb326-95"><a href="dc-regular-expressions.html#cb326-95"></a><span class="co">#&gt; </span></span>
-<span id="cb326-96"><a href="dc-regular-expressions.html#cb326-96"></a><span class="co">#&gt; $Charset.native$Name.IANA</span></span>
-<span id="cb326-97"><a href="dc-regular-expressions.html#cb326-97"></a><span class="co">#&gt; [1] &quot;UTF-8&quot;</span></span>
-<span id="cb326-98"><a href="dc-regular-expressions.html#cb326-98"></a><span class="co">#&gt; </span></span>
-<span id="cb326-99"><a href="dc-regular-expressions.html#cb326-99"></a><span class="co">#&gt; $Charset.native$Name.MIME</span></span>
-<span id="cb326-100"><a href="dc-regular-expressions.html#cb326-100"></a><span class="co">#&gt; [1] &quot;UTF-8&quot;</span></span>
-<span id="cb326-101"><a href="dc-regular-expressions.html#cb326-101"></a><span class="co">#&gt; </span></span>
-<span id="cb326-102"><a href="dc-regular-expressions.html#cb326-102"></a><span class="co">#&gt; $Charset.native$ASCII.subset</span></span>
-<span id="cb326-103"><a href="dc-regular-expressions.html#cb326-103"></a><span class="co">#&gt; [1] TRUE</span></span>
-<span id="cb326-104"><a href="dc-regular-expressions.html#cb326-104"></a><span class="co">#&gt; </span></span>
-<span id="cb326-105"><a href="dc-regular-expressions.html#cb326-105"></a><span class="co">#&gt; $Charset.native$Unicode.1to1</span></span>
-<span id="cb326-106"><a href="dc-regular-expressions.html#cb326-106"></a><span class="co">#&gt; [1] NA</span></span>
-<span id="cb326-107"><a href="dc-regular-expressions.html#cb326-107"></a><span class="co">#&gt; </span></span>
-<span id="cb326-108"><a href="dc-regular-expressions.html#cb326-108"></a><span class="co">#&gt; $Charset.native$CharSize.8bit</span></span>
-<span id="cb326-109"><a href="dc-regular-expressions.html#cb326-109"></a><span class="co">#&gt; [1] FALSE</span></span>
-<span id="cb326-110"><a href="dc-regular-expressions.html#cb326-110"></a><span class="co">#&gt; </span></span>
-<span id="cb326-111"><a href="dc-regular-expressions.html#cb326-111"></a><span class="co">#&gt; $Charset.native$CharSize.min</span></span>
-<span id="cb326-112"><a href="dc-regular-expressions.html#cb326-112"></a><span class="co">#&gt; [1] 1</span></span>
-<span id="cb326-113"><a href="dc-regular-expressions.html#cb326-113"></a><span class="co">#&gt; </span></span>
-<span id="cb326-114"><a href="dc-regular-expressions.html#cb326-114"></a><span class="co">#&gt; $Charset.native$CharSize.max</span></span>
-<span id="cb326-115"><a href="dc-regular-expressions.html#cb326-115"></a><span class="co">#&gt; [1] 3</span></span>
-<span id="cb326-116"><a href="dc-regular-expressions.html#cb326-116"></a><span class="co">#&gt; </span></span>
-<span id="cb326-117"><a href="dc-regular-expressions.html#cb326-117"></a><span class="co">#&gt; </span></span>
-<span id="cb326-118"><a href="dc-regular-expressions.html#cb326-118"></a><span class="co">#&gt; $ICU.system</span></span>
-<span id="cb326-119"><a href="dc-regular-expressions.html#cb326-119"></a><span class="co">#&gt; [1] TRUE</span></span>
-<span id="cb326-120"><a href="dc-regular-expressions.html#cb326-120"></a><span class="co">#&gt; </span></span>
-<span id="cb326-121"><a href="dc-regular-expressions.html#cb326-121"></a><span class="co">#&gt; $ICU.UTF8</span></span>
-<span id="cb326-122"><a href="dc-regular-expressions.html#cb326-122"></a><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
+<div class="sourceCode" id="cb327"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb327-1"><a href="dc-regular-expressions.html#cb327-1"></a><span class="co"># find a suitable coding for the current locale</span></span>
+<span id="cb327-2"><a href="dc-regular-expressions.html#cb327-2"></a><span class="kw">localeToCharset</span>(<span class="dt">locale =</span> <span class="kw">Sys.getlocale</span>(<span class="st">&quot;LC_CTYPE&quot;</span>))</span>
+<span id="cb327-3"><a href="dc-regular-expressions.html#cb327-3"></a><span class="co">#&gt; [1] &quot;UTF-8&quot;     &quot;ISO8859-1&quot;</span></span>
+<span id="cb327-4"><a href="dc-regular-expressions.html#cb327-4"></a><span class="co"># 软件版本信息</span></span>
+<span id="cb327-5"><a href="dc-regular-expressions.html#cb327-5"></a><span class="kw">extSoftVersion</span>()</span>
+<span id="cb327-6"><a href="dc-regular-expressions.html#cb327-6"></a><span class="co">#&gt;                                              zlib </span></span>
+<span id="cb327-7"><a href="dc-regular-expressions.html#cb327-7"></a><span class="co">#&gt;                                          &quot;1.2.11&quot; </span></span>
+<span id="cb327-8"><a href="dc-regular-expressions.html#cb327-8"></a><span class="co">#&gt;                                             bzlib </span></span>
+<span id="cb327-9"><a href="dc-regular-expressions.html#cb327-9"></a><span class="co">#&gt;                              &quot;1.0.6, 6-Sept-2010&quot; </span></span>
+<span id="cb327-10"><a href="dc-regular-expressions.html#cb327-10"></a><span class="co">#&gt;                                                xz </span></span>
+<span id="cb327-11"><a href="dc-regular-expressions.html#cb327-11"></a><span class="co">#&gt;                                           &quot;5.2.4&quot; </span></span>
+<span id="cb327-12"><a href="dc-regular-expressions.html#cb327-12"></a><span class="co">#&gt;                                              PCRE </span></span>
+<span id="cb327-13"><a href="dc-regular-expressions.html#cb327-13"></a><span class="co">#&gt;                                 &quot;8.39 2016-06-14&quot; </span></span>
+<span id="cb327-14"><a href="dc-regular-expressions.html#cb327-14"></a><span class="co">#&gt;                                               ICU </span></span>
+<span id="cb327-15"><a href="dc-regular-expressions.html#cb327-15"></a><span class="co">#&gt;                                            &quot;63.1&quot; </span></span>
+<span id="cb327-16"><a href="dc-regular-expressions.html#cb327-16"></a><span class="co">#&gt;                                               TRE </span></span>
+<span id="cb327-17"><a href="dc-regular-expressions.html#cb327-17"></a><span class="co">#&gt;                         &quot;TRE 0.8.0 R_fixes (BSD)&quot; </span></span>
+<span id="cb327-18"><a href="dc-regular-expressions.html#cb327-18"></a><span class="co">#&gt;                                             iconv </span></span>
+<span id="cb327-19"><a href="dc-regular-expressions.html#cb327-19"></a><span class="co">#&gt;                                      &quot;glibc 2.28&quot; </span></span>
+<span id="cb327-20"><a href="dc-regular-expressions.html#cb327-20"></a><span class="co">#&gt;                                          readline </span></span>
+<span id="cb327-21"><a href="dc-regular-expressions.html#cb327-21"></a><span class="co">#&gt;                                             &quot;7.0&quot; </span></span>
+<span id="cb327-22"><a href="dc-regular-expressions.html#cb327-22"></a><span class="co">#&gt;                                              BLAS </span></span>
+<span id="cb327-23"><a href="dc-regular-expressions.html#cb327-23"></a><span class="co">#&gt; &quot;/usr/lib/x86_64-linux-gnu/blas/libblas.so.3.8.0&quot;</span></span>
+<span id="cb327-24"><a href="dc-regular-expressions.html#cb327-24"></a><span class="co"># 区域及其编码信息</span></span>
+<span id="cb327-25"><a href="dc-regular-expressions.html#cb327-25"></a><span class="kw">l10n_info</span>()</span>
+<span id="cb327-26"><a href="dc-regular-expressions.html#cb327-26"></a><span class="co">#&gt; $MBCS</span></span>
+<span id="cb327-27"><a href="dc-regular-expressions.html#cb327-27"></a><span class="co">#&gt; [1] TRUE</span></span>
+<span id="cb327-28"><a href="dc-regular-expressions.html#cb327-28"></a><span class="co">#&gt; </span></span>
+<span id="cb327-29"><a href="dc-regular-expressions.html#cb327-29"></a><span class="co">#&gt; $`UTF-8`</span></span>
+<span id="cb327-30"><a href="dc-regular-expressions.html#cb327-30"></a><span class="co">#&gt; [1] TRUE</span></span>
+<span id="cb327-31"><a href="dc-regular-expressions.html#cb327-31"></a><span class="co">#&gt; </span></span>
+<span id="cb327-32"><a href="dc-regular-expressions.html#cb327-32"></a><span class="co">#&gt; $`Latin-1`</span></span>
+<span id="cb327-33"><a href="dc-regular-expressions.html#cb327-33"></a><span class="co">#&gt; [1] FALSE</span></span>
+<span id="cb327-34"><a href="dc-regular-expressions.html#cb327-34"></a><span class="co"># 表示数字、货币的细节</span></span>
+<span id="cb327-35"><a href="dc-regular-expressions.html#cb327-35"></a><span class="kw">Sys.localeconv</span>()</span>
+<span id="cb327-36"><a href="dc-regular-expressions.html#cb327-36"></a><span class="co">#&gt;     decimal_point     thousands_sep          grouping   int_curr_symbol </span></span>
+<span id="cb327-37"><a href="dc-regular-expressions.html#cb327-37"></a><span class="co">#&gt;               &quot;.&quot;                &quot;&quot;                &quot;&quot;            &quot;USD &quot; </span></span>
+<span id="cb327-38"><a href="dc-regular-expressions.html#cb327-38"></a><span class="co">#&gt;   currency_symbol mon_decimal_point mon_thousands_sep      mon_grouping </span></span>
+<span id="cb327-39"><a href="dc-regular-expressions.html#cb327-39"></a><span class="co">#&gt;               &quot;$&quot;               &quot;.&quot;               &quot;,&quot;        &quot;\003\003&quot; </span></span>
+<span id="cb327-40"><a href="dc-regular-expressions.html#cb327-40"></a><span class="co">#&gt;     positive_sign     negative_sign   int_frac_digits       frac_digits </span></span>
+<span id="cb327-41"><a href="dc-regular-expressions.html#cb327-41"></a><span class="co">#&gt;                &quot;&quot;               &quot;-&quot;               &quot;2&quot;               &quot;2&quot; </span></span>
+<span id="cb327-42"><a href="dc-regular-expressions.html#cb327-42"></a><span class="co">#&gt;     p_cs_precedes    p_sep_by_space     n_cs_precedes    n_sep_by_space </span></span>
+<span id="cb327-43"><a href="dc-regular-expressions.html#cb327-43"></a><span class="co">#&gt;               &quot;1&quot;               &quot;0&quot;               &quot;1&quot;               &quot;0&quot; </span></span>
+<span id="cb327-44"><a href="dc-regular-expressions.html#cb327-44"></a><span class="co">#&gt;       p_sign_posn       n_sign_posn </span></span>
+<span id="cb327-45"><a href="dc-regular-expressions.html#cb327-45"></a><span class="co">#&gt;               &quot;1&quot;               &quot;1&quot;</span></span>
+<span id="cb327-46"><a href="dc-regular-expressions.html#cb327-46"></a><span class="co"># PCRE 启用的配置选项</span></span>
+<span id="cb327-47"><a href="dc-regular-expressions.html#cb327-47"></a><span class="kw">pcre_config</span>()</span>
+<span id="cb327-48"><a href="dc-regular-expressions.html#cb327-48"></a><span class="co">#&gt;              UTF-8 Unicode properties                JIT </span></span>
+<span id="cb327-49"><a href="dc-regular-expressions.html#cb327-49"></a><span class="co">#&gt;               TRUE               TRUE               TRUE </span></span>
+<span id="cb327-50"><a href="dc-regular-expressions.html#cb327-50"></a><span class="co">#&gt;              stack </span></span>
+<span id="cb327-51"><a href="dc-regular-expressions.html#cb327-51"></a><span class="co">#&gt;               TRUE</span></span>
+<span id="cb327-52"><a href="dc-regular-expressions.html#cb327-52"></a><span class="co"># 比较全的字符信息</span></span>
+<span id="cb327-53"><a href="dc-regular-expressions.html#cb327-53"></a>stringi<span class="op">::</span><span class="kw">stri_info</span>()</span>
+<span id="cb327-54"><a href="dc-regular-expressions.html#cb327-54"></a><span class="co">#&gt; $Unicode.version</span></span>
+<span id="cb327-55"><a href="dc-regular-expressions.html#cb327-55"></a><span class="co">#&gt; [1] &quot;11.0&quot;</span></span>
+<span id="cb327-56"><a href="dc-regular-expressions.html#cb327-56"></a><span class="co">#&gt; </span></span>
+<span id="cb327-57"><a href="dc-regular-expressions.html#cb327-57"></a><span class="co">#&gt; $ICU.version</span></span>
+<span id="cb327-58"><a href="dc-regular-expressions.html#cb327-58"></a><span class="co">#&gt; [1] &quot;63.1&quot;</span></span>
+<span id="cb327-59"><a href="dc-regular-expressions.html#cb327-59"></a><span class="co">#&gt; </span></span>
+<span id="cb327-60"><a href="dc-regular-expressions.html#cb327-60"></a><span class="co">#&gt; $Locale</span></span>
+<span id="cb327-61"><a href="dc-regular-expressions.html#cb327-61"></a><span class="co">#&gt; $Locale$Language</span></span>
+<span id="cb327-62"><a href="dc-regular-expressions.html#cb327-62"></a><span class="co">#&gt; [1] &quot;en&quot;</span></span>
+<span id="cb327-63"><a href="dc-regular-expressions.html#cb327-63"></a><span class="co">#&gt; </span></span>
+<span id="cb327-64"><a href="dc-regular-expressions.html#cb327-64"></a><span class="co">#&gt; $Locale$Country</span></span>
+<span id="cb327-65"><a href="dc-regular-expressions.html#cb327-65"></a><span class="co">#&gt; [1] &quot;US&quot;</span></span>
+<span id="cb327-66"><a href="dc-regular-expressions.html#cb327-66"></a><span class="co">#&gt; </span></span>
+<span id="cb327-67"><a href="dc-regular-expressions.html#cb327-67"></a><span class="co">#&gt; $Locale$Variant</span></span>
+<span id="cb327-68"><a href="dc-regular-expressions.html#cb327-68"></a><span class="co">#&gt; [1] &quot;&quot;</span></span>
+<span id="cb327-69"><a href="dc-regular-expressions.html#cb327-69"></a><span class="co">#&gt; </span></span>
+<span id="cb327-70"><a href="dc-regular-expressions.html#cb327-70"></a><span class="co">#&gt; $Locale$Name</span></span>
+<span id="cb327-71"><a href="dc-regular-expressions.html#cb327-71"></a><span class="co">#&gt; [1] &quot;en_US&quot;</span></span>
+<span id="cb327-72"><a href="dc-regular-expressions.html#cb327-72"></a><span class="co">#&gt; </span></span>
+<span id="cb327-73"><a href="dc-regular-expressions.html#cb327-73"></a><span class="co">#&gt; </span></span>
+<span id="cb327-74"><a href="dc-regular-expressions.html#cb327-74"></a><span class="co">#&gt; $Charset.internal</span></span>
+<span id="cb327-75"><a href="dc-regular-expressions.html#cb327-75"></a><span class="co">#&gt; [1] &quot;UTF-8&quot;  &quot;UTF-16&quot;</span></span>
+<span id="cb327-76"><a href="dc-regular-expressions.html#cb327-76"></a><span class="co">#&gt; </span></span>
+<span id="cb327-77"><a href="dc-regular-expressions.html#cb327-77"></a><span class="co">#&gt; $Charset.native</span></span>
+<span id="cb327-78"><a href="dc-regular-expressions.html#cb327-78"></a><span class="co">#&gt; $Charset.native$Name.friendly</span></span>
+<span id="cb327-79"><a href="dc-regular-expressions.html#cb327-79"></a><span class="co">#&gt; [1] &quot;UTF-8&quot;</span></span>
+<span id="cb327-80"><a href="dc-regular-expressions.html#cb327-80"></a><span class="co">#&gt; </span></span>
+<span id="cb327-81"><a href="dc-regular-expressions.html#cb327-81"></a><span class="co">#&gt; $Charset.native$Name.ICU</span></span>
+<span id="cb327-82"><a href="dc-regular-expressions.html#cb327-82"></a><span class="co">#&gt; [1] &quot;UTF-8&quot;</span></span>
+<span id="cb327-83"><a href="dc-regular-expressions.html#cb327-83"></a><span class="co">#&gt; </span></span>
+<span id="cb327-84"><a href="dc-regular-expressions.html#cb327-84"></a><span class="co">#&gt; $Charset.native$Name.UTR22</span></span>
+<span id="cb327-85"><a href="dc-regular-expressions.html#cb327-85"></a><span class="co">#&gt; [1] NA</span></span>
+<span id="cb327-86"><a href="dc-regular-expressions.html#cb327-86"></a><span class="co">#&gt; </span></span>
+<span id="cb327-87"><a href="dc-regular-expressions.html#cb327-87"></a><span class="co">#&gt; $Charset.native$Name.IBM</span></span>
+<span id="cb327-88"><a href="dc-regular-expressions.html#cb327-88"></a><span class="co">#&gt; [1] &quot;ibm-1208&quot;</span></span>
+<span id="cb327-89"><a href="dc-regular-expressions.html#cb327-89"></a><span class="co">#&gt; </span></span>
+<span id="cb327-90"><a href="dc-regular-expressions.html#cb327-90"></a><span class="co">#&gt; $Charset.native$Name.WINDOWS</span></span>
+<span id="cb327-91"><a href="dc-regular-expressions.html#cb327-91"></a><span class="co">#&gt; [1] &quot;windows-65001&quot;</span></span>
+<span id="cb327-92"><a href="dc-regular-expressions.html#cb327-92"></a><span class="co">#&gt; </span></span>
+<span id="cb327-93"><a href="dc-regular-expressions.html#cb327-93"></a><span class="co">#&gt; $Charset.native$Name.JAVA</span></span>
+<span id="cb327-94"><a href="dc-regular-expressions.html#cb327-94"></a><span class="co">#&gt; [1] &quot;UTF-8&quot;</span></span>
+<span id="cb327-95"><a href="dc-regular-expressions.html#cb327-95"></a><span class="co">#&gt; </span></span>
+<span id="cb327-96"><a href="dc-regular-expressions.html#cb327-96"></a><span class="co">#&gt; $Charset.native$Name.IANA</span></span>
+<span id="cb327-97"><a href="dc-regular-expressions.html#cb327-97"></a><span class="co">#&gt; [1] &quot;UTF-8&quot;</span></span>
+<span id="cb327-98"><a href="dc-regular-expressions.html#cb327-98"></a><span class="co">#&gt; </span></span>
+<span id="cb327-99"><a href="dc-regular-expressions.html#cb327-99"></a><span class="co">#&gt; $Charset.native$Name.MIME</span></span>
+<span id="cb327-100"><a href="dc-regular-expressions.html#cb327-100"></a><span class="co">#&gt; [1] &quot;UTF-8&quot;</span></span>
+<span id="cb327-101"><a href="dc-regular-expressions.html#cb327-101"></a><span class="co">#&gt; </span></span>
+<span id="cb327-102"><a href="dc-regular-expressions.html#cb327-102"></a><span class="co">#&gt; $Charset.native$ASCII.subset</span></span>
+<span id="cb327-103"><a href="dc-regular-expressions.html#cb327-103"></a><span class="co">#&gt; [1] TRUE</span></span>
+<span id="cb327-104"><a href="dc-regular-expressions.html#cb327-104"></a><span class="co">#&gt; </span></span>
+<span id="cb327-105"><a href="dc-regular-expressions.html#cb327-105"></a><span class="co">#&gt; $Charset.native$Unicode.1to1</span></span>
+<span id="cb327-106"><a href="dc-regular-expressions.html#cb327-106"></a><span class="co">#&gt; [1] NA</span></span>
+<span id="cb327-107"><a href="dc-regular-expressions.html#cb327-107"></a><span class="co">#&gt; </span></span>
+<span id="cb327-108"><a href="dc-regular-expressions.html#cb327-108"></a><span class="co">#&gt; $Charset.native$CharSize.8bit</span></span>
+<span id="cb327-109"><a href="dc-regular-expressions.html#cb327-109"></a><span class="co">#&gt; [1] FALSE</span></span>
+<span id="cb327-110"><a href="dc-regular-expressions.html#cb327-110"></a><span class="co">#&gt; </span></span>
+<span id="cb327-111"><a href="dc-regular-expressions.html#cb327-111"></a><span class="co">#&gt; $Charset.native$CharSize.min</span></span>
+<span id="cb327-112"><a href="dc-regular-expressions.html#cb327-112"></a><span class="co">#&gt; [1] 1</span></span>
+<span id="cb327-113"><a href="dc-regular-expressions.html#cb327-113"></a><span class="co">#&gt; </span></span>
+<span id="cb327-114"><a href="dc-regular-expressions.html#cb327-114"></a><span class="co">#&gt; $Charset.native$CharSize.max</span></span>
+<span id="cb327-115"><a href="dc-regular-expressions.html#cb327-115"></a><span class="co">#&gt; [1] 3</span></span>
+<span id="cb327-116"><a href="dc-regular-expressions.html#cb327-116"></a><span class="co">#&gt; </span></span>
+<span id="cb327-117"><a href="dc-regular-expressions.html#cb327-117"></a><span class="co">#&gt; </span></span>
+<span id="cb327-118"><a href="dc-regular-expressions.html#cb327-118"></a><span class="co">#&gt; $ICU.system</span></span>
+<span id="cb327-119"><a href="dc-regular-expressions.html#cb327-119"></a><span class="co">#&gt; [1] TRUE</span></span>
+<span id="cb327-120"><a href="dc-regular-expressions.html#cb327-120"></a><span class="co">#&gt; </span></span>
+<span id="cb327-121"><a href="dc-regular-expressions.html#cb327-121"></a><span class="co">#&gt; $ICU.UTF8</span></span>
+<span id="cb327-122"><a href="dc-regular-expressions.html#cb327-122"></a><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
 <p>需要临时改变区域环境设置，配合特殊的画图和文本输出要求。</p>
-<div class="sourceCode" id="cb327"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb327-1"><a href="dc-regular-expressions.html#cb327-1"></a><span class="co"># 获取当前默认的区域设置</span></span>
-<span id="cb327-2"><a href="dc-regular-expressions.html#cb327-2"></a><span class="kw">Sys.getlocale</span>()</span>
-<span id="cb327-3"><a href="dc-regular-expressions.html#cb327-3"></a>foo &lt;-<span class="st"> </span><span class="kw">Sys.getlocale</span>()</span>
-<span id="cb327-4"><a href="dc-regular-expressions.html#cb327-4"></a><span class="co"># 恢复默认的区域设置</span></span>
-<span id="cb327-5"><a href="dc-regular-expressions.html#cb327-5"></a><span class="kw">Sys.setlocale</span>(<span class="st">&quot;LC_ALL&quot;</span>, <span class="dt">locale =</span> foo)</span></code></pre></div>
+<div class="sourceCode" id="cb328"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb328-1"><a href="dc-regular-expressions.html#cb328-1"></a><span class="co"># 获取当前默认的区域设置</span></span>
+<span id="cb328-2"><a href="dc-regular-expressions.html#cb328-2"></a><span class="kw">Sys.getlocale</span>()</span>
+<span id="cb328-3"><a href="dc-regular-expressions.html#cb328-3"></a>foo &lt;-<span class="st"> </span><span class="kw">Sys.getlocale</span>()</span>
+<span id="cb328-4"><a href="dc-regular-expressions.html#cb328-4"></a><span class="co"># 恢复默认的区域设置</span></span>
+<span id="cb328-5"><a href="dc-regular-expressions.html#cb328-5"></a><span class="kw">Sys.setlocale</span>(<span class="st">&quot;LC_ALL&quot;</span>, <span class="dt">locale =</span> foo)</span></code></pre></div>
 </div>
 <div id="foundations" class="section level2">
 <h2><span class="header-section-number">7.3</span> 基本概念</h2>
@@ -729,30 +729,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </table>
 <p>函数 <code>regexpr</code> 和 <code>gregexpr</code> 支持命名捕捉 (named capture). 如果一个组被命名了，如 <code>(?&lt;first&gt;[A-Z][a-z]+)</code> 那么，匹配的位置是按名字返回。</p>
 <p>下面举个例子说明，从字符串向量 <code>notables</code> 中获得了三组匹配 <code>name.rex</code> 是一段正则表达式，描述的模式是人名</p>
-<div class="sourceCode" id="cb329"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb329-1"><a href="dc-regular-expressions.html#cb329-1"></a><span class="co">## named capture</span></span>
-<span id="cb329-2"><a href="dc-regular-expressions.html#cb329-2"></a>notables &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;  Ben Franklin and Jefferson Davis&quot;</span>,</span>
-<span id="cb329-3"><a href="dc-regular-expressions.html#cb329-3"></a>              <span class="st">&quot;</span><span class="ch">\t</span><span class="st">Millard Fillmore&quot;</span>)</span>
-<span id="cb329-4"><a href="dc-regular-expressions.html#cb329-4"></a><span class="co"># name groups &#39;first&#39; and &#39;last&#39;</span></span>
-<span id="cb329-5"><a href="dc-regular-expressions.html#cb329-5"></a>name.rex &lt;-<span class="st"> &quot;(?&lt;first&gt;[[:upper:]][[:lower:]]+) (?&lt;last&gt;[[:upper:]][[:lower:]]+)&quot;</span></span>
-<span id="cb329-6"><a href="dc-regular-expressions.html#cb329-6"></a>parsed &lt;-<span class="st"> </span><span class="kw">regexpr</span>(name.rex, notables, <span class="dt">perl =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb329-7"><a href="dc-regular-expressions.html#cb329-7"></a>parsed</span>
-<span id="cb329-8"><a href="dc-regular-expressions.html#cb329-8"></a><span class="co">#&gt; [1] 3 2</span></span>
-<span id="cb329-9"><a href="dc-regular-expressions.html#cb329-9"></a><span class="co">#&gt; attr(,&quot;match.length&quot;)</span></span>
-<span id="cb329-10"><a href="dc-regular-expressions.html#cb329-10"></a><span class="co">#&gt; [1] 12 16</span></span>
-<span id="cb329-11"><a href="dc-regular-expressions.html#cb329-11"></a><span class="co">#&gt; attr(,&quot;index.type&quot;)</span></span>
-<span id="cb329-12"><a href="dc-regular-expressions.html#cb329-12"></a><span class="co">#&gt; [1] &quot;chars&quot;</span></span>
-<span id="cb329-13"><a href="dc-regular-expressions.html#cb329-13"></a><span class="co">#&gt; attr(,&quot;useBytes&quot;)</span></span>
-<span id="cb329-14"><a href="dc-regular-expressions.html#cb329-14"></a><span class="co">#&gt; [1] TRUE</span></span>
-<span id="cb329-15"><a href="dc-regular-expressions.html#cb329-15"></a><span class="co">#&gt; attr(,&quot;capture.start&quot;)</span></span>
-<span id="cb329-16"><a href="dc-regular-expressions.html#cb329-16"></a><span class="co">#&gt;      first last</span></span>
-<span id="cb329-17"><a href="dc-regular-expressions.html#cb329-17"></a><span class="co">#&gt; [1,]     3    7</span></span>
-<span id="cb329-18"><a href="dc-regular-expressions.html#cb329-18"></a><span class="co">#&gt; [2,]     2   10</span></span>
-<span id="cb329-19"><a href="dc-regular-expressions.html#cb329-19"></a><span class="co">#&gt; attr(,&quot;capture.length&quot;)</span></span>
-<span id="cb329-20"><a href="dc-regular-expressions.html#cb329-20"></a><span class="co">#&gt;      first last</span></span>
-<span id="cb329-21"><a href="dc-regular-expressions.html#cb329-21"></a><span class="co">#&gt; [1,]     3    8</span></span>
-<span id="cb329-22"><a href="dc-regular-expressions.html#cb329-22"></a><span class="co">#&gt; [2,]     7    8</span></span>
-<span id="cb329-23"><a href="dc-regular-expressions.html#cb329-23"></a><span class="co">#&gt; attr(,&quot;capture.names&quot;)</span></span>
-<span id="cb329-24"><a href="dc-regular-expressions.html#cb329-24"></a><span class="co">#&gt; [1] &quot;first&quot; &quot;last&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb330-1"><a href="dc-regular-expressions.html#cb330-1"></a><span class="co">## named capture</span></span>
+<span id="cb330-2"><a href="dc-regular-expressions.html#cb330-2"></a>notables &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;  Ben Franklin and Jefferson Davis&quot;</span>,</span>
+<span id="cb330-3"><a href="dc-regular-expressions.html#cb330-3"></a>              <span class="st">&quot;</span><span class="ch">\t</span><span class="st">Millard Fillmore&quot;</span>)</span>
+<span id="cb330-4"><a href="dc-regular-expressions.html#cb330-4"></a><span class="co"># name groups &#39;first&#39; and &#39;last&#39;</span></span>
+<span id="cb330-5"><a href="dc-regular-expressions.html#cb330-5"></a>name.rex &lt;-<span class="st"> &quot;(?&lt;first&gt;[[:upper:]][[:lower:]]+) (?&lt;last&gt;[[:upper:]][[:lower:]]+)&quot;</span></span>
+<span id="cb330-6"><a href="dc-regular-expressions.html#cb330-6"></a>parsed &lt;-<span class="st"> </span><span class="kw">regexpr</span>(name.rex, notables, <span class="dt">perl =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb330-7"><a href="dc-regular-expressions.html#cb330-7"></a>parsed</span>
+<span id="cb330-8"><a href="dc-regular-expressions.html#cb330-8"></a><span class="co">#&gt; [1] 3 2</span></span>
+<span id="cb330-9"><a href="dc-regular-expressions.html#cb330-9"></a><span class="co">#&gt; attr(,&quot;match.length&quot;)</span></span>
+<span id="cb330-10"><a href="dc-regular-expressions.html#cb330-10"></a><span class="co">#&gt; [1] 12 16</span></span>
+<span id="cb330-11"><a href="dc-regular-expressions.html#cb330-11"></a><span class="co">#&gt; attr(,&quot;index.type&quot;)</span></span>
+<span id="cb330-12"><a href="dc-regular-expressions.html#cb330-12"></a><span class="co">#&gt; [1] &quot;chars&quot;</span></span>
+<span id="cb330-13"><a href="dc-regular-expressions.html#cb330-13"></a><span class="co">#&gt; attr(,&quot;useBytes&quot;)</span></span>
+<span id="cb330-14"><a href="dc-regular-expressions.html#cb330-14"></a><span class="co">#&gt; [1] TRUE</span></span>
+<span id="cb330-15"><a href="dc-regular-expressions.html#cb330-15"></a><span class="co">#&gt; attr(,&quot;capture.start&quot;)</span></span>
+<span id="cb330-16"><a href="dc-regular-expressions.html#cb330-16"></a><span class="co">#&gt;      first last</span></span>
+<span id="cb330-17"><a href="dc-regular-expressions.html#cb330-17"></a><span class="co">#&gt; [1,]     3    7</span></span>
+<span id="cb330-18"><a href="dc-regular-expressions.html#cb330-18"></a><span class="co">#&gt; [2,]     2   10</span></span>
+<span id="cb330-19"><a href="dc-regular-expressions.html#cb330-19"></a><span class="co">#&gt; attr(,&quot;capture.length&quot;)</span></span>
+<span id="cb330-20"><a href="dc-regular-expressions.html#cb330-20"></a><span class="co">#&gt;      first last</span></span>
+<span id="cb330-21"><a href="dc-regular-expressions.html#cb330-21"></a><span class="co">#&gt; [1,]     3    8</span></span>
+<span id="cb330-22"><a href="dc-regular-expressions.html#cb330-22"></a><span class="co">#&gt; [2,]     7    8</span></span>
+<span id="cb330-23"><a href="dc-regular-expressions.html#cb330-23"></a><span class="co">#&gt; attr(,&quot;capture.names&quot;)</span></span>
+<span id="cb330-24"><a href="dc-regular-expressions.html#cb330-24"></a><span class="co">#&gt; [1] &quot;first&quot; &quot;last&quot;</span></span></code></pre></div>
 <p><code>notables</code> 是一个长度为2的字符串向量，所以获得两组匹配，捕捉到匹配开始的位置 <code>capture.start</code> 和匹配的长度 <code>capture.length</code> 都是两组，按列来看，字符 B 出现在字符串 <code>Ben Franklin and Jefferson Davis</code> 的第三个位置，匹配的长度 Ben 是三个字符，长度是 3，如图 <a href="dc-regular-expressions.html#fig:name-capture">7.1</a> 所示，需要注意的是一定要设置 <code>perl = TRUE</code> 才能使用命名捕捉功能，函数 <code>sub</code> 不支持命名反向引用 Named backreferences</p>
 <div class="figure" style="text-align: center"><span id="fig:name-capture"></span>
 <img src="figures/regexp-name-capture.png" alt="命名捕捉" width="70%" />

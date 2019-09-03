@@ -387,18 +387,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">第 10 章</span> 交互式图形</h1>
 <div id="plotly" class="section level2">
 <h2><span class="header-section-number">10.1</span> plotly</h2>
-<div class="sourceCode" id="cb503"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb503-1"><a href="dv-plotly.html#cb503-1"></a><span class="kw">library</span>(plotly, <span class="dt">warn.conflicts =</span> <span class="ot">FALSE</span>, <span class="dt">quietly =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb503-2"><a href="dv-plotly.html#cb503-2"></a>p1 &lt;-<span class="st"> </span><span class="kw">plot_ly</span>(diamonds, <span class="dt">x =</span> <span class="op">~</span>price) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">add_histogram</span>(<span class="dt">name =</span> <span class="st">&quot;plotly.js&quot;</span>)</span>
-<span id="cb503-3"><a href="dv-plotly.html#cb503-3"></a></span>
-<span id="cb503-4"><a href="dv-plotly.html#cb503-4"></a>price_hist &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">method =</span> <span class="st">&quot;FD&quot;</span>) {</span>
-<span id="cb503-5"><a href="dv-plotly.html#cb503-5"></a>  h &lt;-<span class="st"> </span><span class="kw">hist</span>(diamonds<span class="op">$</span>price, <span class="dt">breaks =</span> method, <span class="dt">plot =</span> <span class="ot">FALSE</span>)</span>
-<span id="cb503-6"><a href="dv-plotly.html#cb503-6"></a>  <span class="kw">plot_ly</span>(<span class="dt">x =</span> h<span class="op">$</span>mids, <span class="dt">y =</span> h<span class="op">$</span>counts) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">add_bars</span>(<span class="dt">name =</span> method)</span>
-<span id="cb503-7"><a href="dv-plotly.html#cb503-7"></a>}</span>
-<span id="cb503-8"><a href="dv-plotly.html#cb503-8"></a></span>
-<span id="cb503-9"><a href="dv-plotly.html#cb503-9"></a><span class="kw">subplot</span>(</span>
-<span id="cb503-10"><a href="dv-plotly.html#cb503-10"></a>  p1, <span class="kw">price_hist</span>(), <span class="kw">price_hist</span>(<span class="st">&quot;Sturges&quot;</span>),  <span class="kw">price_hist</span>(<span class="st">&quot;Scott&quot;</span>),</span>
-<span id="cb503-11"><a href="dv-plotly.html#cb503-11"></a>  <span class="dt">nrows =</span> <span class="dv">4</span>, <span class="dt">shareX =</span> <span class="ot">TRUE</span></span>
-<span id="cb503-12"><a href="dv-plotly.html#cb503-12"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb504"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb504-1"><a href="dv-plotly.html#cb504-1"></a><span class="kw">library</span>(plotly, <span class="dt">warn.conflicts =</span> <span class="ot">FALSE</span>, <span class="dt">quietly =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb504-2"><a href="dv-plotly.html#cb504-2"></a>p1 &lt;-<span class="st"> </span><span class="kw">plot_ly</span>(diamonds, <span class="dt">x =</span> <span class="op">~</span>price) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">add_histogram</span>(<span class="dt">name =</span> <span class="st">&quot;plotly.js&quot;</span>)</span>
+<span id="cb504-3"><a href="dv-plotly.html#cb504-3"></a></span>
+<span id="cb504-4"><a href="dv-plotly.html#cb504-4"></a>price_hist &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">method =</span> <span class="st">&quot;FD&quot;</span>) {</span>
+<span id="cb504-5"><a href="dv-plotly.html#cb504-5"></a>  h &lt;-<span class="st"> </span><span class="kw">hist</span>(diamonds<span class="op">$</span>price, <span class="dt">breaks =</span> method, <span class="dt">plot =</span> <span class="ot">FALSE</span>)</span>
+<span id="cb504-6"><a href="dv-plotly.html#cb504-6"></a>  <span class="kw">plot_ly</span>(<span class="dt">x =</span> h<span class="op">$</span>mids, <span class="dt">y =</span> h<span class="op">$</span>counts) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">add_bars</span>(<span class="dt">name =</span> method)</span>
+<span id="cb504-7"><a href="dv-plotly.html#cb504-7"></a>}</span>
+<span id="cb504-8"><a href="dv-plotly.html#cb504-8"></a></span>
+<span id="cb504-9"><a href="dv-plotly.html#cb504-9"></a><span class="kw">subplot</span>(</span>
+<span id="cb504-10"><a href="dv-plotly.html#cb504-10"></a>  p1, <span class="kw">price_hist</span>(), <span class="kw">price_hist</span>(<span class="st">&quot;Sturges&quot;</span>),  <span class="kw">price_hist</span>(<span class="st">&quot;Scott&quot;</span>),</span>
+<span id="cb504-11"><a href="dv-plotly.html#cb504-11"></a>  <span class="dt">nrows =</span> <span class="dv">4</span>, <span class="dt">shareX =</span> <span class="ot">TRUE</span></span>
+<span id="cb504-12"><a href="dv-plotly.html#cb504-12"></a>)</span></code></pre></div>
 <p>Orca (Open-source Report Creator App) 软件针对 plotly.js 库渲染的图形具有很强的导出功能，<a href="https://github.com/plotly/orca#installation">安装 Orca</a> 后，<code>plotly::orca</code> 函数可以将基于 htmlwidget 的 plotly 图形对象导出为高质量静态图片，支持导出 png、pdf 和 svg 等格式。</p>
 <div class="figure" style="text-align: center"><span id="fig:bars-numeric"></span>
 <img src="interactives/bars-numeric.svg" alt="直方图" width="70%" data-url="/interactives/bars-numeric.html" />

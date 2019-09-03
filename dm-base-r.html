@@ -1715,31 +1715,60 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb260-18"><a href="dm-base-r.html#cb260-18"></a>  <span class="dt">fill =</span> <span class="kw">c</span>(<span class="st">&quot;#4285f4&quot;</span>, <span class="st">&quot;#EA4335&quot;</span>)</span>
 <span id="cb260-19"><a href="dm-base-r.html#cb260-19"></a>)</span></code></pre></div>
 <p><img src="dm-base-r_files/figure-html/subset-out-boxplot-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p>可以作为数据变换 <code>transform</code> 的一种替代，它也比较像 <strong>dplyr</strong> 包的 <code>mutate</code> 函数</p>
+<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="dm-base-r.html#cb261-1"></a><span class="kw">within</span>(mtcars[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>,<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>],{</span>
+<span id="cb261-2"><a href="dm-base-r.html#cb261-2"></a>  disp.cc &lt;-<span class="st"> </span>disp <span class="op">*</span><span class="st"> </span><span class="fl">2.54</span><span class="op">^</span><span class="dv">3</span></span>
+<span id="cb261-3"><a href="dm-base-r.html#cb261-3"></a>  disp.l &lt;-<span class="st"> </span>disp.cc <span class="op">/</span><span class="st"> </span><span class="fl">1e3</span></span>
+<span id="cb261-4"><a href="dm-base-r.html#cb261-4"></a>})</span>
+<span id="cb261-5"><a href="dm-base-r.html#cb261-5"></a><span class="co">#&gt;                    mpg cyl disp   disp.l  disp.cc</span></span>
+<span id="cb261-6"><a href="dm-base-r.html#cb261-6"></a><span class="co">#&gt; Mazda RX4         21.0   6  160 2.621930 2621.930</span></span>
+<span id="cb261-7"><a href="dm-base-r.html#cb261-7"></a><span class="co">#&gt; Mazda RX4 Wag     21.0   6  160 2.621930 2621.930</span></span>
+<span id="cb261-8"><a href="dm-base-r.html#cb261-8"></a><span class="co">#&gt; Datsun 710        22.8   4  108 1.769803 1769.803</span></span>
+<span id="cb261-9"><a href="dm-base-r.html#cb261-9"></a><span class="co">#&gt; Hornet 4 Drive    21.4   6  258 4.227863 4227.863</span></span>
+<span id="cb261-10"><a href="dm-base-r.html#cb261-10"></a><span class="co">#&gt; Hornet Sportabout 18.7   8  360 5.899343 5899.343</span></span>
+<span id="cb261-11"><a href="dm-base-r.html#cb261-11"></a></span>
+<span id="cb261-12"><a href="dm-base-r.html#cb261-12"></a><span class="co"># 只能使用已有的列，刚生成的列不能用</span></span>
+<span id="cb261-13"><a href="dm-base-r.html#cb261-13"></a><span class="co"># transform(</span></span>
+<span id="cb261-14"><a href="dm-base-r.html#cb261-14"></a><span class="co">#   mtcars[1:5, 1:3],</span></span>
+<span id="cb261-15"><a href="dm-base-r.html#cb261-15"></a><span class="co">#   disp.cc = disp * 2.54^3,</span></span>
+<span id="cb261-16"><a href="dm-base-r.html#cb261-16"></a><span class="co">#   disp.l = disp.cc / 1e3</span></span>
+<span id="cb261-17"><a href="dm-base-r.html#cb261-17"></a><span class="co"># )</span></span>
+<span id="cb261-18"><a href="dm-base-r.html#cb261-18"></a><span class="kw">transform</span>(</span>
+<span id="cb261-19"><a href="dm-base-r.html#cb261-19"></a>  mtcars[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>],</span>
+<span id="cb261-20"><a href="dm-base-r.html#cb261-20"></a>  <span class="dt">disp.cc =</span> disp <span class="op">*</span><span class="st"> </span><span class="fl">2.54</span><span class="op">^</span><span class="dv">3</span></span>
+<span id="cb261-21"><a href="dm-base-r.html#cb261-21"></a>)</span>
+<span id="cb261-22"><a href="dm-base-r.html#cb261-22"></a><span class="co">#&gt;                    mpg cyl disp  disp.cc</span></span>
+<span id="cb261-23"><a href="dm-base-r.html#cb261-23"></a><span class="co">#&gt; Mazda RX4         21.0   6  160 2621.930</span></span>
+<span id="cb261-24"><a href="dm-base-r.html#cb261-24"></a><span class="co">#&gt; Mazda RX4 Wag     21.0   6  160 2621.930</span></span>
+<span id="cb261-25"><a href="dm-base-r.html#cb261-25"></a><span class="co">#&gt; Datsun 710        22.8   4  108 1769.803</span></span>
+<span id="cb261-26"><a href="dm-base-r.html#cb261-26"></a><span class="co">#&gt; Hornet 4 Drive    21.4   6  258 4227.863</span></span>
+<span id="cb261-27"><a href="dm-base-r.html#cb261-27"></a><span class="co">#&gt; Hornet Sportabout 18.7   8  360 5899.343</span></span></code></pre></div>
+<p><code>transform</code> 只能使用已有的列，变换中间生成的列不能用，所以相比于 <code>transform</code> 函数， <code>within</code> 显得更为灵活</p>
 </div>
 </div>
 <div id="dm-base-session-info" class="section level2">
 <h2><span class="header-section-number">4.14</span> 运行环境</h2>
-<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="dm-base-r.html#cb261-1"></a>xfun<span class="op">::</span><span class="kw">session_info</span>()</span>
-<span id="cb261-2"><a href="dm-base-r.html#cb261-2"></a><span class="co">#&gt; R version 3.6.1 (2019-07-05)</span></span>
-<span id="cb261-3"><a href="dm-base-r.html#cb261-3"></a><span class="co">#&gt; Platform: x86_64-pc-linux-gnu (64-bit)</span></span>
-<span id="cb261-4"><a href="dm-base-r.html#cb261-4"></a><span class="co">#&gt; Running under: Debian GNU/Linux 10 (buster)</span></span>
-<span id="cb261-5"><a href="dm-base-r.html#cb261-5"></a><span class="co">#&gt; </span></span>
-<span id="cb261-6"><a href="dm-base-r.html#cb261-6"></a><span class="co">#&gt; Locale:</span></span>
-<span id="cb261-7"><a href="dm-base-r.html#cb261-7"></a><span class="co">#&gt;   LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              </span></span>
-<span id="cb261-8"><a href="dm-base-r.html#cb261-8"></a><span class="co">#&gt;   LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    </span></span>
-<span id="cb261-9"><a href="dm-base-r.html#cb261-9"></a><span class="co">#&gt;   LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   </span></span>
-<span id="cb261-10"><a href="dm-base-r.html#cb261-10"></a><span class="co">#&gt;   LC_PAPER=en_US.UTF-8       LC_NAME=C                 </span></span>
-<span id="cb261-11"><a href="dm-base-r.html#cb261-11"></a><span class="co">#&gt;   LC_ADDRESS=C               LC_TELEPHONE=C            </span></span>
-<span id="cb261-12"><a href="dm-base-r.html#cb261-12"></a><span class="co">#&gt;   LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       </span></span>
-<span id="cb261-13"><a href="dm-base-r.html#cb261-13"></a><span class="co">#&gt; </span></span>
-<span id="cb261-14"><a href="dm-base-r.html#cb261-14"></a><span class="co">#&gt; Package version:</span></span>
-<span id="cb261-15"><a href="dm-base-r.html#cb261-15"></a><span class="co">#&gt;   base64enc_0.1.3  bookdown_0.12    codetools_0.2-16 compiler_3.6.1  </span></span>
-<span id="cb261-16"><a href="dm-base-r.html#cb261-16"></a><span class="co">#&gt;   curl_4.0         digest_0.6.20    evaluate_0.14    glue_1.3.1      </span></span>
-<span id="cb261-17"><a href="dm-base-r.html#cb261-17"></a><span class="co">#&gt;   graphics_3.6.1   grDevices_3.6.1  highr_0.8        htmltools_0.3.6 </span></span>
-<span id="cb261-18"><a href="dm-base-r.html#cb261-18"></a><span class="co">#&gt;   jsonlite_1.6     knitr_1.23       magrittr_1.5     markdown_1.0    </span></span>
-<span id="cb261-19"><a href="dm-base-r.html#cb261-19"></a><span class="co">#&gt;   methods_3.6.1    mime_0.7         Rcpp_1.0.2       rmarkdown_1.14  </span></span>
-<span id="cb261-20"><a href="dm-base-r.html#cb261-20"></a><span class="co">#&gt;   stats_3.6.1      stringi_1.4.3    stringr_1.4.0    tinytex_0.14    </span></span>
-<span id="cb261-21"><a href="dm-base-r.html#cb261-21"></a><span class="co">#&gt;   tools_3.6.1      utils_3.6.1      xfun_0.8         yaml_2.2.0</span></span></code></pre></div>
+<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="dm-base-r.html#cb262-1"></a>xfun<span class="op">::</span><span class="kw">session_info</span>()</span>
+<span id="cb262-2"><a href="dm-base-r.html#cb262-2"></a><span class="co">#&gt; R version 3.6.1 (2019-07-05)</span></span>
+<span id="cb262-3"><a href="dm-base-r.html#cb262-3"></a><span class="co">#&gt; Platform: x86_64-pc-linux-gnu (64-bit)</span></span>
+<span id="cb262-4"><a href="dm-base-r.html#cb262-4"></a><span class="co">#&gt; Running under: Debian GNU/Linux 10 (buster)</span></span>
+<span id="cb262-5"><a href="dm-base-r.html#cb262-5"></a><span class="co">#&gt; </span></span>
+<span id="cb262-6"><a href="dm-base-r.html#cb262-6"></a><span class="co">#&gt; Locale:</span></span>
+<span id="cb262-7"><a href="dm-base-r.html#cb262-7"></a><span class="co">#&gt;   LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              </span></span>
+<span id="cb262-8"><a href="dm-base-r.html#cb262-8"></a><span class="co">#&gt;   LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    </span></span>
+<span id="cb262-9"><a href="dm-base-r.html#cb262-9"></a><span class="co">#&gt;   LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   </span></span>
+<span id="cb262-10"><a href="dm-base-r.html#cb262-10"></a><span class="co">#&gt;   LC_PAPER=en_US.UTF-8       LC_NAME=C                 </span></span>
+<span id="cb262-11"><a href="dm-base-r.html#cb262-11"></a><span class="co">#&gt;   LC_ADDRESS=C               LC_TELEPHONE=C            </span></span>
+<span id="cb262-12"><a href="dm-base-r.html#cb262-12"></a><span class="co">#&gt;   LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       </span></span>
+<span id="cb262-13"><a href="dm-base-r.html#cb262-13"></a><span class="co">#&gt; </span></span>
+<span id="cb262-14"><a href="dm-base-r.html#cb262-14"></a><span class="co">#&gt; Package version:</span></span>
+<span id="cb262-15"><a href="dm-base-r.html#cb262-15"></a><span class="co">#&gt;   base64enc_0.1.3  bookdown_0.12    codetools_0.2-16 compiler_3.6.1  </span></span>
+<span id="cb262-16"><a href="dm-base-r.html#cb262-16"></a><span class="co">#&gt;   curl_4.0         digest_0.6.20    evaluate_0.14    glue_1.3.1      </span></span>
+<span id="cb262-17"><a href="dm-base-r.html#cb262-17"></a><span class="co">#&gt;   graphics_3.6.1   grDevices_3.6.1  highr_0.8        htmltools_0.3.6 </span></span>
+<span id="cb262-18"><a href="dm-base-r.html#cb262-18"></a><span class="co">#&gt;   jsonlite_1.6     knitr_1.24       magrittr_1.5     markdown_1.1    </span></span>
+<span id="cb262-19"><a href="dm-base-r.html#cb262-19"></a><span class="co">#&gt;   methods_3.6.1    mime_0.7         Rcpp_1.0.2       rmarkdown_1.14  </span></span>
+<span id="cb262-20"><a href="dm-base-r.html#cb262-20"></a><span class="co">#&gt;   stats_3.6.1      stringi_1.4.3    stringr_1.4.0    tinytex_0.15    </span></span>
+<span id="cb262-21"><a href="dm-base-r.html#cb262-21"></a><span class="co">#&gt;   tools_3.6.1      utils_3.6.1      xfun_0.8         yaml_2.2.0</span></span></code></pre></div>
 
 </div>
 </div>

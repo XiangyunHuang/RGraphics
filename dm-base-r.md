@@ -1738,6 +1738,41 @@ legend(2, 9, c("Ascorbic acid", "Orange juice"),
 
 <img src="dm-base-r_files/figure-html/subset-out-boxplot-1.png" width="70%" style="display: block; margin: auto;" />
 
+可以作为数据变换 `transform` 的一种替代，它也比较像 **dplyr** 包的 `mutate` 函数
+
+
+```r
+within(mtcars[1:5,1:3],{
+  disp.cc <- disp * 2.54^3
+  disp.l <- disp.cc / 1e3
+})
+#>                    mpg cyl disp   disp.l  disp.cc
+#> Mazda RX4         21.0   6  160 2.621930 2621.930
+#> Mazda RX4 Wag     21.0   6  160 2.621930 2621.930
+#> Datsun 710        22.8   4  108 1.769803 1769.803
+#> Hornet 4 Drive    21.4   6  258 4.227863 4227.863
+#> Hornet Sportabout 18.7   8  360 5.899343 5899.343
+
+# 只能使用已有的列，刚生成的列不能用
+# transform(
+#   mtcars[1:5, 1:3],
+#   disp.cc = disp * 2.54^3,
+#   disp.l = disp.cc / 1e3
+# )
+transform(
+  mtcars[1:5, 1:3],
+  disp.cc = disp * 2.54^3
+)
+#>                    mpg cyl disp  disp.cc
+#> Mazda RX4         21.0   6  160 2621.930
+#> Mazda RX4 Wag     21.0   6  160 2621.930
+#> Datsun 710        22.8   4  108 1769.803
+#> Hornet 4 Drive    21.4   6  258 4227.863
+#> Hornet Sportabout 18.7   8  360 5899.343
+```
+
+`transform` 只能使用已有的列，变换中间生成的列不能用，所以相比于 `transform` 函数， `within` 显得更为灵活
+
 ## 运行环境 {#dm-base-session-info}
 
 
@@ -1759,9 +1794,9 @@ xfun::session_info()
 #>   base64enc_0.1.3  bookdown_0.12    codetools_0.2-16 compiler_3.6.1  
 #>   curl_4.0         digest_0.6.20    evaluate_0.14    glue_1.3.1      
 #>   graphics_3.6.1   grDevices_3.6.1  highr_0.8        htmltools_0.3.6 
-#>   jsonlite_1.6     knitr_1.23       magrittr_1.5     markdown_1.0    
+#>   jsonlite_1.6     knitr_1.24       magrittr_1.5     markdown_1.1    
 #>   methods_3.6.1    mime_0.7         Rcpp_1.0.2       rmarkdown_1.14  
-#>   stats_3.6.1      stringi_1.4.3    stringr_1.4.0    tinytex_0.14    
+#>   stats_3.6.1      stringi_1.4.3    stringr_1.4.0    tinytex_0.15    
 #>   tools_3.6.1      utils_3.6.1      xfun_0.8         yaml_2.2.0
 ```
 
