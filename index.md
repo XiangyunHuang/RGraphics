@@ -1,9 +1,9 @@
 
 ---
-title: "数据可视化与R语言"
-subtitle: "Data Visualization with R"
+title: "数据科学与 R 语言"
+subtitle: "Data Science with R"
 author: "黄湘云"
-date: "2019-09-03 20:22:58 CST"
+date: "2019-09-07 20:01:57 CST"
 site: bookdown::bookdown_site
 documentclass: book
 geometry: margin=1.18in
@@ -13,7 +13,7 @@ bibliography: ["refer.bib"]
 biblio-style: apalike
 link-citations: yes
 subparagraph: true
-description: "数据操作、数据分析、数据建模和数据可视化"
+description: "数据操作、数据分析、数据建模、动态报告和数据可视化"
 github-repo: XiangyunHuang/RGraphics
 url: 'https\://bookdown.org/xiangyun/RGraphics/'
 ---
