@@ -561,14 +561,10 @@ plot(cut(Z, breaks = -6:6))
 hist(Z, breaks = -6:6)
 ```
 
-\begin{figure}[!htb]
-
-{\centering \includegraphics[width=0.35\linewidth]{dm-base-r_files/figure-latex/cut-1} \includegraphics[width=0.35\linewidth]{dm-base-r_files/figure-latex/cut-2} 
-
-}
-
-\caption{连续型变量分组统计}(\#fig:cut)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="dm-base-r_files/figure-html/cut-1.png" alt="连续型变量分组统计" width="35%" /><img src="dm-base-r_files/figure-html/cut-2.png" alt="连续型变量分组统计" width="35%" />
+<p class="caption">(\#fig:cut)连续型变量分组统计</p>
+</div>
 
 在指定分组数的情况下，我们还想获取分组的断点
 
@@ -1713,9 +1709,7 @@ with(ToothGrowth, {
 })
 ```
 
-
-
-\begin{center}\includegraphics[width=0.7\linewidth]{dm-base-r_files/figure-latex/subset-in-boxplot-1} \end{center}
+<img src="dm-base-r_files/figure-html/subset-in-boxplot-1.png" width="70%" style="display: block; margin: auto;" />
 
 将 `boxplot` 函数的 `subset` 参数单独提出来，调用数据子集选择函数 `subset` ，这里 `with` 中只包含一个表达式，所以也可以不用大括号
 
@@ -1742,9 +1736,7 @@ legend(2, 9, c("Ascorbic acid", "Orange juice"),
 )
 ```
 
-
-
-\begin{center}\includegraphics[width=0.7\linewidth]{dm-base-r_files/figure-latex/subset-out-boxplot-1} \end{center}
+<img src="dm-base-r_files/figure-html/subset-out-boxplot-1.png" width="70%" style="display: block; margin: auto;" />
 
 可以作为数据变换 `transform` 的一种替代，它也比较像 **dplyr** 包的 `mutate` 函数
 
