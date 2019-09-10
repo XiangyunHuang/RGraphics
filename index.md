@@ -3,15 +3,25 @@
 title: "数据科学与 R 语言"
 subtitle: "Data Science with R"
 author: "黄湘云"
-date: "2019-09-10 09:35:00 CST"
+date: "2019-09-10 09:37:35 CST"
 site: bookdown::bookdown_site
 documentclass: book
-geometry: margin=1.18in
-colorlinks: yes
-classoption: "UTF8,oneside"
-bibliography: ["refer.bib"]
 biblio-style: apalike
 link-citations: yes
+graphics: yes
+mathspec: yes
+lot: yes
+lof: yes
+classoption: "UTF8,twoside"
+papersize: b5
+colorlinks: yes
+geometry:
+  - tmargin=2.5cm
+  - bmargin=2.5cm
+  - lmargin=3.5cm
+  - rmargin=2.5cm
+bibliography: 
+  - refer.bib
 subparagraph: true
 description: "数据操作、数据分析、数据建模、动态报告和数据可视化"
 github-repo: XiangyunHuang/RGraphics
