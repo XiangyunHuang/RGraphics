@@ -26,7 +26,7 @@ before_script:
 script:
   - mkdir -p _book/interactives && cp -r interactives/* _book/interactives
   #- docker-compose up -d
-  - docker-compose run book bash -c "cp odbc.ini ~/.odbc.ini;make all"
+  - docker-compose run book bash -c "cp odbc.ini ~/.odbc.ini;make gitbook"
   - docker-compose down
   - ./_deploy.sh
 
