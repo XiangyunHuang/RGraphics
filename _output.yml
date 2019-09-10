@@ -23,11 +23,15 @@ bookdown::gitbook:
 bookdown::pdf_book:
   includes:
     in_header: preamble.tex
-    before_body: before_body.tex
-    after_body: after_body.tex
   latex_engine: xelatex
   citation_package: natbib
-  pandoc_args: ["--top-level-division=chapter", "--lua-filter=sidebar.lua"]
-  quote_footer: ["\\begin{flushright}", "\\end{flushright}"]
-  toc_depth: 3
+  template: null
   dev: "cairo_pdf"
+  keep_tex: yes
+  keep_md: yes
+  extra_dependencies:
+    ctex: 
+     - heading
+     - fontset=adobe
+  pandoc_args: ["--top-level-division=chapter", "--lua-filter=sidebar.lua"]
+  quote_footer: ["\\hspace*{\\fill} ", ""]
