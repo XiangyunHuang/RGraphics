@@ -52,7 +52,9 @@ ggplot(east_asia, aes(x = long, y = lat, group = group, fill = region)) +
   scale_fill_brewer(palette = "Set2")
 ```
 
-<img src="dv-spatio-temporal_files/figure-html/unnamed-chunk-3-1.png" width="70%" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics[width=0.7\linewidth]{dv-spatio-temporal_files/figure-latex/unnamed-chunk-3-1} \end{center}
 
 ### 投影和观察方位 {#project-orientation}
 
@@ -93,7 +95,9 @@ ggplot(worldmap, aes(long, lat, group = group)) +
   )
 ```
 
-<img src="dv-spatio-temporal_files/figure-html/unnamed-chunk-4-1.png" width="70%" style="display: block; margin: auto;" /><img src="dv-spatio-temporal_files/figure-html/unnamed-chunk-4-2.png" width="70%" style="display: block; margin: auto;" /><img src="dv-spatio-temporal_files/figure-html/unnamed-chunk-4-3.png" width="70%" style="display: block; margin: auto;" /><img src="dv-spatio-temporal_files/figure-html/unnamed-chunk-4-4.png" width="70%" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics[width=0.7\linewidth]{dv-spatio-temporal_files/figure-latex/unnamed-chunk-4-1} \includegraphics[width=0.7\linewidth]{dv-spatio-temporal_files/figure-latex/unnamed-chunk-4-2} \includegraphics[width=0.7\linewidth]{dv-spatio-temporal_files/figure-latex/unnamed-chunk-4-3} \includegraphics[width=0.7\linewidth]{dv-spatio-temporal_files/figure-latex/unnamed-chunk-4-4} \end{center}
 
 
 
@@ -123,7 +127,9 @@ ggplot(worldmap, aes(long, lat, group = group)) +
   )
 ```
 
-<img src="dv-spatio-temporal_files/figure-html/unnamed-chunk-5-1.png" width="70%" style="display: block; margin: auto;" /><img src="dv-spatio-temporal_files/figure-html/unnamed-chunk-5-2.png" width="70%" style="display: block; margin: auto;" /><img src="dv-spatio-temporal_files/figure-html/unnamed-chunk-5-3.png" width="70%" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics[width=0.7\linewidth]{dv-spatio-temporal_files/figure-latex/unnamed-chunk-5-1} \includegraphics[width=0.7\linewidth]{dv-spatio-temporal_files/figure-latex/unnamed-chunk-5-2} \includegraphics[width=0.7\linewidth]{dv-spatio-temporal_files/figure-latex/unnamed-chunk-5-3} \end{center}
 
 
 ### 美国各州犯罪率 {#USA-crime-rates}
@@ -172,10 +178,14 @@ ggplot(crimes, aes(map_id = state)) +
   coord_map()
 ```
 
-<div class="figure" style="text-align: center">
-<img src="dv-spatio-temporal_files/figure-html/unnamed-chunk-8-1.png" alt="1973年美国各州的犯罪率数据" width="70%" />
-<p class="caption">(\#fig:unnamed-chunk-8)1973年美国各州的犯罪率数据</p>
-</div>
+\begin{figure}[!htb]
+
+{\centering \includegraphics[width=0.7\linewidth]{dv-spatio-temporal_files/figure-latex/unnamed-chunk-8-1} 
+
+}
+
+\caption{1973年美国各州的犯罪率数据}(\#fig:unnamed-chunk-8)
+\end{figure}
 
 
 
@@ -186,10 +196,14 @@ ggplot(crimesm, aes(map_id = state)) +
   facet_wrap(~variable)
 ```
 
-<div class="figure" style="text-align: center">
-<img src="dv-spatio-temporal_files/figure-html/unnamed-chunk-9-1.png" alt="四类犯罪在各州的分布" width="70%" />
-<p class="caption">(\#fig:unnamed-chunk-9)四类犯罪在各州的分布</p>
-</div>
+\begin{figure}[!htb]
+
+{\centering \includegraphics[width=0.7\linewidth]{dv-spatio-temporal_files/figure-latex/unnamed-chunk-9-1} 
+
+}
+
+\caption{四类犯罪在各州的分布}(\#fig:unnamed-chunk-9)
+\end{figure}
 
 ### 斐济地震带 {#fiji-earthquake-map}
 
@@ -207,10 +221,14 @@ ggplot(data = dat, aes(as.factor(year), as.factor(month))) +
   theme_minimal()
 ```
 
-<div class="figure" style="text-align: center">
-<img src="dv-spatio-temporal_files/figure-html/pickcolor-1.png" alt="viridis 和 Spectral对比" width="70%" />
-<p class="caption">(\#fig:pickcolor)viridis 和 Spectral对比</p>
-</div>
+\begin{figure}[!htb]
+
+{\centering \includegraphics[width=0.7\linewidth]{dv-spatio-temporal_files/figure-latex/pickcolor-1} 
+
+}
+
+\caption{viridis 和 Spectral对比}(\#fig:pickcolor)
+\end{figure}
 
 再举栗子，图\@ref(fig:faithfuld)是正负例对比，其中好在哪里呢？这张图要表达美国黄石国家公园的老忠实泉间歇喷发的时间规律，那么好的标准就是层次分明，以突出不同颜色之间的时间差异。这个差异，还要看起来不那么费眼睛，越一目了然越好。
 
@@ -229,10 +247,14 @@ erupt4 <- erupt
 grid.arrange(erupt1, erupt2, erupt3, erupt4, ncol = 2)
 ```
 
-<div class="figure" style="text-align: center">
-<img src="dv-spatio-temporal_files/figure-html/faithfuld-1.png" alt="美国黄石国家公园的老忠实泉" width="70%" />
-<p class="caption">(\#fig:faithfuld)美国黄石国家公园的老忠实泉</p>
-</div>
+\begin{figure}[!htb]
+
+{\centering \includegraphics[width=0.7\linewidth]{dv-spatio-temporal_files/figure-latex/faithfuld-1} 
+
+}
+
+\caption{美国黄石国家公园的老忠实泉}(\#fig:faithfuld)
+\end{figure}
 
 此处调用 RColorBrewer 中 Spectral 调色板，它本来只有11中颜色，通过 `scale_colour_distiller` 却可以把它映射到连续型数值变量 `mag` 上，发散型调色板本身的对比性也可以起到很好的区分度，如图 \@ref(fig:fiji-map) 所示
 
@@ -250,10 +272,14 @@ ggplot(FijiMap, aes(x = long, y = lat)) +
   theme_minimal()
 ```
 
-<div class="figure" style="text-align: center">
-<img src="dv-spatio-temporal_files/figure-html/fiji-map-1.png" alt="斐济地震带" width="70%" />
-<p class="caption">(\#fig:fiji-map)斐济地震带</p>
-</div>
+\begin{figure}[!htb]
+
+{\centering \includegraphics[width=0.7\linewidth]{dv-spatio-temporal_files/figure-latex/fiji-map-1} 
+
+}
+
+\caption{斐济地震带}(\#fig:fiji-map)
+\end{figure}
 
 此外， colormap 包提供更加丰富的调色板，通过 `scale_color_colormap` 支持 ggplot2 绘图风格
 
@@ -297,10 +323,14 @@ ggplot(choropleth, aes(long, lat, group = group)) +
   theme_map()
 ```
 
-<div class="figure" style="text-align: center">
-<img src="dv-spatio-temporal_files/figure-html/unemploymentGG-1.png" alt="2009年美国各城镇失业率" width="70%" />
-<p class="caption">(\#fig:unemploymentGG)2009年美国各城镇失业率</p>
-</div>
+\begin{figure}[!htb]
+
+{\centering \includegraphics[width=0.7\linewidth]{dv-spatio-temporal_files/figure-latex/unemploymentGG-1} 
+
+}
+
+\caption{2009年美国各城镇失业率}(\#fig:unemploymentGG)
+\end{figure}
 
 美国各地区失业率地图，配不同颜色， [colormap](https://github.com/bhaskarvk/colormap) 适合给静态图配色
 
@@ -333,10 +363,14 @@ proj4string(meuse)
 plot(meuse, axes = TRUE)
 ```
 
-<div class="figure" style="text-align: center">
-<img src="dv-spatio-temporal_files/figure-html/unnamed-chunk-11-1.png" alt="sp 对象" width="58.33%" />
-<p class="caption">(\#fig:unnamed-chunk-11)sp 对象</p>
-</div>
+\begin{figure}[!htb]
+
+{\centering \includegraphics[width=0.5833\linewidth]{dv-spatio-temporal_files/figure-latex/unnamed-chunk-11-1} 
+
+}
+
+\caption{sp 对象}(\#fig:unnamed-chunk-11)
+\end{figure}
 
 
 ```r
@@ -345,16 +379,19 @@ meuse.longlat <- spTransform(meuse, crs.longlat)
 plot(meuse.longlat, axes = TRUE)
 ```
 
-<div class="figure" style="text-align: center">
-<img src="dv-spatio-temporal_files/figure-html/unnamed-chunk-12-1.png" alt="sp 对象" width="58.33%" />
-<p class="caption">(\#fig:unnamed-chunk-12)sp 对象</p>
-</div>
+\begin{figure}[!htb]
+
+{\centering \includegraphics[width=0.5833\linewidth]{dv-spatio-temporal_files/figure-latex/unnamed-chunk-12-1} 
+
+}
+
+\caption{sp 对象}(\#fig:unnamed-chunk-12)
+\end{figure}
 
 
 
 ```r
 library(maptools)
-#> Checking rgeos availability: TRUE
 fname <- system.file("shapes/sids.shp", package = "maptools")
 p4s <- CRS("+proj=longlat +datum=NAD27")
 nc <- readShapePoly(fname, proj4string = p4s)
@@ -362,7 +399,9 @@ nc <- readShapePoly(fname, proj4string = p4s)
 plot(nc, axes = TRUE, col = grey(1 - nc$SID79 / 57))
 ```
 
-<img src="dv-spatio-temporal_files/figure-html/unnamed-chunk-13-1.png" width="70%" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics[width=0.7\linewidth]{dv-spatio-temporal_files/figure-latex/unnamed-chunk-13-1} \end{center}
 
 
 ```r
@@ -377,7 +416,9 @@ spplot(nc, c("SID74", "SID79"),
 )
 ```
 
-<img src="dv-spatio-temporal_files/figure-html/unnamed-chunk-14-1.png" width="70%" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics[width=0.7\linewidth]{dv-spatio-temporal_files/figure-latex/unnamed-chunk-14-1} \end{center}
 
 ::: warning
 maptools 提供的 `readShapePoly` 函数去读取 shp 文件的方式已经过时，推荐使用 `rgdal::readOGR` 或者 `sf::st_read` 方式读取
@@ -401,50 +442,75 @@ raster 包定义了获取和操作空间 raster 类型数据集的类和方法�
 methods(plot)
 #>  [1] plot,ANY,ANY-method                       
 #>  [2] plot,color,ANY-method                     
-#>  [3] plot,Spatial,missing-method               
-#>  [4] plot,SpatialGrid,missing-method           
-#>  [5] plot,SpatialGridDataFrame,missing-method  
-#>  [6] plot,SpatialLines,missing-method          
-#>  [7] plot,SpatialMultiPoints,missing-method    
-#>  [8] plot,SpatialPixels,missing-method         
-#>  [9] plot,SpatialPixelsDataFrame,missing-method
-#> [10] plot,SpatialPoints,missing-method         
-#> [11] plot,SpatialPolygons,missing-method       
-#> [12] plot.acf*                                 
-#> [13] plot.data.frame*                          
-#> [14] plot.decomposed.ts*                       
-#> [15] plot.default                              
-#> [16] plot.dendrogram*                          
-#> [17] plot.density*                             
-#> [18] plot.ecdf                                 
-#> [19] plot.factor*                              
-#> [20] plot.formula*                             
-#> [21] plot.function                             
-#> [22] plot.ggplot*                              
-#> [23] plot.gtable*                              
-#> [24] plot.hcl_palettes*                        
-#> [25] plot.hclust*                              
-#> [26] plot.histogram*                           
-#> [27] plot.HoltWinters*                         
-#> [28] plot.isoreg*                              
-#> [29] plot.lm*                                  
-#> [30] plot.medpolish*                           
-#> [31] plot.mlm*                                 
-#> [32] plot.ppr*                                 
-#> [33] plot.prcomp*                              
-#> [34] plot.princomp*                            
-#> [35] plot.profile.nls*                         
-#> [36] plot.R6*                                  
-#> [37] plot.raster*                              
-#> [38] plot.shingle*                             
-#> [39] plot.spec*                                
-#> [40] plot.stepfun                              
-#> [41] plot.stl*                                 
-#> [42] plot.table*                               
-#> [43] plot.trellis*                             
-#> [44] plot.ts                                   
-#> [45] plot.tskernel*                            
-#> [46] plot.TukeyHSD*                            
+#>  [3] plot,Extent,missing-method                
+#>  [4] plot,Raster,ANY-method                    
+#>  [5] plot,Raster,Raster-method                 
+#>  [6] plot,Spatial,missing-method               
+#>  [7] plot,SpatialGrid,missing-method           
+#>  [8] plot,SpatialGridDataFrame,missing-method  
+#>  [9] plot,SpatialLines,missing-method          
+#> [10] plot,SpatialMultiPoints,missing-method    
+#> [11] plot,SpatialPixels,missing-method         
+#> [12] plot,SpatialPixelsDataFrame,missing-method
+#> [13] plot,SpatialPoints,missing-method         
+#> [14] plot,SpatialPolygons,missing-method       
+#> [15] plot.acf*                                 
+#> [16] plot.bclust*                              
+#> [17] plot.classIntervals*                      
+#> [18] plot.data.frame*                          
+#> [19] plot.decomposed.ts*                       
+#> [20] plot.default                              
+#> [21] plot.dendrogram*                          
+#> [22] plot.density*                             
+#> [23] plot.ecdf                                 
+#> [24] plot.factor*                              
+#> [25] plot.formula*                             
+#> [26] plot.function                             
+#> [27] plot.ggplot*                              
+#> [28] plot.gtable*                              
+#> [29] plot.hcl_palettes*                        
+#> [30] plot.hclust*                              
+#> [31] plot.histogram*                           
+#> [32] plot.HoltWinters*                         
+#> [33] plot.ica*                                 
+#> [34] plot.isoreg*                              
+#> [35] plot.lm*                                  
+#> [36] plot.medpolish*                           
+#> [37] plot.mlm*                                 
+#> [38] plot.ppr*                                 
+#> [39] plot.prcomp*                              
+#> [40] plot.princomp*                            
+#> [41] plot.profile.nls*                         
+#> [42] plot.R6*                                  
+#> [43] plot.raster*                              
+#> [44] plot.sf*                                  
+#> [45] plot.sfc_CIRCULARSTRING*                  
+#> [46] plot.sfc_GEOMETRY*                        
+#> [47] plot.sfc_GEOMETRYCOLLECTION*              
+#> [48] plot.sfc_LINESTRING*                      
+#> [49] plot.sfc_MULTILINESTRING*                 
+#> [50] plot.sfc_MULTIPOINT*                      
+#> [51] plot.sfc_MULTIPOLYGON*                    
+#> [52] plot.sfc_POINT*                           
+#> [53] plot.sfc_POLYGON*                         
+#> [54] plot.sfg*                                 
+#> [55] plot.shingle*                             
+#> [56] plot.SOM*                                 
+#> [57] plot.somgrid*                             
+#> [58] plot.spec*                                
+#> [59] plot.stars*                               
+#> [60] plot.stars_proxy*                         
+#> [61] plot.stepfun                              
+#> [62] plot.stft*                                
+#> [63] plot.stl*                                 
+#> [64] plot.svm*                                 
+#> [65] plot.table*                               
+#> [66] plot.trellis*                             
+#> [67] plot.ts                                   
+#> [68] plot.tskernel*                            
+#> [69] plot.TukeyHSD*                            
+#> [70] plot.tune*                                
+#> [71] plot.units*                               
 #> see '?methods' for accessing help and source code
 ```
 
@@ -469,7 +535,7 @@ getAnywhere(plot.raster)
 #>     }
 #>     rasterImage(x, 0, 0, ncol(x), nrow(x), ...)
 #> }
-#> <bytecode: 0x562774eee7e0>
+#> <bytecode: 0x55e5bfcb5f08>
 #> <environment: namespace:graphics>
 ```
 
@@ -493,7 +559,7 @@ getAnywhere(rasterImage)
 #>         ...)
 #>     invisible()
 #> }
-#> <bytecode: 0x562778eb8420>
+#> <bytecode: 0x55e5bf6cde20>
 #> <environment: namespace:graphics>
 ```
 
@@ -512,19 +578,18 @@ rasterImage(image, 200, 300, 200 + xinch(.5), 300 + yinch(.3),
 rasterImage(image, 200, 400, 250, 450, angle = 15, interpolate = FALSE)
 ```
 
-<div class="figure" style="text-align: center">
-<img src="dv-spatio-temporal_files/figure-html/unnamed-chunk-18-1.png" alt="raster 图像" width="50%" />
-<p class="caption">(\#fig:unnamed-chunk-18)raster 图像</p>
-</div>
+\begin{figure}[!htb]
+
+{\centering \includegraphics[width=0.5\linewidth]{dv-spatio-temporal_files/figure-latex/unnamed-chunk-18-1} 
+
+}
+
+\caption{raster 图像}(\#fig:unnamed-chunk-18)
+\end{figure}
 
 
 ```r
 library(raster)
-#> 
-#> Attaching package: 'raster'
-#> The following object is masked from 'package:magrittr':
-#> 
-#>     extract
 meuse.test <- raster(x = system.file("external/test.grd", package="raster"))
 class(meuse.test)
 #> [1] "RasterLayer"
@@ -538,10 +603,14 @@ class(meuse.test)
 plot(meuse.test, legend = F)
 ```
 
-<div class="figure" style="text-align: center">
-<img src="dv-spatio-temporal_files/figure-html/unnamed-chunk-20-1.png" alt="raster 对象" width="70%" />
-<p class="caption">(\#fig:unnamed-chunk-20)raster 对象</p>
-</div>
+\begin{figure}[!htb]
+
+{\centering \includegraphics[width=0.7\linewidth]{dv-spatio-temporal_files/figure-latex/unnamed-chunk-20-1} 
+
+}
+
+\caption{raster 对象}(\#fig:unnamed-chunk-20)
+\end{figure}
 
 Edzer Pebesma 开发了 stars 包
 
@@ -550,7 +619,6 @@ Edzer Pebesma 开发了 stars 包
 # https://resources.rstudio.com/rstudio-conf-2019/spatial-data-science-in-the-tidyverse
 library(abind)
 library(sf)
-#> Linking to GEOS 3.7.1, GDAL 2.4.0, PROJ 5.2.0
 library(stars)
 x <- system.file("tif/L7_ETMs.tif", package = "stars") %>%
   read_stars()
@@ -564,7 +632,9 @@ ggplot() +
   scale_y_discrete(expand = c(0, 0))
 ```
 
-<img src="dv-spatio-temporal_files/figure-html/unnamed-chunk-21-1.png" width="70%" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics[width=0.7\linewidth]{dv-spatio-temporal_files/figure-latex/unnamed-chunk-21-1} \end{center}
 
 
 
@@ -581,4 +651,6 @@ ggplot() +
   facet_wrap(~VAR, ncol = 1)
 ```
 
-<img src="dv-spatio-temporal_files/figure-html/unnamed-chunk-22-1.png" width="70%" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics[width=0.7\linewidth]{dv-spatio-temporal_files/figure-latex/unnamed-chunk-22-1} \end{center}

@@ -320,10 +320,14 @@ parsed
 
 `notables` 是一个长度为2的字符串向量，所以获得两组匹配，捕捉到匹配开始的位置 `capture.start` 和匹配的长度 `capture.length` 都是两组，按列来看，字符 B 出现在字符串 `  Ben Franklin and Jefferson Davis` 的第三个位置，匹配的长度 Ben 是三个字符，长度是 3，如图 \@ref(fig:name-capture) 所示，需要注意的是一定要设置 `perl = TRUE` 才能使用命名捕捉功能，函数 `sub` 不支持命名反向引用 Named backreferences
 
-<div class="figure" style="text-align: center">
-<img src="figures/regexp-name-capture.png" alt="命名捕捉" width="70%" />
-<p class="caption">(\#fig:name-capture)命名捕捉</p>
-</div>
+\begin{figure}[!htb]
+
+{\centering \includegraphics[width=0.7\linewidth]{figures/regexp-name-capture} 
+
+}
+
+\caption{命名捕捉}(\#fig:name-capture)
+\end{figure}
 
 ::: sidebar
 Atomic grouping 原子分组, possessive qualifiers 占有限定 and conditional 条件 and recursive 递归等模式超出介绍的范围，不在此处详述，感兴趣的读者可参考，此外，插播一条漫画 \@ref(fig:regex-xkcd) 
@@ -332,10 +336,14 @@ Atomic grouping 原子分组, possessive qualifiers 占有限定 and conditional
 [^char-byte]: `useBytes = TRUE` 表示把字符看作字节。字符、字节和比特的关系是，一个字节 byte 八个比特 bit，一个英文字符 character 用一个字节表示，而一个中、日、韩文字符需要两个字节表示 
 [^learn-regex]: 推荐的学习正则表达式的路径可以见统计之都论坛 <https://d.cosx.org/d/420410>
 
-<div class="figure" style="text-align: center">
-<a href="https://imgs.xkcd.com/comics/regular_expressions.png" target="_blank"><img src="figures/regexp-comics.png" alt="正则表达式漫画" width="70%" /></a>
-<p class="caption">(\#fig:regex-xkcd)正则表达式漫画</p>
-</div>
+\begin{figure}[!htb]
+
+{\centering \href{https://imgs.xkcd.com/comics/regular_expressions.png}{\includegraphics[width=0.7\linewidth]{figures/regexp-comics} }
+
+}
+
+\caption{正则表达式漫画}(\#fig:regex-xkcd)
+\end{figure}
 
 正则表达式的直观解释 <https://github.com/gadenbuie/regexplain>
 

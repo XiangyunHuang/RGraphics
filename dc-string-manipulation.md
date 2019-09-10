@@ -238,19 +238,21 @@ grepl("^package:", search())
 # 而不是 endsWith(list.files(), "\\.Rmd")
 endsWith(list.files(), ".Rmd")
 #>  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE
-#> [12] FALSE FALSE FALSE FALSE  TRUE FALSE  TRUE FALSE FALSE FALSE FALSE
-#> [23]  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE
-#> [34] FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE FALSE
-#> [45]  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE
-#> [56] FALSE FALSE FALSE FALSE FALSE
+#> [12] FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE  TRUE
+#> [23] FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE
+#> [34] FALSE  TRUE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE  TRUE
+#> [45] FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE
+#> [56] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE
+#> [67] FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE
 # 或者
 grepl("\\.Rmd$", list.files())
 #>  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE
-#> [12] FALSE FALSE FALSE FALSE  TRUE FALSE  TRUE FALSE FALSE FALSE FALSE
-#> [23]  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE
-#> [34] FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE FALSE
-#> [45]  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE
-#> [56] FALSE FALSE FALSE FALSE FALSE
+#> [12] FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE  TRUE
+#> [23] FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE
+#> [34] FALSE  TRUE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE  TRUE
+#> [45] FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE
+#> [56] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE
+#> [67] FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE
 ```
 
 部分匹配(Partial String Matching)
@@ -561,10 +563,14 @@ regmatches(x, m)
 
 我们可以在 <https://regex101.com/> 上测试表达式，如图\@ref(fig:regex101)所示，表达式 `^(([^:]+)://)?([^:/]+)(:([0-9]+))?(/.*)` 包含7个组，每个组的匹配结果见图的右下角，这样我们不难理解，函数 `regmatches` 返回的第列表中，第3个位置是传输协议 protocol `http` ，第4个位置是主机 host `stat.umn.edu`， 第6个位置是端口 port `80` ，第7个位置是路径 path `/xyz`，所以函数 `regmatches` 的作用就是根据函数 `regexec` 匹配的结果抽取子字符串。
 
-<div class="figure" style="text-align: center">
-<a href="https://regex101.com/" target="_blank"><img src="figures/regexp-name-group.png" alt="正则表达式匹配结果" width="70%" /></a>
-<p class="caption">(\#fig:regex101)正则表达式匹配结果</p>
-</div>
+\begin{figure}[!htb]
+
+{\centering \href{https://regex101.com/}{\includegraphics[width=0.7\linewidth]{figures/regexp-name-group} }
+
+}
+
+\caption{正则表达式匹配结果}(\#fig:regex101)
+\end{figure}
 
 进一步，我们可以用 `regmatches` 函数抽取 URL 的部分内容，如前面提到的传输协议，主机等
 

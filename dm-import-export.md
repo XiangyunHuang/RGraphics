@@ -11,33 +11,42 @@ Base R 针对不同的数据格式文件，提供了大量的数据导入和导�
 ```r
 # 当前环境的搜索路径
 searchpaths()
-#> [1] ".GlobalEnv"                   "/usr/lib/R/library/stats"    
-#> [3] "/usr/lib/R/library/graphics"  "/usr/lib/R/library/grDevices"
-#> [5] "/usr/lib/R/library/utils"     "/usr/lib/R/library/datasets" 
-#> [7] "/usr/lib/R/library/methods"   "Autoloads"                   
-#> [9] "/usr/lib/R/library/base"
+#>  [1] ".GlobalEnv"                            
+#>  [2] "/usr/local/lib/R/site-library/DBI"     
+#>  [3] "/usr/local/lib/R/site-library/yaml"    
+#>  [4] "/usr/local/lib/R/site-library/jsonlite"
+#>  [5] "/usr/lib/R/library/stats"              
+#>  [6] "/usr/lib/R/library/graphics"           
+#>  [7] "/usr/lib/R/library/grDevices"          
+#>  [8] "/usr/lib/R/library/utils"              
+#>  [9] "/usr/lib/R/library/datasets"           
+#> [10] "/usr/lib/R/library/methods"            
+#> [11] "Autoloads"                             
+#> [12] "/usr/lib/R/library/base"
 # 返回匹配结果及其所在路径的编号
 apropos("^(read|write)", where = TRUE, mode = "function")
-#>                  5                  5                  9 
-#>         "read.csv"        "read.csv2"         "read.dcf" 
-#>                  5                  5                  5 
-#>       "read.delim"      "read.delim2"         "read.DIF" 
-#>                  5                  2                  5 
-#>     "read.fortran"      "read.ftable"         "read.fwf" 
-#>                  5                  5                  9 
-#>      "read.socket"       "read.table"          "readBin" 
-#>                  9                  5                  9 
-#>         "readChar" "readCitationFile"         "readline" 
-#>                  9                  9                  9 
-#>        "readLines"          "readRDS"     "readRenviron" 
-#>                  9                  5                  5 
-#>            "write"        "write.csv"       "write.csv2" 
-#>                  9                  2                  5 
-#>        "write.dcf"     "write.ftable"     "write.socket" 
-#>                  5                  9                  9 
-#>      "write.table"         "writeBin"        "writeChar" 
-#>                  9 
-#>       "writeLines"
+#>                  4                  3                  8 
+#>        "read_json"        "read_yaml"         "read.csv" 
+#>                  8                 12                  8 
+#>        "read.csv2"         "read.dcf"       "read.delim" 
+#>                  8                  8                  8 
+#>      "read.delim2"         "read.DIF"     "read.fortran" 
+#>                  5                  8                  8 
+#>      "read.ftable"         "read.fwf"      "read.socket" 
+#>                  8                 12                 12 
+#>       "read.table"          "readBin"         "readChar" 
+#>                  8                 12                 12 
+#> "readCitationFile"         "readline"        "readLines" 
+#>                 12                 12                 12 
+#>          "readRDS"     "readRenviron"            "write" 
+#>                  4                  3                  8 
+#>       "write_json"       "write_yaml"        "write.csv" 
+#>                  8                 12                  5 
+#>       "write.csv2"        "write.dcf"     "write.ftable" 
+#>                  8                  8                 12 
+#>     "write.socket"      "write.table"         "writeBin" 
+#>                 12                 12 
+#>        "writeChar"       "writeLines"
 ```
 
 ### `scan` {#scan-file}
@@ -217,7 +226,7 @@ fil <- tempfile(fileext = ".data")
 cat("TITLE extra line", "2 3 5 7", "", "11 13 17", file = fil,
     sep = "\n")
 fil
-#> [1] "/tmp/RtmpLmW61g/file486bd74aa1.data"
+#> [1] "/tmp/Rtmpg5mpXO/file1c3f4a28f8.data"
 ```
 
 设置参数 `n = -1` 表示将文件 fil 的内容从头读到尾
@@ -249,7 +258,7 @@ cat("123\nabc")
 fil <- tempfile("test")
 cat("123\nabc\n", file = fil, append = TRUE)
 fil
-#> [1] "/tmp/RtmpLmW61g/test4834174019"
+#> [1] "/tmp/Rtmpg5mpXO/test1c32eb4b28"
 readLines(fil)
 #> [1] "123" "abc"
 ```
@@ -368,8 +377,13 @@ yaml::read_yaml(file = '_bookdown.yml')
 #> [1] "_common.R"
 #> 
 #> $rmd_files
-#> [1] "index.Rmd"            "preface.Rmd"          "dm-import-export.Rmd"
-#> [4] "dm-base-r.Rmd"        "dm-dplyr.Rmd"         "99-references.Rmd"
+#>  [1] "index.Rmd"                  "preface.Rmd"               
+#>  [3] "setup-startup.Rmd"          "file-manipulation.Rmd"     
+#>  [5] "dm-import-export.Rmd"       "dm-base-r.Rmd"             
+#>  [7] "dm-dplyr.Rmd"               "dc-string-manipulation.Rmd"
+#>  [9] "dc-regular-expressions.Rmd" "dv-plot.Rmd"               
+#> [11] "dv-ggplot2.Rmd"             "dv-spatio-temporal.Rmd"    
+#> [13] "cs-cran-network.Rmd"        "99-references.Rmd"
 ```
 
 Table: (\#tab:other-softwares) 导入来自其它数据分析软件产生的数据集
@@ -420,15 +434,24 @@ x
 
 将大量的 txt 文本存进 MySQL 数据库中，通过操作数据库来聚合文本，极大降低内存消耗 [^txt-to-mysql]，而 ODBC 与 DBI 包是其它数据库接口的基础，knitr 提供了一个支持 SQL 代码的引擎，它便是基于 DBI，因此可以在 R Markdown 文档中直接使用 SQL 代码块 [^sql-engine]。这里制作一个归纳表格，左边数据库右边对应其 R 接口，两边都包含链接，如表 \@ref(tab:dbi) 所示
 
+\begin{table}[t]
 
-Table: (\#tab:dbi)数据库接口
-
-数据库       官网                          R接口       开发仓                             
------------  ----------------------------  ----------  -----------------------------------
-MySQL        https://www.mysql.com/        RMySQL      https://github.com/r-dbi/RMySQL    
-SQLite       https://www.sqlite.org        RSQLite     https://github.com/r-dbi/RSQLite   
-PostgreSQL   https://www.postgresql.org/   RPostgres   https://github.com/r-dbi/RPostgres 
-MariaDB      https://mariadb.org/          RMariaDB    https://github.com/r-dbi/RMariaDB  
+\caption{(\#tab:dbi)数据库接口}
+\centering
+\begin{tabular}{l|l|l|l}
+\hline
+数据库 & 官网 & R接口 & 开发仓\\
+\hline
+MySQL & https://www.mysql.com/ & RMySQL & https://github.com/r-dbi/RMySQL\\
+\hline
+SQLite & https://www.sqlite.org & RSQLite & https://github.com/r-dbi/RSQLite\\
+\hline
+PostgreSQL & https://www.postgresql.org/ & RPostgres & https://github.com/r-dbi/RPostgres\\
+\hline
+MariaDB & https://mariadb.org/ & RMariaDB & https://github.com/r-dbi/RMariaDB\\
+\hline
+\end{tabular}
+\end{table}
 
 
 
@@ -559,7 +582,7 @@ con <- dbConnect(odbc::odbc(), "PostgreSQL")
 
 ```r
 dbListTables(con)
-#> character(0)
+#> [1] "mtcars"
 ```
 
 第一次启动从 Docker Hub 上下载的镜像，默认的数据库是 postgres 里面没有任何表，所以将 R 环境中的 mtcars 数据集写入 postgres 数据库
@@ -645,18 +668,22 @@ SELECT cyl, AVG(mpg) AS mpg FROM mtcars GROUP BY cyl ORDER BY cyl
 ```
 
 
-<div class="knitsql-table">
+\begin{table}[t]
 
-
-Table: (\#tab:mtcars)表格标题
-
- cyl        mpg
-----  ---------
-   4   26.66364
-   6   19.74286
-   8   15.10000
-
-</div>
+\caption{(\#tab:mtcars)表格标题}
+\centering
+\begin{tabular}{r|r}
+\hline
+cyl & mpg\\
+\hline
+4 & 26.66364\\
+\hline
+6 & 19.74286\\
+\hline
+8 & 15.10000\\
+\hline
+\end{tabular}
+\end{table}
 
 如果将查询结果导出到变量，在 Chunk 设置 `output.var = "agg_cyl"` 可以使用缓存，下面将 mpg 按 cyl 分组聚合的结果打印出来
 
@@ -924,10 +951,14 @@ Map(function(data, name){
 ```r
 saveWorkbook(wb, file = "data/matcars.xlsx", overwrite = TRUE)
 ```
-<div class="figure" style="text-align: center">
-<img src="figures/dm-batch-export-xlsx.png" alt="批量导出数据" width="70%" />
-<p class="caption">(\#fig:batch-export-xlsx)批量导出数据</p>
-</div>
+\begin{figure}[!htb]
+
+{\centering \includegraphics[width=0.7\linewidth]{figures/dm-batch-export-xlsx} 
+
+}
+
+\caption{批量导出数据}(\#fig:batch-export-xlsx)
+\end{figure}
 
 ::: sidebar
 处理 Excel 2003 (XLS) 和 Excel 2007 (XLSX) 文件还可以使用 [WriteXLS](https://github.com/marcschwartz/WriteXLS) 包，不过它依赖于 Perl，另一个 R 包 [xlsx](	https://github.com/dragua/rexcel) 与之功能类似，依赖 Java 环境。Jennifer Bryan 和 Hadley Wickham 开发的 [readxl](https://github.com/tidyverse/readxl) 包和 Jeroen Ooms 开发的 [writexl](https://github.com/ropensci/writexl) 包专门处理 xlsx 格式并且无任何系统依赖

@@ -100,15 +100,15 @@ library(fs)
     # 查看当前目录的权限
     file.info(".")
     #>   size isdir mode               mtime               ctime
-    #> . 4096  TRUE  775 2019-07-27 07:57:25 2019-07-27 07:57:25
+    #> . 4096  TRUE  775 2019-07-27 07:58:49 2019-07-27 07:58:49
     #>                 atime  uid  gid uname grname
-    #> . 2019-07-27 07:57:25 2000 2000  <NA>   <NA>
+    #> . 2019-07-27 07:58:50 2000 2000  <NA>   <NA>
     # 查看指定目录权限
     file.info("./_book/")    
     #>          size isdir mode               mtime               ctime
-    #> ./_book/ 4096  TRUE  755 2019-07-27 07:57:22 2019-07-27 07:57:22
+    #> ./_book/ 4096  TRUE  755 2019-07-27 07:58:47 2019-07-27 07:58:47
     #>                        atime uid gid uname grname
-    #> ./_book/ 2019-07-27 07:57:22   0   0  root   root
+    #> ./_book/ 2019-07-27 07:58:47   0   0  root   root
     ```
 
 * `file.access(names, mode = 0)`  
@@ -262,7 +262,7 @@ apropos("^file.")
     
     ```r
     file.copy(from = 'Makefile', to = 'data/Makefile')
-    #> [1] TRUE
+    #> [1] FALSE
     ```
 
 1. `file.symlink(from, to)` 创建符号链接 `file.link(from, to)` 创建硬链接
@@ -520,6 +520,7 @@ help.search(keyword = "character", package = "base")
     
     ```r
     dir.create('./_book/tmp')
+    #> Warning in dir.create("./_book/tmp"): './_book/tmp' already exists
     ```
 
 1. `Sys.chmod(paths, mode = "0777", use_umask = TRUE)` 修改权限
@@ -633,7 +634,7 @@ help.search(keyword = "character", package = "base")
     
     ```r
     Sys.getpid()
-    #> [1] 93
+    #> [1] 417
     ```
 
 - `proc.time()` R 会话运行时间，常用于计算R程序在当前R控制台的运行时间
@@ -644,7 +645,7 @@ help.search(keyword = "character", package = "base")
     tmp <- rnorm(1e6)
     proc.time() - t1
     #>    user  system elapsed 
-    #>   0.088   0.004   0.092
+    #>   0.080   0.004   0.084
     ```
 
 - `system.time` 计算 R 表达式/程序块运行耗费的CPU时间
@@ -726,10 +727,10 @@ system2(command = 'pdflatex', args = '--version')
     ```r
     # 此时美国洛杉矶时间
     format(Sys.time(), tz = 'America/Los_Angeles', usetz = TRUE)
-    #> [1] "2019-07-27 00:57:27 PDT"
+    #> [1] "2019-07-27 00:58:52 PDT"
     # 此时加拿大东部时间
     format(Sys.time(), tz = 'Canada/Eastern', usetz = TRUE)
-    #> [1] "2019-07-27 03:57:27 EDT"
+    #> [1] "2019-07-27 03:58:52 EDT"
     ```
 
 1. `Sys.Date` 显示当前时区下的日期，精确到日，返回数据类型为 `date`
@@ -745,10 +746,10 @@ system2(command = 'pdflatex', args = '--version')
     
     ```r
     date()
-    #> [1] "Sat Jul 27 07:57:27 2019"
+    #> [1] "Sat Jul 27 07:58:52 2019"
     ## 也可以这样表示
     format(Sys.time(), "%a %b %d %H:%M:%S %Y")
-    #> [1] "Sat Jul 27 07:57:27 2019"
+    #> [1] "Sat Jul 27 07:58:52 2019"
     ```
 
 1. `as.POSIX*` 是一个 Date-time 转换函数
@@ -756,7 +757,7 @@ system2(command = 'pdflatex', args = '--version')
     
     ```r
     as.POSIXlt(Sys.time(), "GMT") # the current time in GMT
-    #> [1] "2019-07-27 07:57:27 GMT"
+    #> [1] "2019-07-27 07:58:52 GMT"
     ```
 
 1. 时间计算
@@ -764,10 +765,10 @@ system2(command = 'pdflatex', args = '--version')
     
     ```r
     (z <- Sys.time())             # the current date, as class "POSIXct"
-    #> [1] "2019-07-27 07:57:27 UTC"
+    #> [1] "2019-07-27 07:58:52 UTC"
     
     Sys.time() - 3600             # an hour ago
-    #> [1] "2019-07-27 06:57:27 UTC"
+    #> [1] "2019-07-27 06:58:52 UTC"
     ```
 
 1. `.leap.seconds` 是内置的日期序列
@@ -812,16 +813,16 @@ system2(command = 'pdflatex', args = '--version')
     # 修改时间前
     file.info('./_common.R')
     #>             size isdir mode               mtime               ctime
-    #> ./_common.R 2035 FALSE  664 2019-07-27 07:53:57 2019-07-27 07:53:57
+    #> ./_common.R 2035 FALSE  664 2019-07-27 07:57:27 2019-07-27 07:57:27
     #>                           atime  uid  gid uname grname
-    #> ./_common.R 2019-07-27 07:53:57 2000 2000  <NA>   <NA>
+    #> ./_common.R 2019-07-27 07:58:47 2000 2000  <NA>   <NA>
     # 修改时间后，对比一下
     Sys.setFileTime(path = './_common.R', time = Sys.time())
     file.info('./_common.R')
     #>             size isdir mode               mtime               ctime
-    #> ./_common.R 2035 FALSE  664 2019-07-27 07:57:27 2019-07-27 07:57:27
+    #> ./_common.R 2035 FALSE  664 2019-07-27 07:58:52 2019-07-27 07:58:52
     #>                           atime  uid  gid uname grname
-    #> ./_common.R 2019-07-27 07:57:27 2000 2000  <NA>   <NA>
+    #> ./_common.R 2019-07-27 07:58:52 2000 2000  <NA>   <NA>
     ```
 
 1. `strptime` 用于字符串与 `POSIXlt`、 `POSIXct` 类对象之间的转化，`format` 默认 `tz = ""` 且 `usetz = TRUE` 
@@ -833,11 +834,11 @@ system2(command = 'pdflatex', args = '--version')
     #> character(0)
     # 比较不同的打印方式
     strptime(Sys.time(), format ="%Y-%m-%d %H:%M:%S", tz = "Asia/Taipei")
-    #> [1] "2019-07-27 07:57:27 CST"
+    #> [1] "2019-07-27 07:58:52 CST"
     format(Sys.time(), format = "%Y-%m-%d %H:%M:%S") # 默认情形
-    #> [1] "2019-07-27 07:57:27"
+    #> [1] "2019-07-27 07:58:52"
     format(Sys.time(), format = "%Y-%m-%d %H:%M:%S", tz = "Asia/Taipei", usetz = TRUE)
-    #> [1] "2019-07-27 15:57:27 CST"
+    #> [1] "2019-07-27 15:58:52 CST"
     ```
 
 1. 设置时区
@@ -1078,7 +1079,7 @@ body
 #>         fun <- get(fun, mode = "function", envir = parent.frame())
 #>     .Internal(body(fun))
 #> }
-#> <bytecode: 0x564b978fe1f0>
+#> <bytecode: 0x559a149c71f0>
 #> <environment: namespace:base>
 ```
 
