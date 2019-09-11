@@ -587,6 +587,80 @@ sparkR.session(master = "local[*]", sparkConfig = list(spark.driver.memory = "2g
 
 > 是否存在这样的可能， Spark 提供了大量的 MLib 库的调用接口，R 的功能支持是最少的，Java/Scala 是原生的，那么要么自己开发新的功能整合到 SparkR 中，要么借助 rscala 将 scala 接口代码封装进来 
 
+在本地，Windows 主机上，可以在 `.Rprofile` 中给 Spark 添加环境变量 `SPARK_HOME` 指定其安装路径，
+
+```{r,eval=FALSE}
+# Windows 平台默认安装路径
+Sys.setenv(SPARK_HOME = "C:/Users/XiangYun/AppData/Local/spark")
+library(sparklyr)
+sc <- spark_connect(master = "local", version = "2.4")
+```
+
+将 R 环境中的数据集 mtcars 传递到 Spark 上
+
+```{r,eval=FALSE}
+cars <- copy_to(sc, mtcars)
+cars
+```
+```
+# Source: spark<mtcars> [?? x 11]
+    mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
+  <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
+1  21       6   160   110  3.9   2.62  16.5     0     1     4     4
+2  21       6   160   110  3.9   2.88  17.0     0     1     4     4
+3  22.8     4   108    93  3.85  2.32  18.6     1     1     4     1
+4  21.4     6   258   110  3.08  3.22  19.4     1     0     3     1
+5  18.7     8   360   175  3.15  3.44  17.0     0     0     3     2
+6  18.1     6   225   105  2.76  3.46  20.2     1     0     3     1
+# ... with more rows
+```
+
+监控和分析命令执行的情况，可以在浏览器中，见图 \@ref(fig:spark-web)
+
+```{r,eval=FALSE}
+spark_web(sc)
+```
+```{r spark-web,echo=FALSE,fig.cap="Spark Web 接口"}
+knitr::include_graphics(path = "figures/spark-start.png")
+```
+
+传递 SQL 查询语句，比如数据集 mtcars 有多少行
+
+```{r,eval=FALSE}
+library(DBI)
+dbGetQuery(sc, "SELECT count(*) FROM mtcars")
+```
+```
+  count(1)
+1       32
+```
+
+进一步地，我们可以调用 dplyr 包来写数据操作，避免写复杂逻辑的 SQL 语句，
+
+```{r,eval=FALSE}
+# library(dplyr) # 数据操作
+library(tidyverse) # 提供更多功能，包括数据可视化
+count(cars)
+```
+
+再举一个稍复杂的操作，先从数据集 cars 中选择两个字段 hp 和 mpg
+
+```{r,eval=FALSE}
+select(cars, hp, mpg) %>%
+  sample_n(100) %>% # 随机选择 100 行
+  collect() %>% # 执行 SQL 查询，将结果返回到本地
+  ggplot(aes(hp, mpg)) + # 绘图
+  geom_point()
+```
+
+数据查询和结果可视化，见图 \@ref(fig:spark-mtcars)
+
+```{r spark-mtcars,echo=FALSE,fig.cap="数据聚合和可视化"}
+knitr::include_graphics(path = "figures/spark-mtcars.png")
+```
+
+
+
 [^sql-chunck]: https://d.cosx.org/d/419974
 [^txt-to-mysql]: https://brucezhaor.github.io/blog/2016/08/04/batch-process-txt-to-mysql
 [^params-knit]: https://bookdown.org/yihui/rmarkdown/params-knit.html
