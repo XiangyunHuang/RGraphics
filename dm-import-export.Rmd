@@ -591,7 +591,7 @@ sparkR.session(master = "local[*]", sparkConfig = list(spark.driver.memory = "2g
 
 ```{r,eval=FALSE}
 # Windows 平台默认安装路径
-Sys.setenv(SPARK_HOME = "C:/Users/XiangYun/AppData/Local/spark")
+Sys.setenv(SPARK_HOME = "C:/Users/XiangYun/AppData/Local/spark/spark-2.4.3-bin-hadoop2.7")
 library(sparklyr)
 sc <- spark_connect(master = "local", version = "2.4")
 ```
@@ -657,6 +657,141 @@ select(cars, hp, mpg) %>%
 
 ```{r spark-mtcars,echo=FALSE,fig.cap="数据聚合和可视化"}
 knitr::include_graphics(path = "figures/spark-mtcars.png")
+```
+
+用完要记得关闭连接
+
+```{r,eval=FALSE}
+spark_disconnect(sc)
+```
+
+::: rmdwarning
+不要使用 SparkR 接口，要使用 sparklyr， 后者的功能已经全面覆盖前者，生态方面更是更是已经远远超越，它有大厂 RStudio 支持，是公司支持的旗舰项目。但是 sparklyr 的版本稍微比最新的 Spark 低一两个版本，这是开发周期和出于稳定性的考虑，无伤大雅！
+:::
+
+Spark 提供了官方 R 语言接口 SparkR。Spark JVM 和 SparkR 包版本要匹配，比如从 CRAN 上安装了最新版的 SparkR，比如版本 2.4.4 就要去 Spark 官网下载最新版的预编译文件 spark-2.4.4-bin-hadoop2.7，解压到本地磁盘，比如 `D:/spark-2.4.4-bin-hadoop2.7`
+
+```{r,eval=FALSE}
+Sys.setenv(SPARK_HOME = "D:/spark-2.4.4-bin-hadoop2.7")
+# Sys.setenv(R_HOME = "C:/Program Files/R/R-3.6.1/")
+library(SparkR, lib.loc = c(file.path(Sys.getenv("SPARK_HOME"), "R", "lib")))
+sparkR.session(master = "local[*]", 
+               sparkConfig = list(spark.driver.memory = "4g"), 
+               enableHiveSupport = TRUE)
+```
+
+从数据集 mtcars（数据类型是 R 的 data.frame） 创建 Spark 的 DataFrame 类型数据
+
+```{r,eval=FALSE}
+cars <- as.DataFrame(mtcars)
+# 显示 SparkDataFrame 的前几行
+head(cars)
+```
+```
+ mpg cyl disp  hp drat    wt  qsec vs am gear carb
+1 21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
+2 21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
+3 22.8   4  108  93 3.85 2.320 18.61  1  1    4    1
+4 21.4   6  258 110 3.08 3.215 19.44  1  0    3    1
+5 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2
+6 18.1   6  225 105 2.76 3.460 20.22  1  0    3    1
+```
+
+打印数据集 cars 的 schema 各个字段的
+
+```{r,eval=FALSE}
+printSchema(cars)
+```
+```
+root
+ |-- mpg: double (nullable = true)
+ |-- cyl: double (nullable = true)
+ |-- disp: double (nullable = true)
+ |-- hp: double (nullable = true)
+ |-- drat: double (nullable = true)
+ |-- wt: double (nullable = true)
+ |-- qsec: double (nullable = true)
+ |-- vs: double (nullable = true)
+ |-- am: double (nullable = true)
+ |-- gear: double (nullable = true)
+ |-- carb: double (nullable = true)
+```
+
+从本地 JSON 文件创建 DataFrame
+
+```{r,eval=FALSE}
+path <- file.path(Sys.getenv("SPARK_HOME"), "examples/src/main/resources/people.json")
+peopleDF <- read.json(path)
+printSchema(peopleDF)
+```
+```
+root
+ |-- age: long (nullable = true)
+ |-- name: string (nullable = true)
+```
+
+```{r,eval=FALSE}
+peopleDF
+```
+```
+SparkDataFrame[age:bigint, name:string]
+```
+
+```{r,eval=FALSE}
+showDF(peopleDF)
+```
+```
++----+-------+
+| age|   name|
++----+-------+
+|null|Michael|
+|  30|   Andy|
+|  19| Justin|
++----+-------+
+```
+
+peopleDF 转成 Hive 中的表 people
+
+```{r,eval=FALSE}
+createOrReplaceTempView(peopleDF, "people")
+```
+
+调用 `sql` 传递 SQL 语句查询数据，启动 `sparkR.session` 时，设置 `enableHiveSupport = TRUE`，就是执行不出来，报错，不知道哪里配置存在问题
+
+```{r,eval=FALSE}
+teenagers <- SparkR::sql("SELECT name FROM people WHERE age >= 13 AND age <= 19")
+show(people)
+```
+```
+Error in handleErrors(returnStatus, conn) : 
+  org.apache.spark.sql.AnalysisException: java.lang.RuntimeException: java.io.IOException: (null) entry in command string: null chmod 0733 F:\tmp\hive;
+	at org.apache.spark.sql.hive.HiveExternalCatalog.withClient(HiveExternalCatalog.scala:106)
+	at org.apache.spark.sql.hive.HiveExternalCatalog.databaseExists(HiveExternalCatalog.scala:214)
+	at org.apache.spark.sql.internal.SharedState.externalCatalog$lzycompute(SharedState.scala:114)
+	at org.apache.spark.sql.internal.SharedState.externalCatalog(SharedState.scala:102)
+	at org.apache.spark.sql.internal.SharedState.globalTempViewManager$lzycompute(SharedState.scala:141)
+	at org.apache.spark.sql.internal.SharedState.globalTempViewManager(SharedState.scala:136)
+	at org.apache.spark.sql.hive.HiveSessionStateBuilder$$anonfun$2.apply(HiveSessionStateBuilder.scala:55)
+	at org.apache.spark.sql.hive.HiveSessionStateBuilder$$anonfun$2.apply(HiveSessionStateBuilder.scala:55)
+	at org.apache.spark.sql.catalyst.catalog.SessionCatalog.gl
+```
+
+调用 `collect` 函数执行查询，并将结果返回到本地 `data.frame` 类型
+
+```{r,eval=FALSE}
+teenagersLocalDF <- collect(teenagers)
+```
+
+查看数据集 teenagersLocalDF 的属性
+
+```{r,eval=FALSE}
+print(teenagersLocalDF)
+```
+
+最后，关闭 SparkSession 会话
+
+```{r,eval=FALSE}
+sparkR.session.stop()
 ```
 
 
