@@ -124,7 +124,6 @@ RUN apt-get update \
   extrafont \
   fontcm \
   showtext \
-## install spatial packages
   sp \
   maps \
   mapdata \
@@ -146,11 +145,8 @@ RUN apt-get update \
 ## Install adobe fonts
 RUN mkdir -p /usr/share/fonts/opentype/adobe ~/.fonts \
   && path_prefix="/usr/share/fonts/opentype/adobe" \
-  && url_prefix="https://cs.fit.edu/code/projects/ndworld/repository/revisions/11/raw/Resources/Fonts" \
-  && wget -q --no-check-certificate $url_prefix/AdobeFangsongStd-Regular.otf -P $path_prefix \
-  && wget -q --no-check-certificate $url_prefix/AdobeHeitiStd-Regular.otf -P $path_prefix \
-  && wget -q --no-check-certificate $url_prefix/AdobeKaitiStd-Regular.otf -P $path_prefix \
-  && wget -q --no-check-certificate $url_prefix/AdobeSongStd-Light.otf -P $path_prefix \
+  && curl -fLo Adobe-Fonts.zip https://github.com/XiangyunHuang/fonts/releases/download/v0.1/Adobe-Fonts.zip \
+  && unzip Adobe-Fonts.zip -d /usr/share/fonts/opentype/adobe
   && fc-cache -fsv \
 ## Install System fonts for R Graphics  
   && wget -q --no-check-certificate http://simonsoftware.se/other/xkcd.ttf -P ~/.fonts/ \
