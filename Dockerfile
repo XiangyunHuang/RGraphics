@@ -85,8 +85,6 @@ RUN apt-get update \
   optipng \
   imagemagick \
   ghostscript \
-## ebook-convert
-  calibre \
 ## install magick
   libmagick++-dev \
 ## install sf
@@ -94,8 +92,7 @@ RUN apt-get update \
   libproj-dev \
   libgeos-dev \
   libgdal-dev \
-## rgl  
-  libcgal-dev \ 
+## rgl
   libglu1-mesa-dev \ 
   libx11-dev \
   tk-dev \
@@ -103,11 +100,12 @@ RUN apt-get update \
   libxpm-dev \
   libxaw7-dev \
   graphviz \
-  file \  
+  file \
   && install2.r --error \
   bookdown \
   ggplot2 \
   cowplot \
+  desc \
   igraph \
   ggforce \
   ggraph \
@@ -132,39 +130,15 @@ RUN apt-get update \
   mapdata \
   mapproj \
   maptools \
-  gstat \
-  spatialreg \
-  spdep \
   sf \
   stars \
   raster \
   satellite \
   leaflet \
-  cartography \
-  mapview \
-  tmap \
-## install modeling packages
   tidyverse \
-##  glmnet \
-##  caret \
-##  xgboost \
-##  prophet \
-##  brms \
-##  BANOVA \
-##  rms \
-##  car \
-##  mlr3 \
-##  tidymodels \
-## install other packages
   openxlsx \
   microbenchmark \
   pracma \
-## spatial modeling
-##  BiocManager \
-##  && Rscript -e "BiocManager::install(c('Rgraphviz','graph'), update = FALSE, ask = FALSE)" \
-##  && install2.r --error --repos https://inla.r-inla-download.org/R/testing/ --deps TRUE \
-##    INLA \
-##  && install2.r --error inlabru \
   && install2.r --error --repos https://nowosad.github.io/drat/ \
     spDataLarge
   
@@ -196,12 +170,7 @@ RUN mkdir -p /usr/share/fonts/opentype/adobe ~/.fonts \
   && wget -qO- "https://yihui.name/gh/tinytex/tools/install-unx.sh" | sh -s - --admin --no-path && \
     mv ~/.TinyTeX /opt/TinyTeX && \
     /opt/TinyTeX/bin/*/tlmgr path add && \
-    tlmgr install ctex xecjk courier courier-scaled tocbibind subfig savesym \
-      colortbl dvipng dvisvgm environ fancyhdr jknapltx listings \
-      makecell mathdesign metalogo microtype ms multirow parskip pdfcrop \
-      pgf placeins preview psnfss realscripts relsize rsfs setspace soul \
-      standalone subfig symbol tabu tex4ht threeparttable threeparttablex \
-      titlesec tocbibind tocloft trimspaces ulem varwidth wrapfig xcolor xltxtra zhnumber \
+    tlmgr install ctex xecjk mdwtools zhnumber ulem ms xcolor \
   && apt-get clean all \
   && rm -rf /var/lib/apt/lists/*
 
