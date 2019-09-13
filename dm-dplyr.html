@@ -409,7 +409,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="https://github.com/wch/fastmap">fastmap</a> 实现键值存储，提供新的数据结构</li>
 <li><a href="https://github.com/RoaringBitmap/CRoaring">Roaring bitmaps</a> Bitsets, also called bitmaps, are commonly used as fast data structures.</li>
 </ul>
-<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="dm-dplyr.html#cb271-1"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
+<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="dm-dplyr.html#cb289-1"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
 <p>数据操作的语法</p>
 <p>第一代</p>
 <ol style="list-style-type: decimal">
@@ -439,30 +439,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="tibble-show" class="section level3">
 <h3><span class="header-section-number">5.1.1</span> 查看</h3>
 <p>除了直接打印数据集的前几行，tibble 包还提供 glimpse 函数查看数据集，而 Base R 默认查看方式是调用 str 函数</p>
-<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="dm-dplyr.html#cb272-1"></a>diamonds</span>
-<span id="cb272-2"><a href="dm-dplyr.html#cb272-2"></a><span class="co">#&gt; # A tibble: 53,940 x 10</span></span>
-<span id="cb272-3"><a href="dm-dplyr.html#cb272-3"></a><span class="co">#&gt;   carat cut       color clarity depth table price     x     y     z</span></span>
-<span id="cb272-4"><a href="dm-dplyr.html#cb272-4"></a><span class="co">#&gt;   &lt;dbl&gt; &lt;ord&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></span>
-<span id="cb272-5"><a href="dm-dplyr.html#cb272-5"></a><span class="co">#&gt; 1 0.23  Ideal     E     SI2      61.5    55   326  3.95  3.98  2.43</span></span>
-<span id="cb272-6"><a href="dm-dplyr.html#cb272-6"></a><span class="co">#&gt; 2 0.21  Premium   E     SI1      59.8    61   326  3.89  3.84  2.31</span></span>
-<span id="cb272-7"><a href="dm-dplyr.html#cb272-7"></a><span class="co">#&gt; 3 0.23  Good      E     VS1      56.9    65   327  4.05  4.07  2.31</span></span>
-<span id="cb272-8"><a href="dm-dplyr.html#cb272-8"></a><span class="co">#&gt; 4 0.290 Premium   I     VS2      62.4    58   334  4.2   4.23  2.63</span></span>
-<span id="cb272-9"><a href="dm-dplyr.html#cb272-9"></a><span class="co">#&gt; 5 0.31  Good      J     SI2      63.3    58   335  4.34  4.35  2.75</span></span>
-<span id="cb272-10"><a href="dm-dplyr.html#cb272-10"></a><span class="co">#&gt; 6 0.24  Very Good J     VVS2     62.8    57   336  3.94  3.96  2.48</span></span>
-<span id="cb272-11"><a href="dm-dplyr.html#cb272-11"></a><span class="co">#&gt; # … with 5.393e+04 more rows</span></span>
-<span id="cb272-12"><a href="dm-dplyr.html#cb272-12"></a><span class="kw">glimpse</span>(diamonds)</span>
-<span id="cb272-13"><a href="dm-dplyr.html#cb272-13"></a><span class="co">#&gt; Observations: 53,940</span></span>
-<span id="cb272-14"><a href="dm-dplyr.html#cb272-14"></a><span class="co">#&gt; Variables: 10</span></span>
-<span id="cb272-15"><a href="dm-dplyr.html#cb272-15"></a><span class="co">#&gt; $ carat   &lt;dbl&gt; 0.23, 0.21, 0.23, 0.29, 0.31, 0.24, 0.24, 0.26, 0.22, 0.…</span></span>
-<span id="cb272-16"><a href="dm-dplyr.html#cb272-16"></a><span class="co">#&gt; $ cut     &lt;ord&gt; Ideal, Premium, Good, Premium, Good, Very Good, Very Goo…</span></span>
-<span id="cb272-17"><a href="dm-dplyr.html#cb272-17"></a><span class="co">#&gt; $ color   &lt;ord&gt; E, E, E, I, J, J, I, H, E, H, J, J, F, J, E, E, I, J, J,…</span></span>
-<span id="cb272-18"><a href="dm-dplyr.html#cb272-18"></a><span class="co">#&gt; $ clarity &lt;ord&gt; SI2, SI1, VS1, VS2, SI2, VVS2, VVS1, SI1, VS2, VS1, SI1,…</span></span>
-<span id="cb272-19"><a href="dm-dplyr.html#cb272-19"></a><span class="co">#&gt; $ depth   &lt;dbl&gt; 61.5, 59.8, 56.9, 62.4, 63.3, 62.8, 62.3, 61.9, 65.1, 59…</span></span>
-<span id="cb272-20"><a href="dm-dplyr.html#cb272-20"></a><span class="co">#&gt; $ table   &lt;dbl&gt; 55, 61, 65, 58, 58, 57, 57, 55, 61, 61, 55, 56, 61, 54, …</span></span>
-<span id="cb272-21"><a href="dm-dplyr.html#cb272-21"></a><span class="co">#&gt; $ price   &lt;int&gt; 326, 326, 327, 334, 335, 336, 336, 337, 337, 338, 339, 3…</span></span>
-<span id="cb272-22"><a href="dm-dplyr.html#cb272-22"></a><span class="co">#&gt; $ x       &lt;dbl&gt; 3.95, 3.89, 4.05, 4.20, 4.34, 3.94, 3.95, 4.07, 3.87, 4.…</span></span>
-<span id="cb272-23"><a href="dm-dplyr.html#cb272-23"></a><span class="co">#&gt; $ y       &lt;dbl&gt; 3.98, 3.84, 4.07, 4.23, 4.35, 3.96, 3.98, 4.11, 3.78, 4.…</span></span>
-<span id="cb272-24"><a href="dm-dplyr.html#cb272-24"></a><span class="co">#&gt; $ z       &lt;dbl&gt; 2.43, 2.31, 2.31, 2.63, 2.75, 2.48, 2.47, 2.53, 2.49, 2.…</span></span></code></pre></div>
+<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="dm-dplyr.html#cb290-1"></a>diamonds</span>
+<span id="cb290-2"><a href="dm-dplyr.html#cb290-2"></a><span class="co">#&gt; # A tibble: 53,940 x 10</span></span>
+<span id="cb290-3"><a href="dm-dplyr.html#cb290-3"></a><span class="co">#&gt;   carat cut       color clarity depth table price     x     y     z</span></span>
+<span id="cb290-4"><a href="dm-dplyr.html#cb290-4"></a><span class="co">#&gt;   &lt;dbl&gt; &lt;ord&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span id="cb290-5"><a href="dm-dplyr.html#cb290-5"></a><span class="co">#&gt; 1 0.23  Ideal     E     SI2      61.5    55   326  3.95  3.98  2.43</span></span>
+<span id="cb290-6"><a href="dm-dplyr.html#cb290-6"></a><span class="co">#&gt; 2 0.21  Premium   E     SI1      59.8    61   326  3.89  3.84  2.31</span></span>
+<span id="cb290-7"><a href="dm-dplyr.html#cb290-7"></a><span class="co">#&gt; 3 0.23  Good      E     VS1      56.9    65   327  4.05  4.07  2.31</span></span>
+<span id="cb290-8"><a href="dm-dplyr.html#cb290-8"></a><span class="co">#&gt; 4 0.290 Premium   I     VS2      62.4    58   334  4.2   4.23  2.63</span></span>
+<span id="cb290-9"><a href="dm-dplyr.html#cb290-9"></a><span class="co">#&gt; 5 0.31  Good      J     SI2      63.3    58   335  4.34  4.35  2.75</span></span>
+<span id="cb290-10"><a href="dm-dplyr.html#cb290-10"></a><span class="co">#&gt; 6 0.24  Very Good J     VVS2     62.8    57   336  3.94  3.96  2.48</span></span>
+<span id="cb290-11"><a href="dm-dplyr.html#cb290-11"></a><span class="co">#&gt; # … with 5.393e+04 more rows</span></span>
+<span id="cb290-12"><a href="dm-dplyr.html#cb290-12"></a><span class="kw">glimpse</span>(diamonds)</span>
+<span id="cb290-13"><a href="dm-dplyr.html#cb290-13"></a><span class="co">#&gt; Observations: 53,940</span></span>
+<span id="cb290-14"><a href="dm-dplyr.html#cb290-14"></a><span class="co">#&gt; Variables: 10</span></span>
+<span id="cb290-15"><a href="dm-dplyr.html#cb290-15"></a><span class="co">#&gt; $ carat   &lt;dbl&gt; 0.23, 0.21, 0.23, 0.29, 0.31, 0.24, 0.24, 0.26, 0.22, 0.…</span></span>
+<span id="cb290-16"><a href="dm-dplyr.html#cb290-16"></a><span class="co">#&gt; $ cut     &lt;ord&gt; Ideal, Premium, Good, Premium, Good, Very Good, Very Goo…</span></span>
+<span id="cb290-17"><a href="dm-dplyr.html#cb290-17"></a><span class="co">#&gt; $ color   &lt;ord&gt; E, E, E, I, J, J, I, H, E, H, J, J, F, J, E, E, I, J, J,…</span></span>
+<span id="cb290-18"><a href="dm-dplyr.html#cb290-18"></a><span class="co">#&gt; $ clarity &lt;ord&gt; SI2, SI1, VS1, VS2, SI2, VVS2, VVS1, SI1, VS2, VS1, SI1,…</span></span>
+<span id="cb290-19"><a href="dm-dplyr.html#cb290-19"></a><span class="co">#&gt; $ depth   &lt;dbl&gt; 61.5, 59.8, 56.9, 62.4, 63.3, 62.8, 62.3, 61.9, 65.1, 59…</span></span>
+<span id="cb290-20"><a href="dm-dplyr.html#cb290-20"></a><span class="co">#&gt; $ table   &lt;dbl&gt; 55, 61, 65, 58, 58, 57, 57, 55, 61, 61, 55, 56, 61, 54, …</span></span>
+<span id="cb290-21"><a href="dm-dplyr.html#cb290-21"></a><span class="co">#&gt; $ price   &lt;int&gt; 326, 326, 327, 334, 335, 336, 336, 337, 337, 338, 339, 3…</span></span>
+<span id="cb290-22"><a href="dm-dplyr.html#cb290-22"></a><span class="co">#&gt; $ x       &lt;dbl&gt; 3.95, 3.89, 4.05, 4.20, 4.34, 3.94, 3.95, 4.07, 3.87, 4.…</span></span>
+<span id="cb290-23"><a href="dm-dplyr.html#cb290-23"></a><span class="co">#&gt; $ y       &lt;dbl&gt; 3.98, 3.84, 4.07, 4.23, 4.35, 3.96, 3.98, 4.11, 3.78, 4.…</span></span>
+<span id="cb290-24"><a href="dm-dplyr.html#cb290-24"></a><span class="co">#&gt; $ z       &lt;dbl&gt; 2.43, 2.31, 2.31, 2.63, 2.75, 2.48, 2.47, 2.53, 2.49, 2.…</span></span></code></pre></div>
 <table>
 <caption><span id="tab:dplyr-object-type">表 5.1: </span> dplyr 定义的数据对象类型</caption>
 <thead>
@@ -525,35 +525,35 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="dplyr-duplicated" class="section level3">
 <h3><span class="header-section-number">5.1.8</span> 去重</h3>
 <p>数据去重在 dplyr 中的实现<a href="99-references.html#fn22" class="footnote-ref" id="fnref22"><sup>22</sup></a>。</p>
-<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="dm-dplyr.html#cb273-1"></a><span class="kw">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb273-2"><a href="dm-dplyr.html#cb273-2"></a>df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</span>
-<span id="cb273-3"><a href="dm-dplyr.html#cb273-3"></a>  <span class="dt">x =</span> <span class="kw">sample</span>(<span class="dv">0</span><span class="op">:</span><span class="dv">1</span>, <span class="dv">10</span>, <span class="dt">replace =</span> T),</span>
-<span id="cb273-4"><a href="dm-dplyr.html#cb273-4"></a>  <span class="dt">y =</span> <span class="kw">sample</span>(<span class="dv">0</span><span class="op">:</span><span class="dv">1</span>, <span class="dv">10</span>, <span class="dt">replace =</span> T),</span>
-<span id="cb273-5"><a href="dm-dplyr.html#cb273-5"></a>  <span class="dt">z =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span></span>
-<span id="cb273-6"><a href="dm-dplyr.html#cb273-6"></a>)</span>
-<span id="cb273-7"><a href="dm-dplyr.html#cb273-7"></a>df</span>
-<span id="cb273-8"><a href="dm-dplyr.html#cb273-8"></a><span class="co">#&gt;    x y  z</span></span>
-<span id="cb273-9"><a href="dm-dplyr.html#cb273-9"></a><span class="co">#&gt; 1  0 1  1</span></span>
-<span id="cb273-10"><a href="dm-dplyr.html#cb273-10"></a><span class="co">#&gt; 2  0 1  2</span></span>
-<span id="cb273-11"><a href="dm-dplyr.html#cb273-11"></a><span class="co">#&gt; 3  0 1  3</span></span>
-<span id="cb273-12"><a href="dm-dplyr.html#cb273-12"></a><span class="co">#&gt; 4  1 0  4</span></span>
-<span id="cb273-13"><a href="dm-dplyr.html#cb273-13"></a><span class="co">#&gt; 5  0 1  5</span></span>
-<span id="cb273-14"><a href="dm-dplyr.html#cb273-14"></a><span class="co">#&gt; 6  1 0  6</span></span>
-<span id="cb273-15"><a href="dm-dplyr.html#cb273-15"></a><span class="co">#&gt; 7  1 1  7</span></span>
-<span id="cb273-16"><a href="dm-dplyr.html#cb273-16"></a><span class="co">#&gt; 8  1 0  8</span></span>
-<span id="cb273-17"><a href="dm-dplyr.html#cb273-17"></a><span class="co">#&gt; 9  0 0  9</span></span>
-<span id="cb273-18"><a href="dm-dplyr.html#cb273-18"></a><span class="co">#&gt; 10 0 0 10</span></span>
-<span id="cb273-19"><a href="dm-dplyr.html#cb273-19"></a>df <span class="op">%&gt;%</span></span>
-<span id="cb273-20"><a href="dm-dplyr.html#cb273-20"></a><span class="st">  </span><span class="kw">group_by</span>(x, y) <span class="op">%&gt;%</span></span>
-<span id="cb273-21"><a href="dm-dplyr.html#cb273-21"></a><span class="st">  </span><span class="kw">filter</span>(<span class="kw">row_number</span>(z) <span class="op">==</span><span class="st"> </span><span class="dv">1</span>)</span>
-<span id="cb273-22"><a href="dm-dplyr.html#cb273-22"></a><span class="co">#&gt; # A tibble: 4 x 3</span></span>
-<span id="cb273-23"><a href="dm-dplyr.html#cb273-23"></a><span class="co">#&gt; # Groups:   x, y [4]</span></span>
-<span id="cb273-24"><a href="dm-dplyr.html#cb273-24"></a><span class="co">#&gt;       x     y     z</span></span>
-<span id="cb273-25"><a href="dm-dplyr.html#cb273-25"></a><span class="co">#&gt;   &lt;int&gt; &lt;int&gt; &lt;int&gt;</span></span>
-<span id="cb273-26"><a href="dm-dplyr.html#cb273-26"></a><span class="co">#&gt; 1     0     1     1</span></span>
-<span id="cb273-27"><a href="dm-dplyr.html#cb273-27"></a><span class="co">#&gt; 2     1     0     4</span></span>
-<span id="cb273-28"><a href="dm-dplyr.html#cb273-28"></a><span class="co">#&gt; 3     1     1     7</span></span>
-<span id="cb273-29"><a href="dm-dplyr.html#cb273-29"></a><span class="co">#&gt; 4     0     0     9</span></span></code></pre></div>
+<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="dm-dplyr.html#cb291-1"></a><span class="kw">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb291-2"><a href="dm-dplyr.html#cb291-2"></a>df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</span>
+<span id="cb291-3"><a href="dm-dplyr.html#cb291-3"></a>  <span class="dt">x =</span> <span class="kw">sample</span>(<span class="dv">0</span><span class="op">:</span><span class="dv">1</span>, <span class="dv">10</span>, <span class="dt">replace =</span> T),</span>
+<span id="cb291-4"><a href="dm-dplyr.html#cb291-4"></a>  <span class="dt">y =</span> <span class="kw">sample</span>(<span class="dv">0</span><span class="op">:</span><span class="dv">1</span>, <span class="dv">10</span>, <span class="dt">replace =</span> T),</span>
+<span id="cb291-5"><a href="dm-dplyr.html#cb291-5"></a>  <span class="dt">z =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span></span>
+<span id="cb291-6"><a href="dm-dplyr.html#cb291-6"></a>)</span>
+<span id="cb291-7"><a href="dm-dplyr.html#cb291-7"></a>df</span>
+<span id="cb291-8"><a href="dm-dplyr.html#cb291-8"></a><span class="co">#&gt;    x y  z</span></span>
+<span id="cb291-9"><a href="dm-dplyr.html#cb291-9"></a><span class="co">#&gt; 1  0 1  1</span></span>
+<span id="cb291-10"><a href="dm-dplyr.html#cb291-10"></a><span class="co">#&gt; 2  0 1  2</span></span>
+<span id="cb291-11"><a href="dm-dplyr.html#cb291-11"></a><span class="co">#&gt; 3  0 1  3</span></span>
+<span id="cb291-12"><a href="dm-dplyr.html#cb291-12"></a><span class="co">#&gt; 4  1 0  4</span></span>
+<span id="cb291-13"><a href="dm-dplyr.html#cb291-13"></a><span class="co">#&gt; 5  0 1  5</span></span>
+<span id="cb291-14"><a href="dm-dplyr.html#cb291-14"></a><span class="co">#&gt; 6  1 0  6</span></span>
+<span id="cb291-15"><a href="dm-dplyr.html#cb291-15"></a><span class="co">#&gt; 7  1 1  7</span></span>
+<span id="cb291-16"><a href="dm-dplyr.html#cb291-16"></a><span class="co">#&gt; 8  1 0  8</span></span>
+<span id="cb291-17"><a href="dm-dplyr.html#cb291-17"></a><span class="co">#&gt; 9  0 0  9</span></span>
+<span id="cb291-18"><a href="dm-dplyr.html#cb291-18"></a><span class="co">#&gt; 10 0 0 10</span></span>
+<span id="cb291-19"><a href="dm-dplyr.html#cb291-19"></a>df <span class="op">%&gt;%</span></span>
+<span id="cb291-20"><a href="dm-dplyr.html#cb291-20"></a><span class="st">  </span><span class="kw">group_by</span>(x, y) <span class="op">%&gt;%</span></span>
+<span id="cb291-21"><a href="dm-dplyr.html#cb291-21"></a><span class="st">  </span><span class="kw">filter</span>(<span class="kw">row_number</span>(z) <span class="op">==</span><span class="st"> </span><span class="dv">1</span>)</span>
+<span id="cb291-22"><a href="dm-dplyr.html#cb291-22"></a><span class="co">#&gt; # A tibble: 4 x 3</span></span>
+<span id="cb291-23"><a href="dm-dplyr.html#cb291-23"></a><span class="co">#&gt; # Groups:   x, y [4]</span></span>
+<span id="cb291-24"><a href="dm-dplyr.html#cb291-24"></a><span class="co">#&gt;       x     y     z</span></span>
+<span id="cb291-25"><a href="dm-dplyr.html#cb291-25"></a><span class="co">#&gt;   &lt;int&gt; &lt;int&gt; &lt;int&gt;</span></span>
+<span id="cb291-26"><a href="dm-dplyr.html#cb291-26"></a><span class="co">#&gt; 1     0     1     1</span></span>
+<span id="cb291-27"><a href="dm-dplyr.html#cb291-27"></a><span class="co">#&gt; 2     1     0     4</span></span>
+<span id="cb291-28"><a href="dm-dplyr.html#cb291-28"></a><span class="co">#&gt; 3     1     1     7</span></span>
+<span id="cb291-29"><a href="dm-dplyr.html#cb291-29"></a><span class="co">#&gt; 4     0     0     9</span></span></code></pre></div>
 </div>
 </div>
 <div id="common-dataframe-operations" class="section level2">
@@ -568,93 +568,93 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="create-empty-dataframe" class="section level3">
 <h3><span class="header-section-number">5.2.1</span> 初始化数据框</h3>
 <p>创建空的数据框，就是不包含任何行、记录[^create-an-empty-data-frame]</p>
-<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="dm-dplyr.html#cb274-1"></a>empty_df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</span>
-<span id="cb274-2"><a href="dm-dplyr.html#cb274-2"></a>  <span class="dt">Doubles =</span> <span class="kw">double</span>(),</span>
-<span id="cb274-3"><a href="dm-dplyr.html#cb274-3"></a>  <span class="dt">Ints =</span> <span class="kw">integer</span>(),</span>
-<span id="cb274-4"><a href="dm-dplyr.html#cb274-4"></a>  <span class="dt">Factors =</span> <span class="kw">factor</span>(),</span>
-<span id="cb274-5"><a href="dm-dplyr.html#cb274-5"></a>  <span class="dt">Logicals =</span> <span class="kw">logical</span>(),</span>
-<span id="cb274-6"><a href="dm-dplyr.html#cb274-6"></a>  <span class="dt">Characters =</span> <span class="kw">character</span>(),</span>
-<span id="cb274-7"><a href="dm-dplyr.html#cb274-7"></a>  <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span></span>
-<span id="cb274-8"><a href="dm-dplyr.html#cb274-8"></a>)</span>
-<span id="cb274-9"><a href="dm-dplyr.html#cb274-9"></a><span class="kw">str</span>(empty_df)</span>
-<span id="cb274-10"><a href="dm-dplyr.html#cb274-10"></a><span class="co">#&gt; &#39;data.frame&#39;:    0 obs. of  5 variables:</span></span>
-<span id="cb274-11"><a href="dm-dplyr.html#cb274-11"></a><span class="co">#&gt;  $ Doubles   : num </span></span>
-<span id="cb274-12"><a href="dm-dplyr.html#cb274-12"></a><span class="co">#&gt;  $ Ints      : int </span></span>
-<span id="cb274-13"><a href="dm-dplyr.html#cb274-13"></a><span class="co">#&gt;  $ Factors   : Factor w/ 0 levels: </span></span>
-<span id="cb274-14"><a href="dm-dplyr.html#cb274-14"></a><span class="co">#&gt;  $ Logicals  : logi </span></span>
-<span id="cb274-15"><a href="dm-dplyr.html#cb274-15"></a><span class="co">#&gt;  $ Characters: chr</span></span></code></pre></div>
+<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="dm-dplyr.html#cb292-1"></a>empty_df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</span>
+<span id="cb292-2"><a href="dm-dplyr.html#cb292-2"></a>  <span class="dt">Doubles =</span> <span class="kw">double</span>(),</span>
+<span id="cb292-3"><a href="dm-dplyr.html#cb292-3"></a>  <span class="dt">Ints =</span> <span class="kw">integer</span>(),</span>
+<span id="cb292-4"><a href="dm-dplyr.html#cb292-4"></a>  <span class="dt">Factors =</span> <span class="kw">factor</span>(),</span>
+<span id="cb292-5"><a href="dm-dplyr.html#cb292-5"></a>  <span class="dt">Logicals =</span> <span class="kw">logical</span>(),</span>
+<span id="cb292-6"><a href="dm-dplyr.html#cb292-6"></a>  <span class="dt">Characters =</span> <span class="kw">character</span>(),</span>
+<span id="cb292-7"><a href="dm-dplyr.html#cb292-7"></a>  <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span></span>
+<span id="cb292-8"><a href="dm-dplyr.html#cb292-8"></a>)</span>
+<span id="cb292-9"><a href="dm-dplyr.html#cb292-9"></a><span class="kw">str</span>(empty_df)</span>
+<span id="cb292-10"><a href="dm-dplyr.html#cb292-10"></a><span class="co">#&gt; &#39;data.frame&#39;:    0 obs. of  5 variables:</span></span>
+<span id="cb292-11"><a href="dm-dplyr.html#cb292-11"></a><span class="co">#&gt;  $ Doubles   : num </span></span>
+<span id="cb292-12"><a href="dm-dplyr.html#cb292-12"></a><span class="co">#&gt;  $ Ints      : int </span></span>
+<span id="cb292-13"><a href="dm-dplyr.html#cb292-13"></a><span class="co">#&gt;  $ Factors   : Factor w/ 0 levels: </span></span>
+<span id="cb292-14"><a href="dm-dplyr.html#cb292-14"></a><span class="co">#&gt;  $ Logicals  : logi </span></span>
+<span id="cb292-15"><a href="dm-dplyr.html#cb292-15"></a><span class="co">#&gt;  $ Characters: chr</span></span></code></pre></div>
 <p>如果数据框 df 包含数据，现在要依据它创建一个空的数据框</p>
-<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="dm-dplyr.html#cb275-1"></a>empty_df =<span class="st"> </span>df[<span class="ot">FALSE</span>,]</span></code></pre></div>
+<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="dm-dplyr.html#cb293-1"></a>empty_df =<span class="st"> </span>df[<span class="ot">FALSE</span>,]</span></code></pre></div>
 <p>还可以使用 structure 构造一个数据框，并且我们发现它的效率更高</p>
-<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="dm-dplyr.html#cb276-1"></a>s &lt;-<span class="st"> </span><span class="cf">function</span>() <span class="kw">structure</span>(<span class="kw">list</span>(</span>
-<span id="cb276-2"><a href="dm-dplyr.html#cb276-2"></a>    <span class="dt">Date =</span> <span class="kw">as.Date</span>(<span class="kw">character</span>()),</span>
-<span id="cb276-3"><a href="dm-dplyr.html#cb276-3"></a>    <span class="dt">File =</span> <span class="kw">character</span>(),</span>
-<span id="cb276-4"><a href="dm-dplyr.html#cb276-4"></a>    <span class="dt">User =</span> <span class="kw">character</span>()</span>
-<span id="cb276-5"><a href="dm-dplyr.html#cb276-5"></a>  ),</span>
-<span id="cb276-6"><a href="dm-dplyr.html#cb276-6"></a>  <span class="dt">class =</span> <span class="st">&quot;data.frame&quot;</span></span>
-<span id="cb276-7"><a href="dm-dplyr.html#cb276-7"></a>  )</span>
-<span id="cb276-8"><a href="dm-dplyr.html#cb276-8"></a>d &lt;-<span class="st"> </span><span class="cf">function</span>() <span class="kw">data.frame</span>(</span>
-<span id="cb276-9"><a href="dm-dplyr.html#cb276-9"></a>    <span class="dt">Date =</span> <span class="kw">as.Date</span>(<span class="kw">character</span>()),</span>
-<span id="cb276-10"><a href="dm-dplyr.html#cb276-10"></a>    <span class="dt">File =</span> <span class="kw">character</span>(),</span>
-<span id="cb276-11"><a href="dm-dplyr.html#cb276-11"></a>    <span class="dt">User =</span> <span class="kw">character</span>(),</span>
-<span id="cb276-12"><a href="dm-dplyr.html#cb276-12"></a>    <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span></span>
-<span id="cb276-13"><a href="dm-dplyr.html#cb276-13"></a>  )</span>
-<span id="cb276-14"><a href="dm-dplyr.html#cb276-14"></a><span class="co"># microbenchmark::microbenchmark(s(), d())</span></span></code></pre></div>
+<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="dm-dplyr.html#cb294-1"></a>s &lt;-<span class="st"> </span><span class="cf">function</span>() <span class="kw">structure</span>(<span class="kw">list</span>(</span>
+<span id="cb294-2"><a href="dm-dplyr.html#cb294-2"></a>    <span class="dt">Date =</span> <span class="kw">as.Date</span>(<span class="kw">character</span>()),</span>
+<span id="cb294-3"><a href="dm-dplyr.html#cb294-3"></a>    <span class="dt">File =</span> <span class="kw">character</span>(),</span>
+<span id="cb294-4"><a href="dm-dplyr.html#cb294-4"></a>    <span class="dt">User =</span> <span class="kw">character</span>()</span>
+<span id="cb294-5"><a href="dm-dplyr.html#cb294-5"></a>  ),</span>
+<span id="cb294-6"><a href="dm-dplyr.html#cb294-6"></a>  <span class="dt">class =</span> <span class="st">&quot;data.frame&quot;</span></span>
+<span id="cb294-7"><a href="dm-dplyr.html#cb294-7"></a>  )</span>
+<span id="cb294-8"><a href="dm-dplyr.html#cb294-8"></a>d &lt;-<span class="st"> </span><span class="cf">function</span>() <span class="kw">data.frame</span>(</span>
+<span id="cb294-9"><a href="dm-dplyr.html#cb294-9"></a>    <span class="dt">Date =</span> <span class="kw">as.Date</span>(<span class="kw">character</span>()),</span>
+<span id="cb294-10"><a href="dm-dplyr.html#cb294-10"></a>    <span class="dt">File =</span> <span class="kw">character</span>(),</span>
+<span id="cb294-11"><a href="dm-dplyr.html#cb294-11"></a>    <span class="dt">User =</span> <span class="kw">character</span>(),</span>
+<span id="cb294-12"><a href="dm-dplyr.html#cb294-12"></a>    <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span></span>
+<span id="cb294-13"><a href="dm-dplyr.html#cb294-13"></a>  )</span>
+<span id="cb294-14"><a href="dm-dplyr.html#cb294-14"></a><span class="co"># microbenchmark::microbenchmark(s(), d())</span></span></code></pre></div>
 </div>
 <div id="remove-missing-values" class="section level3">
 <h3><span class="header-section-number">5.2.2</span> 移除缺失记录</h3>
 <p>只要行中包含缺失值，我们就把这样的行移除出去</p>
-<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="dm-dplyr.html#cb277-1"></a>airquality[<span class="kw">complete.cases</span>(airquality), ]</span>
-<span id="cb277-2"><a href="dm-dplyr.html#cb277-2"></a><span class="co">#&gt;     Ozone Solar.R Wind Temp Month Day</span></span>
-<span id="cb277-3"><a href="dm-dplyr.html#cb277-3"></a><span class="co">#&gt; 1      41     190  7.4   67     5   1</span></span>
-<span id="cb277-4"><a href="dm-dplyr.html#cb277-4"></a><span class="co">#&gt; 2      36     118  8.0   72     5   2</span></span>
-<span id="cb277-5"><a href="dm-dplyr.html#cb277-5"></a><span class="co">#&gt; 3      12     149 12.6   74     5   3</span></span>
-<span id="cb277-6"><a href="dm-dplyr.html#cb277-6"></a><span class="co">#&gt; 4      18     313 11.5   62     5   4</span></span>
-<span id="cb277-7"><a href="dm-dplyr.html#cb277-7"></a><span class="co">#&gt; 7      23     299  8.6   65     5   7</span></span>
-<span id="cb277-8"><a href="dm-dplyr.html#cb277-8"></a><span class="co">#&gt; 8      19      99 13.8   59     5   8</span></span>
-<span id="cb277-9"><a href="dm-dplyr.html#cb277-9"></a><span class="co">#&gt; 9       8      19 20.1   61     5   9</span></span>
-<span id="cb277-10"><a href="dm-dplyr.html#cb277-10"></a><span class="co">#&gt; 12     16     256  9.7   69     5  12</span></span>
-<span id="cb277-11"><a href="dm-dplyr.html#cb277-11"></a><span class="co">#&gt; 13     11     290  9.2   66     5  13</span></span>
-<span id="cb277-12"><a href="dm-dplyr.html#cb277-12"></a>....</span></code></pre></div>
+<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="dm-dplyr.html#cb295-1"></a>airquality[<span class="kw">complete.cases</span>(airquality), ]</span>
+<span id="cb295-2"><a href="dm-dplyr.html#cb295-2"></a><span class="co">#&gt;     Ozone Solar.R Wind Temp Month Day</span></span>
+<span id="cb295-3"><a href="dm-dplyr.html#cb295-3"></a><span class="co">#&gt; 1      41     190  7.4   67     5   1</span></span>
+<span id="cb295-4"><a href="dm-dplyr.html#cb295-4"></a><span class="co">#&gt; 2      36     118  8.0   72     5   2</span></span>
+<span id="cb295-5"><a href="dm-dplyr.html#cb295-5"></a><span class="co">#&gt; 3      12     149 12.6   74     5   3</span></span>
+<span id="cb295-6"><a href="dm-dplyr.html#cb295-6"></a><span class="co">#&gt; 4      18     313 11.5   62     5   4</span></span>
+<span id="cb295-7"><a href="dm-dplyr.html#cb295-7"></a><span class="co">#&gt; 7      23     299  8.6   65     5   7</span></span>
+<span id="cb295-8"><a href="dm-dplyr.html#cb295-8"></a><span class="co">#&gt; 8      19      99 13.8   59     5   8</span></span>
+<span id="cb295-9"><a href="dm-dplyr.html#cb295-9"></a><span class="co">#&gt; 9       8      19 20.1   61     5   9</span></span>
+<span id="cb295-10"><a href="dm-dplyr.html#cb295-10"></a><span class="co">#&gt; 12     16     256  9.7   69     5  12</span></span>
+<span id="cb295-11"><a href="dm-dplyr.html#cb295-11"></a><span class="co">#&gt; 13     11     290  9.2   66     5  13</span></span>
+<span id="cb295-12"><a href="dm-dplyr.html#cb295-12"></a>....</span></code></pre></div>
 </div>
 <div id="coerce-data-type" class="section level3">
 <h3><span class="header-section-number">5.2.3</span> 数据类型转化</h3>
-<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="dm-dplyr.html#cb278-1"></a><span class="kw">str</span>(PlantGrowth)</span>
-<span id="cb278-2"><a href="dm-dplyr.html#cb278-2"></a><span class="co">#&gt; &#39;data.frame&#39;:    30 obs. of  2 variables:</span></span>
-<span id="cb278-3"><a href="dm-dplyr.html#cb278-3"></a><span class="co">#&gt;  $ weight: num  4.17 5.58 5.18 6.11 4.5 4.61 5.17 4.53 5.33 5.14 ...</span></span>
-<span id="cb278-4"><a href="dm-dplyr.html#cb278-4"></a><span class="co">#&gt;  $ group : Factor w/ 3 levels &quot;ctrl&quot;,&quot;trt1&quot;,..: 1 1 1 1 1 1 1 1 1 1 ...</span></span>
-<span id="cb278-5"><a href="dm-dplyr.html#cb278-5"></a>bob &lt;-<span class="st"> </span>PlantGrowth</span>
-<span id="cb278-6"><a href="dm-dplyr.html#cb278-6"></a>i &lt;-<span class="st"> </span><span class="kw">sapply</span>(bob, is.factor)</span>
-<span id="cb278-7"><a href="dm-dplyr.html#cb278-7"></a>bob[i] &lt;-<span class="st"> </span><span class="kw">lapply</span>(bob[i], as.character)</span>
-<span id="cb278-8"><a href="dm-dplyr.html#cb278-8"></a><span class="kw">str</span>(bob)</span>
-<span id="cb278-9"><a href="dm-dplyr.html#cb278-9"></a><span class="co">#&gt; &#39;data.frame&#39;:    30 obs. of  2 variables:</span></span>
-<span id="cb278-10"><a href="dm-dplyr.html#cb278-10"></a><span class="co">#&gt;  $ weight: num  4.17 5.58 5.18 6.11 4.5 4.61 5.17 4.53 5.33 5.14 ...</span></span>
-<span id="cb278-11"><a href="dm-dplyr.html#cb278-11"></a><span class="co">#&gt;  $ group : chr  &quot;ctrl&quot; &quot;ctrl&quot; &quot;ctrl&quot; &quot;ctrl&quot; ...</span></span></code></pre></div>
+<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="dm-dplyr.html#cb296-1"></a><span class="kw">str</span>(PlantGrowth)</span>
+<span id="cb296-2"><a href="dm-dplyr.html#cb296-2"></a><span class="co">#&gt; &#39;data.frame&#39;:    30 obs. of  2 variables:</span></span>
+<span id="cb296-3"><a href="dm-dplyr.html#cb296-3"></a><span class="co">#&gt;  $ weight: num  4.17 5.58 5.18 6.11 4.5 4.61 5.17 4.53 5.33 5.14 ...</span></span>
+<span id="cb296-4"><a href="dm-dplyr.html#cb296-4"></a><span class="co">#&gt;  $ group : Factor w/ 3 levels &quot;ctrl&quot;,&quot;trt1&quot;,..: 1 1 1 1 1 1 1 1 1 1 ...</span></span>
+<span id="cb296-5"><a href="dm-dplyr.html#cb296-5"></a>bob &lt;-<span class="st"> </span>PlantGrowth</span>
+<span id="cb296-6"><a href="dm-dplyr.html#cb296-6"></a>i &lt;-<span class="st"> </span><span class="kw">sapply</span>(bob, is.factor)</span>
+<span id="cb296-7"><a href="dm-dplyr.html#cb296-7"></a>bob[i] &lt;-<span class="st"> </span><span class="kw">lapply</span>(bob[i], as.character)</span>
+<span id="cb296-8"><a href="dm-dplyr.html#cb296-8"></a><span class="kw">str</span>(bob)</span>
+<span id="cb296-9"><a href="dm-dplyr.html#cb296-9"></a><span class="co">#&gt; &#39;data.frame&#39;:    30 obs. of  2 variables:</span></span>
+<span id="cb296-10"><a href="dm-dplyr.html#cb296-10"></a><span class="co">#&gt;  $ weight: num  4.17 5.58 5.18 6.11 4.5 4.61 5.17 4.53 5.33 5.14 ...</span></span>
+<span id="cb296-11"><a href="dm-dplyr.html#cb296-11"></a><span class="co">#&gt;  $ group : chr  &quot;ctrl&quot; &quot;ctrl&quot; &quot;ctrl&quot; &quot;ctrl&quot; ...</span></span></code></pre></div>
 </div>
 <div id="cross-group-by" class="section level3">
 <h3><span class="header-section-number">5.2.4</span> 跨列分组求和</h3>
 <p>输入是一个数据框 data.frame，按照其中某一变量分组，然后计算任意数量的变量的行和和列和。</p>
 <p>空气质量数据集 airquality 按月份 Month 分组，然后求取满足条件的列的和</p>
-<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="dm-dplyr.html#cb279-1"></a><span class="kw">Reduce</span>(rbind, <span class="kw">lapply</span>(<span class="kw">unique</span>(airquality<span class="op">$</span>Month), <span class="cf">function</span>(gv) {</span>
-<span id="cb279-2"><a href="dm-dplyr.html#cb279-2"></a>  subdta &lt;-<span class="st"> </span><span class="kw">subset</span>(airquality, <span class="dt">subset =</span> Month <span class="op">==</span><span class="st"> </span>gv)</span>
-<span id="cb279-3"><a href="dm-dplyr.html#cb279-3"></a>  <span class="kw">data.frame</span>(</span>
-<span id="cb279-4"><a href="dm-dplyr.html#cb279-4"></a>    <span class="dt">Colsum =</span> <span class="kw">as.numeric</span>(</span>
-<span id="cb279-5"><a href="dm-dplyr.html#cb279-5"></a>      <span class="kw">colSums</span>(subdta[, <span class="kw">grepl</span>(<span class="st">&quot;[mM]&quot;</span>, <span class="kw">names</span>(airquality))], <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb279-6"><a href="dm-dplyr.html#cb279-6"></a>    ),</span>
-<span id="cb279-7"><a href="dm-dplyr.html#cb279-7"></a>    <span class="dt">Month =</span> gv</span>
-<span id="cb279-8"><a href="dm-dplyr.html#cb279-8"></a>  )</span>
-<span id="cb279-9"><a href="dm-dplyr.html#cb279-9"></a>}))</span>
-<span id="cb279-10"><a href="dm-dplyr.html#cb279-10"></a><span class="co">#&gt;    Colsum Month</span></span>
-<span id="cb279-11"><a href="dm-dplyr.html#cb279-11"></a><span class="co">#&gt; 1    2032     5</span></span>
-<span id="cb279-12"><a href="dm-dplyr.html#cb279-12"></a><span class="co">#&gt; 2     155     5</span></span>
-<span id="cb279-13"><a href="dm-dplyr.html#cb279-13"></a><span class="co">#&gt; 3    2373     6</span></span>
-<span id="cb279-14"><a href="dm-dplyr.html#cb279-14"></a><span class="co">#&gt; 4     180     6</span></span>
-<span id="cb279-15"><a href="dm-dplyr.html#cb279-15"></a><span class="co">#&gt; 5    2601     7</span></span>
-<span id="cb279-16"><a href="dm-dplyr.html#cb279-16"></a><span class="co">#&gt; 6     217     7</span></span>
-<span id="cb279-17"><a href="dm-dplyr.html#cb279-17"></a><span class="co">#&gt; 7    2603     8</span></span>
-<span id="cb279-18"><a href="dm-dplyr.html#cb279-18"></a><span class="co">#&gt; 8     248     8</span></span>
-<span id="cb279-19"><a href="dm-dplyr.html#cb279-19"></a><span class="co">#&gt; 9    2307     9</span></span>
-<span id="cb279-20"><a href="dm-dplyr.html#cb279-20"></a><span class="co">#&gt; 10    270     9</span></span></code></pre></div>
+<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb297-1"><a href="dm-dplyr.html#cb297-1"></a><span class="kw">Reduce</span>(rbind, <span class="kw">lapply</span>(<span class="kw">unique</span>(airquality<span class="op">$</span>Month), <span class="cf">function</span>(gv) {</span>
+<span id="cb297-2"><a href="dm-dplyr.html#cb297-2"></a>  subdta &lt;-<span class="st"> </span><span class="kw">subset</span>(airquality, <span class="dt">subset =</span> Month <span class="op">==</span><span class="st"> </span>gv)</span>
+<span id="cb297-3"><a href="dm-dplyr.html#cb297-3"></a>  <span class="kw">data.frame</span>(</span>
+<span id="cb297-4"><a href="dm-dplyr.html#cb297-4"></a>    <span class="dt">Colsum =</span> <span class="kw">as.numeric</span>(</span>
+<span id="cb297-5"><a href="dm-dplyr.html#cb297-5"></a>      <span class="kw">colSums</span>(subdta[, <span class="kw">grepl</span>(<span class="st">&quot;[mM]&quot;</span>, <span class="kw">names</span>(airquality))], <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb297-6"><a href="dm-dplyr.html#cb297-6"></a>    ),</span>
+<span id="cb297-7"><a href="dm-dplyr.html#cb297-7"></a>    <span class="dt">Month =</span> gv</span>
+<span id="cb297-8"><a href="dm-dplyr.html#cb297-8"></a>  )</span>
+<span id="cb297-9"><a href="dm-dplyr.html#cb297-9"></a>}))</span>
+<span id="cb297-10"><a href="dm-dplyr.html#cb297-10"></a><span class="co">#&gt;    Colsum Month</span></span>
+<span id="cb297-11"><a href="dm-dplyr.html#cb297-11"></a><span class="co">#&gt; 1    2032     5</span></span>
+<span id="cb297-12"><a href="dm-dplyr.html#cb297-12"></a><span class="co">#&gt; 2     155     5</span></span>
+<span id="cb297-13"><a href="dm-dplyr.html#cb297-13"></a><span class="co">#&gt; 3    2373     6</span></span>
+<span id="cb297-14"><a href="dm-dplyr.html#cb297-14"></a><span class="co">#&gt; 4     180     6</span></span>
+<span id="cb297-15"><a href="dm-dplyr.html#cb297-15"></a><span class="co">#&gt; 5    2601     7</span></span>
+<span id="cb297-16"><a href="dm-dplyr.html#cb297-16"></a><span class="co">#&gt; 6     217     7</span></span>
+<span id="cb297-17"><a href="dm-dplyr.html#cb297-17"></a><span class="co">#&gt; 7    2603     8</span></span>
+<span id="cb297-18"><a href="dm-dplyr.html#cb297-18"></a><span class="co">#&gt; 8     248     8</span></span>
+<span id="cb297-19"><a href="dm-dplyr.html#cb297-19"></a><span class="co">#&gt; 9    2307     9</span></span>
+<span id="cb297-20"><a href="dm-dplyr.html#cb297-20"></a><span class="co">#&gt; 10    270     9</span></span></code></pre></div>
 <p>什么是函数式编程，R 语言环境下的函数式编程是如何操作的</p>
 </div>
 </div>
@@ -662,95 +662,95 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">5.3</span> 管道操作</h2>
 <p><a href="http://stefanbache.dk/">Stefan Milton Bache</a> 开发了 <a href="https://github.com/tidyverse/magrittr">magrittr</a> 包实现管道操作，增加代码的可读性和维护性，但是这个 R 包的名字取的太奇葩，因为 <a href="https://d.cosx.org/d/420697/21">记不住</a>，它其实是一个复杂的<a href="https://magrittr.tidyverse.org/articles/magrittr.html">法语发音</a>，中式英语就叫它马格里特吧！这下应该好记多了吧！</p>
 <p>我要查看是否需要新添加一个 R 包依赖，假设该 R 包是 reticulate 没有出现在 DESCRIPTION 文件中，但是可能已经被其中某（个）些 R 包依赖了</p>
-<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="dm-dplyr.html#cb280-1"></a><span class="st">&quot;reticulate&quot;</span> <span class="op">%in%</span><span class="st"> </span><span class="kw">sort</span>(<span class="kw">unique</span>(<span class="kw">unlist</span>(tools<span class="op">::</span><span class="kw">package_dependencies</span>(desc<span class="op">::</span><span class="kw">desc_get_deps</span>()<span class="op">$</span>package, <span class="dt">recursive =</span> <span class="ot">TRUE</span>))))</span>
-<span id="cb280-2"><a href="dm-dplyr.html#cb280-2"></a><span class="co">#&gt; [1] FALSE</span></span></code></pre></div>
+<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="dm-dplyr.html#cb298-1"></a><span class="st">&quot;reticulate&quot;</span> <span class="op">%in%</span><span class="st"> </span><span class="kw">sort</span>(<span class="kw">unique</span>(<span class="kw">unlist</span>(tools<span class="op">::</span><span class="kw">package_dependencies</span>(desc<span class="op">::</span><span class="kw">desc_get_deps</span>()<span class="op">$</span>package, <span class="dt">recursive =</span> <span class="ot">TRUE</span>))))</span>
+<span id="cb298-2"><a href="dm-dplyr.html#cb298-2"></a><span class="co">#&gt; [1] FALSE</span></span></code></pre></div>
 <p>安装 pkg 的依赖</p>
-<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="dm-dplyr.html#cb281-1"></a>pkg &lt;-<span class="st"> </span><span class="kw">c</span>(</span>
-<span id="cb281-2"><a href="dm-dplyr.html#cb281-2"></a>  <span class="st">&quot;bookdown&quot;</span>,</span>
-<span id="cb281-3"><a href="dm-dplyr.html#cb281-3"></a>  <span class="st">&quot;e1071&quot;</span>,</span>
-<span id="cb281-4"><a href="dm-dplyr.html#cb281-4"></a>  <span class="st">&quot;formatR&quot;</span>,</span>
-<span id="cb281-5"><a href="dm-dplyr.html#cb281-5"></a>  <span class="st">&quot;lme4&quot;</span>,</span>
-<span id="cb281-6"><a href="dm-dplyr.html#cb281-6"></a>  <span class="st">&quot;mvtnorm&quot;</span>,</span>
-<span id="cb281-7"><a href="dm-dplyr.html#cb281-7"></a>  <span class="st">&quot;prettydoc&quot;</span>, <span class="st">&quot;psych&quot;</span>,</span>
-<span id="cb281-8"><a href="dm-dplyr.html#cb281-8"></a>  <span class="st">&quot;reticulate&quot;</span>, <span class="st">&quot;rstan&quot;</span>, <span class="st">&quot;rstanarm&quot;</span>, <span class="st">&quot;rticles&quot;</span>,</span>
-<span id="cb281-9"><a href="dm-dplyr.html#cb281-9"></a>  <span class="st">&quot;svglite&quot;</span>,</span>
-<span id="cb281-10"><a href="dm-dplyr.html#cb281-10"></a>  <span class="st">&quot;TMB&quot;</span>, <span class="st">&quot;glmmTMB&quot;</span></span>
-<span id="cb281-11"><a href="dm-dplyr.html#cb281-11"></a>)</span>
-<span id="cb281-12"><a href="dm-dplyr.html#cb281-12"></a><span class="co"># 获取 pkg 的所有依赖</span></span>
-<span id="cb281-13"><a href="dm-dplyr.html#cb281-13"></a>dep_pkg &lt;-<span class="st"> </span>tools<span class="op">::</span><span class="kw">package_dependencies</span>(pkg, <span class="dt">recursive =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb281-14"><a href="dm-dplyr.html#cb281-14"></a><span class="co"># 将列表 list 合并为向量 vector</span></span>
-<span id="cb281-15"><a href="dm-dplyr.html#cb281-15"></a>merge_pkg &lt;-<span class="st"> </span><span class="kw">Reduce</span>(<span class="st">&quot;c&quot;</span>, dep_pkg, <span class="dt">accumulate =</span> <span class="ot">FALSE</span>)</span>
-<span id="cb281-16"><a href="dm-dplyr.html#cb281-16"></a><span class="co"># 所有未安装的 R 包</span></span>
-<span id="cb281-17"><a href="dm-dplyr.html#cb281-17"></a>miss_pkg &lt;-<span class="st"> </span><span class="kw">setdiff</span>(<span class="kw">unique</span>(merge_pkg), <span class="kw">unique</span>(<span class="kw">.packages</span>(<span class="ot">TRUE</span>)))</span>
-<span id="cb281-18"><a href="dm-dplyr.html#cb281-18"></a><span class="co"># 除了 pkg 外，未安装的 R 包，安装 pkg 的依赖</span></span>
-<span id="cb281-19"><a href="dm-dplyr.html#cb281-19"></a><span class="kw">sort</span>(<span class="kw">setdiff</span>(miss_pkg, pkg))</span>
-<span id="cb281-20"><a href="dm-dplyr.html#cb281-20"></a><span class="co">#&gt; [1] &quot;foreign&quot; &quot;mnormt&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb299-1"><a href="dm-dplyr.html#cb299-1"></a>pkg &lt;-<span class="st"> </span><span class="kw">c</span>(</span>
+<span id="cb299-2"><a href="dm-dplyr.html#cb299-2"></a>  <span class="st">&quot;bookdown&quot;</span>,</span>
+<span id="cb299-3"><a href="dm-dplyr.html#cb299-3"></a>  <span class="st">&quot;e1071&quot;</span>,</span>
+<span id="cb299-4"><a href="dm-dplyr.html#cb299-4"></a>  <span class="st">&quot;formatR&quot;</span>,</span>
+<span id="cb299-5"><a href="dm-dplyr.html#cb299-5"></a>  <span class="st">&quot;lme4&quot;</span>,</span>
+<span id="cb299-6"><a href="dm-dplyr.html#cb299-6"></a>  <span class="st">&quot;mvtnorm&quot;</span>,</span>
+<span id="cb299-7"><a href="dm-dplyr.html#cb299-7"></a>  <span class="st">&quot;prettydoc&quot;</span>, <span class="st">&quot;psych&quot;</span>,</span>
+<span id="cb299-8"><a href="dm-dplyr.html#cb299-8"></a>  <span class="st">&quot;reticulate&quot;</span>, <span class="st">&quot;rstan&quot;</span>, <span class="st">&quot;rstanarm&quot;</span>, <span class="st">&quot;rticles&quot;</span>,</span>
+<span id="cb299-9"><a href="dm-dplyr.html#cb299-9"></a>  <span class="st">&quot;svglite&quot;</span>,</span>
+<span id="cb299-10"><a href="dm-dplyr.html#cb299-10"></a>  <span class="st">&quot;TMB&quot;</span>, <span class="st">&quot;glmmTMB&quot;</span></span>
+<span id="cb299-11"><a href="dm-dplyr.html#cb299-11"></a>)</span>
+<span id="cb299-12"><a href="dm-dplyr.html#cb299-12"></a><span class="co"># 获取 pkg 的所有依赖</span></span>
+<span id="cb299-13"><a href="dm-dplyr.html#cb299-13"></a>dep_pkg &lt;-<span class="st"> </span>tools<span class="op">::</span><span class="kw">package_dependencies</span>(pkg, <span class="dt">recursive =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb299-14"><a href="dm-dplyr.html#cb299-14"></a><span class="co"># 将列表 list 合并为向量 vector</span></span>
+<span id="cb299-15"><a href="dm-dplyr.html#cb299-15"></a>merge_pkg &lt;-<span class="st"> </span><span class="kw">Reduce</span>(<span class="st">&quot;c&quot;</span>, dep_pkg, <span class="dt">accumulate =</span> <span class="ot">FALSE</span>)</span>
+<span id="cb299-16"><a href="dm-dplyr.html#cb299-16"></a><span class="co"># 所有未安装的 R 包</span></span>
+<span id="cb299-17"><a href="dm-dplyr.html#cb299-17"></a>miss_pkg &lt;-<span class="st"> </span><span class="kw">setdiff</span>(<span class="kw">unique</span>(merge_pkg), <span class="kw">unique</span>(<span class="kw">.packages</span>(<span class="ot">TRUE</span>)))</span>
+<span id="cb299-18"><a href="dm-dplyr.html#cb299-18"></a><span class="co"># 除了 pkg 外，未安装的 R 包，安装 pkg 的依赖</span></span>
+<span id="cb299-19"><a href="dm-dplyr.html#cb299-19"></a><span class="kw">sort</span>(<span class="kw">setdiff</span>(miss_pkg, pkg))</span>
+<span id="cb299-20"><a href="dm-dplyr.html#cb299-20"></a><span class="co">#&gt; [1] &quot;foreign&quot; &quot;mnormt&quot;</span></span></code></pre></div>
 <p>转化为管道操作，增加可读性，[^pipe-r]</p>
 <blockquote>
 <p>再举一个关于数据模拟的例子</p>
 </blockquote>
 <p>模拟 0-1 序列，</p>
-<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="dm-dplyr.html#cb282-1"></a><span class="kw">set.seed</span>(<span class="dv">2019</span>)</span>
-<span id="cb282-2"><a href="dm-dplyr.html#cb282-2"></a>binom_sample &lt;-<span class="st"> </span><span class="cf">function</span>(n) {</span>
-<span id="cb282-3"><a href="dm-dplyr.html#cb282-3"></a>  <span class="kw">sum</span>(<span class="kw">sample</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="dt">size =</span> n, <span class="dt">prob =</span> <span class="kw">c</span>(<span class="fl">0.8</span>, <span class="fl">0.2</span>), <span class="dt">replace =</span> <span class="ot">TRUE</span>))<span class="op">/</span>n</span>
-<span id="cb282-4"><a href="dm-dplyr.html#cb282-4"></a>}</span>
-<span id="cb282-5"><a href="dm-dplyr.html#cb282-5"></a><span class="co"># 频率估计概率</span></span>
-<span id="cb282-6"><a href="dm-dplyr.html#cb282-6"></a>one_prob &lt;-<span class="st"> </span><span class="kw">sapply</span>(<span class="dv">10</span><span class="op">^</span>(<span class="kw">seq</span>(<span class="dv">8</span>)), binom_sample)</span>
-<span id="cb282-7"><a href="dm-dplyr.html#cb282-7"></a><span class="co"># 估计的误差</span></span>
-<span id="cb282-8"><a href="dm-dplyr.html#cb282-8"></a>one_abs &lt;-<span class="st"> </span><span class="kw">abs</span>(one_prob <span class="op">-</span><span class="st"> </span><span class="fl">0.2</span>)</span>
-<span id="cb282-9"><a href="dm-dplyr.html#cb282-9"></a>one_abs</span>
-<span id="cb282-10"><a href="dm-dplyr.html#cb282-10"></a><span class="co">#&gt; [1] 1.000e-01 1.000e-02 1.100e-02 4.400e-03 1.460e-03 3.980e-04 4.700e-06</span></span>
-<span id="cb282-11"><a href="dm-dplyr.html#cb282-11"></a><span class="co">#&gt; [8] 9.552e-05</span></span></code></pre></div>
+<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="dm-dplyr.html#cb300-1"></a><span class="kw">set.seed</span>(<span class="dv">2019</span>)</span>
+<span id="cb300-2"><a href="dm-dplyr.html#cb300-2"></a>binom_sample &lt;-<span class="st"> </span><span class="cf">function</span>(n) {</span>
+<span id="cb300-3"><a href="dm-dplyr.html#cb300-3"></a>  <span class="kw">sum</span>(<span class="kw">sample</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="dt">size =</span> n, <span class="dt">prob =</span> <span class="kw">c</span>(<span class="fl">0.8</span>, <span class="fl">0.2</span>), <span class="dt">replace =</span> <span class="ot">TRUE</span>))<span class="op">/</span>n</span>
+<span id="cb300-4"><a href="dm-dplyr.html#cb300-4"></a>}</span>
+<span id="cb300-5"><a href="dm-dplyr.html#cb300-5"></a><span class="co"># 频率估计概率</span></span>
+<span id="cb300-6"><a href="dm-dplyr.html#cb300-6"></a>one_prob &lt;-<span class="st"> </span><span class="kw">sapply</span>(<span class="dv">10</span><span class="op">^</span>(<span class="kw">seq</span>(<span class="dv">8</span>)), binom_sample)</span>
+<span id="cb300-7"><a href="dm-dplyr.html#cb300-7"></a><span class="co"># 估计的误差</span></span>
+<span id="cb300-8"><a href="dm-dplyr.html#cb300-8"></a>one_abs &lt;-<span class="st"> </span><span class="kw">abs</span>(one_prob <span class="op">-</span><span class="st"> </span><span class="fl">0.2</span>)</span>
+<span id="cb300-9"><a href="dm-dplyr.html#cb300-9"></a>one_abs</span>
+<span id="cb300-10"><a href="dm-dplyr.html#cb300-10"></a><span class="co">#&gt; [1] 1.000e-01 1.000e-02 1.100e-02 4.400e-03 1.460e-03 3.980e-04 4.700e-06</span></span>
+<span id="cb300-11"><a href="dm-dplyr.html#cb300-11"></a><span class="co">#&gt; [8] 9.552e-05</span></span></code></pre></div>
 <p>似然估计</p>
 </div>
 <div id="dm-dplyr-session-info" class="section level2">
 <h2><span class="header-section-number">5.4</span> 运行环境</h2>
-<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="dm-dplyr.html#cb283-1"></a>xfun<span class="op">::</span><span class="kw">session_info</span>(<span class="st">&#39;tidyverse&#39;</span>)</span>
-<span id="cb283-2"><a href="dm-dplyr.html#cb283-2"></a><span class="co">#&gt; R version 3.6.1 (2019-07-05)</span></span>
-<span id="cb283-3"><a href="dm-dplyr.html#cb283-3"></a><span class="co">#&gt; Platform: x86_64-pc-linux-gnu (64-bit)</span></span>
-<span id="cb283-4"><a href="dm-dplyr.html#cb283-4"></a><span class="co">#&gt; Running under: Debian GNU/Linux 10 (buster)</span></span>
-<span id="cb283-5"><a href="dm-dplyr.html#cb283-5"></a><span class="co">#&gt; </span></span>
-<span id="cb283-6"><a href="dm-dplyr.html#cb283-6"></a><span class="co">#&gt; Locale:</span></span>
-<span id="cb283-7"><a href="dm-dplyr.html#cb283-7"></a><span class="co">#&gt;   LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              </span></span>
-<span id="cb283-8"><a href="dm-dplyr.html#cb283-8"></a><span class="co">#&gt;   LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    </span></span>
-<span id="cb283-9"><a href="dm-dplyr.html#cb283-9"></a><span class="co">#&gt;   LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   </span></span>
-<span id="cb283-10"><a href="dm-dplyr.html#cb283-10"></a><span class="co">#&gt;   LC_PAPER=en_US.UTF-8       LC_NAME=C                 </span></span>
-<span id="cb283-11"><a href="dm-dplyr.html#cb283-11"></a><span class="co">#&gt;   LC_ADDRESS=C               LC_TELEPHONE=C            </span></span>
-<span id="cb283-12"><a href="dm-dplyr.html#cb283-12"></a><span class="co">#&gt;   LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       </span></span>
-<span id="cb283-13"><a href="dm-dplyr.html#cb283-13"></a><span class="co">#&gt; </span></span>
-<span id="cb283-14"><a href="dm-dplyr.html#cb283-14"></a><span class="co">#&gt; Package version:</span></span>
-<span id="cb283-15"><a href="dm-dplyr.html#cb283-15"></a><span class="co">#&gt;   askpass_1.1        assertthat_0.2.1   backports_1.1.4   </span></span>
-<span id="cb283-16"><a href="dm-dplyr.html#cb283-16"></a><span class="co">#&gt;   base64enc_0.1.3    BH_1.69.0.1        broom_0.5.2       </span></span>
-<span id="cb283-17"><a href="dm-dplyr.html#cb283-17"></a><span class="co">#&gt;   callr_3.3.1        cellranger_1.1.0   cli_1.1.0         </span></span>
-<span id="cb283-18"><a href="dm-dplyr.html#cb283-18"></a><span class="co">#&gt;   clipr_0.7.0        colorspace_1.4.1   crayon_1.3.4      </span></span>
-<span id="cb283-19"><a href="dm-dplyr.html#cb283-19"></a><span class="co">#&gt;   curl_4.0           DBI_1.0.0          dbplyr_1.4.2      </span></span>
-<span id="cb283-20"><a href="dm-dplyr.html#cb283-20"></a><span class="co">#&gt;   digest_0.6.20      dplyr_0.8.3        ellipsis_0.2.0.1  </span></span>
-<span id="cb283-21"><a href="dm-dplyr.html#cb283-21"></a><span class="co">#&gt;   evaluate_0.14      fansi_0.4.0        forcats_0.4.0     </span></span>
-<span id="cb283-22"><a href="dm-dplyr.html#cb283-22"></a><span class="co">#&gt;   fs_1.3.1           generics_0.0.2     ggplot2_3.2.0     </span></span>
-<span id="cb283-23"><a href="dm-dplyr.html#cb283-23"></a><span class="co">#&gt;   glue_1.3.1         graphics_3.6.1     grDevices_3.6.1   </span></span>
-<span id="cb283-24"><a href="dm-dplyr.html#cb283-24"></a><span class="co">#&gt;   grid_3.6.1         gtable_0.3.0       haven_2.1.1       </span></span>
-<span id="cb283-25"><a href="dm-dplyr.html#cb283-25"></a><span class="co">#&gt;   highr_0.8          hms_0.5.0          htmltools_0.3.6   </span></span>
-<span id="cb283-26"><a href="dm-dplyr.html#cb283-26"></a><span class="co">#&gt;   httr_1.4.0         jsonlite_1.6       knitr_1.23        </span></span>
-<span id="cb283-27"><a href="dm-dplyr.html#cb283-27"></a><span class="co">#&gt;   labeling_0.3       lattice_0.20.38    lazyeval_0.2.2    </span></span>
-<span id="cb283-28"><a href="dm-dplyr.html#cb283-28"></a><span class="co">#&gt;   lubridate_1.7.4    magrittr_1.5       markdown_1.0      </span></span>
-<span id="cb283-29"><a href="dm-dplyr.html#cb283-29"></a><span class="co">#&gt;   MASS_7.3.51.4      Matrix_1.2.17      methods_3.6.1     </span></span>
-<span id="cb283-30"><a href="dm-dplyr.html#cb283-30"></a><span class="co">#&gt;   mgcv_1.8.28        mime_0.7           modelr_0.1.4      </span></span>
-<span id="cb283-31"><a href="dm-dplyr.html#cb283-31"></a><span class="co">#&gt;   munsell_0.5.0      nlme_3.1.140       openssl_1.4.1     </span></span>
-<span id="cb283-32"><a href="dm-dplyr.html#cb283-32"></a><span class="co">#&gt;   pillar_1.4.2       pkgconfig_2.0.2    plogr_0.2.0       </span></span>
-<span id="cb283-33"><a href="dm-dplyr.html#cb283-33"></a><span class="co">#&gt;   plyr_1.8.4         prettyunits_1.0.2  processx_3.4.1    </span></span>
-<span id="cb283-34"><a href="dm-dplyr.html#cb283-34"></a><span class="co">#&gt;   progress_1.2.2     ps_1.3.0           purrr_0.3.2       </span></span>
-<span id="cb283-35"><a href="dm-dplyr.html#cb283-35"></a><span class="co">#&gt;   R6_2.4.0           RColorBrewer_1.1.2 Rcpp_1.0.2        </span></span>
-<span id="cb283-36"><a href="dm-dplyr.html#cb283-36"></a><span class="co">#&gt;   readr_1.3.1        readxl_1.3.1       rematch_1.0.1     </span></span>
-<span id="cb283-37"><a href="dm-dplyr.html#cb283-37"></a><span class="co">#&gt;   reprex_0.3.0       reshape2_1.4.3     rlang_0.4.0       </span></span>
-<span id="cb283-38"><a href="dm-dplyr.html#cb283-38"></a><span class="co">#&gt;   rmarkdown_1.14     rstudioapi_0.10    rvest_0.3.4       </span></span>
-<span id="cb283-39"><a href="dm-dplyr.html#cb283-39"></a><span class="co">#&gt;   scales_1.0.0       selectr_0.4.1      splines_3.6.1     </span></span>
-<span id="cb283-40"><a href="dm-dplyr.html#cb283-40"></a><span class="co">#&gt;   stats_3.6.1        stringi_1.4.3      stringr_1.4.0     </span></span>
-<span id="cb283-41"><a href="dm-dplyr.html#cb283-41"></a><span class="co">#&gt;   sys_3.2            tibble_2.1.3       tidyr_0.8.3       </span></span>
-<span id="cb283-42"><a href="dm-dplyr.html#cb283-42"></a><span class="co">#&gt;   tidyselect_0.2.5   tidyverse_1.2.1    tinytex_0.14      </span></span>
-<span id="cb283-43"><a href="dm-dplyr.html#cb283-43"></a><span class="co">#&gt;   tools_3.6.1        utf8_1.1.4         utils_3.6.1       </span></span>
-<span id="cb283-44"><a href="dm-dplyr.html#cb283-44"></a><span class="co">#&gt;   vctrs_0.2.0        viridisLite_0.3.0  whisker_0.3.2     </span></span>
-<span id="cb283-45"><a href="dm-dplyr.html#cb283-45"></a><span class="co">#&gt;   withr_2.1.2        xfun_0.8           xml2_1.2.0        </span></span>
-<span id="cb283-46"><a href="dm-dplyr.html#cb283-46"></a><span class="co">#&gt;   yaml_2.2.0         zeallot_0.1.0</span></span></code></pre></div>
+<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="dm-dplyr.html#cb301-1"></a>xfun<span class="op">::</span><span class="kw">session_info</span>(<span class="st">&#39;tidyverse&#39;</span>)</span>
+<span id="cb301-2"><a href="dm-dplyr.html#cb301-2"></a><span class="co">#&gt; R version 3.6.1 (2019-07-05)</span></span>
+<span id="cb301-3"><a href="dm-dplyr.html#cb301-3"></a><span class="co">#&gt; Platform: x86_64-pc-linux-gnu (64-bit)</span></span>
+<span id="cb301-4"><a href="dm-dplyr.html#cb301-4"></a><span class="co">#&gt; Running under: Debian GNU/Linux 10 (buster)</span></span>
+<span id="cb301-5"><a href="dm-dplyr.html#cb301-5"></a><span class="co">#&gt; </span></span>
+<span id="cb301-6"><a href="dm-dplyr.html#cb301-6"></a><span class="co">#&gt; Locale:</span></span>
+<span id="cb301-7"><a href="dm-dplyr.html#cb301-7"></a><span class="co">#&gt;   LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              </span></span>
+<span id="cb301-8"><a href="dm-dplyr.html#cb301-8"></a><span class="co">#&gt;   LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    </span></span>
+<span id="cb301-9"><a href="dm-dplyr.html#cb301-9"></a><span class="co">#&gt;   LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   </span></span>
+<span id="cb301-10"><a href="dm-dplyr.html#cb301-10"></a><span class="co">#&gt;   LC_PAPER=en_US.UTF-8       LC_NAME=C                 </span></span>
+<span id="cb301-11"><a href="dm-dplyr.html#cb301-11"></a><span class="co">#&gt;   LC_ADDRESS=C               LC_TELEPHONE=C            </span></span>
+<span id="cb301-12"><a href="dm-dplyr.html#cb301-12"></a><span class="co">#&gt;   LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       </span></span>
+<span id="cb301-13"><a href="dm-dplyr.html#cb301-13"></a><span class="co">#&gt; </span></span>
+<span id="cb301-14"><a href="dm-dplyr.html#cb301-14"></a><span class="co">#&gt; Package version:</span></span>
+<span id="cb301-15"><a href="dm-dplyr.html#cb301-15"></a><span class="co">#&gt;   askpass_1.1        assertthat_0.2.1   backports_1.1.4   </span></span>
+<span id="cb301-16"><a href="dm-dplyr.html#cb301-16"></a><span class="co">#&gt;   base64enc_0.1.3    BH_1.69.0.1        broom_0.5.2       </span></span>
+<span id="cb301-17"><a href="dm-dplyr.html#cb301-17"></a><span class="co">#&gt;   callr_3.3.1        cellranger_1.1.0   cli_1.1.0         </span></span>
+<span id="cb301-18"><a href="dm-dplyr.html#cb301-18"></a><span class="co">#&gt;   clipr_0.7.0        colorspace_1.4.1   crayon_1.3.4      </span></span>
+<span id="cb301-19"><a href="dm-dplyr.html#cb301-19"></a><span class="co">#&gt;   curl_4.0           DBI_1.0.0          dbplyr_1.4.2      </span></span>
+<span id="cb301-20"><a href="dm-dplyr.html#cb301-20"></a><span class="co">#&gt;   digest_0.6.20      dplyr_0.8.3        ellipsis_0.2.0.1  </span></span>
+<span id="cb301-21"><a href="dm-dplyr.html#cb301-21"></a><span class="co">#&gt;   evaluate_0.14      fansi_0.4.0        forcats_0.4.0     </span></span>
+<span id="cb301-22"><a href="dm-dplyr.html#cb301-22"></a><span class="co">#&gt;   fs_1.3.1           generics_0.0.2     ggplot2_3.2.0     </span></span>
+<span id="cb301-23"><a href="dm-dplyr.html#cb301-23"></a><span class="co">#&gt;   glue_1.3.1         graphics_3.6.1     grDevices_3.6.1   </span></span>
+<span id="cb301-24"><a href="dm-dplyr.html#cb301-24"></a><span class="co">#&gt;   grid_3.6.1         gtable_0.3.0       haven_2.1.1       </span></span>
+<span id="cb301-25"><a href="dm-dplyr.html#cb301-25"></a><span class="co">#&gt;   highr_0.8          hms_0.5.0          htmltools_0.3.6   </span></span>
+<span id="cb301-26"><a href="dm-dplyr.html#cb301-26"></a><span class="co">#&gt;   httr_1.4.0         jsonlite_1.6       knitr_1.23        </span></span>
+<span id="cb301-27"><a href="dm-dplyr.html#cb301-27"></a><span class="co">#&gt;   labeling_0.3       lattice_0.20.38    lazyeval_0.2.2    </span></span>
+<span id="cb301-28"><a href="dm-dplyr.html#cb301-28"></a><span class="co">#&gt;   lubridate_1.7.4    magrittr_1.5       markdown_1.0      </span></span>
+<span id="cb301-29"><a href="dm-dplyr.html#cb301-29"></a><span class="co">#&gt;   MASS_7.3.51.4      Matrix_1.2.17      methods_3.6.1     </span></span>
+<span id="cb301-30"><a href="dm-dplyr.html#cb301-30"></a><span class="co">#&gt;   mgcv_1.8.28        mime_0.7           modelr_0.1.4      </span></span>
+<span id="cb301-31"><a href="dm-dplyr.html#cb301-31"></a><span class="co">#&gt;   munsell_0.5.0      nlme_3.1.140       openssl_1.4.1     </span></span>
+<span id="cb301-32"><a href="dm-dplyr.html#cb301-32"></a><span class="co">#&gt;   pillar_1.4.2       pkgconfig_2.0.2    plogr_0.2.0       </span></span>
+<span id="cb301-33"><a href="dm-dplyr.html#cb301-33"></a><span class="co">#&gt;   plyr_1.8.4         prettyunits_1.0.2  processx_3.4.1    </span></span>
+<span id="cb301-34"><a href="dm-dplyr.html#cb301-34"></a><span class="co">#&gt;   progress_1.2.2     ps_1.3.0           purrr_0.3.2       </span></span>
+<span id="cb301-35"><a href="dm-dplyr.html#cb301-35"></a><span class="co">#&gt;   R6_2.4.0           RColorBrewer_1.1.2 Rcpp_1.0.2        </span></span>
+<span id="cb301-36"><a href="dm-dplyr.html#cb301-36"></a><span class="co">#&gt;   readr_1.3.1        readxl_1.3.1       rematch_1.0.1     </span></span>
+<span id="cb301-37"><a href="dm-dplyr.html#cb301-37"></a><span class="co">#&gt;   reprex_0.3.0       reshape2_1.4.3     rlang_0.4.0       </span></span>
+<span id="cb301-38"><a href="dm-dplyr.html#cb301-38"></a><span class="co">#&gt;   rmarkdown_1.14     rstudioapi_0.10    rvest_0.3.4       </span></span>
+<span id="cb301-39"><a href="dm-dplyr.html#cb301-39"></a><span class="co">#&gt;   scales_1.0.0       selectr_0.4.1      splines_3.6.1     </span></span>
+<span id="cb301-40"><a href="dm-dplyr.html#cb301-40"></a><span class="co">#&gt;   stats_3.6.1        stringi_1.4.3      stringr_1.4.0     </span></span>
+<span id="cb301-41"><a href="dm-dplyr.html#cb301-41"></a><span class="co">#&gt;   sys_3.2            tibble_2.1.3       tidyr_0.8.3       </span></span>
+<span id="cb301-42"><a href="dm-dplyr.html#cb301-42"></a><span class="co">#&gt;   tidyselect_0.2.5   tidyverse_1.2.1    tinytex_0.14      </span></span>
+<span id="cb301-43"><a href="dm-dplyr.html#cb301-43"></a><span class="co">#&gt;   tools_3.6.1        utf8_1.1.4         utils_3.6.1       </span></span>
+<span id="cb301-44"><a href="dm-dplyr.html#cb301-44"></a><span class="co">#&gt;   vctrs_0.2.0        viridisLite_0.3.0  whisker_0.3.2     </span></span>
+<span id="cb301-45"><a href="dm-dplyr.html#cb301-45"></a><span class="co">#&gt;   withr_2.1.2        xfun_0.8           xml2_1.2.0        </span></span>
+<span id="cb301-46"><a href="dm-dplyr.html#cb301-46"></a><span class="co">#&gt;   yaml_2.2.0         zeallot_0.1.0</span></span></code></pre></div>
 
 </div>
 </div>
