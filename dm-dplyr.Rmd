@@ -8,7 +8,7 @@
 ::: sidebar
 更加高级的数据变形操作，特别是数据类型的一致性，方便后续的可视化和建模，引入 tidyverse，数据处理或者叫特征工程 Base R vs data.table vs dplyr 它们各有优点，所以都加以介绍 参考 [Jozef Hajnala](https://jozef.io/categories/rcase4base/) 博文。
 
-关于 tidyverse 提供的数据操作不要移动到 Base R 对应的章节，这二者已经越行越远，本章主要讲并行或分布式数据操作工具，如 SparkR sparklyr 针对大数据集上的操
+关于 tidyverse 提供的数据操作不要移动到 Base R 对应的章节，这二者已经越行越远，本章主要讲并行或分布式数据操作工具，如 sparklyr 针对大数据集上的操
 
 Base R 的数据操作的一致性问题参见统计之都帖子 <https://d.cosx.org/d/420763>
 
@@ -91,17 +91,86 @@ Table: (\#tab:dplyr-object-type) dplyr 定义的数据对象类型
 
 表 \@ref(tab:dplyr-object-type) 中 dttm 和 date 类型代指 lubridate 包指定的日期对象 POSIXct、 POSIXlt、 Date、 chron、 yearmon、 yearqtr、 zoo、 zooreg、 timeDate、 xts、 its、 ti、 jul、 timeSeries 和 fts。
 
-### 筛选 {#dplyr-subset}
+### 筛选 {#dplyr-filter}
 
-### 排序 {#dplyr-order}
+按条件筛选数据的子集，按行筛选
 
-### 聚合 {#dplyr-aggregate}
+```{r}
+diamonds %>% filter(cut == "Ideal" , carat >= 3)
+```
+
+先按行，再按列筛选
+
+```{r}
+diamonds %>% 
+  filter(carat >= 3, color == "I") %>% 
+  select(cut, carat)
+```
+
+### 排序 {#dplyr-arrange}
+
+arrange 默认升序排列，按钻石重量升序，按价格降序
+
+```{r}
+diamonds %>% 
+  filter(cut == "Ideal" , carat >= 3) %>% 
+  arrange(carat, desc(price))
+```
+
+### 聚合 {#dplyr-summarise}
+
+分组求和，求平均，计数
+
+```{r}
+diamonds %>% 
+  filter(carat > 3, color == "I") %>% 
+  group_by(cut, clarity) %>% 
+  summarise(sum_carat = sum(carat), mean_carat = mean(carat), n_count = n())
+```
+
 
 ### 合并 {#dplyr-merge}
 
-### 重塑 {#dplyr-reshape}
+按行合并
 
-### 变换 {#dplyr-transform}
+```{r}
+set.seed(2018)
+one <- diamonds %>% 
+  filter(color == "I") %>% 
+  sample_n(5)
+two <- diamonds %>% 
+  filter(color == "J") %>% 
+  sample_n(5)
+# 按行合并数据框 one 和 two
+bind_rows(one, two)
+```
+
+按列合并
+
+```{r}
+set.seed(2018)
+three <- diamonds %>% 
+  select(carat, color) %>% 
+  sample_n(5)
+four <- diamonds %>% 
+  select(carat, color) %>% 
+  sample_n(5)
+bind_cols(three, four)
+```
+
+
+### 变换 {#dplyr-mutate}
+
+添加一列，新的列或者改变原来的列
+
+```{r}
+diamonds %>% 
+  filter(carat > 3, color == "I") %>% 
+  select(cut, carat) %>% 
+  mutate(vol = if_else(carat > 3.5, "A", "B"))
+```
+
+
 
 ### 去重 {#dplyr-duplicated}
 
@@ -115,9 +184,20 @@ df <- data.frame(
   z = 1:10
 )
 df
+```
+
+去掉列重复的数据点 (x, y) 
+
+```{r}
 df %>%
   group_by(x, y) %>%
   filter(row_number(z) == 1)
+# 此处不对，没有了 z 
+df %>%
+  distinct(x, y)
+# 应该为
+df %>%
+  distinct(x, y, .keep_all = TRUE)
 ```
 
 [^dplyr-duplicated]: https://stackoverflow.com/questions/22959635/
@@ -131,6 +211,7 @@ df %>%
 1. 按指定的列对数据框排序，
 1. 选择特定的一些列，复杂情况是可能需要正则表达式从列名或者值中筛选
 1. 合并两个数据框，分为 (inner outer left right) 四种情况
+1. 宽格式和长格式互相转换，即重塑操作 reshape，单独的 tidyr 包操作，是 reshape2 包的进化版，提供 `spread` 和 `gather` 两个主要函数
 
 ### 初始化数据框 {#create-empty-dataframe}
 
@@ -170,7 +251,7 @@ d <- function() data.frame(
     User = character(),
     stringsAsFactors = FALSE
   )
-# microbenchmark::microbenchmark(s(), d())
+microbenchmark::microbenchmark(s(), d())
 ```
 
 ### 移除缺失记录 {#remove-missing-values}
@@ -268,8 +349,8 @@ one_abs
 
 似然估计
 
-## 运行环境 {#dm-dplyr-session-info}
+## 运行环境 {#dm-dplyr-rsession}
 
 ```{r}
-xfun::session_info('tidyverse')
+xfun::session_info()
 ```
