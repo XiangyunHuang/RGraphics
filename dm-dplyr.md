@@ -66,9 +66,9 @@ Dirk Eddelbuettel 的 [Getting Started in R -- Tinyverse Edition](https://github
 
 dplyr 由 Hadley Wickham 主要由开发和维护，是Rstudio公司开源的用于数据处理的一大利器，该包号称“数据操作的语法”，与 ggplot2 对应，也就是说数据处理那一套已经建立完整的和SQL一样的功能。它们都遵循同样的处理逻辑，只不过一个用SQL写，一个用R语言写，处理效率差不多，R语言写的 SQL 会被翻译为 SQL 语句，再传至数据库查询，当然它也支持内存内的数据操作。目前 dplyr 以 dbplyr 为后端支持的数据库有：MySQL、PostgreSQL，SQLite等，完整的支持列表请看 [这里](https://dplyr.tidyverse.org)，连接特定数据库，都是基于 DBI，DBI 即 Database Interface， 是使用C/C++开发的底层数据库接口，是一个统一的关系型数据库连接框架，需要根据不同的具体的数据库进行实例化，才可使用。
 
-dplyr 常用的函数是6个： `arrange` 排序 `filter` 过滤 `select` 选择 `mutate` 变换 `summarise` 汇总 `group_by` 分组
+dplyr 常用的函数是 7 个： `arrange` 排序 `filter` 过滤行 `select` 选择列 `mutate` 变换 `summarise` 汇总 `group_by` 分组 `distinct` 去重
 
-以 GGplot2 自带的钻石数据集diamonds为例介绍
+以 ggplot2 包自带的钻石数据集 diamonds 为例介绍
 
 ### 查看 {#tibble-show}
 
