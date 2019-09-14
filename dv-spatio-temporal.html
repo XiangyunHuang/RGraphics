@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>第 11 章 时空可视化 | 数据科学与 R 语言</title>
+  <meta name="description" content="数据操作、数据分析、数据建模、动态报告和数据可视化" />
+  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="第 11 章 时空可视化 | 数据科学与 R 语言" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="https://bookdown.org/xiangyun/RGraphics/" />
+  
+  <meta property="og:description" content="数据操作、数据分析、数据建模、动态报告和数据可视化" />
+  <meta name="github-repo" content="XiangyunHuang/RGraphics" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="第 11 章 时空可视化 | 数据科学与 R 语言" />
+  
+  <meta name="twitter:description" content="数据操作、数据分析、数据建模、动态报告和数据可视化" />
+  
+
+<meta name="author" content="黄湘云" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="dv-plotly.html"/>
+<link rel="next" href="cs-cran-network.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">数据可视化与R语言</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>欢迎</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#why-r"><i class="fa fa-check"></i>Why R</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#who-read-this-book"><i class="fa fa-check"></i>目标读者</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#Getting-Help-with-R"><i class="fa fa-check"></i>获取帮助</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#history-of-r"><i class="fa fa-check"></i>发展历史</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#conventions"><i class="fa fa-check"></i>记号约定</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#session-info"><i class="fa fa-check"></i>运行环境</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>前言</a><ul>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#what-talk-about"><i class="fa fa-check"></i>关于本书</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#structure-of-book"><i class="fa fa-check"></i>本书结构</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#about-author"><i class="fa fa-check"></i>关于作者</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="setup-startup.html"><a href="setup-startup.html"><i class="fa fa-check"></i><b>1</b> 安装与配置</a><ul>
+<li class="chapter" data-level="1.1" data-path="setup-startup.html"><a href="setup-startup.html#repo-install"><i class="fa fa-check"></i><b>1.1</b> 仓库安装</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="setup-startup.html"><a href="setup-startup.html#ubuntu"><i class="fa fa-check"></i><b>1.1.1</b> Ubuntu</a></li>
+<li class="chapter" data-level="1.1.2" data-path="setup-startup.html"><a href="setup-startup.html#centos"><i class="fa fa-check"></i><b>1.1.2</b> CentOS</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="setup-startup.html"><a href="setup-startup.html#source-install"><i class="fa fa-check"></i><b>1.2</b> 源码安装</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="setup-startup.html"><a href="setup-startup.html#ubuntu-1"><i class="fa fa-check"></i><b>1.2.1</b> Ubuntu</a></li>
+<li class="chapter" data-level="1.2.2" data-path="setup-startup.html"><a href="setup-startup.html#centos-1"><i class="fa fa-check"></i><b>1.2.2</b> CentOS</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="setup-startup.html"><a href="setup-startup.html#ninja-install"><i class="fa fa-check"></i><b>1.3</b> 忍者安装</a></li>
+<li class="chapter" data-level="1.4" data-path="setup-startup.html"><a href="setup-startup.html#settings"><i class="fa fa-check"></i><b>1.4</b> 配置</a><ul>
+<li class="chapter" data-level="1.4.1" data-path="setup-startup.html"><a href="setup-startup.html#init-session"><i class="fa fa-check"></i><b>1.4.1</b> 初始会话 <code>.Rprofile</code></a></li>
+<li class="chapter" data-level="1.4.2" data-path="setup-startup.html"><a href="setup-startup.html#environ-vars"><i class="fa fa-check"></i><b>1.4.2</b> 环境变量 <code>.Renviron</code></a></li>
+<li class="chapter" data-level="1.4.3" data-path="setup-startup.html"><a href="setup-startup.html#make-vars"><i class="fa fa-check"></i><b>1.4.3</b> 编译选项 <code>Makevars</code></a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="setup-startup.html"><a href="setup-startup.html#command-line-arguments"><i class="fa fa-check"></i><b>1.5</b> 命令行参数</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="file-manipulation.html"><a href="file-manipulation.html"><i class="fa fa-check"></i><b>2</b> 文件管理员</a><ul>
+<li class="chapter" data-level="2.1" data-path="file-manipulation.html"><a href="file-manipulation.html#list"><i class="fa fa-check"></i><b>2.1</b> 查看文件</a></li>
+<li class="chapter" data-level="2.2" data-path="file-manipulation.html"><a href="file-manipulation.html#manipulation"><i class="fa fa-check"></i><b>2.2</b> 操作文件</a></li>
+<li class="chapter" data-level="2.3" data-path="file-manipulation.html"><a href="file-manipulation.html#compression"><i class="fa fa-check"></i><b>2.3</b> 压缩文件</a></li>
+<li class="chapter" data-level="2.4" data-path="file-manipulation.html"><a href="file-manipulation.html#paths"><i class="fa fa-check"></i><b>2.4</b> 路径操作</a></li>
+<li class="chapter" data-level="2.5" data-path="file-manipulation.html"><a href="file-manipulation.html#find"><i class="fa fa-check"></i><b>2.5</b> 查找文件</a></li>
+<li class="chapter" data-level="2.6" data-path="file-manipulation.html"><a href="file-manipulation.html#permissions"><i class="fa fa-check"></i><b>2.6</b> 文件权限</a></li>
+<li class="chapter" data-level="2.7" data-path="file-manipulation.html"><a href="file-manipulation.html#locale"><i class="fa fa-check"></i><b>2.7</b> 区域设置</a></li>
+<li class="chapter" data-level="2.8" data-path="file-manipulation.html"><a href="file-manipulation.html#process"><i class="fa fa-check"></i><b>2.8</b> 进程管理</a></li>
+<li class="chapter" data-level="2.9" data-path="file-manipulation.html"><a href="file-manipulation.html#system-commands"><i class="fa fa-check"></i><b>2.9</b> 系统命令</a></li>
+<li class="chapter" data-level="2.10" data-path="file-manipulation.html"><a href="file-manipulation.html#time"><i class="fa fa-check"></i><b>2.10</b> 时间管理</a></li>
+<li class="chapter" data-level="2.11" data-path="file-manipulation.html"><a href="file-manipulation.html#package"><i class="fa fa-check"></i><b>2.11</b> R 包管理</a></li>
+<li class="chapter" data-level="2.12" data-path="file-manipulation.html"><a href="file-manipulation.html#lookup-function"><i class="fa fa-check"></i><b>2.12</b> 查找函数</a></li>
+<li class="chapter" data-level="2.13" data-path="file-manipulation.html"><a href="file-manipulation.html#files-session-info"><i class="fa fa-check"></i><b>2.13</b> 运行环境</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="dm-import-export.html"><a href="dm-import-export.html"><i class="fa fa-check"></i><b>3</b> 数据搬运工</a><ul>
+<li class="chapter" data-level="3.1" data-path="dm-import-export.html"><a href="dm-import-export.html#import-data"><i class="fa fa-check"></i><b>3.1</b> 导入数据</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="dm-import-export.html"><a href="dm-import-export.html#scan-file"><i class="fa fa-check"></i><b>3.1.1</b> <code>scan</code></a></li>
+<li class="chapter" data-level="3.1.2" data-path="dm-import-export.html"><a href="dm-import-export.html#read-write-table"><i class="fa fa-check"></i><b>3.1.2</b> <code>read.table</code></a></li>
+<li class="chapter" data-level="3.1.3" data-path="dm-import-export.html"><a href="dm-import-export.html#read-write-lines"><i class="fa fa-check"></i><b>3.1.3</b> <code>readLines</code></a></li>
+<li class="chapter" data-level="3.1.4" data-path="dm-import-export.html"><a href="dm-import-export.html#read-save-rds"><i class="fa fa-check"></i><b>3.1.4</b> <code>readRDS</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="dm-import-export.html"><a href="dm-import-export.html#other-data-source"><i class="fa fa-check"></i><b>3.2</b> 其它数据格式</a></li>
+<li class="chapter" data-level="3.3" data-path="dm-import-export.html"><a href="dm-import-export.html#import-large-dataset"><i class="fa fa-check"></i><b>3.3</b> 导入大数据集</a></li>
+<li class="chapter" data-level="3.4" data-path="dm-import-export.html"><a href="dm-import-export.html#import-data-from-database"><i class="fa fa-check"></i><b>3.4</b> 从数据库导入</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="dm-import-export.html"><a href="dm-import-export.html#postgresql"><i class="fa fa-check"></i><b>3.4.1</b> PostgreSQL</a></li>
+<li class="chapter" data-level="3.4.2" data-path="dm-import-export.html"><a href="dm-import-export.html#mysql"><i class="fa fa-check"></i><b>3.4.2</b> MySQL</a></li>
+<li class="chapter" data-level="3.4.3" data-path="dm-import-export.html"><a href="dm-import-export.html#spark"><i class="fa fa-check"></i><b>3.4.3</b> Spark</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="dm-import-export.html"><a href="dm-import-export.html#batch-import-data"><i class="fa fa-check"></i><b>3.5</b> 批量导入数据</a></li>
+<li class="chapter" data-level="3.6" data-path="dm-import-export.html"><a href="dm-import-export.html#batch-export-data"><i class="fa fa-check"></i><b>3.6</b> 批量导出数据</a></li>
+<li class="chapter" data-level="3.7" data-path="dm-import-export.html"><a href="dm-import-export.html#export-data"><i class="fa fa-check"></i><b>3.7</b> 导出数据</a><ul>
+<li class="chapter" data-level="3.7.1" data-path="dm-import-export.html"><a href="dm-import-export.html#export-output"><i class="fa fa-check"></i><b>3.7.1</b> 导出运行结果</a></li>
+<li class="chapter" data-level="3.7.2" data-path="dm-import-export.html"><a href="dm-import-export.html#export-data-object"><i class="fa fa-check"></i><b>3.7.2</b> 导出数据对象</a></li>
+</ul></li>
+<li class="chapter" data-level="3.8" data-path="dm-import-export.html"><a href="dm-import-export.html#dm-session-info"><i class="fa fa-check"></i><b>3.8</b> 运行环境</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="dm-base-r.html"><a href="dm-base-r.html"><i class="fa fa-check"></i><b>4</b> 数据操作手</a><ul>
+<li class="chapter" data-level="4.1" data-path="dm-base-r.html"><a href="dm-base-r.html#show"><i class="fa fa-check"></i><b>4.1</b> 查看数据</a></li>
+<li class="chapter" data-level="4.2" data-path="dm-base-r.html"><a href="dm-base-r.html#base-reshape"><i class="fa fa-check"></i><b>4.2</b> 数据变形</a></li>
+<li class="chapter" data-level="4.3" data-path="dm-base-r.html"><a href="dm-base-r.html#base-transform"><i class="fa fa-check"></i><b>4.3</b> 数据转换</a></li>
+<li class="chapter" data-level="4.4" data-path="dm-base-r.html"><a href="dm-base-r.html#base-subset"><i class="fa fa-check"></i><b>4.4</b> 提取子集</a></li>
+<li class="chapter" data-level="4.5" data-path="dm-base-r.html"><a href="dm-base-r.html#base-order"><i class="fa fa-check"></i><b>4.5</b> 按列排序</a></li>
+<li class="chapter" data-level="4.6" data-path="dm-base-r.html"><a href="dm-base-r.html#base-split"><i class="fa fa-check"></i><b>4.6</b> 数据拆分</a></li>
+<li class="chapter" data-level="4.7" data-path="dm-base-r.html"><a href="dm-base-r.html#base-merge"><i class="fa fa-check"></i><b>4.7</b> 数据合并</a></li>
+<li class="chapter" data-level="4.8" data-path="dm-base-r.html"><a href="dm-base-r.html#base-duplicated"><i class="fa fa-check"></i><b>4.8</b> 数据去重</a></li>
+<li class="chapter" data-level="4.9" data-path="dm-base-r.html"><a href="dm-base-r.html#base-aggregate"><i class="fa fa-check"></i><b>4.9</b> 数据聚合</a></li>
+<li class="chapter" data-level="4.10" data-path="dm-base-r.html"><a href="dm-base-r.html#base-table"><i class="fa fa-check"></i><b>4.10</b> 表格统计</a></li>
+<li class="chapter" data-level="4.11" data-path="dm-base-r.html"><a href="dm-base-r.html#base-index"><i class="fa fa-check"></i><b>4.11</b> 索引访问</a></li>
+<li class="chapter" data-level="4.12" data-path="dm-base-r.html"><a href="dm-base-r.html#base-array"><i class="fa fa-check"></i><b>4.12</b> 多维数组</a></li>
+<li class="chapter" data-level="4.13" data-path="dm-base-r.html"><a href="dm-base-r.html#base-others"><i class="fa fa-check"></i><b>4.13</b> 其它操作</a><ul>
+<li class="chapter" data-level="4.13.1" data-path="dm-base-r.html"><a href="dm-base-r.html#relist-or-unlist"><i class="fa fa-check"></i><b>4.13.1</b> 列表属性</a></li>
+<li class="chapter" data-level="4.13.2" data-path="dm-base-r.html"><a href="dm-base-r.html#stack-or-unstack"><i class="fa fa-check"></i><b>4.13.2</b> 堆叠向量</a></li>
+<li class="chapter" data-level="4.13.3" data-path="dm-base-r.html"><a href="dm-base-r.html#class-or-unclass"><i class="fa fa-check"></i><b>4.13.3</b> 属性转化</a></li>
+<li class="chapter" data-level="4.13.4" data-path="dm-base-r.html"><a href="dm-base-r.html#attach-or-detach"><i class="fa fa-check"></i><b>4.13.4</b> 绑定环境</a></li>
+<li class="chapter" data-level="4.13.5" data-path="dm-base-r.html"><a href="dm-base-r.html#with-or-within"><i class="fa fa-check"></i><b>4.13.5</b> 数据环境</a></li>
+</ul></li>
+<li class="chapter" data-level="4.14" data-path="dm-base-r.html"><a href="dm-base-r.html#dm-base-session-info"><i class="fa fa-check"></i><b>4.14</b> 运行环境</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="dm-dplyr.html"><a href="dm-dplyr.html"><i class="fa fa-check"></i><b>5</b> 净土化操作</a><ul>
+<li class="chapter" data-level="5.1" data-path="dm-dplyr.html"><a href="dm-dplyr.html#common-operations"><i class="fa fa-check"></i><b>5.1</b> 常用操作</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="dm-dplyr.html"><a href="dm-dplyr.html#tibble-show"><i class="fa fa-check"></i><b>5.1.1</b> 查看</a></li>
+<li class="chapter" data-level="5.1.2" data-path="dm-dplyr.html"><a href="dm-dplyr.html#dplyr-filter"><i class="fa fa-check"></i><b>5.1.2</b> 筛选</a></li>
+<li class="chapter" data-level="5.1.3" data-path="dm-dplyr.html"><a href="dm-dplyr.html#dplyr-arrange"><i class="fa fa-check"></i><b>5.1.3</b> 排序</a></li>
+<li class="chapter" data-level="5.1.4" data-path="dm-dplyr.html"><a href="dm-dplyr.html#dplyr-summarise"><i class="fa fa-check"></i><b>5.1.4</b> 聚合</a></li>
+<li class="chapter" data-level="5.1.5" data-path="dm-dplyr.html"><a href="dm-dplyr.html#dplyr-merge"><i class="fa fa-check"></i><b>5.1.5</b> 合并</a></li>
+<li class="chapter" data-level="5.1.6" data-path="dm-dplyr.html"><a href="dm-dplyr.html#dplyr-mutate"><i class="fa fa-check"></i><b>5.1.6</b> 变换</a></li>
+<li class="chapter" data-level="5.1.7" data-path="dm-dplyr.html"><a href="dm-dplyr.html#dplyr-duplicated"><i class="fa fa-check"></i><b>5.1.7</b> 去重</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="dm-dplyr.html"><a href="dm-dplyr.html#common-dataframe-operations"><i class="fa fa-check"></i><b>5.2</b> 高频问题</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="dm-dplyr.html"><a href="dm-dplyr.html#create-empty-dataframe"><i class="fa fa-check"></i><b>5.2.1</b> 初始化数据框</a></li>
+<li class="chapter" data-level="5.2.2" data-path="dm-dplyr.html"><a href="dm-dplyr.html#remove-missing-values"><i class="fa fa-check"></i><b>5.2.2</b> 移除缺失记录</a></li>
+<li class="chapter" data-level="5.2.3" data-path="dm-dplyr.html"><a href="dm-dplyr.html#coerce-data-type"><i class="fa fa-check"></i><b>5.2.3</b> 数据类型转化</a></li>
+<li class="chapter" data-level="5.2.4" data-path="dm-dplyr.html"><a href="dm-dplyr.html#cross-group-by"><i class="fa fa-check"></i><b>5.2.4</b> 跨列分组求和</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="dm-dplyr.html"><a href="dm-dplyr.html#pipe-manipulation"><i class="fa fa-check"></i><b>5.3</b> 管道操作</a></li>
+<li class="chapter" data-level="5.4" data-path="dm-dplyr.html"><a href="dm-dplyr.html#dm-dplyr-rsession"><i class="fa fa-check"></i><b>5.4</b> 运行环境</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html"><i class="fa fa-check"></i><b>6</b> 字符串操作</a><ul>
+<li class="chapter" data-level="6.1" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#base-count"><i class="fa fa-check"></i><b>6.1</b> 字符数统计</a></li>
+<li class="chapter" data-level="6.2" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#base-translations"><i class="fa fa-check"></i><b>6.2</b> 字符串翻译</a></li>
+<li class="chapter" data-level="6.3" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#base-concatenate"><i class="fa fa-check"></i><b>6.3</b> 字符串连接</a></li>
+<li class="chapter" data-level="6.4" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#base-strsplit"><i class="fa fa-check"></i><b>6.4</b> 字符串拆分</a></li>
+<li class="chapter" data-level="6.5" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#base-match"><i class="fa fa-check"></i><b>6.5</b> 字符串匹配</a></li>
+<li class="chapter" data-level="6.6" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#base-search"><i class="fa fa-check"></i><b>6.6</b> 字符串查询</a></li>
+<li class="chapter" data-level="6.7" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#base-replacement"><i class="fa fa-check"></i><b>6.7</b> 字符串替换</a></li>
+<li class="chapter" data-level="6.8" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#base-extract"><i class="fa fa-check"></i><b>6.8</b> 字符串提取</a></li>
+<li class="chapter" data-level="6.9" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#other-string-op"><i class="fa fa-check"></i><b>6.9</b> 其它操作</a><ul>
+<li class="chapter" data-level="6.9.1" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#strwrap"><i class="fa fa-check"></i><b>6.9.1</b> strwrap</a></li>
+<li class="chapter" data-level="6.9.2" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#strtrim"><i class="fa fa-check"></i><b>6.9.2</b> strtrim</a></li>
+<li class="chapter" data-level="6.9.3" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#strrep"><i class="fa fa-check"></i><b>6.9.3</b> strrep</a></li>
+<li class="chapter" data-level="6.9.4" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#trimws"><i class="fa fa-check"></i><b>6.9.4</b> trimws</a></li>
+</ul></li>
+<li class="chapter" data-level="6.10" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#string-session-info"><i class="fa fa-check"></i><b>6.10</b> 运行环境</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="dc-regular-expressions.html"><a href="dc-regular-expressions.html"><i class="fa fa-check"></i><b>7</b> 正则表达式</a><ul>
+<li class="chapter" data-level="7.1" data-path="dc-regular-expressions.html"><a href="dc-regular-expressions.html#character-constants"><i class="fa fa-check"></i><b>7.1</b> 字符常量</a></li>
+<li class="chapter" data-level="7.2" data-path="dc-regular-expressions.html"><a href="dc-regular-expressions.html#environments"><i class="fa fa-check"></i><b>7.2</b> 软件环境</a></li>
+<li class="chapter" data-level="7.3" data-path="dc-regular-expressions.html"><a href="dc-regular-expressions.html#foundations"><i class="fa fa-check"></i><b>7.3</b> 基本概念</a></li>
+<li class="chapter" data-level="7.4" data-path="dc-regular-expressions.html"><a href="dc-regular-expressions.html#match"><i class="fa fa-check"></i><b>7.4</b> 字符串匹配</a></li>
+<li class="chapter" data-level="7.5" data-path="dc-regular-expressions.html"><a href="dc-regular-expressions.html#concatenation"><i class="fa fa-check"></i><b>7.5</b> 级联表达式</a></li>
+<li class="chapter" data-level="7.6" data-path="dc-regular-expressions.html"><a href="dc-regular-expressions.html#backreference"><i class="fa fa-check"></i><b>7.6</b> 反向引用</a></li>
+<li class="chapter" data-level="7.7" data-path="dc-regular-expressions.html"><a href="dc-regular-expressions.html#named-capture"><i class="fa fa-check"></i><b>7.7</b> 命名捕捉</a></li>
+<li class="chapter" data-level="7.8" data-path="dc-regular-expressions.html"><a href="dc-regular-expressions.html#comment"><i class="fa fa-check"></i><b>7.8</b> 表达式注释</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="dv-plot.html"><a href="dv-plot.html"><i class="fa fa-check"></i><b>8</b> 绘图素材库</a><ul>
+<li class="chapter" data-level="8.1" data-path="dv-plot.html"><a href="dv-plot.html#elements"><i class="fa fa-check"></i><b>8.1</b> 基本要素</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="dv-plot.html"><a href="dv-plot.html#base-points"><i class="fa fa-check"></i><b>8.1.1</b> 点线</a></li>
+<li class="chapter" data-level="8.1.2" data-path="dv-plot.html"><a href="dv-plot.html#base-rect"><i class="fa fa-check"></i><b>8.1.2</b> 区域</a></li>
+<li class="chapter" data-level="8.1.3" data-path="dv-plot.html"><a href="dv-plot.html#base-lines"><i class="fa fa-check"></i><b>8.1.3</b> 参考线</a></li>
+<li class="chapter" data-level="8.1.4" data-path="dv-plot.html"><a href="dv-plot.html#base-axis"><i class="fa fa-check"></i><b>8.1.4</b> 坐标轴</a></li>
+<li class="chapter" data-level="8.1.5" data-path="dv-plot.html"><a href="dv-plot.html#base-tick"><i class="fa fa-check"></i><b>8.1.5</b> 刻度线</a></li>
+<li class="chapter" data-level="8.1.6" data-path="dv-plot.html"><a href="dv-plot.html#base-title"><i class="fa fa-check"></i><b>8.1.6</b> 标题</a></li>
+<li class="chapter" data-level="8.1.7" data-path="dv-plot.html"><a href="dv-plot.html#base-annotation"><i class="fa fa-check"></i><b>8.1.7</b> 注释</a></li>
+<li class="chapter" data-level="8.1.8" data-path="dv-plot.html"><a href="dv-plot.html#base-legend"><i class="fa fa-check"></i><b>8.1.8</b> 图例</a></li>
+<li class="chapter" data-level="8.1.9" data-path="dv-plot.html"><a href="dv-plot.html#base-par"><i class="fa fa-check"></i><b>8.1.9</b> 边空</a></li>
+<li class="chapter" data-level="8.1.10" data-path="dv-plot.html"><a href="dv-plot.html#base-layer"><i class="fa fa-check"></i><b>8.1.10</b> 图层</a></li>
+<li class="chapter" data-level="8.1.11" data-path="dv-plot.html"><a href="dv-plot.html#base-layout"><i class="fa fa-check"></i><b>8.1.11</b> 布局</a></li>
+<li class="chapter" data-level="8.1.12" data-path="dv-plot.html"><a href="dv-plot.html#base-combine"><i class="fa fa-check"></i><b>8.1.12</b> 组合</a></li>
+<li class="chapter" data-level="8.1.13" data-path="dv-plot.html"><a href="dv-plot.html#base-screen"><i class="fa fa-check"></i><b>8.1.13</b> 分屏</a></li>
+<li class="chapter" data-level="8.1.14" data-path="dv-plot.html"><a href="dv-plot.html#identify-locator"><i class="fa fa-check"></i><b>8.1.14</b> 交互</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="dv-plot.html"><a href="dv-plot.html#plot-gallary"><i class="fa fa-check"></i><b>8.2</b> 统计图形</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="dv-plot.html"><a href="dv-plot.html#plot-bar"><i class="fa fa-check"></i><b>8.2.1</b> 条形图</a></li>
+<li class="chapter" data-level="8.2.2" data-path="dv-plot.html"><a href="dv-plot.html#plot-hist"><i class="fa fa-check"></i><b>8.2.2</b> 直方图</a></li>
+<li class="chapter" data-level="8.2.3" data-path="dv-plot.html"><a href="dv-plot.html#plot-density"><i class="fa fa-check"></i><b>8.2.3</b> 密度图</a></li>
+<li class="chapter" data-level="8.2.4" data-path="dv-plot.html"><a href="dv-plot.html#plot-ecdf"><i class="fa fa-check"></i><b>8.2.4</b> 经验图</a></li>
+<li class="chapter" data-level="8.2.5" data-path="dv-plot.html"><a href="dv-plot.html#plot-qqnorm"><i class="fa fa-check"></i><b>8.2.5</b> QQ 图</a></li>
+<li class="chapter" data-level="8.2.6" data-path="dv-plot.html"><a href="dv-plot.html#plot-ts"><i class="fa fa-check"></i><b>8.2.6</b> 时序图</a></li>
+<li class="chapter" data-level="8.2.7" data-path="dv-plot.html"><a href="dv-plot.html#plot-pie"><i class="fa fa-check"></i><b>8.2.7</b> 饼图</a></li>
+<li class="chapter" data-level="8.2.8" data-path="dv-plot.html"><a href="dv-plot.html#plot-stem-leaf"><i class="fa fa-check"></i><b>8.2.8</b> 茎叶图</a></li>
+<li class="chapter" data-level="8.2.9" data-path="dv-plot.html"><a href="dv-plot.html#plot-scatter"><i class="fa fa-check"></i><b>8.2.9</b> 散点图</a></li>
+<li class="chapter" data-level="8.2.10" data-path="dv-plot.html"><a href="dv-plot.html#base-jitter"><i class="fa fa-check"></i><b>8.2.10</b> 抖动图</a></li>
+<li class="chapter" data-level="8.2.11" data-path="dv-plot.html"><a href="dv-plot.html#plot-box"><i class="fa fa-check"></i><b>8.2.11</b> 箱线图</a></li>
+<li class="chapter" data-level="8.2.12" data-path="dv-plot.html"><a href="dv-plot.html#error-bars"><i class="fa fa-check"></i><b>8.2.12</b> 残差图</a></li>
+<li class="chapter" data-level="8.2.13" data-path="dv-plot.html"><a href="dv-plot.html#plot-violin"><i class="fa fa-check"></i><b>8.2.13</b> 提琴图</a></li>
+<li class="chapter" data-level="8.2.14" data-path="dv-plot.html"><a href="dv-plot.html#plot-contour"><i class="fa fa-check"></i><b>8.2.14</b> 轮廓图</a></li>
+<li class="chapter" data-level="8.2.15" data-path="dv-plot.html"><a href="dv-plot.html#plot-line"><i class="fa fa-check"></i><b>8.2.15</b> 折线图</a></li>
+<li class="chapter" data-level="8.2.16" data-path="dv-plot.html"><a href="dv-plot.html#function"><i class="fa fa-check"></i><b>8.2.16</b> 函数图</a></li>
+<li class="chapter" data-level="8.2.17" data-path="dv-plot.html"><a href="dv-plot.html#plot-mosaic"><i class="fa fa-check"></i><b>8.2.17</b> 马赛克图</a></li>
+<li class="chapter" data-level="8.2.18" data-path="dv-plot.html"><a href="dv-plot.html#plot-dotchart"><i class="fa fa-check"></i><b>8.2.18</b> 克利夫兰点图</a></li>
+<li class="chapter" data-level="8.2.19" data-path="dv-plot.html"><a href="dv-plot.html#plot-matrix"><i class="fa fa-check"></i><b>8.2.19</b> 矩阵图</a></li>
+<li class="chapter" data-level="8.2.20" data-path="dv-plot.html"><a href="dv-plot.html#plot-radar"><i class="fa fa-check"></i><b>8.2.20</b> 雷达图</a></li>
+<li class="chapter" data-level="8.2.21" data-path="dv-plot.html"><a href="dv-plot.html#plot-rose"><i class="fa fa-check"></i><b>8.2.21</b> 玫瑰图</a></li>
+<li class="chapter" data-level="8.2.22" data-path="dv-plot.html"><a href="dv-plot.html#plot-map"><i class="fa fa-check"></i><b>8.2.22</b> 地形图</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="dv-plot.html"><a href="dv-plot.html#plot-session-info"><i class="fa fa-check"></i><b>8.3</b> 运行环境</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html"><i class="fa fa-check"></i><b>9</b> 数据可视化</a><ul>
+<li class="chapter" data-level="9.1" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#intro-ggplot2"><i class="fa fa-check"></i><b>9.1</b> 基础语法</a><ul>
+<li class="chapter" data-level="9.1.1" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-layer"><i class="fa fa-check"></i><b>9.1.1</b> 图层</a></li>
+<li class="chapter" data-level="9.1.2" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-theme"><i class="fa fa-check"></i><b>9.1.2</b> 主题</a></li>
+<li class="chapter" data-level="9.1.3" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-color"><i class="fa fa-check"></i><b>9.1.3</b> 配色</a></li>
+<li class="chapter" data-level="9.1.4" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-scale"><i class="fa fa-check"></i><b>9.1.4</b> 刻度</a></li>
+<li class="chapter" data-level="9.1.5" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-annotate"><i class="fa fa-check"></i><b>9.1.5</b> 注释</a></li>
+<li class="chapter" data-level="9.1.6" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-legend"><i class="fa fa-check"></i><b>9.1.6</b> 图例</a></li>
+<li class="chapter" data-level="9.1.7" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-grid"><i class="fa fa-check"></i><b>9.1.7</b> 组合</a></li>
+<li class="chapter" data-level="9.1.8" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-coord"><i class="fa fa-check"></i><b>9.1.8</b> 坐标系</a></li>
+<li class="chapter" data-level="9.1.9" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-axes"><i class="fa fa-check"></i><b>9.1.9</b> 坐标轴</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-gallary"><i class="fa fa-check"></i><b>9.2</b> 统计图形</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-scatter"><i class="fa fa-check"></i><b>9.2.1</b> 散点图</a></li>
+<li class="chapter" data-level="9.2.2" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-boxplot"><i class="fa fa-check"></i><b>9.2.2</b> 箱线图</a></li>
+<li class="chapter" data-level="9.2.3" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-barplot"><i class="fa fa-check"></i><b>9.2.3</b> 条形图</a></li>
+<li class="chapter" data-level="9.2.4" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-line"><i class="fa fa-check"></i><b>9.2.4</b> 折线图</a></li>
+<li class="chapter" data-level="9.2.5" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-histogram"><i class="fa fa-check"></i><b>9.2.5</b> 直方图</a></li>
+<li class="chapter" data-level="9.2.6" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-violin"><i class="fa fa-check"></i><b>9.2.6</b> 提琴图</a></li>
+<li class="chapter" data-level="9.2.7" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-jitter"><i class="fa fa-check"></i><b>9.2.7</b> 抖动图</a></li>
+<li class="chapter" data-level="9.2.8" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-ridge"><i class="fa fa-check"></i><b>9.2.8</b> 密度图</a></li>
+<li class="chapter" data-level="9.2.9" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-rose"><i class="fa fa-check"></i><b>9.2.9</b> 玫瑰图</a></li>
+<li class="chapter" data-level="9.2.10" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-wordcloud"><i class="fa fa-check"></i><b>9.2.10</b> 词云图</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-session-info"><i class="fa fa-check"></i><b>9.3</b> 运行环境</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="dv-plotly.html"><a href="dv-plotly.html"><i class="fa fa-check"></i><b>10</b> 交互式图形</a><ul>
+<li class="chapter" data-level="10.1" data-path="dv-plotly.html"><a href="dv-plotly.html#plotly"><i class="fa fa-check"></i><b>10.1</b> plotly</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html"><i class="fa fa-check"></i><b>11</b> 时空可视化</a><ul>
+<li class="chapter" data-level="11.1" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#map"><i class="fa fa-check"></i><b>11.1</b> 地图</a><ul>
+<li class="chapter" data-level="11.1.1" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#project-orientation"><i class="fa fa-check"></i><b>11.1.1</b> 投影和观察方位</a></li>
+<li class="chapter" data-level="11.1.2" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#USA-crime-rates"><i class="fa fa-check"></i><b>11.1.2</b> 美国各州犯罪率</a></li>
+<li class="chapter" data-level="11.1.3" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#fiji-earthquake-map"><i class="fa fa-check"></i><b>11.1.3</b> 斐济地震带</a></li>
+<li class="chapter" data-level="11.1.4" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#USA-unemployment-ratio"><i class="fa fa-check"></i><b>11.1.4</b> 美国各城镇失业率</a></li>
+</ul></li>
+<li class="chapter" data-level="11.2" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#spatial-op"><i class="fa fa-check"></i><b>11.2</b> 空间数据对象</a><ul>
+<li class="chapter" data-level="11.2.1" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#ggplot2-sp"><i class="fa fa-check"></i><b>11.2.1</b> sp</a></li>
+<li class="chapter" data-level="11.2.2" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#ggplot2-raster"><i class="fa fa-check"></i><b>11.2.2</b> raster</a></li>
+<li class="chapter" data-level="11.2.3" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#ggplot2-sf"><i class="fa fa-check"></i><b>11.2.3</b> sf</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="cs-cran-network.html"><a href="cs-cran-network.html"><i class="fa fa-check"></i><b>12</b> 案例：分析 CRAN</a><ul>
+<li class="chapter" data-level="12.1" data-path="cs-cran-network.html"><a href="cs-cran-network.html#R-Core-Team"><i class="fa fa-check"></i><b>12.1</b> R 核心团队</a></li>
+<li class="chapter" data-level="12.2" data-path="cs-cran-network.html"><a href="cs-cran-network.html#Top-Creators"><i class="fa fa-check"></i><b>12.2</b> 高产的开发者</a></li>
+<li class="chapter" data-level="12.3" data-path="cs-cran-network.html"><a href="cs-cran-network.html#R-Package-Developers"><i class="fa fa-check"></i><b>12.3</b> 社区开发者</a></li>
+<li class="chapter" data-level="12.4" data-path="cs-cran-network.html"><a href="cs-cran-network.html#first-commit"><i class="fa fa-check"></i><b>12.4</b> 首次贡献 R 包</a></li>
+<li class="chapter" data-level="12.5" data-path="cs-cran-network.html"><a href="cs-cran-network.html#Contribution-Network"><i class="fa fa-check"></i><b>12.5</b> 贡献关系网络</a></li>
+<li class="chapter" data-level="12.6" data-path="cs-cran-network.html"><a href="cs-cran-network.html#CRAN-Update-Packages"><i class="fa fa-check"></i><b>12.6</b> 更新知多少</a></li>
+<li class="chapter" data-level="12.7" data-path="cs-cran-network.html"><a href="cs-cran-network.html#Package-Licenses"><i class="fa fa-check"></i><b>12.7</b> 使用许可证</a></li>
+<li class="chapter" data-level="12.8" data-path="cs-cran-network.html"><a href="cs-cran-network.html#r-"><i class="fa fa-check"></i><b>12.8</b> R 包增长速度</a></li>
+<li class="chapter" data-level="12.9" data-path="cs-cran-network.html"><a href="cs-cran-network.html#Choose-Package"><i class="fa fa-check"></i><b>12.9</b> 选择 R 包</a></li>
+<li class="chapter" data-level="12.10" data-path="cs-cran-network.html"><a href="cs-cran-network.html#cs-network-session-info"><i class="fa fa-check"></i><b>12.10</b> 运行环境</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="99-references.html"><a href="99-references.html"><i class="fa fa-check"></i>参考文献</a></li>
+<li class="divider"></li>
+<li><a href="https://r-graphics.netlify.com/" target="blank">Published with netlify</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">数据科学与 R 语言</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="ggplot2-Spatio-Temporal-Data-Visualization" class="section level1">
+<h1><span class="header-section-number">第 11 章</span> 时空可视化</h1>
+<div class="sourceCode" id="cb539"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb539-1"><a href="dv-spatio-temporal.html#cb539-1"></a><span class="kw">library</span>(ggplot2)</span>
+<span id="cb539-2"><a href="dv-spatio-temporal.html#cb539-2"></a><span class="kw">library</span>(magrittr)</span>
+<span id="cb539-3"><a href="dv-spatio-temporal.html#cb539-3"></a><span class="kw">options</span>(</span>
+<span id="cb539-4"><a href="dv-spatio-temporal.html#cb539-4"></a>  <span class="dt">ggplot2.continuous.colour =</span> <span class="st">&quot;viridis&quot;</span>,</span>
+<span id="cb539-5"><a href="dv-spatio-temporal.html#cb539-5"></a>  <span class="dt">ggplot2.continuous.fill =</span> <span class="st">&quot;viridis&quot;</span></span>
+<span id="cb539-6"><a href="dv-spatio-temporal.html#cb539-6"></a>)</span></code></pre></div>
+<blockquote>
+<p>Robert J. Hijmans<a href="99-references.html#fn32" class="footnote-ref" id="fnref32"><sup>32</sup></a> 开发了 <a href="https://github.com/rspatial/raster">raster</a> 包用于网格空间数据的读、写、操作、分析和建模，同时维护了空间数据分析的网站 <a href="https://www.rspatial.org" class="uri">https://www.rspatial.org</a></p>
+</blockquote>
+<blockquote>
+<p>Edzer Pebesma<a href="99-references.html#fn33" class="footnote-ref" id="fnref33"><sup>33</sup></a> 和 Roger Bivand 等创建了 <a href="https://github.com/edzer/sp/">sp</a> 包定义了空间数据类型和方法，提供了大量的空间数据操作方法，同时维护了空间数据对象 sp 的绘图网站 <a href="https://edzer.github.io/sp/" class="uri">https://edzer.github.io/sp/</a>，他们也一起合作写了新书 <a href="https://keen-swartz-3146c4.netlify.com/">Spatial Data Science</a>，提供了在线 <a href="https://www.r-spatial.org/book/">网页版</a> 书籍及其 <a href="https://github.com/edzer/sdsr">源代码</a></p>
+</blockquote>
+<blockquote>
+<p>Edzer Pebesma 后来开发了 <a href="https://github.com/r-spatial/sf/">sf</a> 包重新定义了空间数据对象和操作方法，并维护了空间数据分析、建模和可视化网站 <a href="https://www.r-spatial.org/" class="uri">https://www.r-spatial.org/</a></p>
+</blockquote>
+<p>课程案例学习</p>
+<ol style="list-style-type: decimal">
+<li><a href="https://datacarpentry.org/r-raster-vector-geospatial/">2018-Introduction to Geospatial Raster and Vector Data with R</a> 空间数据分析课程</li>
+<li><a href="http://freerangestats.info">Peter Ellis</a> 新西兰大选和普查数据 <a href="http://freerangestats.info/blog/nz.html">More cartograms of New Zealand census data: district and city level</a></li>
+<li><a href="http://sharpsightlabs.com/blog/map-oil-production-country-r/">2017-Mapping oil production by country in R</a> 石油产量在全球的分布</li>
+<li><a href="https://www.sharpsightlabs.com/blog/highlight-countries-on-map/">2017-How to highlight countries on a map</a> 高亮地图上的国家</li>
+<li><a href="https://ryanpeek.github.io/2017-11-21-mapping-with-sf-part-3/">2017-Mapping With Sf: Part 3</a></li>
+<li><a href="https://ignaciomsarmiento.github.io/software.html">Data Visualization Shiny Apps</a> 数据可视化核密度估计 In this app I identify crime hotspots using a bivariate density estimation strategy</li>
+<li><a href="http://www.rpubs.com/cgarey/ProjectOneFinal">Association of Statisticians of American Religious Bodies (ASARB) viridis USA map</a></li>
+<li><a href="https://www1.nyc.gov/site/tlc/about/tlc-trip-record-data.page">出租车行车轨迹数据</a></li>
+<li><a href="https://carto.com/blog/geospatial-processing-with-clickhouse/">Geospatial processing with Clickhouse-CARTO Blog</a></li>
+</ol>
+<div id="map" class="section level2">
+<h2><span class="header-section-number">11.1</span> 地图</h2>
+<p>我们先来看看中国及其周边，这个地图的缺陷就是中国南海及九段线没有标记，台湾和中国大陆不是一种颜色标记，地图数据来自 R 包的 maps 和 mapdata</p>
+<div class="sourceCode" id="cb540"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb540-1"><a href="dv-spatio-temporal.html#cb540-1"></a><span class="kw">library</span>(maps)</span>
+<span id="cb540-2"><a href="dv-spatio-temporal.html#cb540-2"></a><span class="kw">library</span>(mapdata)</span>
+<span id="cb540-3"><a href="dv-spatio-temporal.html#cb540-3"></a>east_asia &lt;-<span class="st"> </span><span class="kw">map_data</span>(<span class="st">&quot;worldHires&quot;</span>,</span>
+<span id="cb540-4"><a href="dv-spatio-temporal.html#cb540-4"></a>  <span class="dt">region =</span> <span class="kw">c</span>(</span>
+<span id="cb540-5"><a href="dv-spatio-temporal.html#cb540-5"></a>    <span class="st">&quot;Japan&quot;</span>, <span class="st">&quot;Taiwan&quot;</span>, <span class="st">&quot;China&quot;</span>,</span>
+<span id="cb540-6"><a href="dv-spatio-temporal.html#cb540-6"></a>    <span class="st">&quot;North Korea&quot;</span>, <span class="st">&quot;South Korea&quot;</span></span>
+<span id="cb540-7"><a href="dv-spatio-temporal.html#cb540-7"></a>  )</span>
+<span id="cb540-8"><a href="dv-spatio-temporal.html#cb540-8"></a>)</span>
+<span id="cb540-9"><a href="dv-spatio-temporal.html#cb540-9"></a></span>
+<span id="cb540-10"><a href="dv-spatio-temporal.html#cb540-10"></a><span class="kw">ggplot</span>(east_asia, <span class="kw">aes</span>(<span class="dt">x =</span> long, <span class="dt">y =</span> lat, <span class="dt">group =</span> group, <span class="dt">fill =</span> region)) <span class="op">+</span></span>
+<span id="cb540-11"><a href="dv-spatio-temporal.html#cb540-11"></a><span class="st">  </span><span class="kw">geom_polygon</span>(<span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>) <span class="op">+</span></span>
+<span id="cb540-12"><a href="dv-spatio-temporal.html#cb540-12"></a><span class="st">  </span><span class="kw">scale_fill_brewer</span>(<span class="dt">palette =</span> <span class="st">&quot;Set2&quot;</span>)</span></code></pre></div>
+<p><img src="dv-spatio-temporal_files/figure-html/unnamed-chunk-3-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<div id="project-orientation" class="section level3">
+<h3><span class="header-section-number">11.1.1</span> 投影和观察方位</h3>
+<p>世界地图引发的 <a href="https://d.cosx.org/d/420808" class="uri">https://d.cosx.org/d/420808</a></p>
+<div class="sourceCode" id="cb541"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb541-1"><a href="dv-spatio-temporal.html#cb541-1"></a>worldmap &lt;-<span class="st"> </span><span class="kw">map_data</span>(<span class="st">&quot;world&quot;</span>)</span>
+<span id="cb541-2"><a href="dv-spatio-temporal.html#cb541-2"></a></span>
+<span id="cb541-3"><a href="dv-spatio-temporal.html#cb541-3"></a><span class="kw">ggplot</span>(worldmap, <span class="kw">aes</span>(long, lat, <span class="dt">group =</span> group)) <span class="op">+</span></span>
+<span id="cb541-4"><a href="dv-spatio-temporal.html#cb541-4"></a><span class="st">  </span><span class="kw">geom_polygon</span>() <span class="op">+</span></span>
+<span id="cb541-5"><a href="dv-spatio-temporal.html#cb541-5"></a><span class="st">  </span><span class="kw">coord_map</span>(</span>
+<span id="cb541-6"><a href="dv-spatio-temporal.html#cb541-6"></a>    <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">120</span>, <span class="dv">40</span>), <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">30</span>, <span class="dv">90</span>),</span>
+<span id="cb541-7"><a href="dv-spatio-temporal.html#cb541-7"></a>    <span class="dt">orientation =</span> <span class="kw">c</span>(<span class="dv">90</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span>
+<span id="cb541-8"><a href="dv-spatio-temporal.html#cb541-8"></a>  )</span>
+<span id="cb541-9"><a href="dv-spatio-temporal.html#cb541-9"></a></span>
+<span id="cb541-10"><a href="dv-spatio-temporal.html#cb541-10"></a><span class="co"># 默认mercator投影下的默认视角 c(90, 0, mean(range(x)))</span></span>
+<span id="cb541-11"><a href="dv-spatio-temporal.html#cb541-11"></a><span class="kw">ggplot</span>(worldmap, <span class="kw">aes</span>(long, lat, <span class="dt">group =</span> group)) <span class="op">+</span></span>
+<span id="cb541-12"><a href="dv-spatio-temporal.html#cb541-12"></a><span class="st">  </span><span class="kw">geom_polygon</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> region), <span class="dt">show.legend =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
+<span id="cb541-13"><a href="dv-spatio-temporal.html#cb541-13"></a><span class="st">  </span><span class="kw">coord_map</span>(</span>
+<span id="cb541-14"><a href="dv-spatio-temporal.html#cb541-14"></a>    <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">120</span>, <span class="dv">40</span>), <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">30</span>, <span class="dv">90</span>)</span>
+<span id="cb541-15"><a href="dv-spatio-temporal.html#cb541-15"></a>  )</span>
+<span id="cb541-16"><a href="dv-spatio-temporal.html#cb541-16"></a></span>
+<span id="cb541-17"><a href="dv-spatio-temporal.html#cb541-17"></a><span class="co"># 相当于 (-120 + 40)/2 = -40</span></span>
+<span id="cb541-18"><a href="dv-spatio-temporal.html#cb541-18"></a><span class="kw">ggplot</span>(worldmap, <span class="kw">aes</span>(long, lat, <span class="dt">group =</span> group)) <span class="op">+</span></span>
+<span id="cb541-19"><a href="dv-spatio-temporal.html#cb541-19"></a><span class="st">  </span><span class="kw">geom_polygon</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> region), <span class="dt">show.legend =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
+<span id="cb541-20"><a href="dv-spatio-temporal.html#cb541-20"></a><span class="st">  </span><span class="kw">coord_map</span>(</span>
+<span id="cb541-21"><a href="dv-spatio-temporal.html#cb541-21"></a>    <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">120</span>, <span class="dv">40</span>), <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">30</span>, <span class="dv">90</span>),</span>
+<span id="cb541-22"><a href="dv-spatio-temporal.html#cb541-22"></a>    <span class="dt">orientation =</span> <span class="kw">c</span>(<span class="dv">90</span>, <span class="dv">0</span>, <span class="dv">-40</span>)</span>
+<span id="cb541-23"><a href="dv-spatio-temporal.html#cb541-23"></a>  )</span>
+<span id="cb541-24"><a href="dv-spatio-temporal.html#cb541-24"></a></span>
+<span id="cb541-25"><a href="dv-spatio-temporal.html#cb541-25"></a><span class="co"># 从西经 120 度到东经 40度 不同的看待 range(x)</span></span>
+<span id="cb541-26"><a href="dv-spatio-temporal.html#cb541-26"></a><span class="kw">ggplot</span>(worldmap, <span class="kw">aes</span>(long, lat, <span class="dt">group =</span> group)) <span class="op">+</span></span>
+<span id="cb541-27"><a href="dv-spatio-temporal.html#cb541-27"></a><span class="st">  </span><span class="kw">geom_polygon</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> region), <span class="dt">show.legend =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
+<span id="cb541-28"><a href="dv-spatio-temporal.html#cb541-28"></a><span class="st">  </span><span class="kw">coord_map</span>(</span>
+<span id="cb541-29"><a href="dv-spatio-temporal.html#cb541-29"></a>    <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">120</span>, <span class="dv">40</span>), <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">30</span>, <span class="dv">90</span>),</span>
+<span id="cb541-30"><a href="dv-spatio-temporal.html#cb541-30"></a>    <span class="dt">orientation =</span> <span class="kw">c</span>(<span class="dv">90</span>, <span class="dv">0</span>, <span class="dv">-20</span>)</span>
+<span id="cb541-31"><a href="dv-spatio-temporal.html#cb541-31"></a>  )</span></code></pre></div>
+<p><img src="dv-spatio-temporal_files/figure-html/unnamed-chunk-4-1.png" width="70%" style="display: block; margin: auto;" /><img src="dv-spatio-temporal_files/figure-html/unnamed-chunk-4-2.png" width="70%" style="display: block; margin: auto;" /><img src="dv-spatio-temporal_files/figure-html/unnamed-chunk-4-3.png" width="70%" style="display: block; margin: auto;" /><img src="dv-spatio-temporal_files/figure-html/unnamed-chunk-4-4.png" width="70%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb542"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb542-1"><a href="dv-spatio-temporal.html#cb542-1"></a><span class="co"># 换观察角度</span></span>
+<span id="cb542-2"><a href="dv-spatio-temporal.html#cb542-2"></a><span class="kw">ggplot</span>(worldmap, <span class="kw">aes</span>(long, lat, <span class="dt">group =</span> group)) <span class="op">+</span></span>
+<span id="cb542-3"><a href="dv-spatio-temporal.html#cb542-3"></a><span class="st">  </span><span class="kw">geom_polygon</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> region), <span class="dt">show.legend =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
+<span id="cb542-4"><a href="dv-spatio-temporal.html#cb542-4"></a><span class="st">  </span><span class="kw">coord_map</span>(</span>
+<span id="cb542-5"><a href="dv-spatio-temporal.html#cb542-5"></a>    <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">120</span>, <span class="dv">40</span>), <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">30</span>, <span class="dv">90</span>),</span>
+<span id="cb542-6"><a href="dv-spatio-temporal.html#cb542-6"></a>    <span class="dt">orientation =</span> <span class="kw">c</span>(<span class="dv">90</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span>
+<span id="cb542-7"><a href="dv-spatio-temporal.html#cb542-7"></a>  )</span>
+<span id="cb542-8"><a href="dv-spatio-temporal.html#cb542-8"></a></span>
+<span id="cb542-9"><a href="dv-spatio-temporal.html#cb542-9"></a><span class="co"># 换投影坐标系</span></span>
+<span id="cb542-10"><a href="dv-spatio-temporal.html#cb542-10"></a><span class="kw">ggplot</span>(worldmap, <span class="kw">aes</span>(long, lat, <span class="dt">group =</span> group)) <span class="op">+</span></span>
+<span id="cb542-11"><a href="dv-spatio-temporal.html#cb542-11"></a><span class="st">  </span><span class="kw">geom_polygon</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> region), <span class="dt">show.legend =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
+<span id="cb542-12"><a href="dv-spatio-temporal.html#cb542-12"></a><span class="st">  </span><span class="kw">coord_map</span>(<span class="st">&quot;ortho&quot;</span>,</span>
+<span id="cb542-13"><a href="dv-spatio-temporal.html#cb542-13"></a>    <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">120</span>, <span class="dv">40</span>), <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">30</span>, <span class="dv">90</span>)</span>
+<span id="cb542-14"><a href="dv-spatio-temporal.html#cb542-14"></a>  )</span>
+<span id="cb542-15"><a href="dv-spatio-temporal.html#cb542-15"></a></span>
+<span id="cb542-16"><a href="dv-spatio-temporal.html#cb542-16"></a><span class="co"># 二者皆换</span></span>
+<span id="cb542-17"><a href="dv-spatio-temporal.html#cb542-17"></a><span class="kw">ggplot</span>(worldmap, <span class="kw">aes</span>(long, lat, <span class="dt">group =</span> group)) <span class="op">+</span></span>
+<span id="cb542-18"><a href="dv-spatio-temporal.html#cb542-18"></a><span class="st">  </span><span class="kw">geom_polygon</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> region), <span class="dt">show.legend =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
+<span id="cb542-19"><a href="dv-spatio-temporal.html#cb542-19"></a><span class="st">  </span><span class="kw">coord_map</span>(<span class="st">&quot;ortho&quot;</span>,</span>
+<span id="cb542-20"><a href="dv-spatio-temporal.html#cb542-20"></a>    <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">120</span>, <span class="dv">40</span>), <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">30</span>, <span class="dv">90</span>),</span>
+<span id="cb542-21"><a href="dv-spatio-temporal.html#cb542-21"></a>    <span class="dt">orientation =</span> <span class="kw">c</span>(<span class="dv">90</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span>
+<span id="cb542-22"><a href="dv-spatio-temporal.html#cb542-22"></a>  )</span></code></pre></div>
+<p><img src="dv-spatio-temporal_files/figure-html/unnamed-chunk-5-1.png" width="70%" style="display: block; margin: auto;" /><img src="dv-spatio-temporal_files/figure-html/unnamed-chunk-5-2.png" width="70%" style="display: block; margin: auto;" /><img src="dv-spatio-temporal_files/figure-html/unnamed-chunk-5-3.png" width="70%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="USA-crime-rates" class="section level3">
+<h3><span class="header-section-number">11.1.2</span> 美国各州犯罪率</h3>
+<p>美国各州的犯罪率数据 USArrests</p>
+<p>准备数据集</p>
+<div class="sourceCode" id="cb543"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb543-1"><a href="dv-spatio-temporal.html#cb543-1"></a>crimes &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">state =</span> <span class="kw">tolower</span>(<span class="kw">rownames</span>(USArrests)), USArrests)</span>
+<span id="cb543-2"><a href="dv-spatio-temporal.html#cb543-2"></a>crimesm &lt;-<span class="st"> </span>reshape2<span class="op">::</span><span class="kw">melt</span>(crimes, <span class="dt">id =</span> <span class="dv">1</span>)</span>
+<span id="cb543-3"><a href="dv-spatio-temporal.html#cb543-3"></a><span class="kw">head</span>(crimesm)</span>
+<span id="cb543-4"><a href="dv-spatio-temporal.html#cb543-4"></a><span class="co">#&gt;        state variable value</span></span>
+<span id="cb543-5"><a href="dv-spatio-temporal.html#cb543-5"></a><span class="co">#&gt; 1    alabama   Murder  13.2</span></span>
+<span id="cb543-6"><a href="dv-spatio-temporal.html#cb543-6"></a><span class="co">#&gt; 2     alaska   Murder  10.0</span></span>
+<span id="cb543-7"><a href="dv-spatio-temporal.html#cb543-7"></a><span class="co">#&gt; 3    arizona   Murder   8.1</span></span>
+<span id="cb543-8"><a href="dv-spatio-temporal.html#cb543-8"></a><span class="co">#&gt; 4   arkansas   Murder   8.8</span></span>
+<span id="cb543-9"><a href="dv-spatio-temporal.html#cb543-9"></a><span class="co">#&gt; 5 california   Murder   9.0</span></span>
+<span id="cb543-10"><a href="dv-spatio-temporal.html#cb543-10"></a><span class="co">#&gt; 6   colorado   Murder   7.9</span></span></code></pre></div>
+<p>添加地图数据</p>
+<div class="sourceCode" id="cb544"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb544-1"><a href="dv-spatio-temporal.html#cb544-1"></a><span class="kw">library</span>(maps)</span>
+<span id="cb544-2"><a href="dv-spatio-temporal.html#cb544-2"></a>states_map &lt;-<span class="st"> </span><span class="kw">map_data</span>(<span class="st">&quot;state&quot;</span>)</span>
+<span id="cb544-3"><a href="dv-spatio-temporal.html#cb544-3"></a><span class="kw">head</span>(states_map)</span>
+<span id="cb544-4"><a href="dv-spatio-temporal.html#cb544-4"></a><span class="co">#&gt;        long      lat group order  region subregion</span></span>
+<span id="cb544-5"><a href="dv-spatio-temporal.html#cb544-5"></a><span class="co">#&gt; 1 -87.46201 30.38968     1     1 alabama      &lt;NA&gt;</span></span>
+<span id="cb544-6"><a href="dv-spatio-temporal.html#cb544-6"></a><span class="co">#&gt; 2 -87.48493 30.37249     1     2 alabama      &lt;NA&gt;</span></span>
+<span id="cb544-7"><a href="dv-spatio-temporal.html#cb544-7"></a><span class="co">#&gt; 3 -87.52503 30.37249     1     3 alabama      &lt;NA&gt;</span></span>
+<span id="cb544-8"><a href="dv-spatio-temporal.html#cb544-8"></a><span class="co">#&gt; 4 -87.53076 30.33239     1     4 alabama      &lt;NA&gt;</span></span>
+<span id="cb544-9"><a href="dv-spatio-temporal.html#cb544-9"></a><span class="co">#&gt; 5 -87.57087 30.32665     1     5 alabama      &lt;NA&gt;</span></span>
+<span id="cb544-10"><a href="dv-spatio-temporal.html#cb544-10"></a><span class="co">#&gt; 6 -87.58806 30.32665     1     6 alabama      &lt;NA&gt;</span></span></code></pre></div>
+<p>绘图</p>
+<div class="sourceCode" id="cb545"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb545-1"><a href="dv-spatio-temporal.html#cb545-1"></a><span class="kw">ggplot</span>(crimes, <span class="kw">aes</span>(<span class="dt">map_id =</span> state)) <span class="op">+</span></span>
+<span id="cb545-2"><a href="dv-spatio-temporal.html#cb545-2"></a><span class="st">  </span><span class="kw">geom_map</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> Murder), <span class="dt">map =</span> states_map) <span class="op">+</span></span>
+<span id="cb545-3"><a href="dv-spatio-temporal.html#cb545-3"></a><span class="st">  </span><span class="kw">expand_limits</span>(<span class="dt">x =</span> states_map<span class="op">$</span>long, <span class="dt">y =</span> states_map<span class="op">$</span>lat) <span class="op">+</span></span>
+<span id="cb545-4"><a href="dv-spatio-temporal.html#cb545-4"></a><span class="st">  </span><span class="kw">coord_map</span>()</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-8"></span>
+<img src="dv-spatio-temporal_files/figure-html/unnamed-chunk-8-1.png" alt="1973年美国各州的犯罪率数据" width="70%" />
+<p class="caption">
+图 8.6: 1973年美国各州的犯罪率数据
+</p>
+</div>
+<div class="sourceCode" id="cb546"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb546-1"><a href="dv-spatio-temporal.html#cb546-1"></a><span class="kw">ggplot</span>(crimesm, <span class="kw">aes</span>(<span class="dt">map_id =</span> state)) <span class="op">+</span></span>
+<span id="cb546-2"><a href="dv-spatio-temporal.html#cb546-2"></a><span class="st">  </span><span class="kw">geom_map</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> value), <span class="dt">map =</span> states_map) <span class="op">+</span></span>
+<span id="cb546-3"><a href="dv-spatio-temporal.html#cb546-3"></a><span class="st">  </span><span class="kw">expand_limits</span>(<span class="dt">x =</span> states_map<span class="op">$</span>long, <span class="dt">y =</span> states_map<span class="op">$</span>lat) <span class="op">+</span></span>
+<span id="cb546-4"><a href="dv-spatio-temporal.html#cb546-4"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>variable)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-9"></span>
+<img src="dv-spatio-temporal_files/figure-html/unnamed-chunk-9-1.png" alt="四类犯罪在各州的分布" width="70%" />
+<p class="caption">
+图 11.1: 四类犯罪在各州的分布
+</p>
+</div>
+</div>
+<div id="fiji-earthquake-map" class="section level3">
+<h3><span class="header-section-number">11.1.3</span> 斐济地震带</h3>
+<p>比较 viridis 和 Spectral 两块调色板，如图 <a href="dv-spatio-temporal.html#fig:pickcolor">11.2</a> 所示，可见 Spectral 的可识别性高些</p>
+<div class="sourceCode" id="cb547"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb547-1"><a href="dv-spatio-temporal.html#cb547-1"></a>dat &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(<span class="kw">cbind</span>(<span class="kw">rep</span>(<span class="dv">1948</span> <span class="op">+</span><span class="st"> </span><span class="kw">seq</span>(<span class="dv">12</span>), <span class="dt">each =</span> <span class="dv">12</span>), </span>
+<span id="cb547-2"><a href="dv-spatio-temporal.html#cb547-2"></a>                           <span class="kw">rep</span>(<span class="kw">seq</span>(<span class="dv">12</span>), <span class="dv">12</span>), AirPassengers))</span>
+<span id="cb547-3"><a href="dv-spatio-temporal.html#cb547-3"></a><span class="kw">colnames</span>(dat) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;year&quot;</span>, <span class="st">&quot;month&quot;</span>, <span class="st">&quot;passengers&quot;</span>)</span>
+<span id="cb547-4"><a href="dv-spatio-temporal.html#cb547-4"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> dat, <span class="kw">aes</span>(<span class="kw">as.factor</span>(year), <span class="kw">as.factor</span>(month))) <span class="op">+</span></span>
+<span id="cb547-5"><a href="dv-spatio-temporal.html#cb547-5"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">colour =</span> passengers), <span class="dt">pch =</span> <span class="dv">15</span>, <span class="dt">size =</span> <span class="dv">8</span>) <span class="op">+</span></span>
+<span id="cb547-6"><a href="dv-spatio-temporal.html#cb547-6"></a><span class="st">  </span><span class="kw">scale_colour_distiller</span>(<span class="dt">palette =</span> <span class="st">&quot;Spectral&quot;</span>) <span class="op">+</span></span>
+<span id="cb547-7"><a href="dv-spatio-temporal.html#cb547-7"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Year&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Month&quot;</span>) <span class="op">+</span></span>
+<span id="cb547-8"><a href="dv-spatio-temporal.html#cb547-8"></a><span class="st">  </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:pickcolor"></span>
+<img src="dv-spatio-temporal_files/figure-html/pickcolor-1.png" alt="viridis 和 Spectral对比" width="70%" />
+<p class="caption">
+图 11.2: viridis 和 Spectral对比
+</p>
+</div>
+<p>再举栗子，图<a href="dv-spatio-temporal.html#fig:faithfuld">11.3</a>是正负例对比，其中好在哪里呢？这张图要表达美国黄石国家公园的老忠实泉间歇喷发的时间规律，那么好的标准就是层次分明，以突出不同颜色之间的时间差异。这个差异，还要看起来不那么费眼睛，越一目了然越好。</p>
+<div class="sourceCode" id="cb548"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb548-1"><a href="dv-spatio-temporal.html#cb548-1"></a><span class="kw">library</span>(gridExtra)</span>
+<span id="cb548-2"><a href="dv-spatio-temporal.html#cb548-2"></a>erupt &lt;-<span class="st"> </span><span class="kw">ggplot</span>(faithfuld, <span class="kw">aes</span>(waiting, eruptions, <span class="dt">fill =</span> density)) <span class="op">+</span></span>
+<span id="cb548-3"><a href="dv-spatio-temporal.html#cb548-3"></a><span class="st">  </span><span class="kw">geom_raster</span>() <span class="op">+</span></span>
+<span id="cb548-4"><a href="dv-spatio-temporal.html#cb548-4"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="ot">NULL</span>, <span class="dt">expand =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="op">+</span></span>
+<span id="cb548-5"><a href="dv-spatio-temporal.html#cb548-5"></a><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="ot">NULL</span>, <span class="dt">expand =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="op">+</span></span>
+<span id="cb548-6"><a href="dv-spatio-temporal.html#cb548-6"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span>
+<span id="cb548-7"><a href="dv-spatio-temporal.html#cb548-7"></a>erupt1 &lt;-<span class="st"> </span>erupt <span class="op">+</span><span class="st"> </span><span class="kw">scale_fill_gradientn</span>(<span class="dt">colours =</span> <span class="kw">gray.colors</span>(<span class="dv">7</span>))</span>
+<span id="cb548-8"><a href="dv-spatio-temporal.html#cb548-8"></a>erupt2 &lt;-<span class="st"> </span>erupt <span class="op">+</span><span class="st"> </span><span class="kw">scale_fill_distiller</span>(<span class="dt">palette =</span> <span class="st">&quot;Spectral&quot;</span>)</span>
+<span id="cb548-9"><a href="dv-spatio-temporal.html#cb548-9"></a>erupt3 &lt;-<span class="st"> </span>erupt <span class="op">+</span><span class="st"> </span><span class="kw">scale_fill_gradientn</span>(<span class="dt">colours =</span> <span class="kw">terrain.colors</span>(<span class="dv">7</span>))</span>
+<span id="cb548-10"><a href="dv-spatio-temporal.html#cb548-10"></a>erupt4 &lt;-<span class="st"> </span>erupt</span>
+<span id="cb548-11"><a href="dv-spatio-temporal.html#cb548-11"></a><span class="kw">grid.arrange</span>(erupt1, erupt2, erupt3, erupt4, <span class="dt">ncol =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:faithfuld"></span>
+<img src="dv-spatio-temporal_files/figure-html/faithfuld-1.png" alt="美国黄石国家公园的老忠实泉" width="70%" />
+<p class="caption">
+图 11.3: 美国黄石国家公园的老忠实泉
+</p>
+</div>
+<p>此处调用 RColorBrewer 中 Spectral 调色板，它本来只有11中颜色，通过 <code>scale_colour_distiller</code> 却可以把它映射到连续型数值变量 <code>mag</code> 上，发散型调色板本身的对比性也可以起到很好的区分度，如图 <a href="dv-spatio-temporal.html#fig:fiji-map">11.4</a> 所示</p>
+<div class="sourceCode" id="cb549"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb549-1"><a href="dv-spatio-temporal.html#cb549-1"></a>FijiMap &lt;-<span class="st"> </span><span class="kw">map_data</span>(<span class="st">&quot;worldHires&quot;</span>, <span class="dt">region =</span> <span class="st">&quot;Fiji&quot;</span>)</span>
+<span id="cb549-2"><a href="dv-spatio-temporal.html#cb549-2"></a><span class="kw">ggplot</span>(FijiMap, <span class="kw">aes</span>(<span class="dt">x =</span> long, <span class="dt">y =</span> lat)) <span class="op">+</span></span>
+<span id="cb549-3"><a href="dv-spatio-temporal.html#cb549-3"></a><span class="st">  </span><span class="kw">geom_map</span>(<span class="dt">map =</span> FijiMap, <span class="kw">aes</span>(<span class="dt">map_id =</span> region), <span class="dt">size =</span> <span class="fl">.2</span>) <span class="op">+</span></span>
+<span id="cb549-4"><a href="dv-spatio-temporal.html#cb549-4"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">data =</span> quakes, <span class="kw">aes</span>(<span class="dt">x =</span> long, <span class="dt">y =</span> lat, <span class="dt">colour =</span> mag), <span class="dt">pch =</span> <span class="dv">16</span>) <span class="op">+</span></span>
+<span id="cb549-5"><a href="dv-spatio-temporal.html#cb549-5"></a><span class="st">  </span><span class="kw">xlim</span>(<span class="dv">160</span>, <span class="dv">195</span>) <span class="op">+</span></span>
+<span id="cb549-6"><a href="dv-spatio-temporal.html#cb549-6"></a><span class="st">  </span><span class="kw">scale_colour_distiller</span>(<span class="dt">palette =</span> <span class="st">&quot;Spectral&quot;</span>) <span class="op">+</span></span>
+<span id="cb549-7"><a href="dv-spatio-temporal.html#cb549-7"></a><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">breaks =</span> (<span class="op">-</span><span class="dv">18</span><span class="op">:</span><span class="dv">18</span>) <span class="op">*</span><span class="st"> </span><span class="dv">5</span>) <span class="op">+</span></span>
+<span id="cb549-8"><a href="dv-spatio-temporal.html#cb549-8"></a><span class="st">  </span><span class="kw">coord_map</span>(<span class="st">&quot;ortho&quot;</span>, <span class="dt">orientation =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">10</span>, <span class="dv">180</span>, <span class="dv">0</span>)) <span class="op">+</span></span>
+<span id="cb549-9"><a href="dv-spatio-temporal.html#cb549-9"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">colour =</span> <span class="st">&quot;Magnitude&quot;</span>, <span class="dt">x =</span> <span class="st">&quot;Longitude&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Latitude&quot;</span>) <span class="op">+</span></span>
+<span id="cb549-10"><a href="dv-spatio-temporal.html#cb549-10"></a><span class="st">  </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:fiji-map"></span>
+<img src="dv-spatio-temporal_files/figure-html/fiji-map-1.png" alt="斐济地震带" width="70%" />
+<p class="caption">
+图 11.4: 斐济地震带
+</p>
+</div>
+<p>此外， colormap 包提供更加丰富的调色板，通过 <code>scale_color_colormap</code> 支持 ggplot2 绘图风格</p>
+</div>
+<div id="USA-unemployment-ratio" class="section level3">
+<h3><span class="header-section-number">11.1.4</span> 美国各城镇失业率</h3>
+<div class="sourceCode" id="cb550"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb550-1"><a href="dv-spatio-temporal.html#cb550-1"></a><span class="co"># 数据来源 http://datasets.flowingdata.com/unemployment09.csv</span></span>
+<span id="cb550-2"><a href="dv-spatio-temporal.html#cb550-2"></a>unemp &lt;-<span class="st"> </span><span class="kw">read.csv</span>(</span>
+<span id="cb550-3"><a href="dv-spatio-temporal.html#cb550-3"></a>  <span class="dt">file =</span> <span class="st">&quot;http://datasets.flowingdata.com/unemployment09.csv&quot;</span>,</span>
+<span id="cb550-4"><a href="dv-spatio-temporal.html#cb550-4"></a>  <span class="dt">header =</span> <span class="ot">FALSE</span>, <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span></span>
+<span id="cb550-5"><a href="dv-spatio-temporal.html#cb550-5"></a>)</span>
+<span id="cb550-6"><a href="dv-spatio-temporal.html#cb550-6"></a><span class="kw">names</span>(unemp) &lt;-<span class="st"> </span><span class="kw">c</span>(</span>
+<span id="cb550-7"><a href="dv-spatio-temporal.html#cb550-7"></a>  <span class="st">&quot;id&quot;</span>, <span class="st">&quot;state_fips&quot;</span>, <span class="st">&quot;county_fips&quot;</span>, <span class="st">&quot;name&quot;</span>, <span class="st">&quot;year&quot;</span>,</span>
+<span id="cb550-8"><a href="dv-spatio-temporal.html#cb550-8"></a>  <span class="st">&quot;?&quot;</span>, <span class="st">&quot;?&quot;</span>, <span class="st">&quot;?&quot;</span>, <span class="st">&quot;rate&quot;</span></span>
+<span id="cb550-9"><a href="dv-spatio-temporal.html#cb550-9"></a>)</span>
+<span id="cb550-10"><a href="dv-spatio-temporal.html#cb550-10"></a>unemp<span class="op">$</span>county &lt;-<span class="st"> </span><span class="kw">tolower</span>(<span class="kw">gsub</span>(<span class="st">&quot; County, [A-Z]{2}&quot;</span>, <span class="st">&quot;&quot;</span>, unemp<span class="op">$</span>name))</span>
+<span id="cb550-11"><a href="dv-spatio-temporal.html#cb550-11"></a>unemp<span class="op">$</span>state &lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot;^.*([A-Z]{2}).*$&quot;</span>, <span class="st">&quot;</span><span class="ch">\\</span><span class="st">1&quot;</span>, unemp<span class="op">$</span>name)</span>
+<span id="cb550-12"><a href="dv-spatio-temporal.html#cb550-12"></a></span>
+<span id="cb550-13"><a href="dv-spatio-temporal.html#cb550-13"></a>county_df &lt;-<span class="st"> </span><span class="kw">map_data</span>(<span class="st">&quot;county&quot;</span>)</span>
+<span id="cb550-14"><a href="dv-spatio-temporal.html#cb550-14"></a><span class="kw">names</span>(county_df) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;long&quot;</span>, <span class="st">&quot;lat&quot;</span>, <span class="st">&quot;group&quot;</span>, <span class="st">&quot;order&quot;</span>, <span class="st">&quot;state_name&quot;</span>, <span class="st">&quot;county&quot;</span>)</span>
+<span id="cb550-15"><a href="dv-spatio-temporal.html#cb550-15"></a>county_df<span class="op">$</span>state &lt;-<span class="st"> </span>state.abb[<span class="kw">match</span>(county_df<span class="op">$</span>state_name, <span class="kw">tolower</span>(state.name))]</span>
+<span id="cb550-16"><a href="dv-spatio-temporal.html#cb550-16"></a>county_df<span class="op">$</span>state_name &lt;-<span class="st"> </span><span class="ot">NULL</span></span>
+<span id="cb550-17"><a href="dv-spatio-temporal.html#cb550-17"></a></span>
+<span id="cb550-18"><a href="dv-spatio-temporal.html#cb550-18"></a>state_df &lt;-<span class="st"> </span><span class="kw">map_data</span>(<span class="st">&quot;state&quot;</span>)</span>
+<span id="cb550-19"><a href="dv-spatio-temporal.html#cb550-19"></a><span class="co"># Combine together</span></span>
+<span id="cb550-20"><a href="dv-spatio-temporal.html#cb550-20"></a>choropleth &lt;-<span class="st"> </span><span class="kw">merge</span>(county_df, unemp, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;state&quot;</span>, <span class="st">&quot;county&quot;</span>))</span>
+<span id="cb550-21"><a href="dv-spatio-temporal.html#cb550-21"></a>choropleth &lt;-<span class="st"> </span>choropleth[<span class="kw">order</span>(choropleth<span class="op">$</span>order), ]</span>
+<span id="cb550-22"><a href="dv-spatio-temporal.html#cb550-22"></a>choropleth<span class="op">$</span>rate_d &lt;-<span class="st"> </span><span class="kw">cut</span>(choropleth<span class="op">$</span>rate, <span class="dt">breaks =</span> <span class="kw">c</span>(<span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dt">by =</span> <span class="dv">2</span>), <span class="dv">35</span>))</span>
+<span id="cb550-23"><a href="dv-spatio-temporal.html#cb550-23"></a></span>
+<span id="cb550-24"><a href="dv-spatio-temporal.html#cb550-24"></a><span class="kw">library</span>(ggthemes)</span>
+<span id="cb550-25"><a href="dv-spatio-temporal.html#cb550-25"></a><span class="kw">ggplot</span>(choropleth, <span class="kw">aes</span>(long, lat, <span class="dt">group =</span> group)) <span class="op">+</span></span>
+<span id="cb550-26"><a href="dv-spatio-temporal.html#cb550-26"></a><span class="st">  </span><span class="kw">geom_polygon</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> rate_d), <span class="dt">colour =</span> <span class="kw">alpha</span>(<span class="st">&quot;white&quot;</span>, <span class="dv">1</span> <span class="op">/</span><span class="st"> </span><span class="dv">4</span>), <span class="dt">size =</span> <span class="fl">0.2</span>) <span class="op">+</span></span>
+<span id="cb550-27"><a href="dv-spatio-temporal.html#cb550-27"></a><span class="st">  </span><span class="kw">geom_polygon</span>(<span class="dt">data =</span> state_df, <span class="dt">colour =</span> <span class="st">&quot;white&quot;</span>, <span class="dt">fill =</span> <span class="ot">NA</span>) <span class="op">+</span></span>
+<span id="cb550-28"><a href="dv-spatio-temporal.html#cb550-28"></a><span class="st">  </span><span class="kw">scale_fill_brewer</span>(<span class="dt">palette =</span> <span class="st">&quot;PuRd&quot;</span>) <span class="op">+</span></span>
+<span id="cb550-29"><a href="dv-spatio-temporal.html#cb550-29"></a><span class="st">  </span><span class="kw">labs</span>(</span>
+<span id="cb550-30"><a href="dv-spatio-temporal.html#cb550-30"></a>    <span class="dt">fill =</span> <span class="st">&quot;ratio&quot;</span>, <span class="dt">title =</span> <span class="st">&quot;ratio of unemployment by county, 2009&quot;</span>,</span>
+<span id="cb550-31"><a href="dv-spatio-temporal.html#cb550-31"></a>    <span class="dt">caption =</span> <span class="st">&quot;data source: http://datasets.flowingdata.com/unemployment09.csv&quot;</span></span>
+<span id="cb550-32"><a href="dv-spatio-temporal.html#cb550-32"></a>  ) <span class="op">+</span></span>
+<span id="cb550-33"><a href="dv-spatio-temporal.html#cb550-33"></a><span class="st">  </span><span class="kw">coord_map</span>(<span class="st">&quot;polyconic&quot;</span>) <span class="op">+</span></span>
+<span id="cb550-34"><a href="dv-spatio-temporal.html#cb550-34"></a><span class="st">  </span><span class="kw">theme_map</span>()</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:unemploymentGG"></span>
+<img src="dv-spatio-temporal_files/figure-html/unemploymentGG-1.png" alt="2009年美国各城镇失业率" width="70%" />
+<p class="caption">
+图 11.5: 2009年美国各城镇失业率
+</p>
+</div>
+<p>美国各地区失业率地图，配不同颜色， <a href="https://github.com/bhaskarvk/colormap">colormap</a> 适合给静态图配色</p>
+</div>
+</div>
+<div id="spatial-op" class="section level2">
+<h2><span class="header-section-number">11.2</span> 空间数据对象</h2>
+<div id="ggplot2-sp" class="section level3">
+<h3><span class="header-section-number">11.2.1</span> sp</h3>
+<p>空间数据对象，以类 sp 方式存储 <span class="citation">(Pebesma and Bivand <a href="#ref-Pebesma_2005_sp" role="doc-biblioref">2005</a>)</span></p>
+<div class="sourceCode" id="cb551"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb551-1"><a href="dv-spatio-temporal.html#cb551-1"></a><span class="kw">library</span>(sp)</span>
+<span id="cb551-2"><a href="dv-spatio-temporal.html#cb551-2"></a>crs =<span class="st"> </span><span class="kw">CRS</span>(<span class="st">&quot;+init=epsg:28992&quot;</span>)</span>
+<span id="cb551-3"><a href="dv-spatio-temporal.html#cb551-3"></a><span class="kw">data</span>(<span class="st">&quot;meuse&quot;</span>)</span>
+<span id="cb551-4"><a href="dv-spatio-temporal.html#cb551-4"></a><span class="kw">coordinates</span>(meuse) &lt;-<span class="st"> </span><span class="er">~</span>x<span class="op">+</span>y</span>
+<span id="cb551-5"><a href="dv-spatio-temporal.html#cb551-5"></a><span class="kw">proj4string</span>(meuse) &lt;-<span class="st"> </span>crs</span>
+<span id="cb551-6"><a href="dv-spatio-temporal.html#cb551-6"></a><span class="kw">class</span>(meuse)</span>
+<span id="cb551-7"><a href="dv-spatio-temporal.html#cb551-7"></a><span class="co">#&gt; [1] &quot;SpatialPointsDataFrame&quot;</span></span>
+<span id="cb551-8"><a href="dv-spatio-temporal.html#cb551-8"></a><span class="co">#&gt; attr(,&quot;package&quot;)</span></span>
+<span id="cb551-9"><a href="dv-spatio-temporal.html#cb551-9"></a><span class="co">#&gt; [1] &quot;sp&quot;</span></span>
+<span id="cb551-10"><a href="dv-spatio-temporal.html#cb551-10"></a><span class="kw">proj4string</span>(meuse)</span>
+<span id="cb551-11"><a href="dv-spatio-temporal.html#cb551-11"></a><span class="co">#&gt; [1] &quot;+init=epsg:28992 +proj=sterea +lat_0=52.15616055555555 +lon_0=5.38763888888889 +k=0.9999079 +x_0=155000 +y_0=463000 +ellps=bessel +towgs84=565.2369,50.0087,465.658,-0.406857,0.350733,-1.87035,4.0812 +units=m +no_defs&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb552"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb552-1"><a href="dv-spatio-temporal.html#cb552-1"></a><span class="kw">plot</span>(meuse, <span class="dt">axes =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-11"></span>
+<img src="dv-spatio-temporal_files/figure-html/unnamed-chunk-11-1.png" alt="sp 对象" width="58.33%" />
+<p class="caption">
+图 11.6: sp 对象
+</p>
+</div>
+<div class="sourceCode" id="cb553"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb553-1"><a href="dv-spatio-temporal.html#cb553-1"></a>crs.longlat &lt;-<span class="st"> </span><span class="kw">CRS</span>(<span class="st">&quot;+init=epsg:4326&quot;</span>)</span>
+<span id="cb553-2"><a href="dv-spatio-temporal.html#cb553-2"></a>meuse.longlat &lt;-<span class="st"> </span><span class="kw">spTransform</span>(meuse, crs.longlat)</span>
+<span id="cb553-3"><a href="dv-spatio-temporal.html#cb553-3"></a><span class="kw">plot</span>(meuse.longlat, <span class="dt">axes =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-12"></span>
+<img src="dv-spatio-temporal_files/figure-html/unnamed-chunk-12-1.png" alt="sp 对象" width="58.33%" />
+<p class="caption">
+图 11.7: sp 对象
+</p>
+</div>
+<div class="sourceCode" id="cb554"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb554-1"><a href="dv-spatio-temporal.html#cb554-1"></a><span class="kw">library</span>(maptools)</span>
+<span id="cb554-2"><a href="dv-spatio-temporal.html#cb554-2"></a><span class="co">#&gt; Checking rgeos availability: TRUE</span></span>
+<span id="cb554-3"><a href="dv-spatio-temporal.html#cb554-3"></a>fname &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">&quot;shapes/sids.shp&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;maptools&quot;</span>)</span>
+<span id="cb554-4"><a href="dv-spatio-temporal.html#cb554-4"></a>p4s &lt;-<span class="st"> </span><span class="kw">CRS</span>(<span class="st">&quot;+proj=longlat +datum=NAD27&quot;</span>)</span>
+<span id="cb554-5"><a href="dv-spatio-temporal.html#cb554-5"></a>nc &lt;-<span class="st"> </span><span class="kw">readShapePoly</span>(fname, <span class="dt">proj4string =</span> p4s)</span>
+<span id="cb554-6"><a href="dv-spatio-temporal.html#cb554-6"></a><span class="co">#&gt; Warning: readShapePoly is deprecated; use rgdal::readOGR or sf::st_read</span></span>
+<span id="cb554-7"><a href="dv-spatio-temporal.html#cb554-7"></a><span class="kw">plot</span>(nc, <span class="dt">axes =</span> <span class="ot">TRUE</span>, <span class="dt">col =</span> <span class="kw">grey</span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span>nc<span class="op">$</span>SID79 <span class="op">/</span><span class="st"> </span><span class="dv">57</span>))</span></code></pre></div>
+<p><img src="dv-spatio-temporal_files/figure-html/unnamed-chunk-13-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb555"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb555-1"><a href="dv-spatio-temporal.html#cb555-1"></a><span class="co"># Trellis maps</span></span>
+<span id="cb555-2"><a href="dv-spatio-temporal.html#cb555-2"></a>arrow &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="st">&quot;SpatialPolygonsRescale&quot;</span>,</span>
+<span id="cb555-3"><a href="dv-spatio-temporal.html#cb555-3"></a>  <span class="kw">layout.north.arrow</span>(<span class="dv">2</span>),</span>
+<span id="cb555-4"><a href="dv-spatio-temporal.html#cb555-4"></a>  <span class="dt">offset =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">76</span>, <span class="dv">34</span>), <span class="dt">scale =</span> <span class="fl">0.5</span>, <span class="dt">which =</span> <span class="dv">2</span></span>
+<span id="cb555-5"><a href="dv-spatio-temporal.html#cb555-5"></a>)</span>
+<span id="cb555-6"><a href="dv-spatio-temporal.html#cb555-6"></a><span class="kw">spplot</span>(nc, <span class="kw">c</span>(<span class="st">&quot;SID74&quot;</span>, <span class="st">&quot;SID79&quot;</span>),</span>
+<span id="cb555-7"><a href="dv-spatio-temporal.html#cb555-7"></a>  <span class="dt">as.table =</span> <span class="ot">TRUE</span>,</span>
+<span id="cb555-8"><a href="dv-spatio-temporal.html#cb555-8"></a>  <span class="dt">scales =</span> <span class="kw">list</span>(<span class="dt">draw =</span> T), <span class="dt">sp.layout =</span> arrow</span>
+<span id="cb555-9"><a href="dv-spatio-temporal.html#cb555-9"></a>)</span></code></pre></div>
+<p><img src="dv-spatio-temporal_files/figure-html/unnamed-chunk-14-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<div class="warning">
+<p>maptools 提供的 <code>readShapePoly</code> 函数去读取 shp 文件的方式已经过时，推荐使用 <code>rgdal::readOGR</code> 或者 <code>sf::st_read</code> 方式读取</p>
+</div>
+</div>
+<div id="ggplot2-raster" class="section level3">
+<h3><span class="header-section-number">11.2.2</span> raster</h3>
+<p>raster 包定义了获取和操作空间 raster 类型数据集的类和方法，rasterVis 补充加强了 raster 包在数据可视化和交互方面的功能。可视化是基于 lattice 的</p>
+<p><a href="https://github.com/rspatial/raster">raster</a> 包的开发已经被作者 <a href="https://desp.ucdavis.edu/people/robert-j-hijmans">Robert J. Hijmans</a> 迁移到 Github 上啦，官方文档 <a href="https://www.rspatial.org/" class="uri">https://www.rspatial.org/</a></p>
+<p>星号 * 标记的是 S3 方法</p>
+<div class="sourceCode" id="cb556"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb556-1"><a href="dv-spatio-temporal.html#cb556-1"></a><span class="kw">methods</span>(plot)</span>
+<span id="cb556-2"><a href="dv-spatio-temporal.html#cb556-2"></a><span class="co">#&gt;  [1] plot,ANY,ANY-method                       </span></span>
+<span id="cb556-3"><a href="dv-spatio-temporal.html#cb556-3"></a><span class="co">#&gt;  [2] plot,color,ANY-method                     </span></span>
+<span id="cb556-4"><a href="dv-spatio-temporal.html#cb556-4"></a><span class="co">#&gt;  [3] plot,Spatial,missing-method               </span></span>
+<span id="cb556-5"><a href="dv-spatio-temporal.html#cb556-5"></a><span class="co">#&gt;  [4] plot,SpatialGrid,missing-method           </span></span>
+<span id="cb556-6"><a href="dv-spatio-temporal.html#cb556-6"></a><span class="co">#&gt;  [5] plot,SpatialGridDataFrame,missing-method  </span></span>
+<span id="cb556-7"><a href="dv-spatio-temporal.html#cb556-7"></a><span class="co">#&gt;  [6] plot,SpatialLines,missing-method          </span></span>
+<span id="cb556-8"><a href="dv-spatio-temporal.html#cb556-8"></a><span class="co">#&gt;  [7] plot,SpatialMultiPoints,missing-method    </span></span>
+<span id="cb556-9"><a href="dv-spatio-temporal.html#cb556-9"></a><span class="co">#&gt;  [8] plot,SpatialPixels,missing-method         </span></span>
+<span id="cb556-10"><a href="dv-spatio-temporal.html#cb556-10"></a><span class="co">#&gt;  [9] plot,SpatialPixelsDataFrame,missing-method</span></span>
+<span id="cb556-11"><a href="dv-spatio-temporal.html#cb556-11"></a><span class="co">#&gt; [10] plot,SpatialPoints,missing-method         </span></span>
+<span id="cb556-12"><a href="dv-spatio-temporal.html#cb556-12"></a><span class="co">#&gt; [11] plot,SpatialPolygons,missing-method       </span></span>
+<span id="cb556-13"><a href="dv-spatio-temporal.html#cb556-13"></a><span class="co">#&gt; [12] plot.acf*                                 </span></span>
+<span id="cb556-14"><a href="dv-spatio-temporal.html#cb556-14"></a><span class="co">#&gt; [13] plot.data.frame*                          </span></span>
+<span id="cb556-15"><a href="dv-spatio-temporal.html#cb556-15"></a><span class="co">#&gt; [14] plot.decomposed.ts*                       </span></span>
+<span id="cb556-16"><a href="dv-spatio-temporal.html#cb556-16"></a><span class="co">#&gt; [15] plot.default                              </span></span>
+<span id="cb556-17"><a href="dv-spatio-temporal.html#cb556-17"></a><span class="co">#&gt; [16] plot.dendrogram*                          </span></span>
+<span id="cb556-18"><a href="dv-spatio-temporal.html#cb556-18"></a><span class="co">#&gt; [17] plot.density*                             </span></span>
+<span id="cb556-19"><a href="dv-spatio-temporal.html#cb556-19"></a><span class="co">#&gt; [18] plot.ecdf                                 </span></span>
+<span id="cb556-20"><a href="dv-spatio-temporal.html#cb556-20"></a><span class="co">#&gt; [19] plot.factor*                              </span></span>
+<span id="cb556-21"><a href="dv-spatio-temporal.html#cb556-21"></a><span class="co">#&gt; [20] plot.formula*                             </span></span>
+<span id="cb556-22"><a href="dv-spatio-temporal.html#cb556-22"></a><span class="co">#&gt; [21] plot.function                             </span></span>
+<span id="cb556-23"><a href="dv-spatio-temporal.html#cb556-23"></a><span class="co">#&gt; [22] plot.ggplot*                              </span></span>
+<span id="cb556-24"><a href="dv-spatio-temporal.html#cb556-24"></a><span class="co">#&gt; [23] plot.gtable*                              </span></span>
+<span id="cb556-25"><a href="dv-spatio-temporal.html#cb556-25"></a><span class="co">#&gt; [24] plot.hcl_palettes*                        </span></span>
+<span id="cb556-26"><a href="dv-spatio-temporal.html#cb556-26"></a><span class="co">#&gt; [25] plot.hclust*                              </span></span>
+<span id="cb556-27"><a href="dv-spatio-temporal.html#cb556-27"></a><span class="co">#&gt; [26] plot.histogram*                           </span></span>
+<span id="cb556-28"><a href="dv-spatio-temporal.html#cb556-28"></a><span class="co">#&gt; [27] plot.HoltWinters*                         </span></span>
+<span id="cb556-29"><a href="dv-spatio-temporal.html#cb556-29"></a><span class="co">#&gt; [28] plot.isoreg*                              </span></span>
+<span id="cb556-30"><a href="dv-spatio-temporal.html#cb556-30"></a><span class="co">#&gt; [29] plot.lm*                                  </span></span>
+<span id="cb556-31"><a href="dv-spatio-temporal.html#cb556-31"></a><span class="co">#&gt; [30] plot.medpolish*                           </span></span>
+<span id="cb556-32"><a href="dv-spatio-temporal.html#cb556-32"></a><span class="co">#&gt; [31] plot.mlm*                                 </span></span>
+<span id="cb556-33"><a href="dv-spatio-temporal.html#cb556-33"></a><span class="co">#&gt; [32] plot.ppr*                                 </span></span>
+<span id="cb556-34"><a href="dv-spatio-temporal.html#cb556-34"></a><span class="co">#&gt; [33] plot.prcomp*                              </span></span>
+<span id="cb556-35"><a href="dv-spatio-temporal.html#cb556-35"></a><span class="co">#&gt; [34] plot.princomp*                            </span></span>
+<span id="cb556-36"><a href="dv-spatio-temporal.html#cb556-36"></a><span class="co">#&gt; [35] plot.profile.nls*                         </span></span>
+<span id="cb556-37"><a href="dv-spatio-temporal.html#cb556-37"></a><span class="co">#&gt; [36] plot.R6*                                  </span></span>
+<span id="cb556-38"><a href="dv-spatio-temporal.html#cb556-38"></a><span class="co">#&gt; [37] plot.raster*                              </span></span>
+<span id="cb556-39"><a href="dv-spatio-temporal.html#cb556-39"></a><span class="co">#&gt; [38] plot.shingle*                             </span></span>
+<span id="cb556-40"><a href="dv-spatio-temporal.html#cb556-40"></a><span class="co">#&gt; [39] plot.spec*                                </span></span>
+<span id="cb556-41"><a href="dv-spatio-temporal.html#cb556-41"></a><span class="co">#&gt; [40] plot.stepfun                              </span></span>
+<span id="cb556-42"><a href="dv-spatio-temporal.html#cb556-42"></a><span class="co">#&gt; [41] plot.stl*                                 </span></span>
+<span id="cb556-43"><a href="dv-spatio-temporal.html#cb556-43"></a><span class="co">#&gt; [42] plot.table*                               </span></span>
+<span id="cb556-44"><a href="dv-spatio-temporal.html#cb556-44"></a><span class="co">#&gt; [43] plot.trellis*                             </span></span>
+<span id="cb556-45"><a href="dv-spatio-temporal.html#cb556-45"></a><span class="co">#&gt; [44] plot.ts                                   </span></span>
+<span id="cb556-46"><a href="dv-spatio-temporal.html#cb556-46"></a><span class="co">#&gt; [45] plot.tskernel*                            </span></span>
+<span id="cb556-47"><a href="dv-spatio-temporal.html#cb556-47"></a><span class="co">#&gt; [46] plot.TukeyHSD*                            </span></span>
+<span id="cb556-48"><a href="dv-spatio-temporal.html#cb556-48"></a><span class="co">#&gt; see &#39;?methods&#39; for accessing help and source code</span></span></code></pre></div>
+<p>查看函数的定义</p>
+<div class="sourceCode" id="cb557"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb557-1"><a href="dv-spatio-temporal.html#cb557-1"></a><span class="kw">getAnywhere</span>(plot.raster)</span>
+<span id="cb557-2"><a href="dv-spatio-temporal.html#cb557-2"></a><span class="co">#&gt; A single object matching &#39;plot.raster&#39; was found</span></span>
+<span id="cb557-3"><a href="dv-spatio-temporal.html#cb557-3"></a><span class="co">#&gt; It was found in the following places</span></span>
+<span id="cb557-4"><a href="dv-spatio-temporal.html#cb557-4"></a><span class="co">#&gt;   registered S3 method for plot from namespace graphics</span></span>
+<span id="cb557-5"><a href="dv-spatio-temporal.html#cb557-5"></a><span class="co">#&gt;   namespace:graphics</span></span>
+<span id="cb557-6"><a href="dv-spatio-temporal.html#cb557-6"></a><span class="co">#&gt; with value</span></span>
+<span id="cb557-7"><a href="dv-spatio-temporal.html#cb557-7"></a><span class="co">#&gt; </span></span>
+<span id="cb557-8"><a href="dv-spatio-temporal.html#cb557-8"></a><span class="co">#&gt; function (x, y, xlim = c(0, ncol(x)), ylim = c(0, nrow(x)), xaxs = &quot;i&quot;, </span></span>
+<span id="cb557-9"><a href="dv-spatio-temporal.html#cb557-9"></a><span class="co">#&gt;     yaxs = &quot;i&quot;, asp = 1, add = FALSE, ...) </span></span>
+<span id="cb557-10"><a href="dv-spatio-temporal.html#cb557-10"></a><span class="co">#&gt; {</span></span>
+<span id="cb557-11"><a href="dv-spatio-temporal.html#cb557-11"></a><span class="co">#&gt;     if (!add) {</span></span>
+<span id="cb557-12"><a href="dv-spatio-temporal.html#cb557-12"></a><span class="co">#&gt;         plot.new()</span></span>
+<span id="cb557-13"><a href="dv-spatio-temporal.html#cb557-13"></a><span class="co">#&gt;         plot.window(xlim = xlim, ylim = ylim, asp = asp, xaxs = xaxs, </span></span>
+<span id="cb557-14"><a href="dv-spatio-temporal.html#cb557-14"></a><span class="co">#&gt;             yaxs = yaxs)</span></span>
+<span id="cb557-15"><a href="dv-spatio-temporal.html#cb557-15"></a><span class="co">#&gt;     }</span></span>
+<span id="cb557-16"><a href="dv-spatio-temporal.html#cb557-16"></a><span class="co">#&gt;     rasterImage(x, 0, 0, ncol(x), nrow(x), ...)</span></span>
+<span id="cb557-17"><a href="dv-spatio-temporal.html#cb557-17"></a><span class="co">#&gt; }</span></span>
+<span id="cb557-18"><a href="dv-spatio-temporal.html#cb557-18"></a><span class="co">#&gt; &lt;bytecode: 0x562774eee7e0&gt;</span></span>
+<span id="cb557-19"><a href="dv-spatio-temporal.html#cb557-19"></a><span class="co">#&gt; &lt;environment: namespace:graphics&gt;</span></span></code></pre></div>
+<p>rasterImage 函数来绘制图像，如果想知道 <code>rasterImage</code> 的内容可以继续看 <code>getAnywhere(rasterImage)</code></p>
+<div class="sourceCode" id="cb558"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb558-1"><a href="dv-spatio-temporal.html#cb558-1"></a><span class="kw">getAnywhere</span>(rasterImage)</span>
+<span id="cb558-2"><a href="dv-spatio-temporal.html#cb558-2"></a><span class="co">#&gt; A single object matching &#39;rasterImage&#39; was found</span></span>
+<span id="cb558-3"><a href="dv-spatio-temporal.html#cb558-3"></a><span class="co">#&gt; It was found in the following places</span></span>
+<span id="cb558-4"><a href="dv-spatio-temporal.html#cb558-4"></a><span class="co">#&gt;   package:graphics</span></span>
+<span id="cb558-5"><a href="dv-spatio-temporal.html#cb558-5"></a><span class="co">#&gt;   namespace:graphics</span></span>
+<span id="cb558-6"><a href="dv-spatio-temporal.html#cb558-6"></a><span class="co">#&gt; with value</span></span>
+<span id="cb558-7"><a href="dv-spatio-temporal.html#cb558-7"></a><span class="co">#&gt; </span></span>
+<span id="cb558-8"><a href="dv-spatio-temporal.html#cb558-8"></a><span class="co">#&gt; function (image, xleft, ybottom, xright, ytop, angle = 0, interpolate = TRUE, </span></span>
+<span id="cb558-9"><a href="dv-spatio-temporal.html#cb558-9"></a><span class="co">#&gt;     ...) </span></span>
+<span id="cb558-10"><a href="dv-spatio-temporal.html#cb558-10"></a><span class="co">#&gt; {</span></span>
+<span id="cb558-11"><a href="dv-spatio-temporal.html#cb558-11"></a><span class="co">#&gt;     .External.graphics(C_raster, if (inherits(image, &quot;nativeRaster&quot;)) image else as.raster(image), </span></span>
+<span id="cb558-12"><a href="dv-spatio-temporal.html#cb558-12"></a><span class="co">#&gt;         as.double(xleft), as.double(ybottom), as.double(xright), </span></span>
+<span id="cb558-13"><a href="dv-spatio-temporal.html#cb558-13"></a><span class="co">#&gt;         as.double(ytop), as.double(angle), as.logical(interpolate), </span></span>
+<span id="cb558-14"><a href="dv-spatio-temporal.html#cb558-14"></a><span class="co">#&gt;         ...)</span></span>
+<span id="cb558-15"><a href="dv-spatio-temporal.html#cb558-15"></a><span class="co">#&gt;     invisible()</span></span>
+<span id="cb558-16"><a href="dv-spatio-temporal.html#cb558-16"></a><span class="co">#&gt; }</span></span>
+<span id="cb558-17"><a href="dv-spatio-temporal.html#cb558-17"></a><span class="co">#&gt; &lt;bytecode: 0x562778eb8420&gt;</span></span>
+<span id="cb558-18"><a href="dv-spatio-temporal.html#cb558-18"></a><span class="co">#&gt; &lt;environment: namespace:graphics&gt;</span></span></code></pre></div>
+<p>通过查看函数的帮助 <code>?rasterImage</code> ，我们需要重点关注一下
+参数 <em>image</em> 传递的 raster 对象</p>
+<div class="sourceCode" id="cb559"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb559-1"><a href="dv-spatio-temporal.html#cb559-1"></a><span class="kw">plot</span>(<span class="kw">c</span>(<span class="dv">100</span>, <span class="dv">250</span>), <span class="kw">c</span>(<span class="dv">300</span>, <span class="dv">450</span>), <span class="dt">type =</span> <span class="st">&quot;n&quot;</span>, <span class="dt">xlab =</span> <span class="st">&quot;&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;&quot;</span>)</span>
+<span id="cb559-2"><a href="dv-spatio-temporal.html#cb559-2"></a>image &lt;-<span class="st"> </span><span class="kw">as.raster</span>(<span class="kw">matrix</span>(<span class="dv">0</span><span class="op">:</span><span class="dv">1</span>, <span class="dt">ncol =</span> <span class="dv">5</span>, <span class="dt">nrow =</span> <span class="dv">3</span>))</span>
+<span id="cb559-3"><a href="dv-spatio-temporal.html#cb559-3"></a><span class="kw">rasterImage</span>(image, <span class="dv">100</span>, <span class="dv">300</span>, <span class="dv">150</span>, <span class="dv">350</span>, <span class="dt">interpolate =</span> <span class="ot">FALSE</span>)</span>
+<span id="cb559-4"><a href="dv-spatio-temporal.html#cb559-4"></a><span class="kw">rasterImage</span>(image, <span class="dv">100</span>, <span class="dv">400</span>, <span class="dv">150</span>, <span class="dv">450</span>)</span>
+<span id="cb559-5"><a href="dv-spatio-temporal.html#cb559-5"></a><span class="kw">rasterImage</span>(image, <span class="dv">200</span>, <span class="dv">300</span>, <span class="dv">200</span> <span class="op">+</span><span class="st"> </span><span class="kw">xinch</span>(.<span class="dv">5</span>), <span class="dv">300</span> <span class="op">+</span><span class="st"> </span><span class="kw">yinch</span>(.<span class="dv">3</span>),</span>
+<span id="cb559-6"><a href="dv-spatio-temporal.html#cb559-6"></a>  <span class="dt">interpolate =</span> <span class="ot">FALSE</span></span>
+<span id="cb559-7"><a href="dv-spatio-temporal.html#cb559-7"></a>)</span>
+<span id="cb559-8"><a href="dv-spatio-temporal.html#cb559-8"></a><span class="kw">rasterImage</span>(image, <span class="dv">200</span>, <span class="dv">400</span>, <span class="dv">250</span>, <span class="dv">450</span>, <span class="dt">angle =</span> <span class="dv">15</span>, <span class="dt">interpolate =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-18"></span>
+<img src="dv-spatio-temporal_files/figure-html/unnamed-chunk-18-1.png" alt="raster 图像" width="50%" />
+<p class="caption">
+图 8.14: raster 图像
+</p>
+</div>
+<div class="sourceCode" id="cb560"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb560-1"><a href="dv-spatio-temporal.html#cb560-1"></a><span class="kw">library</span>(raster)</span>
+<span id="cb560-2"><a href="dv-spatio-temporal.html#cb560-2"></a><span class="co">#&gt; </span></span>
+<span id="cb560-3"><a href="dv-spatio-temporal.html#cb560-3"></a><span class="co">#&gt; Attaching package: &#39;raster&#39;</span></span>
+<span id="cb560-4"><a href="dv-spatio-temporal.html#cb560-4"></a><span class="co">#&gt; The following object is masked from &#39;package:magrittr&#39;:</span></span>
+<span id="cb560-5"><a href="dv-spatio-temporal.html#cb560-5"></a><span class="co">#&gt; </span></span>
+<span id="cb560-6"><a href="dv-spatio-temporal.html#cb560-6"></a><span class="co">#&gt;     extract</span></span>
+<span id="cb560-7"><a href="dv-spatio-temporal.html#cb560-7"></a>meuse.test &lt;-<span class="st"> </span><span class="kw">raster</span>(<span class="dt">x =</span> <span class="kw">system.file</span>(<span class="st">&quot;external/test.grd&quot;</span>, <span class="dt">package=</span><span class="st">&quot;raster&quot;</span>))</span>
+<span id="cb560-8"><a href="dv-spatio-temporal.html#cb560-8"></a><span class="kw">class</span>(meuse.test)</span>
+<span id="cb560-9"><a href="dv-spatio-temporal.html#cb560-9"></a><span class="co">#&gt; [1] &quot;RasterLayer&quot;</span></span>
+<span id="cb560-10"><a href="dv-spatio-temporal.html#cb560-10"></a><span class="co">#&gt; attr(,&quot;package&quot;)</span></span>
+<span id="cb560-11"><a href="dv-spatio-temporal.html#cb560-11"></a><span class="co">#&gt; [1] &quot;raster&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb561"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb561-1"><a href="dv-spatio-temporal.html#cb561-1"></a><span class="kw">plot</span>(meuse.test, <span class="dt">legend =</span> F)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-20"></span>
+<img src="dv-spatio-temporal_files/figure-html/unnamed-chunk-20-1.png" alt="raster 对象" width="70%" />
+<p class="caption">
+图 8.17: raster 对象
+</p>
+</div>
+<p>Edzer Pebesma 开发了 stars 包</p>
+<div class="sourceCode" id="cb562"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb562-1"><a href="dv-spatio-temporal.html#cb562-1"></a><span class="co"># https://resources.rstudio.com/rstudio-conf-2019/spatial-data-science-in-the-tidyverse</span></span>
+<span id="cb562-2"><a href="dv-spatio-temporal.html#cb562-2"></a><span class="kw">library</span>(abind)</span>
+<span id="cb562-3"><a href="dv-spatio-temporal.html#cb562-3"></a><span class="kw">library</span>(sf)</span>
+<span id="cb562-4"><a href="dv-spatio-temporal.html#cb562-4"></a><span class="co">#&gt; Linking to GEOS 3.7.1, GDAL 2.4.0, PROJ 5.2.0</span></span>
+<span id="cb562-5"><a href="dv-spatio-temporal.html#cb562-5"></a><span class="kw">library</span>(stars)</span>
+<span id="cb562-6"><a href="dv-spatio-temporal.html#cb562-6"></a>x &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">&quot;tif/L7_ETMs.tif&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;stars&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb562-7"><a href="dv-spatio-temporal.html#cb562-7"></a><span class="st">  </span><span class="kw">read_stars</span>()</span>
+<span id="cb562-8"><a href="dv-spatio-temporal.html#cb562-8"></a><span class="kw">ggplot</span>() <span class="op">+</span></span>
+<span id="cb562-9"><a href="dv-spatio-temporal.html#cb562-9"></a><span class="st">  </span><span class="kw">geom_stars</span>(<span class="dt">data =</span> x) <span class="op">+</span></span>
+<span id="cb562-10"><a href="dv-spatio-temporal.html#cb562-10"></a><span class="st">  </span><span class="kw">coord_equal</span>() <span class="op">+</span></span>
+<span id="cb562-11"><a href="dv-spatio-temporal.html#cb562-11"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>band) <span class="op">+</span></span>
+<span id="cb562-12"><a href="dv-spatio-temporal.html#cb562-12"></a><span class="st">  </span><span class="kw">theme_void</span>() <span class="op">+</span></span>
+<span id="cb562-13"><a href="dv-spatio-temporal.html#cb562-13"></a><span class="st">  </span><span class="kw">scale_fill_viridis_c</span>() <span class="op">+</span></span>
+<span id="cb562-14"><a href="dv-spatio-temporal.html#cb562-14"></a><span class="st">  </span><span class="kw">scale_x_discrete</span>(<span class="dt">expand =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="op">+</span></span>
+<span id="cb562-15"><a href="dv-spatio-temporal.html#cb562-15"></a><span class="st">  </span><span class="kw">scale_y_discrete</span>(<span class="dt">expand =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>))</span></code></pre></div>
+<p><img src="dv-spatio-temporal_files/figure-html/unnamed-chunk-21-1.png" width="70%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="ggplot2-sf" class="section level3">
+<h3><span class="header-section-number">11.2.3</span> sf</h3>
+<div class="sourceCode" id="cb563"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb563-1"><a href="dv-spatio-temporal.html#cb563-1"></a>nc &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">&quot;gpkg/nc.gpkg&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;sf&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">read_sf</span>()</span>
+<span id="cb563-2"><a href="dv-spatio-temporal.html#cb563-2"></a>nc2 &lt;-<span class="st"> </span>nc <span class="op">%&gt;%</span></span>
+<span id="cb563-3"><a href="dv-spatio-temporal.html#cb563-3"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(SID74, SID79) <span class="op">%&gt;%</span></span>
+<span id="cb563-4"><a href="dv-spatio-temporal.html#cb563-4"></a><span class="st">  </span>tidyr<span class="op">::</span><span class="kw">gather</span>(VAR, SID, <span class="op">-</span>geom)</span>
+<span id="cb563-5"><a href="dv-spatio-temporal.html#cb563-5"></a><span class="kw">ggplot</span>() <span class="op">+</span></span>
+<span id="cb563-6"><a href="dv-spatio-temporal.html#cb563-6"></a><span class="st">  </span><span class="kw">geom_sf</span>(<span class="dt">data =</span> nc2, <span class="kw">aes</span>(<span class="dt">fill =</span> SID)) <span class="op">+</span></span>
+<span id="cb563-7"><a href="dv-spatio-temporal.html#cb563-7"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>VAR, <span class="dt">ncol =</span> <span class="dv">1</span>)</span></code></pre></div>
+<p><img src="dv-spatio-temporal_files/figure-html/unnamed-chunk-22-1.png" width="70%" style="display: block; margin: auto;" /></p>
+
+</div>
+</div>
+</div>
+<h3>参考文献</h3>
+<div id="refs" class="references">
+<div id="ref-Pebesma_2005_sp">
+<p>Pebesma, Edzer J., and Roger S. Bivand. 2005. “Classes and Methods for Spatial Data in R.” <em>R News</em> 5 (2): 9–13. <a href="https://cran.r-project.org/doc/Rnews/Rnews_2005-2.pdf">https://cran.r-project.org/doc/Rnews/Rnews_2005-2.pdf</a>.</p>
+</div>
+</div>
+<script>
+window.onload = function() {
+
+  var imgs = document.querySelectorAll('img');
+
+  // Upon clicking an image, open a new window with the
+  // dimensions of the image, pointing the `data-url` link
+  var on_click = function (e) {
+    var d = e.target.dataset || {};
+    if (d.url) {
+      // Add some extra height for the modebar
+      var height = 'height=' + (e.target.clientHeight * 1.05);
+      var width = 'width=' + e.target.clientWidth;
+      var param = 'location=yes,' + height + ',' + width + ',scrollbars=yes,status=yes';
+      window.open(e.target.dataset.url, '_blank', param);
+    }
+  };
+
+  var on_hover = function (e) {
+    var d = e.target.dataset || {};
+    if (d.url) {
+      e.target.style.cursor = 'pointer';
+    }
+  };
+
+  for (var i = 0; i < imgs.length; i++) {
+    imgs[i].addEventListener('click', on_click);
+    imgs[i].addEventListener('mouseover', on_hover);
+  }
+};
+</script>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="dv-plotly.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="cs-cran-network.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": false,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": {}
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/XiangyunHuang/RGraphics/edit/master/dv-spatio-temporal.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub", "_main.mobi", "https://github.com/XiangyunHuang/RGraphics/raw/master/dv-spatio-temporal.Rmd"],
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
