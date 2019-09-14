@@ -146,7 +146,7 @@ RUN apt-get update \
 RUN mkdir -p /usr/share/fonts/opentype/adobe ~/.fonts \
   && path_prefix="/usr/share/fonts/opentype/adobe" \
   && curl -fLo Adobe-Fonts.zip https://github.com/XiangyunHuang/fonts/releases/download/v0.1/Adobe-Fonts.zip \
-  && unzip Adobe-Fonts.zip -d /usr/share/fonts/opentype/adobe
+  && unzip Adobe-Fonts.zip -d /usr/share/fonts/opentype/adobe \
   && fc-cache -fsv \
 ## Install System fonts for R Graphics  
   && wget -q --no-check-certificate http://simonsoftware.se/other/xkcd.ttf -P ~/.fonts/ \
