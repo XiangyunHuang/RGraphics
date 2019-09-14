@@ -145,7 +145,7 @@ RUN apt-get update \
 ## Install adobe fonts
 RUN mkdir -p /usr/share/fonts/opentype/adobe ~/.fonts \
   && path_prefix="/usr/share/fonts/opentype/adobe" \
-  && curl -fLo Adobe-Fonts.zip https://github.com/XiangyunHuang/fonts/releases/download/v0.1/Adobe-Fonts.zip \
+  && wget -q --no-check-certificate https://github.com/XiangyunHuang/fonts/releases/download/v0.1/Adobe-Fonts.zip \
   && unzip Adobe-Fonts.zip -d /usr/share/fonts/opentype/adobe \
   && fc-cache -fsv \
 ## Install System fonts for R Graphics  
