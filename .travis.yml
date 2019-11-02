@@ -30,11 +30,19 @@ script:
   - docker-compose down
   - ./_deploy.sh
 
-after_success:
+before_cache:
 - nvm install stable
 - npm install netlify-cli -g
 
 deploy:
-  provider: script
-  script: netlify deploy --prod --dir _book --message "$DEPLOY_MSG"
-  skip_cleanup: true
+  - provider: script
+    script: netlify deploy --dir _book --prod --message "$DEPLOY_MSG"    
+    skip_cleanup: true
+    on:
+      branch: master
+  - provider: script
+    script: netlify deploy --dir _book --message "$DEPLOY_MSG"    
+    skip_cleanup: true
+    on:
+      all_branches: true
+      condition: $TRAVIS_BRANCH != "master"

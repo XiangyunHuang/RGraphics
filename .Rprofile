@@ -1,3 +1,5 @@
+if (file.exists('~/.Rprofile')) sys.source('~/.Rprofile', envir = environment())
+
 options(
   dplyr.print_min = 6, 
   dplyr.print_max = 6,

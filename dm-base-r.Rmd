@@ -97,6 +97,17 @@ dat
 reshape(dat, idvar = "name", timevar = "numbers", direction = "wide")
 ```
 
+```{r}
+## times need not be numeric
+df <- data.frame(id = rep(1:4, rep(2,4)),
+                 visit = I(rep(c("Before","After"), 4)),
+                 x = rnorm(4), y = runif(4))
+df
+reshape(df, timevar = "visit", idvar = "id", direction = "wide")
+## warns that y is really varying
+reshape(df, timevar = "visit", idvar = "id", direction = "wide", v.names = "x")
+```
+
 更加复杂的例子， gambia 数据集，重塑的效果是使得个体水平的长格式变为村庄水平的宽格式
 
 ```{r}
@@ -115,6 +126,16 @@ ind <- paste("x", gambia[, 1], "y", gambia[, 2], sep = "")
 village <- gambia[!duplicated(ind), c(1:2, 7:8)]
 village$prev <- as.vector(tapply(gambia$pos, ind, mean))
 head(village)
+```
+
+将长格式的 PlantGrowth 数据集变成宽格式
+
+```{r}
+tmp <- split(PlantGrowth, f = PlantGrowth$group) # 分组
+l <- lapply(tmp, subset, select = "weight") # 选择
+dat <- Reduce("cbind", l)  # 合并
+colnames(dat) <- names(l)
+dat
 ```
 
 ## 数据转换 {#base-transform}
@@ -646,6 +667,18 @@ lapply(asplit(array(1:27, c(3, 3, 3)), 3), apply, 2, sum)
 `asplit` 和 `lapply` 组合处理多维数组的计算问题，多维数组[^matrix-list]
 
 [三维数组的矩阵运算](https://d.cosx.org/d/107493) [abind](https://CRAN.R-project.org/package=abind) 包提供更多的数组操作，如合并，替换
+
+
+数组操作
+
+aperm 数组转置 Array Transposition 
+
+asplit 数组拆分 其后接 lapply 或者 vapply
+
+apply 数组计算
+
+rray 包 https://github.com/r-lib/rray
+
 
 [^matrix-list]: https://www.brodieg.com/2018/11/23/is-your-matrix-running-slow-try-lists/
 

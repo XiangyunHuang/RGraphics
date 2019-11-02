@@ -431,6 +431,7 @@ substring(x, c(2, 4), c(4, 5, 8))
 substr("abcdef", 2, 4)
 substring("abcdef", 1:6, 1:6)
 ```
+
 因为 x 的向量长度为1，所以 `substr` 获得的结果只有1个字串，即第2和第3个参数向量只用了第一个组合：起始位置2，终止位置4。而 `substring` 的语句三个参数中最长的向量为 `c(4,5,8)`，执行时按短向量循环使用的规则第一个参数事实上就是`c(x,x,x)`，第二个参数就成了`c(2,4,2)`，最终截取的字串起始位置组合为：2-4, 4-5和2-8。
 
 ```{r}
@@ -438,6 +439,26 @@ x <- c("123456789", "abcdefghijklmnopq")
 substr(x, c(2, 4), c(4, 5, 8))
 substring(x, c(2, 4), c(4, 5, 8))
 ```
+
+更加高级的字符串抽取
+
+```{r}
+# 从字符串中抽取固定模式的文本，替代 stringr::str_extract
+# 只抽取一个匹配的
+extract_str <- function(text, pattern) regmatches(text, regexpr(pattern, text))
+# 符合模式的全部抽取
+gextract_str <- function(text, pattern) regmatches(text, gregexpr(pattern, text))
+```
+
+举例子，抽取连续的数字
+
+```{r}
+# 两个例子
+extract_str(text = "abd123da345das", pattern = "(\\d+){3}")
+gextract_str(text = "abd123da345das", pattern = "(\\d+){3}")
+```
+
+例子来自于 <https://recology.info/2018/10/limiting-dependencies/>
 
 ## 其它操作 {#other-string-op}
 
