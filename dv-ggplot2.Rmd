@@ -717,6 +717,41 @@ p + geom_bar(position = "fill") +
 词云 [ggwordcloud](https://github.com/lepennec/ggwordcloud)
 
 
+### 日历图 {#calendar-map}
+
+这是 heatmap 的变种
+
+```{r}
+# 这个图和 Github 的打码图一样的
+# 展示每日变化情况
+library(ggplot2)
+library(ggthemes)
+library(data.table)
+
+week.abb <- c("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun")
+month.abb <- c(
+  "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+  "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+)
+
+rides <- data.frame(date = seq.Date(
+  from = as.Date("2016-04-04"),
+  to = as.Date("2019-11-09"), by = "day"
+))
+
+rides$year <- year(rides$date)
+rides$week <- week(rides$date)
+rides$weekdays <- factor(wday(rides$date), labels = week.abb)
+rides$N <- sample(1:40, dim(rides)[1], replace = TRUE)
+
+ggplot(rides, aes(x = week, y = weekdays, fill = N)) +
+  scale_fill_viridis_c(name = "Divvy Rides", option = "C", limits = c(0, max(rides$N))) +
+  geom_tile(color = "white", size = 0.4) +
+  facet_wrap("year", ncol = 1) +
+  scale_x_continuous(expand = c(0, 0), breaks = seq(1, 52, length = 12), labels = month.abb) +
+  theme_tufte()
+```
+
 
 
 ## 运行环境  {#ggplot2-session-info}
