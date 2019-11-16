@@ -77,6 +77,7 @@ RUN apt-get update \
 ## install v8
   libnode-dev \
 ## install DBI odbc 
+  unixodbc \
   unixodbc-dev \
   odbc-postgresql \
   libsqliteodbc \
