@@ -301,7 +301,8 @@ db2r <- data.frame(
 )
 # db <-  paste0("[", db2r$db, "](", db2r$db_urls, ")")
 # dbi <- paste0("[", db2r$dbi, "](", db2r$dbi_urls, ")")
-knitr::kable(db2r, col.names = c("数据库","官网","R接口","开发仓"), caption = "数据库接口")
+knitr::kable(db2r, col.names = c("数据库","官网","R接口","开发仓"), 
+             caption = "数据库接口")
 ```
 
 
@@ -418,14 +419,14 @@ con <- dbConnect(RPostgres::Postgres(),
   password = "default"
 )
 ```
-```{r,cache=FALSE}
+```{r,cache=FALSE,eval=FALSE}
 library(DBI)
 con <- dbConnect(odbc::odbc(), "PostgreSQL")
 ```
 
 列出数据库中的所有表
 
-```{r}
+```{r,eval=FALSE}
 dbListTables(con)
 ```
 
@@ -433,19 +434,19 @@ dbListTables(con)
 
 将数据集 mtcars 写入 PostgreSQL 数据库中，基本操作，写入表的操作也不能缓存，即不能缓存数据库中的表 mtcars
 
-```{r,cache=FALSE}
+```{r,cache=FALSE,eval=FALSE}
 dbWriteTable(con, "mtcars", mtcars, overwrite = TRUE)
 ```
 
 现在可以看到数据表 mtcars 的各个字段
 
-```{r}
+```{r,eval=FALSE}
 dbListFields(con, "mtcars")
 ```
 
 最后执行一条 SQL 语句
 
-```{r}
+```{r,eval=FALSE}
 res <- dbSendQuery(con, "SELECT * FROM mtcars WHERE cyl = 4") # 发送 SQL 语句
 dbFetch(res) # 获取查询结果
 dbClearResult(res) # 清理查询通道
@@ -453,34 +454,34 @@ dbClearResult(res) # 清理查询通道
 
 或者一条命令搞定
 
-```{r}
+```{r,eval=FALSE}
 dbGetQuery(con, "SELECT * FROM mtcars WHERE cyl = 4")
 ```
 
 再复杂一点的 SQL 查询操作
 
-```{r}
+```{r,eval=FALSE}
 dbGetQuery(con, "SELECT cyl, AVG(mpg) AS mpg FROM mtcars GROUP BY cyl ORDER BY cyl")
 aggregate(mpg ~ cyl, data = mtcars, mean)
 ```
 
 得益于 knitr [@xie_2015_knitr] 开发的钩子，这里直接写 SQL 语句块，打印出来见表 \@ref(tab:mtcars)，值得注意的是 SQL 代码块不能启用缓存，数据库连接通道也不能缓存，如果数据库中还没有写入表，那么写入表的操作也不能缓存
 
-```{sql mtcars, connection=con, cache = FALSE, tab.cap = "表格标题"}
+```{sql mtcars, connection=con, cache = FALSE, tab.cap = "表格标题",eval=FALSE}
 SELECT cyl, AVG(mpg) AS mpg FROM mtcars GROUP BY cyl ORDER BY cyl
 ```
 
 如果将查询结果导出到变量，在 Chunk 设置 `output.var = "agg_cyl"` 可以使用缓存，下面将 mpg 按 cyl 分组聚合的结果打印出来
 
-```{sql mtcars2, connection=con, cache = TRUE, output.var = "agg_cyl", ref.label = "mtcars", echo=FALSE}
+```{sql mtcars2, connection=con, cache = TRUE, output.var = "agg_cyl", ref.label = "mtcars", echo=FALSE,eval=FALSE}
 ```
-```{r}
+```{r,eval=FALSE}
 agg_cyl
 ```
 
 这种基于 odbc 的方式的好处就不需要再安装 R 包 RPostgres 和相关系统依赖，最后关闭连接通道
 
-```{r}
+```{r,eval=FALSE}
 dbDisconnect(con)
 ```
 
@@ -835,7 +836,8 @@ read_list <- function(list_of_datasets, read_func) {
 批量导入文件扩展名为 `.csv` 的数据文件，即逗号分割的文件
  
 ```{r,eval=FALSE}
-data_files <- list.files(path = "path/to/csv/dir",pattern = ".csv", full.names = TRUE)
+data_files <- list.files(path = "path/to/csv/dir",
+                         pattern = ".csv", full.names = TRUE)
 print(data_files)
 ```
 
@@ -984,5 +986,5 @@ cat(readLines('data/AirPassengers.dat'), sep = "\n")
 ## 运行环境 {#dm-session-info}
 
 ```{r}
-xfun::session_info(c("jsonlite", "yaml", "odbc"))
+xfun::session_info()
 ```
