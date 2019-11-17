@@ -265,6 +265,7 @@ plot(meuse, axes = TRUE)
 ```
 
 ```{r,fig.cap="sp 对象",fig.asp=0.8,fig.width=5,out.width="58.33%"}
+library(rgdal)
 crs.longlat <- CRS("+init=epsg:4326")
 meuse.longlat <- spTransform(meuse, crs.longlat)
 plot(meuse.longlat, axes = TRUE)

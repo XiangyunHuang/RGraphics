@@ -36,6 +36,7 @@ Imports:
   MBA,
   pdftools,
   reticulate,
+  rgdal,
   rsm,
   sf,
   stars,
