@@ -39,6 +39,7 @@ Imports:
   stars,
   raster,
   satellite,
+  latex2exp,
   leaflet,
   tidyverse,
   openxlsx,
