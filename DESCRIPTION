@@ -3,10 +3,13 @@ Type: Book
 Title: placeholder.
 Version: 0.0.0.9999
 Imports:   
+  barsurf,
   bookdown,
   ggplot2,
+  colourlovers,
   cowplot,
   desc,
+  firatheme,
   igraph,
   ggforce,
   ggraph,
@@ -30,6 +33,8 @@ Imports:
   mapdata,
   mapproj,
   maptools,
+  MBA,
+  rsm,
   sf,
   stars,
   raster,
@@ -41,5 +46,6 @@ Imports:
   pracma,
   spDataLarge,
   tikzDevice
+Remotes: vankesteren/firatheme
 URL: https://r-graphics.netlify.com, https://bookdown.org/xiangyun/RGraphics/
 BugReports: https://github.com/XiangyunHuang/RGraphics/issues

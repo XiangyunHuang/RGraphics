@@ -16,19 +16,21 @@ rmd_files:
 - "setup.Rmd"
 - "files.Rmd"
 
-#- "dm-import-export.Rmd"
-#- "dm-base-r.Rmd"
-#- "dm-dplyr.Rmd"
+- "dm-import-export.Rmd"
+- "dm-base-r.Rmd"
+- "dm-dplyr.Rmd"
 
-#- "dc-string-manipulation.Rmd"
-#- "dc-regular-expressions.Rmd"
+- "dc-string-manipulation.Rmd"
+- "dc-regular-expressions.Rmd"
 
-#- "dv-plot.Rmd"
-#- "dv-ggplot2.Rmd"
-#- "dv-plotly.Rmd"
-#- "dv-plot3d.Rmd"
-#- "dv-spatio-temporal.Rmd"
+- "dv-plot.Rmd"
+- "dv-ggplot2.Rmd"
+- "dv-plotly.Rmd"
+- "dv-plot3d.Rmd"
+- "dv-colors-fonts.Rmd"
 
-#- "cs-cran-network.Rmd"
+- "dv-spatio-temporal.Rmd"
+
+- "cs-cran-network.Rmd"
 
 - "99-references.Rmd"

@@ -1,0 +1,62 @@
+# 对象在哪里 {#data-object}
+
+> 可用于绘图的数据对象，向量 vector 等，只涉及基础操作和绘图，关键在入门引导式的介绍，点到即止
+
+数据类型：字符、数值：字符数据操作：按数据类型介绍各类数据操作，重复之处如前所述，数据处理的分类：按数据类型来，一共是 table matrix data.frame 和 vector
+
+## 向量 {#oop-vector}
+
+数值型、字符型、因子型
+
+## 矩阵 {#oop-matrix}
+
+## 数组 {#oop-array}
+
+更多数组操作 [rray](https://github.com/r-lib/rray)
+
+## 数据框 {#oop-data.frame}
+
+## 表格 {#oop-table}
+
+
+## 列表 {#oop-list}
+
+## 时间序列 {#oop-ts}
+
+[Jeffrey A. Ryan](https://blog.revolutionanalytics.com/2011/07/the-r-files-jeff-ryan.html) 开发的 [xts](https://github.com/joshuaulrich/xts) 和 [quantmod](https://github.com/joshuaulrich/quantmod) 包，Joshua M. Ulrich 开发的 [zoo](https://r-forge.r-project.org/projects/zoo/) 是处理时间序列数据的主要工具
+
+Jeffrey A. Ryan 在开设了一门免费课程教大家如何在 R 语言中使用 xts 和 zoo 包操作时间序列数据 [^course-xts-zoo]
+
+xts (eXtensible Time Series) 扩展的 zoo 对象
+
+```{r,eval=FALSE}
+xts(x = NULL,
+    order.by = index(x),
+    frequency = NULL,
+    unique = TRUE,
+    tzone = Sys.getenv("TZ"),
+    ...)
+```
+
+
+```{r,message=FALSE,warning=FALSE}
+library(zoo)
+```
+```{r}
+library(xts)
+x = matrix(1:4, ncol = 2,nrow = 2)
+idx <- as.Date(c("2018-01-01", "2019-12-12"))
+# xts = matrix + index
+xts(x, order.by = idx)
+```
+
+Date，POSIX times，timeDate，chron 等各种各样处理日期数据的对象
+
+
+[^course-xts-zoo]: https://www.datacamp.com/courses/manipulating-time-series-data-in-r-with-xts-zoo
+
+
+## 空间数据 {#oop-sf}
+
+sp sf raster 等对象
+

@@ -1,0 +1,64 @@
+# 数据清洁工 {#data-cleaning}
+
+相比于第\@ref(string-manipulation)章，本章主要介绍字符串处理 stringr 包以及一些数据清理的高级应用。
+
+[Handling Strings with R](https://www.gastonsanchez.com/r4strings/) 和 [R for Data Science](https://r4ds.had.co.nz/strings.html) 提供字符串入门介绍 ，Sara Stoudt 整理了 stringr 包与 Base R 正则表达式函数的对应表 <https://stringr.tidyverse.org/articles/from-base.html>
+
+[stringr](https://stringr.tidyverse.org/) 基于 [stringi](https://github.com/gagolews/stringi) 包字符串处理包， [re2r](https://github.com/qinwf/re2r/) 包基于 Google 开发的 C++ 库 [re2](https://github.com/google/re2)，Google 编程之夏项目提供了一份 [正则表达式性能综述](https://github.com/rstats-gsoc/gsoc2016/wiki/re2-regular-expressions)， [stringdist](https://github.com/markvanderloo/stringdist) Approximate String Matching and String Distance Functions 近似字符串匹配和字符串距离计算函数 [@Mark_2014_stringdist]
+
+- [janitor](https://github.com/sfirke/janitor)
+- [Manipulating strings with the stringr package](https://www.brodrigues.co/blog/2019-02-10-stringr_package/)
+- [filesstrings](https://github.com/rorynolan/filesstrings) 基于 stringr 操作字符串
+- [strex](https://github.com/rorynolan/strex) 一些没有包含在 stringr 或者 stringi 中的字符串操作函数
+- [tidytext](https://github.com/juliasilge/tidytext) Text mining using dplyr, ggplot2, and other tidy tools
+
+## 处理性能 {#performance}
+
+当你对一个很长的字符串进行大量的正则表达式匹配的时候，你需要考虑性能问题了，这时候该考虑启用合适的选项，一般来讲， PCRE 比默认的正则表达式引擎快，`fixed=TRUE` 可以继续加快匹配速度，特别是当每个模式只匹配少量次数时。
+
+连接字符串，`paste/c/bfile/bracket` 函数性能比较
+<https://wch.github.io/string_builder/index.html>
+
+R 内置的默认正则表达式匹配方式是基于 PCRE 的匹配，`options` 控制 PCRE 默认的三个选项 `PCRE_limit_recursion=NA` 、`PCRE_study=10` 和 `PCRE_use_JIT=TRUE`，当前系统环境下 PCRE 的支持情况
+
+```{r}
+pcre_config()
+```
+
+查看R环境的 PCRE 配置
+
+```{r}
+sapply(c("PCRE_limit_recursion", "PCRE_study", "PCRE_use_JIT"), getOption)
+```
+
+
+## 网络爬虫 {#Web-crawler}
+
+用 R 语言写爬虫 [curl](https://github.com/jeroen/curl)、[httr](https://github.com/r-lib/httr)、 [xml2](https://github.com/r-lib/xml2)、[XML](https://CRAN.R-project.org/package=XML) 和 [rvest](https://github.com/tidyverse/rvest) 解析网页[^RCurl]
+
+```{r}
+# 查看 libcurl 库的版本
+libcurlVersion()
+```
+
+于主编利用 [tidyRSS](https://github.com/RobertMyles/tidyRSS) 包 抓取解析博客站点的订阅信息，并将此设置为定时任务，创建自动更新内容的博客聚合网站 [Daily R](https://dailyr.netlify.com/)
+
+抓取地震台信息
+
+[^RCurl]: Jeroen Ooms 已经确认 RCurl 早已经不再维护，取代它的是 curl/httr，不要使用不再维护的 R 包 <https://frie.codes/curl-vs-rcurl/>
+
+[一个爬网页的练习：看看 R 邮件列表中最热门的讨论是什么](https://d.cosx.org/d/420739)
+
+## 文本挖掘 {#text-mining}
+
+[How did Axios rectangle Trump's PDF schedule? A try with R](https://masalmon.eu/2019/02/11/trump-schedule/) 使用 pdftools 和 magick 处理表格，这两个 R 包分别依赖 Poppler C++ 和 ImageMagick++，在 Ubuntu 上安装 pdftools 和 magick 包
+
+```bash
+sudo apt-get install libpoppler-cpp-dev libmagick++-dev
+```
+
+```{r,eval=FALSE}
+install.packages(c("pdftools", "magick"))
+```
+
+除了 pdftools 包外，PDF 文档中表格抽取工具还有 [tabulizer](https://github.com/ropensci/tabulizer)。扫描版 PDF 文档需要OCR识别技术支持的 tesseract 包
