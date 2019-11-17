@@ -1,8 +1,5 @@
 # 动态性文档 {#Dynamic-Documents}
 
-```{r,include=FALSE}
-source("_common.R")
-```
 
 ::: rmdnote
 R Markdown 文档[@xie2018rmarkdown] 中的 Python 代码块是由 knitr 包 [@xie2015knitr] 负责调度处理的，展示 Matplotlib 绘图的结果使用了 reticulate 包 [@R-reticulate] 提供的 Python 引擎而不是 knitr 自带的。
@@ -16,7 +13,7 @@ R Markdown 文档[@xie2018rmarkdown] 中的 Python 代码块是由 knitr 包 [@x
 
 编译书籍使用的 Python 3 模块有
 
-```{bash,results='asis',eval=is_unix}
+```{bash,results='asis',eval=FALSE}
 pip3 list --format=columns
 ```
 
@@ -38,20 +35,20 @@ R 和 Python 之间的交互，Python 负责数据处理和建模， R 负责绘
 
 pandas 读取数据，整理后由 reticulate 包传递给 R 环境中的 data.frame 对象，加载 ggplot2 绘图
 
-```{r,echo=FALSE,eval=!file.exists('iris.csv')}
+```{r,echo=FALSE,eval=!file.exists('iris.csv'),eval=FALSE}
 write.csv(iris, file = 'iris.csv', row.names = F)
 ```
-```{python}
+```{python,eval=FALSE}
 import pandas as pd
 iris2 = pd.read_csv('iris.csv')
 ```
-```{r,echo=FALSE,results='hide'}
+```{r,echo=FALSE,results='hide',eval=FALSE}
 if(file.exists('iris.csv')) file.remove('iris.csv')
 ```
 
-如图 \@ref(fig:reti-plot) 所示
 
-```{r reti-plot,fig.cap="散点图"}
+
+```{r reti-plot,fig.cap="散点图",eval=FALSE}
 library(reticulate)
 library(ggplot2)
 ggplot(py$iris2, aes(x = Sepal.Length, y = Sepal.Width)) +
@@ -60,16 +57,10 @@ ggplot(py$iris2, aes(x = Sepal.Length, y = Sepal.Width)) +
 ```
 
 ```{r}
+library(ggplot2)
 ggplot(faithfuld, aes(waiting, eruptions)) +
   geom_raster(aes(fill = density)) +
   scale_fill_continuous()
-```
-
-```{r include=FALSE,cache=FALSE}
-# automatically create a bib database for R packages
-knitr::write_bib(c(
-  .packages(), 'reticulate'
-), 'packages.bib')
 ```
 
 [^r-blogdown]: 有些内容也会放在我的博客上 <https://r-bloggers.netlify.com/>，博客使用 blogdown 包 [@xie2017blogdown] 搭建的
@@ -221,16 +212,19 @@ Explanation of examples.
 
 或者
 
-> A Markdown-formatted document should be publishable as-is, as plain text, without looking like it’s been marked up with tags or formatting instructions.  
+> A Markdown-formatted document should be publishable as-is, as plain text, without looking like it’s been marked up with tags or formatting instructions.
+>
 > --- John Gruber
 
 > Trellis graphics are a bit like hash functions: 
-> you can be close to the target, but get a far-off result.[^lattice-panel]   
+> you can be close to the target, but get a far-off result.[^lattice-panel]
+>
 > --- Dieter Menne
 
 [^lattice-panel]: (about problems with creating a suitable lattice panel function) R-help (August 2008)
 
-> If you imagine that this pen is Trellis, then Lattice is not this pen.[^lattice-pen]  
+> If you imagine that this pen is Trellis, then Lattice is not this pen.[^lattice-pen]
+>
 > --- Paul Murrell
 
 [^lattice-pen]: (on the difference of Lattice (which eventually was called grid) and Trellis) DSC 2001, Wien (March 2001)
@@ -238,7 +232,8 @@ Explanation of examples.
 > You're overlooking something like line 800 of the documentation for xyplot. [...] 
 > It's probably in the R-FAQ as well, 
 > since my original feeling was that this behaviour was chosen 
-> in order to confuse people and see how many people read the FAQ... :) [^xyplot]  
+> in order to confuse people and see how many people read the FAQ... :) [^xyplot]
+>
 > --- Barry Rowlingson 
 
 [^xyplot]: (about the fact that lattice objects have to be print()ed) R-help (May 2005)

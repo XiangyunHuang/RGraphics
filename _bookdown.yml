@@ -30,6 +30,7 @@ rmd_files:
 - "dv-colors-fonts.Rmd"
 
 - "dv-spatio-temporal.Rmd"
+- "dynamic-documents.Rmd"
 
 - "cs-cran-network.Rmd"
 

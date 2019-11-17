@@ -137,7 +137,8 @@ knitr::kable(head(core_pdb[order(
   core_pdb[, "Maintainer"],
   core_pdb[, "Published"]
 ), ], 10),
-caption = "R Core Team 维护的 R 包（展示部分）", booktabs = TRUE
+caption = "R Core Team 维护的 R 包（展示部分）", 
+booktabs = TRUE, row.names = FALSE
 )
 ```
 
@@ -160,7 +161,8 @@ yihui_pdb <- subset(pdb,
   select = c("Package", "Title")
 )
 yihui_pdb[, "Title"] <- gsub("(\\\n)", " ", yihui_pdb[, "Title"])
-knitr::kable(yihui_pdb, caption = "谢益辉维护的 R Markdown 生态", booktabs = TRUE)
+knitr::kable(yihui_pdb, caption = "谢益辉维护的 R Markdown 生态", 
+             booktabs = TRUE, row.names = FALSE)
 ```
 
 Jeroen Ooms 维护从 C++ 世界搬运进来的库，如图像处理 magick 包、 视频处理 av 包、 PDF 文档操作 qpdf 包
