@@ -39,6 +39,7 @@ Imports:
   openxlsx,
   microbenchmark,
   pracma,
-  spDataLarge
+  spDataLarge,
+  tikzDevice
 URL: https://r-graphics.netlify.com, https://bookdown.org/xiangyun/RGraphics/
 BugReports: https://github.com/XiangyunHuang/RGraphics/issues
