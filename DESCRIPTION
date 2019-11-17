@@ -34,6 +34,7 @@ Imports:
   mapproj,
   maptools,
   MBA,
+  pdftools,
   reticulate,
   rsm,
   sf,

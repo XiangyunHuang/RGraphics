@@ -59,6 +59,8 @@ addons:
       -  ghostscript
       ## install magick
       -  libmagick++-dev
+      # pdftools
+      - libpoppler-cpp-dev
       ## install sf
       -  libudunits2-dev
       -  libproj-dev
