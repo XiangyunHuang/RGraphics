@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>第 5 章 净土化操作 | 数据科学与 R 语言</title>
+  <meta name="description" content="数据操作、数据分析、数据建模、动态报告和数据可视化" />
+  <meta name="generator" content="bookdown 0.15 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="第 5 章 净土化操作 | 数据科学与 R 语言" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="https://bookdown.org/xiangyun/RGraphics/" />
+  
+  <meta property="og:description" content="数据操作、数据分析、数据建模、动态报告和数据可视化" />
+  <meta name="github-repo" content="XiangyunHuang/RGraphics" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="第 5 章 净土化操作 | 数据科学与 R 语言" />
+  
+  <meta name="twitter:description" content="数据操作、数据分析、数据建模、动态报告和数据可视化" />
+  
+
+<meta name="author" content="黄湘云" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="dm-base-r.html"/>
+<link rel="next" href="dc-string-manipulation.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">数据可视化与R语言</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>欢迎</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#why-r"><i class="fa fa-check"></i>Why R</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#who-read-this-book"><i class="fa fa-check"></i>目标读者</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#Getting-Help-with-R"><i class="fa fa-check"></i>获取帮助</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#history-of-r"><i class="fa fa-check"></i>发展历史</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#conventions"><i class="fa fa-check"></i>记号约定</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#session-info"><i class="fa fa-check"></i>运行环境</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>前言</a><ul>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#what-talk-about"><i class="fa fa-check"></i>关于本书</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#structure-of-book"><i class="fa fa-check"></i>本书结构</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#about-author"><i class="fa fa-check"></i>关于作者</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="setup.html"><a href="setup.html"><i class="fa fa-check"></i><b>1</b> 安装与配置</a><ul>
+<li class="chapter" data-level="1.1" data-path="setup.html"><a href="setup.html#repo-install"><i class="fa fa-check"></i><b>1.1</b> 仓库安装</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="setup.html"><a href="setup.html#ubuntu"><i class="fa fa-check"></i><b>1.1.1</b> Ubuntu</a></li>
+<li class="chapter" data-level="1.1.2" data-path="setup.html"><a href="setup.html#centos"><i class="fa fa-check"></i><b>1.1.2</b> CentOS</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="setup.html"><a href="setup.html#source-install"><i class="fa fa-check"></i><b>1.2</b> 源码安装</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="setup.html"><a href="setup.html#ubuntu-1"><i class="fa fa-check"></i><b>1.2.1</b> Ubuntu</a></li>
+<li class="chapter" data-level="1.2.2" data-path="setup.html"><a href="setup.html#centos-1"><i class="fa fa-check"></i><b>1.2.2</b> CentOS</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="setup.html"><a href="setup.html#ninja-install"><i class="fa fa-check"></i><b>1.3</b> 忍者安装</a></li>
+<li class="chapter" data-level="1.4" data-path="setup.html"><a href="setup.html#settings"><i class="fa fa-check"></i><b>1.4</b> 配置</a><ul>
+<li class="chapter" data-level="1.4.1" data-path="setup.html"><a href="setup.html#init-session"><i class="fa fa-check"></i><b>1.4.1</b> 初始会话 <code>.Rprofile</code></a></li>
+<li class="chapter" data-level="1.4.2" data-path="setup.html"><a href="setup.html#environ-vars"><i class="fa fa-check"></i><b>1.4.2</b> 环境变量 <code>.Renviron</code></a></li>
+<li class="chapter" data-level="1.4.3" data-path="setup.html"><a href="setup.html#make-vars"><i class="fa fa-check"></i><b>1.4.3</b> 编译选项 <code>Makevars</code></a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="setup.html"><a href="setup.html#command-line-arguments"><i class="fa fa-check"></i><b>1.5</b> 命令行参数</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="files.html"><a href="files.html"><i class="fa fa-check"></i><b>2</b> 文件管理员</a><ul>
+<li class="chapter" data-level="2.1" data-path="files.html"><a href="files.html#list"><i class="fa fa-check"></i><b>2.1</b> 查看文件</a></li>
+<li class="chapter" data-level="2.2" data-path="files.html"><a href="files.html#manipulation"><i class="fa fa-check"></i><b>2.2</b> 操作文件</a></li>
+<li class="chapter" data-level="2.3" data-path="files.html"><a href="files.html#compression"><i class="fa fa-check"></i><b>2.3</b> 压缩文件</a></li>
+<li class="chapter" data-level="2.4" data-path="files.html"><a href="files.html#paths"><i class="fa fa-check"></i><b>2.4</b> 路径操作</a></li>
+<li class="chapter" data-level="2.5" data-path="files.html"><a href="files.html#find"><i class="fa fa-check"></i><b>2.5</b> 查找文件</a></li>
+<li class="chapter" data-level="2.6" data-path="files.html"><a href="files.html#permissions"><i class="fa fa-check"></i><b>2.6</b> 文件权限</a></li>
+<li class="chapter" data-level="2.7" data-path="files.html"><a href="files.html#locale"><i class="fa fa-check"></i><b>2.7</b> 区域设置</a></li>
+<li class="chapter" data-level="2.8" data-path="files.html"><a href="files.html#process"><i class="fa fa-check"></i><b>2.8</b> 进程管理</a></li>
+<li class="chapter" data-level="2.9" data-path="files.html"><a href="files.html#system-commands"><i class="fa fa-check"></i><b>2.9</b> 系统命令</a></li>
+<li class="chapter" data-level="2.10" data-path="files.html"><a href="files.html#time"><i class="fa fa-check"></i><b>2.10</b> 时间管理</a></li>
+<li class="chapter" data-level="2.11" data-path="files.html"><a href="files.html#package"><i class="fa fa-check"></i><b>2.11</b> R 包管理</a></li>
+<li class="chapter" data-level="2.12" data-path="files.html"><a href="files.html#lookup-function"><i class="fa fa-check"></i><b>2.12</b> 查找函数</a></li>
+<li class="chapter" data-level="2.13" data-path="files.html"><a href="files.html#files-session-info"><i class="fa fa-check"></i><b>2.13</b> 运行环境</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="dm-import-export.html"><a href="dm-import-export.html"><i class="fa fa-check"></i><b>3</b> 数据搬运工</a><ul>
+<li class="chapter" data-level="3.1" data-path="dm-import-export.html"><a href="dm-import-export.html#import-data"><i class="fa fa-check"></i><b>3.1</b> 导入数据</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="dm-import-export.html"><a href="dm-import-export.html#scan-file"><i class="fa fa-check"></i><b>3.1.1</b> <code>scan</code></a></li>
+<li class="chapter" data-level="3.1.2" data-path="dm-import-export.html"><a href="dm-import-export.html#read-write-table"><i class="fa fa-check"></i><b>3.1.2</b> <code>read.table</code></a></li>
+<li class="chapter" data-level="3.1.3" data-path="dm-import-export.html"><a href="dm-import-export.html#read-write-lines"><i class="fa fa-check"></i><b>3.1.3</b> <code>readLines</code></a></li>
+<li class="chapter" data-level="3.1.4" data-path="dm-import-export.html"><a href="dm-import-export.html#read-save-rds"><i class="fa fa-check"></i><b>3.1.4</b> <code>readRDS</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="dm-import-export.html"><a href="dm-import-export.html#other-data-source"><i class="fa fa-check"></i><b>3.2</b> 其它数据格式</a></li>
+<li class="chapter" data-level="3.3" data-path="dm-import-export.html"><a href="dm-import-export.html#import-large-dataset"><i class="fa fa-check"></i><b>3.3</b> 导入大数据集</a></li>
+<li class="chapter" data-level="3.4" data-path="dm-import-export.html"><a href="dm-import-export.html#import-data-from-database"><i class="fa fa-check"></i><b>3.4</b> 从数据库导入</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="dm-import-export.html"><a href="dm-import-export.html#postgresql"><i class="fa fa-check"></i><b>3.4.1</b> PostgreSQL</a></li>
+<li class="chapter" data-level="3.4.2" data-path="dm-import-export.html"><a href="dm-import-export.html#mysql"><i class="fa fa-check"></i><b>3.4.2</b> MySQL</a></li>
+<li class="chapter" data-level="3.4.3" data-path="dm-import-export.html"><a href="dm-import-export.html#spark"><i class="fa fa-check"></i><b>3.4.3</b> Spark</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="dm-import-export.html"><a href="dm-import-export.html#batch-import-data"><i class="fa fa-check"></i><b>3.5</b> 批量导入数据</a></li>
+<li class="chapter" data-level="3.6" data-path="dm-import-export.html"><a href="dm-import-export.html#batch-export-data"><i class="fa fa-check"></i><b>3.6</b> 批量导出数据</a></li>
+<li class="chapter" data-level="3.7" data-path="dm-import-export.html"><a href="dm-import-export.html#export-data"><i class="fa fa-check"></i><b>3.7</b> 导出数据</a><ul>
+<li class="chapter" data-level="3.7.1" data-path="dm-import-export.html"><a href="dm-import-export.html#export-output"><i class="fa fa-check"></i><b>3.7.1</b> 导出运行结果</a></li>
+<li class="chapter" data-level="3.7.2" data-path="dm-import-export.html"><a href="dm-import-export.html#export-data-object"><i class="fa fa-check"></i><b>3.7.2</b> 导出数据对象</a></li>
+</ul></li>
+<li class="chapter" data-level="3.8" data-path="dm-import-export.html"><a href="dm-import-export.html#dm-session-info"><i class="fa fa-check"></i><b>3.8</b> 运行环境</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="dm-base-r.html"><a href="dm-base-r.html"><i class="fa fa-check"></i><b>4</b> 数据操作手</a><ul>
+<li class="chapter" data-level="4.1" data-path="dm-base-r.html"><a href="dm-base-r.html#show"><i class="fa fa-check"></i><b>4.1</b> 查看数据</a></li>
+<li class="chapter" data-level="4.2" data-path="dm-base-r.html"><a href="dm-base-r.html#base-reshape"><i class="fa fa-check"></i><b>4.2</b> 数据变形</a></li>
+<li class="chapter" data-level="4.3" data-path="dm-base-r.html"><a href="dm-base-r.html#base-transform"><i class="fa fa-check"></i><b>4.3</b> 数据转换</a></li>
+<li class="chapter" data-level="4.4" data-path="dm-base-r.html"><a href="dm-base-r.html#base-subset"><i class="fa fa-check"></i><b>4.4</b> 提取子集</a></li>
+<li class="chapter" data-level="4.5" data-path="dm-base-r.html"><a href="dm-base-r.html#base-order"><i class="fa fa-check"></i><b>4.5</b> 按列排序</a></li>
+<li class="chapter" data-level="4.6" data-path="dm-base-r.html"><a href="dm-base-r.html#base-split"><i class="fa fa-check"></i><b>4.6</b> 数据拆分</a></li>
+<li class="chapter" data-level="4.7" data-path="dm-base-r.html"><a href="dm-base-r.html#base-merge"><i class="fa fa-check"></i><b>4.7</b> 数据合并</a></li>
+<li class="chapter" data-level="4.8" data-path="dm-base-r.html"><a href="dm-base-r.html#base-duplicated"><i class="fa fa-check"></i><b>4.8</b> 数据去重</a></li>
+<li class="chapter" data-level="4.9" data-path="dm-base-r.html"><a href="dm-base-r.html#base-aggregate"><i class="fa fa-check"></i><b>4.9</b> 数据聚合</a></li>
+<li class="chapter" data-level="4.10" data-path="dm-base-r.html"><a href="dm-base-r.html#base-table"><i class="fa fa-check"></i><b>4.10</b> 表格统计</a></li>
+<li class="chapter" data-level="4.11" data-path="dm-base-r.html"><a href="dm-base-r.html#base-index"><i class="fa fa-check"></i><b>4.11</b> 索引访问</a></li>
+<li class="chapter" data-level="4.12" data-path="dm-base-r.html"><a href="dm-base-r.html#base-array"><i class="fa fa-check"></i><b>4.12</b> 多维数组</a></li>
+<li class="chapter" data-level="4.13" data-path="dm-base-r.html"><a href="dm-base-r.html#base-others"><i class="fa fa-check"></i><b>4.13</b> 其它操作</a><ul>
+<li class="chapter" data-level="4.13.1" data-path="dm-base-r.html"><a href="dm-base-r.html#relist-or-unlist"><i class="fa fa-check"></i><b>4.13.1</b> 列表属性</a></li>
+<li class="chapter" data-level="4.13.2" data-path="dm-base-r.html"><a href="dm-base-r.html#stack-or-unstack"><i class="fa fa-check"></i><b>4.13.2</b> 堆叠向量</a></li>
+<li class="chapter" data-level="4.13.3" data-path="dm-base-r.html"><a href="dm-base-r.html#class-or-unclass"><i class="fa fa-check"></i><b>4.13.3</b> 属性转化</a></li>
+<li class="chapter" data-level="4.13.4" data-path="dm-base-r.html"><a href="dm-base-r.html#attach-or-detach"><i class="fa fa-check"></i><b>4.13.4</b> 绑定环境</a></li>
+<li class="chapter" data-level="4.13.5" data-path="dm-base-r.html"><a href="dm-base-r.html#with-or-within"><i class="fa fa-check"></i><b>4.13.5</b> 数据环境</a></li>
+</ul></li>
+<li class="chapter" data-level="4.14" data-path="dm-base-r.html"><a href="dm-base-r.html#dm-base-session-info"><i class="fa fa-check"></i><b>4.14</b> 运行环境</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="dm-dplyr.html"><a href="dm-dplyr.html"><i class="fa fa-check"></i><b>5</b> 净土化操作</a><ul>
+<li class="chapter" data-level="5.1" data-path="dm-dplyr.html"><a href="dm-dplyr.html#common-operations"><i class="fa fa-check"></i><b>5.1</b> 常用操作</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="dm-dplyr.html"><a href="dm-dplyr.html#tibble-show"><i class="fa fa-check"></i><b>5.1.1</b> 查看</a></li>
+<li class="chapter" data-level="5.1.2" data-path="dm-dplyr.html"><a href="dm-dplyr.html#dplyr-filter"><i class="fa fa-check"></i><b>5.1.2</b> 筛选</a></li>
+<li class="chapter" data-level="5.1.3" data-path="dm-dplyr.html"><a href="dm-dplyr.html#dplyr-arrange"><i class="fa fa-check"></i><b>5.1.3</b> 排序</a></li>
+<li class="chapter" data-level="5.1.4" data-path="dm-dplyr.html"><a href="dm-dplyr.html#dplyr-summarise"><i class="fa fa-check"></i><b>5.1.4</b> 聚合</a></li>
+<li class="chapter" data-level="5.1.5" data-path="dm-dplyr.html"><a href="dm-dplyr.html#dplyr-merge"><i class="fa fa-check"></i><b>5.1.5</b> 合并</a></li>
+<li class="chapter" data-level="5.1.6" data-path="dm-dplyr.html"><a href="dm-dplyr.html#dplyr-mutate"><i class="fa fa-check"></i><b>5.1.6</b> 变换</a></li>
+<li class="chapter" data-level="5.1.7" data-path="dm-dplyr.html"><a href="dm-dplyr.html#dplyr-duplicated"><i class="fa fa-check"></i><b>5.1.7</b> 去重</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="dm-dplyr.html"><a href="dm-dplyr.html#common-dataframe-operations"><i class="fa fa-check"></i><b>5.2</b> 高频问题</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="dm-dplyr.html"><a href="dm-dplyr.html#create-empty-dataframe"><i class="fa fa-check"></i><b>5.2.1</b> 初始化数据框</a></li>
+<li class="chapter" data-level="5.2.2" data-path="dm-dplyr.html"><a href="dm-dplyr.html#remove-missing-values"><i class="fa fa-check"></i><b>5.2.2</b> 移除缺失记录</a></li>
+<li class="chapter" data-level="5.2.3" data-path="dm-dplyr.html"><a href="dm-dplyr.html#coerce-data-type"><i class="fa fa-check"></i><b>5.2.3</b> 数据类型转化</a></li>
+<li class="chapter" data-level="5.2.4" data-path="dm-dplyr.html"><a href="dm-dplyr.html#cross-group-by"><i class="fa fa-check"></i><b>5.2.4</b> 跨列分组求和</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="dm-dplyr.html"><a href="dm-dplyr.html#pipe-manipulation"><i class="fa fa-check"></i><b>5.3</b> 管道操作</a></li>
+<li class="chapter" data-level="5.4" data-path="dm-dplyr.html"><a href="dm-dplyr.html#dm-dplyr-rsession"><i class="fa fa-check"></i><b>5.4</b> 运行环境</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html"><i class="fa fa-check"></i><b>6</b> 字符串操作</a><ul>
+<li class="chapter" data-level="6.1" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#base-count"><i class="fa fa-check"></i><b>6.1</b> 字符数统计</a></li>
+<li class="chapter" data-level="6.2" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#base-translations"><i class="fa fa-check"></i><b>6.2</b> 字符串翻译</a></li>
+<li class="chapter" data-level="6.3" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#base-concatenate"><i class="fa fa-check"></i><b>6.3</b> 字符串连接</a></li>
+<li class="chapter" data-level="6.4" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#base-strsplit"><i class="fa fa-check"></i><b>6.4</b> 字符串拆分</a></li>
+<li class="chapter" data-level="6.5" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#base-match"><i class="fa fa-check"></i><b>6.5</b> 字符串匹配</a></li>
+<li class="chapter" data-level="6.6" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#base-search"><i class="fa fa-check"></i><b>6.6</b> 字符串查询</a></li>
+<li class="chapter" data-level="6.7" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#base-replacement"><i class="fa fa-check"></i><b>6.7</b> 字符串替换</a></li>
+<li class="chapter" data-level="6.8" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#base-extract"><i class="fa fa-check"></i><b>6.8</b> 字符串提取</a></li>
+<li class="chapter" data-level="6.9" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#other-string-op"><i class="fa fa-check"></i><b>6.9</b> 其它操作</a><ul>
+<li class="chapter" data-level="6.9.1" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#strwrap"><i class="fa fa-check"></i><b>6.9.1</b> strwrap</a></li>
+<li class="chapter" data-level="6.9.2" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#strtrim"><i class="fa fa-check"></i><b>6.9.2</b> strtrim</a></li>
+<li class="chapter" data-level="6.9.3" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#strrep"><i class="fa fa-check"></i><b>6.9.3</b> strrep</a></li>
+<li class="chapter" data-level="6.9.4" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#trimws"><i class="fa fa-check"></i><b>6.9.4</b> trimws</a></li>
+</ul></li>
+<li class="chapter" data-level="6.10" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#string-session-info"><i class="fa fa-check"></i><b>6.10</b> 运行环境</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="dc-regular-expressions.html"><a href="dc-regular-expressions.html"><i class="fa fa-check"></i><b>7</b> 正则表达式</a><ul>
+<li class="chapter" data-level="7.1" data-path="dc-regular-expressions.html"><a href="dc-regular-expressions.html#character-constants"><i class="fa fa-check"></i><b>7.1</b> 字符常量</a></li>
+<li class="chapter" data-level="7.2" data-path="dc-regular-expressions.html"><a href="dc-regular-expressions.html#environments"><i class="fa fa-check"></i><b>7.2</b> 软件环境</a></li>
+<li class="chapter" data-level="7.3" data-path="dc-regular-expressions.html"><a href="dc-regular-expressions.html#foundations"><i class="fa fa-check"></i><b>7.3</b> 基本概念</a></li>
+<li class="chapter" data-level="7.4" data-path="dc-regular-expressions.html"><a href="dc-regular-expressions.html#match"><i class="fa fa-check"></i><b>7.4</b> 字符串匹配</a></li>
+<li class="chapter" data-level="7.5" data-path="dc-regular-expressions.html"><a href="dc-regular-expressions.html#concatenation"><i class="fa fa-check"></i><b>7.5</b> 级联表达式</a></li>
+<li class="chapter" data-level="7.6" data-path="dc-regular-expressions.html"><a href="dc-regular-expressions.html#backreference"><i class="fa fa-check"></i><b>7.6</b> 反向引用</a></li>
+<li class="chapter" data-level="7.7" data-path="dc-regular-expressions.html"><a href="dc-regular-expressions.html#named-capture"><i class="fa fa-check"></i><b>7.7</b> 命名捕捉</a></li>
+<li class="chapter" data-level="7.8" data-path="dc-regular-expressions.html"><a href="dc-regular-expressions.html#comment"><i class="fa fa-check"></i><b>7.8</b> 表达式注释</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="dv-plot.html"><a href="dv-plot.html"><i class="fa fa-check"></i><b>8</b> 绘图素材库</a><ul>
+<li class="chapter" data-level="8.1" data-path="dv-plot.html"><a href="dv-plot.html#elements"><i class="fa fa-check"></i><b>8.1</b> 基本要素</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="dv-plot.html"><a href="dv-plot.html#base-points"><i class="fa fa-check"></i><b>8.1.1</b> 点线</a></li>
+<li class="chapter" data-level="8.1.2" data-path="dv-plot.html"><a href="dv-plot.html#base-rect"><i class="fa fa-check"></i><b>8.1.2</b> 区域</a></li>
+<li class="chapter" data-level="8.1.3" data-path="dv-plot.html"><a href="dv-plot.html#base-lines"><i class="fa fa-check"></i><b>8.1.3</b> 参考线</a></li>
+<li class="chapter" data-level="8.1.4" data-path="dv-plot.html"><a href="dv-plot.html#base-axis"><i class="fa fa-check"></i><b>8.1.4</b> 坐标轴</a></li>
+<li class="chapter" data-level="8.1.5" data-path="dv-plot.html"><a href="dv-plot.html#base-tick"><i class="fa fa-check"></i><b>8.1.5</b> 刻度线</a></li>
+<li class="chapter" data-level="8.1.6" data-path="dv-plot.html"><a href="dv-plot.html#base-title"><i class="fa fa-check"></i><b>8.1.6</b> 标题</a></li>
+<li class="chapter" data-level="8.1.7" data-path="dv-plot.html"><a href="dv-plot.html#base-annotation"><i class="fa fa-check"></i><b>8.1.7</b> 注释</a></li>
+<li class="chapter" data-level="8.1.8" data-path="dv-plot.html"><a href="dv-plot.html#base-legend"><i class="fa fa-check"></i><b>8.1.8</b> 图例</a></li>
+<li class="chapter" data-level="8.1.9" data-path="dv-plot.html"><a href="dv-plot.html#base-par"><i class="fa fa-check"></i><b>8.1.9</b> 边空</a></li>
+<li class="chapter" data-level="8.1.10" data-path="dv-plot.html"><a href="dv-plot.html#base-layer"><i class="fa fa-check"></i><b>8.1.10</b> 图层</a></li>
+<li class="chapter" data-level="8.1.11" data-path="dv-plot.html"><a href="dv-plot.html#base-layout"><i class="fa fa-check"></i><b>8.1.11</b> 布局</a></li>
+<li class="chapter" data-level="8.1.12" data-path="dv-plot.html"><a href="dv-plot.html#base-combine"><i class="fa fa-check"></i><b>8.1.12</b> 组合</a></li>
+<li class="chapter" data-level="8.1.13" data-path="dv-plot.html"><a href="dv-plot.html#base-screen"><i class="fa fa-check"></i><b>8.1.13</b> 分屏</a></li>
+<li class="chapter" data-level="8.1.14" data-path="dv-plot.html"><a href="dv-plot.html#identify-locator"><i class="fa fa-check"></i><b>8.1.14</b> 交互</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="dv-plot.html"><a href="dv-plot.html#plot-gallary"><i class="fa fa-check"></i><b>8.2</b> 统计图形</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="dv-plot.html"><a href="dv-plot.html#plot-bar"><i class="fa fa-check"></i><b>8.2.1</b> 条形图</a></li>
+<li class="chapter" data-level="8.2.2" data-path="dv-plot.html"><a href="dv-plot.html#plot-hist"><i class="fa fa-check"></i><b>8.2.2</b> 直方图</a></li>
+<li class="chapter" data-level="8.2.3" data-path="dv-plot.html"><a href="dv-plot.html#plot-density"><i class="fa fa-check"></i><b>8.2.3</b> 密度图</a></li>
+<li class="chapter" data-level="8.2.4" data-path="dv-plot.html"><a href="dv-plot.html#plot-ecdf"><i class="fa fa-check"></i><b>8.2.4</b> 经验图</a></li>
+<li class="chapter" data-level="8.2.5" data-path="dv-plot.html"><a href="dv-plot.html#plot-qqnorm"><i class="fa fa-check"></i><b>8.2.5</b> QQ 图</a></li>
+<li class="chapter" data-level="8.2.6" data-path="dv-plot.html"><a href="dv-plot.html#plot-ts"><i class="fa fa-check"></i><b>8.2.6</b> 时序图</a></li>
+<li class="chapter" data-level="8.2.7" data-path="dv-plot.html"><a href="dv-plot.html#plot-pie"><i class="fa fa-check"></i><b>8.2.7</b> 饼图</a></li>
+<li class="chapter" data-level="8.2.8" data-path="dv-plot.html"><a href="dv-plot.html#plot-stem-leaf"><i class="fa fa-check"></i><b>8.2.8</b> 茎叶图</a></li>
+<li class="chapter" data-level="8.2.9" data-path="dv-plot.html"><a href="dv-plot.html#plot-scatter"><i class="fa fa-check"></i><b>8.2.9</b> 散点图</a></li>
+<li class="chapter" data-level="8.2.10" data-path="dv-plot.html"><a href="dv-plot.html#base-jitter"><i class="fa fa-check"></i><b>8.2.10</b> 抖动图</a></li>
+<li class="chapter" data-level="8.2.11" data-path="dv-plot.html"><a href="dv-plot.html#plot-box"><i class="fa fa-check"></i><b>8.2.11</b> 箱线图</a></li>
+<li class="chapter" data-level="8.2.12" data-path="dv-plot.html"><a href="dv-plot.html#error-bars"><i class="fa fa-check"></i><b>8.2.12</b> 残差图</a></li>
+<li class="chapter" data-level="8.2.13" data-path="dv-plot.html"><a href="dv-plot.html#plot-violin"><i class="fa fa-check"></i><b>8.2.13</b> 提琴图</a></li>
+<li class="chapter" data-level="8.2.14" data-path="dv-plot.html"><a href="dv-plot.html#plot-contour"><i class="fa fa-check"></i><b>8.2.14</b> 轮廓图</a></li>
+<li class="chapter" data-level="8.2.15" data-path="dv-plot.html"><a href="dv-plot.html#plot-line"><i class="fa fa-check"></i><b>8.2.15</b> 折线图</a></li>
+<li class="chapter" data-level="8.2.16" data-path="dv-plot.html"><a href="dv-plot.html#function"><i class="fa fa-check"></i><b>8.2.16</b> 函数图</a></li>
+<li class="chapter" data-level="8.2.17" data-path="dv-plot.html"><a href="dv-plot.html#plot-mosaic"><i class="fa fa-check"></i><b>8.2.17</b> 马赛克图</a></li>
+<li class="chapter" data-level="8.2.18" data-path="dv-plot.html"><a href="dv-plot.html#plot-dotchart"><i class="fa fa-check"></i><b>8.2.18</b> 克利夫兰点图</a></li>
+<li class="chapter" data-level="8.2.19" data-path="dv-plot.html"><a href="dv-plot.html#plot-matrix"><i class="fa fa-check"></i><b>8.2.19</b> 矩阵图</a></li>
+<li class="chapter" data-level="8.2.20" data-path="dv-plot.html"><a href="dv-plot.html#plot-radar"><i class="fa fa-check"></i><b>8.2.20</b> 雷达图</a></li>
+<li class="chapter" data-level="8.2.21" data-path="dv-plot.html"><a href="dv-plot.html#plot-rose"><i class="fa fa-check"></i><b>8.2.21</b> 玫瑰图</a></li>
+<li class="chapter" data-level="8.2.22" data-path="dv-plot.html"><a href="dv-plot.html#plot-map"><i class="fa fa-check"></i><b>8.2.22</b> 地形图</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="dv-plot.html"><a href="dv-plot.html#plot-session-info"><i class="fa fa-check"></i><b>8.3</b> 运行环境</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html"><i class="fa fa-check"></i><b>9</b> 数据可视化</a><ul>
+<li class="chapter" data-level="9.1" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#intro-ggplot2"><i class="fa fa-check"></i><b>9.1</b> 基础语法</a><ul>
+<li class="chapter" data-level="9.1.1" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-layer"><i class="fa fa-check"></i><b>9.1.1</b> 图层</a></li>
+<li class="chapter" data-level="9.1.2" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-theme"><i class="fa fa-check"></i><b>9.1.2</b> 主题</a></li>
+<li class="chapter" data-level="9.1.3" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-color"><i class="fa fa-check"></i><b>9.1.3</b> 配色</a></li>
+<li class="chapter" data-level="9.1.4" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-scale"><i class="fa fa-check"></i><b>9.1.4</b> 刻度</a></li>
+<li class="chapter" data-level="9.1.5" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-annotate"><i class="fa fa-check"></i><b>9.1.5</b> 注释</a></li>
+<li class="chapter" data-level="9.1.6" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-legend"><i class="fa fa-check"></i><b>9.1.6</b> 图例</a></li>
+<li class="chapter" data-level="9.1.7" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-grid"><i class="fa fa-check"></i><b>9.1.7</b> 组合</a></li>
+<li class="chapter" data-level="9.1.8" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-coord"><i class="fa fa-check"></i><b>9.1.8</b> 坐标系</a></li>
+<li class="chapter" data-level="9.1.9" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-axes"><i class="fa fa-check"></i><b>9.1.9</b> 坐标轴</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-gallary"><i class="fa fa-check"></i><b>9.2</b> 统计图形</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-scatter"><i class="fa fa-check"></i><b>9.2.1</b> 散点图</a></li>
+<li class="chapter" data-level="9.2.2" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-boxplot"><i class="fa fa-check"></i><b>9.2.2</b> 箱线图</a></li>
+<li class="chapter" data-level="9.2.3" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-barplot"><i class="fa fa-check"></i><b>9.2.3</b> 条形图</a></li>
+<li class="chapter" data-level="9.2.4" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-line"><i class="fa fa-check"></i><b>9.2.4</b> 折线图</a></li>
+<li class="chapter" data-level="9.2.5" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-histogram"><i class="fa fa-check"></i><b>9.2.5</b> 直方图</a></li>
+<li class="chapter" data-level="9.2.6" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-violin"><i class="fa fa-check"></i><b>9.2.6</b> 提琴图</a></li>
+<li class="chapter" data-level="9.2.7" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-jitter"><i class="fa fa-check"></i><b>9.2.7</b> 抖动图</a></li>
+<li class="chapter" data-level="9.2.8" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-ridge"><i class="fa fa-check"></i><b>9.2.8</b> 密度图</a></li>
+<li class="chapter" data-level="9.2.9" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-rose"><i class="fa fa-check"></i><b>9.2.9</b> 玫瑰图</a></li>
+<li class="chapter" data-level="9.2.10" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-wordcloud"><i class="fa fa-check"></i><b>9.2.10</b> 词云图</a></li>
+<li class="chapter" data-level="9.2.11" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#calendar-map"><i class="fa fa-check"></i><b>9.2.11</b> 日历图</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-session-info"><i class="fa fa-check"></i><b>9.3</b> 运行环境</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="dv-plotly.html"><a href="dv-plotly.html"><i class="fa fa-check"></i><b>10</b> 交互式图形</a><ul>
+<li class="chapter" data-level="10.1" data-path="dv-plotly.html"><a href="dv-plotly.html#plotly"><i class="fa fa-check"></i><b>10.1</b> plotly</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="dv-plot3d.html"><a href="dv-plot3d.html"><i class="fa fa-check"></i><b>11</b> 三维可视化</a><ul>
+<li class="chapter" data-level="11.1" data-path="dv-plot3d.html"><a href="dv-plot3d.html#pie-3d"><i class="fa fa-check"></i><b>11.1</b> 饼图</a></li>
+<li class="chapter" data-level="11.2" data-path="dv-plot3d.html"><a href="dv-plot3d.html#bar-3d"><i class="fa fa-check"></i><b>11.2</b> 柱形图</a></li>
+<li class="chapter" data-level="11.3" data-path="dv-plot3d.html"><a href="dv-plot3d.html#scatter-3d"><i class="fa fa-check"></i><b>11.3</b> 散点图</a></li>
+<li class="chapter" data-level="11.4" data-path="dv-plot3d.html"><a href="dv-plot3d.html#curve-3d"><i class="fa fa-check"></i><b>11.4</b> 函数图</a></li>
+<li class="chapter" data-level="11.5" data-path="dv-plot3d.html"><a href="dv-plot3d.html#persp-3d"><i class="fa fa-check"></i><b>11.5</b> 透视图</a></li>
+<li class="chapter" data-level="11.6" data-path="dv-plot3d.html"><a href="dv-plot3d.html#tikz"><i class="fa fa-check"></i><b>11.6</b> TikZ 绘图</a></li>
+<li class="chapter" data-level="11.7" data-path="dv-plot3d.html"><a href="dv-plot3d.html#export-save"><i class="fa fa-check"></i><b>11.7</b> 图形导出</a></li>
+<li class="chapter" data-level="11.8" data-path="dv-plot3d.html"><a href="dv-plot3d.html#plot3d-sessionInfo"><i class="fa fa-check"></i><b>11.8</b> 软件信息</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="dv-colors-fonts.html"><a href="dv-colors-fonts.html"><i class="fa fa-check"></i><b>12</b> 色彩与字体</a><ul>
+<li class="chapter" data-level="12.1" data-path="dv-colors-fonts.html"><a href="dv-colors-fonts.html#colors-in-r"><i class="fa fa-check"></i><b>12.1</b> 颜色</a></li>
+<li class="chapter" data-level="12.2" data-path="dv-colors-fonts.html"><a href="dv-colors-fonts.html#choose-colors"><i class="fa fa-check"></i><b>12.2</b> 配色</a><ul>
+<li class="chapter" data-level="12.2.1" data-path="dv-colors-fonts.html"><a href="dv-colors-fonts.html#colourlovers"><i class="fa fa-check"></i><b>12.2.1</b> colourlovers</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="dv-colors-fonts.html"><a href="dv-colors-fonts.html#fonts"><i class="fa fa-check"></i><b>12.3</b> 字体</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html"><i class="fa fa-check"></i><b>13</b> 时空可视化</a><ul>
+<li class="chapter" data-level="13.1" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#map"><i class="fa fa-check"></i><b>13.1</b> 地图</a><ul>
+<li class="chapter" data-level="13.1.1" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#project-orientation"><i class="fa fa-check"></i><b>13.1.1</b> 投影和观察方位</a></li>
+<li class="chapter" data-level="13.1.2" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#USA-crime-rates"><i class="fa fa-check"></i><b>13.1.2</b> 美国各州犯罪率</a></li>
+<li class="chapter" data-level="13.1.3" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#fiji-earthquake-map"><i class="fa fa-check"></i><b>13.1.3</b> 斐济地震带</a></li>
+<li class="chapter" data-level="13.1.4" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#USA-unemployment-ratio"><i class="fa fa-check"></i><b>13.1.4</b> 美国各城镇失业率</a></li>
+</ul></li>
+<li class="chapter" data-level="13.2" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#spatial-op"><i class="fa fa-check"></i><b>13.2</b> 空间数据对象</a><ul>
+<li class="chapter" data-level="13.2.1" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#ggplot2-sp"><i class="fa fa-check"></i><b>13.2.1</b> sp</a></li>
+<li class="chapter" data-level="13.2.2" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#ggplot2-raster"><i class="fa fa-check"></i><b>13.2.2</b> raster</a></li>
+<li class="chapter" data-level="13.2.3" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#ggplot2-sf"><i class="fa fa-check"></i><b>13.2.3</b> sf</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="dynamic-documents.html"><a href="dynamic-documents.html"><i class="fa fa-check"></i><b>14</b> 动态性文档</a><ul>
+<li class="chapter" data-level="" data-path="dynamic-documents.html"><a href="dynamic-documents.html#sessioninfo"><i class="fa fa-check"></i>软件信息</a></li>
+<li class="chapter" data-level="" data-path="dynamic-documents.html"><a href="dynamic-documents.html#r-call-python"><i class="fa fa-check"></i>R 调用 Python</a></li>
+<li class="chapter" data-level="14.1" data-path="dynamic-documents.html"><a href="dynamic-documents.html#markdown"><i class="fa fa-check"></i><b>14.1</b> Markdown</a><ul>
+<li class="chapter" data-level="14.1.1" data-path="dynamic-documents.html"><a href="dynamic-documents.html#markdown-list"><i class="fa fa-check"></i><b>14.1.1</b> 列表</a></li>
+<li class="chapter" data-level="14.1.2" data-path="dynamic-documents.html"><a href="dynamic-documents.html#markdown-emphasis"><i class="fa fa-check"></i><b>14.1.2</b> 强调</a></li>
+<li class="chapter" data-level="14.1.3" data-path="dynamic-documents.html"><a href="dynamic-documents.html#markdown-quote"><i class="fa fa-check"></i><b>14.1.3</b> 引用</a></li>
+<li class="chapter" data-level="14.1.4" data-path="dynamic-documents.html"><a href="dynamic-documents.html#markdown-table"><i class="fa fa-check"></i><b>14.1.4</b> 表格</a></li>
+<li class="chapter" data-level="14.1.5" data-path="dynamic-documents.html"><a href="dynamic-documents.html#image"><i class="fa fa-check"></i><b>14.1.5</b> 图片</a></li>
+<li class="chapter" data-level="14.1.6" data-path="dynamic-documents.html"><a href="dynamic-documents.html#markdown-math"><i class="fa fa-check"></i><b>14.1.6</b> 公式</a></li>
+</ul></li>
+<li class="chapter" data-level="14.2" data-path="dynamic-documents.html"><a href="dynamic-documents.html#pandoc-markdown"><i class="fa fa-check"></i><b>14.2</b> Pandoc’s Markdown</a></li>
+<li class="chapter" data-level="14.3" data-path="dynamic-documents.html"><a href="dynamic-documents.html#r-markdown"><i class="fa fa-check"></i><b>14.3</b> R Markdown</a><ul>
+<li class="chapter" data-level="14.3.1" data-path="dynamic-documents.html"><a href="dynamic-documents.html#语法高亮"><i class="fa fa-check"></i><b>14.3.1</b> 语法高亮</a></li>
+</ul></li>
+<li class="chapter" data-level="14.4" data-path="dynamic-documents.html"><a href="dynamic-documents.html#table-style"><i class="fa fa-check"></i><b>14.4</b> 表格样式</a><ul>
+<li class="chapter" data-level="14.4.1" data-path="dynamic-documents.html"><a href="dynamic-documents.html#table-html"><i class="fa fa-check"></i><b>14.4.1</b> HTML 样式</a></li>
+<li class="chapter" data-level="14.4.2" data-path="dynamic-documents.html"><a href="dynamic-documents.html#table-latex"><i class="fa fa-check"></i><b>14.4.2</b> LaTeX 样式</a></li>
+</ul></li>
+<li class="chapter" data-level="14.5" data-path="dynamic-documents.html"><a href="dynamic-documents.html#rmarkdown-addins"><i class="fa fa-check"></i><b>14.5</b> 插件</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="cs-cran-network.html"><a href="cs-cran-network.html"><i class="fa fa-check"></i><b>15</b> 案例：分析 CRAN</a><ul>
+<li class="chapter" data-level="15.1" data-path="cs-cran-network.html"><a href="cs-cran-network.html#R-Core-Team"><i class="fa fa-check"></i><b>15.1</b> R 核心团队</a></li>
+<li class="chapter" data-level="15.2" data-path="cs-cran-network.html"><a href="cs-cran-network.html#Top-Creators"><i class="fa fa-check"></i><b>15.2</b> 高产的开发者</a></li>
+<li class="chapter" data-level="15.3" data-path="cs-cran-network.html"><a href="cs-cran-network.html#R-Package-Developers"><i class="fa fa-check"></i><b>15.3</b> 社区开发者</a></li>
+<li class="chapter" data-level="15.4" data-path="cs-cran-network.html"><a href="cs-cran-network.html#first-commit"><i class="fa fa-check"></i><b>15.4</b> 首次贡献 R 包</a></li>
+<li class="chapter" data-level="15.5" data-path="cs-cran-network.html"><a href="cs-cran-network.html#Contribution-Network"><i class="fa fa-check"></i><b>15.5</b> 贡献关系网络</a></li>
+<li class="chapter" data-level="15.6" data-path="cs-cran-network.html"><a href="cs-cran-network.html#CRAN-Update-Packages"><i class="fa fa-check"></i><b>15.6</b> 更新知多少</a></li>
+<li class="chapter" data-level="15.7" data-path="cs-cran-network.html"><a href="cs-cran-network.html#Package-Licenses"><i class="fa fa-check"></i><b>15.7</b> 使用许可证</a></li>
+<li class="chapter" data-level="15.8" data-path="cs-cran-network.html"><a href="cs-cran-network.html#r-包增长速度"><i class="fa fa-check"></i><b>15.8</b> R 包增长速度</a></li>
+<li class="chapter" data-level="15.9" data-path="cs-cran-network.html"><a href="cs-cran-network.html#Choose-Package"><i class="fa fa-check"></i><b>15.9</b> 选择 R 包</a></li>
+<li class="chapter" data-level="15.10" data-path="cs-cran-network.html"><a href="cs-cran-network.html#cs-network-session-info"><i class="fa fa-check"></i><b>15.10</b> 运行环境</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="99-references.html"><a href="99-references.html"><i class="fa fa-check"></i>参考文献</a></li>
+<li class="divider"></li>
+<li><a href="https://r-graphics.netlify.com/" target="blank">Published with netlify</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">数据科学与 R 语言</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="dplyr-manipulation" class="section level1">
+<h1><span class="header-section-number">第 5 章</span> 净土化操作</h1>
+<blockquote>
+<p>常用操作和高频问题需要合并进之前的 data-manipulation，本章只介绍向量化计算
+以 dplyr 为核心的 tidyverse 风数据操作 管道风操作</p>
+</blockquote>
+<p>在不同规模的数据集上，Base R，dplyr 和 data.table 的处理性能应该属于低、中、高档搭配的情形</p>
+<div class="sidebar">
+<p>更加高级的数据变形操作，特别是数据类型的一致性，方便后续的可视化和建模，引入 tidyverse，数据处理或者叫特征工程 Base R vs data.table vs dplyr 它们各有优点，所以都加以介绍 参考 <a href="https://jozef.io/categories/rcase4base/">Jozef Hajnala</a> 博文。</p>
+<p>关于 tidyverse 提供的数据操作不要移动到 Base R 对应的章节，这二者已经越行越远，本章主要讲并行或分布式数据操作工具，如 sparklyr 针对大数据集上的操</p>
+<p>Base R 的数据操作的一致性问题参见统计之都帖子 <a href="https://d.cosx.org/d/420763" class="uri">https://d.cosx.org/d/420763</a></p>
+<p><a href="https://malco.io/">Malcolm Barrett</a> 以幻灯片的形式呈现 <a href="https://malco.io/slides/hs_dplyr/">dplyr</a> 和 <a href="https://malco.io/slides/hs_purrr/">purrr</a> 的基础用法</p>
+<p>Charlotte Wickham 的课程 A introduction to purrr <a href="https://github.com/cwickham/purrr-tutorial">purrr-tutorial</a></p>
+<p>关于引用 <a href="https://github.com/cwickham/quotation">quotation</a></p>
+<p>相比于 SQL， dplyr 在数据库操作的不足，这是一些比较难的部分 <a href="https://dbi.r-dbi.org/articles/dbi-1#sec:open-issues" class="uri">https://dbi.r-dbi.org/articles/dbi-1#sec:open-issues</a></p>
+</div>
+<p>函数式编程 Functional Programming Languages 用于数据处理</p>
+<ul>
+<li><a href="https://github.com/smartinsightsfromdata/rpivotTable">rpivotTable</a> 动态数据透视表</li>
+<li><a href="https://github.com/dgrtwo/fuzzyjoin">fuzzyjoin</a> Join tables together on inexact matching</li>
+<li><a href="https://github.com/hadley/dtplyr">dtplyr</a> dtplyr is the data.table backend for dplyr. It provides S3 methods for data.table objects so that dplyr works the way you expect.</li>
+<li><a href="https://github.com/yonicd/bplyr">bplyr</a> basic dplyr and tidyr functionality without the tidyverse dependencies</li>
+<li><a href="https://github.com/OHDSI/SqlRender">SqlRender</a> 基于 Java 语言，借助 rJava 包支持参数化的 SQL 语句，并且可以将一种 SQL 语句（如 Microsoft SQL Server）转化为多种SQL语句（如Oracle, PostgreSQL, Amazon RedShift, Impala, IBM Netezza, Google BigQuery, Microsoft PDW, and SQLite）</li>
+<li><a href="https://github.com/wch/fastmap">fastmap</a> 实现键值存储，提供新的数据结构</li>
+<li><a href="https://github.com/RoaringBitmap/CRoaring">Roaring bitmaps</a> Bitsets, also called bitmaps, are commonly used as fast data structures.</li>
+</ul>
+<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="dm-dplyr.html#cb290-1"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
+<p>数据操作的语法</p>
+<p>第一代</p>
+<ol style="list-style-type: decimal">
+<li>Base R 数据操作已在第 <a href="dm-base-r.html#data-manipulator">4</a> 章详细介绍</li>
+</ol>
+<p>第二代</p>
+<ol style="list-style-type: decimal">
+<li>reshape （退休）使用函数 <code>melt</code> 和 <code>cast</code> 重构(restructure)和聚合(aggregate)数据</li>
+<li>reshape2 （退休）是 reshape 的继任者，功能和 reshape 类似，提供两个函数 <code>melt</code> 和 <code>cast</code> 聚合数据，因此不再介绍 reshape，而鉴于 reshape2 还在活跃使用中，故而以它为例介绍 <code>melt</code> 和 <code>cast</code> 函数</li>
+<li>plyr （退休）统一拆分(split)，计算(apply)，合并(combine)的数据处理流，由 dplyr（用于data.frame） 和 purrr （用于 list）继任</li>
+</ol>
+<p>第三代</p>
+<ol style="list-style-type: decimal">
+<li>dplyr 操作数据的语法及其扩展</li>
+<li>sparklyr 给 dplyr 提供 Spark 接口支持</li>
+<li>dbplyr 给 dplyr 提供 DBI 数据库接口支持</li>
+<li>dtplyr 给 dplyr 提供 data.table 支持</li>
+<li>tidyr 提供 <code>spread</code> 和 <code>gather</code> 两个函数清洗数据</li>
+</ol>
+<p>Garrett Grolemund 在 RStudio 主要从事教育教学，参考 <a href="https://github.com/rstudio-education/teach-tidy">Materials for the Tidyverse Train-the-trainer workshop</a> 和 <a href="https://rstudio-education.github.io/tidyverse-cookbook/">The Tidyverse Cookbook</a></p>
+<p>Dirk Eddelbuettel 的 <a href="https://github.com/eddelbuettel/gsir-te">Getting Started in R – Tinyverse Edition</a></p>
+<div id="common-operations" class="section level2">
+<h2><span class="header-section-number">5.1</span> 常用操作</h2>
+<p>dplyr 由 Hadley Wickham 主要由开发和维护，是Rstudio公司开源的用于数据处理的一大利器，该包号称“数据操作的语法”，与 ggplot2 对应，也就是说数据处理那一套已经建立完整的和SQL一样的功能。它们都遵循同样的处理逻辑，只不过一个用SQL写，一个用R语言写，处理效率差不多，R语言写的 SQL 会被翻译为 SQL 语句，再传至数据库查询，当然它也支持内存内的数据操作。目前 dplyr 以 dbplyr 为后端支持的数据库有：MySQL、PostgreSQL，SQLite等，完整的支持列表请看 <a href="https://dplyr.tidyverse.org">这里</a>，连接特定数据库，都是基于 DBI，DBI 即 Database Interface， 是使用C/C++开发的底层数据库接口，是一个统一的关系型数据库连接框架，需要根据不同的具体的数据库进行实例化，才可使用。</p>
+<p>dplyr 常用的函数是 7 个： <code>arrange</code> 排序 <code>filter</code> 过滤行 <code>select</code> 选择列 <code>mutate</code> 变换 <code>summarise</code> 汇总 <code>group_by</code> 分组 <code>distinct</code> 去重</p>
+<p>以 ggplot2 包自带的钻石数据集 diamonds 为例介绍</p>
+<div id="tibble-show" class="section level3">
+<h3><span class="header-section-number">5.1.1</span> 查看</h3>
+<p>除了直接打印数据集的前几行，tibble 包还提供 glimpse 函数查看数据集，而 Base R 默认查看方式是调用 str 函数</p>
+<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="dm-dplyr.html#cb291-1"></a>diamonds</span>
+<span id="cb291-2"><a href="dm-dplyr.html#cb291-2"></a><span class="co">#&gt; # A tibble: 53,940 x 10</span></span>
+<span id="cb291-3"><a href="dm-dplyr.html#cb291-3"></a><span class="co">#&gt;   carat cut       color clarity depth table price     x     y     z</span></span>
+<span id="cb291-4"><a href="dm-dplyr.html#cb291-4"></a><span class="co">#&gt;   &lt;dbl&gt; &lt;ord&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span id="cb291-5"><a href="dm-dplyr.html#cb291-5"></a><span class="co">#&gt; 1 0.23  Ideal     E     SI2      61.5    55   326  3.95  3.98  2.43</span></span>
+<span id="cb291-6"><a href="dm-dplyr.html#cb291-6"></a><span class="co">#&gt; 2 0.21  Premium   E     SI1      59.8    61   326  3.89  3.84  2.31</span></span>
+<span id="cb291-7"><a href="dm-dplyr.html#cb291-7"></a><span class="co">#&gt; 3 0.23  Good      E     VS1      56.9    65   327  4.05  4.07  2.31</span></span>
+<span id="cb291-8"><a href="dm-dplyr.html#cb291-8"></a><span class="co">#&gt; 4 0.290 Premium   I     VS2      62.4    58   334  4.2   4.23  2.63</span></span>
+<span id="cb291-9"><a href="dm-dplyr.html#cb291-9"></a><span class="co">#&gt; 5 0.31  Good      J     SI2      63.3    58   335  4.34  4.35  2.75</span></span>
+<span id="cb291-10"><a href="dm-dplyr.html#cb291-10"></a><span class="co">#&gt; 6 0.24  Very Good J     VVS2     62.8    57   336  3.94  3.96  2.48</span></span>
+<span id="cb291-11"><a href="dm-dplyr.html#cb291-11"></a><span class="co">#&gt; # … with 5.393e+04 more rows</span></span>
+<span id="cb291-12"><a href="dm-dplyr.html#cb291-12"></a><span class="kw">glimpse</span>(diamonds)</span>
+<span id="cb291-13"><a href="dm-dplyr.html#cb291-13"></a><span class="co">#&gt; Observations: 53,940</span></span>
+<span id="cb291-14"><a href="dm-dplyr.html#cb291-14"></a><span class="co">#&gt; Variables: 10</span></span>
+<span id="cb291-15"><a href="dm-dplyr.html#cb291-15"></a><span class="co">#&gt; $ carat   &lt;dbl&gt; 0.23, 0.21, 0.23, 0.29, 0.31, 0.24, 0.24, 0.26, 0.22, 0.23, …</span></span>
+<span id="cb291-16"><a href="dm-dplyr.html#cb291-16"></a><span class="co">#&gt; $ cut     &lt;ord&gt; Ideal, Premium, Good, Premium, Good, Very Good, Very Good, V…</span></span>
+<span id="cb291-17"><a href="dm-dplyr.html#cb291-17"></a><span class="co">#&gt; $ color   &lt;ord&gt; E, E, E, I, J, J, I, H, E, H, J, J, F, J, E, E, I, J, J, J, …</span></span>
+<span id="cb291-18"><a href="dm-dplyr.html#cb291-18"></a><span class="co">#&gt; $ clarity &lt;ord&gt; SI2, SI1, VS1, VS2, SI2, VVS2, VVS1, SI1, VS2, VS1, SI1, VS1…</span></span>
+<span id="cb291-19"><a href="dm-dplyr.html#cb291-19"></a><span class="co">#&gt; $ depth   &lt;dbl&gt; 61.5, 59.8, 56.9, 62.4, 63.3, 62.8, 62.3, 61.9, 65.1, 59.4, …</span></span>
+<span id="cb291-20"><a href="dm-dplyr.html#cb291-20"></a><span class="co">#&gt; $ table   &lt;dbl&gt; 55, 61, 65, 58, 58, 57, 57, 55, 61, 61, 55, 56, 61, 54, 62, …</span></span>
+<span id="cb291-21"><a href="dm-dplyr.html#cb291-21"></a><span class="co">#&gt; $ price   &lt;int&gt; 326, 326, 327, 334, 335, 336, 336, 337, 337, 338, 339, 340, …</span></span>
+<span id="cb291-22"><a href="dm-dplyr.html#cb291-22"></a><span class="co">#&gt; $ x       &lt;dbl&gt; 3.95, 3.89, 4.05, 4.20, 4.34, 3.94, 3.95, 4.07, 3.87, 4.00, …</span></span>
+<span id="cb291-23"><a href="dm-dplyr.html#cb291-23"></a><span class="co">#&gt; $ y       &lt;dbl&gt; 3.98, 3.84, 4.07, 4.23, 4.35, 3.96, 3.98, 4.11, 3.78, 4.05, …</span></span>
+<span id="cb291-24"><a href="dm-dplyr.html#cb291-24"></a><span class="co">#&gt; $ z       &lt;dbl&gt; 2.43, 2.31, 2.31, 2.63, 2.75, 2.48, 2.47, 2.53, 2.49, 2.39, …</span></span></code></pre></div>
+<table>
+<caption><span id="tab:dplyr-object-type">表 5.1: </span> dplyr 定义的数据对象类型</caption>
+<thead>
+<tr class="header">
+<th align="left">类型</th>
+<th align="left">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">int</td>
+<td align="left">整型 integer</td>
+</tr>
+<tr class="even">
+<td align="left">dbl</td>
+<td align="left">（单）双精度浮点类型</td>
+</tr>
+<tr class="odd">
+<td align="left">chr</td>
+<td align="left">字符（串）类型</td>
+</tr>
+<tr class="even">
+<td align="left">dttm</td>
+<td align="left">data-time 类型</td>
+</tr>
+<tr class="odd">
+<td align="left">lgl</td>
+<td align="left">布尔类型</td>
+</tr>
+<tr class="even">
+<td align="left">fctr</td>
+<td align="left">因子类型 factor</td>
+</tr>
+<tr class="odd">
+<td align="left">date</td>
+<td align="left">日期类型</td>
+</tr>
+</tbody>
+</table>
+<p>表 <a href="dm-dplyr.html#tab:dplyr-object-type">5.1</a> 中 dttm 和 date 类型代指 lubridate 包指定的日期对象 POSIXct、 POSIXlt、 Date、 chron、 yearmon、 yearqtr、 zoo、 zooreg、 timeDate、 xts、 its、 ti、 jul、 timeSeries 和 fts。</p>
+</div>
+<div id="dplyr-filter" class="section level3">
+<h3><span class="header-section-number">5.1.2</span> 筛选</h3>
+<p>按条件筛选数据的子集，按行筛选</p>
+<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="dm-dplyr.html#cb292-1"></a>diamonds <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(cut <span class="op">==</span><span class="st"> &quot;Ideal&quot;</span> , carat <span class="op">&gt;=</span><span class="st"> </span><span class="dv">3</span>)</span>
+<span id="cb292-2"><a href="dm-dplyr.html#cb292-2"></a><span class="co">#&gt; # A tibble: 4 x 10</span></span>
+<span id="cb292-3"><a href="dm-dplyr.html#cb292-3"></a><span class="co">#&gt;   carat cut   color clarity depth table price     x     y     z</span></span>
+<span id="cb292-4"><a href="dm-dplyr.html#cb292-4"></a><span class="co">#&gt;   &lt;dbl&gt; &lt;ord&gt; &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span id="cb292-5"><a href="dm-dplyr.html#cb292-5"></a><span class="co">#&gt; 1  3.22 Ideal I     I1       62.6    55 12545  9.49  9.42  5.92</span></span>
+<span id="cb292-6"><a href="dm-dplyr.html#cb292-6"></a><span class="co">#&gt; 2  3.5  Ideal H     I1       62.8    57 12587  9.65  9.59  6.03</span></span>
+<span id="cb292-7"><a href="dm-dplyr.html#cb292-7"></a><span class="co">#&gt; 3  3.01 Ideal J     SI2      61.7    58 16037  9.25  9.2   5.69</span></span>
+<span id="cb292-8"><a href="dm-dplyr.html#cb292-8"></a><span class="co">#&gt; 4  3.01 Ideal J     I1       65.4    60 16538  8.99  8.93  5.86</span></span></code></pre></div>
+<p>先按行，再按列筛选</p>
+<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="dm-dplyr.html#cb293-1"></a>diamonds <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb293-2"><a href="dm-dplyr.html#cb293-2"></a><span class="st">  </span><span class="kw">filter</span>(carat <span class="op">&gt;=</span><span class="st"> </span><span class="dv">3</span>, color <span class="op">==</span><span class="st"> &quot;I&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb293-3"><a href="dm-dplyr.html#cb293-3"></a><span class="st">  </span><span class="kw">select</span>(cut, carat)</span>
+<span id="cb293-4"><a href="dm-dplyr.html#cb293-4"></a><span class="co">#&gt; # A tibble: 16 x 2</span></span>
+<span id="cb293-5"><a href="dm-dplyr.html#cb293-5"></a><span class="co">#&gt;   cut       carat</span></span>
+<span id="cb293-6"><a href="dm-dplyr.html#cb293-6"></a><span class="co">#&gt;   &lt;ord&gt;     &lt;dbl&gt;</span></span>
+<span id="cb293-7"><a href="dm-dplyr.html#cb293-7"></a><span class="co">#&gt; 1 Premium    3.01</span></span>
+<span id="cb293-8"><a href="dm-dplyr.html#cb293-8"></a><span class="co">#&gt; 2 Fair       3.02</span></span>
+<span id="cb293-9"><a href="dm-dplyr.html#cb293-9"></a><span class="co">#&gt; 3 Good       3   </span></span>
+<span id="cb293-10"><a href="dm-dplyr.html#cb293-10"></a><span class="co">#&gt; 4 Ideal      3.22</span></span>
+<span id="cb293-11"><a href="dm-dplyr.html#cb293-11"></a><span class="co">#&gt; 5 Premium    4.01</span></span>
+<span id="cb293-12"><a href="dm-dplyr.html#cb293-12"></a><span class="co">#&gt; 6 Very Good  3.04</span></span>
+<span id="cb293-13"><a href="dm-dplyr.html#cb293-13"></a><span class="co">#&gt; # … with 10 more rows</span></span></code></pre></div>
+</div>
+<div id="dplyr-arrange" class="section level3">
+<h3><span class="header-section-number">5.1.3</span> 排序</h3>
+<p>arrange 默认升序排列，按钻石重量升序，按价格降序</p>
+<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="dm-dplyr.html#cb294-1"></a>diamonds <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb294-2"><a href="dm-dplyr.html#cb294-2"></a><span class="st">  </span><span class="kw">filter</span>(cut <span class="op">==</span><span class="st"> &quot;Ideal&quot;</span> , carat <span class="op">&gt;=</span><span class="st"> </span><span class="dv">3</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb294-3"><a href="dm-dplyr.html#cb294-3"></a><span class="st">  </span><span class="kw">arrange</span>(carat, <span class="kw">desc</span>(price))</span>
+<span id="cb294-4"><a href="dm-dplyr.html#cb294-4"></a><span class="co">#&gt; # A tibble: 4 x 10</span></span>
+<span id="cb294-5"><a href="dm-dplyr.html#cb294-5"></a><span class="co">#&gt;   carat cut   color clarity depth table price     x     y     z</span></span>
+<span id="cb294-6"><a href="dm-dplyr.html#cb294-6"></a><span class="co">#&gt;   &lt;dbl&gt; &lt;ord&gt; &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span id="cb294-7"><a href="dm-dplyr.html#cb294-7"></a><span class="co">#&gt; 1  3.01 Ideal J     I1       65.4    60 16538  8.99  8.93  5.86</span></span>
+<span id="cb294-8"><a href="dm-dplyr.html#cb294-8"></a><span class="co">#&gt; 2  3.01 Ideal J     SI2      61.7    58 16037  9.25  9.2   5.69</span></span>
+<span id="cb294-9"><a href="dm-dplyr.html#cb294-9"></a><span class="co">#&gt; 3  3.22 Ideal I     I1       62.6    55 12545  9.49  9.42  5.92</span></span>
+<span id="cb294-10"><a href="dm-dplyr.html#cb294-10"></a><span class="co">#&gt; 4  3.5  Ideal H     I1       62.8    57 12587  9.65  9.59  6.03</span></span></code></pre></div>
+</div>
+<div id="dplyr-summarise" class="section level3">
+<h3><span class="header-section-number">5.1.4</span> 聚合</h3>
+<p>分组求和，求平均，计数</p>
+<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="dm-dplyr.html#cb295-1"></a>diamonds <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb295-2"><a href="dm-dplyr.html#cb295-2"></a><span class="st">  </span><span class="kw">filter</span>(carat <span class="op">&gt;</span><span class="st"> </span><span class="dv">3</span>, color <span class="op">==</span><span class="st"> &quot;I&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb295-3"><a href="dm-dplyr.html#cb295-3"></a><span class="st">  </span><span class="kw">group_by</span>(cut, clarity) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb295-4"><a href="dm-dplyr.html#cb295-4"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">sum_carat =</span> <span class="kw">sum</span>(carat), <span class="dt">mean_carat =</span> <span class="kw">mean</span>(carat), <span class="dt">n_count =</span> <span class="kw">n</span>())</span>
+<span id="cb295-5"><a href="dm-dplyr.html#cb295-5"></a><span class="co">#&gt; # A tibble: 8 x 5</span></span>
+<span id="cb295-6"><a href="dm-dplyr.html#cb295-6"></a><span class="co">#&gt; # Groups:   cut [5]</span></span>
+<span id="cb295-7"><a href="dm-dplyr.html#cb295-7"></a><span class="co">#&gt;   cut       clarity sum_carat mean_carat n_count</span></span>
+<span id="cb295-8"><a href="dm-dplyr.html#cb295-8"></a><span class="co">#&gt;   &lt;ord&gt;     &lt;ord&gt;       &lt;dbl&gt;      &lt;dbl&gt;   &lt;int&gt;</span></span>
+<span id="cb295-9"><a href="dm-dplyr.html#cb295-9"></a><span class="co">#&gt; 1 Fair      I1           3.02       3.02       1</span></span>
+<span id="cb295-10"><a href="dm-dplyr.html#cb295-10"></a><span class="co">#&gt; 2 Fair      SI2          6.02       3.01       2</span></span>
+<span id="cb295-11"><a href="dm-dplyr.html#cb295-11"></a><span class="co">#&gt; 3 Good      SI2          6.02       3.01       2</span></span>
+<span id="cb295-12"><a href="dm-dplyr.html#cb295-12"></a><span class="co">#&gt; 4 Very Good I1           4          4          1</span></span>
+<span id="cb295-13"><a href="dm-dplyr.html#cb295-13"></a><span class="co">#&gt; 5 Very Good SI2          3.04       3.04       1</span></span>
+<span id="cb295-14"><a href="dm-dplyr.html#cb295-14"></a><span class="co">#&gt; 6 Premium   I1          10.7        3.56       3</span></span>
+<span id="cb295-15"><a href="dm-dplyr.html#cb295-15"></a><span class="co">#&gt; # … with 2 more rows</span></span></code></pre></div>
+</div>
+<div id="dplyr-merge" class="section level3">
+<h3><span class="header-section-number">5.1.5</span> 合并</h3>
+<p>按行合并</p>
+<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="dm-dplyr.html#cb296-1"></a><span class="kw">set.seed</span>(<span class="dv">2018</span>)</span>
+<span id="cb296-2"><a href="dm-dplyr.html#cb296-2"></a>one &lt;-<span class="st"> </span>diamonds <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb296-3"><a href="dm-dplyr.html#cb296-3"></a><span class="st">  </span><span class="kw">filter</span>(color <span class="op">==</span><span class="st"> &quot;I&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb296-4"><a href="dm-dplyr.html#cb296-4"></a><span class="st">  </span><span class="kw">sample_n</span>(<span class="dv">5</span>)</span>
+<span id="cb296-5"><a href="dm-dplyr.html#cb296-5"></a>two &lt;-<span class="st"> </span>diamonds <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb296-6"><a href="dm-dplyr.html#cb296-6"></a><span class="st">  </span><span class="kw">filter</span>(color <span class="op">==</span><span class="st"> &quot;J&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb296-7"><a href="dm-dplyr.html#cb296-7"></a><span class="st">  </span><span class="kw">sample_n</span>(<span class="dv">5</span>)</span>
+<span id="cb296-8"><a href="dm-dplyr.html#cb296-8"></a><span class="co"># 按行合并数据框 one 和 two</span></span>
+<span id="cb296-9"><a href="dm-dplyr.html#cb296-9"></a><span class="kw">bind_rows</span>(one, two)</span>
+<span id="cb296-10"><a href="dm-dplyr.html#cb296-10"></a><span class="co">#&gt; # A tibble: 10 x 10</span></span>
+<span id="cb296-11"><a href="dm-dplyr.html#cb296-11"></a><span class="co">#&gt;   carat cut       color clarity depth table price     x     y     z</span></span>
+<span id="cb296-12"><a href="dm-dplyr.html#cb296-12"></a><span class="co">#&gt;   &lt;dbl&gt; &lt;ord&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span id="cb296-13"><a href="dm-dplyr.html#cb296-13"></a><span class="co">#&gt; 1  0.42 Ideal     I     VVS1     62.5  57     884  4.77  4.8   2.99</span></span>
+<span id="cb296-14"><a href="dm-dplyr.html#cb296-14"></a><span class="co">#&gt; 2  0.3  Ideal     I     VVS2     62.5  53.6   532  4.29  4.33  2.69</span></span>
+<span id="cb296-15"><a href="dm-dplyr.html#cb296-15"></a><span class="co">#&gt; 3  2.02 Good      I     VS1      57.9  63   17533  8.13  8.21  4.73</span></span>
+<span id="cb296-16"><a href="dm-dplyr.html#cb296-16"></a><span class="co">#&gt; 4  0.9  Premium   I     VS2      61.9  58    3398  6.18  6.23  3.84</span></span>
+<span id="cb296-17"><a href="dm-dplyr.html#cb296-17"></a><span class="co">#&gt; 5  1.98 Very Good I     VS2      62.7  60   15083  7.9   7.96  4.98</span></span>
+<span id="cb296-18"><a href="dm-dplyr.html#cb296-18"></a><span class="co">#&gt; 6  1.51 Very Good J     VVS2     62.6  63    8706  7.29  7.24  4.55</span></span>
+<span id="cb296-19"><a href="dm-dplyr.html#cb296-19"></a><span class="co">#&gt; # … with 4 more rows</span></span></code></pre></div>
+<p>按列合并</p>
+<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb297-1"><a href="dm-dplyr.html#cb297-1"></a><span class="kw">set.seed</span>(<span class="dv">2018</span>)</span>
+<span id="cb297-2"><a href="dm-dplyr.html#cb297-2"></a>three &lt;-<span class="st"> </span>diamonds <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb297-3"><a href="dm-dplyr.html#cb297-3"></a><span class="st">  </span><span class="kw">select</span>(carat, color) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb297-4"><a href="dm-dplyr.html#cb297-4"></a><span class="st">  </span><span class="kw">sample_n</span>(<span class="dv">5</span>)</span>
+<span id="cb297-5"><a href="dm-dplyr.html#cb297-5"></a>four &lt;-<span class="st"> </span>diamonds <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb297-6"><a href="dm-dplyr.html#cb297-6"></a><span class="st">  </span><span class="kw">select</span>(carat, color) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb297-7"><a href="dm-dplyr.html#cb297-7"></a><span class="st">  </span><span class="kw">sample_n</span>(<span class="dv">5</span>)</span>
+<span id="cb297-8"><a href="dm-dplyr.html#cb297-8"></a><span class="kw">bind_cols</span>(three, four)</span>
+<span id="cb297-9"><a href="dm-dplyr.html#cb297-9"></a><span class="co">#&gt; # A tibble: 5 x 4</span></span>
+<span id="cb297-10"><a href="dm-dplyr.html#cb297-10"></a><span class="co">#&gt;   carat color carat1 color1</span></span>
+<span id="cb297-11"><a href="dm-dplyr.html#cb297-11"></a><span class="co">#&gt;   &lt;dbl&gt; &lt;ord&gt;  &lt;dbl&gt; &lt;ord&gt; </span></span>
+<span id="cb297-12"><a href="dm-dplyr.html#cb297-12"></a><span class="co">#&gt; 1  0.33 H       0.52 F     </span></span>
+<span id="cb297-13"><a href="dm-dplyr.html#cb297-13"></a><span class="co">#&gt; 2  1.09 F       0.51 F     </span></span>
+<span id="cb297-14"><a href="dm-dplyr.html#cb297-14"></a><span class="co">#&gt; 3  1.52 I       0.5  G     </span></span>
+<span id="cb297-15"><a href="dm-dplyr.html#cb297-15"></a><span class="co">#&gt; 4  0.95 G       0.38 E     </span></span>
+<span id="cb297-16"><a href="dm-dplyr.html#cb297-16"></a><span class="co">#&gt; 5  0.35 E       0.51 J</span></span></code></pre></div>
+</div>
+<div id="dplyr-mutate" class="section level3">
+<h3><span class="header-section-number">5.1.6</span> 变换</h3>
+<p>添加一列，新的列或者改变原来的列</p>
+<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="dm-dplyr.html#cb298-1"></a>diamonds <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb298-2"><a href="dm-dplyr.html#cb298-2"></a><span class="st">  </span><span class="kw">filter</span>(carat <span class="op">&gt;</span><span class="st"> </span><span class="dv">3</span>, color <span class="op">==</span><span class="st"> &quot;I&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb298-3"><a href="dm-dplyr.html#cb298-3"></a><span class="st">  </span><span class="kw">select</span>(cut, carat) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb298-4"><a href="dm-dplyr.html#cb298-4"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">vol =</span> <span class="kw">if_else</span>(carat <span class="op">&gt;</span><span class="st"> </span><span class="fl">3.5</span>, <span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>))</span>
+<span id="cb298-5"><a href="dm-dplyr.html#cb298-5"></a><span class="co">#&gt; # A tibble: 13 x 3</span></span>
+<span id="cb298-6"><a href="dm-dplyr.html#cb298-6"></a><span class="co">#&gt;   cut       carat vol  </span></span>
+<span id="cb298-7"><a href="dm-dplyr.html#cb298-7"></a><span class="co">#&gt;   &lt;ord&gt;     &lt;dbl&gt; &lt;chr&gt;</span></span>
+<span id="cb298-8"><a href="dm-dplyr.html#cb298-8"></a><span class="co">#&gt; 1 Premium    3.01 B    </span></span>
+<span id="cb298-9"><a href="dm-dplyr.html#cb298-9"></a><span class="co">#&gt; 2 Fair       3.02 B    </span></span>
+<span id="cb298-10"><a href="dm-dplyr.html#cb298-10"></a><span class="co">#&gt; 3 Ideal      3.22 B    </span></span>
+<span id="cb298-11"><a href="dm-dplyr.html#cb298-11"></a><span class="co">#&gt; 4 Premium    4.01 A    </span></span>
+<span id="cb298-12"><a href="dm-dplyr.html#cb298-12"></a><span class="co">#&gt; 5 Very Good  3.04 B    </span></span>
+<span id="cb298-13"><a href="dm-dplyr.html#cb298-13"></a><span class="co">#&gt; 6 Very Good  4    A    </span></span>
+<span id="cb298-14"><a href="dm-dplyr.html#cb298-14"></a><span class="co">#&gt; # … with 7 more rows</span></span></code></pre></div>
+</div>
+<div id="dplyr-duplicated" class="section level3">
+<h3><span class="header-section-number">5.1.7</span> 去重</h3>
+<p>数据去重在 dplyr 中的实现<a href="#fn22" class="footnote-ref" id="fnref22"><sup>22</sup></a>。</p>
+<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb299-1"><a href="dm-dplyr.html#cb299-1"></a><span class="kw">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb299-2"><a href="dm-dplyr.html#cb299-2"></a>df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</span>
+<span id="cb299-3"><a href="dm-dplyr.html#cb299-3"></a>  <span class="dt">x =</span> <span class="kw">sample</span>(<span class="dv">0</span><span class="op">:</span><span class="dv">1</span>, <span class="dv">10</span>, <span class="dt">replace =</span> T),</span>
+<span id="cb299-4"><a href="dm-dplyr.html#cb299-4"></a>  <span class="dt">y =</span> <span class="kw">sample</span>(<span class="dv">0</span><span class="op">:</span><span class="dv">1</span>, <span class="dv">10</span>, <span class="dt">replace =</span> T),</span>
+<span id="cb299-5"><a href="dm-dplyr.html#cb299-5"></a>  <span class="dt">z =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span></span>
+<span id="cb299-6"><a href="dm-dplyr.html#cb299-6"></a>)</span>
+<span id="cb299-7"><a href="dm-dplyr.html#cb299-7"></a>df</span>
+<span id="cb299-8"><a href="dm-dplyr.html#cb299-8"></a><span class="co">#&gt;    x y  z</span></span>
+<span id="cb299-9"><a href="dm-dplyr.html#cb299-9"></a><span class="co">#&gt; 1  0 1  1</span></span>
+<span id="cb299-10"><a href="dm-dplyr.html#cb299-10"></a><span class="co">#&gt; 2  0 1  2</span></span>
+<span id="cb299-11"><a href="dm-dplyr.html#cb299-11"></a><span class="co">#&gt; 3  0 1  3</span></span>
+<span id="cb299-12"><a href="dm-dplyr.html#cb299-12"></a><span class="co">#&gt; 4  1 0  4</span></span>
+<span id="cb299-13"><a href="dm-dplyr.html#cb299-13"></a><span class="co">#&gt; 5  0 1  5</span></span>
+<span id="cb299-14"><a href="dm-dplyr.html#cb299-14"></a><span class="co">#&gt; 6  1 0  6</span></span>
+<span id="cb299-15"><a href="dm-dplyr.html#cb299-15"></a><span class="co">#&gt; 7  1 1  7</span></span>
+<span id="cb299-16"><a href="dm-dplyr.html#cb299-16"></a><span class="co">#&gt; 8  1 0  8</span></span>
+<span id="cb299-17"><a href="dm-dplyr.html#cb299-17"></a><span class="co">#&gt; 9  0 0  9</span></span>
+<span id="cb299-18"><a href="dm-dplyr.html#cb299-18"></a><span class="co">#&gt; 10 0 0 10</span></span></code></pre></div>
+<p>去掉列重复的数据点 (x, y)</p>
+<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="dm-dplyr.html#cb300-1"></a>df <span class="op">%&gt;%</span></span>
+<span id="cb300-2"><a href="dm-dplyr.html#cb300-2"></a><span class="st">  </span><span class="kw">group_by</span>(x, y) <span class="op">%&gt;%</span></span>
+<span id="cb300-3"><a href="dm-dplyr.html#cb300-3"></a><span class="st">  </span><span class="kw">filter</span>(<span class="kw">row_number</span>(z) <span class="op">==</span><span class="st"> </span><span class="dv">1</span>)</span>
+<span id="cb300-4"><a href="dm-dplyr.html#cb300-4"></a><span class="co">#&gt; # A tibble: 4 x 3</span></span>
+<span id="cb300-5"><a href="dm-dplyr.html#cb300-5"></a><span class="co">#&gt; # Groups:   x, y [4]</span></span>
+<span id="cb300-6"><a href="dm-dplyr.html#cb300-6"></a><span class="co">#&gt;       x     y     z</span></span>
+<span id="cb300-7"><a href="dm-dplyr.html#cb300-7"></a><span class="co">#&gt;   &lt;int&gt; &lt;int&gt; &lt;int&gt;</span></span>
+<span id="cb300-8"><a href="dm-dplyr.html#cb300-8"></a><span class="co">#&gt; 1     0     1     1</span></span>
+<span id="cb300-9"><a href="dm-dplyr.html#cb300-9"></a><span class="co">#&gt; 2     1     0     4</span></span>
+<span id="cb300-10"><a href="dm-dplyr.html#cb300-10"></a><span class="co">#&gt; 3     1     1     7</span></span>
+<span id="cb300-11"><a href="dm-dplyr.html#cb300-11"></a><span class="co">#&gt; 4     0     0     9</span></span>
+<span id="cb300-12"><a href="dm-dplyr.html#cb300-12"></a><span class="co"># 此处不对，没有了 z </span></span>
+<span id="cb300-13"><a href="dm-dplyr.html#cb300-13"></a>df <span class="op">%&gt;%</span></span>
+<span id="cb300-14"><a href="dm-dplyr.html#cb300-14"></a><span class="st">  </span><span class="kw">distinct</span>(x, y)</span>
+<span id="cb300-15"><a href="dm-dplyr.html#cb300-15"></a><span class="co">#&gt;   x y</span></span>
+<span id="cb300-16"><a href="dm-dplyr.html#cb300-16"></a><span class="co">#&gt; 1 0 1</span></span>
+<span id="cb300-17"><a href="dm-dplyr.html#cb300-17"></a><span class="co">#&gt; 2 1 0</span></span>
+<span id="cb300-18"><a href="dm-dplyr.html#cb300-18"></a><span class="co">#&gt; 3 1 1</span></span>
+<span id="cb300-19"><a href="dm-dplyr.html#cb300-19"></a><span class="co">#&gt; 4 0 0</span></span>
+<span id="cb300-20"><a href="dm-dplyr.html#cb300-20"></a><span class="co"># 应该为</span></span>
+<span id="cb300-21"><a href="dm-dplyr.html#cb300-21"></a>df <span class="op">%&gt;%</span></span>
+<span id="cb300-22"><a href="dm-dplyr.html#cb300-22"></a><span class="st">  </span><span class="kw">distinct</span>(x, y, <span class="dt">.keep_all =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb300-23"><a href="dm-dplyr.html#cb300-23"></a><span class="co">#&gt;   x y z</span></span>
+<span id="cb300-24"><a href="dm-dplyr.html#cb300-24"></a><span class="co">#&gt; 1 0 1 1</span></span>
+<span id="cb300-25"><a href="dm-dplyr.html#cb300-25"></a><span class="co">#&gt; 2 1 0 4</span></span>
+<span id="cb300-26"><a href="dm-dplyr.html#cb300-26"></a><span class="co">#&gt; 3 1 1 7</span></span>
+<span id="cb300-27"><a href="dm-dplyr.html#cb300-27"></a><span class="co">#&gt; 4 0 0 9</span></span></code></pre></div>
+</div>
+</div>
+<div id="common-dataframe-operations" class="section level2">
+<h2><span class="header-section-number">5.2</span> 高频问题</h2>
+<p>常用的数据操作包含</p>
+<ol style="list-style-type: decimal">
+<li>创建空的数据框或者说初始化一个数据框，</li>
+<li>按指定的列对数据框排序，</li>
+<li>选择特定的一些列，复杂情况是可能需要正则表达式从列名或者值中筛选</li>
+<li>合并两个数据框，分为 (inner outer left right) 四种情况</li>
+<li>宽格式和长格式互相转换，即重塑操作 reshape，单独的 tidyr 包操作，是 reshape2 包的进化版，提供 <code>spread</code> 和 <code>gather</code> 两个主要函数</li>
+</ol>
+<div id="create-empty-dataframe" class="section level3">
+<h3><span class="header-section-number">5.2.1</span> 初始化数据框</h3>
+<p>创建空的数据框，就是不包含任何行、记录[^create-an-empty-data-frame]</p>
+<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="dm-dplyr.html#cb301-1"></a>empty_df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</span>
+<span id="cb301-2"><a href="dm-dplyr.html#cb301-2"></a>  <span class="dt">Doubles =</span> <span class="kw">double</span>(),</span>
+<span id="cb301-3"><a href="dm-dplyr.html#cb301-3"></a>  <span class="dt">Ints =</span> <span class="kw">integer</span>(),</span>
+<span id="cb301-4"><a href="dm-dplyr.html#cb301-4"></a>  <span class="dt">Factors =</span> <span class="kw">factor</span>(),</span>
+<span id="cb301-5"><a href="dm-dplyr.html#cb301-5"></a>  <span class="dt">Logicals =</span> <span class="kw">logical</span>(),</span>
+<span id="cb301-6"><a href="dm-dplyr.html#cb301-6"></a>  <span class="dt">Characters =</span> <span class="kw">character</span>(),</span>
+<span id="cb301-7"><a href="dm-dplyr.html#cb301-7"></a>  <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span></span>
+<span id="cb301-8"><a href="dm-dplyr.html#cb301-8"></a>)</span>
+<span id="cb301-9"><a href="dm-dplyr.html#cb301-9"></a><span class="kw">str</span>(empty_df)</span>
+<span id="cb301-10"><a href="dm-dplyr.html#cb301-10"></a><span class="co">#&gt; &#39;data.frame&#39;:    0 obs. of  5 variables:</span></span>
+<span id="cb301-11"><a href="dm-dplyr.html#cb301-11"></a><span class="co">#&gt;  $ Doubles   : num </span></span>
+<span id="cb301-12"><a href="dm-dplyr.html#cb301-12"></a><span class="co">#&gt;  $ Ints      : int </span></span>
+<span id="cb301-13"><a href="dm-dplyr.html#cb301-13"></a><span class="co">#&gt;  $ Factors   : Factor w/ 0 levels: </span></span>
+<span id="cb301-14"><a href="dm-dplyr.html#cb301-14"></a><span class="co">#&gt;  $ Logicals  : logi </span></span>
+<span id="cb301-15"><a href="dm-dplyr.html#cb301-15"></a><span class="co">#&gt;  $ Characters: chr</span></span></code></pre></div>
+<p>如果数据框 df 包含数据，现在要依据它创建一个空的数据框</p>
+<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="dm-dplyr.html#cb302-1"></a>empty_df =<span class="st"> </span>df[<span class="ot">FALSE</span>,]</span></code></pre></div>
+<p>还可以使用 structure 构造一个数据框，并且我们发现它的效率更高</p>
+<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="dm-dplyr.html#cb303-1"></a>s &lt;-<span class="st"> </span><span class="cf">function</span>() <span class="kw">structure</span>(<span class="kw">list</span>(</span>
+<span id="cb303-2"><a href="dm-dplyr.html#cb303-2"></a>    <span class="dt">Date =</span> <span class="kw">as.Date</span>(<span class="kw">character</span>()),</span>
+<span id="cb303-3"><a href="dm-dplyr.html#cb303-3"></a>    <span class="dt">File =</span> <span class="kw">character</span>(),</span>
+<span id="cb303-4"><a href="dm-dplyr.html#cb303-4"></a>    <span class="dt">User =</span> <span class="kw">character</span>()</span>
+<span id="cb303-5"><a href="dm-dplyr.html#cb303-5"></a>  ),</span>
+<span id="cb303-6"><a href="dm-dplyr.html#cb303-6"></a>  <span class="dt">class =</span> <span class="st">&quot;data.frame&quot;</span></span>
+<span id="cb303-7"><a href="dm-dplyr.html#cb303-7"></a>  )</span>
+<span id="cb303-8"><a href="dm-dplyr.html#cb303-8"></a>d &lt;-<span class="st"> </span><span class="cf">function</span>() <span class="kw">data.frame</span>(</span>
+<span id="cb303-9"><a href="dm-dplyr.html#cb303-9"></a>    <span class="dt">Date =</span> <span class="kw">as.Date</span>(<span class="kw">character</span>()),</span>
+<span id="cb303-10"><a href="dm-dplyr.html#cb303-10"></a>    <span class="dt">File =</span> <span class="kw">character</span>(),</span>
+<span id="cb303-11"><a href="dm-dplyr.html#cb303-11"></a>    <span class="dt">User =</span> <span class="kw">character</span>(),</span>
+<span id="cb303-12"><a href="dm-dplyr.html#cb303-12"></a>    <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span></span>
+<span id="cb303-13"><a href="dm-dplyr.html#cb303-13"></a>  )</span>
+<span id="cb303-14"><a href="dm-dplyr.html#cb303-14"></a>microbenchmark<span class="op">::</span><span class="kw">microbenchmark</span>(<span class="kw">s</span>(), <span class="kw">d</span>())</span>
+<span id="cb303-15"><a href="dm-dplyr.html#cb303-15"></a><span class="co">#&gt; Unit: microseconds</span></span>
+<span id="cb303-16"><a href="dm-dplyr.html#cb303-16"></a><span class="co">#&gt;  expr     min       lq      mean   median       uq      max neval</span></span>
+<span id="cb303-17"><a href="dm-dplyr.html#cb303-17"></a><span class="co">#&gt;   s()  16.287  19.7665  55.83913  23.5505  25.8595 2980.981   100</span></span>
+<span id="cb303-18"><a href="dm-dplyr.html#cb303-18"></a><span class="co">#&gt;   d() 180.367 191.4950 231.93957 198.4930 207.6415 2838.099   100</span></span></code></pre></div>
+</div>
+<div id="remove-missing-values" class="section level3">
+<h3><span class="header-section-number">5.2.2</span> 移除缺失记录</h3>
+<p>只要行中包含缺失值，我们就把这样的行移除出去</p>
+<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="dm-dplyr.html#cb304-1"></a>airquality[<span class="kw">complete.cases</span>(airquality), ]</span>
+<span id="cb304-2"><a href="dm-dplyr.html#cb304-2"></a><span class="co">#&gt;     Ozone Solar.R Wind Temp Month Day</span></span>
+<span id="cb304-3"><a href="dm-dplyr.html#cb304-3"></a><span class="co">#&gt; 1      41     190  7.4   67     5   1</span></span>
+<span id="cb304-4"><a href="dm-dplyr.html#cb304-4"></a><span class="co">#&gt; 2      36     118  8.0   72     5   2</span></span>
+<span id="cb304-5"><a href="dm-dplyr.html#cb304-5"></a><span class="co">#&gt; 3      12     149 12.6   74     5   3</span></span>
+<span id="cb304-6"><a href="dm-dplyr.html#cb304-6"></a><span class="co">#&gt; 4      18     313 11.5   62     5   4</span></span>
+<span id="cb304-7"><a href="dm-dplyr.html#cb304-7"></a><span class="co">#&gt; 7      23     299  8.6   65     5   7</span></span>
+<span id="cb304-8"><a href="dm-dplyr.html#cb304-8"></a><span class="co">#&gt; 8      19      99 13.8   59     5   8</span></span>
+<span id="cb304-9"><a href="dm-dplyr.html#cb304-9"></a><span class="co">#&gt; 9       8      19 20.1   61     5   9</span></span>
+<span id="cb304-10"><a href="dm-dplyr.html#cb304-10"></a><span class="co">#&gt; 12     16     256  9.7   69     5  12</span></span>
+<span id="cb304-11"><a href="dm-dplyr.html#cb304-11"></a><span class="co">#&gt; 13     11     290  9.2   66     5  13</span></span>
+<span id="cb304-12"><a href="dm-dplyr.html#cb304-12"></a>....</span></code></pre></div>
+</div>
+<div id="coerce-data-type" class="section level3">
+<h3><span class="header-section-number">5.2.3</span> 数据类型转化</h3>
+<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="dm-dplyr.html#cb305-1"></a><span class="kw">str</span>(PlantGrowth)</span>
+<span id="cb305-2"><a href="dm-dplyr.html#cb305-2"></a><span class="co">#&gt; &#39;data.frame&#39;:    30 obs. of  2 variables:</span></span>
+<span id="cb305-3"><a href="dm-dplyr.html#cb305-3"></a><span class="co">#&gt;  $ weight: num  4.17 5.58 5.18 6.11 4.5 4.61 5.17 4.53 5.33 5.14 ...</span></span>
+<span id="cb305-4"><a href="dm-dplyr.html#cb305-4"></a><span class="co">#&gt;  $ group : Factor w/ 3 levels &quot;ctrl&quot;,&quot;trt1&quot;,..: 1 1 1 1 1 1 1 1 1 1 ...</span></span>
+<span id="cb305-5"><a href="dm-dplyr.html#cb305-5"></a>bob &lt;-<span class="st"> </span>PlantGrowth</span>
+<span id="cb305-6"><a href="dm-dplyr.html#cb305-6"></a>i &lt;-<span class="st"> </span><span class="kw">sapply</span>(bob, is.factor)</span>
+<span id="cb305-7"><a href="dm-dplyr.html#cb305-7"></a>bob[i] &lt;-<span class="st"> </span><span class="kw">lapply</span>(bob[i], as.character)</span>
+<span id="cb305-8"><a href="dm-dplyr.html#cb305-8"></a><span class="kw">str</span>(bob)</span>
+<span id="cb305-9"><a href="dm-dplyr.html#cb305-9"></a><span class="co">#&gt; &#39;data.frame&#39;:    30 obs. of  2 variables:</span></span>
+<span id="cb305-10"><a href="dm-dplyr.html#cb305-10"></a><span class="co">#&gt;  $ weight: num  4.17 5.58 5.18 6.11 4.5 4.61 5.17 4.53 5.33 5.14 ...</span></span>
+<span id="cb305-11"><a href="dm-dplyr.html#cb305-11"></a><span class="co">#&gt;  $ group : chr  &quot;ctrl&quot; &quot;ctrl&quot; &quot;ctrl&quot; &quot;ctrl&quot; ...</span></span></code></pre></div>
+</div>
+<div id="cross-group-by" class="section level3">
+<h3><span class="header-section-number">5.2.4</span> 跨列分组求和</h3>
+<p>输入是一个数据框 data.frame，按照其中某一变量分组，然后计算任意数量的变量的行和和列和。</p>
+<p>空气质量数据集 airquality 按月份 Month 分组，然后求取满足条件的列的和</p>
+<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb306-1"><a href="dm-dplyr.html#cb306-1"></a><span class="kw">Reduce</span>(rbind, <span class="kw">lapply</span>(<span class="kw">unique</span>(airquality<span class="op">$</span>Month), <span class="cf">function</span>(gv) {</span>
+<span id="cb306-2"><a href="dm-dplyr.html#cb306-2"></a>  subdta &lt;-<span class="st"> </span><span class="kw">subset</span>(airquality, <span class="dt">subset =</span> Month <span class="op">==</span><span class="st"> </span>gv)</span>
+<span id="cb306-3"><a href="dm-dplyr.html#cb306-3"></a>  <span class="kw">data.frame</span>(</span>
+<span id="cb306-4"><a href="dm-dplyr.html#cb306-4"></a>    <span class="dt">Colsum =</span> <span class="kw">as.numeric</span>(</span>
+<span id="cb306-5"><a href="dm-dplyr.html#cb306-5"></a>      <span class="kw">colSums</span>(subdta[, <span class="kw">grepl</span>(<span class="st">&quot;[mM]&quot;</span>, <span class="kw">names</span>(airquality))], <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb306-6"><a href="dm-dplyr.html#cb306-6"></a>    ),</span>
+<span id="cb306-7"><a href="dm-dplyr.html#cb306-7"></a>    <span class="dt">Month =</span> gv</span>
+<span id="cb306-8"><a href="dm-dplyr.html#cb306-8"></a>  )</span>
+<span id="cb306-9"><a href="dm-dplyr.html#cb306-9"></a>}))</span>
+<span id="cb306-10"><a href="dm-dplyr.html#cb306-10"></a><span class="co">#&gt;    Colsum Month</span></span>
+<span id="cb306-11"><a href="dm-dplyr.html#cb306-11"></a><span class="co">#&gt; 1    2032     5</span></span>
+<span id="cb306-12"><a href="dm-dplyr.html#cb306-12"></a><span class="co">#&gt; 2     155     5</span></span>
+<span id="cb306-13"><a href="dm-dplyr.html#cb306-13"></a><span class="co">#&gt; 3    2373     6</span></span>
+<span id="cb306-14"><a href="dm-dplyr.html#cb306-14"></a><span class="co">#&gt; 4     180     6</span></span>
+<span id="cb306-15"><a href="dm-dplyr.html#cb306-15"></a><span class="co">#&gt; 5    2601     7</span></span>
+<span id="cb306-16"><a href="dm-dplyr.html#cb306-16"></a><span class="co">#&gt; 6     217     7</span></span>
+<span id="cb306-17"><a href="dm-dplyr.html#cb306-17"></a><span class="co">#&gt; 7    2603     8</span></span>
+<span id="cb306-18"><a href="dm-dplyr.html#cb306-18"></a><span class="co">#&gt; 8     248     8</span></span>
+<span id="cb306-19"><a href="dm-dplyr.html#cb306-19"></a><span class="co">#&gt; 9    2307     9</span></span>
+<span id="cb306-20"><a href="dm-dplyr.html#cb306-20"></a><span class="co">#&gt; 10    270     9</span></span></code></pre></div>
+<p>什么是函数式编程，R 语言环境下的函数式编程是如何操作的</p>
+</div>
+</div>
+<div id="pipe-manipulation" class="section level2">
+<h2><span class="header-section-number">5.3</span> 管道操作</h2>
+<p><a href="http://stefanbache.dk/">Stefan Milton Bache</a> 开发了 <a href="https://github.com/tidyverse/magrittr">magrittr</a> 包实现管道操作，增加代码的可读性和维护性，但是这个 R 包的名字取的太奇葩，因为 <a href="https://d.cosx.org/d/420697/21">记不住</a>，它其实是一个复杂的<a href="https://magrittr.tidyverse.org/articles/magrittr.html">法语发音</a>，中式英语就叫它马格里特吧！这下应该好记多了吧！</p>
+<p>我要查看是否需要新添加一个 R 包依赖，假设该 R 包是 reticulate 没有出现在 DESCRIPTION 文件中，但是可能已经被其中某（个）些 R 包依赖了</p>
+<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="dm-dplyr.html#cb307-1"></a><span class="st">&quot;reticulate&quot;</span> <span class="op">%in%</span><span class="st"> </span><span class="kw">sort</span>(<span class="kw">unique</span>(<span class="kw">unlist</span>(tools<span class="op">::</span><span class="kw">package_dependencies</span>(desc<span class="op">::</span><span class="kw">desc_get_deps</span>()<span class="op">$</span>package, <span class="dt">recursive =</span> <span class="ot">TRUE</span>))))</span>
+<span id="cb307-2"><a href="dm-dplyr.html#cb307-2"></a><span class="co">#&gt; [1] FALSE</span></span></code></pre></div>
+<p>安装 pkg 的依赖</p>
+<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb308-1"><a href="dm-dplyr.html#cb308-1"></a>pkg &lt;-<span class="st"> </span><span class="kw">c</span>(</span>
+<span id="cb308-2"><a href="dm-dplyr.html#cb308-2"></a>  <span class="st">&quot;bookdown&quot;</span>,</span>
+<span id="cb308-3"><a href="dm-dplyr.html#cb308-3"></a>  <span class="st">&quot;e1071&quot;</span>,</span>
+<span id="cb308-4"><a href="dm-dplyr.html#cb308-4"></a>  <span class="st">&quot;formatR&quot;</span>,</span>
+<span id="cb308-5"><a href="dm-dplyr.html#cb308-5"></a>  <span class="st">&quot;lme4&quot;</span>,</span>
+<span id="cb308-6"><a href="dm-dplyr.html#cb308-6"></a>  <span class="st">&quot;mvtnorm&quot;</span>,</span>
+<span id="cb308-7"><a href="dm-dplyr.html#cb308-7"></a>  <span class="st">&quot;prettydoc&quot;</span>, <span class="st">&quot;psych&quot;</span>,</span>
+<span id="cb308-8"><a href="dm-dplyr.html#cb308-8"></a>  <span class="st">&quot;reticulate&quot;</span>, <span class="st">&quot;rstan&quot;</span>, <span class="st">&quot;rstanarm&quot;</span>, <span class="st">&quot;rticles&quot;</span>,</span>
+<span id="cb308-9"><a href="dm-dplyr.html#cb308-9"></a>  <span class="st">&quot;svglite&quot;</span>,</span>
+<span id="cb308-10"><a href="dm-dplyr.html#cb308-10"></a>  <span class="st">&quot;TMB&quot;</span>, <span class="st">&quot;glmmTMB&quot;</span></span>
+<span id="cb308-11"><a href="dm-dplyr.html#cb308-11"></a>)</span>
+<span id="cb308-12"><a href="dm-dplyr.html#cb308-12"></a><span class="co"># 获取 pkg 的所有依赖</span></span>
+<span id="cb308-13"><a href="dm-dplyr.html#cb308-13"></a>dep_pkg &lt;-<span class="st"> </span>tools<span class="op">::</span><span class="kw">package_dependencies</span>(pkg, <span class="dt">recursive =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb308-14"><a href="dm-dplyr.html#cb308-14"></a><span class="co"># 将列表 list 合并为向量 vector</span></span>
+<span id="cb308-15"><a href="dm-dplyr.html#cb308-15"></a>merge_pkg &lt;-<span class="st"> </span><span class="kw">Reduce</span>(<span class="st">&quot;c&quot;</span>, dep_pkg, <span class="dt">accumulate =</span> <span class="ot">FALSE</span>)</span>
+<span id="cb308-16"><a href="dm-dplyr.html#cb308-16"></a><span class="co"># 所有未安装的 R 包</span></span>
+<span id="cb308-17"><a href="dm-dplyr.html#cb308-17"></a>miss_pkg &lt;-<span class="st"> </span><span class="kw">setdiff</span>(<span class="kw">unique</span>(merge_pkg), <span class="kw">unique</span>(<span class="kw">.packages</span>(<span class="ot">TRUE</span>)))</span>
+<span id="cb308-18"><a href="dm-dplyr.html#cb308-18"></a><span class="co"># 除了 pkg 外，未安装的 R 包，安装 pkg 的依赖</span></span>
+<span id="cb308-19"><a href="dm-dplyr.html#cb308-19"></a><span class="kw">sort</span>(<span class="kw">setdiff</span>(miss_pkg, pkg))</span>
+<span id="cb308-20"><a href="dm-dplyr.html#cb308-20"></a><span class="co">#&gt;  [1] &quot;bayesplot&quot;   &quot;checkmate&quot;   &quot;DT&quot;          &quot;dygraphs&quot;    &quot;gdtools&quot;    </span></span>
+<span id="cb308-21"><a href="dm-dplyr.html#cb308-21"></a><span class="co">#&gt;  [6] &quot;gtools&quot;      &quot;inline&quot;      &quot;loo&quot;         &quot;matrixStats&quot; &quot;minqa&quot;      </span></span>
+<span id="cb308-22"><a href="dm-dplyr.html#cb308-22"></a><span class="co">#&gt; [11] &quot;mnormt&quot;      &quot;nloptr&quot;      &quot;packrat&quot;     &quot;pkgbuild&quot;    &quot;rsconnect&quot;  </span></span>
+<span id="cb308-23"><a href="dm-dplyr.html#cb308-23"></a><span class="co">#&gt; [16] &quot;rstantools&quot;  &quot;shinystan&quot;   &quot;shinythemes&quot; &quot;StanHeaders&quot; &quot;systemfonts&quot;</span></span>
+<span id="cb308-24"><a href="dm-dplyr.html#cb308-24"></a><span class="co">#&gt; [21] &quot;threejs&quot;     &quot;xts&quot;         &quot;zoo&quot;</span></span></code></pre></div>
+<p>转化为管道操作，增加可读性，[^pipe-r]</p>
+<blockquote>
+<p>再举一个关于数据模拟的例子</p>
+</blockquote>
+<p>模拟 0-1 序列，</p>
+<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="dm-dplyr.html#cb309-1"></a><span class="kw">set.seed</span>(<span class="dv">2019</span>)</span>
+<span id="cb309-2"><a href="dm-dplyr.html#cb309-2"></a>binom_sample &lt;-<span class="st"> </span><span class="cf">function</span>(n) {</span>
+<span id="cb309-3"><a href="dm-dplyr.html#cb309-3"></a>  <span class="kw">sum</span>(<span class="kw">sample</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="dt">size =</span> n, <span class="dt">prob =</span> <span class="kw">c</span>(<span class="fl">0.8</span>, <span class="fl">0.2</span>), <span class="dt">replace =</span> <span class="ot">TRUE</span>))<span class="op">/</span>n</span>
+<span id="cb309-4"><a href="dm-dplyr.html#cb309-4"></a>}</span>
+<span id="cb309-5"><a href="dm-dplyr.html#cb309-5"></a><span class="co"># 频率估计概率</span></span>
+<span id="cb309-6"><a href="dm-dplyr.html#cb309-6"></a>one_prob &lt;-<span class="st"> </span><span class="kw">sapply</span>(<span class="dv">10</span><span class="op">^</span>(<span class="kw">seq</span>(<span class="dv">8</span>)), binom_sample)</span>
+<span id="cb309-7"><a href="dm-dplyr.html#cb309-7"></a><span class="co"># 估计的误差</span></span>
+<span id="cb309-8"><a href="dm-dplyr.html#cb309-8"></a>one_abs &lt;-<span class="st"> </span><span class="kw">abs</span>(one_prob <span class="op">-</span><span class="st"> </span><span class="fl">0.2</span>)</span>
+<span id="cb309-9"><a href="dm-dplyr.html#cb309-9"></a>one_abs</span>
+<span id="cb309-10"><a href="dm-dplyr.html#cb309-10"></a><span class="co">#&gt; [1] 1.000e-01 1.000e-02 1.100e-02 4.400e-03 1.460e-03 3.980e-04 4.700e-06</span></span>
+<span id="cb309-11"><a href="dm-dplyr.html#cb309-11"></a><span class="co">#&gt; [8] 9.552e-05</span></span></code></pre></div>
+<p>似然估计</p>
+</div>
+<div id="dm-dplyr-rsession" class="section level2">
+<h2><span class="header-section-number">5.4</span> 运行环境</h2>
+<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="dm-dplyr.html#cb310-1"></a>xfun<span class="op">::</span><span class="kw">session_info</span>()</span>
+<span id="cb310-2"><a href="dm-dplyr.html#cb310-2"></a><span class="co">#&gt; R Under development (unstable) (2019-11-17 r77429)</span></span>
+<span id="cb310-3"><a href="dm-dplyr.html#cb310-3"></a><span class="co">#&gt; Platform: x86_64-pc-linux-gnu (64-bit)</span></span>
+<span id="cb310-4"><a href="dm-dplyr.html#cb310-4"></a><span class="co">#&gt; Running under: Ubuntu 16.04.6 LTS</span></span>
+<span id="cb310-5"><a href="dm-dplyr.html#cb310-5"></a><span class="co">#&gt; </span></span>
+<span id="cb310-6"><a href="dm-dplyr.html#cb310-6"></a><span class="co">#&gt; Locale:</span></span>
+<span id="cb310-7"><a href="dm-dplyr.html#cb310-7"></a><span class="co">#&gt;   LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              </span></span>
+<span id="cb310-8"><a href="dm-dplyr.html#cb310-8"></a><span class="co">#&gt;   LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    </span></span>
+<span id="cb310-9"><a href="dm-dplyr.html#cb310-9"></a><span class="co">#&gt;   LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   </span></span>
+<span id="cb310-10"><a href="dm-dplyr.html#cb310-10"></a><span class="co">#&gt;   LC_PAPER=en_US.UTF-8       LC_NAME=C                 </span></span>
+<span id="cb310-11"><a href="dm-dplyr.html#cb310-11"></a><span class="co">#&gt;   LC_ADDRESS=C               LC_TELEPHONE=C            </span></span>
+<span id="cb310-12"><a href="dm-dplyr.html#cb310-12"></a><span class="co">#&gt;   LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       </span></span>
+<span id="cb310-13"><a href="dm-dplyr.html#cb310-13"></a><span class="co">#&gt; </span></span>
+<span id="cb310-14"><a href="dm-dplyr.html#cb310-14"></a><span class="co">#&gt; Package version:</span></span>
+<span id="cb310-15"><a href="dm-dplyr.html#cb310-15"></a><span class="co">#&gt;   askpass_1.1          assertthat_0.2.1     backports_1.1.5     </span></span>
+<span id="cb310-16"><a href="dm-dplyr.html#cb310-16"></a><span class="co">#&gt;   base64enc_0.1.3      BH_1.69.0.1          bookdown_0.15       </span></span>
+<span id="cb310-17"><a href="dm-dplyr.html#cb310-17"></a><span class="co">#&gt;   broom_0.5.2          callr_3.3.2          cellranger_1.1.0    </span></span>
+<span id="cb310-18"><a href="dm-dplyr.html#cb310-18"></a><span class="co">#&gt;   cli_1.1.0            clipr_0.7.0          codetools_0.2-16    </span></span>
+<span id="cb310-19"><a href="dm-dplyr.html#cb310-19"></a><span class="co">#&gt;   colorspace_1.4-2     compiler_4.0.0       crayon_1.3.4        </span></span>
+<span id="cb310-20"><a href="dm-dplyr.html#cb310-20"></a><span class="co">#&gt;   curl_4.2             DBI_1.0.0            dbplyr_1.4.2        </span></span>
+<span id="cb310-21"><a href="dm-dplyr.html#cb310-21"></a><span class="co">#&gt;   desc_1.2.0           digest_0.6.22        dplyr_0.8.3         </span></span>
+<span id="cb310-22"><a href="dm-dplyr.html#cb310-22"></a><span class="co">#&gt;   ellipsis_0.3.0       evaluate_0.14        fansi_0.4.0         </span></span>
+<span id="cb310-23"><a href="dm-dplyr.html#cb310-23"></a><span class="co">#&gt;   forcats_0.4.0        fs_1.3.1             generics_0.0.2      </span></span>
+<span id="cb310-24"><a href="dm-dplyr.html#cb310-24"></a><span class="co">#&gt;   ggplot2_3.2.1        glue_1.3.1           graphics_4.0.0      </span></span>
+<span id="cb310-25"><a href="dm-dplyr.html#cb310-25"></a><span class="co">#&gt;   grDevices_4.0.0      grid_4.0.0           gtable_0.3.0        </span></span>
+<span id="cb310-26"><a href="dm-dplyr.html#cb310-26"></a><span class="co">#&gt;   haven_2.2.0          highr_0.8            hms_0.5.2           </span></span>
+<span id="cb310-27"><a href="dm-dplyr.html#cb310-27"></a><span class="co">#&gt;   htmltools_0.4.0      httr_1.4.1           jsonlite_1.6        </span></span>
+<span id="cb310-28"><a href="dm-dplyr.html#cb310-28"></a><span class="co">#&gt;   knitr_1.26           labeling_0.3         lattice_0.20-38     </span></span>
+<span id="cb310-29"><a href="dm-dplyr.html#cb310-29"></a><span class="co">#&gt;   lazyeval_0.2.2       lifecycle_0.1.0      lubridate_1.7.4     </span></span>
+<span id="cb310-30"><a href="dm-dplyr.html#cb310-30"></a><span class="co">#&gt;   magrittr_1.5         markdown_1.1         MASS_7.3.51.4       </span></span>
+<span id="cb310-31"><a href="dm-dplyr.html#cb310-31"></a><span class="co">#&gt;   Matrix_1.2.17        methods_4.0.0        mgcv_1.8.31         </span></span>
+<span id="cb310-32"><a href="dm-dplyr.html#cb310-32"></a><span class="co">#&gt;   microbenchmark_1.4-7 mime_0.7             modelr_0.1.5        </span></span>
+<span id="cb310-33"><a href="dm-dplyr.html#cb310-33"></a><span class="co">#&gt;   munsell_0.5.0        nlme_3.1-142         openssl_1.4.1       </span></span>
+<span id="cb310-34"><a href="dm-dplyr.html#cb310-34"></a><span class="co">#&gt;   pillar_1.4.2         pkgconfig_2.0.3      plogr_0.2.0         </span></span>
+<span id="cb310-35"><a href="dm-dplyr.html#cb310-35"></a><span class="co">#&gt;   plyr_1.8.4           prettyunits_1.0.2    processx_3.4.1      </span></span>
+<span id="cb310-36"><a href="dm-dplyr.html#cb310-36"></a><span class="co">#&gt;   progress_1.2.2       ps_1.3.0             purrr_0.3.3         </span></span>
+<span id="cb310-37"><a href="dm-dplyr.html#cb310-37"></a><span class="co">#&gt;   R6_2.4.1             RColorBrewer_1.1.2   Rcpp_1.0.3          </span></span>
+<span id="cb310-38"><a href="dm-dplyr.html#cb310-38"></a><span class="co">#&gt;   readr_1.3.1          readxl_1.3.1         rematch_1.0.1       </span></span>
+<span id="cb310-39"><a href="dm-dplyr.html#cb310-39"></a><span class="co">#&gt;   reprex_0.3.0         reshape2_1.4.3       rlang_0.4.1         </span></span>
+<span id="cb310-40"><a href="dm-dplyr.html#cb310-40"></a><span class="co">#&gt;   rmarkdown_1.17       rprojroot_1.3-2      rstudioapi_0.10     </span></span>
+<span id="cb310-41"><a href="dm-dplyr.html#cb310-41"></a><span class="co">#&gt;   rvest_0.3.5          scales_1.0.0         selectr_0.4.1       </span></span>
+<span id="cb310-42"><a href="dm-dplyr.html#cb310-42"></a><span class="co">#&gt;   splines_4.0.0        stats_4.0.0          stringi_1.4.3       </span></span>
+<span id="cb310-43"><a href="dm-dplyr.html#cb310-43"></a><span class="co">#&gt;   stringr_1.4.0        sys_3.3              tibble_2.1.3        </span></span>
+<span id="cb310-44"><a href="dm-dplyr.html#cb310-44"></a><span class="co">#&gt;   tidyr_1.0.0          tidyselect_0.2.5     tidyverse_1.2.1     </span></span>
+<span id="cb310-45"><a href="dm-dplyr.html#cb310-45"></a><span class="co">#&gt;   tinytex_0.17         tools_4.0.0          utf8_1.1.4          </span></span>
+<span id="cb310-46"><a href="dm-dplyr.html#cb310-46"></a><span class="co">#&gt;   utils_4.0.0          vctrs_0.2.0          viridisLite_0.3.0   </span></span>
+<span id="cb310-47"><a href="dm-dplyr.html#cb310-47"></a><span class="co">#&gt;   whisker_0.4          withr_2.1.2          xfun_0.11           </span></span>
+<span id="cb310-48"><a href="dm-dplyr.html#cb310-48"></a><span class="co">#&gt;   xml2_1.2.2           yaml_2.2.0           zeallot_0.1.0</span></span></code></pre></div>
+
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="22">
+<li id="fn22"><p><a href="https://stackoverflow.com/questions/22959635/" class="uri">https://stackoverflow.com/questions/22959635/</a><a href="dm-dplyr.html#fnref22" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+<script>
+window.onload = function() {
+
+  var imgs = document.querySelectorAll('img');
+
+  // Upon clicking an image, open a new window with the
+  // dimensions of the image, pointing the `data-url` link
+  var on_click = function (e) {
+    var d = e.target.dataset || {};
+    if (d.url) {
+      // Add some extra height for the modebar
+      var height = 'height=' + (e.target.clientHeight * 1.05);
+      var width = 'width=' + e.target.clientWidth;
+      var param = 'location=yes,' + height + ',' + width + ',scrollbars=yes,status=yes';
+      window.open(e.target.dataset.url, '_blank', param);
+    }
+  };
+
+  var on_hover = function (e) {
+    var d = e.target.dataset || {};
+    if (d.url) {
+      e.target.style.cursor = 'pointer';
+    }
+  };
+
+  for (var i = 0; i < imgs.length; i++) {
+    imgs[i].addEventListener('click', on_click);
+    imgs[i].addEventListener('mouseover', on_hover);
+  }
+};
+</script>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="dm-base-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="dc-string-manipulation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": {},
+"github": true
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/XiangyunHuang/RGraphics/edit/master/dm-dplyr.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub", "_main.mobi", "https://github.com/XiangyunHuang/RGraphics/raw/master/dm-dplyr.Rmd"],
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

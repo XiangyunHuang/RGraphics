@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>第 7 章 正则表达式 | 数据科学与 R 语言</title>
+  <meta name="description" content="数据操作、数据分析、数据建模、动态报告和数据可视化" />
+  <meta name="generator" content="bookdown 0.15 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="第 7 章 正则表达式 | 数据科学与 R 语言" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="https://bookdown.org/xiangyun/RGraphics/" />
+  
+  <meta property="og:description" content="数据操作、数据分析、数据建模、动态报告和数据可视化" />
+  <meta name="github-repo" content="XiangyunHuang/RGraphics" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="第 7 章 正则表达式 | 数据科学与 R 语言" />
+  
+  <meta name="twitter:description" content="数据操作、数据分析、数据建模、动态报告和数据可视化" />
+  
+
+<meta name="author" content="黄湘云" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="dc-string-manipulation.html"/>
+<link rel="next" href="dv-plot.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">数据可视化与R语言</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>欢迎</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#why-r"><i class="fa fa-check"></i>Why R</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#who-read-this-book"><i class="fa fa-check"></i>目标读者</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#Getting-Help-with-R"><i class="fa fa-check"></i>获取帮助</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#history-of-r"><i class="fa fa-check"></i>发展历史</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#conventions"><i class="fa fa-check"></i>记号约定</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#session-info"><i class="fa fa-check"></i>运行环境</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>前言</a><ul>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#what-talk-about"><i class="fa fa-check"></i>关于本书</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#structure-of-book"><i class="fa fa-check"></i>本书结构</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#about-author"><i class="fa fa-check"></i>关于作者</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="setup.html"><a href="setup.html"><i class="fa fa-check"></i><b>1</b> 安装与配置</a><ul>
+<li class="chapter" data-level="1.1" data-path="setup.html"><a href="setup.html#repo-install"><i class="fa fa-check"></i><b>1.1</b> 仓库安装</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="setup.html"><a href="setup.html#ubuntu"><i class="fa fa-check"></i><b>1.1.1</b> Ubuntu</a></li>
+<li class="chapter" data-level="1.1.2" data-path="setup.html"><a href="setup.html#centos"><i class="fa fa-check"></i><b>1.1.2</b> CentOS</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="setup.html"><a href="setup.html#source-install"><i class="fa fa-check"></i><b>1.2</b> 源码安装</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="setup.html"><a href="setup.html#ubuntu-1"><i class="fa fa-check"></i><b>1.2.1</b> Ubuntu</a></li>
+<li class="chapter" data-level="1.2.2" data-path="setup.html"><a href="setup.html#centos-1"><i class="fa fa-check"></i><b>1.2.2</b> CentOS</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="setup.html"><a href="setup.html#ninja-install"><i class="fa fa-check"></i><b>1.3</b> 忍者安装</a></li>
+<li class="chapter" data-level="1.4" data-path="setup.html"><a href="setup.html#settings"><i class="fa fa-check"></i><b>1.4</b> 配置</a><ul>
+<li class="chapter" data-level="1.4.1" data-path="setup.html"><a href="setup.html#init-session"><i class="fa fa-check"></i><b>1.4.1</b> 初始会话 <code>.Rprofile</code></a></li>
+<li class="chapter" data-level="1.4.2" data-path="setup.html"><a href="setup.html#environ-vars"><i class="fa fa-check"></i><b>1.4.2</b> 环境变量 <code>.Renviron</code></a></li>
+<li class="chapter" data-level="1.4.3" data-path="setup.html"><a href="setup.html#make-vars"><i class="fa fa-check"></i><b>1.4.3</b> 编译选项 <code>Makevars</code></a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="setup.html"><a href="setup.html#command-line-arguments"><i class="fa fa-check"></i><b>1.5</b> 命令行参数</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="files.html"><a href="files.html"><i class="fa fa-check"></i><b>2</b> 文件管理员</a><ul>
+<li class="chapter" data-level="2.1" data-path="files.html"><a href="files.html#list"><i class="fa fa-check"></i><b>2.1</b> 查看文件</a></li>
+<li class="chapter" data-level="2.2" data-path="files.html"><a href="files.html#manipulation"><i class="fa fa-check"></i><b>2.2</b> 操作文件</a></li>
+<li class="chapter" data-level="2.3" data-path="files.html"><a href="files.html#compression"><i class="fa fa-check"></i><b>2.3</b> 压缩文件</a></li>
+<li class="chapter" data-level="2.4" data-path="files.html"><a href="files.html#paths"><i class="fa fa-check"></i><b>2.4</b> 路径操作</a></li>
+<li class="chapter" data-level="2.5" data-path="files.html"><a href="files.html#find"><i class="fa fa-check"></i><b>2.5</b> 查找文件</a></li>
+<li class="chapter" data-level="2.6" data-path="files.html"><a href="files.html#permissions"><i class="fa fa-check"></i><b>2.6</b> 文件权限</a></li>
+<li class="chapter" data-level="2.7" data-path="files.html"><a href="files.html#locale"><i class="fa fa-check"></i><b>2.7</b> 区域设置</a></li>
+<li class="chapter" data-level="2.8" data-path="files.html"><a href="files.html#process"><i class="fa fa-check"></i><b>2.8</b> 进程管理</a></li>
+<li class="chapter" data-level="2.9" data-path="files.html"><a href="files.html#system-commands"><i class="fa fa-check"></i><b>2.9</b> 系统命令</a></li>
+<li class="chapter" data-level="2.10" data-path="files.html"><a href="files.html#time"><i class="fa fa-check"></i><b>2.10</b> 时间管理</a></li>
+<li class="chapter" data-level="2.11" data-path="files.html"><a href="files.html#package"><i class="fa fa-check"></i><b>2.11</b> R 包管理</a></li>
+<li class="chapter" data-level="2.12" data-path="files.html"><a href="files.html#lookup-function"><i class="fa fa-check"></i><b>2.12</b> 查找函数</a></li>
+<li class="chapter" data-level="2.13" data-path="files.html"><a href="files.html#files-session-info"><i class="fa fa-check"></i><b>2.13</b> 运行环境</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="dm-import-export.html"><a href="dm-import-export.html"><i class="fa fa-check"></i><b>3</b> 数据搬运工</a><ul>
+<li class="chapter" data-level="3.1" data-path="dm-import-export.html"><a href="dm-import-export.html#import-data"><i class="fa fa-check"></i><b>3.1</b> 导入数据</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="dm-import-export.html"><a href="dm-import-export.html#scan-file"><i class="fa fa-check"></i><b>3.1.1</b> <code>scan</code></a></li>
+<li class="chapter" data-level="3.1.2" data-path="dm-import-export.html"><a href="dm-import-export.html#read-write-table"><i class="fa fa-check"></i><b>3.1.2</b> <code>read.table</code></a></li>
+<li class="chapter" data-level="3.1.3" data-path="dm-import-export.html"><a href="dm-import-export.html#read-write-lines"><i class="fa fa-check"></i><b>3.1.3</b> <code>readLines</code></a></li>
+<li class="chapter" data-level="3.1.4" data-path="dm-import-export.html"><a href="dm-import-export.html#read-save-rds"><i class="fa fa-check"></i><b>3.1.4</b> <code>readRDS</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="dm-import-export.html"><a href="dm-import-export.html#other-data-source"><i class="fa fa-check"></i><b>3.2</b> 其它数据格式</a></li>
+<li class="chapter" data-level="3.3" data-path="dm-import-export.html"><a href="dm-import-export.html#import-large-dataset"><i class="fa fa-check"></i><b>3.3</b> 导入大数据集</a></li>
+<li class="chapter" data-level="3.4" data-path="dm-import-export.html"><a href="dm-import-export.html#import-data-from-database"><i class="fa fa-check"></i><b>3.4</b> 从数据库导入</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="dm-import-export.html"><a href="dm-import-export.html#postgresql"><i class="fa fa-check"></i><b>3.4.1</b> PostgreSQL</a></li>
+<li class="chapter" data-level="3.4.2" data-path="dm-import-export.html"><a href="dm-import-export.html#mysql"><i class="fa fa-check"></i><b>3.4.2</b> MySQL</a></li>
+<li class="chapter" data-level="3.4.3" data-path="dm-import-export.html"><a href="dm-import-export.html#spark"><i class="fa fa-check"></i><b>3.4.3</b> Spark</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="dm-import-export.html"><a href="dm-import-export.html#batch-import-data"><i class="fa fa-check"></i><b>3.5</b> 批量导入数据</a></li>
+<li class="chapter" data-level="3.6" data-path="dm-import-export.html"><a href="dm-import-export.html#batch-export-data"><i class="fa fa-check"></i><b>3.6</b> 批量导出数据</a></li>
+<li class="chapter" data-level="3.7" data-path="dm-import-export.html"><a href="dm-import-export.html#export-data"><i class="fa fa-check"></i><b>3.7</b> 导出数据</a><ul>
+<li class="chapter" data-level="3.7.1" data-path="dm-import-export.html"><a href="dm-import-export.html#export-output"><i class="fa fa-check"></i><b>3.7.1</b> 导出运行结果</a></li>
+<li class="chapter" data-level="3.7.2" data-path="dm-import-export.html"><a href="dm-import-export.html#export-data-object"><i class="fa fa-check"></i><b>3.7.2</b> 导出数据对象</a></li>
+</ul></li>
+<li class="chapter" data-level="3.8" data-path="dm-import-export.html"><a href="dm-import-export.html#dm-session-info"><i class="fa fa-check"></i><b>3.8</b> 运行环境</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="dm-base-r.html"><a href="dm-base-r.html"><i class="fa fa-check"></i><b>4</b> 数据操作手</a><ul>
+<li class="chapter" data-level="4.1" data-path="dm-base-r.html"><a href="dm-base-r.html#show"><i class="fa fa-check"></i><b>4.1</b> 查看数据</a></li>
+<li class="chapter" data-level="4.2" data-path="dm-base-r.html"><a href="dm-base-r.html#base-reshape"><i class="fa fa-check"></i><b>4.2</b> 数据变形</a></li>
+<li class="chapter" data-level="4.3" data-path="dm-base-r.html"><a href="dm-base-r.html#base-transform"><i class="fa fa-check"></i><b>4.3</b> 数据转换</a></li>
+<li class="chapter" data-level="4.4" data-path="dm-base-r.html"><a href="dm-base-r.html#base-subset"><i class="fa fa-check"></i><b>4.4</b> 提取子集</a></li>
+<li class="chapter" data-level="4.5" data-path="dm-base-r.html"><a href="dm-base-r.html#base-order"><i class="fa fa-check"></i><b>4.5</b> 按列排序</a></li>
+<li class="chapter" data-level="4.6" data-path="dm-base-r.html"><a href="dm-base-r.html#base-split"><i class="fa fa-check"></i><b>4.6</b> 数据拆分</a></li>
+<li class="chapter" data-level="4.7" data-path="dm-base-r.html"><a href="dm-base-r.html#base-merge"><i class="fa fa-check"></i><b>4.7</b> 数据合并</a></li>
+<li class="chapter" data-level="4.8" data-path="dm-base-r.html"><a href="dm-base-r.html#base-duplicated"><i class="fa fa-check"></i><b>4.8</b> 数据去重</a></li>
+<li class="chapter" data-level="4.9" data-path="dm-base-r.html"><a href="dm-base-r.html#base-aggregate"><i class="fa fa-check"></i><b>4.9</b> 数据聚合</a></li>
+<li class="chapter" data-level="4.10" data-path="dm-base-r.html"><a href="dm-base-r.html#base-table"><i class="fa fa-check"></i><b>4.10</b> 表格统计</a></li>
+<li class="chapter" data-level="4.11" data-path="dm-base-r.html"><a href="dm-base-r.html#base-index"><i class="fa fa-check"></i><b>4.11</b> 索引访问</a></li>
+<li class="chapter" data-level="4.12" data-path="dm-base-r.html"><a href="dm-base-r.html#base-array"><i class="fa fa-check"></i><b>4.12</b> 多维数组</a></li>
+<li class="chapter" data-level="4.13" data-path="dm-base-r.html"><a href="dm-base-r.html#base-others"><i class="fa fa-check"></i><b>4.13</b> 其它操作</a><ul>
+<li class="chapter" data-level="4.13.1" data-path="dm-base-r.html"><a href="dm-base-r.html#relist-or-unlist"><i class="fa fa-check"></i><b>4.13.1</b> 列表属性</a></li>
+<li class="chapter" data-level="4.13.2" data-path="dm-base-r.html"><a href="dm-base-r.html#stack-or-unstack"><i class="fa fa-check"></i><b>4.13.2</b> 堆叠向量</a></li>
+<li class="chapter" data-level="4.13.3" data-path="dm-base-r.html"><a href="dm-base-r.html#class-or-unclass"><i class="fa fa-check"></i><b>4.13.3</b> 属性转化</a></li>
+<li class="chapter" data-level="4.13.4" data-path="dm-base-r.html"><a href="dm-base-r.html#attach-or-detach"><i class="fa fa-check"></i><b>4.13.4</b> 绑定环境</a></li>
+<li class="chapter" data-level="4.13.5" data-path="dm-base-r.html"><a href="dm-base-r.html#with-or-within"><i class="fa fa-check"></i><b>4.13.5</b> 数据环境</a></li>
+</ul></li>
+<li class="chapter" data-level="4.14" data-path="dm-base-r.html"><a href="dm-base-r.html#dm-base-session-info"><i class="fa fa-check"></i><b>4.14</b> 运行环境</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="dm-dplyr.html"><a href="dm-dplyr.html"><i class="fa fa-check"></i><b>5</b> 净土化操作</a><ul>
+<li class="chapter" data-level="5.1" data-path="dm-dplyr.html"><a href="dm-dplyr.html#common-operations"><i class="fa fa-check"></i><b>5.1</b> 常用操作</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="dm-dplyr.html"><a href="dm-dplyr.html#tibble-show"><i class="fa fa-check"></i><b>5.1.1</b> 查看</a></li>
+<li class="chapter" data-level="5.1.2" data-path="dm-dplyr.html"><a href="dm-dplyr.html#dplyr-filter"><i class="fa fa-check"></i><b>5.1.2</b> 筛选</a></li>
+<li class="chapter" data-level="5.1.3" data-path="dm-dplyr.html"><a href="dm-dplyr.html#dplyr-arrange"><i class="fa fa-check"></i><b>5.1.3</b> 排序</a></li>
+<li class="chapter" data-level="5.1.4" data-path="dm-dplyr.html"><a href="dm-dplyr.html#dplyr-summarise"><i class="fa fa-check"></i><b>5.1.4</b> 聚合</a></li>
+<li class="chapter" data-level="5.1.5" data-path="dm-dplyr.html"><a href="dm-dplyr.html#dplyr-merge"><i class="fa fa-check"></i><b>5.1.5</b> 合并</a></li>
+<li class="chapter" data-level="5.1.6" data-path="dm-dplyr.html"><a href="dm-dplyr.html#dplyr-mutate"><i class="fa fa-check"></i><b>5.1.6</b> 变换</a></li>
+<li class="chapter" data-level="5.1.7" data-path="dm-dplyr.html"><a href="dm-dplyr.html#dplyr-duplicated"><i class="fa fa-check"></i><b>5.1.7</b> 去重</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="dm-dplyr.html"><a href="dm-dplyr.html#common-dataframe-operations"><i class="fa fa-check"></i><b>5.2</b> 高频问题</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="dm-dplyr.html"><a href="dm-dplyr.html#create-empty-dataframe"><i class="fa fa-check"></i><b>5.2.1</b> 初始化数据框</a></li>
+<li class="chapter" data-level="5.2.2" data-path="dm-dplyr.html"><a href="dm-dplyr.html#remove-missing-values"><i class="fa fa-check"></i><b>5.2.2</b> 移除缺失记录</a></li>
+<li class="chapter" data-level="5.2.3" data-path="dm-dplyr.html"><a href="dm-dplyr.html#coerce-data-type"><i class="fa fa-check"></i><b>5.2.3</b> 数据类型转化</a></li>
+<li class="chapter" data-level="5.2.4" data-path="dm-dplyr.html"><a href="dm-dplyr.html#cross-group-by"><i class="fa fa-check"></i><b>5.2.4</b> 跨列分组求和</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="dm-dplyr.html"><a href="dm-dplyr.html#pipe-manipulation"><i class="fa fa-check"></i><b>5.3</b> 管道操作</a></li>
+<li class="chapter" data-level="5.4" data-path="dm-dplyr.html"><a href="dm-dplyr.html#dm-dplyr-rsession"><i class="fa fa-check"></i><b>5.4</b> 运行环境</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html"><i class="fa fa-check"></i><b>6</b> 字符串操作</a><ul>
+<li class="chapter" data-level="6.1" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#base-count"><i class="fa fa-check"></i><b>6.1</b> 字符数统计</a></li>
+<li class="chapter" data-level="6.2" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#base-translations"><i class="fa fa-check"></i><b>6.2</b> 字符串翻译</a></li>
+<li class="chapter" data-level="6.3" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#base-concatenate"><i class="fa fa-check"></i><b>6.3</b> 字符串连接</a></li>
+<li class="chapter" data-level="6.4" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#base-strsplit"><i class="fa fa-check"></i><b>6.4</b> 字符串拆分</a></li>
+<li class="chapter" data-level="6.5" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#base-match"><i class="fa fa-check"></i><b>6.5</b> 字符串匹配</a></li>
+<li class="chapter" data-level="6.6" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#base-search"><i class="fa fa-check"></i><b>6.6</b> 字符串查询</a></li>
+<li class="chapter" data-level="6.7" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#base-replacement"><i class="fa fa-check"></i><b>6.7</b> 字符串替换</a></li>
+<li class="chapter" data-level="6.8" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#base-extract"><i class="fa fa-check"></i><b>6.8</b> 字符串提取</a></li>
+<li class="chapter" data-level="6.9" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#other-string-op"><i class="fa fa-check"></i><b>6.9</b> 其它操作</a><ul>
+<li class="chapter" data-level="6.9.1" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#strwrap"><i class="fa fa-check"></i><b>6.9.1</b> strwrap</a></li>
+<li class="chapter" data-level="6.9.2" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#strtrim"><i class="fa fa-check"></i><b>6.9.2</b> strtrim</a></li>
+<li class="chapter" data-level="6.9.3" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#strrep"><i class="fa fa-check"></i><b>6.9.3</b> strrep</a></li>
+<li class="chapter" data-level="6.9.4" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#trimws"><i class="fa fa-check"></i><b>6.9.4</b> trimws</a></li>
+</ul></li>
+<li class="chapter" data-level="6.10" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#string-session-info"><i class="fa fa-check"></i><b>6.10</b> 运行环境</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="dc-regular-expressions.html"><a href="dc-regular-expressions.html"><i class="fa fa-check"></i><b>7</b> 正则表达式</a><ul>
+<li class="chapter" data-level="7.1" data-path="dc-regular-expressions.html"><a href="dc-regular-expressions.html#character-constants"><i class="fa fa-check"></i><b>7.1</b> 字符常量</a></li>
+<li class="chapter" data-level="7.2" data-path="dc-regular-expressions.html"><a href="dc-regular-expressions.html#environments"><i class="fa fa-check"></i><b>7.2</b> 软件环境</a></li>
+<li class="chapter" data-level="7.3" data-path="dc-regular-expressions.html"><a href="dc-regular-expressions.html#foundations"><i class="fa fa-check"></i><b>7.3</b> 基本概念</a></li>
+<li class="chapter" data-level="7.4" data-path="dc-regular-expressions.html"><a href="dc-regular-expressions.html#match"><i class="fa fa-check"></i><b>7.4</b> 字符串匹配</a></li>
+<li class="chapter" data-level="7.5" data-path="dc-regular-expressions.html"><a href="dc-regular-expressions.html#concatenation"><i class="fa fa-check"></i><b>7.5</b> 级联表达式</a></li>
+<li class="chapter" data-level="7.6" data-path="dc-regular-expressions.html"><a href="dc-regular-expressions.html#backreference"><i class="fa fa-check"></i><b>7.6</b> 反向引用</a></li>
+<li class="chapter" data-level="7.7" data-path="dc-regular-expressions.html"><a href="dc-regular-expressions.html#named-capture"><i class="fa fa-check"></i><b>7.7</b> 命名捕捉</a></li>
+<li class="chapter" data-level="7.8" data-path="dc-regular-expressions.html"><a href="dc-regular-expressions.html#comment"><i class="fa fa-check"></i><b>7.8</b> 表达式注释</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="dv-plot.html"><a href="dv-plot.html"><i class="fa fa-check"></i><b>8</b> 绘图素材库</a><ul>
+<li class="chapter" data-level="8.1" data-path="dv-plot.html"><a href="dv-plot.html#elements"><i class="fa fa-check"></i><b>8.1</b> 基本要素</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="dv-plot.html"><a href="dv-plot.html#base-points"><i class="fa fa-check"></i><b>8.1.1</b> 点线</a></li>
+<li class="chapter" data-level="8.1.2" data-path="dv-plot.html"><a href="dv-plot.html#base-rect"><i class="fa fa-check"></i><b>8.1.2</b> 区域</a></li>
+<li class="chapter" data-level="8.1.3" data-path="dv-plot.html"><a href="dv-plot.html#base-lines"><i class="fa fa-check"></i><b>8.1.3</b> 参考线</a></li>
+<li class="chapter" data-level="8.1.4" data-path="dv-plot.html"><a href="dv-plot.html#base-axis"><i class="fa fa-check"></i><b>8.1.4</b> 坐标轴</a></li>
+<li class="chapter" data-level="8.1.5" data-path="dv-plot.html"><a href="dv-plot.html#base-tick"><i class="fa fa-check"></i><b>8.1.5</b> 刻度线</a></li>
+<li class="chapter" data-level="8.1.6" data-path="dv-plot.html"><a href="dv-plot.html#base-title"><i class="fa fa-check"></i><b>8.1.6</b> 标题</a></li>
+<li class="chapter" data-level="8.1.7" data-path="dv-plot.html"><a href="dv-plot.html#base-annotation"><i class="fa fa-check"></i><b>8.1.7</b> 注释</a></li>
+<li class="chapter" data-level="8.1.8" data-path="dv-plot.html"><a href="dv-plot.html#base-legend"><i class="fa fa-check"></i><b>8.1.8</b> 图例</a></li>
+<li class="chapter" data-level="8.1.9" data-path="dv-plot.html"><a href="dv-plot.html#base-par"><i class="fa fa-check"></i><b>8.1.9</b> 边空</a></li>
+<li class="chapter" data-level="8.1.10" data-path="dv-plot.html"><a href="dv-plot.html#base-layer"><i class="fa fa-check"></i><b>8.1.10</b> 图层</a></li>
+<li class="chapter" data-level="8.1.11" data-path="dv-plot.html"><a href="dv-plot.html#base-layout"><i class="fa fa-check"></i><b>8.1.11</b> 布局</a></li>
+<li class="chapter" data-level="8.1.12" data-path="dv-plot.html"><a href="dv-plot.html#base-combine"><i class="fa fa-check"></i><b>8.1.12</b> 组合</a></li>
+<li class="chapter" data-level="8.1.13" data-path="dv-plot.html"><a href="dv-plot.html#base-screen"><i class="fa fa-check"></i><b>8.1.13</b> 分屏</a></li>
+<li class="chapter" data-level="8.1.14" data-path="dv-plot.html"><a href="dv-plot.html#identify-locator"><i class="fa fa-check"></i><b>8.1.14</b> 交互</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="dv-plot.html"><a href="dv-plot.html#plot-gallary"><i class="fa fa-check"></i><b>8.2</b> 统计图形</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="dv-plot.html"><a href="dv-plot.html#plot-bar"><i class="fa fa-check"></i><b>8.2.1</b> 条形图</a></li>
+<li class="chapter" data-level="8.2.2" data-path="dv-plot.html"><a href="dv-plot.html#plot-hist"><i class="fa fa-check"></i><b>8.2.2</b> 直方图</a></li>
+<li class="chapter" data-level="8.2.3" data-path="dv-plot.html"><a href="dv-plot.html#plot-density"><i class="fa fa-check"></i><b>8.2.3</b> 密度图</a></li>
+<li class="chapter" data-level="8.2.4" data-path="dv-plot.html"><a href="dv-plot.html#plot-ecdf"><i class="fa fa-check"></i><b>8.2.4</b> 经验图</a></li>
+<li class="chapter" data-level="8.2.5" data-path="dv-plot.html"><a href="dv-plot.html#plot-qqnorm"><i class="fa fa-check"></i><b>8.2.5</b> QQ 图</a></li>
+<li class="chapter" data-level="8.2.6" data-path="dv-plot.html"><a href="dv-plot.html#plot-ts"><i class="fa fa-check"></i><b>8.2.6</b> 时序图</a></li>
+<li class="chapter" data-level="8.2.7" data-path="dv-plot.html"><a href="dv-plot.html#plot-pie"><i class="fa fa-check"></i><b>8.2.7</b> 饼图</a></li>
+<li class="chapter" data-level="8.2.8" data-path="dv-plot.html"><a href="dv-plot.html#plot-stem-leaf"><i class="fa fa-check"></i><b>8.2.8</b> 茎叶图</a></li>
+<li class="chapter" data-level="8.2.9" data-path="dv-plot.html"><a href="dv-plot.html#plot-scatter"><i class="fa fa-check"></i><b>8.2.9</b> 散点图</a></li>
+<li class="chapter" data-level="8.2.10" data-path="dv-plot.html"><a href="dv-plot.html#base-jitter"><i class="fa fa-check"></i><b>8.2.10</b> 抖动图</a></li>
+<li class="chapter" data-level="8.2.11" data-path="dv-plot.html"><a href="dv-plot.html#plot-box"><i class="fa fa-check"></i><b>8.2.11</b> 箱线图</a></li>
+<li class="chapter" data-level="8.2.12" data-path="dv-plot.html"><a href="dv-plot.html#error-bars"><i class="fa fa-check"></i><b>8.2.12</b> 残差图</a></li>
+<li class="chapter" data-level="8.2.13" data-path="dv-plot.html"><a href="dv-plot.html#plot-violin"><i class="fa fa-check"></i><b>8.2.13</b> 提琴图</a></li>
+<li class="chapter" data-level="8.2.14" data-path="dv-plot.html"><a href="dv-plot.html#plot-contour"><i class="fa fa-check"></i><b>8.2.14</b> 轮廓图</a></li>
+<li class="chapter" data-level="8.2.15" data-path="dv-plot.html"><a href="dv-plot.html#plot-line"><i class="fa fa-check"></i><b>8.2.15</b> 折线图</a></li>
+<li class="chapter" data-level="8.2.16" data-path="dv-plot.html"><a href="dv-plot.html#function"><i class="fa fa-check"></i><b>8.2.16</b> 函数图</a></li>
+<li class="chapter" data-level="8.2.17" data-path="dv-plot.html"><a href="dv-plot.html#plot-mosaic"><i class="fa fa-check"></i><b>8.2.17</b> 马赛克图</a></li>
+<li class="chapter" data-level="8.2.18" data-path="dv-plot.html"><a href="dv-plot.html#plot-dotchart"><i class="fa fa-check"></i><b>8.2.18</b> 克利夫兰点图</a></li>
+<li class="chapter" data-level="8.2.19" data-path="dv-plot.html"><a href="dv-plot.html#plot-matrix"><i class="fa fa-check"></i><b>8.2.19</b> 矩阵图</a></li>
+<li class="chapter" data-level="8.2.20" data-path="dv-plot.html"><a href="dv-plot.html#plot-radar"><i class="fa fa-check"></i><b>8.2.20</b> 雷达图</a></li>
+<li class="chapter" data-level="8.2.21" data-path="dv-plot.html"><a href="dv-plot.html#plot-rose"><i class="fa fa-check"></i><b>8.2.21</b> 玫瑰图</a></li>
+<li class="chapter" data-level="8.2.22" data-path="dv-plot.html"><a href="dv-plot.html#plot-map"><i class="fa fa-check"></i><b>8.2.22</b> 地形图</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="dv-plot.html"><a href="dv-plot.html#plot-session-info"><i class="fa fa-check"></i><b>8.3</b> 运行环境</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html"><i class="fa fa-check"></i><b>9</b> 数据可视化</a><ul>
+<li class="chapter" data-level="9.1" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#intro-ggplot2"><i class="fa fa-check"></i><b>9.1</b> 基础语法</a><ul>
+<li class="chapter" data-level="9.1.1" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-layer"><i class="fa fa-check"></i><b>9.1.1</b> 图层</a></li>
+<li class="chapter" data-level="9.1.2" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-theme"><i class="fa fa-check"></i><b>9.1.2</b> 主题</a></li>
+<li class="chapter" data-level="9.1.3" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-color"><i class="fa fa-check"></i><b>9.1.3</b> 配色</a></li>
+<li class="chapter" data-level="9.1.4" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-scale"><i class="fa fa-check"></i><b>9.1.4</b> 刻度</a></li>
+<li class="chapter" data-level="9.1.5" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-annotate"><i class="fa fa-check"></i><b>9.1.5</b> 注释</a></li>
+<li class="chapter" data-level="9.1.6" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-legend"><i class="fa fa-check"></i><b>9.1.6</b> 图例</a></li>
+<li class="chapter" data-level="9.1.7" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-grid"><i class="fa fa-check"></i><b>9.1.7</b> 组合</a></li>
+<li class="chapter" data-level="9.1.8" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-coord"><i class="fa fa-check"></i><b>9.1.8</b> 坐标系</a></li>
+<li class="chapter" data-level="9.1.9" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-axes"><i class="fa fa-check"></i><b>9.1.9</b> 坐标轴</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-gallary"><i class="fa fa-check"></i><b>9.2</b> 统计图形</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-scatter"><i class="fa fa-check"></i><b>9.2.1</b> 散点图</a></li>
+<li class="chapter" data-level="9.2.2" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-boxplot"><i class="fa fa-check"></i><b>9.2.2</b> 箱线图</a></li>
+<li class="chapter" data-level="9.2.3" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-barplot"><i class="fa fa-check"></i><b>9.2.3</b> 条形图</a></li>
+<li class="chapter" data-level="9.2.4" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-line"><i class="fa fa-check"></i><b>9.2.4</b> 折线图</a></li>
+<li class="chapter" data-level="9.2.5" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-histogram"><i class="fa fa-check"></i><b>9.2.5</b> 直方图</a></li>
+<li class="chapter" data-level="9.2.6" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-violin"><i class="fa fa-check"></i><b>9.2.6</b> 提琴图</a></li>
+<li class="chapter" data-level="9.2.7" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-jitter"><i class="fa fa-check"></i><b>9.2.7</b> 抖动图</a></li>
+<li class="chapter" data-level="9.2.8" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-ridge"><i class="fa fa-check"></i><b>9.2.8</b> 密度图</a></li>
+<li class="chapter" data-level="9.2.9" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-rose"><i class="fa fa-check"></i><b>9.2.9</b> 玫瑰图</a></li>
+<li class="chapter" data-level="9.2.10" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-wordcloud"><i class="fa fa-check"></i><b>9.2.10</b> 词云图</a></li>
+<li class="chapter" data-level="9.2.11" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#calendar-map"><i class="fa fa-check"></i><b>9.2.11</b> 日历图</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-session-info"><i class="fa fa-check"></i><b>9.3</b> 运行环境</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="dv-plotly.html"><a href="dv-plotly.html"><i class="fa fa-check"></i><b>10</b> 交互式图形</a><ul>
+<li class="chapter" data-level="10.1" data-path="dv-plotly.html"><a href="dv-plotly.html#plotly"><i class="fa fa-check"></i><b>10.1</b> plotly</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="dv-plot3d.html"><a href="dv-plot3d.html"><i class="fa fa-check"></i><b>11</b> 三维可视化</a><ul>
+<li class="chapter" data-level="11.1" data-path="dv-plot3d.html"><a href="dv-plot3d.html#pie-3d"><i class="fa fa-check"></i><b>11.1</b> 饼图</a></li>
+<li class="chapter" data-level="11.2" data-path="dv-plot3d.html"><a href="dv-plot3d.html#bar-3d"><i class="fa fa-check"></i><b>11.2</b> 柱形图</a></li>
+<li class="chapter" data-level="11.3" data-path="dv-plot3d.html"><a href="dv-plot3d.html#scatter-3d"><i class="fa fa-check"></i><b>11.3</b> 散点图</a></li>
+<li class="chapter" data-level="11.4" data-path="dv-plot3d.html"><a href="dv-plot3d.html#curve-3d"><i class="fa fa-check"></i><b>11.4</b> 函数图</a></li>
+<li class="chapter" data-level="11.5" data-path="dv-plot3d.html"><a href="dv-plot3d.html#persp-3d"><i class="fa fa-check"></i><b>11.5</b> 透视图</a></li>
+<li class="chapter" data-level="11.6" data-path="dv-plot3d.html"><a href="dv-plot3d.html#tikz"><i class="fa fa-check"></i><b>11.6</b> TikZ 绘图</a></li>
+<li class="chapter" data-level="11.7" data-path="dv-plot3d.html"><a href="dv-plot3d.html#export-save"><i class="fa fa-check"></i><b>11.7</b> 图形导出</a></li>
+<li class="chapter" data-level="11.8" data-path="dv-plot3d.html"><a href="dv-plot3d.html#plot3d-sessionInfo"><i class="fa fa-check"></i><b>11.8</b> 软件信息</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="dv-colors-fonts.html"><a href="dv-colors-fonts.html"><i class="fa fa-check"></i><b>12</b> 色彩与字体</a><ul>
+<li class="chapter" data-level="12.1" data-path="dv-colors-fonts.html"><a href="dv-colors-fonts.html#colors-in-r"><i class="fa fa-check"></i><b>12.1</b> 颜色</a></li>
+<li class="chapter" data-level="12.2" data-path="dv-colors-fonts.html"><a href="dv-colors-fonts.html#choose-colors"><i class="fa fa-check"></i><b>12.2</b> 配色</a><ul>
+<li class="chapter" data-level="12.2.1" data-path="dv-colors-fonts.html"><a href="dv-colors-fonts.html#colourlovers"><i class="fa fa-check"></i><b>12.2.1</b> colourlovers</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="dv-colors-fonts.html"><a href="dv-colors-fonts.html#fonts"><i class="fa fa-check"></i><b>12.3</b> 字体</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html"><i class="fa fa-check"></i><b>13</b> 时空可视化</a><ul>
+<li class="chapter" data-level="13.1" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#map"><i class="fa fa-check"></i><b>13.1</b> 地图</a><ul>
+<li class="chapter" data-level="13.1.1" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#project-orientation"><i class="fa fa-check"></i><b>13.1.1</b> 投影和观察方位</a></li>
+<li class="chapter" data-level="13.1.2" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#USA-crime-rates"><i class="fa fa-check"></i><b>13.1.2</b> 美国各州犯罪率</a></li>
+<li class="chapter" data-level="13.1.3" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#fiji-earthquake-map"><i class="fa fa-check"></i><b>13.1.3</b> 斐济地震带</a></li>
+<li class="chapter" data-level="13.1.4" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#USA-unemployment-ratio"><i class="fa fa-check"></i><b>13.1.4</b> 美国各城镇失业率</a></li>
+</ul></li>
+<li class="chapter" data-level="13.2" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#spatial-op"><i class="fa fa-check"></i><b>13.2</b> 空间数据对象</a><ul>
+<li class="chapter" data-level="13.2.1" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#ggplot2-sp"><i class="fa fa-check"></i><b>13.2.1</b> sp</a></li>
+<li class="chapter" data-level="13.2.2" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#ggplot2-raster"><i class="fa fa-check"></i><b>13.2.2</b> raster</a></li>
+<li class="chapter" data-level="13.2.3" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#ggplot2-sf"><i class="fa fa-check"></i><b>13.2.3</b> sf</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="dynamic-documents.html"><a href="dynamic-documents.html"><i class="fa fa-check"></i><b>14</b> 动态性文档</a><ul>
+<li class="chapter" data-level="" data-path="dynamic-documents.html"><a href="dynamic-documents.html#sessioninfo"><i class="fa fa-check"></i>软件信息</a></li>
+<li class="chapter" data-level="" data-path="dynamic-documents.html"><a href="dynamic-documents.html#r-call-python"><i class="fa fa-check"></i>R 调用 Python</a></li>
+<li class="chapter" data-level="14.1" data-path="dynamic-documents.html"><a href="dynamic-documents.html#markdown"><i class="fa fa-check"></i><b>14.1</b> Markdown</a><ul>
+<li class="chapter" data-level="14.1.1" data-path="dynamic-documents.html"><a href="dynamic-documents.html#markdown-list"><i class="fa fa-check"></i><b>14.1.1</b> 列表</a></li>
+<li class="chapter" data-level="14.1.2" data-path="dynamic-documents.html"><a href="dynamic-documents.html#markdown-emphasis"><i class="fa fa-check"></i><b>14.1.2</b> 强调</a></li>
+<li class="chapter" data-level="14.1.3" data-path="dynamic-documents.html"><a href="dynamic-documents.html#markdown-quote"><i class="fa fa-check"></i><b>14.1.3</b> 引用</a></li>
+<li class="chapter" data-level="14.1.4" data-path="dynamic-documents.html"><a href="dynamic-documents.html#markdown-table"><i class="fa fa-check"></i><b>14.1.4</b> 表格</a></li>
+<li class="chapter" data-level="14.1.5" data-path="dynamic-documents.html"><a href="dynamic-documents.html#image"><i class="fa fa-check"></i><b>14.1.5</b> 图片</a></li>
+<li class="chapter" data-level="14.1.6" data-path="dynamic-documents.html"><a href="dynamic-documents.html#markdown-math"><i class="fa fa-check"></i><b>14.1.6</b> 公式</a></li>
+</ul></li>
+<li class="chapter" data-level="14.2" data-path="dynamic-documents.html"><a href="dynamic-documents.html#pandoc-markdown"><i class="fa fa-check"></i><b>14.2</b> Pandoc’s Markdown</a></li>
+<li class="chapter" data-level="14.3" data-path="dynamic-documents.html"><a href="dynamic-documents.html#r-markdown"><i class="fa fa-check"></i><b>14.3</b> R Markdown</a><ul>
+<li class="chapter" data-level="14.3.1" data-path="dynamic-documents.html"><a href="dynamic-documents.html#语法高亮"><i class="fa fa-check"></i><b>14.3.1</b> 语法高亮</a></li>
+</ul></li>
+<li class="chapter" data-level="14.4" data-path="dynamic-documents.html"><a href="dynamic-documents.html#table-style"><i class="fa fa-check"></i><b>14.4</b> 表格样式</a><ul>
+<li class="chapter" data-level="14.4.1" data-path="dynamic-documents.html"><a href="dynamic-documents.html#table-html"><i class="fa fa-check"></i><b>14.4.1</b> HTML 样式</a></li>
+<li class="chapter" data-level="14.4.2" data-path="dynamic-documents.html"><a href="dynamic-documents.html#table-latex"><i class="fa fa-check"></i><b>14.4.2</b> LaTeX 样式</a></li>
+</ul></li>
+<li class="chapter" data-level="14.5" data-path="dynamic-documents.html"><a href="dynamic-documents.html#rmarkdown-addins"><i class="fa fa-check"></i><b>14.5</b> 插件</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="cs-cran-network.html"><a href="cs-cran-network.html"><i class="fa fa-check"></i><b>15</b> 案例：分析 CRAN</a><ul>
+<li class="chapter" data-level="15.1" data-path="cs-cran-network.html"><a href="cs-cran-network.html#R-Core-Team"><i class="fa fa-check"></i><b>15.1</b> R 核心团队</a></li>
+<li class="chapter" data-level="15.2" data-path="cs-cran-network.html"><a href="cs-cran-network.html#Top-Creators"><i class="fa fa-check"></i><b>15.2</b> 高产的开发者</a></li>
+<li class="chapter" data-level="15.3" data-path="cs-cran-network.html"><a href="cs-cran-network.html#R-Package-Developers"><i class="fa fa-check"></i><b>15.3</b> 社区开发者</a></li>
+<li class="chapter" data-level="15.4" data-path="cs-cran-network.html"><a href="cs-cran-network.html#first-commit"><i class="fa fa-check"></i><b>15.4</b> 首次贡献 R 包</a></li>
+<li class="chapter" data-level="15.5" data-path="cs-cran-network.html"><a href="cs-cran-network.html#Contribution-Network"><i class="fa fa-check"></i><b>15.5</b> 贡献关系网络</a></li>
+<li class="chapter" data-level="15.6" data-path="cs-cran-network.html"><a href="cs-cran-network.html#CRAN-Update-Packages"><i class="fa fa-check"></i><b>15.6</b> 更新知多少</a></li>
+<li class="chapter" data-level="15.7" data-path="cs-cran-network.html"><a href="cs-cran-network.html#Package-Licenses"><i class="fa fa-check"></i><b>15.7</b> 使用许可证</a></li>
+<li class="chapter" data-level="15.8" data-path="cs-cran-network.html"><a href="cs-cran-network.html#r-包增长速度"><i class="fa fa-check"></i><b>15.8</b> R 包增长速度</a></li>
+<li class="chapter" data-level="15.9" data-path="cs-cran-network.html"><a href="cs-cran-network.html#Choose-Package"><i class="fa fa-check"></i><b>15.9</b> 选择 R 包</a></li>
+<li class="chapter" data-level="15.10" data-path="cs-cran-network.html"><a href="cs-cran-network.html#cs-network-session-info"><i class="fa fa-check"></i><b>15.10</b> 运行环境</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="99-references.html"><a href="99-references.html"><i class="fa fa-check"></i>参考文献</a></li>
+<li class="divider"></li>
+<li><a href="https://r-graphics.netlify.com/" target="blank">Published with netlify</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">数据科学与 R 语言</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="regular-expressions" class="section level1">
+<h1><span class="header-section-number">第 7 章</span> 正则表达式</h1>
+<blockquote>
+<p>Douglas Bates: If you really want to be cautious you could use an octal
+representation like <code>sep="\\007"</code> to get a character that is very unlikely to
+occur in a factor level.</p>
+<p>Ed L. Cashin: I definitely want to be cautious. Instead of the bell character
+I think I’ll use the field separator character, <code>"\\034"</code>, just because this is
+the first time I’ve been able to use it for it’s intended purpose! ;)</p>
+<p>Douglas Bates: Yes, but with <code>"\\034"</code> you don’t get to make obscure James Bond
+references :-)</p>
+<p>— Douglas Bates and Ed L. Cashin
+R-help (April 2004)</p>
+</blockquote>
+<p>维基百科关于 <a href="https://www.wikiwand.com/en/Regular_expression">正则表达式的描述</a>， <a href="https://github.com/ziishaned/learn-regex/blob/master/translations/README-cn.md">学习正则表达式</a></p>
+<p>R 内置的三种匹配模式</p>
+<ol style="list-style-type: decimal">
+<li><code>fixed = TRUE</code>: 字面意思匹配 exact matching.</li>
+<li><code>perl = TRUE</code>: 使用 Perl 正则表达式.</li>
+<li><code>fixed = FALSE, perl = FALSE</code>: 使用 POSIX 1003.2 extended 正则表达式 (默认设置).</li>
+</ol>
+<p>不要拘泥于一种解决方案，比如清理数据中正则表达式有 Base R 提供的一套，stringr 又一套，提高效率的工具 RStudio 插件 <a href="https://github.com/gadenbuie/regexplain">regexplain</a> 和辅助创建正则表达式 <a href="https://github.com/VerbalExpressions/RVerbalExpressions">RVerbalExpressions</a> 包</p>
+<div class="sidebar">
+<p>有几个名词需要单独拎出来解释的</p>
+<ul>
+<li>literal character strings 字面字符串</li>
+<li>metacharacters 元字符</li>
+<li>extended regular expressions 在下文中约定翻译为默认正则表达式</li>
+<li>character class 字符集 <code>[abc]</code></li>
+<li>Perl-like regular expressions Perl 风格的正则表达式</li>
+</ul>
+<p>以下所述，都不考虑函数中参数 <code>perl=TRUE</code> 的情况，R 语言中提供了扩展的（默认的）和 Perl 风格 的两套正则表达式。作为入门，我们这里只关注前者，启用 Perl 正则表达式只需在函数如 <code>grep</code> 中将选项 <code>perl = TRUE</code> 即可，并将后者统一命名为 Perl 正则表达式<a href="#fn24" class="footnote-ref" id="fnref24"><sup>24</sup></a>。</p>
+</div>
+<p>正则表达式 (<strong>reg</strong>ular <strong>exp</strong>ression，简称 regexp)， 函数 <code>regexpr</code> 和 <code>gregexpr</code> 的名称就好理解了，在控制台输入 <code>?regex</code> 查看 R 支持的正则表达式，这个文档看上百八十回也不过分。R 内支持正则表达式的函数有 <code>grep</code>、<code>grepl</code>、<code>sub</code>、<code>gsub</code>、<code>regexpr</code>、<code>gregexpr</code> 、 <code>regexec</code> 和 <code>strsplit</code>。函数 <code>apropos</code>，<code>browseEnv</code>，<code>help.search</code>，<code>list.files</code> 和 <code>ls</code> 是通过函数 <code>grep</code> 来使用正则表达式的，它们全都使用 extended regular expressions</p>
+<div class="sourceCode" id="cb362"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb362-1"><a href="dc-regular-expressions.html#cb362-1"></a><span class="kw">grep</span>(pattern, x, <span class="dt">ignore.case =</span> <span class="ot">FALSE</span>, <span class="dt">perl =</span> <span class="ot">FALSE</span>, <span class="dt">value =</span> <span class="ot">FALSE</span>,</span>
+<span id="cb362-2"><a href="dc-regular-expressions.html#cb362-2"></a>     <span class="dt">fixed =</span> <span class="ot">FALSE</span>, <span class="dt">useBytes =</span> <span class="ot">FALSE</span>, <span class="dt">invert =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
+<p>匹配模式 pattern 的内容 可以用函数 <code>cat</code> 打印出来，注意反斜杠进入 R 字符串中时，需要用两个，反斜杠 <code>\</code> 本身是转义符，否则会报错。</p>
+<div class="sourceCode" id="cb363"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb363-1"><a href="dc-regular-expressions.html#cb363-1"></a><span class="kw">cat</span>(<span class="st">&quot;</span><span class="ch">\\</span><span class="st">&quot;</span>) <span class="co"># \ 反斜杠是转义字符</span></span>
+<span id="cb363-2"><a href="dc-regular-expressions.html#cb363-2"></a><span class="co">#&gt; \</span></span>
+<span id="cb363-3"><a href="dc-regular-expressions.html#cb363-3"></a><span class="kw">cat</span>(<span class="st">&quot;</span><span class="ch">\\</span><span class="st">.&quot;</span>)</span>
+<span id="cb363-4"><a href="dc-regular-expressions.html#cb363-4"></a><span class="co">#&gt; \.</span></span>
+<span id="cb363-5"><a href="dc-regular-expressions.html#cb363-5"></a><span class="kw">cat</span>(<span class="st">&quot;</span><span class="ch">\\\n</span><span class="st">&quot;</span>) <span class="co"># 注意 \n 表示换行</span></span>
+<span id="cb363-6"><a href="dc-regular-expressions.html#cb363-6"></a><span class="co">#&gt; \</span></span></code></pre></div>
+<div id="character-constants" class="section level2">
+<h2><span class="header-section-number">7.1</span> 字符常量</h2>
+<p>单引号 <code>'</code> 双引号 <code>"</code> 和反引号 ` 三种类型的引用 (quotes) 是 R 语法的一部分<a href="#fn25" class="footnote-ref" id="fnref25"><sup>25</sup></a>，此外反斜杠 <code>\</code> 用来转义下面的字符</p>
+<table>
+<caption><span id="tab:character-constants">表 7.1: </span> 字符常量表</caption>
+<thead>
+<tr class="header">
+<th align="left">字符常量</th>
+<th align="left">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>\n</code></td>
+<td align="left">换行 newline</td>
+</tr>
+<tr class="even">
+<td align="left"><code>\r</code></td>
+<td align="left">回车 carriage return</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>\t</code></td>
+<td align="left">制表符 tab</td>
+</tr>
+<tr class="even">
+<td align="left"><code>\b</code></td>
+<td align="left">退格 backspace</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>\a</code></td>
+<td align="left">警报（铃）alert (bell)</td>
+</tr>
+<tr class="even">
+<td align="left"><code>\f</code></td>
+<td align="left">换页 form feed</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>\v</code></td>
+<td align="left">垂直制表符 vertical tab</td>
+</tr>
+<tr class="even">
+<td align="left"><code>\\</code></td>
+<td align="left">反斜杠 backslash <code>\</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>\'</code></td>
+<td align="left">单引号 ASCII apostrophe <code>'</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>\"</code></td>
+<td align="left">双引号 ASCII quotation mark <code>"</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>\`</code></td>
+<td align="left">反引号或沉音符 ASCII grave accent (backtick) `</td>
+</tr>
+<tr class="even">
+<td align="left"><code>\nnn</code></td>
+<td align="left">八进制 character with given octal code (1, 2 or 3 digits)</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>\xnn</code></td>
+<td align="left">十六进制 character with given hex code (1 or 2 hex digits)</td>
+</tr>
+<tr class="even">
+<td align="left"><code>\unnnn</code></td>
+<td align="left">Unicode character with given code (1–4 hex digits)</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>\Unnnnnnnn</code></td>
+<td align="left">Unicode character with given code (1–8 hex digits)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="environments" class="section level2">
+<h2><span class="header-section-number">7.2</span> 软件环境</h2>
+<p>R 内置的正则表达式实现是基于 PCRE ICU TRE iconv 等第三方库，搞清楚自己使用的版本信息是重要的，一些字符集的解释与区域环境有关，如 <code>[:alnum:]</code> 和 <code>[:alpha:]</code>等，所以获取当前的区域设置也很重要</p>
+<div class="sourceCode" id="cb364"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb364-1"><a href="dc-regular-expressions.html#cb364-1"></a><span class="co"># find a suitable coding for the current locale</span></span>
+<span id="cb364-2"><a href="dc-regular-expressions.html#cb364-2"></a><span class="kw">localeToCharset</span>(<span class="dt">locale =</span> <span class="kw">Sys.getlocale</span>(<span class="st">&quot;LC_CTYPE&quot;</span>))</span>
+<span id="cb364-3"><a href="dc-regular-expressions.html#cb364-3"></a><span class="co">#&gt; [1] &quot;UTF-8&quot;     &quot;ISO8859-1&quot;</span></span>
+<span id="cb364-4"><a href="dc-regular-expressions.html#cb364-4"></a><span class="co"># 软件版本信息</span></span>
+<span id="cb364-5"><a href="dc-regular-expressions.html#cb364-5"></a><span class="kw">extSoftVersion</span>()</span>
+<span id="cb364-6"><a href="dc-regular-expressions.html#cb364-6"></a><span class="co">#&gt;                                       zlib </span></span>
+<span id="cb364-7"><a href="dc-regular-expressions.html#cb364-7"></a><span class="co">#&gt;                                    &quot;1.2.8&quot; </span></span>
+<span id="cb364-8"><a href="dc-regular-expressions.html#cb364-8"></a><span class="co">#&gt;                                      bzlib </span></span>
+<span id="cb364-9"><a href="dc-regular-expressions.html#cb364-9"></a><span class="co">#&gt;                       &quot;1.0.6, 6-Sept-2010&quot; </span></span>
+<span id="cb364-10"><a href="dc-regular-expressions.html#cb364-10"></a><span class="co">#&gt;                                         xz </span></span>
+<span id="cb364-11"><a href="dc-regular-expressions.html#cb364-11"></a><span class="co">#&gt;                               &quot;5.1.0alpha&quot; </span></span>
+<span id="cb364-12"><a href="dc-regular-expressions.html#cb364-12"></a><span class="co">#&gt;                                       PCRE </span></span>
+<span id="cb364-13"><a href="dc-regular-expressions.html#cb364-13"></a><span class="co">#&gt;                          &quot;8.38 2015-11-23&quot; </span></span>
+<span id="cb364-14"><a href="dc-regular-expressions.html#cb364-14"></a><span class="co">#&gt;                                        ICU </span></span>
+<span id="cb364-15"><a href="dc-regular-expressions.html#cb364-15"></a><span class="co">#&gt;                                     &quot;55.1&quot; </span></span>
+<span id="cb364-16"><a href="dc-regular-expressions.html#cb364-16"></a><span class="co">#&gt;                                        TRE </span></span>
+<span id="cb364-17"><a href="dc-regular-expressions.html#cb364-17"></a><span class="co">#&gt;                  &quot;TRE 0.8.0 R_fixes (BSD)&quot; </span></span>
+<span id="cb364-18"><a href="dc-regular-expressions.html#cb364-18"></a><span class="co">#&gt;                                      iconv </span></span>
+<span id="cb364-19"><a href="dc-regular-expressions.html#cb364-19"></a><span class="co">#&gt;                               &quot;glibc 2.23&quot; </span></span>
+<span id="cb364-20"><a href="dc-regular-expressions.html#cb364-20"></a><span class="co">#&gt;                                   readline </span></span>
+<span id="cb364-21"><a href="dc-regular-expressions.html#cb364-21"></a><span class="co">#&gt;                                      &quot;6.3&quot; </span></span>
+<span id="cb364-22"><a href="dc-regular-expressions.html#cb364-22"></a><span class="co">#&gt;                                       BLAS </span></span>
+<span id="cb364-23"><a href="dc-regular-expressions.html#cb364-23"></a><span class="co">#&gt; &quot;/home/travis/R-bin/lib/R/lib/libRblas.so&quot;</span></span>
+<span id="cb364-24"><a href="dc-regular-expressions.html#cb364-24"></a><span class="co"># 区域及其编码信息</span></span>
+<span id="cb364-25"><a href="dc-regular-expressions.html#cb364-25"></a><span class="kw">l10n_info</span>()</span>
+<span id="cb364-26"><a href="dc-regular-expressions.html#cb364-26"></a><span class="co">#&gt; $MBCS</span></span>
+<span id="cb364-27"><a href="dc-regular-expressions.html#cb364-27"></a><span class="co">#&gt; [1] TRUE</span></span>
+<span id="cb364-28"><a href="dc-regular-expressions.html#cb364-28"></a><span class="co">#&gt; </span></span>
+<span id="cb364-29"><a href="dc-regular-expressions.html#cb364-29"></a><span class="co">#&gt; $`UTF-8`</span></span>
+<span id="cb364-30"><a href="dc-regular-expressions.html#cb364-30"></a><span class="co">#&gt; [1] TRUE</span></span>
+<span id="cb364-31"><a href="dc-regular-expressions.html#cb364-31"></a><span class="co">#&gt; </span></span>
+<span id="cb364-32"><a href="dc-regular-expressions.html#cb364-32"></a><span class="co">#&gt; $`Latin-1`</span></span>
+<span id="cb364-33"><a href="dc-regular-expressions.html#cb364-33"></a><span class="co">#&gt; [1] FALSE</span></span>
+<span id="cb364-34"><a href="dc-regular-expressions.html#cb364-34"></a><span class="co"># 表示数字、货币的细节</span></span>
+<span id="cb364-35"><a href="dc-regular-expressions.html#cb364-35"></a><span class="kw">Sys.localeconv</span>()</span>
+<span id="cb364-36"><a href="dc-regular-expressions.html#cb364-36"></a><span class="co">#&gt;     decimal_point     thousands_sep          grouping   int_curr_symbol </span></span>
+<span id="cb364-37"><a href="dc-regular-expressions.html#cb364-37"></a><span class="co">#&gt;               &quot;.&quot;                &quot;&quot;                &quot;&quot;            &quot;USD &quot; </span></span>
+<span id="cb364-38"><a href="dc-regular-expressions.html#cb364-38"></a><span class="co">#&gt;   currency_symbol mon_decimal_point mon_thousands_sep      mon_grouping </span></span>
+<span id="cb364-39"><a href="dc-regular-expressions.html#cb364-39"></a><span class="co">#&gt;               &quot;$&quot;               &quot;.&quot;               &quot;,&quot;        &quot;\003\003&quot; </span></span>
+<span id="cb364-40"><a href="dc-regular-expressions.html#cb364-40"></a><span class="co">#&gt;     positive_sign     negative_sign   int_frac_digits       frac_digits </span></span>
+<span id="cb364-41"><a href="dc-regular-expressions.html#cb364-41"></a><span class="co">#&gt;                &quot;&quot;               &quot;-&quot;               &quot;2&quot;               &quot;2&quot; </span></span>
+<span id="cb364-42"><a href="dc-regular-expressions.html#cb364-42"></a><span class="co">#&gt;     p_cs_precedes    p_sep_by_space     n_cs_precedes    n_sep_by_space </span></span>
+<span id="cb364-43"><a href="dc-regular-expressions.html#cb364-43"></a><span class="co">#&gt;               &quot;1&quot;               &quot;0&quot;               &quot;1&quot;               &quot;0&quot; </span></span>
+<span id="cb364-44"><a href="dc-regular-expressions.html#cb364-44"></a><span class="co">#&gt;       p_sign_posn       n_sign_posn </span></span>
+<span id="cb364-45"><a href="dc-regular-expressions.html#cb364-45"></a><span class="co">#&gt;               &quot;1&quot;               &quot;1&quot;</span></span>
+<span id="cb364-46"><a href="dc-regular-expressions.html#cb364-46"></a><span class="co"># PCRE 启用的配置选项</span></span>
+<span id="cb364-47"><a href="dc-regular-expressions.html#cb364-47"></a><span class="kw">pcre_config</span>()</span>
+<span id="cb364-48"><a href="dc-regular-expressions.html#cb364-48"></a><span class="co">#&gt;              UTF-8 Unicode properties                JIT              stack </span></span>
+<span id="cb364-49"><a href="dc-regular-expressions.html#cb364-49"></a><span class="co">#&gt;               TRUE               TRUE              FALSE               TRUE</span></span>
+<span id="cb364-50"><a href="dc-regular-expressions.html#cb364-50"></a><span class="co"># 比较全的字符信息</span></span>
+<span id="cb364-51"><a href="dc-regular-expressions.html#cb364-51"></a>stringi<span class="op">::</span><span class="kw">stri_info</span>()</span>
+<span id="cb364-52"><a href="dc-regular-expressions.html#cb364-52"></a><span class="co">#&gt; $Unicode.version</span></span>
+<span id="cb364-53"><a href="dc-regular-expressions.html#cb364-53"></a><span class="co">#&gt; [1] &quot;7.0&quot;</span></span>
+<span id="cb364-54"><a href="dc-regular-expressions.html#cb364-54"></a><span class="co">#&gt; </span></span>
+<span id="cb364-55"><a href="dc-regular-expressions.html#cb364-55"></a><span class="co">#&gt; $ICU.version</span></span>
+<span id="cb364-56"><a href="dc-regular-expressions.html#cb364-56"></a><span class="co">#&gt; [1] &quot;55.1&quot;</span></span>
+<span id="cb364-57"><a href="dc-regular-expressions.html#cb364-57"></a><span class="co">#&gt; </span></span>
+<span id="cb364-58"><a href="dc-regular-expressions.html#cb364-58"></a><span class="co">#&gt; $Locale</span></span>
+<span id="cb364-59"><a href="dc-regular-expressions.html#cb364-59"></a><span class="co">#&gt; $Locale$Language</span></span>
+<span id="cb364-60"><a href="dc-regular-expressions.html#cb364-60"></a><span class="co">#&gt; [1] &quot;en&quot;</span></span>
+<span id="cb364-61"><a href="dc-regular-expressions.html#cb364-61"></a><span class="co">#&gt; </span></span>
+<span id="cb364-62"><a href="dc-regular-expressions.html#cb364-62"></a><span class="co">#&gt; $Locale$Country</span></span>
+<span id="cb364-63"><a href="dc-regular-expressions.html#cb364-63"></a><span class="co">#&gt; [1] &quot;US&quot;</span></span>
+<span id="cb364-64"><a href="dc-regular-expressions.html#cb364-64"></a><span class="co">#&gt; </span></span>
+<span id="cb364-65"><a href="dc-regular-expressions.html#cb364-65"></a><span class="co">#&gt; $Locale$Variant</span></span>
+<span id="cb364-66"><a href="dc-regular-expressions.html#cb364-66"></a><span class="co">#&gt; [1] &quot;&quot;</span></span>
+<span id="cb364-67"><a href="dc-regular-expressions.html#cb364-67"></a><span class="co">#&gt; </span></span>
+<span id="cb364-68"><a href="dc-regular-expressions.html#cb364-68"></a><span class="co">#&gt; $Locale$Name</span></span>
+<span id="cb364-69"><a href="dc-regular-expressions.html#cb364-69"></a><span class="co">#&gt; [1] &quot;en_US&quot;</span></span>
+<span id="cb364-70"><a href="dc-regular-expressions.html#cb364-70"></a><span class="co">#&gt; </span></span>
+<span id="cb364-71"><a href="dc-regular-expressions.html#cb364-71"></a><span class="co">#&gt; </span></span>
+<span id="cb364-72"><a href="dc-regular-expressions.html#cb364-72"></a><span class="co">#&gt; $Charset.internal</span></span>
+<span id="cb364-73"><a href="dc-regular-expressions.html#cb364-73"></a><span class="co">#&gt; [1] &quot;UTF-8&quot;  &quot;UTF-16&quot;</span></span>
+<span id="cb364-74"><a href="dc-regular-expressions.html#cb364-74"></a><span class="co">#&gt; </span></span>
+<span id="cb364-75"><a href="dc-regular-expressions.html#cb364-75"></a><span class="co">#&gt; $Charset.native</span></span>
+<span id="cb364-76"><a href="dc-regular-expressions.html#cb364-76"></a><span class="co">#&gt; $Charset.native$Name.friendly</span></span>
+<span id="cb364-77"><a href="dc-regular-expressions.html#cb364-77"></a><span class="co">#&gt; [1] &quot;UTF-8&quot;</span></span>
+<span id="cb364-78"><a href="dc-regular-expressions.html#cb364-78"></a><span class="co">#&gt; </span></span>
+<span id="cb364-79"><a href="dc-regular-expressions.html#cb364-79"></a><span class="co">#&gt; $Charset.native$Name.ICU</span></span>
+<span id="cb364-80"><a href="dc-regular-expressions.html#cb364-80"></a><span class="co">#&gt; [1] &quot;UTF-8&quot;</span></span>
+<span id="cb364-81"><a href="dc-regular-expressions.html#cb364-81"></a><span class="co">#&gt; </span></span>
+<span id="cb364-82"><a href="dc-regular-expressions.html#cb364-82"></a><span class="co">#&gt; $Charset.native$Name.UTR22</span></span>
+<span id="cb364-83"><a href="dc-regular-expressions.html#cb364-83"></a><span class="co">#&gt; [1] NA</span></span>
+<span id="cb364-84"><a href="dc-regular-expressions.html#cb364-84"></a><span class="co">#&gt; </span></span>
+<span id="cb364-85"><a href="dc-regular-expressions.html#cb364-85"></a><span class="co">#&gt; $Charset.native$Name.IBM</span></span>
+<span id="cb364-86"><a href="dc-regular-expressions.html#cb364-86"></a><span class="co">#&gt; [1] &quot;ibm-1208&quot;</span></span>
+<span id="cb364-87"><a href="dc-regular-expressions.html#cb364-87"></a><span class="co">#&gt; </span></span>
+<span id="cb364-88"><a href="dc-regular-expressions.html#cb364-88"></a><span class="co">#&gt; $Charset.native$Name.WINDOWS</span></span>
+<span id="cb364-89"><a href="dc-regular-expressions.html#cb364-89"></a><span class="co">#&gt; [1] &quot;windows-65001&quot;</span></span>
+<span id="cb364-90"><a href="dc-regular-expressions.html#cb364-90"></a><span class="co">#&gt; </span></span>
+<span id="cb364-91"><a href="dc-regular-expressions.html#cb364-91"></a><span class="co">#&gt; $Charset.native$Name.JAVA</span></span>
+<span id="cb364-92"><a href="dc-regular-expressions.html#cb364-92"></a><span class="co">#&gt; [1] &quot;UTF-8&quot;</span></span>
+<span id="cb364-93"><a href="dc-regular-expressions.html#cb364-93"></a><span class="co">#&gt; </span></span>
+<span id="cb364-94"><a href="dc-regular-expressions.html#cb364-94"></a><span class="co">#&gt; $Charset.native$Name.IANA</span></span>
+<span id="cb364-95"><a href="dc-regular-expressions.html#cb364-95"></a><span class="co">#&gt; [1] &quot;UTF-8&quot;</span></span>
+<span id="cb364-96"><a href="dc-regular-expressions.html#cb364-96"></a><span class="co">#&gt; </span></span>
+<span id="cb364-97"><a href="dc-regular-expressions.html#cb364-97"></a><span class="co">#&gt; $Charset.native$Name.MIME</span></span>
+<span id="cb364-98"><a href="dc-regular-expressions.html#cb364-98"></a><span class="co">#&gt; [1] &quot;UTF-8&quot;</span></span>
+<span id="cb364-99"><a href="dc-regular-expressions.html#cb364-99"></a><span class="co">#&gt; </span></span>
+<span id="cb364-100"><a href="dc-regular-expressions.html#cb364-100"></a><span class="co">#&gt; $Charset.native$ASCII.subset</span></span>
+<span id="cb364-101"><a href="dc-regular-expressions.html#cb364-101"></a><span class="co">#&gt; [1] TRUE</span></span>
+<span id="cb364-102"><a href="dc-regular-expressions.html#cb364-102"></a><span class="co">#&gt; </span></span>
+<span id="cb364-103"><a href="dc-regular-expressions.html#cb364-103"></a><span class="co">#&gt; $Charset.native$Unicode.1to1</span></span>
+<span id="cb364-104"><a href="dc-regular-expressions.html#cb364-104"></a><span class="co">#&gt; [1] NA</span></span>
+<span id="cb364-105"><a href="dc-regular-expressions.html#cb364-105"></a><span class="co">#&gt; </span></span>
+<span id="cb364-106"><a href="dc-regular-expressions.html#cb364-106"></a><span class="co">#&gt; $Charset.native$CharSize.8bit</span></span>
+<span id="cb364-107"><a href="dc-regular-expressions.html#cb364-107"></a><span class="co">#&gt; [1] FALSE</span></span>
+<span id="cb364-108"><a href="dc-regular-expressions.html#cb364-108"></a><span class="co">#&gt; </span></span>
+<span id="cb364-109"><a href="dc-regular-expressions.html#cb364-109"></a><span class="co">#&gt; $Charset.native$CharSize.min</span></span>
+<span id="cb364-110"><a href="dc-regular-expressions.html#cb364-110"></a><span class="co">#&gt; [1] 1</span></span>
+<span id="cb364-111"><a href="dc-regular-expressions.html#cb364-111"></a><span class="co">#&gt; </span></span>
+<span id="cb364-112"><a href="dc-regular-expressions.html#cb364-112"></a><span class="co">#&gt; $Charset.native$CharSize.max</span></span>
+<span id="cb364-113"><a href="dc-regular-expressions.html#cb364-113"></a><span class="co">#&gt; [1] 3</span></span>
+<span id="cb364-114"><a href="dc-regular-expressions.html#cb364-114"></a><span class="co">#&gt; </span></span>
+<span id="cb364-115"><a href="dc-regular-expressions.html#cb364-115"></a><span class="co">#&gt; </span></span>
+<span id="cb364-116"><a href="dc-regular-expressions.html#cb364-116"></a><span class="co">#&gt; $ICU.system</span></span>
+<span id="cb364-117"><a href="dc-regular-expressions.html#cb364-117"></a><span class="co">#&gt; [1] TRUE</span></span>
+<span id="cb364-118"><a href="dc-regular-expressions.html#cb364-118"></a><span class="co">#&gt; </span></span>
+<span id="cb364-119"><a href="dc-regular-expressions.html#cb364-119"></a><span class="co">#&gt; $ICU.UTF8</span></span>
+<span id="cb364-120"><a href="dc-regular-expressions.html#cb364-120"></a><span class="co">#&gt; [1] FALSE</span></span></code></pre></div>
+<p>需要临时改变区域环境设置，配合特殊的画图和文本输出要求。</p>
+<div class="sourceCode" id="cb365"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb365-1"><a href="dc-regular-expressions.html#cb365-1"></a><span class="co"># 获取当前默认的区域设置</span></span>
+<span id="cb365-2"><a href="dc-regular-expressions.html#cb365-2"></a><span class="kw">Sys.getlocale</span>()</span>
+<span id="cb365-3"><a href="dc-regular-expressions.html#cb365-3"></a>foo &lt;-<span class="st"> </span><span class="kw">Sys.getlocale</span>()</span>
+<span id="cb365-4"><a href="dc-regular-expressions.html#cb365-4"></a><span class="co"># 恢复默认的区域设置</span></span>
+<span id="cb365-5"><a href="dc-regular-expressions.html#cb365-5"></a><span class="kw">Sys.setlocale</span>(<span class="st">&quot;LC_ALL&quot;</span>, <span class="dt">locale =</span> foo)</span></code></pre></div>
+</div>
+<div id="foundations" class="section level2">
+<h2><span class="header-section-number">7.3</span> 基本概念</h2>
+<p>正则表达式的构造方式类似算术表达式，通过各种操作组合子（更小的）表达式，整个表达式匹配一个或多个字符<a href="#fn26" class="footnote-ref" id="fnref26"><sup>26</sup></a>。大多数字符，包括所有的字母和数字，是匹配自身的正则表达式。元字符 <code>. \ | ( ) [ { ^ $ * + ?</code> 需要转义才能表达其自身的含义，转义的方式是在元字符前面添加反斜杠，如要表达点号 <code>.</code> 需要使用 <code>\.</code>。要注意，它们是否有特殊意义取决于所在的内容。</p>
+<p>一个字符集 (character class) 是用一对中括号<code>[]</code>括起来的字符列表，用来匹配列表中的任意单个字符，除非列表中的第一个字符是 <code>^</code>，它用来匹配不在这个列表中的字符。 <code>[0123456789]</code> 用来匹配任意单个数字，<code>[^abc]</code> 用来匹配除字符 <code>a,b,c</code> 以外的任意字符。字符范围 (character ranges) 可以通过第一个和最后一个字符指定， 中间用连字符 (hyphen) 连接， 由于这种解释依赖于区域和具体实现，所以指定字符范围的使用方式最好避免。唯一可移植（便携，通用）的方式是作为字符集，在列表中列出所有的 ASCII 字母，
+<code>[ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz]</code>.</p>
+<p>预定义的一些字符类，它们的解释依赖于当前的语言区域，下面是 POSIX locale 环境下的解释</p>
+<ul>
+<li><p><code>[:alnum:]</code> 表示 <code>[:alpha:]</code> 和 <code>[:digit:]</code>，含义是 <code>[0-9A-Za-z]</code>，但是前者与区域和字符集无关，后者依赖于当前的区域设置和字符编码。要注意在这些字符集名 class names 中，中括号 <code>[]</code> 是符号名的一部分，是必须要包含的。在字符集中，大多数元字符失去它们特殊的意义。</p></li>
+<li><p><code>[:alpha:]</code> 表示 <code>[:lower:]</code> 和 <code>[:upper:]</code></p></li>
+<li><p><code>[:blank:]</code> 表示 空格 space 制表符 tab</p></li>
+<li><p><code>[:cntrl:]</code> 表示控制符，在 ASCII 字符集里里，这些字符有八进制代码，从 000 到 037，和 177(DEL)。</p></li>
+<li><p><code>[:digit:]</code> 表示数字 0,1,2,3,4,5,6,7,8,9</p></li>
+<li><p><code>[:graph:]</code> 表示 <code>[:alnum:]</code> 和 <code>[:punct:]</code>.</p></li>
+<li><p><code>[:lower:]</code> 表示当前区域下的小写字母</p></li>
+<li><p><code>[:print:]</code> 表示可打印的字符 <code>[:alnum:]</code>, <code>[:punct:]</code> 和空格.</p></li>
+<li><p><code>[:punct:]</code> 表示标点字符</p>
+<pre><code>! &quot; # $ % &amp; &#39; ( ) * + , - . / : ; &lt; = &gt; ? @ [ \ ] ^ _ ` { | } ~`</code></pre></li>
+<li><p><code>[:space:]</code> 表示空格字符： 水平制表符 tab， 换行符 newline，垂直制表符 vertical tab，换页符 form feed，回车符 carriage return，空格符 space</p></li>
+<li><p><code>[:xdigit:]</code> 表示 16 进制数字 0 1 2 3 4 5 6 7 8 9 A B C D E F a b c d e f.</p></li>
+</ul>
+<p>要包含字面的 <code>]</code> 就把它放在列表的开头，类似地，要包含字面 <code>^</code>，除了开头可以放在任意位置。要包含字面 <code>-</code> 把它放在开头或者结尾。只有 <code>^ - \ ]</code> 在字符集内是有特殊的含义</p>
+<p>点号 <code>.</code> 匹配任意单个字符，<code>\w</code> 匹配一个词 word 字符(是<code>[[:alnum:]_]</code>的同义词，一个扩展) ，而 <code>\W</code> 是 <code>\w</code> 取反，意味着 <code>[^[:alnum:]_]</code>。 <code>\d</code>, <code>\s</code>, <code>\D</code> 和 <code>\S</code> 表示数字和空格类和它们的取反</p>
+<p>脱字符 caret <code>^</code> 和美元符号 <code>$</code> 是元字符，分别匹配一行的开头和结尾。符号 <code>\&lt;</code> 和 <code>\&gt;</code> 分别匹配一个词的开头和结尾的空字符串。<code>\b</code> 匹配词边缘的空字符串，<code>\B</code> 匹配不在词边缘的空字符串。 词 word 的解释依赖于区域和实现。</p>
+</div>
+<div id="match" class="section level2">
+<h2><span class="header-section-number">7.4</span> 字符串匹配</h2>
+<p>默认的匹配方式是贪婪的，会使用尽可能多的匹配次数，这个可以变为最小的匹配次数，通过在其之后添加 <code>?</code>，一个正则表达式可能跟着重复量词，下面的限定符都是限定在它前面的正则表达式</p>
+<table>
+<caption><span id="tab:repetition-quantifiers">表 7.2: </span> 贪婪匹配限定符</caption>
+<thead>
+<tr class="header">
+<th align="left">符号</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>?</code></td>
+<td align="left">匹配至多 1 次</td>
+</tr>
+<tr class="even">
+<td align="left"><code>*</code></td>
+<td align="left">匹配 0 次或多次</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>+</code></td>
+<td align="left">匹配至少 1 次</td>
+</tr>
+<tr class="even">
+<td align="left"><code>{n}</code></td>
+<td align="left">匹配 n 次</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>{n,}</code></td>
+<td align="left">匹配至少 n 次</td>
+</tr>
+<tr class="even">
+<td align="left"><code>{n,m}</code></td>
+<td align="left">匹配至少 n 次，至多 m 次</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="concatenation" class="section level2">
+<h2><span class="header-section-number">7.5</span> 级联表达式</h2>
+<blockquote>
+<p>Regular expressions may be concatenated; the resulting regular expression matches any string formed by concatenating the substrings that match the concatenated subexpressions.</p>
+</blockquote>
+<p>正则表达式可以是级联 concatenation 的，是不是在讲一个正则表达式里面嵌套一个正则表达式？</p>
+<p>两个正则表达式可以通过中缀符号 <code>|</code> 联合，用两个子表达式的任意一个去匹配字符串，例如 <code>abba | cde</code> 要么匹配字符串 <code>abba</code> 要么匹配字符串 <code>cde</code>，要注意在字符集内，即 <code>abba|cde</code>，二选一的匹配不凑效，因为中缀符 <code>|</code> 有它的字面意思。</p>
+<p>重复匹配 Repetition 的优先级高于级联，级联高于 <code>|</code> 。 整个子表达式可以括号括起来覆盖这些优先级规则。</p>
+</div>
+<div id="backreference" class="section level2">
+<h2><span class="header-section-number">7.6</span> 反向引用</h2>
+<p>反向引用 <code>\N</code> 这里 N 可取 1,2,…,9 匹配被之前第 N 个括起来的子表达式匹配的子字符串，例子见 COS 论坛 <a href="https://d.cosx.org/d/420570/5" class="uri">https://d.cosx.org/d/420570/5</a></p>
+</div>
+<div id="named-capture" class="section level2">
+<h2><span class="header-section-number">7.7</span> 命名捕捉</h2>
+<p>模式 <code>(?:...)</code> 包住的字符就是括号分组，但是不做反向查找。模式 <code>(?&lt;=...)</code> 和 <code>(?&lt;!...)</code> 都是反向查找，它们不允许跟限制符，在 <code>...</code> 也不允许出现 <code>\C</code>。表 <a href="dc-regular-expressions.html#tab:group-lookaround">7.3</a> 展示四个反向引用</p>
+<table>
+<caption><span id="tab:group-lookaround">表 7.3: </span> 环顾四周查找</caption>
+<thead>
+<tr class="header">
+<th align="center">符号</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><code>?=</code></td>
+<td align="center">正向肯定查找</td>
+</tr>
+<tr class="even">
+<td align="center"><code>?!</code></td>
+<td align="center">正向否定查找</td>
+</tr>
+<tr class="odd">
+<td align="center"><code>?&lt;=</code></td>
+<td align="center">反向肯定查找</td>
+</tr>
+<tr class="even">
+<td align="center"><code>?&lt;!</code></td>
+<td align="center">反向否定查找</td>
+</tr>
+</tbody>
+</table>
+<p>函数 <code>regexpr</code> 和 <code>gregexpr</code> 支持命名捕捉 (named capture). 如果一个组被命名了，如 <code>(?&lt;first&gt;[A-Z][a-z]+)</code> 那么，匹配的位置是按名字返回。</p>
+<p>下面举个例子说明，从字符串向量 <code>notables</code> 中获得了三组匹配 <code>name.rex</code> 是一段正则表达式，描述的模式是人名</p>
+<div class="sourceCode" id="cb367"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb367-1"><a href="dc-regular-expressions.html#cb367-1"></a><span class="co">## named capture</span></span>
+<span id="cb367-2"><a href="dc-regular-expressions.html#cb367-2"></a>notables &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;  Ben Franklin and Jefferson Davis&quot;</span>,</span>
+<span id="cb367-3"><a href="dc-regular-expressions.html#cb367-3"></a>              <span class="st">&quot;</span><span class="ch">\t</span><span class="st">Millard Fillmore&quot;</span>)</span>
+<span id="cb367-4"><a href="dc-regular-expressions.html#cb367-4"></a><span class="co"># name groups &#39;first&#39; and &#39;last&#39;</span></span>
+<span id="cb367-5"><a href="dc-regular-expressions.html#cb367-5"></a>name.rex &lt;-<span class="st"> &quot;(?&lt;first&gt;[[:upper:]][[:lower:]]+) (?&lt;last&gt;[[:upper:]][[:lower:]]+)&quot;</span></span>
+<span id="cb367-6"><a href="dc-regular-expressions.html#cb367-6"></a>parsed &lt;-<span class="st"> </span><span class="kw">regexpr</span>(name.rex, notables, <span class="dt">perl =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb367-7"><a href="dc-regular-expressions.html#cb367-7"></a>parsed</span>
+<span id="cb367-8"><a href="dc-regular-expressions.html#cb367-8"></a><span class="co">#&gt; [1] 3 2</span></span>
+<span id="cb367-9"><a href="dc-regular-expressions.html#cb367-9"></a><span class="co">#&gt; attr(,&quot;match.length&quot;)</span></span>
+<span id="cb367-10"><a href="dc-regular-expressions.html#cb367-10"></a><span class="co">#&gt; [1] 12 16</span></span>
+<span id="cb367-11"><a href="dc-regular-expressions.html#cb367-11"></a><span class="co">#&gt; attr(,&quot;index.type&quot;)</span></span>
+<span id="cb367-12"><a href="dc-regular-expressions.html#cb367-12"></a><span class="co">#&gt; [1] &quot;chars&quot;</span></span>
+<span id="cb367-13"><a href="dc-regular-expressions.html#cb367-13"></a><span class="co">#&gt; attr(,&quot;useBytes&quot;)</span></span>
+<span id="cb367-14"><a href="dc-regular-expressions.html#cb367-14"></a><span class="co">#&gt; [1] TRUE</span></span>
+<span id="cb367-15"><a href="dc-regular-expressions.html#cb367-15"></a><span class="co">#&gt; attr(,&quot;capture.start&quot;)</span></span>
+<span id="cb367-16"><a href="dc-regular-expressions.html#cb367-16"></a><span class="co">#&gt;      first last</span></span>
+<span id="cb367-17"><a href="dc-regular-expressions.html#cb367-17"></a><span class="co">#&gt; [1,]     3    7</span></span>
+<span id="cb367-18"><a href="dc-regular-expressions.html#cb367-18"></a><span class="co">#&gt; [2,]     2   10</span></span>
+<span id="cb367-19"><a href="dc-regular-expressions.html#cb367-19"></a><span class="co">#&gt; attr(,&quot;capture.length&quot;)</span></span>
+<span id="cb367-20"><a href="dc-regular-expressions.html#cb367-20"></a><span class="co">#&gt;      first last</span></span>
+<span id="cb367-21"><a href="dc-regular-expressions.html#cb367-21"></a><span class="co">#&gt; [1,]     3    8</span></span>
+<span id="cb367-22"><a href="dc-regular-expressions.html#cb367-22"></a><span class="co">#&gt; [2,]     7    8</span></span>
+<span id="cb367-23"><a href="dc-regular-expressions.html#cb367-23"></a><span class="co">#&gt; attr(,&quot;capture.names&quot;)</span></span>
+<span id="cb367-24"><a href="dc-regular-expressions.html#cb367-24"></a><span class="co">#&gt; [1] &quot;first&quot; &quot;last&quot;</span></span></code></pre></div>
+<p><code>notables</code> 是一个长度为2的字符串向量，所以获得两组匹配，捕捉到匹配开始的位置 <code>capture.start</code> 和匹配的长度 <code>capture.length</code> 都是两组，按列来看，字符 B 出现在字符串 <code>Ben Franklin and Jefferson Davis</code> 的第三个位置，匹配的长度 Ben 是三个字符，长度是 3，如图 <a href="dc-regular-expressions.html#fig:name-capture">7.1</a> 所示，需要注意的是一定要设置 <code>perl = TRUE</code> 才能使用命名捕捉功能，函数 <code>sub</code> 不支持命名反向引用 Named backreferences</p>
+<div class="figure" style="text-align: center"><span id="fig:name-capture"></span>
+<img src="figures/regexp-name-capture.png" alt="命名捕捉" width="70%" />
+<p class="caption">
+图 7.1: 命名捕捉
+</p>
+</div>
+<div class="sidebar">
+<p>Atomic grouping 原子分组, possessive qualifiers 占有限定 and conditional 条件 and recursive 递归等模式超出介绍的范围，不在此处详述，感兴趣的读者可参考，此外，插播一条漫画 <a href="dc-regular-expressions.html#fig:regex-xkcd">7.2</a></p>
+</div>
+<div class="figure" style="text-align: center"><span id="fig:regex-xkcd"></span>
+<a href="https://imgs.xkcd.com/comics/regular_expressions.png" target="_blank"><img src="figures/regexp-comics.png" alt="正则表达式漫画" width="70%" /></a>
+<p class="caption">
+图 7.2: 正则表达式漫画
+</p>
+</div>
+<p>正则表达式的直观解释 <a href="https://github.com/gadenbuie/regexplain" class="uri">https://github.com/gadenbuie/regexplain</a></p>
+</div>
+<div id="comment" class="section level2">
+<h2><span class="header-section-number">7.8</span> 表达式注释</h2>
+<p>The sequence <code>(?#</code> marks the start of a comment which continues up to the next closing parenthesis. Nested parentheses are not permitted. The characters that make up a comment play no part at all in the pattern matching.</p>
+<p>If the extended option is set, an unescaped <code>#</code> character outside a character class introduces a comment that continues up to the next newline character in the pattern.</p>
+
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="24">
+<li id="fn24"><p>推荐的学习正则表达式的路径可以见统计之都论坛 <a href="https://d.cosx.org/d/420410" class="uri">https://d.cosx.org/d/420410</a><a href="dc-regular-expressions.html#fnref24" class="footnote-back">↩︎</a></p></li>
+<li id="fn25"><p><a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/Quotes.html" class="uri">https://stat.ethz.ch/R-manual/R-devel/library/base/html/Quotes.html</a><a href="dc-regular-expressions.html#fnref25" class="footnote-back">↩︎</a></p></li>
+<li id="fn26"><p><code>useBytes = TRUE</code> 表示把字符看作字节。字符、字节和比特的关系是，一个字节 byte 八个比特 bit，一个英文字符 character 用一个字节表示，而一个中、日、韩文字符需要两个字节表示<a href="dc-regular-expressions.html#fnref26" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+<script>
+window.onload = function() {
+
+  var imgs = document.querySelectorAll('img');
+
+  // Upon clicking an image, open a new window with the
+  // dimensions of the image, pointing the `data-url` link
+  var on_click = function (e) {
+    var d = e.target.dataset || {};
+    if (d.url) {
+      // Add some extra height for the modebar
+      var height = 'height=' + (e.target.clientHeight * 1.05);
+      var width = 'width=' + e.target.clientWidth;
+      var param = 'location=yes,' + height + ',' + width + ',scrollbars=yes,status=yes';
+      window.open(e.target.dataset.url, '_blank', param);
+    }
+  };
+
+  var on_hover = function (e) {
+    var d = e.target.dataset || {};
+    if (d.url) {
+      e.target.style.cursor = 'pointer';
+    }
+  };
+
+  for (var i = 0; i < imgs.length; i++) {
+    imgs[i].addEventListener('click', on_click);
+    imgs[i].addEventListener('mouseover', on_hover);
+  }
+};
+</script>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="dc-string-manipulation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="dv-plot.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": {},
+"github": true
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/XiangyunHuang/RGraphics/edit/master/dc-regular-expressions.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub", "_main.mobi", "https://github.com/XiangyunHuang/RGraphics/raw/master/dc-regular-expressions.Rmd"],
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
