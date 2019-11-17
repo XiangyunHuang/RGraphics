@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>前言 | 数据科学与 R 语言</title>
+  <meta name="description" content="数据操作、数据分析、数据建模、动态报告和数据可视化" />
+  <meta name="generator" content="bookdown 0.15 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="前言 | 数据科学与 R 语言" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="https://bookdown.org/xiangyun/RGraphics/" />
+  
+  <meta property="og:description" content="数据操作、数据分析、数据建模、动态报告和数据可视化" />
+  <meta name="github-repo" content="XiangyunHuang/RGraphics" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="前言 | 数据科学与 R 语言" />
+  
+  <meta name="twitter:description" content="数据操作、数据分析、数据建模、动态报告和数据可视化" />
+  
+
+<meta name="author" content="黄湘云" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="setup.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">数据可视化与R语言</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>欢迎</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#why-r"><i class="fa fa-check"></i>Why R</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#who-read-this-book"><i class="fa fa-check"></i>目标读者</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#Getting-Help-with-R"><i class="fa fa-check"></i>获取帮助</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#history-of-r"><i class="fa fa-check"></i>发展历史</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#conventions"><i class="fa fa-check"></i>记号约定</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#session-info"><i class="fa fa-check"></i>运行环境</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>前言</a><ul>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#what-talk-about"><i class="fa fa-check"></i>关于本书</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#structure-of-book"><i class="fa fa-check"></i>本书结构</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#about-author"><i class="fa fa-check"></i>关于作者</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="setup.html"><a href="setup.html"><i class="fa fa-check"></i><b>1</b> 安装与配置</a><ul>
+<li class="chapter" data-level="1.1" data-path="setup.html"><a href="setup.html#repo-install"><i class="fa fa-check"></i><b>1.1</b> 仓库安装</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="setup.html"><a href="setup.html#ubuntu"><i class="fa fa-check"></i><b>1.1.1</b> Ubuntu</a></li>
+<li class="chapter" data-level="1.1.2" data-path="setup.html"><a href="setup.html#centos"><i class="fa fa-check"></i><b>1.1.2</b> CentOS</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="setup.html"><a href="setup.html#source-install"><i class="fa fa-check"></i><b>1.2</b> 源码安装</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="setup.html"><a href="setup.html#ubuntu-1"><i class="fa fa-check"></i><b>1.2.1</b> Ubuntu</a></li>
+<li class="chapter" data-level="1.2.2" data-path="setup.html"><a href="setup.html#centos-1"><i class="fa fa-check"></i><b>1.2.2</b> CentOS</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="setup.html"><a href="setup.html#ninja-install"><i class="fa fa-check"></i><b>1.3</b> 忍者安装</a></li>
+<li class="chapter" data-level="1.4" data-path="setup.html"><a href="setup.html#settings"><i class="fa fa-check"></i><b>1.4</b> 配置</a><ul>
+<li class="chapter" data-level="1.4.1" data-path="setup.html"><a href="setup.html#init-session"><i class="fa fa-check"></i><b>1.4.1</b> 初始会话 <code>.Rprofile</code></a></li>
+<li class="chapter" data-level="1.4.2" data-path="setup.html"><a href="setup.html#environ-vars"><i class="fa fa-check"></i><b>1.4.2</b> 环境变量 <code>.Renviron</code></a></li>
+<li class="chapter" data-level="1.4.3" data-path="setup.html"><a href="setup.html#make-vars"><i class="fa fa-check"></i><b>1.4.3</b> 编译选项 <code>Makevars</code></a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="setup.html"><a href="setup.html#command-line-arguments"><i class="fa fa-check"></i><b>1.5</b> 命令行参数</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="files.html"><a href="files.html"><i class="fa fa-check"></i><b>2</b> 文件管理员</a><ul>
+<li class="chapter" data-level="2.1" data-path="files.html"><a href="files.html#list"><i class="fa fa-check"></i><b>2.1</b> 查看文件</a></li>
+<li class="chapter" data-level="2.2" data-path="files.html"><a href="files.html#manipulation"><i class="fa fa-check"></i><b>2.2</b> 操作文件</a></li>
+<li class="chapter" data-level="2.3" data-path="files.html"><a href="files.html#compression"><i class="fa fa-check"></i><b>2.3</b> 压缩文件</a></li>
+<li class="chapter" data-level="2.4" data-path="files.html"><a href="files.html#paths"><i class="fa fa-check"></i><b>2.4</b> 路径操作</a></li>
+<li class="chapter" data-level="2.5" data-path="files.html"><a href="files.html#find"><i class="fa fa-check"></i><b>2.5</b> 查找文件</a></li>
+<li class="chapter" data-level="2.6" data-path="files.html"><a href="files.html#permissions"><i class="fa fa-check"></i><b>2.6</b> 文件权限</a></li>
+<li class="chapter" data-level="2.7" data-path="files.html"><a href="files.html#locale"><i class="fa fa-check"></i><b>2.7</b> 区域设置</a></li>
+<li class="chapter" data-level="2.8" data-path="files.html"><a href="files.html#process"><i class="fa fa-check"></i><b>2.8</b> 进程管理</a></li>
+<li class="chapter" data-level="2.9" data-path="files.html"><a href="files.html#system-commands"><i class="fa fa-check"></i><b>2.9</b> 系统命令</a></li>
+<li class="chapter" data-level="2.10" data-path="files.html"><a href="files.html#time"><i class="fa fa-check"></i><b>2.10</b> 时间管理</a></li>
+<li class="chapter" data-level="2.11" data-path="files.html"><a href="files.html#package"><i class="fa fa-check"></i><b>2.11</b> R 包管理</a></li>
+<li class="chapter" data-level="2.12" data-path="files.html"><a href="files.html#lookup-function"><i class="fa fa-check"></i><b>2.12</b> 查找函数</a></li>
+<li class="chapter" data-level="2.13" data-path="files.html"><a href="files.html#files-session-info"><i class="fa fa-check"></i><b>2.13</b> 运行环境</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="99-references.html"><a href="99-references.html"><i class="fa fa-check"></i>参考文献</a></li>
+<li class="divider"></li>
+<li><a href="https://r-graphics.netlify.com/" target="blank">Published with netlify</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">数据科学与 R 语言</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="preface" class="section level1 unnumbered">
+<h1>前言</h1>
+<div id="what-talk-about" class="section level2 unnumbered">
+<h2>关于本书</h2>
+<p>这里写每章的主要内容介绍</p>
+</div>
+<div id="structure-of-book" class="section level2 unnumbered">
+<h2>本书结构</h2>
+</div>
+<div id="about-author" class="section level2 unnumbered">
+<h2>关于作者</h2>
+<p>热心开源事业，统计之都副主编，经常混迹于统计之都论坛、Github 和爆栈网。个人主页 <a href="https://www.xiangyunhuang.com.cn/" class="uri">https://www.xiangyunhuang.com.cn/</a></p>
+<p><img src="https://ghchart.rshah.org/XiangyunHuang.svg" width="90%" style="display: block; margin: auto;" /></p>
+
+</div>
+</div>
+<script>
+window.onload = function() {
+
+  var imgs = document.querySelectorAll('img');
+
+  // Upon clicking an image, open a new window with the
+  // dimensions of the image, pointing the `data-url` link
+  var on_click = function (e) {
+    var d = e.target.dataset || {};
+    if (d.url) {
+      // Add some extra height for the modebar
+      var height = 'height=' + (e.target.clientHeight * 1.05);
+      var width = 'width=' + e.target.clientWidth;
+      var param = 'location=yes,' + height + ',' + width + ',scrollbars=yes,status=yes';
+      window.open(e.target.dataset.url, '_blank', param);
+    }
+  };
+
+  var on_hover = function (e) {
+    var d = e.target.dataset || {};
+    if (d.url) {
+      e.target.style.cursor = 'pointer';
+    }
+  };
+
+  for (var i = 0; i < imgs.length; i++) {
+    imgs[i].addEventListener('click', on_click);
+    imgs[i].addEventListener('mouseover', on_hover);
+  }
+};
+</script>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="setup.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": {},
+"github": true
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/XiangyunHuang/RGraphics/edit/master/preface.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub", "_main.mobi", "https://github.com/XiangyunHuang/RGraphics/raw/master/preface.Rmd"],
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
