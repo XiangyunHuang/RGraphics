@@ -409,7 +409,7 @@ Port                = 8080
 
 `docker-machine.exe ip default` 可以获得本地 Docker 的 IP，比如 192.168.99.101。 Travis 上 `ip addr` 可以查看 Docker 的 IP，如 172.17.0.1
 
-```{r,eval=FALSE}
+```r
 library(DBI)
 con <- dbConnect(RPostgres::Postgres(),
   dbname = "postgres",
@@ -419,14 +419,14 @@ con <- dbConnect(RPostgres::Postgres(),
   password = "default"
 )
 ```
-```{r,cache=FALSE,eval=FALSE}
+```r
 library(DBI)
 con <- dbConnect(odbc::odbc(), "PostgreSQL")
 ```
 
 列出数据库中的所有表
 
-```{r,eval=FALSE}
+```r
 dbListTables(con)
 ```
 
@@ -434,19 +434,19 @@ dbListTables(con)
 
 将数据集 mtcars 写入 PostgreSQL 数据库中，基本操作，写入表的操作也不能缓存，即不能缓存数据库中的表 mtcars
 
-```{r,cache=FALSE,eval=FALSE}
+```r
 dbWriteTable(con, "mtcars", mtcars, overwrite = TRUE)
 ```
 
 现在可以看到数据表 mtcars 的各个字段
 
-```{r,eval=FALSE}
+```r
 dbListFields(con, "mtcars")
 ```
 
 最后执行一条 SQL 语句
 
-```{r,eval=FALSE}
+```r
 res <- dbSendQuery(con, "SELECT * FROM mtcars WHERE cyl = 4") # 发送 SQL 语句
 dbFetch(res) # 获取查询结果
 dbClearResult(res) # 清理查询通道
@@ -454,34 +454,28 @@ dbClearResult(res) # 清理查询通道
 
 或者一条命令搞定
 
-```{r,eval=FALSE}
+```r
 dbGetQuery(con, "SELECT * FROM mtcars WHERE cyl = 4")
 ```
 
 再复杂一点的 SQL 查询操作
 
-```{r,eval=FALSE}
+```r
 dbGetQuery(con, "SELECT cyl, AVG(mpg) AS mpg FROM mtcars GROUP BY cyl ORDER BY cyl")
 aggregate(mpg ~ cyl, data = mtcars, mean)
 ```
 
-得益于 knitr [@xie_2015_knitr] 开发的钩子，这里直接写 SQL 语句块，打印出来见表 \@ref(tab:mtcars)，值得注意的是 SQL 代码块不能启用缓存，数据库连接通道也不能缓存，如果数据库中还没有写入表，那么写入表的操作也不能缓存
+得益于 knitr [@xie_2015_knitr] 开发的钩子，这里直接写 SQL 语句块，打印出来见表 \@ref(tab:mtcars)，值得注意的是 SQL 代码块不能启用缓存，数据库连接通道也不能缓存，如果数据库中还没有写入表，那么写入表的操作也不能缓存， `tab.cap = "表格标题"` 输出的内容是一个表格
 
-```{sql mtcars, connection=con, cache = FALSE, tab.cap = "表格标题",eval=FALSE}
+```sql
 SELECT cyl, AVG(mpg) AS mpg FROM mtcars GROUP BY cyl ORDER BY cyl
 ```
 
-如果将查询结果导出到变量，在 Chunk 设置 `output.var = "agg_cyl"` 可以使用缓存，下面将 mpg 按 cyl 分组聚合的结果打印出来
-
-```{sql mtcars2, connection=con, cache = TRUE, output.var = "agg_cyl", ref.label = "mtcars", echo=FALSE,eval=FALSE}
-```
-```{r,eval=FALSE}
-agg_cyl
-```
+如果将查询结果导出到变量，在 Chunk 设置 `output.var = "agg_cyl"` 可以使用缓存，下面将 mpg 按 cyl 分组聚合的结果打印出来，`ref.label = "mtcars"` 引用上一个 SQL 代码块的内容
 
 这种基于 odbc 的方式的好处就不需要再安装 R 包 RPostgres 和相关系统依赖，最后关闭连接通道
 
-```{r,eval=FALSE}
+```r
 dbDisconnect(con)
 ```
 
