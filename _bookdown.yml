@@ -13,22 +13,22 @@ before_chapter_script: ["_common.R"]
 rmd_files: 
 - "index.Rmd"
 - "preface.Rmd"
-- "setup-startup.Rmd"
-- "file-manipulation.Rmd"
+- "setup.Rmd"
+- "files.Rmd"
 
-- "dm-import-export.Rmd"
-- "dm-base-r.Rmd"
-- "dm-dplyr.Rmd"
+#- "dm-import-export.Rmd"
+#- "dm-base-r.Rmd"
+#- "dm-dplyr.Rmd"
 
-- "dc-string-manipulation.Rmd"
-- "dc-regular-expressions.Rmd"
+#- "dc-string-manipulation.Rmd"
+#- "dc-regular-expressions.Rmd"
 
-- "dv-plot.Rmd"
-- "dv-ggplot2.Rmd"
-- "dv-plotly.Rmd"
+#- "dv-plot.Rmd"
+#- "dv-ggplot2.Rmd"
+#- "dv-plotly.Rmd"
 #- "dv-plot3d.Rmd"
-- "dv-spatio-temporal.Rmd"
+#- "dv-spatio-temporal.Rmd"
 
-- "cs-cran-network.Rmd"
+#- "cs-cran-network.Rmd"
 
 - "99-references.Rmd"

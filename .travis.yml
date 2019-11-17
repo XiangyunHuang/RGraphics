@@ -1,7 +1,13 @@
 language: r
+r: 
+ - devel
+
 dist: xenial
+
 services:
-  - docker
+  - xvfb
+  - postgresql
+
 cache:
   packages: true
   directories:
@@ -9,25 +15,94 @@ cache:
     - $HOME/.npm
     
 latex: false
-pandoc: false
+pandoc_version: 2.7.3
 
 env:
   global:
     - MAKEFLAGS="-j 2"
-    - R_VERSION=3.6.1
+
+repos:
+  CRAN: https://cloud.r-project.org
+  RForge: https://r-forge.r-project.org
+  Geo: https://nowosad.github.io/drat/
+
+addons:
+  apt:
+    packages:
+      ## install nloptr
+      -  libnlopt-dev
+      ## install rjags runjags
+      -  jags  
+      ## install Cairo plotly
+      -  libcairo2-dev
+      ## install xml2 igraph
+      -  libxml2-dev
+      -  libgmp-dev
+      -  libglpk-dev
+      ## install openssl
+      -  libssl-dev
+      ## install curl
+      -  libcurl4-openssl-dev
+      ## install git2r
+      -  libgit2-dev
+      ## install v8
+      -  libnode-dev
+      ## install DBI odbc 
+      -  unixodbc
+      -  unixodbc-dev
+      -  odbc-postgresql
+      -  libsqliteodbc
+      ## install webshot
+      -  phantomjs
+      -  optipng
+      -  imagemagick
+      -  ghostscript
+      ## install magick
+      -  libmagick++-dev
+      ## install sf
+      -  libudunits2-dev
+      -  libproj-dev
+      -  libgeos-dev
+      -  libgdal-dev
+      ## rgl
+      -  libglu1-mesa-dev 
+      -  libx11-dev
 
 before_script:
-  - export COMMIT_MSG=$(git log -1 --format='%h %<(50,trunc)%s')
-  - export DEPLOY_MSG=${COMMIT_MSG//[\'\"\`]/}
-  - export DOCKER_HOST_IP=$(ip route|awk '/docker0/ { print $9 }')
-  - chmod +x ./_build.sh
-  - chmod +x ./_deploy.sh
+  - mkdir -p ~/.R ~/.fonts
+  - curl -fLo /tmp/tinytex.tar.gz https://travis-bin.yihui.org/tinytex.tar.gz
+  - tar -xzf /tmp/tinytex.tar.gz -C $HOME
+  - export PATH=$HOME/.TinyTeX/bin/x86_64-linux:$PATH
+  - tlmgr update --self --all  
+  - tlmgr install ctex xecjk mdwtools zhnumber ulem ms xcolor unicode-math filehook lm-math
+      subfig sourcecodepro sourceserifpro sourcesanspro cancel titlepic pgf preview psnfss
+      jknapltx titlesec tocbibind tocloft trimspaces savesym environ fancyhdr listings
+      psnfss realscripts relsize rsfs setspace soul xltxtra mathdesign
+  - curl -fLo Adobe-Fonts.zip https://github.com/XiangyunHuang/fonts/releases/download/v0.1/Adobe-Fonts.zip
+  - unzip Adobe-Fonts.zip -d ~/.fonts/adobe
+  - fc-cache -fsv
+  - Rscript -e "sessionInfo(.packages(T));capabilities()"
+  - Rscript -e 'update.packages(lib.loc = .libPaths()[1], ask = FALSE)'
+  - Rscript -e 'library(tikzDevice);tikzTest();tikzTest("$\\sin(x^2/2 - y^2/4 + 3) \\cos(2 x + 1 - \\exp(y))$")'
+
 
 script:
+  - export COMMIT_MSG=$(git log -1 --format='%h %<(50,trunc)%s')
+  - export DEPLOY_MSG=${COMMIT_MSG//[\'\"\`]/}
+  - chmod +x ./_build.sh
+  - chmod +x ./_deploy.sh
+  # build book
   - mkdir -p _book/interactives && cp -r interactives/* _book/interactives
-  #- docker-compose up -d
-  - docker-compose run book bash -c "cp odbc.ini ~/.odbc.ini;make gitbook"
-  - docker-compose down
+  - make gitbook
+
+#script:
+#  - export DOCKER_HOST_IP=$(ip route|awk '/docker0/ { print $9 }')
+#  - mkdir -p _book/interactives && cp -r interactives/* _book/interactives
+#  - docker-compose up -d
+#  - docker-compose run book bash -c "cp odbc.ini ~/.odbc.ini;make gitbook"
+#  - docker-compose down
+
+after_success:
   - ./_deploy.sh
 
 before_cache:
