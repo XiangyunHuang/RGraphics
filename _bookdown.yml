@@ -16,7 +16,7 @@ rmd_files:
 - "setup-startup.Rmd"
 - "file-manipulation.Rmd"
 
-- "dm-import-export.Rmd"
+#- "dm-import-export.Rmd"
 - "dm-base-r.Rmd"
 - "dm-dplyr.Rmd"
 
