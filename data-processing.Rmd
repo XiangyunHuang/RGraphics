@@ -1,0 +1,337 @@
+# 数据处理 {#chap:data-processing}
+
+::: rmdtip
+学习 data.table 包最快的方式就是在 R 控制台运行 `example(data.table)` 并研究其输出。
+:::
+
+```{r}
+library(data.table)
+library(magrittr)
+```
+
+介绍 data.table 处理数据的方式，对标 dplyr 的基本操作
+
+## 选择 {#subsec:select-j}
+
+选择操作是针对数据框的列（变量/特征/字段）
+
+```{r}
+mtcars$cars <- rownames(mtcars)
+mtcars_df <- as.data.table(mtcars)
+```
+
+```{r}
+mtcars_df[, .(mpg, disp)] %>% head()
+```
+
+::: dplyr
+
+```{r dplyr-select}
+mtcars %>% 
+  dplyr::select(mpg, disp) %>% 
+  head()
+```
+
+:::
+
+## 过滤 {#subsec:filter-i}
+
+过滤 cyl = 6 并且 gear = 4 的记录
+
+```{r}
+mtcars_df[cyl == 6 & gear == 4]
+```
+
+
+过滤操作是针对数据框的行（记录）
+
+
+
+```{r}
+mtcars_df[cyl == 6 & gear == 4, .(mpg, disp)]
+```
+
+```{r}
+subset(x = mtcars_df, subset = cyl == 6 & gear == 4, select = c(mpg, disp))
+```
+
+::: dplyr
+
+```{r dplyr-filter}
+mtcars %>% 
+  dplyr::filter(cyl == 6 & gear == 4)  %>% 
+  dplyr::select(mpg, disp)
+```
+
+:::
+
+## 变换 {#subsec:mutate-j}
+
+根据已有的列生成新的列，或者修改已有的列，一次只能修改一列
+
+```{r}
+mtcars_df[, mean_mpg := mean(mpg)
+          ][, mean_disp := mean(disp)
+            ][, .(mpg, disp, cars, mean_mpg, mean_disp)] 
+```
+
+
+```{r}
+mtcars_df[, .(mean_mpg = mean(mpg), mean_disp = mean(disp))]
+```
+
+::: rmdnote
+
+```{r}
+# mtcars_df[, .(mean_mpg := mean(mpg), mean_disp := mean(disp))] # 报错
+# 正确的姿势
+mtcars_df[, `:=`(mean_mpg = mean(mpg), mean_disp = mean(disp))          
+          ][, .(mpg, disp, mean_mpg, mean_disp)] %>% head()
+```
+
+:::
+
+::: dplyr
+
+```{r dplyr-mutate-1}
+mtcars %>% 
+  dplyr::summarise(mean_mpg = mean(mpg), mean_disp = mean(disp))
+```
+
+
+```{r dplyr-mutate-2}
+mtcars %>% 
+  dplyr::mutate(mean_mpg = mean(mpg), mean_disp = mean(disp)) %>% 
+  dplyr::select(mpg, disp, mean_mpg, mean_disp) %>% head()
+```
+
+:::
+
+
+## 聚合 {#subsec:summarise-j}
+
+分组统计 多个分组变量
+
+
+```{r}
+dcast(mtcars_df, cyl ~ gear, value.var = "mpg", fun = mean)
+tapply(mtcars$mpg, list(mtcars$cyl, mtcars$gear), mean)
+```
+```{r}
+mtcars_df[, .(mean_mpg = mean(mpg)), by = .(cyl, gear)]
+aggregate(data = mtcars_df, mpg ~ cyl + gear, FUN = mean)
+```
+
+::: dplyr
+
+```{r dplyr-summarise}
+mtcars %>% 
+  dplyr::group_by(cyl, gear) %>% 
+  dplyr::summarise(mean_mpg = mean(mpg))
+```
+
+:::
+
+
+## 去重 {#subsec:duplicated-i}
+
+去掉字段 cyl 和 gear 有重复的记录
+
+```{r data-table-duplicated}
+mtcars_df[!duplicated(mtcars_df, by = c("cyl", "gear"))][,.(mpg, cyl, gear)]
+```
+
+::: dplyr
+
+```{r dplyr-distinct}
+mtcars %>% 
+  dplyr::distinct(cyl, gear, .keep_all = TRUE) %>% 
+  dplyr::select(mpg, cyl, gear)
+```
+
+:::
+
+::: sidebar
+
+dplyr 的去重操作不需要拷贝一个新的数据对象 mtcars_df，并且可以以管道的方式将后续的选择操作连接起来，代码更加具有可读性。
+
+```{r base-duplicated}
+mtcars_df[!duplicated(mtcars_df[, c("cyl", "gear")]), c("mpg","cyl","gear")]
+```
+
+Base R 和 data.table 提供的 `duplicated()` 函数和 `[` 函数一起实现去重的操作，选择操作放在 `[` 实现
+
+::: rmdtip
+
+`[` 其实是一个函数
+
+```{r}
+x <- 2:4
+x[1]
+`[`(x, 1)
+```
+
+:::
+:::
+
+
+## 命名 {#subsec:setname}
+
+修改列名，另存一份生效
+
+```{r}
+sub_mtcars_df <- mtcars_df[, .(mean_mpg = mean(mpg)), by = .(cyl, gear)] 
+setNames(sub_mtcars_df, c("cyl", "gear", "ave_mpg"))
+# 注意 sub_mtcars_df 并没有修改列名
+sub_mtcars_df
+```
+
+修改列名并直接起作用，在原来的数据集上生效
+
+```{r}
+setnames(sub_mtcars_df, old = c("mean_mpg"), new = c("ave_mpg"))
+# sub_mtcars_df 已经修改了列名
+sub_mtcars_df
+```
+
+::: rmdtip
+修改列名最好使用 **data.table** 包的函数 `setnames()` 明确指出了要修改的列名，
+:::
+
+## 排序 {#subsec:order-by-j}
+
+按照某（些）列从大到小或从小到大的顺序排列， 先按 cyl 升序，然后按 gear 降序
+
+```{r}
+mtcars_df[, .(mpg, cyl, gear)          
+          ][cyl == 4            
+            ][order(cyl, -gear)]
+```
+
+
+::: dplyr
+
+```{r dplyr-arrange}
+mtcars %>%
+  dplyr::select(mpg, cyl, gear) %>%
+  dplyr::filter(cyl == 4) %>%
+  dplyr::arrange(cyl, desc(gear))
+```
+
+:::
+
+
+## 变形 {#subsec:reshape}
+
+melt 宽的变长的
+
+```{r}
+DT <- data.table(
+  i_1 = c(1:5, NA),
+  i_2 = c(NA, 6, 7, 8, 9, 10),
+  f_1 = factor(sample(c(letters[1:3], NA), 6, TRUE)),
+  f_2 = factor(c("z", "a", "x", "c", "x", "x"), ordered = TRUE),
+  c_1 = sample(c(letters[1:3], NA), 6, TRUE),
+  d_1 = as.Date(c(1:3, NA, 4:5), origin = "2013-09-01"),
+  d_2 = as.Date(6:1, origin = "2012-01-01")
+)
+```
+
+
+```{r}
+DT[, .(i_1, i_2, f_1, f_2)]
+```
+
+
+```{r}
+melt(DT, id = 1:2, measure = c("f_1", "f_2"))
+```
+
+dcast 长的变宽的
+
+```{r}
+sleep <- as.data.table(sleep)
+dcast(sleep, group ~ ID, value.var = "extra")
+# 如果有多个值
+dcast(mtcars_df, cyl ~ gear, value.var = "mpg")
+dcast(mtcars_df, cyl ~ gear, value.var = "mpg", fun = mean)
+```
+
+::: sidebar
+tidyr 包提供数据变形的函数 `tidyr::pivot_longer()` 和 `tidyr::pivot_wider()` 相比于 Base R 提供的 `reshape()` 和 data.table 提供的 `melt()` 和 `dcast()` 更加形象的命名
+
+```{r}
+tidyr::pivot_wider(data = sleep, names_from = "ID", values_from = "extra")
+reshape(data = sleep, v.names = "extra", idvar = "group", timevar = "ID", direction = "wide")
+```
+
+- `idvar` 分组变量
+- `timevar` 组内编号
+- `v.names` 个体观察值
+
+::: rmdnote
+`sep` 新的列名是由参数 `v.names` (extra) 和参数值 `timevar` (ID) 拼接起来的，默认 `sep = "."` 推荐使用下划线来做分割 `sep = "_"`
+:::
+
+```{r}
+ToothGrowth %>% head
+ToothGrowth$time <- rep(1:10, 6)
+reshape(ToothGrowth, v.names = "len", idvar = c("supp", "dose"),
+        timevar = "time", direction = "wide")
+```
+:::
+
+以数据集 ToothGrowth 为例，变量 supp（大组），dose（小组） 和 time（组内个体编号） 一起决定唯一的一个数据 len，特别适合纵向数据的变形操作
+
+
+
+## 分组 {#subsec:group-by}
+
+分组切片，取每组第一个和最后一个值
+
+```{r}
+Loblolly %>% 
+  dplyr::group_by(Seed) %>% 
+  dplyr::arrange(height, age, Seed) %>% 
+  dplyr::slice(1, dplyr::n())
+```
+
+`dplyr::slice()` 和函数 `slice.index()` 有关系吗？
+
+## 合并 {#subsec:merge}
+
+合并操作对应于数据库中的连接操作， dplyr 包的哲学就来源于对数据库操作的进一步抽象， data.table 包的 merge 函数就对应为 dplyr 包的 join 函数
+
+`data.table::merge` 和 `dplyr::join`
+
+给出一个表格，数据操作， data.table 实现， dplyr 实现
+
+```{r}
+dt1 <- data.table(A = letters[1:10], X = 1:10, key = "A")
+dt2 <- data.table(A = letters[5:14], Y = 1:10, key = "A")
+merge(dt1, dt2) # 内连接
+```
+
+参数 key 的作用相当于建立一个索引，通过它实现更快的数据操作速度
+
+`key = c("x","y","z")` 或者 `key = "x,y,z"` 其中 x,y,z 是列名
+
+::: dplyr
+```{r dplyr-join}
+data(band_members, band_instruments, package = "dplyr")
+band_members
+band_instruments
+dplyr::inner_join(band_members, band_instruments)
+```
+:::
+
+list 列表里每个元素都是 data.frame 时，最适合用 `data.table::rbindlist` 合并
+
+```{r}
+# 合并列表 https://recology.info/2018/10/limiting-dependencies/
+function(x) {
+  tibble::as_tibble((x <- data.table::setDF(
+    data.table::rbindlist(x, use.names = TRUE, fill = TRUE, idcol = "id"))
+  ))
+}
+```

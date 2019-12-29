@@ -1,0 +1,333 @@
+# highcharter 图形 {#chap:highcharter}
+
+> The combination of some data and an aching desire for an answer does not ensure that a reasonable answer can be extracted from a given body of data.
+>
+>   --- John W. Tukey [@John_1986_Sunset]
+      
+      
+这才是真的动态图形，底层设计的图形语法已经与 ggplot2 大不相同，和用户交互是核心的部分
+
+[rgl](https://r-forge.r-project.org/projects/rgl/) 只是一种展现形式，它是基于 OpenGL，不拘泥于显示设备， [plotly](https://github.com/ropensci/plotly) 包 [@plotly2020] 和 [highcharter](https://github.com/jbkunst/highcharter) 是基于网页的
+
+```{r htmlwidgets-js-eco,echo=FALSE}
+js_pkg <- tools::dependsOnPkgs("htmlwidgets", installed = pdb, recursive = FALSE)
+js_lib <- c(
+  "Altair", "ApexCharts", "HTML", "Excel", "Billboard", 
+  "[Hh]tmlwidgets","[Hh]tmlwidget", "D3", "D3Plus",
+  "diffrprojects", "[Ss]hiny", "DataTables", "BioCircos.js", 
+  "[Dd]3.js", "C3.js", "[Dd]eck.gl",
+  "Echarts JavaScript", "Microsoft", "jExcel", "JavaScript", 
+  "Formattable", "ggplot2", "Dragula Javascript Library",
+  "jquery-gradient-picker", "plotly", "Highcharts", 
+  "jQuery", "jsTree", "mapview", "[Ll]eaflet",
+  "Leaflet-timeline", "Mapbox GL JS", "MetricsGraphics", "UML", "easyalluvial",
+  "Phylocanvas", "plotly.js", "QRA", "Chart.js", 
+  "agGrid", "React Table", "Handsontable.js", 
+  "WebVR", "RStudio Shiny", "Mozilla A-Frame", "Sigma.js", "heatmaply", 
+  "Slick", "jQuery UI", "JavaScript Datamaps",
+  "SortableJS", "SMITIDstruct", "Vega", "Vega-Lite", "vis.js", 
+  "Grammar of Graphics", "R markdown", "Dygraphs",
+  "Spec", "iframes"
+)
+js_regexp <- paste("'(", paste(js_lib, collapse = "|"), ")'", sep = "")
+subset(pdb, subset = Package %in% js_pkg & grepl("(JavaScript|htmlwidgets|js|Interactive|Library)", Title), select = c("Package", "Title")) %>%
+  transform(., Title = gsub("(\\\n)", " ", Title), Package = paste("**", Package, "**", sep = "")) %>%
+  transform(., Title = gsub(js_regexp, "\\1", Title)) %>%
+  knitr::kable(.,
+    caption = "JavaScript 生态系统", format = "pandoc",
+    booktabs = TRUE, row.names = FALSE
+  )
+```
+
+下面以 highcharter 包为例介绍动态图形，
+
+::: rmdnote
+
+不推荐使用 **highcharter** 包提供的 `hchart()` 接口，这个接口函数走的路线和 **ggplot2** 包内的 `qplot()` 函数一致，用它就好像在拄着拐杖走路，很别扭！
+
+:::
+
+
+- `highchart()` hc 对象
+- `hc_*` 系列函数分类整理出 R 包结构，归纳出学习路径
+
+- `hc_color()` 配色
+- `hc_xAxis()` X 轴
+- `hc_yAxis()` Y 轴
+- `hc_title()` 标题
+- `hc_subtitle()` 副标题
+- `hc_legend()` 图例
+- `hc_add_series()` 添加序列
+- `hc_rm_series()` 移除序列
+- `hc_exporting()` 导出图形
+- `hc_credits()` 添加图形注释，比如数据来源，版权
+
+以数据集 discoveries 为例介绍 highcharter 包的使用
+
+```{r discoveries-hc-ts,eval=is_html}
+library(highcharter)
+highchart() %>% 
+  hc_xAxis(type = "datetime") %>% 
+  hc_title(text = "Yearly Numbers of Important Discoveries",
+           margin = 20, align = "left",
+           style = list(color = "#51B749", useHTML = TRUE)) %>% 
+  hc_add_series(data = discoveries, name = "discoveries") %>% 
+  hc_exporting(enabled = TRUE)
+```
+
+
+## 折线图 {#subsec:hc-line} 
+
+### 简单折线图 {#subsubsec:simple-hc-line}
+
+```{r bod-line}
+library(ggplot2)
+ggplot(data = BOD, aes(x = Time, y = demand)) +
+  geom_point() +
+  geom_line() +
+  theme_minimal()
+```
+
+```{r bod-hc-line,eval=is_html}
+library(highcharter)
+hchart(BOD, "line", hcaes(x = Time, y = demand))
+```
+
+### 分组折线图 {#subsubsec:group-hc-line}
+
+```{r orange-line}
+ggplot(data = Orange, aes(x = age, y = circumference, color = Tree)) +
+  geom_point() +
+  geom_line() +
+  theme_minimal()
+```
+
+```{r orange-hc-line,eval=is_html}
+hchart(Orange, "line", hcaes(x = age, y = circumference, group = Tree))
+
+# hchart(DNase, "line", hcaes(x = conc, y = density, group = Run))
+# hchart(Loblolly, "line", hcaes(x = age, y = height, group = Seed))
+```
+
+### 时间序列图 {#subsubsec:ts-hc-line}
+
+::: rmdtip
+**ggfortify** 包 [@Tang_2016_ggfortify] 大大扩展了 **ggplot2** 包内置的函数 `autoplot()` 的功能，使得它可以适用 `r length(methods(autoplot))` 种数据对象的直接绘图
+:::
+
+Base R 对时间序列类型 ts 的数据对象提供了泛型函数 `plot.ts()` 支持
+
+```{r nile-line,fig.show='hold',fig.width=8,fig.height=4,fig.cap="时序图"}
+plot(Nile, main = "Flow of the River Nile")
+
+library(ggfortify)
+autoplot(Nile, xlab = "Time", ylab = "Nile", main = "Flow of the River Nile") +
+  theme_minimal()
+```
+
+
+<!-- 讲点尼罗河历史，1898 年附近出现了 changepoint 尼罗河流量骤减 -->
+
+```{r nile-hc-line, eval=is_html}
+highchart() %>% 
+  hc_xAxis(type = "datetime") %>% 
+  hc_add_series(data = Nile,  name = "Nile")
+```
+
+
+## 散点图 {#subsec:hc-scatter}
+
+散点图，没有比散点图更能表达数据
+
+### 简单散点图 {#subsubsec:simple-hc-scatter}
+
+```{r faithful-hc-scatter,eval=is_html}
+hchart(faithful, "scatter", hcaes(x = waiting, y = eruptions))
+
+hchart(women, "scatter", hcaes(x = weight, y = height))
+```
+
+### 分组散点图 {#subsubsec:group-hc-scatter}
+
+```{r orange-hc-scatter,eval=is_html}
+hchart(sleep, "scatter", hcaes(x = ID, y = extra, group = group))
+
+hchart(Puromycin, "scatter", hcaes(x = conc, y = rate, group = state))
+
+hchart(Orange, "scatter", hcaes(x = age, y = circumference, group = Tree))
+```
+
+## 条形图 {#subsec:hc-bar}
+
+本书中条形图和柱形图不再做区分，一般来讲，横着放叫条形图，否则就叫柱形图
+
+### 简单条形图  {#subsubsec:simple-hc-bar}
+
+严格来讲，条形图适合分类数据的展示
+
+```{r barplot-BOD,fig.show='hold',fig.width=4,fig.height=4,out.width='50%',fig.cap="条形图"}
+barplot(
+  data = BOD, demand ~ Time, col = "#4285F4",
+  border = "white", horiz = TRUE, xlim = c(0, 20)
+)
+
+library(ggplot2)
+ggplot(data = BOD, aes(x = factor(Time), y = demand)) +
+  geom_col(fill = "#4285F4") +
+  coord_flip() +
+  theme_minimal() +
+  labs(x = "Time")
+```
+
+```{r bod-hc-bar,eval=is_html}
+# 条形图
+hchart(BOD, "bar", hcaes(x = factor(Time), y = demand))
+# 柱形图
+hchart(BOD, "column", hcaes(x = factor(Time), y = demand), color = "#4285F4") %>% 
+  hc_xAxis(title = list(text = "Time"))
+```
+
+
+### 复合条形图 {#subsubsec:dodge-hc-bar}
+
+```{r vadeaths-hc-bar,eval=is_html}
+longer_VADeaths <- transform(
+  expand.grid(
+    sex = colnames(VADeaths),
+    age = rownames(VADeaths)
+  ),
+  rates = as.vector(t(VADeaths))
+)
+hchart(longer_VADeaths, "column", hcaes(x = sex, y = rates, group = age))
+```
+
+### 堆积条形图 {#subsubsec:stack-hc-bar}
+
+
+
+### 百分比条形图 {#subsubsec:fill-hc-bar}
+
+
+
+## 箱线图 {#subsec:hc-boxplot}
+
+### 简单箱线图 {#subsubsec:simple-hc-boxplot}
+
+```{r diamonds-hc-boxplot-one,eval=is_html}
+with(ToothGrowth, {
+  hcboxplot(x = len, var = supp)
+})
+```
+
+### 复合箱线图 {#subssubsec:dodge-hc-boxplot}
+
+
+```{r diamonds-hc-boxplot-two,eval=is_html}
+with(ToothGrowth, {
+  hcboxplot(x = len, var = supp, var2 = dose, outliers = FALSE) %>%
+    hc_chart(type = "column") # to put box vertical
+})
+```
+
+## 密度图 {#subsec:hc-density}
+
+```{r diamonds-hc-density,eval=is_html}
+hchart(density(diamonds$price), type = "area", color = "#B71C1C", name = "Price")
+```
+
+
+## 直方图 {#subsec:hc-hist}
+
+```{r diamonds-hc-hist,eval=is_html}
+hchart(diamonds$price, name = "price") 
+```
+
+## 生存图 {#subsec:hc-survival}
+
+```{r lung-hc-survival,eval=is_html}
+library(survival)
+leukemia.surv <- survfit(Surv(time, status) ~ x, data = aml)
+hchart(leukemia.surv, ranges = TRUE)
+```
+
+## 等高图 {#subsec:hc-heatmap}
+
+颜色等高图
+
+```{r volcano-hc-heatmap,eval=is_html}
+hchart(volcano) %>% 
+  hc_colorAxis(stops = color_stops(colors = hcl.colors(10)))
+```
+
+## 相关图 {#subsec:hc-corrplot}
+
+```{r swiss-hc-corrplot,eval=is_html}
+hchart(cor(swiss))
+```
+
+## 矩阵图 {#subsec:hc-treemap}
+
+```{r GNI2014-treemap}
+library("treemap")
+data(GNI2014)
+treemap(GNI2014,
+  index = c("continent", "iso3"),
+  vSize = "population", vColor = "GNI",
+  type = "comp", palette = hcl.colors(6),
+  draw = TRUE
+)
+```
+
+```{r hc-treemap,eval=is_html}
+tm <- treemap(GNI2014,
+  index = c("continent", "iso3"),
+  vSize = "population", vColor = "GNI",
+  type = "comp", palette = hcl.colors(6),
+  draw = FALSE
+)
+hctreemap(tm, allowDrillToNode = TRUE, layoutAlgorithm = "squarified") %>%
+  hc_title(text = "Gross National Income World Data") %>%
+  hc_tooltip(pointFormat = "<b>{point.name}</b>:<br>
+                             Pop: {point.value:,.0f}<br>
+                             GNI: {point.valuecolor:,.0f}")
+```
+
+
+考虑用 `hctreemap2()` 函数
+
+```{r,eval=is_html}
+hctreemap2(GNI2014, group_vars = c("continent", "iso3"),
+           size_var = "population", color_var = "GNI", 
+           layoutAlgorithm = "squarified")
+```
+
+```{r,eval=is_html}
+library(RColorBrewer)
+
+data.frame(
+  index1 = sample(LETTERS[1:5], 500, replace = T),
+  index2 = sample(LETTERS[6:10], 500, replace = T),
+  index3 = sample(LETTERS[11:15], 500, replace = T),
+  value = rpois(500, 5),
+  color_value = rpois(500, 5)
+) %>%
+  hctreemap2(
+    group_vars = c("index1", "index2", "index3"),
+    size_var = "value",
+    color_var = "color_value",
+    layoutAlgorithm = "squarified",
+    levelIsConstant = FALSE,
+    levels = list(
+      list(level = 1, dataLabels = list(enabled = TRUE)),
+      list(level = 2, dataLabels = list(enabled = FALSE)),
+      list(level = 3, dataLabels = list(enabled = FALSE))
+    )
+  ) %>%
+  hc_colorAxis(
+    minColor = brewer.pal(7, "Greens")[1],
+    maxColor = brewer.pal(7, "Greens")[7]
+  ) %>%
+  hc_tooltip(pointFormat = "<b>{point.name}</b>:<br>
+             Value: {point.value:,.0f}<br>
+             Color Value: {point.colorValue:,.0f}")
+```
