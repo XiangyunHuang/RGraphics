@@ -490,6 +490,7 @@ attr(idx[[1]], 'capture.names')
 ```
 
 ```{r}
+library(magrittr)
 data.frame(notable = notables) %>% 
 tidyr::extract(
     notable, c("first", "last"), name.rex, 
