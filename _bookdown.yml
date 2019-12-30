@@ -29,6 +29,7 @@ rmd_files:
 - "dv-plot3d.Rmd"
 - "dv-colors-fonts.Rmd"
 - "dv-highcharter.Rmd"
+- "dv-lattice.Rmd"
 
 - "dv-spatio-temporal.Rmd"
 - "dynamic-documents.Rmd"
