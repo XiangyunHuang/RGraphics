@@ -66,6 +66,7 @@ palette(c(
 is_on_travis <- identical(Sys.getenv("TRAVIS"), "true")
 is_online <- curl::has_internet()
 is_latex <- identical(knitr::opts_knit$get("rmarkdown.pandoc.to"), "latex")
+is_html <- identical(knitr::opts_knit$get("rmarkdown.pandoc.to"), "html")
 is_windows <- identical(.Platform$OS.type, 'windows')
 is_unix <- identical(.Platform$OS.type, 'unix')
 

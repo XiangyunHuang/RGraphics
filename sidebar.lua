@@ -42,6 +42,14 @@ function Div(el)
     }
   end
 
+  if el.classes:includes("rmdtip") then
+    return {
+      pandoc.RawBlock("latex", "\\begin{shaded}\\textcolor[RGB]{81,183,73}{\\textbf{提示}}"),
+      el,
+      pandoc.RawBlock("latex", "\\end{shaded}")
+    }
+  end
+
   if el.classes:includes("warning") then
     return {
       pandoc.RawBlock("latex", "\\begin{shaded} \\textcolor{red}{\\textbf{警告}}"),

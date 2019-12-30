@@ -460,6 +460,150 @@ gextract_str(text = "abd123da345das", pattern = "(\\d+){3}")
 
 例子来自于 <https://recology.info/2018/10/limiting-dependencies/>
 
+## 命名捕捉 {#subsubsec:named-capture}
+
+函数 `regexpr(..., perl = TRUE)` 和 `gregexpr(..., perl = TRUE)` 支持命名捕捉
+
+```{r}
+## named capture
+notables <- c("  Ben Franklin and Jefferson Davis",
+              "\tMillard Fillmore")
+# name groups 'first' and 'last'
+name.rex <- "(?<first>[[:upper:]][[:lower:]]+) (?<last>[[:upper:]][[:lower:]]+)"
+
+(parsed <- regexpr(name.rex, notables, perl = TRUE))
+
+attr(parsed, 'capture.names')
+
+regmatches(notables, parsed)
+```
+
+希望返回一个 data.frame，列名是指定的 named group 名字
+
+```{r}
+# 有多个结果
+(idx <- gregexpr(name.rex, notables, perl = TRUE))
+
+regmatches(notables, idx)
+
+attr(idx[[1]], 'capture.names')
+```
+
+```{r}
+data.frame(notable = notables) %>% 
+tidyr::extract(
+    notable, c("first", "last"), name.rex, 
+    remove = FALSE
+  )
+```
+
+
+## 精确匹配 {#subsubsec:exact-match}
+
+`fixed = TRUE`
+
+## 模糊匹配 {#subsubsec:fuzzy-match}
+
+近似字符串匹配 (Approximate String Matching) 也叫模糊匹配 (Fuzzy Matching)
+
+`agrep()` `agrepl()` `aregexec()` `adist()`
+
+```{r}
+agrep(pattern = "lasy", x = "1 lazy 2")
+agrep("lasy", c(" 1 lazy 2", "1 lasy 2"), max = list(sub = 0))
+agrep("laysy", c("1 lazy", "1", "1 LAZY"), max = 2)
+agrep("laysy", c("1 lazy", "1", "1 LAZY"), max = 2, value = TRUE)
+agrep("laysy", c("1 lazy", "1", "1 LAZY"), max = 2, ignore.case = TRUE)
+
+agrepl(pattern = "lasy", x = "1 lazy 2")
+```
+
+```{r}
+## Cf. the examples for agrep.
+x <- c("1 lazy", "1", "1 LAZY")
+
+aregexec("laysy", x, max.distance = 2)
+aregexec("(lay)(sy)", x, max.distance = 2)
+aregexec("(lay)(sy)", x, max.distance = 2, ignore.case = TRUE)
+
+m <- aregexec("(lay)(sy)", x, max.distance = 2)
+regmatches(x, m)
+```
+
+
+```{r}
+## Cf. https://en.wikipedia.org/wiki/Levenshtein_distance
+adist("kitten", "sitting")
+## To see the transformation counts for the Levenshtein distance:
+drop(attr(adist("kitten", "sitting", counts = TRUE), "counts"))
+## To see the transformation sequences:
+attr(adist(c("kitten", "sitting"), counts = TRUE), "trafos")
+
+## Cf. the examples for agrep:
+adist("lasy", "1 lazy 2")
+## For a "partial approximate match" (as used for agrep):
+adist("lasy", "1 lazy 2", partial = TRUE)
+```
+
+案例
+
+`help.search()`
+
+## 高级的替换 {#subsubsec:replace}
+
+相比于 `sprintf()` 格式化输出字符串的方式替换，它的优势在于提示性，或者说代码的可读性
+
+```{r}
+glue_data <- function(param, text) {
+  idx <- gregexpr('\\{[^}]*\\}', text)[[1L]]
+  keys <- substring(text, idx, idx + attr(idx, 'match.length') - 1L)
+  for (key in keys) {
+    text <- gsub(key, param[[gsub('[{}]', '', key)]], text, fixed = TRUE)
+  }
+  text
+}
+cat(glue_data(
+  param = list(table = 'flights', origin = 'JFK'),
+  text = "
+  select count(*) as n
+  from {table}
+  where origin = '{origin}'
+  "
+))
+```
+
+
+## 高级的提取 {#subsubsec:extract}
+
+从 text 中抽取给定模式 pattern 的字符串
+
+```{r}
+str_extract <- function(text, pattern, ...) regmatches(text, regexpr(pattern, text, ...))
+```
+
+举个栗子，比如提取数字
+
+```{r}
+shopping_list <- c("apples x4", "bag of flour", "bag of sugar", "milk x2")
+stringr::str_extract(shopping_list, "\\d")
+# 注意二者的差别
+str_extract(shopping_list, "\\d")
+```
+
+提取所有符合匹配模式的字符串
+
+```{r}
+str_extract_all <- function(text, pattern, ...) regmatches(text, gregexpr(pattern, text, ...))
+```
+
+举个栗子，提取其中的英文字母
+
+```{r}
+str_extract_all(shopping_list, "[a-z]+")
+stringr::str_extract_all(shopping_list, "[a-z]+")
+```
+
+
 ## 其它操作 {#other-string-op}
 
 ### strwrap

@@ -28,6 +28,7 @@ rmd_files:
 - "dv-plotly.Rmd"
 - "dv-plot3d.Rmd"
 - "dv-colors-fonts.Rmd"
+- "dv-highcharter.Rmd"
 
 - "dv-spatio-temporal.Rmd"
 - "dynamic-documents.Rmd"
