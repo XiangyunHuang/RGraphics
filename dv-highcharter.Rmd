@@ -10,6 +10,7 @@
 [rgl](https://r-forge.r-project.org/projects/rgl/) 只是一种展现形式，它是基于 OpenGL，不拘泥于显示设备， [plotly](https://github.com/ropensci/plotly) 包 [@plotly2020] 和 [highcharter](https://github.com/jbkunst/highcharter) 是基于网页的
 
 ```{r htmlwidgets-js-eco,echo=FALSE}
+library(magrittr)
 pdb <- tools::CRAN_package_db()
 js_pkg <- tools::dependsOnPkgs("htmlwidgets", installed = pdb, recursive = FALSE)
 js_lib <- c(

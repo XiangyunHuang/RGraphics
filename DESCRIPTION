@@ -50,7 +50,8 @@ Imports:
   microbenchmark,
   pracma,
   spDataLarge,
-  tikzDevice
+  tikzDevice,
+  treemap
 Remotes: vankesteren/firatheme, jbkunst/highcharter
 URL: https://r-graphics.netlify.com, https://bookdown.org/xiangyun/RGraphics/
 BugReports: https://github.com/XiangyunHuang/RGraphics/issues
