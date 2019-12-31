@@ -1,5 +1,10 @@
 # 对象在哪里 {#data-object}
 
+```{r,include=FALSE}
+library(magrittr)
+library(data.table)
+```
+
 > 可用于绘图的数据对象，向量 vector 等，只涉及基础操作和绘图，关键在入门引导式的介绍，点到即止
 
 数据类型：字符、数值：字符数据操作：按数据类型介绍各类数据操作，重复之处如前所述，数据处理的分类：按数据类型来，一共是 table matrix data.frame 和 vector
