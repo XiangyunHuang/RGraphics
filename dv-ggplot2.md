@@ -3,6 +3,138 @@
 
 
 
+> 3-D bar plots are an abomination. Just because Excel can do them doesn't mean you should. (Dismount pulpit).
+>
+>   --- Berton Gunter [^BG-help-2007]
+      
+
+[^BG-help-2007]: <https://stat.ethz.ch/pipermail/r-help/2007-October/142420.html>
+
+grid graphics lattice 和 ggplot2 之间的历史发展关系脉络
+
+gganimate 只是一个扩展，并不是新的东西，因为它是静态图形转化为帧，然后借助第三方工具合成
+
+ggplot2 生态系统 \@ref(tab:ggplot2-eco)
+
+
+Table: (\#tab:ggplot2-eco)ggplot2 生态系统
+
+Package                 Title                                                                                      
+----------------------  -------------------------------------------------------------------------------------------
+**gg.gap**              Define Segments in y-Axis for ggplot2                                                      
+**ggallin**             Grab Bag of ggplot2 Functions                                                              
+**ggalluvial**          Alluvial Plots in ggplot2                                                                  
+**ggalt**               Extra Coordinate Systems, Geoms, Statistical Transformations, Scales and Fonts for ggplot2 
+**ggamma**              Generalized Gamma Probability Distribution                                                 
+**gganimate**           A Grammar of Animated Graphics                                                             
+**ggasym**              Asymmetric Matrix Plotting in ggplot2                                                      
+**ggbeeswarm**          Categorical Scatter (Violin Point) Plots                                                   
+**ggBubbles**           Mini Bubble Plots for Comparison of Discrete Data with ggplot2                             
+**ggbuildr**            Save Incremental Builds of Plots                                                           
+**ggChernoff**          Chernoff Faces for ggplot2                                                                 
+**ggconf**              Simpler Appearance Modification of ggplot2                                                 
+**ggcorrplot**          Visualization of a Correlation Matrix using ggplot2                                        
+**ggdag**               Analyze and Create Elegant Directed Acyclic Graphs                                         
+**ggdark**              Dark Mode for ggplot2 Themes                                                               
+**ggdemetra**           ggplot2 Extension for Seasonal and Trading Day Adjustment with RJDemetra                   
+**ggdendro**            Create Dendrograms and Tree Diagrams Using ggplot2                                         
+**ggdistribute**        A ggplot2 Extension for Plotting Unimodal Distributions                                    
+**ggdmc**               Cognitive Models                                                                           
+**gge**                 Genotype Plus Genotype-by-Environment Biplots                                              
+**ggedit**              Interactive ggplot2 Layer and Theme Aesthetic Editor                                       
+**ggeffects**           Create Tidy Data Frames of Marginal Effects for ggplot from Model Outputs                  
+**ggenealogy**          Visualization Tools for Genealogical Data                                                  
+**ggetho**              Visualisation of High-Throughput Behavioural (i.e. Ethomics) Data                          
+**ggExtra**             Add Marginal Histograms to ggplot2, and More ggplot2 Enhancements                          
+**ggfan**               Summarise a Distribution Through Coloured Intervals                                        
+**ggfittext**           Fit Text Inside a Box in ggplot2                                                           
+**ggfocus**             Focus on Specific Factor Levels in your ggplot()                                           
+**ggforce**             Accelerating ggplot2                                                                       
+**ggformula**           Formula Interface to the Grammar of Graphics                                               
+**ggfortify**           Data Visualization Tools for Statistical Analysis Results                                  
+**gggenes**             Draw Gene Arrow Maps in ggplot2                                                            
+**ggghost**             Capture the Spirit of Your ggplot2 Calls                                                   
+**gggibbous**           Moon Charts, a Pie Chart Alternative                                                       
+**ggguitar**            Utilities for Creating Guitar Tablature                                                    
+**gghalfnorm**          Create a Half Normal Plot Using ggplot2                                                    
+**gghalves**            Compose Half-Half Plots Using Your Favourite Geoms                                         
+**gghighlight**         Highlight Lines and Points in ggplot2                                                      
+**ggimage**             Use Image in ggplot2                                                                       
+**gginference**         Visualise the Results of Inferential Statistics using ggplot2                              
+**gginnards**           Explore the Innards of ggplot2 Objects                                                     
+**ggiraph**             Make ggplot2 Graphics Interactive                                                          
+**ggiraphExtra**        Make Interactive ggplot2. Extension to ggplot2 and ggiraph                                 
+**ggjoy**               Joyplots in ggplot2                                                                        
+**gglasso**             Group Lasso Penalized Learning Using a Unified BMD Algorithm                               
+**gglogo**              Geom for Logo Sequence Plots                                                               
+**ggloop**              Create ggplot2 Plots in a Loop                                                             
+**gglorenz**            Plotting Lorenz Curve with the Blessing of ggplot2                                         
+**ggm**                 Functions for graphical Markov models                                                      
+**ggmap**               Spatial Visualization with ggplot2                                                         
+**ggmcmc**              Tools for Analyzing MCMC Simulations from Bayesian Inference                               
+**ggmosaic**            Mosaic Plots in the ggplot2 Framework                                                      
+**ggmr**                Generalized Gauss Markov Regression                                                        
+**ggmsa**               Plot Multiple Sequence Alignment using ggplot2                                             
+**ggmuller**            Create Muller Plots of Evolutionary Dynamics                                               
+**ggnetwork**           Geometries to Plot Networks with ggplot2                                                   
+**ggnewscale**          Multiple Fill and Color Scales in ggplot2                                                  
+**ggnormalviolin**      A ggplot2 Extension to Make Normal Violin Plots                                            
+**ggpage**              Creates Page Layout Visualizations                                                         
+**ggparallel**          Variations of Parallel Coordinate Plots for Categorical Data                               
+**ggparliament**        Parliament Plots                                                                           
+**ggparty**             ggplot Visualizations for the partykit Package                                             
+**ggperiodic**          Easy Plotting of Periodic Data with ggplot2                                                
+**ggplot.multistats**   Multiple Summary Statistics for Binned Stats/Geometries                                    
+**ggplot2**             Create Elegant Data Visualisations Using the Grammar of Graphics                           
+**ggplot2movies**       Movies Data                                                                                
+**ggplotAssist**        RStudio Addin for Teaching and Learning ggplot2                                            
+**ggplotgui**           Create Ggplots via a Graphical User Interface                                              
+**ggplotify**           Convert Plot to grob or ggplot Object                                                      
+**ggplotlyExtra**       Extra Convenience Functions for Plotly                                                     
+**ggpmisc**             Miscellaneous Extensions to ggplot2                                                        
+**ggPMX**               ggplot2 Based Tool to Facilitate Diagnostic Plots for NLME Models                          
+**ggpointdensity**      A Cross Between a 2D Density Plot and a Scatter Plot                                       
+**ggpol**               Visualizing Social Science Data with ggplot2                                               
+**ggpolypath**          Polygons with Holes for the Grammar of Graphics                                            
+**ggpubr**              ggplot2 Based Publication Ready Plots                                                      
+**ggpval**              Annotate Statistical Tests for ggplot2                                                     
+**ggQC**                Quality Control Charts for ggplot                                                          
+**ggQQunif**            Compare Big Datasets to the Uniform Distribution                                           
+**ggquickeda**          Quickly Explore Your Data Using ggplot2 and table1 Summary Tables                          
+**ggquiver**            Quiver Plots for ggplot2                                                                   
+**ggRandomForests**     Visually Exploring Random Forests                                                          
+**ggraph**              An Implementation of Grammar of Graphics for Graphs and Networks                           
+**ggraptR**             Allows Interactive Visualization of Data Through a Web Browser GUI                         
+**ggrasp**              Gaussian-Based Genome Representative Selector with Prioritization                          
+**ggrepel**             Automatically Position Non-Overlapping Text Labels with ggplot2                            
+**ggResidpanel**        Panels and Interactive Versions of Diagnostic Plots using ggplot2                          
+**ggridges**            Ridgeline Plots in ggplot2                                                                 
+**ggROC**               package for roc curve plot with ggplot2                                                    
+**ggroups**             Pedigree and Genetic Groups                                                                
+**ggsci**               Scientific Journal and Sci-Fi Themed Color Palettes for ggplot2                            
+**ggseas**              stats for Seasonal Adjustment on the Fly with ggplot2                                      
+**ggseqlogo**           A ggplot2 Extension for Drawing Publication-Ready Sequence Logos                           
+**ggsignif**            Significance Brackets for ggplot2                                                          
+**ggsn**                North Symbols and Scale Bars for Maps Created with ggplot2 or ggmap                        
+**ggsoccer**            Plot Soccer Event Data                                                                     
+**ggsolvencyii**        A ggplot2-Plot of Composition of Solvency II SCR: SF and IM                                
+**ggsom**               New Data Visualisations for SOMs Cluster                                                   
+**ggspatial**           Spatial Data Framework for ggplot2                                                         
+**ggspectra**           Extensions to ggplot2 for Radiation Spectra                                                
+**ggstance**            Horizontal ggplot2 Components                                                              
+**ggstatsplot**         ggplot2 Based Plots with Statistical Details                                               
+**ggswissmaps**         Offers Various Swiss Maps as Data Frames and ggplot2 Objects                               
+**ggtern**              An Extension to ggplot2, for the Creation of Ternary Diagrams                              
+**ggThemeAssist**       Add-in to Customize ggplot2 Themes                                                         
+**ggthemes**            Extra Themes, Scales and Geoms for ggplot2                                                 
+**ggTimeSeries**        Time Series Visualisations Using the Grammar of Graphics                                   
+**ggupset**             Combination Matrix Axis for ggplot2 to Create UpSet Plots                                  
+**ggVennDiagram**       A ggplot2 Implement of Venn Diagram                                                        
+**ggversa**             Graficas Versatiles Con ggplot2                                                            
+**ggvis**               Interactive Grammar of Graphics                                                            
+**ggvoronoi**           Voronoi Diagrams and Heatmaps with ggplot2                                                 
+**ggwordcloud**         A Word Cloud Geom for ggplot2                                                              
+
 David Robinson 给出为何使用 ggplot2 [^why-ggplot2] 当然也有 Jeff Leek 指出在某些重要场合不适合 ggplot2 [^why-not-ggplot2] 并且给出强有力的 [证据](http://motioninsocial.com/tufte/)，其实不管怎么样，适合自己的才是好的。也不枉费 Garrick Aden-Buie 花费 160 页幻灯片逐步分解介绍 [优雅的ggplot2](https://pkg.garrickadenbuie.com/gentle-ggplot2)，[Malcolm Barrett](https://malco.io/) 也介绍了 [ggplot2 基础用法](https://malco.io/slides/hs_ggplot2)，还有 Selva Prabhakaran 精心总结给出了 50 个 ggplot2 数据可视化的 [例子](https://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html) 以及 Victor Perrier 为小白用 ggplot2 操碎了心地开发 RStudio 插件 [esquisse](https://github.com/dreamRs/esquisse) 包，Claus O. Wilke 教你一步步创建出版级的图形 <https://github.com/clauswilke/practical_ggplot2>。
 
 GGplot2 是十分方便的统计作图工具，相比 Base R，为了一张出版级的图形，不需要去调整每个参数，实现快速出图。集成了很多其它统计计算的 R 包，支持丰富的统计分析和计算功能，如回归、平滑等，实现了作图和模型的无缝连接。比如图\@ref(fig:awesome-ggplot2)，使用 loess 局部多项式平滑得到数据的趋势，不仅仅是散点图，代码量也非常少。

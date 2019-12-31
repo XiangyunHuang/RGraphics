@@ -49,6 +49,45 @@
 
 
 
+<script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+<script src="libs/proj4js-2.3.15/proj4.js"></script>
+<link href="libs/highcharts-7.2.1/css/motion.css" rel="stylesheet" />
+<script src="libs/highcharts-7.2.1/highcharts.js"></script>
+<script src="libs/highcharts-7.2.1/highcharts-3d.js"></script>
+<script src="libs/highcharts-7.2.1/highcharts-more.js"></script>
+<script src="libs/highcharts-7.2.1/modules/stock.js"></script>
+<script src="libs/highcharts-7.2.1/modules/map.js"></script>
+<script src="libs/highcharts-7.2.1/modules/annotations.js"></script>
+<script src="libs/highcharts-7.2.1/modules/boost.js"></script>
+<script src="libs/highcharts-7.2.1/modules/data.js"></script>
+<script src="libs/highcharts-7.2.1/modules/drag-panes.js"></script>
+<script src="libs/highcharts-7.2.1/modules/drilldown.js"></script>
+<script src="libs/highcharts-7.2.1/modules/item-series.js"></script>
+<script src="libs/highcharts-7.2.1/modules/offline-exporting.js"></script>
+<script src="libs/highcharts-7.2.1/modules/overlapping-datalabels.js"></script>
+<script src="libs/highcharts-7.2.1/modules/exporting.js"></script>
+<script src="libs/highcharts-7.2.1/modules/export-data.js"></script>
+<script src="libs/highcharts-7.2.1/modules/funnel.js"></script>
+<script src="libs/highcharts-7.2.1/modules/heatmap.js"></script>
+<script src="libs/highcharts-7.2.1/modules/treemap.js"></script>
+<script src="libs/highcharts-7.2.1/modules/sankey.js"></script>
+<script src="libs/highcharts-7.2.1/modules/organization.js"></script>
+<script src="libs/highcharts-7.2.1/modules/solid-gauge.js"></script>
+<script src="libs/highcharts-7.2.1/modules/streamgraph.js"></script>
+<script src="libs/highcharts-7.2.1/modules/sunburst.js"></script>
+<script src="libs/highcharts-7.2.1/modules/vector.js"></script>
+<script src="libs/highcharts-7.2.1/modules/wordcloud.js"></script>
+<script src="libs/highcharts-7.2.1/modules/xrange.js"></script>
+<script src="libs/highcharts-7.2.1/modules/tilemap.js"></script>
+<script src="libs/highcharts-7.2.1/modules/venn.js"></script>
+<script src="libs/highcharts-7.2.1/modules/gantt.js"></script>
+<script src="libs/highcharts-7.2.1/modules/timeline.js"></script>
+<script src="libs/highcharts-7.2.1/modules/parallel-coordinates.js"></script>
+<script src="libs/highcharts-7.2.1/modules/bullet.js"></script>
+<script src="libs/highcharts-7.2.1/modules/coloraxis.js"></script>
+<script src="libs/highcharts-7.2.1/plugins/motion.js"></script>
+<script src="libs/highcharts-7.2.1/custom/reset.js"></script>
+<script src="libs/highchart-binding-0.7.0.9001/highchart.js"></script>
 
 
 <style type="text/css">
@@ -249,13 +288,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.6" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#base-search"><i class="fa fa-check"></i><b>6.6</b> 字符串查询</a></li>
 <li class="chapter" data-level="6.7" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#base-replacement"><i class="fa fa-check"></i><b>6.7</b> 字符串替换</a></li>
 <li class="chapter" data-level="6.8" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#base-extract"><i class="fa fa-check"></i><b>6.8</b> 字符串提取</a></li>
-<li class="chapter" data-level="6.9" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#other-string-op"><i class="fa fa-check"></i><b>6.9</b> 其它操作</a><ul>
-<li class="chapter" data-level="6.9.1" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#strwrap"><i class="fa fa-check"></i><b>6.9.1</b> strwrap</a></li>
-<li class="chapter" data-level="6.9.2" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#strtrim"><i class="fa fa-check"></i><b>6.9.2</b> strtrim</a></li>
-<li class="chapter" data-level="6.9.3" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#strrep"><i class="fa fa-check"></i><b>6.9.3</b> strrep</a></li>
-<li class="chapter" data-level="6.9.4" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#trimws"><i class="fa fa-check"></i><b>6.9.4</b> trimws</a></li>
+<li class="chapter" data-level="6.9" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#subsubsec:named-capture"><i class="fa fa-check"></i><b>6.9</b> 命名捕捉</a></li>
+<li class="chapter" data-level="6.10" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#subsubsec:exact-match"><i class="fa fa-check"></i><b>6.10</b> 精确匹配</a></li>
+<li class="chapter" data-level="6.11" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#subsubsec:fuzzy-match"><i class="fa fa-check"></i><b>6.11</b> 模糊匹配</a></li>
+<li class="chapter" data-level="6.12" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#subsubsec:replace"><i class="fa fa-check"></i><b>6.12</b> 高级的替换</a></li>
+<li class="chapter" data-level="6.13" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#subsubsec:extract"><i class="fa fa-check"></i><b>6.13</b> 高级的提取</a></li>
+<li class="chapter" data-level="6.14" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#other-string-op"><i class="fa fa-check"></i><b>6.14</b> 其它操作</a><ul>
+<li class="chapter" data-level="6.14.1" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#strwrap"><i class="fa fa-check"></i><b>6.14.1</b> strwrap</a></li>
+<li class="chapter" data-level="6.14.2" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#strtrim"><i class="fa fa-check"></i><b>6.14.2</b> strtrim</a></li>
+<li class="chapter" data-level="6.14.3" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#strrep"><i class="fa fa-check"></i><b>6.14.3</b> strrep</a></li>
+<li class="chapter" data-level="6.14.4" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#trimws"><i class="fa fa-check"></i><b>6.14.4</b> trimws</a></li>
 </ul></li>
-<li class="chapter" data-level="6.10" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#string-session-info"><i class="fa fa-check"></i><b>6.10</b> 运行环境</a></li>
+<li class="chapter" data-level="6.15" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#string-session-info"><i class="fa fa-check"></i><b>6.15</b> 运行环境</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="dc-regular-expressions.html"><a href="dc-regular-expressions.html"><i class="fa fa-check"></i><b>7</b> 正则表达式</a><ul>
 <li class="chapter" data-level="7.1" data-path="dc-regular-expressions.html"><a href="dc-regular-expressions.html#character-constants"><i class="fa fa-check"></i><b>7.1</b> 字符常量</a></li>
@@ -357,51 +401,90 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="12.3" data-path="dv-colors-fonts.html"><a href="dv-colors-fonts.html#fonts"><i class="fa fa-check"></i><b>12.3</b> 字体</a></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html"><i class="fa fa-check"></i><b>13</b> 时空可视化</a><ul>
-<li class="chapter" data-level="13.1" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#map"><i class="fa fa-check"></i><b>13.1</b> 地图</a><ul>
-<li class="chapter" data-level="13.1.1" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#project-orientation"><i class="fa fa-check"></i><b>13.1.1</b> 投影和观察方位</a></li>
-<li class="chapter" data-level="13.1.2" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#USA-crime-rates"><i class="fa fa-check"></i><b>13.1.2</b> 美国各州犯罪率</a></li>
-<li class="chapter" data-level="13.1.3" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#fiji-earthquake-map"><i class="fa fa-check"></i><b>13.1.3</b> 斐济地震带</a></li>
-<li class="chapter" data-level="13.1.4" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#USA-unemployment-ratio"><i class="fa fa-check"></i><b>13.1.4</b> 美国各城镇失业率</a></li>
+<li class="chapter" data-level="13" data-path="dv-highcharter.html"><a href="dv-highcharter.html"><i class="fa fa-check"></i><b>13</b> highcharter 图形</a><ul>
+<li class="chapter" data-level="13.1" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsec:hc-line"><i class="fa fa-check"></i><b>13.1</b> 折线图</a><ul>
+<li class="chapter" data-level="13.1.1" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsubsec:simple-hc-line"><i class="fa fa-check"></i><b>13.1.1</b> 简单折线图</a></li>
+<li class="chapter" data-level="13.1.2" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsubsec:group-hc-line"><i class="fa fa-check"></i><b>13.1.2</b> 分组折线图</a></li>
+<li class="chapter" data-level="13.1.3" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsubsec:ts-hc-line"><i class="fa fa-check"></i><b>13.1.3</b> 时间序列图</a></li>
 </ul></li>
-<li class="chapter" data-level="13.2" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#spatial-op"><i class="fa fa-check"></i><b>13.2</b> 空间数据对象</a><ul>
-<li class="chapter" data-level="13.2.1" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#ggplot2-sp"><i class="fa fa-check"></i><b>13.2.1</b> sp</a></li>
-<li class="chapter" data-level="13.2.2" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#ggplot2-raster"><i class="fa fa-check"></i><b>13.2.2</b> raster</a></li>
-<li class="chapter" data-level="13.2.3" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#ggplot2-sf"><i class="fa fa-check"></i><b>13.2.3</b> sf</a></li>
+<li class="chapter" data-level="13.2" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsec:hc-scatter"><i class="fa fa-check"></i><b>13.2</b> 散点图</a><ul>
+<li class="chapter" data-level="13.2.1" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsubsec:simple-hc-scatter"><i class="fa fa-check"></i><b>13.2.1</b> 简单散点图</a></li>
+<li class="chapter" data-level="13.2.2" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsubsec:group-hc-scatter"><i class="fa fa-check"></i><b>13.2.2</b> 分组散点图</a></li>
+</ul></li>
+<li class="chapter" data-level="13.3" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsec:hc-bar"><i class="fa fa-check"></i><b>13.3</b> 条形图</a><ul>
+<li class="chapter" data-level="13.3.1" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsubsec:simple-hc-bar"><i class="fa fa-check"></i><b>13.3.1</b> 简单条形图</a></li>
+<li class="chapter" data-level="13.3.2" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsubsec:dodge-hc-bar"><i class="fa fa-check"></i><b>13.3.2</b> 复合条形图</a></li>
+<li class="chapter" data-level="13.3.3" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsubsec:stack-hc-bar"><i class="fa fa-check"></i><b>13.3.3</b> 堆积条形图</a></li>
+<li class="chapter" data-level="13.3.4" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsubsec:fill-hc-bar"><i class="fa fa-check"></i><b>13.3.4</b> 百分比条形图</a></li>
+</ul></li>
+<li class="chapter" data-level="13.4" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsec:hc-boxplot"><i class="fa fa-check"></i><b>13.4</b> 箱线图</a><ul>
+<li class="chapter" data-level="13.4.1" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsubsec:simple-hc-boxplot"><i class="fa fa-check"></i><b>13.4.1</b> 简单箱线图</a></li>
+<li class="chapter" data-level="13.4.2" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subssubsec:dodge-hc-boxplot"><i class="fa fa-check"></i><b>13.4.2</b> 复合箱线图</a></li>
+</ul></li>
+<li class="chapter" data-level="13.5" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsec:hc-density"><i class="fa fa-check"></i><b>13.5</b> 密度图</a></li>
+<li class="chapter" data-level="13.6" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsec:hc-hist"><i class="fa fa-check"></i><b>13.6</b> 直方图</a></li>
+<li class="chapter" data-level="13.7" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsec:hc-survival"><i class="fa fa-check"></i><b>13.7</b> 生存图</a></li>
+<li class="chapter" data-level="13.8" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsec:hc-heatmap"><i class="fa fa-check"></i><b>13.8</b> 等高图</a></li>
+<li class="chapter" data-level="13.9" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsec:hc-corrplot"><i class="fa fa-check"></i><b>13.9</b> 相关图</a></li>
+<li class="chapter" data-level="13.10" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsec:hc-treemap"><i class="fa fa-check"></i><b>13.10</b> 矩阵图</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="dv-lattice.html"><a href="dv-lattice.html"><i class="fa fa-check"></i><b>14</b> Lattice 图形</a><ul>
+<li class="chapter" data-level="14.1" data-path="dv-lattice.html"><a href="dv-lattice.html#sec:boxplot"><i class="fa fa-check"></i><b>14.1</b> 箱线图</a></li>
+<li class="chapter" data-level="14.2" data-path="dv-lattice.html"><a href="dv-lattice.html#sec:line"><i class="fa fa-check"></i><b>14.2</b> 折线图</a></li>
+<li class="chapter" data-level="14.3" data-path="dv-lattice.html"><a href="dv-lattice.html#sec:smooth"><i class="fa fa-check"></i><b>14.3</b> 平滑图</a></li>
+<li class="chapter" data-level="14.4" data-path="dv-lattice.html"><a href="dv-lattice.html#sec:dotplot"><i class="fa fa-check"></i><b>14.4</b> 点图</a></li>
+<li class="chapter" data-level="14.5" data-path="dv-lattice.html"><a href="dv-lattice.html#sec:step"><i class="fa fa-check"></i><b>14.5</b> 阶梯图</a></li>
+<li class="chapter" data-level="14.6" data-path="dv-lattice.html"><a href="dv-lattice.html#sec:facet"><i class="fa fa-check"></i><b>14.6</b> 分面图</a></li>
+<li class="chapter" data-level="14.7" data-path="dv-lattice.html"><a href="dv-lattice.html#sec:contour"><i class="fa fa-check"></i><b>14.7</b> 等高线图</a></li>
+<li class="chapter" data-level="14.8" data-path="dv-lattice.html"><a href="dv-lattice.html#sub:map"><i class="fa fa-check"></i><b>14.8</b> 地图</a></li>
+<li class="chapter" data-level="14.9" data-path="dv-lattice.html"><a href="dv-lattice.html#sub:cluster"><i class="fa fa-check"></i><b>14.9</b> 聚类图</a></li>
+<li class="chapter" data-level="14.10" data-path="dv-lattice.html"><a href="dv-lattice.html#sec:lattice-sessioninfo"><i class="fa fa-check"></i><b>14.10</b> 运行环境</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html"><i class="fa fa-check"></i><b>15</b> 时空可视化</a><ul>
+<li class="chapter" data-level="15.1" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#map"><i class="fa fa-check"></i><b>15.1</b> 地图</a><ul>
+<li class="chapter" data-level="15.1.1" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#project-orientation"><i class="fa fa-check"></i><b>15.1.1</b> 投影和观察方位</a></li>
+<li class="chapter" data-level="15.1.2" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#USA-crime-rates"><i class="fa fa-check"></i><b>15.1.2</b> 美国各州犯罪率</a></li>
+<li class="chapter" data-level="15.1.3" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#fiji-earthquake-map"><i class="fa fa-check"></i><b>15.1.3</b> 斐济地震带</a></li>
+<li class="chapter" data-level="15.1.4" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#USA-unemployment-ratio"><i class="fa fa-check"></i><b>15.1.4</b> 美国各城镇失业率</a></li>
+</ul></li>
+<li class="chapter" data-level="15.2" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#spatial-op"><i class="fa fa-check"></i><b>15.2</b> 空间数据对象</a><ul>
+<li class="chapter" data-level="15.2.1" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#ggplot2-sp"><i class="fa fa-check"></i><b>15.2.1</b> sp</a></li>
+<li class="chapter" data-level="15.2.2" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#ggplot2-raster"><i class="fa fa-check"></i><b>15.2.2</b> raster</a></li>
+<li class="chapter" data-level="15.2.3" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#ggplot2-sf"><i class="fa fa-check"></i><b>15.2.3</b> sf</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="dynamic-documents.html"><a href="dynamic-documents.html"><i class="fa fa-check"></i><b>14</b> 动态性文档</a><ul>
+<li class="chapter" data-level="16" data-path="dynamic-documents.html"><a href="dynamic-documents.html"><i class="fa fa-check"></i><b>16</b> 动态性文档</a><ul>
 <li class="chapter" data-level="" data-path="dynamic-documents.html"><a href="dynamic-documents.html#sessioninfo"><i class="fa fa-check"></i>软件信息</a></li>
 <li class="chapter" data-level="" data-path="dynamic-documents.html"><a href="dynamic-documents.html#r-call-python"><i class="fa fa-check"></i>R 调用 Python</a></li>
-<li class="chapter" data-level="14.1" data-path="dynamic-documents.html"><a href="dynamic-documents.html#markdown"><i class="fa fa-check"></i><b>14.1</b> Markdown</a><ul>
-<li class="chapter" data-level="14.1.1" data-path="dynamic-documents.html"><a href="dynamic-documents.html#markdown-list"><i class="fa fa-check"></i><b>14.1.1</b> 列表</a></li>
-<li class="chapter" data-level="14.1.2" data-path="dynamic-documents.html"><a href="dynamic-documents.html#markdown-emphasis"><i class="fa fa-check"></i><b>14.1.2</b> 强调</a></li>
-<li class="chapter" data-level="14.1.3" data-path="dynamic-documents.html"><a href="dynamic-documents.html#markdown-quote"><i class="fa fa-check"></i><b>14.1.3</b> 引用</a></li>
-<li class="chapter" data-level="14.1.4" data-path="dynamic-documents.html"><a href="dynamic-documents.html#markdown-table"><i class="fa fa-check"></i><b>14.1.4</b> 表格</a></li>
-<li class="chapter" data-level="14.1.5" data-path="dynamic-documents.html"><a href="dynamic-documents.html#image"><i class="fa fa-check"></i><b>14.1.5</b> 图片</a></li>
-<li class="chapter" data-level="14.1.6" data-path="dynamic-documents.html"><a href="dynamic-documents.html#markdown-math"><i class="fa fa-check"></i><b>14.1.6</b> 公式</a></li>
+<li class="chapter" data-level="16.1" data-path="dynamic-documents.html"><a href="dynamic-documents.html#markdown"><i class="fa fa-check"></i><b>16.1</b> Markdown</a><ul>
+<li class="chapter" data-level="16.1.1" data-path="dynamic-documents.html"><a href="dynamic-documents.html#markdown-list"><i class="fa fa-check"></i><b>16.1.1</b> 列表</a></li>
+<li class="chapter" data-level="16.1.2" data-path="dynamic-documents.html"><a href="dynamic-documents.html#markdown-emphasis"><i class="fa fa-check"></i><b>16.1.2</b> 强调</a></li>
+<li class="chapter" data-level="16.1.3" data-path="dynamic-documents.html"><a href="dynamic-documents.html#markdown-quote"><i class="fa fa-check"></i><b>16.1.3</b> 引用</a></li>
+<li class="chapter" data-level="16.1.4" data-path="dynamic-documents.html"><a href="dynamic-documents.html#markdown-table"><i class="fa fa-check"></i><b>16.1.4</b> 表格</a></li>
+<li class="chapter" data-level="16.1.5" data-path="dynamic-documents.html"><a href="dynamic-documents.html#image"><i class="fa fa-check"></i><b>16.1.5</b> 图片</a></li>
+<li class="chapter" data-level="16.1.6" data-path="dynamic-documents.html"><a href="dynamic-documents.html#markdown-math"><i class="fa fa-check"></i><b>16.1.6</b> 公式</a></li>
 </ul></li>
-<li class="chapter" data-level="14.2" data-path="dynamic-documents.html"><a href="dynamic-documents.html#pandoc-markdown"><i class="fa fa-check"></i><b>14.2</b> Pandoc’s Markdown</a></li>
-<li class="chapter" data-level="14.3" data-path="dynamic-documents.html"><a href="dynamic-documents.html#r-markdown"><i class="fa fa-check"></i><b>14.3</b> R Markdown</a><ul>
-<li class="chapter" data-level="14.3.1" data-path="dynamic-documents.html"><a href="dynamic-documents.html#语法高亮"><i class="fa fa-check"></i><b>14.3.1</b> 语法高亮</a></li>
+<li class="chapter" data-level="16.2" data-path="dynamic-documents.html"><a href="dynamic-documents.html#pandoc-markdown"><i class="fa fa-check"></i><b>16.2</b> Pandoc’s Markdown</a></li>
+<li class="chapter" data-level="16.3" data-path="dynamic-documents.html"><a href="dynamic-documents.html#r-markdown"><i class="fa fa-check"></i><b>16.3</b> R Markdown</a><ul>
+<li class="chapter" data-level="16.3.1" data-path="dynamic-documents.html"><a href="dynamic-documents.html#语法高亮"><i class="fa fa-check"></i><b>16.3.1</b> 语法高亮</a></li>
 </ul></li>
-<li class="chapter" data-level="14.4" data-path="dynamic-documents.html"><a href="dynamic-documents.html#table-style"><i class="fa fa-check"></i><b>14.4</b> 表格样式</a><ul>
-<li class="chapter" data-level="14.4.1" data-path="dynamic-documents.html"><a href="dynamic-documents.html#table-html"><i class="fa fa-check"></i><b>14.4.1</b> HTML 样式</a></li>
-<li class="chapter" data-level="14.4.2" data-path="dynamic-documents.html"><a href="dynamic-documents.html#table-latex"><i class="fa fa-check"></i><b>14.4.2</b> LaTeX 样式</a></li>
+<li class="chapter" data-level="16.4" data-path="dynamic-documents.html"><a href="dynamic-documents.html#table-style"><i class="fa fa-check"></i><b>16.4</b> 表格样式</a><ul>
+<li class="chapter" data-level="16.4.1" data-path="dynamic-documents.html"><a href="dynamic-documents.html#table-html"><i class="fa fa-check"></i><b>16.4.1</b> HTML 样式</a></li>
+<li class="chapter" data-level="16.4.2" data-path="dynamic-documents.html"><a href="dynamic-documents.html#table-latex"><i class="fa fa-check"></i><b>16.4.2</b> LaTeX 样式</a></li>
 </ul></li>
-<li class="chapter" data-level="14.5" data-path="dynamic-documents.html"><a href="dynamic-documents.html#rmarkdown-addins"><i class="fa fa-check"></i><b>14.5</b> 插件</a></li>
+<li class="chapter" data-level="16.5" data-path="dynamic-documents.html"><a href="dynamic-documents.html#rmarkdown-addins"><i class="fa fa-check"></i><b>16.5</b> 插件</a></li>
 </ul></li>
-<li class="chapter" data-level="15" data-path="cs-cran-network.html"><a href="cs-cran-network.html"><i class="fa fa-check"></i><b>15</b> 案例：分析 CRAN</a><ul>
-<li class="chapter" data-level="15.1" data-path="cs-cran-network.html"><a href="cs-cran-network.html#R-Core-Team"><i class="fa fa-check"></i><b>15.1</b> R 核心团队</a></li>
-<li class="chapter" data-level="15.2" data-path="cs-cran-network.html"><a href="cs-cran-network.html#Top-Creators"><i class="fa fa-check"></i><b>15.2</b> 高产的开发者</a></li>
-<li class="chapter" data-level="15.3" data-path="cs-cran-network.html"><a href="cs-cran-network.html#R-Package-Developers"><i class="fa fa-check"></i><b>15.3</b> 社区开发者</a></li>
-<li class="chapter" data-level="15.4" data-path="cs-cran-network.html"><a href="cs-cran-network.html#first-commit"><i class="fa fa-check"></i><b>15.4</b> 首次贡献 R 包</a></li>
-<li class="chapter" data-level="15.5" data-path="cs-cran-network.html"><a href="cs-cran-network.html#Contribution-Network"><i class="fa fa-check"></i><b>15.5</b> 贡献关系网络</a></li>
-<li class="chapter" data-level="15.6" data-path="cs-cran-network.html"><a href="cs-cran-network.html#CRAN-Update-Packages"><i class="fa fa-check"></i><b>15.6</b> 更新知多少</a></li>
-<li class="chapter" data-level="15.7" data-path="cs-cran-network.html"><a href="cs-cran-network.html#Package-Licenses"><i class="fa fa-check"></i><b>15.7</b> 使用许可证</a></li>
-<li class="chapter" data-level="15.8" data-path="cs-cran-network.html"><a href="cs-cran-network.html#r-包增长速度"><i class="fa fa-check"></i><b>15.8</b> R 包增长速度</a></li>
-<li class="chapter" data-level="15.9" data-path="cs-cran-network.html"><a href="cs-cran-network.html#Choose-Package"><i class="fa fa-check"></i><b>15.9</b> 选择 R 包</a></li>
-<li class="chapter" data-level="15.10" data-path="cs-cran-network.html"><a href="cs-cran-network.html#cs-network-session-info"><i class="fa fa-check"></i><b>15.10</b> 运行环境</a></li>
+<li class="chapter" data-level="17" data-path="cs-cran-network.html"><a href="cs-cran-network.html"><i class="fa fa-check"></i><b>17</b> 案例：分析 CRAN</a><ul>
+<li class="chapter" data-level="17.1" data-path="cs-cran-network.html"><a href="cs-cran-network.html#R-Core-Team"><i class="fa fa-check"></i><b>17.1</b> R 核心团队</a></li>
+<li class="chapter" data-level="17.2" data-path="cs-cran-network.html"><a href="cs-cran-network.html#Top-Creators"><i class="fa fa-check"></i><b>17.2</b> 高产的开发者</a></li>
+<li class="chapter" data-level="17.3" data-path="cs-cran-network.html"><a href="cs-cran-network.html#R-Package-Developers"><i class="fa fa-check"></i><b>17.3</b> 社区开发者</a></li>
+<li class="chapter" data-level="17.4" data-path="cs-cran-network.html"><a href="cs-cran-network.html#first-commit"><i class="fa fa-check"></i><b>17.4</b> 首次贡献 R 包</a></li>
+<li class="chapter" data-level="17.5" data-path="cs-cran-network.html"><a href="cs-cran-network.html#Contribution-Network"><i class="fa fa-check"></i><b>17.5</b> 贡献关系网络</a></li>
+<li class="chapter" data-level="17.6" data-path="cs-cran-network.html"><a href="cs-cran-network.html#CRAN-Update-Packages"><i class="fa fa-check"></i><b>17.6</b> 更新知多少</a></li>
+<li class="chapter" data-level="17.7" data-path="cs-cran-network.html"><a href="cs-cran-network.html#Package-Licenses"><i class="fa fa-check"></i><b>17.7</b> 使用许可证</a></li>
+<li class="chapter" data-level="17.8" data-path="cs-cran-network.html"><a href="cs-cran-network.html#r-包增长速度"><i class="fa fa-check"></i><b>17.8</b> R 包增长速度</a></li>
+<li class="chapter" data-level="17.9" data-path="cs-cran-network.html"><a href="cs-cran-network.html#Choose-Package"><i class="fa fa-check"></i><b>17.9</b> 选择 R 包</a></li>
+<li class="chapter" data-level="17.10" data-path="cs-cran-network.html"><a href="cs-cran-network.html#cs-network-session-info"><i class="fa fa-check"></i><b>17.10</b> 运行环境</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="99-references.html"><a href="99-references.html"><i class="fa fa-check"></i>参考文献</a></li>
 <li class="divider"></li>
@@ -428,18 +511,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">第 10 章</span> 交互式图形</h1>
 <div id="plotly" class="section level2">
 <h2><span class="header-section-number">10.1</span> plotly</h2>
-<div class="sourceCode" id="cb542"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb542-1"><a href="dv-plotly.html#cb542-1"></a><span class="kw">library</span>(plotly, <span class="dt">warn.conflicts =</span> <span class="ot">FALSE</span>, <span class="dt">quietly =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb542-2"><a href="dv-plotly.html#cb542-2"></a>p1 &lt;-<span class="st"> </span><span class="kw">plot_ly</span>(diamonds, <span class="dt">x =</span> <span class="op">~</span>price) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">add_histogram</span>(<span class="dt">name =</span> <span class="st">&quot;plotly.js&quot;</span>)</span>
-<span id="cb542-3"><a href="dv-plotly.html#cb542-3"></a></span>
-<span id="cb542-4"><a href="dv-plotly.html#cb542-4"></a>price_hist &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">method =</span> <span class="st">&quot;FD&quot;</span>) {</span>
-<span id="cb542-5"><a href="dv-plotly.html#cb542-5"></a>  h &lt;-<span class="st"> </span><span class="kw">hist</span>(diamonds<span class="op">$</span>price, <span class="dt">breaks =</span> method, <span class="dt">plot =</span> <span class="ot">FALSE</span>)</span>
-<span id="cb542-6"><a href="dv-plotly.html#cb542-6"></a>  <span class="kw">plot_ly</span>(<span class="dt">x =</span> h<span class="op">$</span>mids, <span class="dt">y =</span> h<span class="op">$</span>counts) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">add_bars</span>(<span class="dt">name =</span> method)</span>
-<span id="cb542-7"><a href="dv-plotly.html#cb542-7"></a>}</span>
-<span id="cb542-8"><a href="dv-plotly.html#cb542-8"></a></span>
-<span id="cb542-9"><a href="dv-plotly.html#cb542-9"></a><span class="kw">subplot</span>(</span>
-<span id="cb542-10"><a href="dv-plotly.html#cb542-10"></a>  p1, <span class="kw">price_hist</span>(), <span class="kw">price_hist</span>(<span class="st">&quot;Sturges&quot;</span>),  <span class="kw">price_hist</span>(<span class="st">&quot;Scott&quot;</span>),</span>
-<span id="cb542-11"><a href="dv-plotly.html#cb542-11"></a>  <span class="dt">nrows =</span> <span class="dv">4</span>, <span class="dt">shareX =</span> <span class="ot">TRUE</span></span>
-<span id="cb542-12"><a href="dv-plotly.html#cb542-12"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb553"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb553-1"><a href="dv-plotly.html#cb553-1"></a><span class="kw">library</span>(plotly, <span class="dt">warn.conflicts =</span> <span class="ot">FALSE</span>, <span class="dt">quietly =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb553-2"><a href="dv-plotly.html#cb553-2"></a>p1 &lt;-<span class="st"> </span><span class="kw">plot_ly</span>(diamonds, <span class="dt">x =</span> <span class="op">~</span>price) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">add_histogram</span>(<span class="dt">name =</span> <span class="st">&quot;plotly.js&quot;</span>)</span>
+<span id="cb553-3"><a href="dv-plotly.html#cb553-3"></a></span>
+<span id="cb553-4"><a href="dv-plotly.html#cb553-4"></a>price_hist &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">method =</span> <span class="st">&quot;FD&quot;</span>) {</span>
+<span id="cb553-5"><a href="dv-plotly.html#cb553-5"></a>  h &lt;-<span class="st"> </span><span class="kw">hist</span>(diamonds<span class="op">$</span>price, <span class="dt">breaks =</span> method, <span class="dt">plot =</span> <span class="ot">FALSE</span>)</span>
+<span id="cb553-6"><a href="dv-plotly.html#cb553-6"></a>  <span class="kw">plot_ly</span>(<span class="dt">x =</span> h<span class="op">$</span>mids, <span class="dt">y =</span> h<span class="op">$</span>counts) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">add_bars</span>(<span class="dt">name =</span> method)</span>
+<span id="cb553-7"><a href="dv-plotly.html#cb553-7"></a>}</span>
+<span id="cb553-8"><a href="dv-plotly.html#cb553-8"></a></span>
+<span id="cb553-9"><a href="dv-plotly.html#cb553-9"></a><span class="kw">subplot</span>(</span>
+<span id="cb553-10"><a href="dv-plotly.html#cb553-10"></a>  p1, <span class="kw">price_hist</span>(), <span class="kw">price_hist</span>(<span class="st">&quot;Sturges&quot;</span>),  <span class="kw">price_hist</span>(<span class="st">&quot;Scott&quot;</span>),</span>
+<span id="cb553-11"><a href="dv-plotly.html#cb553-11"></a>  <span class="dt">nrows =</span> <span class="dv">4</span>, <span class="dt">shareX =</span> <span class="ot">TRUE</span></span>
+<span id="cb553-12"><a href="dv-plotly.html#cb553-12"></a>)</span></code></pre></div>
 <p>Orca (Open-source Report Creator App) 软件针对 plotly.js 库渲染的图形具有很强的导出功能，<a href="https://github.com/plotly/orca#installation">安装 Orca</a> 后，<code>plotly::orca</code> 函数可以将基于 htmlwidget 的 plotly 图形对象导出为高质量静态图片，支持导出 png、pdf 和 svg 等格式。</p>
 <div class="figure" style="text-align: center"><span id="fig:bars-numeric"></span>
 <img src="interactives/bars-numeric.svg" alt="直方图" width="70%" data-url="/interactives/bars-numeric.html" />

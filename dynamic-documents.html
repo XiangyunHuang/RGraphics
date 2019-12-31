@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>第 14 章 动态性文档 | 数据科学与 R 语言</title>
+  <title>第 16 章 动态性文档 | 数据科学与 R 语言</title>
   <meta name="description" content="数据操作、数据分析、数据建模、动态报告和数据可视化" />
   <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="第 14 章 动态性文档 | 数据科学与 R 语言" />
+  <meta property="og:title" content="第 16 章 动态性文档 | 数据科学与 R 语言" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://bookdown.org/xiangyun/RGraphics/" />
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="XiangyunHuang/RGraphics" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="第 14 章 动态性文档 | 数据科学与 R 语言" />
+  <meta name="twitter:title" content="第 16 章 动态性文档 | 数据科学与 R 语言" />
   
   <meta name="twitter:description" content="数据操作、数据分析、数据建模、动态报告和数据可视化" />
   
@@ -49,6 +49,45 @@
 
 
 
+<script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+<script src="libs/proj4js-2.3.15/proj4.js"></script>
+<link href="libs/highcharts-7.2.1/css/motion.css" rel="stylesheet" />
+<script src="libs/highcharts-7.2.1/highcharts.js"></script>
+<script src="libs/highcharts-7.2.1/highcharts-3d.js"></script>
+<script src="libs/highcharts-7.2.1/highcharts-more.js"></script>
+<script src="libs/highcharts-7.2.1/modules/stock.js"></script>
+<script src="libs/highcharts-7.2.1/modules/map.js"></script>
+<script src="libs/highcharts-7.2.1/modules/annotations.js"></script>
+<script src="libs/highcharts-7.2.1/modules/boost.js"></script>
+<script src="libs/highcharts-7.2.1/modules/data.js"></script>
+<script src="libs/highcharts-7.2.1/modules/drag-panes.js"></script>
+<script src="libs/highcharts-7.2.1/modules/drilldown.js"></script>
+<script src="libs/highcharts-7.2.1/modules/item-series.js"></script>
+<script src="libs/highcharts-7.2.1/modules/offline-exporting.js"></script>
+<script src="libs/highcharts-7.2.1/modules/overlapping-datalabels.js"></script>
+<script src="libs/highcharts-7.2.1/modules/exporting.js"></script>
+<script src="libs/highcharts-7.2.1/modules/export-data.js"></script>
+<script src="libs/highcharts-7.2.1/modules/funnel.js"></script>
+<script src="libs/highcharts-7.2.1/modules/heatmap.js"></script>
+<script src="libs/highcharts-7.2.1/modules/treemap.js"></script>
+<script src="libs/highcharts-7.2.1/modules/sankey.js"></script>
+<script src="libs/highcharts-7.2.1/modules/organization.js"></script>
+<script src="libs/highcharts-7.2.1/modules/solid-gauge.js"></script>
+<script src="libs/highcharts-7.2.1/modules/streamgraph.js"></script>
+<script src="libs/highcharts-7.2.1/modules/sunburst.js"></script>
+<script src="libs/highcharts-7.2.1/modules/vector.js"></script>
+<script src="libs/highcharts-7.2.1/modules/wordcloud.js"></script>
+<script src="libs/highcharts-7.2.1/modules/xrange.js"></script>
+<script src="libs/highcharts-7.2.1/modules/tilemap.js"></script>
+<script src="libs/highcharts-7.2.1/modules/venn.js"></script>
+<script src="libs/highcharts-7.2.1/modules/gantt.js"></script>
+<script src="libs/highcharts-7.2.1/modules/timeline.js"></script>
+<script src="libs/highcharts-7.2.1/modules/parallel-coordinates.js"></script>
+<script src="libs/highcharts-7.2.1/modules/bullet.js"></script>
+<script src="libs/highcharts-7.2.1/modules/coloraxis.js"></script>
+<script src="libs/highcharts-7.2.1/plugins/motion.js"></script>
+<script src="libs/highcharts-7.2.1/custom/reset.js"></script>
+<script src="libs/highchart-binding-0.7.0.9001/highchart.js"></script>
 
 
 <style type="text/css">
@@ -249,13 +288,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.6" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#base-search"><i class="fa fa-check"></i><b>6.6</b> 字符串查询</a></li>
 <li class="chapter" data-level="6.7" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#base-replacement"><i class="fa fa-check"></i><b>6.7</b> 字符串替换</a></li>
 <li class="chapter" data-level="6.8" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#base-extract"><i class="fa fa-check"></i><b>6.8</b> 字符串提取</a></li>
-<li class="chapter" data-level="6.9" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#other-string-op"><i class="fa fa-check"></i><b>6.9</b> 其它操作</a><ul>
-<li class="chapter" data-level="6.9.1" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#strwrap"><i class="fa fa-check"></i><b>6.9.1</b> strwrap</a></li>
-<li class="chapter" data-level="6.9.2" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#strtrim"><i class="fa fa-check"></i><b>6.9.2</b> strtrim</a></li>
-<li class="chapter" data-level="6.9.3" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#strrep"><i class="fa fa-check"></i><b>6.9.3</b> strrep</a></li>
-<li class="chapter" data-level="6.9.4" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#trimws"><i class="fa fa-check"></i><b>6.9.4</b> trimws</a></li>
+<li class="chapter" data-level="6.9" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#subsubsec:named-capture"><i class="fa fa-check"></i><b>6.9</b> 命名捕捉</a></li>
+<li class="chapter" data-level="6.10" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#subsubsec:exact-match"><i class="fa fa-check"></i><b>6.10</b> 精确匹配</a></li>
+<li class="chapter" data-level="6.11" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#subsubsec:fuzzy-match"><i class="fa fa-check"></i><b>6.11</b> 模糊匹配</a></li>
+<li class="chapter" data-level="6.12" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#subsubsec:replace"><i class="fa fa-check"></i><b>6.12</b> 高级的替换</a></li>
+<li class="chapter" data-level="6.13" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#subsubsec:extract"><i class="fa fa-check"></i><b>6.13</b> 高级的提取</a></li>
+<li class="chapter" data-level="6.14" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#other-string-op"><i class="fa fa-check"></i><b>6.14</b> 其它操作</a><ul>
+<li class="chapter" data-level="6.14.1" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#strwrap"><i class="fa fa-check"></i><b>6.14.1</b> strwrap</a></li>
+<li class="chapter" data-level="6.14.2" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#strtrim"><i class="fa fa-check"></i><b>6.14.2</b> strtrim</a></li>
+<li class="chapter" data-level="6.14.3" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#strrep"><i class="fa fa-check"></i><b>6.14.3</b> strrep</a></li>
+<li class="chapter" data-level="6.14.4" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#trimws"><i class="fa fa-check"></i><b>6.14.4</b> trimws</a></li>
 </ul></li>
-<li class="chapter" data-level="6.10" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#string-session-info"><i class="fa fa-check"></i><b>6.10</b> 运行环境</a></li>
+<li class="chapter" data-level="6.15" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#string-session-info"><i class="fa fa-check"></i><b>6.15</b> 运行环境</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="dc-regular-expressions.html"><a href="dc-regular-expressions.html"><i class="fa fa-check"></i><b>7</b> 正则表达式</a><ul>
 <li class="chapter" data-level="7.1" data-path="dc-regular-expressions.html"><a href="dc-regular-expressions.html#character-constants"><i class="fa fa-check"></i><b>7.1</b> 字符常量</a></li>
@@ -357,51 +401,90 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="12.3" data-path="dv-colors-fonts.html"><a href="dv-colors-fonts.html#fonts"><i class="fa fa-check"></i><b>12.3</b> 字体</a></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html"><i class="fa fa-check"></i><b>13</b> 时空可视化</a><ul>
-<li class="chapter" data-level="13.1" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#map"><i class="fa fa-check"></i><b>13.1</b> 地图</a><ul>
-<li class="chapter" data-level="13.1.1" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#project-orientation"><i class="fa fa-check"></i><b>13.1.1</b> 投影和观察方位</a></li>
-<li class="chapter" data-level="13.1.2" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#USA-crime-rates"><i class="fa fa-check"></i><b>13.1.2</b> 美国各州犯罪率</a></li>
-<li class="chapter" data-level="13.1.3" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#fiji-earthquake-map"><i class="fa fa-check"></i><b>13.1.3</b> 斐济地震带</a></li>
-<li class="chapter" data-level="13.1.4" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#USA-unemployment-ratio"><i class="fa fa-check"></i><b>13.1.4</b> 美国各城镇失业率</a></li>
+<li class="chapter" data-level="13" data-path="dv-highcharter.html"><a href="dv-highcharter.html"><i class="fa fa-check"></i><b>13</b> highcharter 图形</a><ul>
+<li class="chapter" data-level="13.1" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsec:hc-line"><i class="fa fa-check"></i><b>13.1</b> 折线图</a><ul>
+<li class="chapter" data-level="13.1.1" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsubsec:simple-hc-line"><i class="fa fa-check"></i><b>13.1.1</b> 简单折线图</a></li>
+<li class="chapter" data-level="13.1.2" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsubsec:group-hc-line"><i class="fa fa-check"></i><b>13.1.2</b> 分组折线图</a></li>
+<li class="chapter" data-level="13.1.3" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsubsec:ts-hc-line"><i class="fa fa-check"></i><b>13.1.3</b> 时间序列图</a></li>
 </ul></li>
-<li class="chapter" data-level="13.2" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#spatial-op"><i class="fa fa-check"></i><b>13.2</b> 空间数据对象</a><ul>
-<li class="chapter" data-level="13.2.1" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#ggplot2-sp"><i class="fa fa-check"></i><b>13.2.1</b> sp</a></li>
-<li class="chapter" data-level="13.2.2" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#ggplot2-raster"><i class="fa fa-check"></i><b>13.2.2</b> raster</a></li>
-<li class="chapter" data-level="13.2.3" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#ggplot2-sf"><i class="fa fa-check"></i><b>13.2.3</b> sf</a></li>
+<li class="chapter" data-level="13.2" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsec:hc-scatter"><i class="fa fa-check"></i><b>13.2</b> 散点图</a><ul>
+<li class="chapter" data-level="13.2.1" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsubsec:simple-hc-scatter"><i class="fa fa-check"></i><b>13.2.1</b> 简单散点图</a></li>
+<li class="chapter" data-level="13.2.2" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsubsec:group-hc-scatter"><i class="fa fa-check"></i><b>13.2.2</b> 分组散点图</a></li>
+</ul></li>
+<li class="chapter" data-level="13.3" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsec:hc-bar"><i class="fa fa-check"></i><b>13.3</b> 条形图</a><ul>
+<li class="chapter" data-level="13.3.1" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsubsec:simple-hc-bar"><i class="fa fa-check"></i><b>13.3.1</b> 简单条形图</a></li>
+<li class="chapter" data-level="13.3.2" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsubsec:dodge-hc-bar"><i class="fa fa-check"></i><b>13.3.2</b> 复合条形图</a></li>
+<li class="chapter" data-level="13.3.3" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsubsec:stack-hc-bar"><i class="fa fa-check"></i><b>13.3.3</b> 堆积条形图</a></li>
+<li class="chapter" data-level="13.3.4" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsubsec:fill-hc-bar"><i class="fa fa-check"></i><b>13.3.4</b> 百分比条形图</a></li>
+</ul></li>
+<li class="chapter" data-level="13.4" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsec:hc-boxplot"><i class="fa fa-check"></i><b>13.4</b> 箱线图</a><ul>
+<li class="chapter" data-level="13.4.1" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsubsec:simple-hc-boxplot"><i class="fa fa-check"></i><b>13.4.1</b> 简单箱线图</a></li>
+<li class="chapter" data-level="13.4.2" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subssubsec:dodge-hc-boxplot"><i class="fa fa-check"></i><b>13.4.2</b> 复合箱线图</a></li>
+</ul></li>
+<li class="chapter" data-level="13.5" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsec:hc-density"><i class="fa fa-check"></i><b>13.5</b> 密度图</a></li>
+<li class="chapter" data-level="13.6" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsec:hc-hist"><i class="fa fa-check"></i><b>13.6</b> 直方图</a></li>
+<li class="chapter" data-level="13.7" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsec:hc-survival"><i class="fa fa-check"></i><b>13.7</b> 生存图</a></li>
+<li class="chapter" data-level="13.8" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsec:hc-heatmap"><i class="fa fa-check"></i><b>13.8</b> 等高图</a></li>
+<li class="chapter" data-level="13.9" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsec:hc-corrplot"><i class="fa fa-check"></i><b>13.9</b> 相关图</a></li>
+<li class="chapter" data-level="13.10" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsec:hc-treemap"><i class="fa fa-check"></i><b>13.10</b> 矩阵图</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="dv-lattice.html"><a href="dv-lattice.html"><i class="fa fa-check"></i><b>14</b> Lattice 图形</a><ul>
+<li class="chapter" data-level="14.1" data-path="dv-lattice.html"><a href="dv-lattice.html#sec:boxplot"><i class="fa fa-check"></i><b>14.1</b> 箱线图</a></li>
+<li class="chapter" data-level="14.2" data-path="dv-lattice.html"><a href="dv-lattice.html#sec:line"><i class="fa fa-check"></i><b>14.2</b> 折线图</a></li>
+<li class="chapter" data-level="14.3" data-path="dv-lattice.html"><a href="dv-lattice.html#sec:smooth"><i class="fa fa-check"></i><b>14.3</b> 平滑图</a></li>
+<li class="chapter" data-level="14.4" data-path="dv-lattice.html"><a href="dv-lattice.html#sec:dotplot"><i class="fa fa-check"></i><b>14.4</b> 点图</a></li>
+<li class="chapter" data-level="14.5" data-path="dv-lattice.html"><a href="dv-lattice.html#sec:step"><i class="fa fa-check"></i><b>14.5</b> 阶梯图</a></li>
+<li class="chapter" data-level="14.6" data-path="dv-lattice.html"><a href="dv-lattice.html#sec:facet"><i class="fa fa-check"></i><b>14.6</b> 分面图</a></li>
+<li class="chapter" data-level="14.7" data-path="dv-lattice.html"><a href="dv-lattice.html#sec:contour"><i class="fa fa-check"></i><b>14.7</b> 等高线图</a></li>
+<li class="chapter" data-level="14.8" data-path="dv-lattice.html"><a href="dv-lattice.html#sub:map"><i class="fa fa-check"></i><b>14.8</b> 地图</a></li>
+<li class="chapter" data-level="14.9" data-path="dv-lattice.html"><a href="dv-lattice.html#sub:cluster"><i class="fa fa-check"></i><b>14.9</b> 聚类图</a></li>
+<li class="chapter" data-level="14.10" data-path="dv-lattice.html"><a href="dv-lattice.html#sec:lattice-sessioninfo"><i class="fa fa-check"></i><b>14.10</b> 运行环境</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html"><i class="fa fa-check"></i><b>15</b> 时空可视化</a><ul>
+<li class="chapter" data-level="15.1" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#map"><i class="fa fa-check"></i><b>15.1</b> 地图</a><ul>
+<li class="chapter" data-level="15.1.1" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#project-orientation"><i class="fa fa-check"></i><b>15.1.1</b> 投影和观察方位</a></li>
+<li class="chapter" data-level="15.1.2" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#USA-crime-rates"><i class="fa fa-check"></i><b>15.1.2</b> 美国各州犯罪率</a></li>
+<li class="chapter" data-level="15.1.3" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#fiji-earthquake-map"><i class="fa fa-check"></i><b>15.1.3</b> 斐济地震带</a></li>
+<li class="chapter" data-level="15.1.4" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#USA-unemployment-ratio"><i class="fa fa-check"></i><b>15.1.4</b> 美国各城镇失业率</a></li>
+</ul></li>
+<li class="chapter" data-level="15.2" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#spatial-op"><i class="fa fa-check"></i><b>15.2</b> 空间数据对象</a><ul>
+<li class="chapter" data-level="15.2.1" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#ggplot2-sp"><i class="fa fa-check"></i><b>15.2.1</b> sp</a></li>
+<li class="chapter" data-level="15.2.2" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#ggplot2-raster"><i class="fa fa-check"></i><b>15.2.2</b> raster</a></li>
+<li class="chapter" data-level="15.2.3" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#ggplot2-sf"><i class="fa fa-check"></i><b>15.2.3</b> sf</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="dynamic-documents.html"><a href="dynamic-documents.html"><i class="fa fa-check"></i><b>14</b> 动态性文档</a><ul>
+<li class="chapter" data-level="16" data-path="dynamic-documents.html"><a href="dynamic-documents.html"><i class="fa fa-check"></i><b>16</b> 动态性文档</a><ul>
 <li class="chapter" data-level="" data-path="dynamic-documents.html"><a href="dynamic-documents.html#sessioninfo"><i class="fa fa-check"></i>软件信息</a></li>
 <li class="chapter" data-level="" data-path="dynamic-documents.html"><a href="dynamic-documents.html#r-call-python"><i class="fa fa-check"></i>R 调用 Python</a></li>
-<li class="chapter" data-level="14.1" data-path="dynamic-documents.html"><a href="dynamic-documents.html#markdown"><i class="fa fa-check"></i><b>14.1</b> Markdown</a><ul>
-<li class="chapter" data-level="14.1.1" data-path="dynamic-documents.html"><a href="dynamic-documents.html#markdown-list"><i class="fa fa-check"></i><b>14.1.1</b> 列表</a></li>
-<li class="chapter" data-level="14.1.2" data-path="dynamic-documents.html"><a href="dynamic-documents.html#markdown-emphasis"><i class="fa fa-check"></i><b>14.1.2</b> 强调</a></li>
-<li class="chapter" data-level="14.1.3" data-path="dynamic-documents.html"><a href="dynamic-documents.html#markdown-quote"><i class="fa fa-check"></i><b>14.1.3</b> 引用</a></li>
-<li class="chapter" data-level="14.1.4" data-path="dynamic-documents.html"><a href="dynamic-documents.html#markdown-table"><i class="fa fa-check"></i><b>14.1.4</b> 表格</a></li>
-<li class="chapter" data-level="14.1.5" data-path="dynamic-documents.html"><a href="dynamic-documents.html#image"><i class="fa fa-check"></i><b>14.1.5</b> 图片</a></li>
-<li class="chapter" data-level="14.1.6" data-path="dynamic-documents.html"><a href="dynamic-documents.html#markdown-math"><i class="fa fa-check"></i><b>14.1.6</b> 公式</a></li>
+<li class="chapter" data-level="16.1" data-path="dynamic-documents.html"><a href="dynamic-documents.html#markdown"><i class="fa fa-check"></i><b>16.1</b> Markdown</a><ul>
+<li class="chapter" data-level="16.1.1" data-path="dynamic-documents.html"><a href="dynamic-documents.html#markdown-list"><i class="fa fa-check"></i><b>16.1.1</b> 列表</a></li>
+<li class="chapter" data-level="16.1.2" data-path="dynamic-documents.html"><a href="dynamic-documents.html#markdown-emphasis"><i class="fa fa-check"></i><b>16.1.2</b> 强调</a></li>
+<li class="chapter" data-level="16.1.3" data-path="dynamic-documents.html"><a href="dynamic-documents.html#markdown-quote"><i class="fa fa-check"></i><b>16.1.3</b> 引用</a></li>
+<li class="chapter" data-level="16.1.4" data-path="dynamic-documents.html"><a href="dynamic-documents.html#markdown-table"><i class="fa fa-check"></i><b>16.1.4</b> 表格</a></li>
+<li class="chapter" data-level="16.1.5" data-path="dynamic-documents.html"><a href="dynamic-documents.html#image"><i class="fa fa-check"></i><b>16.1.5</b> 图片</a></li>
+<li class="chapter" data-level="16.1.6" data-path="dynamic-documents.html"><a href="dynamic-documents.html#markdown-math"><i class="fa fa-check"></i><b>16.1.6</b> 公式</a></li>
 </ul></li>
-<li class="chapter" data-level="14.2" data-path="dynamic-documents.html"><a href="dynamic-documents.html#pandoc-markdown"><i class="fa fa-check"></i><b>14.2</b> Pandoc’s Markdown</a></li>
-<li class="chapter" data-level="14.3" data-path="dynamic-documents.html"><a href="dynamic-documents.html#r-markdown"><i class="fa fa-check"></i><b>14.3</b> R Markdown</a><ul>
-<li class="chapter" data-level="14.3.1" data-path="dynamic-documents.html"><a href="dynamic-documents.html#语法高亮"><i class="fa fa-check"></i><b>14.3.1</b> 语法高亮</a></li>
+<li class="chapter" data-level="16.2" data-path="dynamic-documents.html"><a href="dynamic-documents.html#pandoc-markdown"><i class="fa fa-check"></i><b>16.2</b> Pandoc’s Markdown</a></li>
+<li class="chapter" data-level="16.3" data-path="dynamic-documents.html"><a href="dynamic-documents.html#r-markdown"><i class="fa fa-check"></i><b>16.3</b> R Markdown</a><ul>
+<li class="chapter" data-level="16.3.1" data-path="dynamic-documents.html"><a href="dynamic-documents.html#语法高亮"><i class="fa fa-check"></i><b>16.3.1</b> 语法高亮</a></li>
 </ul></li>
-<li class="chapter" data-level="14.4" data-path="dynamic-documents.html"><a href="dynamic-documents.html#table-style"><i class="fa fa-check"></i><b>14.4</b> 表格样式</a><ul>
-<li class="chapter" data-level="14.4.1" data-path="dynamic-documents.html"><a href="dynamic-documents.html#table-html"><i class="fa fa-check"></i><b>14.4.1</b> HTML 样式</a></li>
-<li class="chapter" data-level="14.4.2" data-path="dynamic-documents.html"><a href="dynamic-documents.html#table-latex"><i class="fa fa-check"></i><b>14.4.2</b> LaTeX 样式</a></li>
+<li class="chapter" data-level="16.4" data-path="dynamic-documents.html"><a href="dynamic-documents.html#table-style"><i class="fa fa-check"></i><b>16.4</b> 表格样式</a><ul>
+<li class="chapter" data-level="16.4.1" data-path="dynamic-documents.html"><a href="dynamic-documents.html#table-html"><i class="fa fa-check"></i><b>16.4.1</b> HTML 样式</a></li>
+<li class="chapter" data-level="16.4.2" data-path="dynamic-documents.html"><a href="dynamic-documents.html#table-latex"><i class="fa fa-check"></i><b>16.4.2</b> LaTeX 样式</a></li>
 </ul></li>
-<li class="chapter" data-level="14.5" data-path="dynamic-documents.html"><a href="dynamic-documents.html#rmarkdown-addins"><i class="fa fa-check"></i><b>14.5</b> 插件</a></li>
+<li class="chapter" data-level="16.5" data-path="dynamic-documents.html"><a href="dynamic-documents.html#rmarkdown-addins"><i class="fa fa-check"></i><b>16.5</b> 插件</a></li>
 </ul></li>
-<li class="chapter" data-level="15" data-path="cs-cran-network.html"><a href="cs-cran-network.html"><i class="fa fa-check"></i><b>15</b> 案例：分析 CRAN</a><ul>
-<li class="chapter" data-level="15.1" data-path="cs-cran-network.html"><a href="cs-cran-network.html#R-Core-Team"><i class="fa fa-check"></i><b>15.1</b> R 核心团队</a></li>
-<li class="chapter" data-level="15.2" data-path="cs-cran-network.html"><a href="cs-cran-network.html#Top-Creators"><i class="fa fa-check"></i><b>15.2</b> 高产的开发者</a></li>
-<li class="chapter" data-level="15.3" data-path="cs-cran-network.html"><a href="cs-cran-network.html#R-Package-Developers"><i class="fa fa-check"></i><b>15.3</b> 社区开发者</a></li>
-<li class="chapter" data-level="15.4" data-path="cs-cran-network.html"><a href="cs-cran-network.html#first-commit"><i class="fa fa-check"></i><b>15.4</b> 首次贡献 R 包</a></li>
-<li class="chapter" data-level="15.5" data-path="cs-cran-network.html"><a href="cs-cran-network.html#Contribution-Network"><i class="fa fa-check"></i><b>15.5</b> 贡献关系网络</a></li>
-<li class="chapter" data-level="15.6" data-path="cs-cran-network.html"><a href="cs-cran-network.html#CRAN-Update-Packages"><i class="fa fa-check"></i><b>15.6</b> 更新知多少</a></li>
-<li class="chapter" data-level="15.7" data-path="cs-cran-network.html"><a href="cs-cran-network.html#Package-Licenses"><i class="fa fa-check"></i><b>15.7</b> 使用许可证</a></li>
-<li class="chapter" data-level="15.8" data-path="cs-cran-network.html"><a href="cs-cran-network.html#r-包增长速度"><i class="fa fa-check"></i><b>15.8</b> R 包增长速度</a></li>
-<li class="chapter" data-level="15.9" data-path="cs-cran-network.html"><a href="cs-cran-network.html#Choose-Package"><i class="fa fa-check"></i><b>15.9</b> 选择 R 包</a></li>
-<li class="chapter" data-level="15.10" data-path="cs-cran-network.html"><a href="cs-cran-network.html#cs-network-session-info"><i class="fa fa-check"></i><b>15.10</b> 运行环境</a></li>
+<li class="chapter" data-level="17" data-path="cs-cran-network.html"><a href="cs-cran-network.html"><i class="fa fa-check"></i><b>17</b> 案例：分析 CRAN</a><ul>
+<li class="chapter" data-level="17.1" data-path="cs-cran-network.html"><a href="cs-cran-network.html#R-Core-Team"><i class="fa fa-check"></i><b>17.1</b> R 核心团队</a></li>
+<li class="chapter" data-level="17.2" data-path="cs-cran-network.html"><a href="cs-cran-network.html#Top-Creators"><i class="fa fa-check"></i><b>17.2</b> 高产的开发者</a></li>
+<li class="chapter" data-level="17.3" data-path="cs-cran-network.html"><a href="cs-cran-network.html#R-Package-Developers"><i class="fa fa-check"></i><b>17.3</b> 社区开发者</a></li>
+<li class="chapter" data-level="17.4" data-path="cs-cran-network.html"><a href="cs-cran-network.html#first-commit"><i class="fa fa-check"></i><b>17.4</b> 首次贡献 R 包</a></li>
+<li class="chapter" data-level="17.5" data-path="cs-cran-network.html"><a href="cs-cran-network.html#Contribution-Network"><i class="fa fa-check"></i><b>17.5</b> 贡献关系网络</a></li>
+<li class="chapter" data-level="17.6" data-path="cs-cran-network.html"><a href="cs-cran-network.html#CRAN-Update-Packages"><i class="fa fa-check"></i><b>17.6</b> 更新知多少</a></li>
+<li class="chapter" data-level="17.7" data-path="cs-cran-network.html"><a href="cs-cran-network.html#Package-Licenses"><i class="fa fa-check"></i><b>17.7</b> 使用许可证</a></li>
+<li class="chapter" data-level="17.8" data-path="cs-cran-network.html"><a href="cs-cran-network.html#r-包增长速度"><i class="fa fa-check"></i><b>17.8</b> R 包增长速度</a></li>
+<li class="chapter" data-level="17.9" data-path="cs-cran-network.html"><a href="cs-cran-network.html#Choose-Package"><i class="fa fa-check"></i><b>17.9</b> 选择 R 包</a></li>
+<li class="chapter" data-level="17.10" data-path="cs-cran-network.html"><a href="cs-cran-network.html#cs-network-session-info"><i class="fa fa-check"></i><b>17.10</b> 运行环境</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="99-references.html"><a href="99-references.html"><i class="fa fa-check"></i>参考文献</a></li>
 <li class="divider"></li>
@@ -425,7 +508,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="Dynamic-Documents" class="section level1">
-<h1><span class="header-section-number">第 14 章</span> 动态性文档</h1>
+<h1><span class="header-section-number">第 16 章</span> 动态性文档</h1>
 <div class="rmdnote">
 <p>R Markdown 文档<span class="citation">(<span class="citeproc-not-found" data-reference-id="xie2018rmarkdown"><strong>???</strong></span>)</span> 中的 Python 代码块是由 knitr 包 <span class="citation">(<span class="citeproc-not-found" data-reference-id="xie2015knitr"><strong>???</strong></span>)</span> 负责调度处理的，展示 Matplotlib 绘图的结果使用了 reticulate 包 <span class="citation">(<span class="citeproc-not-found" data-reference-id="R-reticulate"><strong>???</strong></span>)</span> 提供的 Python 引擎而不是 knitr 自带的。</p>
 </div>
@@ -437,33 +520,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="sessioninfo" class="section level2 unnumbered">
 <h2>软件信息</h2>
 <p>编译书籍使用的 Python 3 模块有</p>
-<div class="sourceCode" id="cb617"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb617-1"><a href="dynamic-documents.html#cb617-1"></a><span class="ex">pip3</span> list --format=columns</span></code></pre></div>
+<div class="sourceCode" id="cb674"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb674-1"><a href="dynamic-documents.html#cb674-1"></a><span class="ex">pip3</span> list --format=columns</span></code></pre></div>
 <p>R 代码运行环境</p>
-<div class="sourceCode" id="cb618"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb618-1"><a href="dynamic-documents.html#cb618-1"></a><span class="kw">sessionInfo</span>()</span>
-<span id="cb618-2"><a href="dynamic-documents.html#cb618-2"></a><span class="co">#&gt; R Under development (unstable) (2019-11-17 r77429)</span></span>
-<span id="cb618-3"><a href="dynamic-documents.html#cb618-3"></a><span class="co">#&gt; Platform: x86_64-pc-linux-gnu (64-bit)</span></span>
-<span id="cb618-4"><a href="dynamic-documents.html#cb618-4"></a><span class="co">#&gt; Running under: Ubuntu 16.04.6 LTS</span></span>
-<span id="cb618-5"><a href="dynamic-documents.html#cb618-5"></a><span class="co">#&gt; </span></span>
-<span id="cb618-6"><a href="dynamic-documents.html#cb618-6"></a><span class="co">#&gt; Matrix products: default</span></span>
-<span id="cb618-7"><a href="dynamic-documents.html#cb618-7"></a><span class="co">#&gt; BLAS:   /home/travis/R-bin/lib/R/lib/libRblas.so</span></span>
-<span id="cb618-8"><a href="dynamic-documents.html#cb618-8"></a><span class="co">#&gt; LAPACK: /home/travis/R-bin/lib/R/lib/libRlapack.so</span></span>
-<span id="cb618-9"><a href="dynamic-documents.html#cb618-9"></a><span class="co">#&gt; </span></span>
-<span id="cb618-10"><a href="dynamic-documents.html#cb618-10"></a><span class="co">#&gt; locale:</span></span>
-<span id="cb618-11"><a href="dynamic-documents.html#cb618-11"></a><span class="co">#&gt;  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              </span></span>
-<span id="cb618-12"><a href="dynamic-documents.html#cb618-12"></a><span class="co">#&gt;  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    </span></span>
-<span id="cb618-13"><a href="dynamic-documents.html#cb618-13"></a><span class="co">#&gt;  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   </span></span>
-<span id="cb618-14"><a href="dynamic-documents.html#cb618-14"></a><span class="co">#&gt;  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 </span></span>
-<span id="cb618-15"><a href="dynamic-documents.html#cb618-15"></a><span class="co">#&gt;  [9] LC_ADDRESS=C               LC_TELEPHONE=C            </span></span>
-<span id="cb618-16"><a href="dynamic-documents.html#cb618-16"></a><span class="co">#&gt; [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       </span></span>
-<span id="cb618-17"><a href="dynamic-documents.html#cb618-17"></a><span class="co">#&gt; </span></span>
-<span id="cb618-18"><a href="dynamic-documents.html#cb618-18"></a><span class="co">#&gt; attached base packages:</span></span>
-<span id="cb618-19"><a href="dynamic-documents.html#cb618-19"></a><span class="co">#&gt; [1] stats     graphics  grDevices utils     datasets  methods   base     </span></span>
-<span id="cb618-20"><a href="dynamic-documents.html#cb618-20"></a><span class="co">#&gt; </span></span>
-<span id="cb618-21"><a href="dynamic-documents.html#cb618-21"></a><span class="co">#&gt; loaded via a namespace (and not attached):</span></span>
-<span id="cb618-22"><a href="dynamic-documents.html#cb618-22"></a><span class="co">#&gt;  [1] compiler_4.0.0  magrittr_1.5    bookdown_0.15   tools_4.0.0    </span></span>
-<span id="cb618-23"><a href="dynamic-documents.html#cb618-23"></a><span class="co">#&gt;  [5] htmltools_0.4.0 curl_4.2        yaml_2.2.0      Rcpp_1.0.3     </span></span>
-<span id="cb618-24"><a href="dynamic-documents.html#cb618-24"></a><span class="co">#&gt;  [9] stringi_1.4.3   rmarkdown_1.17  knitr_1.26      stringr_1.4.0  </span></span>
-<span id="cb618-25"><a href="dynamic-documents.html#cb618-25"></a><span class="co">#&gt; [13] xfun_0.11       digest_0.6.22   rlang_0.4.1     evaluate_0.14</span></span></code></pre></div>
+<div class="sourceCode" id="cb675"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb675-1"><a href="dynamic-documents.html#cb675-1"></a><span class="kw">sessionInfo</span>()</span>
+<span id="cb675-2"><a href="dynamic-documents.html#cb675-2"></a><span class="co">#&gt; R Under development (unstable) (2019-11-17 r77429)</span></span>
+<span id="cb675-3"><a href="dynamic-documents.html#cb675-3"></a><span class="co">#&gt; Platform: x86_64-pc-linux-gnu (64-bit)</span></span>
+<span id="cb675-4"><a href="dynamic-documents.html#cb675-4"></a><span class="co">#&gt; Running under: Ubuntu 16.04.6 LTS</span></span>
+<span id="cb675-5"><a href="dynamic-documents.html#cb675-5"></a><span class="co">#&gt; </span></span>
+<span id="cb675-6"><a href="dynamic-documents.html#cb675-6"></a><span class="co">#&gt; Matrix products: default</span></span>
+<span id="cb675-7"><a href="dynamic-documents.html#cb675-7"></a><span class="co">#&gt; BLAS:   /home/travis/R-bin/lib/R/lib/libRblas.so</span></span>
+<span id="cb675-8"><a href="dynamic-documents.html#cb675-8"></a><span class="co">#&gt; LAPACK: /home/travis/R-bin/lib/R/lib/libRlapack.so</span></span>
+<span id="cb675-9"><a href="dynamic-documents.html#cb675-9"></a><span class="co">#&gt; </span></span>
+<span id="cb675-10"><a href="dynamic-documents.html#cb675-10"></a><span class="co">#&gt; locale:</span></span>
+<span id="cb675-11"><a href="dynamic-documents.html#cb675-11"></a><span class="co">#&gt;  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              </span></span>
+<span id="cb675-12"><a href="dynamic-documents.html#cb675-12"></a><span class="co">#&gt;  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    </span></span>
+<span id="cb675-13"><a href="dynamic-documents.html#cb675-13"></a><span class="co">#&gt;  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   </span></span>
+<span id="cb675-14"><a href="dynamic-documents.html#cb675-14"></a><span class="co">#&gt;  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 </span></span>
+<span id="cb675-15"><a href="dynamic-documents.html#cb675-15"></a><span class="co">#&gt;  [9] LC_ADDRESS=C               LC_TELEPHONE=C            </span></span>
+<span id="cb675-16"><a href="dynamic-documents.html#cb675-16"></a><span class="co">#&gt; [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       </span></span>
+<span id="cb675-17"><a href="dynamic-documents.html#cb675-17"></a><span class="co">#&gt; </span></span>
+<span id="cb675-18"><a href="dynamic-documents.html#cb675-18"></a><span class="co">#&gt; attached base packages:</span></span>
+<span id="cb675-19"><a href="dynamic-documents.html#cb675-19"></a><span class="co">#&gt; [1] stats     graphics  grDevices utils     datasets  methods   base     </span></span>
+<span id="cb675-20"><a href="dynamic-documents.html#cb675-20"></a><span class="co">#&gt; </span></span>
+<span id="cb675-21"><a href="dynamic-documents.html#cb675-21"></a><span class="co">#&gt; loaded via a namespace (and not attached):</span></span>
+<span id="cb675-22"><a href="dynamic-documents.html#cb675-22"></a><span class="co">#&gt;  [1] compiler_4.0.0  magrittr_1.5    bookdown_0.15   tools_4.0.0    </span></span>
+<span id="cb675-23"><a href="dynamic-documents.html#cb675-23"></a><span class="co">#&gt;  [5] htmltools_0.4.0 curl_4.2        yaml_2.2.0      Rcpp_1.0.3     </span></span>
+<span id="cb675-24"><a href="dynamic-documents.html#cb675-24"></a><span class="co">#&gt;  [9] stringi_1.4.3   rmarkdown_1.17  knitr_1.26      stringr_1.4.0  </span></span>
+<span id="cb675-25"><a href="dynamic-documents.html#cb675-25"></a><span class="co">#&gt; [13] xfun_0.11       digest_0.6.22   rlang_0.4.1     evaluate_0.14</span></span></code></pre></div>
 <div class="rmdtip">
 <p>在 <code>knitr::opts_chunk</code> 中设置 <code>python.reticulate = TRUE</code> 意味着所有的 Python 代码块共享一个 Python Session，而 <code>python.reticulate = FALSE</code> 意味着使用 knitr 提供的 Python 引擎，所有的 Python 代码块独立运行。</p>
 <p><code>python.reticulate = TRUE</code> 会使用 reticulate 提供的 Python 引擎，它支持 matplotlib 绘图，但是不支持图 caption，knitr 的 python 引擎是支持 caption 的</p>
@@ -473,17 +556,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="r-call-python" class="section level2 unnumbered">
 <h2>R 调用 Python</h2>
 <p>pandas 读取数据，整理后由 reticulate 包传递给 R 环境中的 data.frame 对象，加载 ggplot2 绘图</p>
-<div class="sourceCode" id="cb619"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb619-1"><a href="dynamic-documents.html#cb619-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb619-2"><a href="dynamic-documents.html#cb619-2"></a>iris2 <span class="op">=</span> pd.read_csv(<span class="st">&#39;iris.csv&#39;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb620"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb620-1"><a href="dynamic-documents.html#cb620-1"></a><span class="kw">library</span>(reticulate)</span>
-<span id="cb620-2"><a href="dynamic-documents.html#cb620-2"></a><span class="kw">library</span>(ggplot2)</span>
-<span id="cb620-3"><a href="dynamic-documents.html#cb620-3"></a><span class="kw">ggplot</span>(py<span class="op">$</span>iris2, <span class="kw">aes</span>(<span class="dt">x =</span> Sepal.Length, <span class="dt">y =</span> Sepal.Width)) <span class="op">+</span></span>
-<span id="cb620-4"><a href="dynamic-documents.html#cb620-4"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color =</span> Species)) <span class="op">+</span></span>
-<span id="cb620-5"><a href="dynamic-documents.html#cb620-5"></a><span class="st">  </span><span class="kw">scale_color_viridis_d</span>()</span></code></pre></div>
-<div class="sourceCode" id="cb621"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb621-1"><a href="dynamic-documents.html#cb621-1"></a><span class="kw">library</span>(ggplot2)</span>
-<span id="cb621-2"><a href="dynamic-documents.html#cb621-2"></a><span class="kw">ggplot</span>(faithfuld, <span class="kw">aes</span>(waiting, eruptions)) <span class="op">+</span></span>
-<span id="cb621-3"><a href="dynamic-documents.html#cb621-3"></a><span class="st">  </span><span class="kw">geom_raster</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> density)) <span class="op">+</span></span>
-<span id="cb621-4"><a href="dynamic-documents.html#cb621-4"></a><span class="st">  </span><span class="kw">scale_fill_continuous</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb676"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb676-1"><a href="dynamic-documents.html#cb676-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb676-2"><a href="dynamic-documents.html#cb676-2"></a>iris2 <span class="op">=</span> pd.read_csv(<span class="st">&#39;iris.csv&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb677"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb677-1"><a href="dynamic-documents.html#cb677-1"></a><span class="kw">library</span>(reticulate)</span>
+<span id="cb677-2"><a href="dynamic-documents.html#cb677-2"></a><span class="kw">library</span>(ggplot2)</span>
+<span id="cb677-3"><a href="dynamic-documents.html#cb677-3"></a><span class="kw">ggplot</span>(py<span class="op">$</span>iris2, <span class="kw">aes</span>(<span class="dt">x =</span> Sepal.Length, <span class="dt">y =</span> Sepal.Width)) <span class="op">+</span></span>
+<span id="cb677-4"><a href="dynamic-documents.html#cb677-4"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color =</span> Species)) <span class="op">+</span></span>
+<span id="cb677-5"><a href="dynamic-documents.html#cb677-5"></a><span class="st">  </span><span class="kw">scale_color_viridis_d</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb678"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb678-1"><a href="dynamic-documents.html#cb678-1"></a><span class="kw">library</span>(ggplot2)</span>
+<span id="cb678-2"><a href="dynamic-documents.html#cb678-2"></a><span class="kw">ggplot</span>(faithfuld, <span class="kw">aes</span>(waiting, eruptions)) <span class="op">+</span></span>
+<span id="cb678-3"><a href="dynamic-documents.html#cb678-3"></a><span class="st">  </span><span class="kw">geom_raster</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> density)) <span class="op">+</span></span>
+<span id="cb678-4"><a href="dynamic-documents.html#cb678-4"></a><span class="st">  </span><span class="kw">scale_fill_continuous</span>()</span></code></pre></div>
 <p><img src="dynamic-documents_files/figure-html/unnamed-chunk-7-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <div class="sidebar">
 <ul>
@@ -513,10 +596,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>首先介绍 Markdown 在强调、标题、列表、断行、链接、图片、引用、代码块、LaTeX 公式等使用方式，然后在 Markdown 的基础上介绍 Pandoc’s Markdown 功能有加强的地方，R Markdown 在 Pandoc’s Markdown 的基础上介绍功能有加强的地方</p>
 </div>
 <div id="markdown" class="section level2">
-<h2><span class="header-section-number">14.1</span> Markdown</h2>
+<h2><span class="header-section-number">16.1</span> Markdown</h2>
 <p>Markdown 基础语法见 RStudio IDE 自带的 Markdown 手册：RStudio 顶部菜单栏 -&gt; Help -&gt; Markdown Quick Reference，这里主要介绍一下Markdown 高级语法，特别是 <a href="https://pandoc.org/MANUAL.html#pandocs-markdown">Pandoc’s Markdown</a>，其实是 Pandoc 提供了很多对 Markdown 的扩展支持，下面介绍一下被 Pandoc 加强后的 Markdown 表格、图片和公式的使用</p>
 <div id="markdown-list" class="section level3">
-<h3><span class="header-section-number">14.1.1</span> 列表</h3>
+<h3><span class="header-section-number">16.1.1</span> 列表</h3>
 <ul>
 <li><p>有序的列表</p>
 <ol style="list-style-type: decimal">
@@ -614,7 +697,7 @@ list item.</p></li>
 <p>显示反引号 <code>`</code></p>
 </div>
 <div id="markdown-emphasis" class="section level3">
-<h3><span class="header-section-number">14.1.2</span> 强调</h3>
+<h3><span class="header-section-number">16.1.2</span> 强调</h3>
 <dl>
 <dt>轻微强调</dt>
 <dd>这是倾斜的文字 <em>下划线表示强调</em>, and this is <em>星花表示强调</em>.
@@ -634,7 +717,7 @@ list item.</p></li>
 </dl>
 </div>
 <div id="markdown-quote" class="section level3">
-<h3><span class="header-section-number">14.1.3</span> 引用</h3>
+<h3><span class="header-section-number">16.1.3</span> 引用</h3>
 <p>注意在引用末尾空两格，出处另起一行，引用名人名言:</p>
 <blockquote>
 <p>It’s always better to give
@@ -647,26 +730,26 @@ than to receive.</p>
 </blockquote>
 <blockquote>
 <p>Trellis graphics are a bit like hash functions:
-you can be close to the target, but get a far-off result.<a href="#fn39" class="footnote-ref" id="fnref39"><sup>39</sup></a></p>
+you can be close to the target, but get a far-off result.<a href="#fn41" class="footnote-ref" id="fnref41"><sup>41</sup></a></p>
 <p>— Dieter Menne</p>
 </blockquote>
 <blockquote>
-<p>If you imagine that this pen is Trellis, then Lattice is not this pen.<a href="#fn40" class="footnote-ref" id="fnref40"><sup>40</sup></a></p>
+<p>If you imagine that this pen is Trellis, then Lattice is not this pen.<a href="#fn42" class="footnote-ref" id="fnref42"><sup>42</sup></a></p>
 <p>— Paul Murrell</p>
 </blockquote>
 <blockquote>
 <p>You’re overlooking something like line 800 of the documentation for xyplot. […]
 It’s probably in the R-FAQ as well,
 since my original feeling was that this behaviour was chosen
-in order to confuse people and see how many people read the FAQ… :)<a href="#fn41" class="footnote-ref" id="fnref41"><sup>41</sup></a></p>
+in order to confuse people and see how many people read the FAQ… :)<a href="#fn43" class="footnote-ref" id="fnref43"><sup>43</sup></a></p>
 <p>— Barry Rowlingson</p>
 </blockquote>
 </div>
 <div id="markdown-table" class="section level3">
-<h3><span class="header-section-number">14.1.4</span> 表格</h3>
-<p>插入表格很简单的，如表 <a href="dynamic-documents.html#tab:insert-tab">14.1</a> 所示，还带脚注哦，复杂的表格制作可以借助 R 包 knitr 提供的 kable 函数以及 kableExtra 包<a href="#fn42" class="footnote-ref" id="fnref42"><sup>42</sup></a>，此外谢益辉的书籍 <a href="https://bookdown.org/yihui/bookdown/">bookdown: Authoring Books and Technical Documents with R Markdown</a> 中也有一节专门介绍表格 <a href="https://bookdown.org/yihui/bookdown/tables.html" class="uri">https://bookdown.org/yihui/bookdown/tables.html</a></p>
+<h3><span class="header-section-number">16.1.4</span> 表格</h3>
+<p>插入表格很简单的，如表 <a href="dynamic-documents.html#tab:insert-tab">16.1</a> 所示，还带脚注哦，复杂的表格制作可以借助 R 包 knitr 提供的 kable 函数以及 kableExtra 包<a href="#fn44" class="footnote-ref" id="fnref44"><sup>44</sup></a>，此外谢益辉的书籍 <a href="https://bookdown.org/yihui/bookdown/">bookdown: Authoring Books and Technical Documents with R Markdown</a> 中也有一节专门介绍表格 <a href="https://bookdown.org/yihui/bookdown/tables.html" class="uri">https://bookdown.org/yihui/bookdown/tables.html</a></p>
 <table>
-<caption><span id="tab:insert-tab">表 14.1: </span> 表格标题<a href="#fn43" class="footnote-ref" id="fnref43"><sup>43</sup></a></caption>
+<caption><span id="tab:insert-tab">表 16.1: </span> 表格标题<a href="#fn45" class="footnote-ref" id="fnref45"><sup>45</sup></a></caption>
 <thead>
 <tr class="header">
 <th align="left">First Header</th>
@@ -684,17 +767,17 @@ in order to confuse people and see how many people read the FAQ… :)<a href="#f
 </tr>
 </tbody>
 </table>
-<p><code>kable</code> 支持多个表格并排，如表 <a href="dynamic-documents.html#tab:table-multi">14.2</a> 所示</p>
-<div class="sourceCode" id="cb624"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb624-1"><a href="dynamic-documents.html#cb624-1"></a>knitr<span class="op">::</span><span class="kw">kable</span>(</span>
-<span id="cb624-2"><a href="dynamic-documents.html#cb624-2"></a>  <span class="kw">list</span>(</span>
-<span id="cb624-3"><a href="dynamic-documents.html#cb624-3"></a>    <span class="kw">head</span>(iris[, <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>], <span class="dv">3</span>),</span>
-<span id="cb624-4"><a href="dynamic-documents.html#cb624-4"></a>    <span class="kw">head</span>(mtcars[, <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>], <span class="dv">5</span>)</span>
-<span id="cb624-5"><a href="dynamic-documents.html#cb624-5"></a>  ),</span>
-<span id="cb624-6"><a href="dynamic-documents.html#cb624-6"></a>  <span class="dt">caption =</span> <span class="st">&#39;A Tale of Two Tables.&#39;</span>, <span class="dt">booktabs =</span> <span class="ot">TRUE</span></span>
-<span id="cb624-7"><a href="dynamic-documents.html#cb624-7"></a>)</span></code></pre></div>
+<p><code>kable</code> 支持多个表格并排，如表 <a href="dynamic-documents.html#tab:table-multi">16.2</a> 所示</p>
+<div class="sourceCode" id="cb681"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb681-1"><a href="dynamic-documents.html#cb681-1"></a>knitr<span class="op">::</span><span class="kw">kable</span>(</span>
+<span id="cb681-2"><a href="dynamic-documents.html#cb681-2"></a>  <span class="kw">list</span>(</span>
+<span id="cb681-3"><a href="dynamic-documents.html#cb681-3"></a>    <span class="kw">head</span>(iris[, <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>], <span class="dv">3</span>),</span>
+<span id="cb681-4"><a href="dynamic-documents.html#cb681-4"></a>    <span class="kw">head</span>(mtcars[, <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>], <span class="dv">5</span>)</span>
+<span id="cb681-5"><a href="dynamic-documents.html#cb681-5"></a>  ),</span>
+<span id="cb681-6"><a href="dynamic-documents.html#cb681-6"></a>  <span class="dt">caption =</span> <span class="st">&#39;A Tale of Two Tables.&#39;</span>, <span class="dt">booktabs =</span> <span class="ot">TRUE</span></span>
+<span id="cb681-7"><a href="dynamic-documents.html#cb681-7"></a>)</span></code></pre></div>
 <table class="kable_wrapper">
 <caption>
-<span id="tab:table-multi">表 14.2: </span>A Tale of Two Tables.
+<span id="tab:table-multi">表 16.2: </span>A Tale of Two Tables.
 </caption>
 <tbody>
 <tr>
@@ -770,19 +853,19 @@ in order to confuse people and see how many people read the FAQ… :)<a href="#f
 </tbody>
 </table>
 <p>在表格中引入数学符号</p>
-<div class="sourceCode" id="cb625"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb625-1"><a href="dynamic-documents.html#cb625-1"></a>knitr<span class="op">::</span><span class="kw">kable</span>(</span>
-<span id="cb625-2"><a href="dynamic-documents.html#cb625-2"></a>  <span class="kw">rbind</span>(<span class="kw">c</span>(<span class="st">&quot;&quot;</span>, <span class="st">&quot;continuous&quot;</span>, <span class="st">&quot;discrete&quot;</span>),</span>
-<span id="cb625-3"><a href="dynamic-documents.html#cb625-3"></a>        <span class="kw">c</span>(<span class="st">&quot;nominal&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="st">&quot;$</span><span class="ch">\\</span><span class="st">checkmark$&quot;</span>),</span>
-<span id="cb625-4"><a href="dynamic-documents.html#cb625-4"></a>        <span class="kw">c</span>(<span class="st">&quot;ordinal&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="st">&quot;$</span><span class="ch">\\</span><span class="st">checkmark$&quot;</span>),</span>
-<span id="cb625-5"><a href="dynamic-documents.html#cb625-5"></a>        <span class="kw">c</span>(<span class="st">&quot;interval&quot;</span>, <span class="st">&quot;$</span><span class="ch">\\</span><span class="st">checkmark$&quot;</span>, <span class="st">&quot;$</span><span class="ch">\\</span><span class="st">checkmark$&quot;</span>),</span>
-<span id="cb625-6"><a href="dynamic-documents.html#cb625-6"></a>        <span class="kw">c</span>(<span class="st">&quot;ratio&quot;</span>, <span class="st">&quot;$</span><span class="ch">\\</span><span class="st">checkmark$&quot;</span>, <span class="st">&quot;$</span><span class="ch">\\</span><span class="st">checkmark$&quot;</span>)</span>
-<span id="cb625-7"><a href="dynamic-documents.html#cb625-7"></a>    </span>
-<span id="cb625-8"><a href="dynamic-documents.html#cb625-8"></a>  )</span>
-<span id="cb625-9"><a href="dynamic-documents.html#cb625-9"></a>  , <span class="dt">caption =</span> <span class="st">&#39;The relationship between the scales of measurement and the discrete/continuity distinction. Cells with a tick mark correspond to things that are possible.&#39;</span>, <span class="dt">align=</span><span class="st">&quot;lcc&quot;</span>,</span>
-<span id="cb625-10"><a href="dynamic-documents.html#cb625-10"></a>  <span class="dt">booktabs =</span> <span class="ot">TRUE</span></span>
-<span id="cb625-11"><a href="dynamic-documents.html#cb625-11"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb682"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb682-1"><a href="dynamic-documents.html#cb682-1"></a>knitr<span class="op">::</span><span class="kw">kable</span>(</span>
+<span id="cb682-2"><a href="dynamic-documents.html#cb682-2"></a>  <span class="kw">rbind</span>(<span class="kw">c</span>(<span class="st">&quot;&quot;</span>, <span class="st">&quot;continuous&quot;</span>, <span class="st">&quot;discrete&quot;</span>),</span>
+<span id="cb682-3"><a href="dynamic-documents.html#cb682-3"></a>        <span class="kw">c</span>(<span class="st">&quot;nominal&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="st">&quot;$</span><span class="ch">\\</span><span class="st">checkmark$&quot;</span>),</span>
+<span id="cb682-4"><a href="dynamic-documents.html#cb682-4"></a>        <span class="kw">c</span>(<span class="st">&quot;ordinal&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="st">&quot;$</span><span class="ch">\\</span><span class="st">checkmark$&quot;</span>),</span>
+<span id="cb682-5"><a href="dynamic-documents.html#cb682-5"></a>        <span class="kw">c</span>(<span class="st">&quot;interval&quot;</span>, <span class="st">&quot;$</span><span class="ch">\\</span><span class="st">checkmark$&quot;</span>, <span class="st">&quot;$</span><span class="ch">\\</span><span class="st">checkmark$&quot;</span>),</span>
+<span id="cb682-6"><a href="dynamic-documents.html#cb682-6"></a>        <span class="kw">c</span>(<span class="st">&quot;ratio&quot;</span>, <span class="st">&quot;$</span><span class="ch">\\</span><span class="st">checkmark$&quot;</span>, <span class="st">&quot;$</span><span class="ch">\\</span><span class="st">checkmark$&quot;</span>)</span>
+<span id="cb682-7"><a href="dynamic-documents.html#cb682-7"></a>    </span>
+<span id="cb682-8"><a href="dynamic-documents.html#cb682-8"></a>  )</span>
+<span id="cb682-9"><a href="dynamic-documents.html#cb682-9"></a>  , <span class="dt">caption =</span> <span class="st">&#39;The relationship between the scales of measurement and the discrete/continuity distinction. Cells with a tick mark correspond to things that are possible.&#39;</span>, <span class="dt">align=</span><span class="st">&quot;lcc&quot;</span>,</span>
+<span id="cb682-10"><a href="dynamic-documents.html#cb682-10"></a>  <span class="dt">booktabs =</span> <span class="ot">TRUE</span></span>
+<span id="cb682-11"><a href="dynamic-documents.html#cb682-11"></a>)</span></code></pre></div>
 <table>
-<caption><span id="tab:scalescont">表 14.3: </span>The relationship between the scales of measurement and the discrete/continuity distinction. Cells with a tick mark correspond to things that are possible.</caption>
+<caption><span id="tab:scalescont">表 16.3: </span>The relationship between the scales of measurement and the discrete/continuity distinction. Cells with a tick mark correspond to things that are possible.</caption>
 <tbody>
 <tr class="odd">
 <td></td>
@@ -814,36 +897,36 @@ in order to confuse people and see how many people read the FAQ… :)<a href="#f
 <p><a href="https://github.com/haozhu233/kableExtra">kableExtra</a> 、broom 和 <a href="https://github.com/nutterb/pixiedust">pixiedust</a> 包实现表格样式的精细调整，如黄湘云制作的 <a href="https://xiangyunhuang.github.io/bookdown-kableExtra/">样例</a></p>
 </div>
 <div id="image" class="section level3">
-<h3><span class="header-section-number">14.1.5</span> 图片</h3>
+<h3><span class="header-section-number">16.1.5</span> 图片</h3>
 <p>插入图片大体遵循的语法如下</p>
-<div class="sourceCode" id="cb626"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb626-1"><a href="dynamic-documents.html#cb626-1"></a><span class="al">![...](...)</span>{...}</span></code></pre></div>
+<div class="sourceCode" id="cb683"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb683-1"><a href="dynamic-documents.html#cb683-1"></a><span class="al">![...](...)</span>{...}</span></code></pre></div>
 <p>中括号包含图片的标题，小括号是图片插入路径，大括号控制图片属性</p>
-<p>利用 <code>knitr::include_graphics</code> 函数在代码块中插入图片是很简单的，如图<a href="dynamic-documents.html#fig:knitr-footnote">14.1</a>所示，图、表的标题很长或者需要插入脚注，可以使用[文本引用][text-references]</p>
-<div class="sourceCode" id="cb627"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb627-1"><a href="dynamic-documents.html#cb627-1"></a>knitr<span class="op">::</span><span class="kw">include_graphics</span>(<span class="dt">path =</span> <span class="kw">system.file</span>(<span class="st">&quot;help/figures&quot;</span>, <span class="st">&quot;mai.png&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;graphics&quot;</span>))</span></code></pre></div>
+<p>利用 <code>knitr::include_graphics</code> 函数在代码块中插入图片是很简单的，如图<a href="dynamic-documents.html#fig:knitr-footnote">16.1</a>所示，图、表的标题很长或者需要插入脚注，可以使用[文本引用][text-references]</p>
+<div class="sourceCode" id="cb684"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb684-1"><a href="dynamic-documents.html#cb684-1"></a>knitr<span class="op">::</span><span class="kw">include_graphics</span>(<span class="dt">path =</span> <span class="kw">system.file</span>(<span class="st">&quot;help/figures&quot;</span>, <span class="st">&quot;mai.png&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;graphics&quot;</span>))</span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:knitr-footnote"></span>
 <img src="/home/travis/R-bin/lib/R/library/graphics/help/figures/mai.png" alt="(ref:footnote)" width="45%" />
 <p class="caption">
-图 14.1: (ref:footnote)
+图 16.1: (ref:footnote)
 </p>
 </div>
-<div class="sourceCode" id="cb628"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb628-1"><a href="dynamic-documents.html#cb628-1"></a><span class="kw">par</span>(<span class="dt">mar =</span> <span class="kw">c</span>(<span class="fl">4.1</span>, <span class="fl">4.1</span>, <span class="fl">0.5</span>, <span class="fl">0.5</span>))</span>
-<span id="cb628-2"><a href="dynamic-documents.html#cb628-2"></a><span class="kw">plot</span>(<span class="kw">rnorm</span>(<span class="dv">10</span>), <span class="dt">xlab =</span> <span class="st">&quot;&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb685"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb685-1"><a href="dynamic-documents.html#cb685-1"></a><span class="kw">par</span>(<span class="dt">mar =</span> <span class="kw">c</span>(<span class="fl">4.1</span>, <span class="fl">4.1</span>, <span class="fl">0.5</span>, <span class="fl">0.5</span>))</span>
+<span id="cb685-2"><a href="dynamic-documents.html#cb685-2"></a><span class="kw">plot</span>(<span class="kw">rnorm</span>(<span class="dv">10</span>), <span class="dt">xlab =</span> <span class="st">&quot;&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-8"></span>
 <img src="dynamic-documents_files/figure-html/unnamed-chunk-8-1.png" alt="(ref:fig-cap)" width="70%" height="4in" />
 <p class="caption">
 图 8.6: (ref:fig-cap)
 </p>
 </div>
-<p>插入一幅普通图片，如图 <a href="dynamic-documents.html#fig:left-fig">14.2</a> 和图 <a href="dynamic-documents.html#fig:full-fig">14.3</a> 所示分别控制图片插入的宽度[^css-position]</p>
-<div class="sourceCode" id="cb629"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb629-1"><a href="dynamic-documents.html#cb629-1"></a>![(\#fig:left-fig) 默认图片位置居左^[这里是脚注]](figures/mai.png){ width=45% }</span></code></pre></div>
+<p>插入一幅普通图片，如图 <a href="dynamic-documents.html#fig:left-fig">16.2</a> 和图 <a href="dynamic-documents.html#fig:full-fig">16.3</a> 所示分别控制图片插入的宽度[^css-position]</p>
+<div class="sourceCode" id="cb686"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb686-1"><a href="dynamic-documents.html#cb686-1"></a>![(\#fig:left-fig) 默认图片位置居左^[这里是脚注]](figures/mai.png){ width=45% }</span></code></pre></div>
 <div class="figure"><span id="fig:left-fig"></span>
 <img src="figures/mai.png" style="width:45.0%" alt="" />
-<p class="caption">图 14.2:  默认图片位置居左<a href="#fn44" class="footnote-ref" id="fnref44"><sup>44</sup></a></p>
+<p class="caption">图 16.2:  默认图片位置居左<a href="#fn46" class="footnote-ref" id="fnref46"><sup>46</sup></a></p>
 </div>
-<div class="sourceCode" id="cb630"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb630-1"><a href="dynamic-documents.html#cb630-1"></a><span class="al">![(\#fig:full-fig) 一幅全宽的图片](figures/mai.png)</span>{.full}</span></code></pre></div>
+<div class="sourceCode" id="cb687"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb687-1"><a href="dynamic-documents.html#cb687-1"></a><span class="al">![(\#fig:full-fig) 一幅全宽的图片](figures/mai.png)</span>{.full}</span></code></pre></div>
 <div class="figure"><span id="fig:full-fig"></span>
 <img src="figures/mai.png" class="full" alt="" />
-<p class="caption">图 14.3:  一幅全宽的图片</p>
+<p class="caption">图 16.3:  一幅全宽的图片</p>
 </div>
 <ul>
 <li><p>One</p></li>
@@ -855,37 +938,37 @@ in order to confuse people and see how many people read the FAQ… :)<a href="#f
 <li><p>Three</p></li>
 </ul>
 <p>根据代码动态生成图片，并插入文档中；外部图片插入文档中</p>
-<div class="sourceCode" id="cb631"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb631-1"><a href="dynamic-documents.html#cb631-1"></a><span class="kw">plot</span>(AirPassengers)</span></code></pre></div>
+<div class="sourceCode" id="cb688"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb688-1"><a href="dynamic-documents.html#cb688-1"></a><span class="kw">plot</span>(AirPassengers)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:air-passengers"></span>
 <img src="dynamic-documents_files/figure-html/air-passengers-1.png" alt="时间序列图" width="70%" />
 <p class="caption">
-图 14.4: 时间序列图
+图 16.4: 时间序列图
 </p>
 </div>
-<div class="sourceCode" id="cb632"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb632-1"><a href="dynamic-documents.html#cb632-1"></a><span class="kw">plot</span>(pressure)</span>
-<span id="cb632-2"><a href="dynamic-documents.html#cb632-2"></a><span class="kw">plot</span>(AirPassengers)</span></code></pre></div>
+<div class="sourceCode" id="cb689"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb689-1"><a href="dynamic-documents.html#cb689-1"></a><span class="kw">plot</span>(pressure)</span>
+<span id="cb689-2"><a href="dynamic-documents.html#cb689-2"></a><span class="kw">plot</span>(AirPassengers)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:two-rows"></span>
 <img src="dynamic-documents_files/figure-html/two-rows-1.png" alt="2行1列布局" width="70%" /><img src="dynamic-documents_files/figure-html/two-rows-2.png" alt="2行1列布局" width="70%" />
 <p class="caption">
-图 14.5: 2行1列布局
+图 16.5: 2行1列布局
 </p>
 </div>
-<div class="sourceCode" id="cb633"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb633-1"><a href="dynamic-documents.html#cb633-1"></a><span class="kw">plot</span>(pressure)</span>
-<span id="cb633-2"><a href="dynamic-documents.html#cb633-2"></a><span class="kw">plot</span>(AirPassengers)</span></code></pre></div>
+<div class="sourceCode" id="cb690"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb690-1"><a href="dynamic-documents.html#cb690-1"></a><span class="kw">plot</span>(pressure)</span>
+<span id="cb690-2"><a href="dynamic-documents.html#cb690-2"></a><span class="kw">plot</span>(AirPassengers)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:two-cols"></span>
 <img src="dynamic-documents_files/figure-html/two-cols-1.png" alt="1行2列布局" width="35%" /><img src="dynamic-documents_files/figure-html/two-cols-2.png" alt="1行2列布局" width="35%" />
 <p class="caption">
-图 14.6: 1行2列布局
+图 16.6: 1行2列布局
 </p>
 </div>
-<div class="sourceCode" id="cb634"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb634-1"><a href="dynamic-documents.html#cb634-1"></a><span class="kw">plot</span>(pressure)</span>
-<span id="cb634-2"><a href="dynamic-documents.html#cb634-2"></a><span class="kw">plot</span>(AirPassengers)</span>
-<span id="cb634-3"><a href="dynamic-documents.html#cb634-3"></a><span class="kw">plot</span>(pressure)</span>
-<span id="cb634-4"><a href="dynamic-documents.html#cb634-4"></a><span class="kw">plot</span>(AirPassengers)</span></code></pre></div>
+<div class="sourceCode" id="cb691"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb691-1"><a href="dynamic-documents.html#cb691-1"></a><span class="kw">plot</span>(pressure)</span>
+<span id="cb691-2"><a href="dynamic-documents.html#cb691-2"></a><span class="kw">plot</span>(AirPassengers)</span>
+<span id="cb691-3"><a href="dynamic-documents.html#cb691-3"></a><span class="kw">plot</span>(pressure)</span>
+<span id="cb691-4"><a href="dynamic-documents.html#cb691-4"></a><span class="kw">plot</span>(AirPassengers)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:two-rows-two-cols"></span>
 <img src="dynamic-documents_files/figure-html/two-rows-two-cols-1.png" alt="2x2图布局" width="35%" /><img src="dynamic-documents_files/figure-html/two-rows-two-cols-2.png" alt="2x2图布局" width="35%" /><img src="dynamic-documents_files/figure-html/two-rows-two-cols-3.png" alt="2x2图布局" width="35%" /><img src="dynamic-documents_files/figure-html/two-rows-two-cols-4.png" alt="2x2图布局" width="35%" />
 <p class="caption">
-图 14.7: 2x2图布局
+图 16.7: 2x2图布局
 </p>
 </div>
 <p>(ref:fig-cap) 测试文本引用
@@ -896,24 +979,24 @@ in order to confuse people and see how many people read the FAQ… :)<a href="#f
 [^css-position]: 参考谢益辉的博客： CSS 的位置属性以及如何居中对齐超宽元素 <a href="https://yihui.name/cn/2018/05/css-position/" class="uri">https://yihui.name/cn/2018/05/css-position/</a></p>
 </div>
 <div id="markdown-math" class="section level3">
-<h3><span class="header-section-number">14.1.6</span> 公式</h3>
-<p>行内公式一对美元符号 <span class="math inline">\(\alpha\)</span> 或者 <span class="math inline">\(\alpha+\beta\)</span>，行间公式 <span class="math display">\[\alpha\]</span> 或者 <span class="math display">\[\alpha + \beta\]</span> 对公式编号，如公式 <a href="dynamic-documents.html#eq:likelihood">(14.1)</a></p>
+<h3><span class="header-section-number">16.1.6</span> 公式</h3>
+<p>行内公式一对美元符号 <span class="math inline">\(\alpha\)</span> 或者 <span class="math inline">\(\alpha+\beta\)</span>，行间公式 <span class="math display">\[\alpha\]</span> 或者 <span class="math display">\[\alpha + \beta\]</span> 对公式编号，如公式 <a href="dynamic-documents.html#eq:likelihood">(16.1)</a></p>
 <p><span class="math display" id="eq:likelihood">\[\begin{equation}
-L(\beta,\boldsymbol{\theta}) = f(y;\beta,\boldsymbol{\theta}) = \int_{\mathbb{R}^{n}}N(t;D\beta,\Sigma(\boldsymbol{\theta}))f(y|t)dt \tag{14.1}
+L(\beta,\boldsymbol{\theta}) = f(y;\beta,\boldsymbol{\theta}) = \int_{\mathbb{R}^{n}}N(t;D\beta,\Sigma(\boldsymbol{\theta}))f(y|t)dt \tag{16.1}
 \end{equation}\]</span></p>
-<p>多行公式分别编号，如公式<a href="dynamic-documents.html#eq:BL-SGLMM">(14.2)</a> 和公式<a href="dynamic-documents.html#eq:Poss-SGLMM">(14.3)</a></p>
+<p>多行公式分别编号，如公式<a href="dynamic-documents.html#eq:BL-SGLMM">(16.2)</a> 和公式<a href="dynamic-documents.html#eq:Poss-SGLMM">(16.3)</a></p>
 <p><span class="math display" id="eq:Poss-SGLMM" id="eq:BL-SGLMM">\[\begin{align}
-\log\{\frac{p_i}{1-p_i}\} &amp; = T_{i} = d(x_i)&#39;\beta + S(x_i) + Z_i \tag{14.2}\\
-\log(\lambda_i)           &amp; = T_{i} = d(x_i)&#39;\beta + S(x_i) + Z_i \tag{14.3}
+\log\{\frac{p_i}{1-p_i}\} &amp; = T_{i} = d(x_i)&#39;\beta + S(x_i) + Z_i \tag{16.2}\\
+\log(\lambda_i)           &amp; = T_{i} = d(x_i)&#39;\beta + S(x_i) + Z_i \tag{16.3}
 \end{align}\]</span></p>
-<p>多行公式中对某一（些）行编号，如公式 <a href="dynamic-documents.html#eq:align">(14.4)</a> 和 公式 <a href="dynamic-documents.html#eq:Poss-SGLMM2">(14.5)</a></p>
+<p>多行公式中对某一（些）行编号，如公式 <a href="dynamic-documents.html#eq:align">(16.4)</a> 和 公式 <a href="dynamic-documents.html#eq:Poss-SGLMM2">(16.5)</a></p>
 <p><span class="math display" id="eq:Poss-SGLMM2" id="eq:align">\[\begin{align} 
 g(X_{n}) &amp;= g(\theta)+g&#39;({\tilde{\theta}})(X_{n}-\theta) \\
 \sqrt{n}[g(X_{n})-g(\theta)] &amp;= g&#39;\left({\tilde{\theta}}\right) 
-  \sqrt{n}[X_{n}-\theta ] \tag{14.4} \\
-\log(\lambda_i)  &amp; = T_{i} = d(x_i)&#39;\beta + S(x_i) + Z_i \tag{14.5}  
+  \sqrt{n}[X_{n}-\theta ] \tag{16.4} \\
+\log(\lambda_i)  &amp; = T_{i} = d(x_i)&#39;\beta + S(x_i) + Z_i \tag{16.5}  
 \end{align}\]</span></p>
-<p>多行公式共用一个编号，如公式 <a href="dynamic-documents.html#eq:likelihood2">(14.6)</a></p>
+<p>多行公式共用一个编号，如公式 <a href="dynamic-documents.html#eq:likelihood2">(16.6)</a></p>
 <p><span class="math display" id="eq:likelihood2">\[\begin{equation}
 \begin{aligned}
 L(\beta,\boldsymbol{\theta})
@@ -921,9 +1004,9 @@ L(\beta,\boldsymbol{\theta})
 &amp; \varpropto \int_{\mathbb{R}^{n}} \frac{N(t;D\beta,\Sigma(\boldsymbol{\theta}))}{N(t;D\beta_{0},\Sigma(\boldsymbol{\theta}_{0}))}f(t|y)dt \\
 &amp;= E_{T|y}\left[\frac{N(t;D\beta,\Sigma(\boldsymbol{\theta}))}{N(t;D\beta_{0},\Sigma(\boldsymbol{\theta}_{0}))}\right] 
 \end{aligned}
-\tag{14.6}
+\tag{16.6}
 \end{equation}\]</span></p>
-<p>推荐在 <code>equation</code> 公式中，使用 <code>split</code> 环境，意思是一个公式很长，需要拆成多行，如公式<a href="dynamic-documents.html#eq:var-beta">(14.7)</a></p>
+<p>推荐在 <code>equation</code> 公式中，使用 <code>split</code> 环境，意思是一个公式很长，需要拆成多行，如公式<a href="dynamic-documents.html#eq:var-beta">(16.7)</a></p>
 <p><span class="math display" id="eq:var-beta">\[\begin{equation} 
 \begin{split}
 \mathrm{Var}(\hat{\beta}) &amp; =\mathrm{Var}((X&#39;X)^{-1}X&#39;y)\\
@@ -932,17 +1015,17 @@ L(\beta,\boldsymbol{\theta})
  &amp; =(X&#39;X)^{-1}X&#39;\sigma^{2}IX(X&#39;X)^{-1}\\
  &amp; =(X&#39;X)^{-1}\sigma^{2}
 \end{split}
-\tag{14.7}
+\tag{16.7}
 \end{equation}\]</span></p>
 <p>注意，<code>\mathbf</code> 只对字母 <span class="math inline">\(a,b,c,A,B,C\)</span> 加粗，mathjax 不支持公式中使用 <code>\bm</code> 对 <span class="math inline">\(\theta,\alpha,\beta,\ldots,\gamma\)</span> 加粗，应该使用 <code>\boldsymbol</code></p>
 </div>
 </div>
 <div id="pandoc-markdown" class="section level2">
-<h2><span class="header-section-number">14.2</span> Pandoc’s Markdown</h2>
+<h2><span class="header-section-number">16.2</span> Pandoc’s Markdown</h2>
 <p>介绍在 Markdown 的基础上添加的功能</p>
 </div>
 <div id="r-markdown" class="section level2">
-<h2><span class="header-section-number">14.3</span> R Markdown</h2>
+<h2><span class="header-section-number">16.3</span> R Markdown</h2>
 <p>R Markdown 站在巨人的肩膀上，这些巨人有 <a href="https://daringfireball.net/projects/markdown/">Markdown</a>、 <a href="http://pandoc.org">Pandoc</a> 和 <a href="https://www.latex-project.org/">LaTeX</a> 等。</p>
 <p>生态系统</p>
 <ol style="list-style-type: decimal">
@@ -964,102 +1047,102 @@ L(\beta,\boldsymbol{\theta})
 </ul></li>
 </ol>
 <p>在指定目录创建 Book 项目，</p>
-<div class="sourceCode" id="cb635"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb635-1"><a href="dynamic-documents.html#cb635-1"></a>bookdown<span class="op">:::</span><span class="kw">bookdown_skeleton</span>(<span class="st">&quot;~/bookdown-demo&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb692"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb692-1"><a href="dynamic-documents.html#cb692-1"></a>bookdown<span class="op">:::</span><span class="kw">bookdown_skeleton</span>(<span class="st">&quot;~/bookdown-demo&quot;</span>)</span></code></pre></div>
 <p>项目根目录的文件列表</p>
-<div class="sourceCode" id="cb636"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb636-1"><a href="dynamic-documents.html#cb636-1"></a>directory/</span>
-<span id="cb636-2"><a href="dynamic-documents.html#cb636-2"></a>├──  index.Rmd</span>
-<span id="cb636-3"><a href="dynamic-documents.html#cb636-3"></a>├── 01-intro.Rmd</span>
-<span id="cb636-4"><a href="dynamic-documents.html#cb636-4"></a>├── 02-literature.Rmd</span>
-<span id="cb636-5"><a href="dynamic-documents.html#cb636-5"></a>├── 03-method.Rmd</span>
-<span id="cb636-6"><a href="dynamic-documents.html#cb636-6"></a>├── 04-application.Rmd</span>
-<span id="cb636-7"><a href="dynamic-documents.html#cb636-7"></a>├── 05-summary.Rmd</span>
-<span id="cb636-8"><a href="dynamic-documents.html#cb636-8"></a>├── 06-references.Rmd</span>
-<span id="cb636-9"><a href="dynamic-documents.html#cb636-9"></a>├── _bookdown.yml</span>
-<span id="cb636-10"><a href="dynamic-documents.html#cb636-10"></a>├── _output.yml</span>
-<span id="cb636-11"><a href="dynamic-documents.html#cb636-11"></a>├──  book.bib</span>
-<span id="cb636-12"><a href="dynamic-documents.html#cb636-12"></a>├──  preamble.tex</span>
-<span id="cb636-13"><a href="dynamic-documents.html#cb636-13"></a>├──  README.md</span>
-<span id="cb636-14"><a href="dynamic-documents.html#cb636-14"></a>└──  style.css</span></code></pre></div>
+<div class="sourceCode" id="cb693"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb693-1"><a href="dynamic-documents.html#cb693-1"></a>directory/</span>
+<span id="cb693-2"><a href="dynamic-documents.html#cb693-2"></a>├──  index.Rmd</span>
+<span id="cb693-3"><a href="dynamic-documents.html#cb693-3"></a>├── 01-intro.Rmd</span>
+<span id="cb693-4"><a href="dynamic-documents.html#cb693-4"></a>├── 02-literature.Rmd</span>
+<span id="cb693-5"><a href="dynamic-documents.html#cb693-5"></a>├── 03-method.Rmd</span>
+<span id="cb693-6"><a href="dynamic-documents.html#cb693-6"></a>├── 04-application.Rmd</span>
+<span id="cb693-7"><a href="dynamic-documents.html#cb693-7"></a>├── 05-summary.Rmd</span>
+<span id="cb693-8"><a href="dynamic-documents.html#cb693-8"></a>├── 06-references.Rmd</span>
+<span id="cb693-9"><a href="dynamic-documents.html#cb693-9"></a>├── _bookdown.yml</span>
+<span id="cb693-10"><a href="dynamic-documents.html#cb693-10"></a>├── _output.yml</span>
+<span id="cb693-11"><a href="dynamic-documents.html#cb693-11"></a>├──  book.bib</span>
+<span id="cb693-12"><a href="dynamic-documents.html#cb693-12"></a>├──  preamble.tex</span>
+<span id="cb693-13"><a href="dynamic-documents.html#cb693-13"></a>├──  README.md</span>
+<span id="cb693-14"><a href="dynamic-documents.html#cb693-14"></a>└──  style.css</span></code></pre></div>
 <div id="语法高亮" class="section level3">
-<h3><span class="header-section-number">14.3.1</span> 语法高亮</h3>
+<h3><span class="header-section-number">16.3.1</span> 语法高亮</h3>
 <p>Pandoc 通过 LaTeX 环境 lstlisting 支持语法高亮，比如</p>
-<div class="sourceCode" id="cb637"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb637-1"><a href="dynamic-documents.html#cb637-1"></a><span class="bn">```TeX</span></span>
-<span id="cb637-2"><a href="dynamic-documents.html#cb637-2"></a><span class="bn">\begin{lstlisting}</span></span>
-<span id="cb637-3"><a href="dynamic-documents.html#cb637-3"></a><span class="bn">\documentclass[cn]{elegantbook} </span></span>
-<span id="cb637-4"><a href="dynamic-documents.html#cb637-4"></a><span class="bn">\documentclass[lang=cn]{elegantbook}</span></span>
-<span id="cb637-5"><a href="dynamic-documents.html#cb637-5"></a><span class="bn">\end{lstlisting}</span></span>
-<span id="cb637-6"><a href="dynamic-documents.html#cb637-6"></a></span>
-<span id="cb637-7"><a href="dynamic-documents.html#cb637-7"></a><span class="bn">\begin{lstlisting}[frame=single]</span></span>
-<span id="cb637-8"><a href="dynamic-documents.html#cb637-8"></a><span class="bn">\nocite{EINAV2010,Havrylchyk2018} %or include some bibitems</span></span>
-<span id="cb637-9"><a href="dynamic-documents.html#cb637-9"></a><span class="bn">\nocite{*} %include all the bibitems</span></span>
-<span id="cb637-10"><a href="dynamic-documents.html#cb637-10"></a><span class="bn">\end{lstlisting}</span></span>
-<span id="cb637-11"><a href="dynamic-documents.html#cb637-11"></a><span class="bn">```</span></span></code></pre></div>
-<div class="sourceCode" id="cb638"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb638-1"><a href="dynamic-documents.html#cb638-1"></a><span class="co"># knit 支持的编程语言及其语法高亮环境</span></span>
-<span id="cb638-2"><a href="dynamic-documents.html#cb638-2"></a><span class="kw">names</span>(knitr<span class="op">::</span>knit_engines<span class="op">$</span><span class="kw">get</span>())</span>
-<span id="cb638-3"><a href="dynamic-documents.html#cb638-3"></a><span class="co">#&gt;  [1] &quot;awk&quot;         &quot;bash&quot;        &quot;coffee&quot;      &quot;gawk&quot;        &quot;groovy&quot;     </span></span>
-<span id="cb638-4"><a href="dynamic-documents.html#cb638-4"></a><span class="co">#&gt;  [6] &quot;haskell&quot;     &quot;lein&quot;        &quot;mysql&quot;       &quot;node&quot;        &quot;octave&quot;     </span></span>
-<span id="cb638-5"><a href="dynamic-documents.html#cb638-5"></a><span class="co">#&gt; [11] &quot;perl&quot;        &quot;psql&quot;        &quot;Rscript&quot;     &quot;ruby&quot;        &quot;sas&quot;        </span></span>
-<span id="cb638-6"><a href="dynamic-documents.html#cb638-6"></a><span class="co">#&gt; [16] &quot;scala&quot;       &quot;sed&quot;         &quot;sh&quot;          &quot;stata&quot;       &quot;zsh&quot;        </span></span>
-<span id="cb638-7"><a href="dynamic-documents.html#cb638-7"></a><span class="co">#&gt; [21] &quot;highlight&quot;   &quot;Rcpp&quot;        &quot;tikz&quot;        &quot;dot&quot;         &quot;c&quot;          </span></span>
-<span id="cb638-8"><a href="dynamic-documents.html#cb638-8"></a><span class="co">#&gt; [26] &quot;fortran&quot;     &quot;fortran95&quot;   &quot;asy&quot;         &quot;cat&quot;         &quot;asis&quot;       </span></span>
-<span id="cb638-9"><a href="dynamic-documents.html#cb638-9"></a><span class="co">#&gt; [31] &quot;stan&quot;        &quot;block&quot;       &quot;block2&quot;      &quot;js&quot;          &quot;css&quot;        </span></span>
-<span id="cb638-10"><a href="dynamic-documents.html#cb638-10"></a><span class="co">#&gt; [36] &quot;sql&quot;         &quot;go&quot;          &quot;python&quot;      &quot;julia&quot;       &quot;sass&quot;       </span></span>
-<span id="cb638-11"><a href="dynamic-documents.html#cb638-11"></a><span class="co">#&gt; [41] &quot;scss&quot;        &quot;theorem&quot;     &quot;lemma&quot;       &quot;corollary&quot;   &quot;proposition&quot;</span></span>
-<span id="cb638-12"><a href="dynamic-documents.html#cb638-12"></a><span class="co">#&gt; [46] &quot;conjecture&quot;  &quot;definition&quot;  &quot;example&quot;     &quot;exercise&quot;    &quot;proof&quot;      </span></span>
-<span id="cb638-13"><a href="dynamic-documents.html#cb638-13"></a><span class="co">#&gt; [51] &quot;remark&quot;      &quot;solution&quot;</span></span>
-<span id="cb638-14"><a href="dynamic-documents.html#cb638-14"></a><span class="co"># knit 支持的语法高亮主题</span></span>
-<span id="cb638-15"><a href="dynamic-documents.html#cb638-15"></a><span class="co"># Pandoc 支持的语法高亮环境</span></span>
-<span id="cb638-16"><a href="dynamic-documents.html#cb638-16"></a><span class="kw">c</span>(</span>
-<span id="cb638-17"><a href="dynamic-documents.html#cb638-17"></a>  <span class="st">&quot;ABAP&quot;</span>, <span class="st">&quot;IDL&quot;</span>, <span class="st">&quot;Plasm&quot;</span>, <span class="st">&quot;ACSL&quot;</span>,</span>
-<span id="cb638-18"><a href="dynamic-documents.html#cb638-18"></a>  <span class="st">&quot;inform&quot;</span>, <span class="st">&quot;POV&quot;</span>, <span class="st">&quot;Ada&quot;</span>, <span class="st">&quot;Java&quot;</span>, <span class="st">&quot;Prolog&quot;</span>,</span>
-<span id="cb638-19"><a href="dynamic-documents.html#cb638-19"></a>  <span class="st">&quot;Algol&quot;</span>, <span class="st">&quot;JVMIS&quot;</span>, <span class="st">&quot;Promela&quot;</span>, <span class="st">&quot;Ant&quot;</span>, <span class="st">&quot;ksh&quot;</span>,</span>
-<span id="cb638-20"><a href="dynamic-documents.html#cb638-20"></a>  <span class="st">&quot;Python&quot;</span>, <span class="st">&quot;Assembler&quot;</span>, <span class="st">&quot;Lisp&quot;</span>, <span class="st">&quot;R&quot;</span>, <span class="st">&quot;Awk&quot;</span>,</span>
-<span id="cb638-21"><a href="dynamic-documents.html#cb638-21"></a>  <span class="st">&quot;Logo&quot;</span>, <span class="st">&quot;Reduce&quot;</span>, <span class="st">&quot;bash&quot;</span>, <span class="st">&quot;make&quot;</span>, <span class="st">&quot;Rexx&quot;</span>,</span>
-<span id="cb638-22"><a href="dynamic-documents.html#cb638-22"></a>  <span class="st">&quot;Basic&quot;</span>, <span class="st">&quot;Mathematica&quot;</span>, <span class="st">&quot;RSL&quot;</span>, <span class="st">&quot;C&quot;</span>, <span class="st">&quot;Matlab&quot;</span>,</span>
-<span id="cb638-23"><a href="dynamic-documents.html#cb638-23"></a>  <span class="st">&quot;Ruby&quot;</span>, <span class="st">&quot;C++&quot;</span>, <span class="st">&quot;Mercury&quot;</span>, <span class="st">&quot;S&quot;</span>, <span class="st">&quot;Caml&quot;</span>,</span>
-<span id="cb638-24"><a href="dynamic-documents.html#cb638-24"></a>  <span class="st">&quot;MetaPost&quot;</span>, <span class="st">&quot;SAS&quot;</span>, <span class="st">&quot;Clean&quot;</span>, <span class="st">&quot;Miranda&quot;</span>, <span class="st">&quot;Scilab&quot;</span>,</span>
-<span id="cb638-25"><a href="dynamic-documents.html#cb638-25"></a>  <span class="st">&quot;Cobol&quot;</span>, <span class="st">&quot;Mizar&quot;</span>, <span class="st">&quot;sh&quot;</span>, <span class="st">&quot;Comal&quot;</span>, <span class="st">&quot;ML&quot;</span>, <span class="st">&quot;SHELXL&quot;</span>,</span>
-<span id="cb638-26"><a href="dynamic-documents.html#cb638-26"></a>  <span class="st">&quot;csh&quot;</span>, <span class="st">&quot;Modula-2&quot;</span>, <span class="st">&quot;Simula&quot;</span>, <span class="st">&quot;Delphi&quot;</span>,</span>
-<span id="cb638-27"><a href="dynamic-documents.html#cb638-27"></a>  <span class="st">&quot;MuPAD&quot;</span>, <span class="st">&quot;SQL&quot;</span>, <span class="st">&quot;Eiffel&quot;</span>, <span class="st">&quot;NASTRAN&quot;</span>, <span class="st">&quot;tcl&quot;</span>,</span>
-<span id="cb638-28"><a href="dynamic-documents.html#cb638-28"></a>  <span class="st">&quot;Elan&quot;</span>, <span class="st">&quot;Oberon-2&quot;</span>, <span class="st">&quot;TeX&quot;</span>, <span class="st">&quot;erlang&quot;</span>,</span>
-<span id="cb638-29"><a href="dynamic-documents.html#cb638-29"></a>  <span class="st">&quot;OCL&quot;</span>, <span class="st">&quot;VBScript&quot;</span>, <span class="st">&quot;Euphoria&quot;</span>, <span class="st">&quot;Octave&quot;</span>,</span>
-<span id="cb638-30"><a href="dynamic-documents.html#cb638-30"></a>  <span class="st">&quot;Verilog&quot;</span>, <span class="st">&quot;Fortran&quot;</span>, <span class="st">&quot;Oz&quot;</span>, <span class="st">&quot;VHDL&quot;</span>, <span class="st">&quot;GCL&quot;</span>,</span>
-<span id="cb638-31"><a href="dynamic-documents.html#cb638-31"></a>  <span class="st">&quot;Pascal&quot;</span>, <span class="st">&quot;VRML&quot;</span>, <span class="st">&quot;Gnuplot&quot;</span>, <span class="st">&quot;Perl&quot;</span>, <span class="st">&quot;XML&quot;</span>,</span>
-<span id="cb638-32"><a href="dynamic-documents.html#cb638-32"></a>  <span class="st">&quot;Haskell&quot;</span>, <span class="st">&quot;PHP&quot;</span>, <span class="st">&quot;XSLT&quot;</span>, <span class="st">&quot;HTML&quot;</span>, <span class="st">&quot;PL/I&quot;</span></span>
-<span id="cb638-33"><a href="dynamic-documents.html#cb638-33"></a>)</span>
-<span id="cb638-34"><a href="dynamic-documents.html#cb638-34"></a><span class="co">#&gt;  [1] &quot;ABAP&quot;        &quot;IDL&quot;         &quot;Plasm&quot;       &quot;ACSL&quot;        &quot;inform&quot;     </span></span>
-<span id="cb638-35"><a href="dynamic-documents.html#cb638-35"></a><span class="co">#&gt;  [6] &quot;POV&quot;         &quot;Ada&quot;         &quot;Java&quot;        &quot;Prolog&quot;      &quot;Algol&quot;      </span></span>
-<span id="cb638-36"><a href="dynamic-documents.html#cb638-36"></a><span class="co">#&gt; [11] &quot;JVMIS&quot;       &quot;Promela&quot;     &quot;Ant&quot;         &quot;ksh&quot;         &quot;Python&quot;     </span></span>
-<span id="cb638-37"><a href="dynamic-documents.html#cb638-37"></a><span class="co">#&gt; [16] &quot;Assembler&quot;   &quot;Lisp&quot;        &quot;R&quot;           &quot;Awk&quot;         &quot;Logo&quot;       </span></span>
-<span id="cb638-38"><a href="dynamic-documents.html#cb638-38"></a><span class="co">#&gt; [21] &quot;Reduce&quot;      &quot;bash&quot;        &quot;make&quot;        &quot;Rexx&quot;        &quot;Basic&quot;      </span></span>
-<span id="cb638-39"><a href="dynamic-documents.html#cb638-39"></a><span class="co">#&gt; [26] &quot;Mathematica&quot; &quot;RSL&quot;         &quot;C&quot;           &quot;Matlab&quot;      &quot;Ruby&quot;       </span></span>
-<span id="cb638-40"><a href="dynamic-documents.html#cb638-40"></a><span class="co">#&gt; [31] &quot;C++&quot;         &quot;Mercury&quot;     &quot;S&quot;           &quot;Caml&quot;        &quot;MetaPost&quot;   </span></span>
-<span id="cb638-41"><a href="dynamic-documents.html#cb638-41"></a><span class="co">#&gt; [36] &quot;SAS&quot;         &quot;Clean&quot;       &quot;Miranda&quot;     &quot;Scilab&quot;      &quot;Cobol&quot;      </span></span>
-<span id="cb638-42"><a href="dynamic-documents.html#cb638-42"></a><span class="co">#&gt; [41] &quot;Mizar&quot;       &quot;sh&quot;          &quot;Comal&quot;       &quot;ML&quot;          &quot;SHELXL&quot;     </span></span>
-<span id="cb638-43"><a href="dynamic-documents.html#cb638-43"></a><span class="co">#&gt; [46] &quot;csh&quot;         &quot;Modula-2&quot;    &quot;Simula&quot;      &quot;Delphi&quot;      &quot;MuPAD&quot;      </span></span>
-<span id="cb638-44"><a href="dynamic-documents.html#cb638-44"></a><span class="co">#&gt; [51] &quot;SQL&quot;         &quot;Eiffel&quot;      &quot;NASTRAN&quot;     &quot;tcl&quot;         &quot;Elan&quot;       </span></span>
-<span id="cb638-45"><a href="dynamic-documents.html#cb638-45"></a><span class="co">#&gt; [56] &quot;Oberon-2&quot;    &quot;TeX&quot;         &quot;erlang&quot;      &quot;OCL&quot;         &quot;VBScript&quot;   </span></span>
-<span id="cb638-46"><a href="dynamic-documents.html#cb638-46"></a><span class="co">#&gt; [61] &quot;Euphoria&quot;    &quot;Octave&quot;      &quot;Verilog&quot;     &quot;Fortran&quot;     &quot;Oz&quot;         </span></span>
-<span id="cb638-47"><a href="dynamic-documents.html#cb638-47"></a><span class="co">#&gt; [66] &quot;VHDL&quot;        &quot;GCL&quot;         &quot;Pascal&quot;      &quot;VRML&quot;        &quot;Gnuplot&quot;    </span></span>
-<span id="cb638-48"><a href="dynamic-documents.html#cb638-48"></a><span class="co">#&gt; [71] &quot;Perl&quot;        &quot;XML&quot;         &quot;Haskell&quot;     &quot;PHP&quot;         &quot;XSLT&quot;       </span></span>
-<span id="cb638-49"><a href="dynamic-documents.html#cb638-49"></a><span class="co">#&gt; [76] &quot;HTML&quot;        &quot;PL/I&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb694"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb694-1"><a href="dynamic-documents.html#cb694-1"></a><span class="bn">```TeX</span></span>
+<span id="cb694-2"><a href="dynamic-documents.html#cb694-2"></a><span class="bn">\begin{lstlisting}</span></span>
+<span id="cb694-3"><a href="dynamic-documents.html#cb694-3"></a><span class="bn">\documentclass[cn]{elegantbook} </span></span>
+<span id="cb694-4"><a href="dynamic-documents.html#cb694-4"></a><span class="bn">\documentclass[lang=cn]{elegantbook}</span></span>
+<span id="cb694-5"><a href="dynamic-documents.html#cb694-5"></a><span class="bn">\end{lstlisting}</span></span>
+<span id="cb694-6"><a href="dynamic-documents.html#cb694-6"></a></span>
+<span id="cb694-7"><a href="dynamic-documents.html#cb694-7"></a><span class="bn">\begin{lstlisting}[frame=single]</span></span>
+<span id="cb694-8"><a href="dynamic-documents.html#cb694-8"></a><span class="bn">\nocite{EINAV2010,Havrylchyk2018} %or include some bibitems</span></span>
+<span id="cb694-9"><a href="dynamic-documents.html#cb694-9"></a><span class="bn">\nocite{*} %include all the bibitems</span></span>
+<span id="cb694-10"><a href="dynamic-documents.html#cb694-10"></a><span class="bn">\end{lstlisting}</span></span>
+<span id="cb694-11"><a href="dynamic-documents.html#cb694-11"></a><span class="bn">```</span></span></code></pre></div>
+<div class="sourceCode" id="cb695"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb695-1"><a href="dynamic-documents.html#cb695-1"></a><span class="co"># knit 支持的编程语言及其语法高亮环境</span></span>
+<span id="cb695-2"><a href="dynamic-documents.html#cb695-2"></a><span class="kw">names</span>(knitr<span class="op">::</span>knit_engines<span class="op">$</span><span class="kw">get</span>())</span>
+<span id="cb695-3"><a href="dynamic-documents.html#cb695-3"></a><span class="co">#&gt;  [1] &quot;awk&quot;         &quot;bash&quot;        &quot;coffee&quot;      &quot;gawk&quot;        &quot;groovy&quot;     </span></span>
+<span id="cb695-4"><a href="dynamic-documents.html#cb695-4"></a><span class="co">#&gt;  [6] &quot;haskell&quot;     &quot;lein&quot;        &quot;mysql&quot;       &quot;node&quot;        &quot;octave&quot;     </span></span>
+<span id="cb695-5"><a href="dynamic-documents.html#cb695-5"></a><span class="co">#&gt; [11] &quot;perl&quot;        &quot;psql&quot;        &quot;Rscript&quot;     &quot;ruby&quot;        &quot;sas&quot;        </span></span>
+<span id="cb695-6"><a href="dynamic-documents.html#cb695-6"></a><span class="co">#&gt; [16] &quot;scala&quot;       &quot;sed&quot;         &quot;sh&quot;          &quot;stata&quot;       &quot;zsh&quot;        </span></span>
+<span id="cb695-7"><a href="dynamic-documents.html#cb695-7"></a><span class="co">#&gt; [21] &quot;highlight&quot;   &quot;Rcpp&quot;        &quot;tikz&quot;        &quot;dot&quot;         &quot;c&quot;          </span></span>
+<span id="cb695-8"><a href="dynamic-documents.html#cb695-8"></a><span class="co">#&gt; [26] &quot;fortran&quot;     &quot;fortran95&quot;   &quot;asy&quot;         &quot;cat&quot;         &quot;asis&quot;       </span></span>
+<span id="cb695-9"><a href="dynamic-documents.html#cb695-9"></a><span class="co">#&gt; [31] &quot;stan&quot;        &quot;block&quot;       &quot;block2&quot;      &quot;js&quot;          &quot;css&quot;        </span></span>
+<span id="cb695-10"><a href="dynamic-documents.html#cb695-10"></a><span class="co">#&gt; [36] &quot;sql&quot;         &quot;go&quot;          &quot;python&quot;      &quot;julia&quot;       &quot;sass&quot;       </span></span>
+<span id="cb695-11"><a href="dynamic-documents.html#cb695-11"></a><span class="co">#&gt; [41] &quot;scss&quot;        &quot;theorem&quot;     &quot;lemma&quot;       &quot;corollary&quot;   &quot;proposition&quot;</span></span>
+<span id="cb695-12"><a href="dynamic-documents.html#cb695-12"></a><span class="co">#&gt; [46] &quot;conjecture&quot;  &quot;definition&quot;  &quot;example&quot;     &quot;exercise&quot;    &quot;proof&quot;      </span></span>
+<span id="cb695-13"><a href="dynamic-documents.html#cb695-13"></a><span class="co">#&gt; [51] &quot;remark&quot;      &quot;solution&quot;</span></span>
+<span id="cb695-14"><a href="dynamic-documents.html#cb695-14"></a><span class="co"># knit 支持的语法高亮主题</span></span>
+<span id="cb695-15"><a href="dynamic-documents.html#cb695-15"></a><span class="co"># Pandoc 支持的语法高亮环境</span></span>
+<span id="cb695-16"><a href="dynamic-documents.html#cb695-16"></a><span class="kw">c</span>(</span>
+<span id="cb695-17"><a href="dynamic-documents.html#cb695-17"></a>  <span class="st">&quot;ABAP&quot;</span>, <span class="st">&quot;IDL&quot;</span>, <span class="st">&quot;Plasm&quot;</span>, <span class="st">&quot;ACSL&quot;</span>,</span>
+<span id="cb695-18"><a href="dynamic-documents.html#cb695-18"></a>  <span class="st">&quot;inform&quot;</span>, <span class="st">&quot;POV&quot;</span>, <span class="st">&quot;Ada&quot;</span>, <span class="st">&quot;Java&quot;</span>, <span class="st">&quot;Prolog&quot;</span>,</span>
+<span id="cb695-19"><a href="dynamic-documents.html#cb695-19"></a>  <span class="st">&quot;Algol&quot;</span>, <span class="st">&quot;JVMIS&quot;</span>, <span class="st">&quot;Promela&quot;</span>, <span class="st">&quot;Ant&quot;</span>, <span class="st">&quot;ksh&quot;</span>,</span>
+<span id="cb695-20"><a href="dynamic-documents.html#cb695-20"></a>  <span class="st">&quot;Python&quot;</span>, <span class="st">&quot;Assembler&quot;</span>, <span class="st">&quot;Lisp&quot;</span>, <span class="st">&quot;R&quot;</span>, <span class="st">&quot;Awk&quot;</span>,</span>
+<span id="cb695-21"><a href="dynamic-documents.html#cb695-21"></a>  <span class="st">&quot;Logo&quot;</span>, <span class="st">&quot;Reduce&quot;</span>, <span class="st">&quot;bash&quot;</span>, <span class="st">&quot;make&quot;</span>, <span class="st">&quot;Rexx&quot;</span>,</span>
+<span id="cb695-22"><a href="dynamic-documents.html#cb695-22"></a>  <span class="st">&quot;Basic&quot;</span>, <span class="st">&quot;Mathematica&quot;</span>, <span class="st">&quot;RSL&quot;</span>, <span class="st">&quot;C&quot;</span>, <span class="st">&quot;Matlab&quot;</span>,</span>
+<span id="cb695-23"><a href="dynamic-documents.html#cb695-23"></a>  <span class="st">&quot;Ruby&quot;</span>, <span class="st">&quot;C++&quot;</span>, <span class="st">&quot;Mercury&quot;</span>, <span class="st">&quot;S&quot;</span>, <span class="st">&quot;Caml&quot;</span>,</span>
+<span id="cb695-24"><a href="dynamic-documents.html#cb695-24"></a>  <span class="st">&quot;MetaPost&quot;</span>, <span class="st">&quot;SAS&quot;</span>, <span class="st">&quot;Clean&quot;</span>, <span class="st">&quot;Miranda&quot;</span>, <span class="st">&quot;Scilab&quot;</span>,</span>
+<span id="cb695-25"><a href="dynamic-documents.html#cb695-25"></a>  <span class="st">&quot;Cobol&quot;</span>, <span class="st">&quot;Mizar&quot;</span>, <span class="st">&quot;sh&quot;</span>, <span class="st">&quot;Comal&quot;</span>, <span class="st">&quot;ML&quot;</span>, <span class="st">&quot;SHELXL&quot;</span>,</span>
+<span id="cb695-26"><a href="dynamic-documents.html#cb695-26"></a>  <span class="st">&quot;csh&quot;</span>, <span class="st">&quot;Modula-2&quot;</span>, <span class="st">&quot;Simula&quot;</span>, <span class="st">&quot;Delphi&quot;</span>,</span>
+<span id="cb695-27"><a href="dynamic-documents.html#cb695-27"></a>  <span class="st">&quot;MuPAD&quot;</span>, <span class="st">&quot;SQL&quot;</span>, <span class="st">&quot;Eiffel&quot;</span>, <span class="st">&quot;NASTRAN&quot;</span>, <span class="st">&quot;tcl&quot;</span>,</span>
+<span id="cb695-28"><a href="dynamic-documents.html#cb695-28"></a>  <span class="st">&quot;Elan&quot;</span>, <span class="st">&quot;Oberon-2&quot;</span>, <span class="st">&quot;TeX&quot;</span>, <span class="st">&quot;erlang&quot;</span>,</span>
+<span id="cb695-29"><a href="dynamic-documents.html#cb695-29"></a>  <span class="st">&quot;OCL&quot;</span>, <span class="st">&quot;VBScript&quot;</span>, <span class="st">&quot;Euphoria&quot;</span>, <span class="st">&quot;Octave&quot;</span>,</span>
+<span id="cb695-30"><a href="dynamic-documents.html#cb695-30"></a>  <span class="st">&quot;Verilog&quot;</span>, <span class="st">&quot;Fortran&quot;</span>, <span class="st">&quot;Oz&quot;</span>, <span class="st">&quot;VHDL&quot;</span>, <span class="st">&quot;GCL&quot;</span>,</span>
+<span id="cb695-31"><a href="dynamic-documents.html#cb695-31"></a>  <span class="st">&quot;Pascal&quot;</span>, <span class="st">&quot;VRML&quot;</span>, <span class="st">&quot;Gnuplot&quot;</span>, <span class="st">&quot;Perl&quot;</span>, <span class="st">&quot;XML&quot;</span>,</span>
+<span id="cb695-32"><a href="dynamic-documents.html#cb695-32"></a>  <span class="st">&quot;Haskell&quot;</span>, <span class="st">&quot;PHP&quot;</span>, <span class="st">&quot;XSLT&quot;</span>, <span class="st">&quot;HTML&quot;</span>, <span class="st">&quot;PL/I&quot;</span></span>
+<span id="cb695-33"><a href="dynamic-documents.html#cb695-33"></a>)</span>
+<span id="cb695-34"><a href="dynamic-documents.html#cb695-34"></a><span class="co">#&gt;  [1] &quot;ABAP&quot;        &quot;IDL&quot;         &quot;Plasm&quot;       &quot;ACSL&quot;        &quot;inform&quot;     </span></span>
+<span id="cb695-35"><a href="dynamic-documents.html#cb695-35"></a><span class="co">#&gt;  [6] &quot;POV&quot;         &quot;Ada&quot;         &quot;Java&quot;        &quot;Prolog&quot;      &quot;Algol&quot;      </span></span>
+<span id="cb695-36"><a href="dynamic-documents.html#cb695-36"></a><span class="co">#&gt; [11] &quot;JVMIS&quot;       &quot;Promela&quot;     &quot;Ant&quot;         &quot;ksh&quot;         &quot;Python&quot;     </span></span>
+<span id="cb695-37"><a href="dynamic-documents.html#cb695-37"></a><span class="co">#&gt; [16] &quot;Assembler&quot;   &quot;Lisp&quot;        &quot;R&quot;           &quot;Awk&quot;         &quot;Logo&quot;       </span></span>
+<span id="cb695-38"><a href="dynamic-documents.html#cb695-38"></a><span class="co">#&gt; [21] &quot;Reduce&quot;      &quot;bash&quot;        &quot;make&quot;        &quot;Rexx&quot;        &quot;Basic&quot;      </span></span>
+<span id="cb695-39"><a href="dynamic-documents.html#cb695-39"></a><span class="co">#&gt; [26] &quot;Mathematica&quot; &quot;RSL&quot;         &quot;C&quot;           &quot;Matlab&quot;      &quot;Ruby&quot;       </span></span>
+<span id="cb695-40"><a href="dynamic-documents.html#cb695-40"></a><span class="co">#&gt; [31] &quot;C++&quot;         &quot;Mercury&quot;     &quot;S&quot;           &quot;Caml&quot;        &quot;MetaPost&quot;   </span></span>
+<span id="cb695-41"><a href="dynamic-documents.html#cb695-41"></a><span class="co">#&gt; [36] &quot;SAS&quot;         &quot;Clean&quot;       &quot;Miranda&quot;     &quot;Scilab&quot;      &quot;Cobol&quot;      </span></span>
+<span id="cb695-42"><a href="dynamic-documents.html#cb695-42"></a><span class="co">#&gt; [41] &quot;Mizar&quot;       &quot;sh&quot;          &quot;Comal&quot;       &quot;ML&quot;          &quot;SHELXL&quot;     </span></span>
+<span id="cb695-43"><a href="dynamic-documents.html#cb695-43"></a><span class="co">#&gt; [46] &quot;csh&quot;         &quot;Modula-2&quot;    &quot;Simula&quot;      &quot;Delphi&quot;      &quot;MuPAD&quot;      </span></span>
+<span id="cb695-44"><a href="dynamic-documents.html#cb695-44"></a><span class="co">#&gt; [51] &quot;SQL&quot;         &quot;Eiffel&quot;      &quot;NASTRAN&quot;     &quot;tcl&quot;         &quot;Elan&quot;       </span></span>
+<span id="cb695-45"><a href="dynamic-documents.html#cb695-45"></a><span class="co">#&gt; [56] &quot;Oberon-2&quot;    &quot;TeX&quot;         &quot;erlang&quot;      &quot;OCL&quot;         &quot;VBScript&quot;   </span></span>
+<span id="cb695-46"><a href="dynamic-documents.html#cb695-46"></a><span class="co">#&gt; [61] &quot;Euphoria&quot;    &quot;Octave&quot;      &quot;Verilog&quot;     &quot;Fortran&quot;     &quot;Oz&quot;         </span></span>
+<span id="cb695-47"><a href="dynamic-documents.html#cb695-47"></a><span class="co">#&gt; [66] &quot;VHDL&quot;        &quot;GCL&quot;         &quot;Pascal&quot;      &quot;VRML&quot;        &quot;Gnuplot&quot;    </span></span>
+<span id="cb695-48"><a href="dynamic-documents.html#cb695-48"></a><span class="co">#&gt; [71] &quot;Perl&quot;        &quot;XML&quot;         &quot;Haskell&quot;     &quot;PHP&quot;         &quot;XSLT&quot;       </span></span>
+<span id="cb695-49"><a href="dynamic-documents.html#cb695-49"></a><span class="co">#&gt; [76] &quot;HTML&quot;        &quot;PL/I&quot;</span></span></code></pre></div>
 </div>
 </div>
 <div id="table-style" class="section level2">
-<h2><span class="header-section-number">14.4</span> 表格样式</h2>
+<h2><span class="header-section-number">16.4</span> 表格样式</h2>
 <p>在数据分析报告中，根据报告的文本格式，我们有不同的数据呈现形式，基于 HTML 和 LaTeX 甚至 DOCX</p>
 <p>表格样式工具 <a href="https://github.com/rstudio/gt">gt</a> <a href="https://github.com/haozhu233/kableExtra">kableExtra</a> <a href="https://github.com/davidgohel/flextable">flextable</a> 和 <a href="https://github.com/rstudio/DT">DT</a></p>
 <p><a href="https://github.com/ThinkR-open/remedy">remedy</a> 格式化 Markdown 语法
 <a href="https://github.com/mwip/beautifyR">beautifyR</a> 整理 Markdown 表格</p>
 <div id="table-html" class="section level3">
-<h3><span class="header-section-number">14.4.1</span> HTML 样式</h3>
+<h3><span class="header-section-number">16.4.1</span> HTML 样式</h3>
 </div>
 <div id="table-latex" class="section level3">
-<h3><span class="header-section-number">14.4.2</span> LaTeX 样式</h3>
+<h3><span class="header-section-number">16.4.2</span> LaTeX 样式</h3>
 </div>
 </div>
 <div id="rmarkdown-addins" class="section level2">
-<h2><span class="header-section-number">14.5</span> 插件</h2>
+<h2><span class="header-section-number">16.5</span> 插件</h2>
 <p>提高写作效率的 10 大 R 包或 RStudio 插件</p>
 <ul>
 <li>简化 Markdown 写作 <a href="https://github.com/ThinkR-open/remedy">remedy</a></li>
@@ -1079,13 +1162,13 @@ L(\beta,\boldsymbol{\theta})
 </div>
 <div class="footnotes">
 <hr />
-<ol start="39">
-<li id="fn39"><p>(about problems with creating a suitable lattice panel function) R-help (August 2008)<a href="dynamic-documents.html#fnref39" class="footnote-back">↩︎</a></p></li>
-<li id="fn40"><p>(on the difference of Lattice (which eventually was called grid) and Trellis) DSC 2001, Wien (March 2001)<a href="dynamic-documents.html#fnref40" class="footnote-back">↩︎</a></p></li>
-<li id="fn41"><p>(about the fact that lattice objects have to be print()ed) R-help (May 2005)<a href="dynamic-documents.html#fnref41" class="footnote-back">↩︎</a></p></li>
-<li id="fn42"><p><a href="https://xiangyunhuang.github.io/bookdown-kableExtra/" class="uri">https://xiangyunhuang.github.io/bookdown-kableExtra/</a><a href="dynamic-documents.html#fnref42" class="footnote-back">↩︎</a></p></li>
-<li id="fn43"><p>附有脚注<a href="dynamic-documents.html#fnref43" class="footnote-back">↩︎</a></p></li>
-<li id="fn44"><p>这里是脚注<a href="dynamic-documents.html#fnref44" class="footnote-back">↩︎</a></p></li>
+<ol start="41">
+<li id="fn41"><p>(about problems with creating a suitable lattice panel function) R-help (August 2008)<a href="dynamic-documents.html#fnref41" class="footnote-back">↩︎</a></p></li>
+<li id="fn42"><p>(on the difference of Lattice (which eventually was called grid) and Trellis) DSC 2001, Wien (March 2001)<a href="dynamic-documents.html#fnref42" class="footnote-back">↩︎</a></p></li>
+<li id="fn43"><p>(about the fact that lattice objects have to be print()ed) R-help (May 2005)<a href="dynamic-documents.html#fnref43" class="footnote-back">↩︎</a></p></li>
+<li id="fn44"><p><a href="https://xiangyunhuang.github.io/bookdown-kableExtra/" class="uri">https://xiangyunhuang.github.io/bookdown-kableExtra/</a><a href="dynamic-documents.html#fnref44" class="footnote-back">↩︎</a></p></li>
+<li id="fn45"><p>附有脚注<a href="dynamic-documents.html#fnref45" class="footnote-back">↩︎</a></p></li>
+<li id="fn46"><p>这里是脚注<a href="dynamic-documents.html#fnref46" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
 <script>

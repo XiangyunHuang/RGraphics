@@ -723,6 +723,321 @@ gextract_str(text = "abd123da345das", pattern = "(\\d+){3}")
 
 例子来自于 <https://recology.info/2018/10/limiting-dependencies/>
 
+## 命名捕捉 {#subsubsec:named-capture}
+
+函数 `regexpr(..., perl = TRUE)` 和 `gregexpr(..., perl = TRUE)` 支持命名捕捉
+
+
+```r
+## named capture
+notables <- c("  Ben Franklin and Jefferson Davis",
+              "\tMillard Fillmore")
+# name groups 'first' and 'last'
+name.rex <- "(?<first>[[:upper:]][[:lower:]]+) (?<last>[[:upper:]][[:lower:]]+)"
+
+(parsed <- regexpr(name.rex, notables, perl = TRUE))
+#> [1] 3 2
+#> attr(,"match.length")
+#> [1] 12 16
+#> attr(,"index.type")
+#> [1] "chars"
+#> attr(,"useBytes")
+#> [1] TRUE
+#> attr(,"capture.start")
+#>      first last
+#> [1,]     3    7
+#> [2,]     2   10
+#> attr(,"capture.length")
+#>      first last
+#> [1,]     3    8
+#> [2,]     7    8
+#> attr(,"capture.names")
+#> [1] "first" "last"
+
+attr(parsed, 'capture.names')
+#> [1] "first" "last"
+
+regmatches(notables, parsed)
+#> [1] "Ben Franklin"     "Millard Fillmore"
+```
+
+希望返回一个 data.frame，列名是指定的 named group 名字
+
+
+```r
+# 有多个结果
+(idx <- gregexpr(name.rex, notables, perl = TRUE))
+#> [[1]]
+#> [1]  3 20
+#> attr(,"match.length")
+#> [1] 12 15
+#> attr(,"index.type")
+#> [1] "chars"
+#> attr(,"useBytes")
+#> [1] TRUE
+#> attr(,"capture.start")
+#>      first last
+#> [1,]     3    7
+#> [2,]    20   30
+#> attr(,"capture.length")
+#>      first last
+#> [1,]     3    8
+#> [2,]     9    5
+#> attr(,"capture.names")
+#> [1] "first" "last" 
+#> 
+#> [[2]]
+#> [1] 2
+#> attr(,"match.length")
+#> [1] 16
+#> attr(,"index.type")
+#> [1] "chars"
+#> attr(,"useBytes")
+#> [1] TRUE
+#> attr(,"capture.start")
+#>      first last
+#> [1,]     2   10
+#> attr(,"capture.length")
+#>      first last
+#> [1,]     7    8
+#> attr(,"capture.names")
+#> [1] "first" "last"
+
+regmatches(notables, idx)
+#> [[1]]
+#> [1] "Ben Franklin"    "Jefferson Davis"
+#> 
+#> [[2]]
+#> [1] "Millard Fillmore"
+
+attr(idx[[1]], 'capture.names')
+#> [1] "first" "last"
+```
+
+
+```r
+library(magrittr)
+data.frame(notable = notables) %>% 
+tidyr::extract(
+    notable, c("first", "last"), name.rex, 
+    remove = FALSE
+  )
+#>                              notable   first     last
+#> 1   Ben Franklin and Jefferson Davis     Ben Franklin
+#> 2                 \tMillard Fillmore Millard Fillmore
+```
+
+
+## 精确匹配 {#subsubsec:exact-match}
+
+`fixed = TRUE`
+
+## 模糊匹配 {#subsubsec:fuzzy-match}
+
+近似字符串匹配 (Approximate String Matching) 也叫模糊匹配 (Fuzzy Matching)
+
+`agrep()` `agrepl()` `aregexec()` `adist()`
+
+
+```r
+agrep(pattern = "lasy", x = "1 lazy 2")
+#> [1] 1
+agrep("lasy", c(" 1 lazy 2", "1 lasy 2"), max = list(sub = 0))
+#> [1] 2
+agrep("laysy", c("1 lazy", "1", "1 LAZY"), max = 2)
+#> [1] 1
+agrep("laysy", c("1 lazy", "1", "1 LAZY"), max = 2, value = TRUE)
+#> [1] "1 lazy"
+agrep("laysy", c("1 lazy", "1", "1 LAZY"), max = 2, ignore.case = TRUE)
+#> [1] 1 3
+
+agrepl(pattern = "lasy", x = "1 lazy 2")
+#> [1] TRUE
+```
+
+
+```r
+## Cf. the examples for agrep.
+x <- c("1 lazy", "1", "1 LAZY")
+
+aregexec("laysy", x, max.distance = 2)
+#> [[1]]
+#> [1] 3
+#> attr(,"match.length")
+#> [1] 4
+#> 
+#> [[2]]
+#> [1] -1
+#> attr(,"match.length")
+#> [1] -1
+#> 
+#> [[3]]
+#> [1] -1
+#> attr(,"match.length")
+#> [1] -1
+aregexec("(lay)(sy)", x, max.distance = 2)
+#> [[1]]
+#> [1] 3 3 5
+#> attr(,"match.length")
+#> [1] 4 2 2
+#> 
+#> [[2]]
+#> [1] -1
+#> attr(,"match.length")
+#> [1] -1
+#> 
+#> [[3]]
+#> [1] -1
+#> attr(,"match.length")
+#> [1] -1
+aregexec("(lay)(sy)", x, max.distance = 2, ignore.case = TRUE)
+#> [[1]]
+#> [1] 3 3 6
+#> attr(,"match.length")
+#> [1] 4 3 1
+#> 
+#> [[2]]
+#> [1] -1
+#> attr(,"match.length")
+#> [1] -1
+#> 
+#> [[3]]
+#> [1] 3 3 6
+#> attr(,"match.length")
+#> [1] 4 3 1
+
+m <- aregexec("(lay)(sy)", x, max.distance = 2)
+regmatches(x, m)
+#> [[1]]
+#> [1] "lazy" "la"   "zy"  
+#> 
+#> [[2]]
+#> character(0)
+#> 
+#> [[3]]
+#> character(0)
+```
+
+
+
+```r
+## Cf. https://en.wikipedia.org/wiki/Levenshtein_distance
+adist("kitten", "sitting")
+#>      [,1]
+#> [1,]    3
+## To see the transformation counts for the Levenshtein distance:
+drop(attr(adist("kitten", "sitting", counts = TRUE), "counts"))
+#> ins del sub 
+#>   1   0   2
+## To see the transformation sequences:
+attr(adist(c("kitten", "sitting"), counts = TRUE), "trafos")
+#>      [,1]      [,2]     
+#> [1,] "MMMMMM"  "SMMMSMI"
+#> [2,] "SMMMSMD" "MMMMMMM"
+
+## Cf. the examples for agrep:
+adist("lasy", "1 lazy 2")
+#>      [,1]
+#> [1,]    5
+## For a "partial approximate match" (as used for agrep):
+adist("lasy", "1 lazy 2", partial = TRUE)
+#>      [,1]
+#> [1,]    1
+```
+
+案例
+
+`help.search()`
+
+## 高级的替换 {#subsubsec:replace}
+
+相比于 `sprintf()` 格式化输出字符串的方式替换，它的优势在于提示性，或者说代码的可读性
+
+
+```r
+glue_data <- function(param, text) {
+  idx <- gregexpr('\\{[^}]*\\}', text)[[1L]]
+  keys <- substring(text, idx, idx + attr(idx, 'match.length') - 1L)
+  for (key in keys) {
+    text <- gsub(key, param[[gsub('[{}]', '', key)]], text, fixed = TRUE)
+  }
+  text
+}
+cat(glue_data(
+  param = list(table = 'flights', origin = 'JFK'),
+  text = "
+  select count(*) as n
+  from {table}
+  where origin = '{origin}'
+  "
+))
+#> 
+#>   select count(*) as n
+#>   from flights
+#>   where origin = 'JFK'
+#> 
+```
+
+
+## 高级的提取 {#subsubsec:extract}
+
+从 text 中抽取给定模式 pattern 的字符串
+
+
+```r
+str_extract <- function(text, pattern, ...) regmatches(text, regexpr(pattern, text, ...))
+```
+
+举个栗子，比如提取数字
+
+
+```r
+shopping_list <- c("apples x4", "bag of flour", "bag of sugar", "milk x2")
+stringr::str_extract(shopping_list, "\\d")
+#> [1] "4" NA  NA  "2"
+# 注意二者的差别
+str_extract(shopping_list, "\\d")
+#> [1] "4" "2"
+```
+
+提取所有符合匹配模式的字符串
+
+
+```r
+str_extract_all <- function(text, pattern, ...) regmatches(text, gregexpr(pattern, text, ...))
+```
+
+举个栗子，提取其中的英文字母
+
+
+```r
+str_extract_all(shopping_list, "[a-z]+")
+#> [[1]]
+#> [1] "apples" "x"     
+#> 
+#> [[2]]
+#> [1] "bag"   "of"    "flour"
+#> 
+#> [[3]]
+#> [1] "bag"   "of"    "sugar"
+#> 
+#> [[4]]
+#> [1] "milk" "x"
+stringr::str_extract_all(shopping_list, "[a-z]+")
+#> [[1]]
+#> [1] "apples" "x"     
+#> 
+#> [[2]]
+#> [1] "bag"   "of"    "flour"
+#> 
+#> [[3]]
+#> [1] "bag"   "of"    "sugar"
+#> 
+#> [[4]]
+#> [1] "milk" "x"
+```
+
+
 ## 其它操作 {#other-string-op}
 
 ### strwrap
@@ -922,7 +1237,7 @@ trimws(x, "r")
 
 ```r
 xfun::session_info()
-#> R Under development (unstable) (2019-11-17 r77429)
+#> R Under development (unstable) (2019-12-29 r77627)
 #> Platform: x86_64-pc-linux-gnu (64-bit)
 #> Running under: Ubuntu 16.04.6 LTS
 #> 
@@ -935,14 +1250,19 @@ xfun::session_info()
 #>   LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
 #> 
 #> Package version:
-#>   base64enc_0.1.3  bookdown_0.15    codetools_0.2-16 compiler_4.0.0  
-#>   curl_4.2         digest_0.6.22    evaluate_0.14    glue_1.3.1      
+#>   assertthat_0.2.1 backports_1.1.5  base64enc_0.1.3  BH_1.72.0.2     
+#>   bookdown_0.16    cli_2.0.0        codetools_0.2-16 compiler_4.0.0  
+#>   crayon_1.3.4     curl_4.3         digest_0.6.23    dplyr_0.8.3     
+#>   ellipsis_0.3.0   evaluate_0.14    fansi_0.4.0      glue_1.3.1      
 #>   graphics_4.0.0   grDevices_4.0.0  highr_0.8        htmltools_0.4.0 
-#>   jsonlite_1.6     knitr_1.26       magrittr_1.5     markdown_1.1    
-#>   methods_4.0.0    mime_0.7         Rcpp_1.0.3       rlang_0.4.1     
-#>   rmarkdown_1.17   stats_4.0.0      stringi_1.4.3    stringr_1.4.0   
-#>   tinytex_0.17     tools_4.0.0      utils_4.0.0      xfun_0.11       
-#>   yaml_2.2.0
+#>   jsonlite_1.6     knitr_1.26       lifecycle_0.1.0  magrittr_1.5    
+#>   markdown_1.1     methods_4.0.0    mime_0.8         pillar_1.4.3    
+#>   pkgconfig_2.0.3  plogr_0.2.0      purrr_0.3.3      R6_2.4.1        
+#>   Rcpp_1.0.3       rlang_0.4.2      rmarkdown_2.0    stats_4.0.0     
+#>   stringi_1.4.3    stringr_1.4.0    tibble_2.1.3     tidyr_1.0.0     
+#>   tidyselect_0.2.5 tinytex_0.18     tools_4.0.0      utf8_1.1.4      
+#>   utils_4.0.0      vctrs_0.2.1      xfun_0.11        yaml_2.2.0      
+#>   zeallot_0.1.0
 ```
 
 [^regexp]: https://homepage.divms.uiowa.edu/~luke/R/regexp.html

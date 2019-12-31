@@ -24,6 +24,14 @@ pre code {
   margin: 1em 0;
 }
 
+.rmdtip {
+  border: 1px solid #51B749;
+  border-left-width: 5px;
+  border-radius: 5px;
+  padding: 1em;
+  margin: 1em 0;
+}
+
 .rmdnote {
   border: 1px solid #FBBC05;
   border-left-width: 5px;
@@ -33,6 +41,7 @@ pre code {
 }
 
 .book .book-body .page-wrapper .page-inner section.normal div.base > :first-child,
+.book .book-body .page-wrapper .page-inner section.normal div.rmdtip > :first-child,
 .book .book-body .page-wrapper .page-inner section.normal div.tidyverse > :first-child,
 .book .book-body .page-wrapper .page-inner section.normal div.warning > :first-child,
 .book .book-body .page-wrapper .page-inner section.normal div.rmdnote > :first-child,
@@ -41,6 +50,7 @@ pre code {
 }
 
 .book .book-body .page-wrapper .page-inner section.normal div.base > :last-child,
+.book .book-body .page-wrapper .page-inner section.normal div.rmdtip > :last-child,
 .book .book-body .page-wrapper .page-inner section.normal div.tidyverse > :last-child,
 .book .book-body .page-wrapper .page-inner section.normal div.warning > :last-child,
 .book .book-body .page-wrapper .page-inner section.normal div.rmdnote > :last-child,
@@ -79,6 +89,15 @@ div.rmdnote::before {
   display: block;
   content: "注意";
   color: #FBBC05;
+  font-size: 1.1em;
+  font-weight: bold;
+  margin-bottom: 0.25em;
+}
+
+div.rmdtip::before {
+  display: block;
+  content: "提示";
+  color: #51B749;
   font-size: 1.1em;
   font-weight: bold;
   margin-bottom: 0.25em;
