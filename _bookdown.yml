@@ -16,9 +16,11 @@ rmd_files:
 - "setup.Rmd"
 - "files.Rmd"
 
-- "dm-import-export.Rmd"
-- "dm-base-r.Rmd"
-- "dm-dplyr.Rmd"
+- "data-objects.Rmd"
+- "data-import.Rmd"
+- "data-frame.Rmd"
+- "data-tibble.Rmd"
+- "data-table.Rmd"
 
 - "dc-string-manipulation.Rmd"
 - "dc-regular-expressions.Rmd"

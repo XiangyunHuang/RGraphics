@@ -237,8 +237,6 @@ xts(x = NULL,
 
 ```{r,message=FALSE,warning=FALSE}
 library(zoo)
-```
-```{r}
 library(xts)
 x = matrix(1:4, ncol = 2,nrow = 2)
 idx <- as.Date(c("2018-01-01", "2019-12-12"))
