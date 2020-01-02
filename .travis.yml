@@ -57,6 +57,9 @@ addons:
       -  optipng
       -  imagemagick
       -  ghostscript
+      -  graphviz
+      -  cargo
+      -  ffmpeg
       ## install magick
       -  libmagick++-dev
       # pdftools
