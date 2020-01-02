@@ -1,5 +1,15 @@
 # 动态性文档 {#Dynamic-Documents}
 
+```{r,include=FALSE}
+library(nomnoml)
+library(knitr)
+library(rmarkdown)
+library(shiny)
+library(magrittr)
+```
+
+<!-- 不要安装新的 R 包，以截图的方式辅助说明即可 -->
+
 
 ::: rmdnote
 R Markdown 文档[@xie2018rmarkdown] 中的 Python 代码块是由 knitr 包 [@xie2015knitr] 负责调度处理的，展示 Matplotlib 绘图的结果使用了 reticulate 包 [@R-reticulate] 提供的 Python 引擎而不是 knitr 自带的。
@@ -527,3 +537,173 @@ c(
 - 写可重复性研究报告 [rrtools](https://github.com/benmarwick/rrtools)
 - RStudio 插件集合 [addinslist](https://github.com/daattali/addinslist)
 - 高亮支持 R 帮助文档 [rdoc](https://github.com/mdequeljoe/rdoc)
+
+markdown 简洁设计哲学， Sweave 文学编程思想，期间各种工具粉墨登场，最后分别回到 Pandoc 和 R Markdown
+
+```{r rmarkdown-eco,echo=FALSE}
+pdb <- tools::CRAN_package_db()
+rmd_pkg <- tools::dependsOnPkgs("rmarkdown", installed = pdb, recursive = FALSE)
+rmd_lib <- c("RStudio", "LaTeX", "R Markdown", "rmarkdown", "reveal.js", "UIUC",
+             "Lua", "R", "Markdown", "shower", "YAML", "bookdown", "blogdown")
+rmd_regexp <- paste("'(", paste(rmd_lib, collapse = "|"), ")'", sep = "")
+subset(pdb, subset = Package %in% rmd_pkg & grepl("[Mm]arkdown", Title), 
+       select = c("Package", "Title")) %>% 
+  transform(., Title = gsub("(\\\n)", " ", Title), Package = paste("**", Package, "**", sep = "")) %>%
+  transform(., Title = gsub(rmd_regexp, "\\1", Title)) %>%
+  knitr::kable(.,
+    caption = "R Markdown 生态系统", format = "pandoc",
+    booktabs = TRUE, row.names = FALSE
+  )
+```
+
+## 报告 {#subsec:rmarkdown}
+
+数据分析报告 R Markdown
+
+## 简历 {#subsec:pagedown}
+
+pagedown
+
+## 书籍 {#subsec:bookdown}
+
+bookdown
+
+## 网站 {#subsec:blogdown}
+
+blogdown
+
+## Shiny {#subsec:dashboard}
+
+以 shiny 为代表
+
+
+```{r iris-ggplot2,fig.width=8,fig.height=3}
+library(ggplot2)
+p1 <- ggplot(data = iris, aes(x = Sepal.Length, y = Sepal.Width, color = Species)) +
+  geom_point() +
+  theme_minimal()
+
+p2 <- ggplot(data = iris, aes(x = Petal.Length, y = Petal.Width, color = Species)) +
+  geom_point() +
+  theme_minimal()
+
+library(patchwork)
+p1 + p2
+```
+
+ggiraph 将 ggplot 对象转化为网页
+
+```{r iris-ggiraph,eval=is_html}
+library(ggiraph)
+girafe(code = print(p1 + p2), width_svg = 8, height_svg = 3)
+```
+
+将动态图形嵌入 Shiny App 中
+
+```{r iris-ggiraph-shiny, fig.cap='A Shiny app created via the ggiraph package; you can see a live version at https://xiangyun.shinyapps.io/01-iris-ggiraph/.', screenshot.opts=list(delay=20,zoom=2), dev='png', cache=TRUE, fig.align='center', fig.width=8, fig.height=4,echo=FALSE}
+knitr::include_app('https://xiangyun.shinyapps.io/01-iris-ggiraph/', height = '600px')
+```
+
+## 幻灯片 {#subsec:xaringan}
+
+xaringan
+
+
+
+## 动画视频 {#sec:animation-video}
+
+**animation** 包 [@Xie_2013_animation] 将 Base R 绘制的图形转化为动画或视频
+
+**av** 包 [@av] 基于 [FFmpeg](https://github.com/FFmpeg/FFmpeg) 将静态图片合成视频，而 **gifski** 包 [@gifski] 基于 [gifski](https://github.com/r-rust/gifski) 将静态图片合成 GIF 动画，**gganimate** 包 [@gganimate] 支持将 ggplot2 生成的图形，借助 **gifski** 包转化为动态图片或视频 
+
+```{r animate-orange, fig.show='animate', interval=1/10, eval=knitr::is_latex_output()}
+library(gganimate)
+ggplot(data = Orange, aes(x = age, y = circumference, color = Tree)) +
+  geom_point() +
+  geom_line() +
+  transition_reveal(age)
+```
+```{r, ref.label='animate-orange', echo=FALSE, eval=knitr::is_html_output()}
+# 在 PDF 里必须指定参数 `fig.show='animate'` 否则插入的只是图片而不是动画
+# 在 HTML 里就不必指定参数，默认会生成 gif 图片
+# 嵌入 PDF 里面的动画需要 Acrobat Reader 阅读器才能正确地显示
+```
+
+
+
+制作设计文档
+
+ggplot2 功能结构图
+
+R 闭包、环境等的关系图
+
+## 图表 {#sec:diagram-table}
+
+### TikZ
+
+```{tikz, tikz-ex, fig.cap = "Funky tikz", fig.ext = 'png', cache=TRUE}
+\usetikzlibrary{arrows}
+\begin{tikzpicture}[node distance=2cm, auto,>=latex', thick, scale = 0.5]
+\node (P) {$P$};
+\node (B) [right of=P] {$B$};
+\node (A) [below of=P] {$A$};
+\node (C) [below of=B] {$C$};
+\node (P1) [node distance=1.4cm, left of=P, above of=P] {$\hat{P}$};
+\draw[->] (P) to node {$f$} (B);
+\draw[->] (P) to node [swap] {$g$} (A);
+\draw[->] (A) to node [swap] {$f$} (C);
+\draw[->] (B) to node {$g$} (C);
+\draw[->, bend right] (P1) to node [swap] {$\hat{g}$} (A);
+\draw[->, bend left] (P1) to node {$\hat{f}$} (B);
+\draw[->, dashed] (P1) to node {$k$} (P);
+\end{tikzpicture}
+```
+
+### DOT
+
+```{r dot-ex, engine = "dot", fig.cap = "Funky dot", cache=TRUE}
+digraph test123 {
+  a -> b -> c;
+  a -> {x y};
+  b [shape=box];
+  c [label="hello\nworld",color=blue,fontsize=24,
+      fontname="Palatino-Italic",fontcolor=red,style=filled];
+  a -> z [label="hi", weight=100];
+  x -> z [label="multi-line\nlabel"];
+  edge [style=dashed,color=red];
+  b -> x;
+  {rank=same; b x}
+}
+```
+
+
+[DiagrammeR](https://github.com/rich-iannone/DiagrammeR)
+
+```{r}
+library(DiagrammeR)
+```
+
+
+### UML {#subsec:uml}
+
+
+[nomnoml](https://github.com/javierluraschi/nomnoml)
+
+```{nomnoml}
+#stroke: orange
+#.circle: fill=#8f8 dashed visual=note
+
+[A]-[B]
+[B]-[<circle>C]
+```
+
+### 表格 {#subsec:table}
+
+DT gt 和 kableExtra
+
+
+DT 可以嵌在网页或 Shiny 应用中
+
+kableExtra 支持 HTML 网页和 PDF 文档两种呈现方式
+
+

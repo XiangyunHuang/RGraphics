@@ -79,7 +79,7 @@ $$f(x;\theta,\phi) = \theta x\log(x)-\frac{1}{\phi}\mathit{e}^{-\phi^4(x-\frac{1
 
 其中 $\theta \in (2,3), \phi \in (30,50), x \in (0,1)$
 
-```{r,fig.cap="tweenr 添加过渡效果"}
+```{r brest-tweenr,fig.cap="tweenr 添加过渡效果"}
 f <- function(a, b) {
   function(y) {
     a * y * log(y, base = 10) - 1 / b * exp(-(b * y - b / exp(1))^4)

@@ -9,9 +9,12 @@ Imports:
   colourlovers,
   cowplot,
   desc,
+  DiagrammeR,
   firatheme,
   highcharter,
   igraph,
+  gganimate,
+  ggiraph,
   ggforce,
   ggraph,
   ggbeeswarm,
@@ -35,6 +38,8 @@ Imports:
   mapproj,
   maptools,
   MBA,
+  nomnoml,
+  patchwork,
   pdftools,
   reticulate,
   rgdal,
@@ -52,7 +57,8 @@ Imports:
   pracma,
   spDataLarge,
   tikzDevice,
-  treemap
-Remotes: vankesteren/firatheme, jbkunst/highcharter
+  treemap,
+  tweenr
+Remotes: vankesteren/firatheme, jbkunst/highcharter, javierluraschi/nomnoml
 URL: https://r-graphics.netlify.com, https://bookdown.org/xiangyun/RGraphics/
 BugReports: https://github.com/XiangyunHuang/RGraphics/issues
