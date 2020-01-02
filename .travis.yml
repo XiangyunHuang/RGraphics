@@ -23,7 +23,7 @@ env:
 
 repos:
   CRAN: https://cloud.r-project.org
-  RForge: https://r-forge.r-project.org
+#  RForge: https://r-forge.r-project.org
   Geo: https://nowosad.github.io/drat/
 
 addons:
