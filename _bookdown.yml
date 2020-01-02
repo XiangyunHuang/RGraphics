@@ -33,10 +33,10 @@ rmd_files:
 - "dv-highcharter.Rmd"
 - "dv-lattice.Rmd"
 
-- "dv-spatio-temporal.Rmd"
-- "dynamic-documents.Rmd"
-- "animated-graphics.Rmd"
+#- "dv-spatio-temporal.Rmd"
+#- "dynamic-documents.Rmd"
+#- "animated-graphics.Rmd"
 
-- "cs-cran-network.Rmd"
+#- "cs-cran-network.Rmd"
 
 - "99-references.Rmd"
