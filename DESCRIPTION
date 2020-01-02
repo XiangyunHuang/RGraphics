@@ -43,6 +43,7 @@ Imports:
   pdftools,
   reticulate,
   rgdal,
+  rgl,
   rsm,
   sf,
   stars,
@@ -58,7 +59,9 @@ Imports:
   spDataLarge,
   tikzDevice,
   treemap,
-  tweenr
+  tweenr,
+  vegawidget,
+  visNetwork
 Remotes: vankesteren/firatheme, jbkunst/highcharter, javierluraschi/nomnoml
 URL: https://r-graphics.netlify.com, https://bookdown.org/xiangyun/RGraphics/
 BugReports: https://github.com/XiangyunHuang/RGraphics/issues
