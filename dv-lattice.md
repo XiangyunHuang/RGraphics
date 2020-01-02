@@ -350,11 +350,10 @@ sessionInfo()
 #> [7] RColorBrewer_1.1-2  lattice_0.20-38    
 #> 
 #> loaded via a namespace (and not attached):
-#>  [1] Rcpp_1.0.3       knitr_1.26       magrittr_1.5     jpeg_0.1-8.1    
-#>  [5] rlang_0.4.2      stringr_1.4.0    tools_4.0.0      grid_4.0.0      
-#>  [9] xfun_0.11        png_0.1-7        htmltools_0.4.0  yaml_2.2.0      
-#> [13] digest_0.6.23    bookdown_0.16    Matrix_1.2-18    codetools_0.2-16
-#> [17] curl_4.3         evaluate_0.14    rmarkdown_2.0    stringi_1.4.3   
-#> [21] compiler_4.0.0
+#>  [1] Rcpp_1.0.3      knitr_1.26      magrittr_1.5    jpeg_0.1-8.1   
+#>  [5] rlang_0.4.2     stringr_1.4.0   tools_4.0.0     grid_4.0.0     
+#>  [9] xfun_0.11       png_0.1-7       htmltools_0.4.0 yaml_2.2.0     
+#> [13] digest_0.6.23   bookdown_0.16   Matrix_1.2-18   curl_4.3       
+#> [17] evaluate_0.14   rmarkdown_2.0   stringi_1.4.3   compiler_4.0.0
 ```
 

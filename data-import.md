@@ -215,7 +215,7 @@ fil <- tempfile(fileext = ".data")
 cat("TITLE extra line", "2 3 5 7", "", "11 13 17", file = fil,
     sep = "\n")
 fil
-#> [1] "/tmp/RtmpWPCKxk/file26c357d7d99b.data"
+#> [1] "/tmp/RtmpMBI1kR/file4e0a32eb5fa.data"
 ```
 
 设置参数 `n = -1` 表示将文件 fil 的内容从头读到尾
@@ -246,7 +246,7 @@ cat("123\nabc")
 fil <- tempfile("test")
 cat("123\nabc\n", file = fil, append = TRUE)
 fil
-#> [1] "/tmp/RtmpWPCKxk/test26c3d69246d"
+#> [1] "/tmp/RtmpMBI1kR/test4e0a5fc6fbf0"
 readLines(fil)
 #> [1] "123" "abc"
 ```
@@ -374,7 +374,10 @@ yaml::read_yaml(file = '_bookdown.yml')
 #> [13] "dv-ggplot2.Rmd"             "dv-plotly.Rmd"             
 #> [15] "dv-plot3d.Rmd"              "dv-colors-fonts.Rmd"       
 #> [17] "dv-highcharter.Rmd"         "dv-lattice.Rmd"            
-#> [19] "99-references.Rmd"
+#> [19] "dv-network.Rmd"             "dv-spatio-temporal.Rmd"    
+#> [21] "dynamic-documents.Rmd"      "animated-graphics.Rmd"     
+#> [23] "interactive-graphics.Rmd"   "cs-cran-network.Rmd"       
+#> [25] "99-references.Rmd"
 ```
 
 Table: (\#tab:other-softwares) 导入来自其它数据分析软件产生的数据集
@@ -1278,12 +1281,11 @@ xfun::session_info()
 #>   LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
 #> 
 #> Package version:
-#>   base64enc_0.1.3  bookdown_0.16    codetools_0.2-16 compiler_4.0.0  
-#>   curl_4.3         digest_0.6.23    evaluate_0.14    glue_1.3.1      
-#>   graphics_4.0.0   grDevices_4.0.0  highr_0.8        htmltools_0.4.0 
-#>   jsonlite_1.6     knitr_1.26       magrittr_1.5     markdown_1.1    
-#>   methods_4.0.0    mime_0.8         Rcpp_1.0.3       rlang_0.4.2     
-#>   rmarkdown_2.0    stats_4.0.0      stringi_1.4.3    stringr_1.4.0   
-#>   tinytex_0.18     tools_4.0.0      utils_4.0.0      xfun_0.11       
-#>   yaml_2.2.0
+#>   base64enc_0.1.3 bookdown_0.16   compiler_4.0.0  curl_4.3       
+#>   digest_0.6.23   evaluate_0.14   glue_1.3.1      graphics_4.0.0 
+#>   grDevices_4.0.0 highr_0.8       htmltools_0.4.0 jsonlite_1.6   
+#>   knitr_1.26      magrittr_1.5    markdown_1.1    methods_4.0.0  
+#>   mime_0.8        Rcpp_1.0.3      rlang_0.4.2     rmarkdown_2.0  
+#>   stats_4.0.0     stringi_1.4.3   stringr_1.4.0   tinytex_0.18   
+#>   tools_4.0.0     utils_4.0.0     xfun_0.11       yaml_2.2.0
 ```

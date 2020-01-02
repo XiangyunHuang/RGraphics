@@ -1819,13 +1819,12 @@ xfun::session_info()
 #>   LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
 #> 
 #> Package version:
-#>   base64enc_0.1.3  bookdown_0.16    codetools_0.2-16 compiler_4.0.0  
-#>   curl_4.3         digest_0.6.23    evaluate_0.14    glue_1.3.1      
-#>   graphics_4.0.0   grDevices_4.0.0  highr_0.8        htmltools_0.4.0 
-#>   jsonlite_1.6     knitr_1.26       magrittr_1.5     markdown_1.1    
-#>   methods_4.0.0    mime_0.8         Rcpp_1.0.3       rlang_0.4.2     
-#>   rmarkdown_2.0    stats_4.0.0      stringi_1.4.3    stringr_1.4.0   
-#>   tinytex_0.18     tools_4.0.0      utils_4.0.0      xfun_0.11       
-#>   yaml_2.2.0
+#>   base64enc_0.1.3 bookdown_0.16   compiler_4.0.0  curl_4.3       
+#>   digest_0.6.23   evaluate_0.14   glue_1.3.1      graphics_4.0.0 
+#>   grDevices_4.0.0 highr_0.8       htmltools_0.4.0 jsonlite_1.6   
+#>   knitr_1.26      magrittr_1.5    markdown_1.1    methods_4.0.0  
+#>   mime_0.8        Rcpp_1.0.3      rlang_0.4.2     rmarkdown_2.0  
+#>   stats_4.0.0     stringi_1.4.3   stringr_1.4.0   tinytex_0.18   
+#>   tools_4.0.0     utils_4.0.0     xfun_0.11       yaml_2.2.0
 ```
 

@@ -1,0 +1,1594 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>第 22 章 案例：分析 CRAN | 数据科学与 R 语言</title>
+  <meta name="description" content="数据操作、数据分析、数据建模、动态报告和数据可视化" />
+  <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="第 22 章 案例：分析 CRAN | 数据科学与 R 语言" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="https://bookdown.org/xiangyun/RGraphics/" />
+  
+  <meta property="og:description" content="数据操作、数据分析、数据建模、动态报告和数据可视化" />
+  <meta name="github-repo" content="XiangyunHuang/RGraphics" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="第 22 章 案例：分析 CRAN | 数据科学与 R 语言" />
+  
+  <meta name="twitter:description" content="数据操作、数据分析、数据建模、动态报告和数据可视化" />
+  
+
+<meta name="author" content="黄湘云" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="interactive-graphics.html"/>
+<link rel="next" href="99-references.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.9.1/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.49.4/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.49.4/plotly-latest.min.js"></script>
+<script src="libs/proj4js-2.3.15/proj4.js"></script>
+<link href="libs/highcharts-7.2.1/css/motion.css" rel="stylesheet" />
+<script src="libs/highcharts-7.2.1/highcharts.js"></script>
+<script src="libs/highcharts-7.2.1/highcharts-3d.js"></script>
+<script src="libs/highcharts-7.2.1/highcharts-more.js"></script>
+<script src="libs/highcharts-7.2.1/modules/stock.js"></script>
+<script src="libs/highcharts-7.2.1/modules/map.js"></script>
+<script src="libs/highcharts-7.2.1/modules/annotations.js"></script>
+<script src="libs/highcharts-7.2.1/modules/boost.js"></script>
+<script src="libs/highcharts-7.2.1/modules/data.js"></script>
+<script src="libs/highcharts-7.2.1/modules/drag-panes.js"></script>
+<script src="libs/highcharts-7.2.1/modules/drilldown.js"></script>
+<script src="libs/highcharts-7.2.1/modules/item-series.js"></script>
+<script src="libs/highcharts-7.2.1/modules/offline-exporting.js"></script>
+<script src="libs/highcharts-7.2.1/modules/overlapping-datalabels.js"></script>
+<script src="libs/highcharts-7.2.1/modules/exporting.js"></script>
+<script src="libs/highcharts-7.2.1/modules/export-data.js"></script>
+<script src="libs/highcharts-7.2.1/modules/funnel.js"></script>
+<script src="libs/highcharts-7.2.1/modules/heatmap.js"></script>
+<script src="libs/highcharts-7.2.1/modules/treemap.js"></script>
+<script src="libs/highcharts-7.2.1/modules/sankey.js"></script>
+<script src="libs/highcharts-7.2.1/modules/organization.js"></script>
+<script src="libs/highcharts-7.2.1/modules/solid-gauge.js"></script>
+<script src="libs/highcharts-7.2.1/modules/streamgraph.js"></script>
+<script src="libs/highcharts-7.2.1/modules/sunburst.js"></script>
+<script src="libs/highcharts-7.2.1/modules/vector.js"></script>
+<script src="libs/highcharts-7.2.1/modules/wordcloud.js"></script>
+<script src="libs/highcharts-7.2.1/modules/xrange.js"></script>
+<script src="libs/highcharts-7.2.1/modules/tilemap.js"></script>
+<script src="libs/highcharts-7.2.1/modules/venn.js"></script>
+<script src="libs/highcharts-7.2.1/modules/gantt.js"></script>
+<script src="libs/highcharts-7.2.1/modules/timeline.js"></script>
+<script src="libs/highcharts-7.2.1/modules/parallel-coordinates.js"></script>
+<script src="libs/highcharts-7.2.1/modules/bullet.js"></script>
+<script src="libs/highcharts-7.2.1/modules/coloraxis.js"></script>
+<script src="libs/highcharts-7.2.1/plugins/motion.js"></script>
+<script src="libs/highcharts-7.2.1/custom/reset.js"></script>
+<script src="libs/highchart-binding-0.7.0.9001/highchart.js"></script>
+<script src="libs/d3-5.7.0/d3.min.js"></script>
+<script src="libs/d3-lasso-0.0.5/d3-lasso.min.js"></script>
+<link href="libs/ggiraphjs-0.2.0/styles.css" rel="stylesheet" />
+<script src="libs/ggiraphjs-0.2.0/ggiraphjs.min.js"></script>
+<script src="libs/girafe-binding-0.7.0/girafe.js"></script>
+<script src="libs/dagre-0.0.1/dagre.min.js"></script>
+<script src="libs/lodash-3.7.0/lodash.js"></script>
+<script src="libs/nomnoml-0.2.0/nomnoml.js"></script>
+<script src="libs/nomnoml-binding-0.1.0.9001/nomnoml.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/Proj4Leaflet-1.0.1/proj4-compressed.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.0.3/leaflet.js"></script>
+<link href="libs/vis-4.20.1/vis.css" rel="stylesheet" />
+<script src="libs/vis-4.20.1/vis.min.js"></script>
+<script src="libs/visNetwork-binding-2.0.9/visNetwork.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">数据可视化与R语言</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>欢迎</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#why-r"><i class="fa fa-check"></i>Why R</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#who-read-this-book"><i class="fa fa-check"></i>目标读者</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#Getting-Help-with-R"><i class="fa fa-check"></i>获取帮助</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#history-of-r"><i class="fa fa-check"></i>发展历史</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#conventions"><i class="fa fa-check"></i>记号约定</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#session-info"><i class="fa fa-check"></i>运行环境</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>前言</a><ul>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#what-talk-about"><i class="fa fa-check"></i>关于本书</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#structure-of-book"><i class="fa fa-check"></i>本书结构</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#about-author"><i class="fa fa-check"></i>关于作者</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="setup.html"><a href="setup.html"><i class="fa fa-check"></i><b>1</b> 安装与配置</a><ul>
+<li class="chapter" data-level="1.1" data-path="setup.html"><a href="setup.html#repo-install"><i class="fa fa-check"></i><b>1.1</b> 仓库安装</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="setup.html"><a href="setup.html#ubuntu"><i class="fa fa-check"></i><b>1.1.1</b> Ubuntu</a></li>
+<li class="chapter" data-level="1.1.2" data-path="setup.html"><a href="setup.html#centos"><i class="fa fa-check"></i><b>1.1.2</b> CentOS</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="setup.html"><a href="setup.html#source-install"><i class="fa fa-check"></i><b>1.2</b> 源码安装</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="setup.html"><a href="setup.html#ubuntu-1"><i class="fa fa-check"></i><b>1.2.1</b> Ubuntu</a></li>
+<li class="chapter" data-level="1.2.2" data-path="setup.html"><a href="setup.html#centos-1"><i class="fa fa-check"></i><b>1.2.2</b> CentOS</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="setup.html"><a href="setup.html#ninja-install"><i class="fa fa-check"></i><b>1.3</b> 忍者安装</a></li>
+<li class="chapter" data-level="1.4" data-path="setup.html"><a href="setup.html#settings"><i class="fa fa-check"></i><b>1.4</b> 配置</a><ul>
+<li class="chapter" data-level="1.4.1" data-path="setup.html"><a href="setup.html#init-session"><i class="fa fa-check"></i><b>1.4.1</b> 初始会话 <code>.Rprofile</code></a></li>
+<li class="chapter" data-level="1.4.2" data-path="setup.html"><a href="setup.html#environ-vars"><i class="fa fa-check"></i><b>1.4.2</b> 环境变量 <code>.Renviron</code></a></li>
+<li class="chapter" data-level="1.4.3" data-path="setup.html"><a href="setup.html#make-vars"><i class="fa fa-check"></i><b>1.4.3</b> 编译选项 <code>Makevars</code></a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="setup.html"><a href="setup.html#command-line-arguments"><i class="fa fa-check"></i><b>1.5</b> 命令行参数</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="files.html"><a href="files.html"><i class="fa fa-check"></i><b>2</b> 文件管理员</a><ul>
+<li class="chapter" data-level="2.1" data-path="files.html"><a href="files.html#list"><i class="fa fa-check"></i><b>2.1</b> 查看文件</a></li>
+<li class="chapter" data-level="2.2" data-path="files.html"><a href="files.html#manipulation"><i class="fa fa-check"></i><b>2.2</b> 操作文件</a></li>
+<li class="chapter" data-level="2.3" data-path="files.html"><a href="files.html#compression"><i class="fa fa-check"></i><b>2.3</b> 压缩文件</a></li>
+<li class="chapter" data-level="2.4" data-path="files.html"><a href="files.html#paths"><i class="fa fa-check"></i><b>2.4</b> 路径操作</a></li>
+<li class="chapter" data-level="2.5" data-path="files.html"><a href="files.html#find"><i class="fa fa-check"></i><b>2.5</b> 查找文件</a></li>
+<li class="chapter" data-level="2.6" data-path="files.html"><a href="files.html#permissions"><i class="fa fa-check"></i><b>2.6</b> 文件权限</a></li>
+<li class="chapter" data-level="2.7" data-path="files.html"><a href="files.html#locale"><i class="fa fa-check"></i><b>2.7</b> 区域设置</a></li>
+<li class="chapter" data-level="2.8" data-path="files.html"><a href="files.html#process"><i class="fa fa-check"></i><b>2.8</b> 进程管理</a></li>
+<li class="chapter" data-level="2.9" data-path="files.html"><a href="files.html#system-commands"><i class="fa fa-check"></i><b>2.9</b> 系统命令</a></li>
+<li class="chapter" data-level="2.10" data-path="files.html"><a href="files.html#time"><i class="fa fa-check"></i><b>2.10</b> 时间管理</a></li>
+<li class="chapter" data-level="2.11" data-path="files.html"><a href="files.html#package"><i class="fa fa-check"></i><b>2.11</b> R 包管理</a></li>
+<li class="chapter" data-level="2.12" data-path="files.html"><a href="files.html#lookup-function"><i class="fa fa-check"></i><b>2.12</b> 查找函数</a></li>
+<li class="chapter" data-level="2.13" data-path="files.html"><a href="files.html#files-session-info"><i class="fa fa-check"></i><b>2.13</b> 运行环境</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="data-objects.html"><a href="data-objects.html"><i class="fa fa-check"></i><b>3</b> 对象在哪里</a><ul>
+<li class="chapter" data-level="3.1" data-path="data-objects.html"><a href="data-objects.html#subsec:typeof"><i class="fa fa-check"></i><b>3.1</b> 类型</a></li>
+<li class="chapter" data-level="3.2" data-path="data-objects.html"><a href="data-objects.html#subsec:date-time"><i class="fa fa-check"></i><b>3.2</b> 日期</a></li>
+<li class="chapter" data-level="3.3" data-path="data-objects.html"><a href="data-objects.html#subsec:null"><i class="fa fa-check"></i><b>3.3</b> 空值</a></li>
+<li class="chapter" data-level="3.4" data-path="data-objects.html"><a href="data-objects.html#subsec:character"><i class="fa fa-check"></i><b>3.4</b> 字符串</a></li>
+<li class="chapter" data-level="3.5" data-path="data-objects.html"><a href="data-objects.html#subsec:expression"><i class="fa fa-check"></i><b>3.5</b> 表达式</a></li>
+<li class="chapter" data-level="3.6" data-path="data-objects.html"><a href="data-objects.html#oop-matrix"><i class="fa fa-check"></i><b>3.6</b> 矩阵</a></li>
+<li class="chapter" data-level="3.7" data-path="data-objects.html"><a href="data-objects.html#oop-array"><i class="fa fa-check"></i><b>3.7</b> 数组</a></li>
+<li class="chapter" data-level="3.8" data-path="data-objects.html"><a href="data-objects.html#oop-data.frame"><i class="fa fa-check"></i><b>3.8</b> 数据框</a></li>
+<li class="chapter" data-level="3.9" data-path="data-objects.html"><a href="data-objects.html#oop-table"><i class="fa fa-check"></i><b>3.9</b> 表格</a></li>
+<li class="chapter" data-level="3.10" data-path="data-objects.html"><a href="data-objects.html#oop-list"><i class="fa fa-check"></i><b>3.10</b> 列表</a></li>
+<li class="chapter" data-level="3.11" data-path="data-objects.html"><a href="data-objects.html#oop-ts"><i class="fa fa-check"></i><b>3.11</b> 时间序列</a></li>
+<li class="chapter" data-level="3.12" data-path="data-objects.html"><a href="data-objects.html#oop-sf"><i class="fa fa-check"></i><b>3.12</b> 空间数据</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="data-import.html"><a href="data-import.html"><i class="fa fa-check"></i><b>4</b> 数据搬运工</a><ul>
+<li class="chapter" data-level="4.1" data-path="data-import.html"><a href="data-import.html#import-data"><i class="fa fa-check"></i><b>4.1</b> 导入数据</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="data-import.html"><a href="data-import.html#scan-file"><i class="fa fa-check"></i><b>4.1.1</b> <code>scan</code></a></li>
+<li class="chapter" data-level="4.1.2" data-path="data-import.html"><a href="data-import.html#read-write-table"><i class="fa fa-check"></i><b>4.1.2</b> <code>read.table</code></a></li>
+<li class="chapter" data-level="4.1.3" data-path="data-import.html"><a href="data-import.html#read-write-lines"><i class="fa fa-check"></i><b>4.1.3</b> <code>readLines</code></a></li>
+<li class="chapter" data-level="4.1.4" data-path="data-import.html"><a href="data-import.html#read-save-rds"><i class="fa fa-check"></i><b>4.1.4</b> <code>readRDS</code></a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="data-import.html"><a href="data-import.html#other-data-source"><i class="fa fa-check"></i><b>4.2</b> 其它数据格式</a></li>
+<li class="chapter" data-level="4.3" data-path="data-import.html"><a href="data-import.html#import-large-dataset"><i class="fa fa-check"></i><b>4.3</b> 导入大数据集</a></li>
+<li class="chapter" data-level="4.4" data-path="data-import.html"><a href="data-import.html#import-data-from-database"><i class="fa fa-check"></i><b>4.4</b> 从数据库导入</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="data-import.html"><a href="data-import.html#postgresql"><i class="fa fa-check"></i><b>4.4.1</b> PostgreSQL</a></li>
+<li class="chapter" data-level="4.4.2" data-path="data-import.html"><a href="data-import.html#mysql"><i class="fa fa-check"></i><b>4.4.2</b> MySQL</a></li>
+<li class="chapter" data-level="4.4.3" data-path="data-import.html"><a href="data-import.html#spark"><i class="fa fa-check"></i><b>4.4.3</b> Spark</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="data-import.html"><a href="data-import.html#batch-import-data"><i class="fa fa-check"></i><b>4.5</b> 批量导入数据</a></li>
+<li class="chapter" data-level="4.6" data-path="data-import.html"><a href="data-import.html#batch-export-data"><i class="fa fa-check"></i><b>4.6</b> 批量导出数据</a></li>
+<li class="chapter" data-level="4.7" data-path="data-import.html"><a href="data-import.html#export-data"><i class="fa fa-check"></i><b>4.7</b> 导出数据</a><ul>
+<li class="chapter" data-level="4.7.1" data-path="data-import.html"><a href="data-import.html#export-output"><i class="fa fa-check"></i><b>4.7.1</b> 导出运行结果</a></li>
+<li class="chapter" data-level="4.7.2" data-path="data-import.html"><a href="data-import.html#export-data-object"><i class="fa fa-check"></i><b>4.7.2</b> 导出数据对象</a></li>
+</ul></li>
+<li class="chapter" data-level="4.8" data-path="data-import.html"><a href="data-import.html#dm-session-info"><i class="fa fa-check"></i><b>4.8</b> 运行环境</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="data-frame.html"><a href="data-frame.html"><i class="fa fa-check"></i><b>5</b> 数据操作手</a><ul>
+<li class="chapter" data-level="5.1" data-path="data-frame.html"><a href="data-frame.html#show"><i class="fa fa-check"></i><b>5.1</b> 查看数据</a></li>
+<li class="chapter" data-level="5.2" data-path="data-frame.html"><a href="data-frame.html#base-reshape"><i class="fa fa-check"></i><b>5.2</b> 数据变形</a></li>
+<li class="chapter" data-level="5.3" data-path="data-frame.html"><a href="data-frame.html#base-transform"><i class="fa fa-check"></i><b>5.3</b> 数据转换</a></li>
+<li class="chapter" data-level="5.4" data-path="data-frame.html"><a href="data-frame.html#base-subset"><i class="fa fa-check"></i><b>5.4</b> 提取子集</a></li>
+<li class="chapter" data-level="5.5" data-path="data-frame.html"><a href="data-frame.html#base-order"><i class="fa fa-check"></i><b>5.5</b> 按列排序</a></li>
+<li class="chapter" data-level="5.6" data-path="data-frame.html"><a href="data-frame.html#base-split"><i class="fa fa-check"></i><b>5.6</b> 数据拆分</a></li>
+<li class="chapter" data-level="5.7" data-path="data-frame.html"><a href="data-frame.html#base-merge"><i class="fa fa-check"></i><b>5.7</b> 数据合并</a></li>
+<li class="chapter" data-level="5.8" data-path="data-frame.html"><a href="data-frame.html#base-duplicated"><i class="fa fa-check"></i><b>5.8</b> 数据去重</a></li>
+<li class="chapter" data-level="5.9" data-path="data-frame.html"><a href="data-frame.html#base-aggregate"><i class="fa fa-check"></i><b>5.9</b> 数据聚合</a></li>
+<li class="chapter" data-level="5.10" data-path="data-frame.html"><a href="data-frame.html#base-table"><i class="fa fa-check"></i><b>5.10</b> 表格统计</a></li>
+<li class="chapter" data-level="5.11" data-path="data-frame.html"><a href="data-frame.html#base-index"><i class="fa fa-check"></i><b>5.11</b> 索引访问</a></li>
+<li class="chapter" data-level="5.12" data-path="data-frame.html"><a href="data-frame.html#base-array"><i class="fa fa-check"></i><b>5.12</b> 多维数组</a></li>
+<li class="chapter" data-level="5.13" data-path="data-frame.html"><a href="data-frame.html#base-others"><i class="fa fa-check"></i><b>5.13</b> 其它操作</a><ul>
+<li class="chapter" data-level="5.13.1" data-path="data-frame.html"><a href="data-frame.html#relist-or-unlist"><i class="fa fa-check"></i><b>5.13.1</b> 列表属性</a></li>
+<li class="chapter" data-level="5.13.2" data-path="data-frame.html"><a href="data-frame.html#stack-or-unstack"><i class="fa fa-check"></i><b>5.13.2</b> 堆叠向量</a></li>
+<li class="chapter" data-level="5.13.3" data-path="data-frame.html"><a href="data-frame.html#class-or-unclass"><i class="fa fa-check"></i><b>5.13.3</b> 属性转化</a></li>
+<li class="chapter" data-level="5.13.4" data-path="data-frame.html"><a href="data-frame.html#attach-or-detach"><i class="fa fa-check"></i><b>5.13.4</b> 绑定环境</a></li>
+<li class="chapter" data-level="5.13.5" data-path="data-frame.html"><a href="data-frame.html#with-or-within"><i class="fa fa-check"></i><b>5.13.5</b> 数据环境</a></li>
+</ul></li>
+<li class="chapter" data-level="5.14" data-path="data-frame.html"><a href="data-frame.html#dm-base-session-info"><i class="fa fa-check"></i><b>5.14</b> 运行环境</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="data-tibble.html"><a href="data-tibble.html"><i class="fa fa-check"></i><b>6</b> 净土化操作</a><ul>
+<li class="chapter" data-level="6.1" data-path="data-tibble.html"><a href="data-tibble.html#common-operations"><i class="fa fa-check"></i><b>6.1</b> 常用操作</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="data-tibble.html"><a href="data-tibble.html#tibble-show"><i class="fa fa-check"></i><b>6.1.1</b> 查看</a></li>
+<li class="chapter" data-level="6.1.2" data-path="data-tibble.html"><a href="data-tibble.html#dplyr-filter"><i class="fa fa-check"></i><b>6.1.2</b> 筛选</a></li>
+<li class="chapter" data-level="6.1.3" data-path="data-tibble.html"><a href="data-tibble.html#dplyr-arrange"><i class="fa fa-check"></i><b>6.1.3</b> 排序</a></li>
+<li class="chapter" data-level="6.1.4" data-path="data-tibble.html"><a href="data-tibble.html#dplyr-summarise"><i class="fa fa-check"></i><b>6.1.4</b> 聚合</a></li>
+<li class="chapter" data-level="6.1.5" data-path="data-tibble.html"><a href="data-tibble.html#dplyr-merge"><i class="fa fa-check"></i><b>6.1.5</b> 合并</a></li>
+<li class="chapter" data-level="6.1.6" data-path="data-tibble.html"><a href="data-tibble.html#dplyr-mutate"><i class="fa fa-check"></i><b>6.1.6</b> 变换</a></li>
+<li class="chapter" data-level="6.1.7" data-path="data-tibble.html"><a href="data-tibble.html#dplyr-duplicated"><i class="fa fa-check"></i><b>6.1.7</b> 去重</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="data-tibble.html"><a href="data-tibble.html#common-dataframe-operations"><i class="fa fa-check"></i><b>6.2</b> 高频问题</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="data-tibble.html"><a href="data-tibble.html#create-empty-dataframe"><i class="fa fa-check"></i><b>6.2.1</b> 初始化数据框</a></li>
+<li class="chapter" data-level="6.2.2" data-path="data-tibble.html"><a href="data-tibble.html#remove-missing-values"><i class="fa fa-check"></i><b>6.2.2</b> 移除缺失记录</a></li>
+<li class="chapter" data-level="6.2.3" data-path="data-tibble.html"><a href="data-tibble.html#coerce-data-type"><i class="fa fa-check"></i><b>6.2.3</b> 数据类型转化</a></li>
+<li class="chapter" data-level="6.2.4" data-path="data-tibble.html"><a href="data-tibble.html#cross-group-by"><i class="fa fa-check"></i><b>6.2.4</b> 跨列分组求和</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="data-tibble.html"><a href="data-tibble.html#pipe-manipulation"><i class="fa fa-check"></i><b>6.3</b> 管道操作</a></li>
+<li class="chapter" data-level="6.4" data-path="data-tibble.html"><a href="data-tibble.html#dm-dplyr-rsession"><i class="fa fa-check"></i><b>6.4</b> 运行环境</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="data-table.html"><a href="data-table.html"><i class="fa fa-check"></i><b>7</b> 高级数据操作</a><ul>
+<li class="chapter" data-level="7.1" data-path="data-table.html"><a href="data-table.html#subsec:select-j"><i class="fa fa-check"></i><b>7.1</b> 选择</a></li>
+<li class="chapter" data-level="7.2" data-path="data-table.html"><a href="data-table.html#subsec:filter-i"><i class="fa fa-check"></i><b>7.2</b> 过滤</a></li>
+<li class="chapter" data-level="7.3" data-path="data-table.html"><a href="data-table.html#subsec:mutate-j"><i class="fa fa-check"></i><b>7.3</b> 变换</a></li>
+<li class="chapter" data-level="7.4" data-path="data-table.html"><a href="data-table.html#subsec:summarise-j"><i class="fa fa-check"></i><b>7.4</b> 聚合</a></li>
+<li class="chapter" data-level="7.5" data-path="data-table.html"><a href="data-table.html#subsec:duplicated-i"><i class="fa fa-check"></i><b>7.5</b> 去重</a></li>
+<li class="chapter" data-level="7.6" data-path="data-table.html"><a href="data-table.html#subsec:setname"><i class="fa fa-check"></i><b>7.6</b> 命名</a></li>
+<li class="chapter" data-level="7.7" data-path="data-table.html"><a href="data-table.html#subsec:order-by-j"><i class="fa fa-check"></i><b>7.7</b> 排序</a></li>
+<li class="chapter" data-level="7.8" data-path="data-table.html"><a href="data-table.html#subsec:reshape"><i class="fa fa-check"></i><b>7.8</b> 变形</a></li>
+<li class="chapter" data-level="7.9" data-path="data-table.html"><a href="data-table.html#subsec:group-by"><i class="fa fa-check"></i><b>7.9</b> 分组</a></li>
+<li class="chapter" data-level="7.10" data-path="data-table.html"><a href="data-table.html#subsec:merge"><i class="fa fa-check"></i><b>7.10</b> 合并</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html"><i class="fa fa-check"></i><b>8</b> 字符串操作</a><ul>
+<li class="chapter" data-level="8.1" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#base-count"><i class="fa fa-check"></i><b>8.1</b> 字符数统计</a></li>
+<li class="chapter" data-level="8.2" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#base-translations"><i class="fa fa-check"></i><b>8.2</b> 字符串翻译</a></li>
+<li class="chapter" data-level="8.3" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#base-concatenate"><i class="fa fa-check"></i><b>8.3</b> 字符串连接</a></li>
+<li class="chapter" data-level="8.4" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#base-strsplit"><i class="fa fa-check"></i><b>8.4</b> 字符串拆分</a></li>
+<li class="chapter" data-level="8.5" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#base-match"><i class="fa fa-check"></i><b>8.5</b> 字符串匹配</a></li>
+<li class="chapter" data-level="8.6" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#base-search"><i class="fa fa-check"></i><b>8.6</b> 字符串查询</a></li>
+<li class="chapter" data-level="8.7" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#base-replacement"><i class="fa fa-check"></i><b>8.7</b> 字符串替换</a></li>
+<li class="chapter" data-level="8.8" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#base-extract"><i class="fa fa-check"></i><b>8.8</b> 字符串提取</a></li>
+<li class="chapter" data-level="8.9" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#subsubsec:named-capture"><i class="fa fa-check"></i><b>8.9</b> 命名捕捉</a></li>
+<li class="chapter" data-level="8.10" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#subsubsec:exact-match"><i class="fa fa-check"></i><b>8.10</b> 精确匹配</a></li>
+<li class="chapter" data-level="8.11" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#subsubsec:fuzzy-match"><i class="fa fa-check"></i><b>8.11</b> 模糊匹配</a></li>
+<li class="chapter" data-level="8.12" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#subsubsec:replace"><i class="fa fa-check"></i><b>8.12</b> 高级的替换</a></li>
+<li class="chapter" data-level="8.13" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#subsubsec:extract"><i class="fa fa-check"></i><b>8.13</b> 高级的提取</a></li>
+<li class="chapter" data-level="8.14" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#other-string-op"><i class="fa fa-check"></i><b>8.14</b> 其它操作</a><ul>
+<li class="chapter" data-level="8.14.1" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#strwrap"><i class="fa fa-check"></i><b>8.14.1</b> strwrap</a></li>
+<li class="chapter" data-level="8.14.2" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#strtrim"><i class="fa fa-check"></i><b>8.14.2</b> strtrim</a></li>
+<li class="chapter" data-level="8.14.3" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#strrep"><i class="fa fa-check"></i><b>8.14.3</b> strrep</a></li>
+<li class="chapter" data-level="8.14.4" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#trimws"><i class="fa fa-check"></i><b>8.14.4</b> trimws</a></li>
+</ul></li>
+<li class="chapter" data-level="8.15" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#string-session-info"><i class="fa fa-check"></i><b>8.15</b> 运行环境</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="dc-regular-expressions.html"><a href="dc-regular-expressions.html"><i class="fa fa-check"></i><b>9</b> 正则表达式</a><ul>
+<li class="chapter" data-level="9.1" data-path="dc-regular-expressions.html"><a href="dc-regular-expressions.html#character-constants"><i class="fa fa-check"></i><b>9.1</b> 字符常量</a></li>
+<li class="chapter" data-level="9.2" data-path="dc-regular-expressions.html"><a href="dc-regular-expressions.html#environments"><i class="fa fa-check"></i><b>9.2</b> 软件环境</a></li>
+<li class="chapter" data-level="9.3" data-path="dc-regular-expressions.html"><a href="dc-regular-expressions.html#foundations"><i class="fa fa-check"></i><b>9.3</b> 基本概念</a></li>
+<li class="chapter" data-level="9.4" data-path="dc-regular-expressions.html"><a href="dc-regular-expressions.html#match"><i class="fa fa-check"></i><b>9.4</b> 字符串匹配</a></li>
+<li class="chapter" data-level="9.5" data-path="dc-regular-expressions.html"><a href="dc-regular-expressions.html#concatenation"><i class="fa fa-check"></i><b>9.5</b> 级联表达式</a></li>
+<li class="chapter" data-level="9.6" data-path="dc-regular-expressions.html"><a href="dc-regular-expressions.html#backreference"><i class="fa fa-check"></i><b>9.6</b> 反向引用</a></li>
+<li class="chapter" data-level="9.7" data-path="dc-regular-expressions.html"><a href="dc-regular-expressions.html#named-capture"><i class="fa fa-check"></i><b>9.7</b> 命名捕捉</a></li>
+<li class="chapter" data-level="9.8" data-path="dc-regular-expressions.html"><a href="dc-regular-expressions.html#comment"><i class="fa fa-check"></i><b>9.8</b> 表达式注释</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="dv-plot.html"><a href="dv-plot.html"><i class="fa fa-check"></i><b>10</b> 绘图素材库</a><ul>
+<li class="chapter" data-level="10.1" data-path="dv-plot.html"><a href="dv-plot.html#elements"><i class="fa fa-check"></i><b>10.1</b> 基本要素</a><ul>
+<li class="chapter" data-level="10.1.1" data-path="dv-plot.html"><a href="dv-plot.html#base-points"><i class="fa fa-check"></i><b>10.1.1</b> 点线</a></li>
+<li class="chapter" data-level="10.1.2" data-path="dv-plot.html"><a href="dv-plot.html#base-rect"><i class="fa fa-check"></i><b>10.1.2</b> 区域</a></li>
+<li class="chapter" data-level="10.1.3" data-path="dv-plot.html"><a href="dv-plot.html#base-lines"><i class="fa fa-check"></i><b>10.1.3</b> 参考线</a></li>
+<li class="chapter" data-level="10.1.4" data-path="dv-plot.html"><a href="dv-plot.html#base-axis"><i class="fa fa-check"></i><b>10.1.4</b> 坐标轴</a></li>
+<li class="chapter" data-level="10.1.5" data-path="dv-plot.html"><a href="dv-plot.html#base-tick"><i class="fa fa-check"></i><b>10.1.5</b> 刻度线</a></li>
+<li class="chapter" data-level="10.1.6" data-path="dv-plot.html"><a href="dv-plot.html#base-title"><i class="fa fa-check"></i><b>10.1.6</b> 标题</a></li>
+<li class="chapter" data-level="10.1.7" data-path="dv-plot.html"><a href="dv-plot.html#base-annotation"><i class="fa fa-check"></i><b>10.1.7</b> 注释</a></li>
+<li class="chapter" data-level="10.1.8" data-path="dv-plot.html"><a href="dv-plot.html#base-legend"><i class="fa fa-check"></i><b>10.1.8</b> 图例</a></li>
+<li class="chapter" data-level="10.1.9" data-path="dv-plot.html"><a href="dv-plot.html#base-par"><i class="fa fa-check"></i><b>10.1.9</b> 边空</a></li>
+<li class="chapter" data-level="10.1.10" data-path="dv-plot.html"><a href="dv-plot.html#base-layer"><i class="fa fa-check"></i><b>10.1.10</b> 图层</a></li>
+<li class="chapter" data-level="10.1.11" data-path="dv-plot.html"><a href="dv-plot.html#base-layout"><i class="fa fa-check"></i><b>10.1.11</b> 布局</a></li>
+<li class="chapter" data-level="10.1.12" data-path="dv-plot.html"><a href="dv-plot.html#base-combine"><i class="fa fa-check"></i><b>10.1.12</b> 组合</a></li>
+<li class="chapter" data-level="10.1.13" data-path="dv-plot.html"><a href="dv-plot.html#base-screen"><i class="fa fa-check"></i><b>10.1.13</b> 分屏</a></li>
+<li class="chapter" data-level="10.1.14" data-path="dv-plot.html"><a href="dv-plot.html#identify-locator"><i class="fa fa-check"></i><b>10.1.14</b> 交互</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="dv-plot.html"><a href="dv-plot.html#plot-gallary"><i class="fa fa-check"></i><b>10.2</b> 统计图形</a><ul>
+<li class="chapter" data-level="10.2.1" data-path="dv-plot.html"><a href="dv-plot.html#plot-bar"><i class="fa fa-check"></i><b>10.2.1</b> 条形图</a></li>
+<li class="chapter" data-level="10.2.2" data-path="dv-plot.html"><a href="dv-plot.html#plot-hist"><i class="fa fa-check"></i><b>10.2.2</b> 直方图</a></li>
+<li class="chapter" data-level="10.2.3" data-path="dv-plot.html"><a href="dv-plot.html#plot-density"><i class="fa fa-check"></i><b>10.2.3</b> 密度图</a></li>
+<li class="chapter" data-level="10.2.4" data-path="dv-plot.html"><a href="dv-plot.html#plot-ecdf"><i class="fa fa-check"></i><b>10.2.4</b> 经验图</a></li>
+<li class="chapter" data-level="10.2.5" data-path="dv-plot.html"><a href="dv-plot.html#plot-qqnorm"><i class="fa fa-check"></i><b>10.2.5</b> QQ 图</a></li>
+<li class="chapter" data-level="10.2.6" data-path="dv-plot.html"><a href="dv-plot.html#plot-ts"><i class="fa fa-check"></i><b>10.2.6</b> 时序图</a></li>
+<li class="chapter" data-level="10.2.7" data-path="dv-plot.html"><a href="dv-plot.html#plot-pie"><i class="fa fa-check"></i><b>10.2.7</b> 饼图</a></li>
+<li class="chapter" data-level="10.2.8" data-path="dv-plot.html"><a href="dv-plot.html#plot-stem-leaf"><i class="fa fa-check"></i><b>10.2.8</b> 茎叶图</a></li>
+<li class="chapter" data-level="10.2.9" data-path="dv-plot.html"><a href="dv-plot.html#plot-scatter"><i class="fa fa-check"></i><b>10.2.9</b> 散点图</a></li>
+<li class="chapter" data-level="10.2.10" data-path="dv-plot.html"><a href="dv-plot.html#base-jitter"><i class="fa fa-check"></i><b>10.2.10</b> 抖动图</a></li>
+<li class="chapter" data-level="10.2.11" data-path="dv-plot.html"><a href="dv-plot.html#plot-box"><i class="fa fa-check"></i><b>10.2.11</b> 箱线图</a></li>
+<li class="chapter" data-level="10.2.12" data-path="dv-plot.html"><a href="dv-plot.html#error-bars"><i class="fa fa-check"></i><b>10.2.12</b> 残差图</a></li>
+<li class="chapter" data-level="10.2.13" data-path="dv-plot.html"><a href="dv-plot.html#plot-violin"><i class="fa fa-check"></i><b>10.2.13</b> 提琴图</a></li>
+<li class="chapter" data-level="10.2.14" data-path="dv-plot.html"><a href="dv-plot.html#plot-contour"><i class="fa fa-check"></i><b>10.2.14</b> 轮廓图</a></li>
+<li class="chapter" data-level="10.2.15" data-path="dv-plot.html"><a href="dv-plot.html#plot-line"><i class="fa fa-check"></i><b>10.2.15</b> 折线图</a></li>
+<li class="chapter" data-level="10.2.16" data-path="dv-plot.html"><a href="dv-plot.html#function"><i class="fa fa-check"></i><b>10.2.16</b> 函数图</a></li>
+<li class="chapter" data-level="10.2.17" data-path="dv-plot.html"><a href="dv-plot.html#plot-mosaic"><i class="fa fa-check"></i><b>10.2.17</b> 马赛克图</a></li>
+<li class="chapter" data-level="10.2.18" data-path="dv-plot.html"><a href="dv-plot.html#plot-dotchart"><i class="fa fa-check"></i><b>10.2.18</b> 克利夫兰点图</a></li>
+<li class="chapter" data-level="10.2.19" data-path="dv-plot.html"><a href="dv-plot.html#plot-matrix"><i class="fa fa-check"></i><b>10.2.19</b> 矩阵图</a></li>
+<li class="chapter" data-level="10.2.20" data-path="dv-plot.html"><a href="dv-plot.html#plot-radar"><i class="fa fa-check"></i><b>10.2.20</b> 雷达图</a></li>
+<li class="chapter" data-level="10.2.21" data-path="dv-plot.html"><a href="dv-plot.html#plot-rose"><i class="fa fa-check"></i><b>10.2.21</b> 玫瑰图</a></li>
+<li class="chapter" data-level="10.2.22" data-path="dv-plot.html"><a href="dv-plot.html#plot-map"><i class="fa fa-check"></i><b>10.2.22</b> 地形图</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="dv-plot.html"><a href="dv-plot.html#plot-session-info"><i class="fa fa-check"></i><b>10.3</b> 运行环境</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html"><i class="fa fa-check"></i><b>11</b> 数据可视化</a><ul>
+<li class="chapter" data-level="11.1" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#intro-ggplot2"><i class="fa fa-check"></i><b>11.1</b> 基础语法</a><ul>
+<li class="chapter" data-level="11.1.1" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-layer"><i class="fa fa-check"></i><b>11.1.1</b> 图层</a></li>
+<li class="chapter" data-level="11.1.2" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-theme"><i class="fa fa-check"></i><b>11.1.2</b> 主题</a></li>
+<li class="chapter" data-level="11.1.3" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-color"><i class="fa fa-check"></i><b>11.1.3</b> 配色</a></li>
+<li class="chapter" data-level="11.1.4" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-scale"><i class="fa fa-check"></i><b>11.1.4</b> 刻度</a></li>
+<li class="chapter" data-level="11.1.5" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-annotate"><i class="fa fa-check"></i><b>11.1.5</b> 注释</a></li>
+<li class="chapter" data-level="11.1.6" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-legend"><i class="fa fa-check"></i><b>11.1.6</b> 图例</a></li>
+<li class="chapter" data-level="11.1.7" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-grid"><i class="fa fa-check"></i><b>11.1.7</b> 组合</a></li>
+<li class="chapter" data-level="11.1.8" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-coord"><i class="fa fa-check"></i><b>11.1.8</b> 坐标系</a></li>
+<li class="chapter" data-level="11.1.9" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-axes"><i class="fa fa-check"></i><b>11.1.9</b> 坐标轴</a></li>
+</ul></li>
+<li class="chapter" data-level="11.2" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-gallary"><i class="fa fa-check"></i><b>11.2</b> 统计图形</a><ul>
+<li class="chapter" data-level="11.2.1" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-scatter"><i class="fa fa-check"></i><b>11.2.1</b> 散点图</a></li>
+<li class="chapter" data-level="11.2.2" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-boxplot"><i class="fa fa-check"></i><b>11.2.2</b> 箱线图</a></li>
+<li class="chapter" data-level="11.2.3" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-barplot"><i class="fa fa-check"></i><b>11.2.3</b> 条形图</a></li>
+<li class="chapter" data-level="11.2.4" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-line"><i class="fa fa-check"></i><b>11.2.4</b> 折线图</a></li>
+<li class="chapter" data-level="11.2.5" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-histogram"><i class="fa fa-check"></i><b>11.2.5</b> 直方图</a></li>
+<li class="chapter" data-level="11.2.6" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-violin"><i class="fa fa-check"></i><b>11.2.6</b> 提琴图</a></li>
+<li class="chapter" data-level="11.2.7" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-jitter"><i class="fa fa-check"></i><b>11.2.7</b> 抖动图</a></li>
+<li class="chapter" data-level="11.2.8" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-ridge"><i class="fa fa-check"></i><b>11.2.8</b> 密度图</a></li>
+<li class="chapter" data-level="11.2.9" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-rose"><i class="fa fa-check"></i><b>11.2.9</b> 玫瑰图</a></li>
+<li class="chapter" data-level="11.2.10" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-wordcloud"><i class="fa fa-check"></i><b>11.2.10</b> 词云图</a></li>
+<li class="chapter" data-level="11.2.11" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#calendar-map"><i class="fa fa-check"></i><b>11.2.11</b> 日历图</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-session-info"><i class="fa fa-check"></i><b>11.3</b> 运行环境</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="dv-plotly.html"><a href="dv-plotly.html"><i class="fa fa-check"></i><b>12</b> 交互式图形</a><ul>
+<li class="chapter" data-level="12.1" data-path="dv-plotly.html"><a href="dv-plotly.html#plotly"><i class="fa fa-check"></i><b>12.1</b> plotly</a></li>
+<li class="chapter" data-level="12.2" data-path="dv-plotly.html"><a href="dv-plotly.html#sec:pie"><i class="fa fa-check"></i><b>12.2</b> 饼图</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="dv-plot3d.html"><a href="dv-plot3d.html"><i class="fa fa-check"></i><b>13</b> 三维可视化</a><ul>
+<li class="chapter" data-level="13.1" data-path="dv-plot3d.html"><a href="dv-plot3d.html#pie-3d"><i class="fa fa-check"></i><b>13.1</b> 饼图</a></li>
+<li class="chapter" data-level="13.2" data-path="dv-plot3d.html"><a href="dv-plot3d.html#bar-3d"><i class="fa fa-check"></i><b>13.2</b> 柱形图</a></li>
+<li class="chapter" data-level="13.3" data-path="dv-plot3d.html"><a href="dv-plot3d.html#scatter-3d"><i class="fa fa-check"></i><b>13.3</b> 散点图</a></li>
+<li class="chapter" data-level="13.4" data-path="dv-plot3d.html"><a href="dv-plot3d.html#curve-3d"><i class="fa fa-check"></i><b>13.4</b> 函数图</a></li>
+<li class="chapter" data-level="13.5" data-path="dv-plot3d.html"><a href="dv-plot3d.html#persp-3d"><i class="fa fa-check"></i><b>13.5</b> 透视图</a></li>
+<li class="chapter" data-level="13.6" data-path="dv-plot3d.html"><a href="dv-plot3d.html#tikz"><i class="fa fa-check"></i><b>13.6</b> TikZ 绘图</a></li>
+<li class="chapter" data-level="13.7" data-path="dv-plot3d.html"><a href="dv-plot3d.html#export-save"><i class="fa fa-check"></i><b>13.7</b> 图形导出</a></li>
+<li class="chapter" data-level="13.8" data-path="dv-plot3d.html"><a href="dv-plot3d.html#plot3d-sessionInfo"><i class="fa fa-check"></i><b>13.8</b> 软件信息</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="dv-colors-fonts.html"><a href="dv-colors-fonts.html"><i class="fa fa-check"></i><b>14</b> 色彩与字体</a><ul>
+<li class="chapter" data-level="14.1" data-path="dv-colors-fonts.html"><a href="dv-colors-fonts.html#colors-in-r"><i class="fa fa-check"></i><b>14.1</b> 颜色</a></li>
+<li class="chapter" data-level="14.2" data-path="dv-colors-fonts.html"><a href="dv-colors-fonts.html#choose-colors"><i class="fa fa-check"></i><b>14.2</b> 配色</a><ul>
+<li class="chapter" data-level="14.2.1" data-path="dv-colors-fonts.html"><a href="dv-colors-fonts.html#colourlovers"><i class="fa fa-check"></i><b>14.2.1</b> colourlovers</a></li>
+</ul></li>
+<li class="chapter" data-level="14.3" data-path="dv-colors-fonts.html"><a href="dv-colors-fonts.html#fonts"><i class="fa fa-check"></i><b>14.3</b> 字体</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="dv-highcharter.html"><a href="dv-highcharter.html"><i class="fa fa-check"></i><b>15</b> highcharter 图形</a><ul>
+<li class="chapter" data-level="15.1" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsec:hc-line"><i class="fa fa-check"></i><b>15.1</b> 折线图</a><ul>
+<li class="chapter" data-level="15.1.1" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsubsec:simple-hc-line"><i class="fa fa-check"></i><b>15.1.1</b> 简单折线图</a></li>
+<li class="chapter" data-level="15.1.2" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsubsec:group-hc-line"><i class="fa fa-check"></i><b>15.1.2</b> 分组折线图</a></li>
+<li class="chapter" data-level="15.1.3" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsubsec:ts-hc-line"><i class="fa fa-check"></i><b>15.1.3</b> 时间序列图</a></li>
+</ul></li>
+<li class="chapter" data-level="15.2" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsec:hc-scatter"><i class="fa fa-check"></i><b>15.2</b> 散点图</a><ul>
+<li class="chapter" data-level="15.2.1" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsubsec:simple-hc-scatter"><i class="fa fa-check"></i><b>15.2.1</b> 简单散点图</a></li>
+<li class="chapter" data-level="15.2.2" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsubsec:group-hc-scatter"><i class="fa fa-check"></i><b>15.2.2</b> 分组散点图</a></li>
+</ul></li>
+<li class="chapter" data-level="15.3" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsec:hc-bar"><i class="fa fa-check"></i><b>15.3</b> 条形图</a><ul>
+<li class="chapter" data-level="15.3.1" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsubsec:simple-hc-bar"><i class="fa fa-check"></i><b>15.3.1</b> 简单条形图</a></li>
+<li class="chapter" data-level="15.3.2" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsubsec:dodge-hc-bar"><i class="fa fa-check"></i><b>15.3.2</b> 复合条形图</a></li>
+<li class="chapter" data-level="15.3.3" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsubsec:stack-hc-bar"><i class="fa fa-check"></i><b>15.3.3</b> 堆积条形图</a></li>
+<li class="chapter" data-level="15.3.4" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsubsec:fill-hc-bar"><i class="fa fa-check"></i><b>15.3.4</b> 百分比条形图</a></li>
+</ul></li>
+<li class="chapter" data-level="15.4" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsec:hc-boxplot"><i class="fa fa-check"></i><b>15.4</b> 箱线图</a><ul>
+<li class="chapter" data-level="15.4.1" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsubsec:simple-hc-boxplot"><i class="fa fa-check"></i><b>15.4.1</b> 简单箱线图</a></li>
+<li class="chapter" data-level="15.4.2" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subssubsec:dodge-hc-boxplot"><i class="fa fa-check"></i><b>15.4.2</b> 复合箱线图</a></li>
+</ul></li>
+<li class="chapter" data-level="15.5" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsec:hc-density"><i class="fa fa-check"></i><b>15.5</b> 密度图</a></li>
+<li class="chapter" data-level="15.6" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsec:hc-hist"><i class="fa fa-check"></i><b>15.6</b> 直方图</a></li>
+<li class="chapter" data-level="15.7" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsec:hc-survival"><i class="fa fa-check"></i><b>15.7</b> 生存图</a></li>
+<li class="chapter" data-level="15.8" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsec:hc-heatmap"><i class="fa fa-check"></i><b>15.8</b> 等高图</a></li>
+<li class="chapter" data-level="15.9" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsec:hc-corrplot"><i class="fa fa-check"></i><b>15.9</b> 相关图</a></li>
+<li class="chapter" data-level="15.10" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsec:hc-treemap"><i class="fa fa-check"></i><b>15.10</b> 矩阵图</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="dv-lattice.html"><a href="dv-lattice.html"><i class="fa fa-check"></i><b>16</b> Lattice 图形</a><ul>
+<li class="chapter" data-level="16.1" data-path="dv-lattice.html"><a href="dv-lattice.html#sec:boxplot"><i class="fa fa-check"></i><b>16.1</b> 箱线图</a></li>
+<li class="chapter" data-level="16.2" data-path="dv-lattice.html"><a href="dv-lattice.html#sec:line"><i class="fa fa-check"></i><b>16.2</b> 折线图</a></li>
+<li class="chapter" data-level="16.3" data-path="dv-lattice.html"><a href="dv-lattice.html#sec:smooth"><i class="fa fa-check"></i><b>16.3</b> 平滑图</a></li>
+<li class="chapter" data-level="16.4" data-path="dv-lattice.html"><a href="dv-lattice.html#sec:dotplot"><i class="fa fa-check"></i><b>16.4</b> 点图</a></li>
+<li class="chapter" data-level="16.5" data-path="dv-lattice.html"><a href="dv-lattice.html#sec:step"><i class="fa fa-check"></i><b>16.5</b> 阶梯图</a></li>
+<li class="chapter" data-level="16.6" data-path="dv-lattice.html"><a href="dv-lattice.html#sec:facet"><i class="fa fa-check"></i><b>16.6</b> 分面图</a></li>
+<li class="chapter" data-level="16.7" data-path="dv-lattice.html"><a href="dv-lattice.html#sec:contour"><i class="fa fa-check"></i><b>16.7</b> 等高线图</a></li>
+<li class="chapter" data-level="16.8" data-path="dv-lattice.html"><a href="dv-lattice.html#sub:map"><i class="fa fa-check"></i><b>16.8</b> 地图</a></li>
+<li class="chapter" data-level="16.9" data-path="dv-lattice.html"><a href="dv-lattice.html#sub:cluster"><i class="fa fa-check"></i><b>16.9</b> 聚类图</a></li>
+<li class="chapter" data-level="16.10" data-path="dv-lattice.html"><a href="dv-lattice.html#sec:lattice-sessioninfo"><i class="fa fa-check"></i><b>16.10</b> 运行环境</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="dv-network.html"><a href="dv-network.html"><i class="fa fa-check"></i><b>17</b> 网络数据</a></li>
+<li class="chapter" data-level="18" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html"><i class="fa fa-check"></i><b>18</b> 时空可视化</a><ul>
+<li class="chapter" data-level="18.1" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#map"><i class="fa fa-check"></i><b>18.1</b> 地图</a><ul>
+<li class="chapter" data-level="18.1.1" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#project-orientation"><i class="fa fa-check"></i><b>18.1.1</b> 投影和观察方位</a></li>
+<li class="chapter" data-level="18.1.2" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#USA-crime-rates"><i class="fa fa-check"></i><b>18.1.2</b> 美国各州犯罪率</a></li>
+<li class="chapter" data-level="18.1.3" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#fiji-earthquake-map"><i class="fa fa-check"></i><b>18.1.3</b> 斐济地震带</a></li>
+<li class="chapter" data-level="18.1.4" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#USA-unemployment-ratio"><i class="fa fa-check"></i><b>18.1.4</b> 美国各城镇失业率</a></li>
+</ul></li>
+<li class="chapter" data-level="18.2" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#spatial-op"><i class="fa fa-check"></i><b>18.2</b> 空间数据对象</a><ul>
+<li class="chapter" data-level="18.2.1" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#ggplot2-sp"><i class="fa fa-check"></i><b>18.2.1</b> sp</a></li>
+<li class="chapter" data-level="18.2.2" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#ggplot2-raster"><i class="fa fa-check"></i><b>18.2.2</b> raster</a></li>
+<li class="chapter" data-level="18.2.3" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#ggplot2-sf"><i class="fa fa-check"></i><b>18.2.3</b> sf</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="dynamic-documents.html"><a href="dynamic-documents.html"><i class="fa fa-check"></i><b>19</b> 动态性文档</a><ul>
+<li class="chapter" data-level="" data-path="dynamic-documents.html"><a href="dynamic-documents.html#sessioninfo"><i class="fa fa-check"></i>软件信息</a></li>
+<li class="chapter" data-level="" data-path="dynamic-documents.html"><a href="dynamic-documents.html#r-call-python"><i class="fa fa-check"></i>R 调用 Python</a></li>
+<li class="chapter" data-level="19.1" data-path="dynamic-documents.html"><a href="dynamic-documents.html#markdown"><i class="fa fa-check"></i><b>19.1</b> Markdown</a><ul>
+<li class="chapter" data-level="19.1.1" data-path="dynamic-documents.html"><a href="dynamic-documents.html#markdown-list"><i class="fa fa-check"></i><b>19.1.1</b> 列表</a></li>
+<li class="chapter" data-level="19.1.2" data-path="dynamic-documents.html"><a href="dynamic-documents.html#markdown-emphasis"><i class="fa fa-check"></i><b>19.1.2</b> 强调</a></li>
+<li class="chapter" data-level="19.1.3" data-path="dynamic-documents.html"><a href="dynamic-documents.html#markdown-quote"><i class="fa fa-check"></i><b>19.1.3</b> 引用</a></li>
+<li class="chapter" data-level="19.1.4" data-path="dynamic-documents.html"><a href="dynamic-documents.html#markdown-table"><i class="fa fa-check"></i><b>19.1.4</b> 表格</a></li>
+<li class="chapter" data-level="19.1.5" data-path="dynamic-documents.html"><a href="dynamic-documents.html#image"><i class="fa fa-check"></i><b>19.1.5</b> 图片</a></li>
+<li class="chapter" data-level="19.1.6" data-path="dynamic-documents.html"><a href="dynamic-documents.html#markdown-math"><i class="fa fa-check"></i><b>19.1.6</b> 公式</a></li>
+</ul></li>
+<li class="chapter" data-level="19.2" data-path="dynamic-documents.html"><a href="dynamic-documents.html#pandoc-markdown"><i class="fa fa-check"></i><b>19.2</b> Pandoc’s Markdown</a></li>
+<li class="chapter" data-level="19.3" data-path="dynamic-documents.html"><a href="dynamic-documents.html#r-markdown"><i class="fa fa-check"></i><b>19.3</b> R Markdown</a><ul>
+<li class="chapter" data-level="19.3.1" data-path="dynamic-documents.html"><a href="dynamic-documents.html#语法高亮"><i class="fa fa-check"></i><b>19.3.1</b> 语法高亮</a></li>
+</ul></li>
+<li class="chapter" data-level="19.4" data-path="dynamic-documents.html"><a href="dynamic-documents.html#table-style"><i class="fa fa-check"></i><b>19.4</b> 表格样式</a><ul>
+<li class="chapter" data-level="19.4.1" data-path="dynamic-documents.html"><a href="dynamic-documents.html#table-html"><i class="fa fa-check"></i><b>19.4.1</b> HTML 样式</a></li>
+<li class="chapter" data-level="19.4.2" data-path="dynamic-documents.html"><a href="dynamic-documents.html#table-latex"><i class="fa fa-check"></i><b>19.4.2</b> LaTeX 样式</a></li>
+</ul></li>
+<li class="chapter" data-level="19.5" data-path="dynamic-documents.html"><a href="dynamic-documents.html#rmarkdown-addins"><i class="fa fa-check"></i><b>19.5</b> 插件</a></li>
+<li class="chapter" data-level="19.6" data-path="dynamic-documents.html"><a href="dynamic-documents.html#subsec:rmarkdown"><i class="fa fa-check"></i><b>19.6</b> 报告</a></li>
+<li class="chapter" data-level="19.7" data-path="dynamic-documents.html"><a href="dynamic-documents.html#subsec:pagedown"><i class="fa fa-check"></i><b>19.7</b> 简历</a></li>
+<li class="chapter" data-level="19.8" data-path="dynamic-documents.html"><a href="dynamic-documents.html#subsec:bookdown"><i class="fa fa-check"></i><b>19.8</b> 书籍</a></li>
+<li class="chapter" data-level="19.9" data-path="dynamic-documents.html"><a href="dynamic-documents.html#subsec:blogdown"><i class="fa fa-check"></i><b>19.9</b> 网站</a></li>
+<li class="chapter" data-level="19.10" data-path="dynamic-documents.html"><a href="dynamic-documents.html#subsec:dashboard"><i class="fa fa-check"></i><b>19.10</b> Shiny</a></li>
+<li class="chapter" data-level="19.11" data-path="dynamic-documents.html"><a href="dynamic-documents.html#subsec:xaringan"><i class="fa fa-check"></i><b>19.11</b> 幻灯片</a></li>
+<li class="chapter" data-level="19.12" data-path="dynamic-documents.html"><a href="dynamic-documents.html#sec:animation-video"><i class="fa fa-check"></i><b>19.12</b> 动画视频</a></li>
+<li class="chapter" data-level="19.13" data-path="dynamic-documents.html"><a href="dynamic-documents.html#sec:diagram-table"><i class="fa fa-check"></i><b>19.13</b> 图表</a><ul>
+<li class="chapter" data-level="19.13.1" data-path="dynamic-documents.html"><a href="dynamic-documents.html#tikz-1"><i class="fa fa-check"></i><b>19.13.1</b> TikZ</a></li>
+<li class="chapter" data-level="19.13.2" data-path="dynamic-documents.html"><a href="dynamic-documents.html#dot"><i class="fa fa-check"></i><b>19.13.2</b> DOT</a></li>
+<li class="chapter" data-level="19.13.3" data-path="dynamic-documents.html"><a href="dynamic-documents.html#subsec:uml"><i class="fa fa-check"></i><b>19.13.3</b> UML</a></li>
+<li class="chapter" data-level="19.13.4" data-path="dynamic-documents.html"><a href="dynamic-documents.html#subsec:table"><i class="fa fa-check"></i><b>19.13.4</b> 表格</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="animated-graphics.html"><a href="animated-graphics.html"><i class="fa fa-check"></i><b>20</b> 动画</a><ul>
+<li class="chapter" data-level="20.1" data-path="animated-graphics.html"><a href="animated-graphics.html#gganimate"><i class="fa fa-check"></i><b>20.1</b> gganimate</a></li>
+<li class="chapter" data-level="20.2" data-path="animated-graphics.html"><a href="animated-graphics.html#magick"><i class="fa fa-check"></i><b>20.2</b> magick</a></li>
+</ul></li>
+<li class="chapter" data-level="21" data-path="interactive-graphics.html"><a href="interactive-graphics.html"><i class="fa fa-check"></i><b>21</b> 交互式图形</a><ul>
+<li class="chapter" data-level="21.1" data-path="interactive-graphics.html"><a href="interactive-graphics.html#rgl"><i class="fa fa-check"></i><b>21.1</b> rgl</a></li>
+<li class="chapter" data-level="21.2" data-path="interactive-graphics.html"><a href="interactive-graphics.html#plotly-1"><i class="fa fa-check"></i><b>21.2</b> plotly</a><ul>
+<li class="chapter" data-level="21.2.1" data-path="interactive-graphics.html"><a href="interactive-graphics.html#plotly-histogram"><i class="fa fa-check"></i><b>21.2.1</b> 直方图</a></li>
+<li class="chapter" data-level="21.2.2" data-path="interactive-graphics.html"><a href="interactive-graphics.html#plotly-map"><i class="fa fa-check"></i><b>21.2.2</b> 地图</a></li>
+<li class="chapter" data-level="21.2.3" data-path="interactive-graphics.html"><a href="interactive-graphics.html#plotly-heatmap"><i class="fa fa-check"></i><b>21.2.3</b> 热力图</a></li>
+</ul></li>
+<li class="chapter" data-level="21.3" data-path="interactive-graphics.html"><a href="interactive-graphics.html#leaflet"><i class="fa fa-check"></i><b>21.3</b> leaflet</a></li>
+<li class="chapter" data-level="21.4" data-path="interactive-graphics.html"><a href="interactive-graphics.html#highcharter"><i class="fa fa-check"></i><b>21.4</b> highcharter</a><ul>
+<li class="chapter" data-level="21.4.1" data-path="interactive-graphics.html"><a href="interactive-graphics.html#highcharter-ts"><i class="fa fa-check"></i><b>21.4.1</b> 时序图</a></li>
+<li class="chapter" data-level="21.4.2" data-path="interactive-graphics.html"><a href="interactive-graphics.html#highcharter-scatter"><i class="fa fa-check"></i><b>21.4.2</b> 散点图</a></li>
+<li class="chapter" data-level="21.4.3" data-path="interactive-graphics.html"><a href="interactive-graphics.html#highcharter-map"><i class="fa fa-check"></i><b>21.4.3</b> 地图</a></li>
+</ul></li>
+<li class="chapter" data-level="21.5" data-path="interactive-graphics.html"><a href="interactive-graphics.html#vegawidget"><i class="fa fa-check"></i><b>21.5</b> vegawidget</a></li>
+<li class="chapter" data-level="21.6" data-path="interactive-graphics.html"><a href="interactive-graphics.html#network"><i class="fa fa-check"></i><b>21.6</b> 网络图</a></li>
+<li class="chapter" data-level="21.7" data-path="interactive-graphics.html"><a href="interactive-graphics.html#threejs"><i class="fa fa-check"></i><b>21.7</b> threejs</a></li>
+</ul></li>
+<li class="chapter" data-level="22" data-path="cs-cran-network.html"><a href="cs-cran-network.html"><i class="fa fa-check"></i><b>22</b> 案例：分析 CRAN</a><ul>
+<li class="chapter" data-level="22.1" data-path="cs-cran-network.html"><a href="cs-cran-network.html#R-Core-Team"><i class="fa fa-check"></i><b>22.1</b> R 核心团队</a></li>
+<li class="chapter" data-level="22.2" data-path="cs-cran-network.html"><a href="cs-cran-network.html#Top-Creators"><i class="fa fa-check"></i><b>22.2</b> 高产的开发者</a></li>
+<li class="chapter" data-level="22.3" data-path="cs-cran-network.html"><a href="cs-cran-network.html#R-Package-Developers"><i class="fa fa-check"></i><b>22.3</b> 社区开发者</a></li>
+<li class="chapter" data-level="22.4" data-path="cs-cran-network.html"><a href="cs-cran-network.html#first-commit"><i class="fa fa-check"></i><b>22.4</b> 首次贡献 R 包</a></li>
+<li class="chapter" data-level="22.5" data-path="cs-cran-network.html"><a href="cs-cran-network.html#Contribution-Network"><i class="fa fa-check"></i><b>22.5</b> 贡献关系网络</a></li>
+<li class="chapter" data-level="22.6" data-path="cs-cran-network.html"><a href="cs-cran-network.html#CRAN-Update-Packages"><i class="fa fa-check"></i><b>22.6</b> 更新知多少</a></li>
+<li class="chapter" data-level="22.7" data-path="cs-cran-network.html"><a href="cs-cran-network.html#Package-Licenses"><i class="fa fa-check"></i><b>22.7</b> 使用许可证</a></li>
+<li class="chapter" data-level="22.8" data-path="cs-cran-network.html"><a href="cs-cran-network.html#r-包增长速度"><i class="fa fa-check"></i><b>22.8</b> R 包增长速度</a></li>
+<li class="chapter" data-level="22.9" data-path="cs-cran-network.html"><a href="cs-cran-network.html#Choose-Package"><i class="fa fa-check"></i><b>22.9</b> 选择 R 包</a></li>
+<li class="chapter" data-level="22.10" data-path="cs-cran-network.html"><a href="cs-cran-network.html#cs-network-session-info"><i class="fa fa-check"></i><b>22.10</b> 运行环境</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="99-references.html"><a href="99-references.html"><i class="fa fa-check"></i>参考文献</a></li>
+<li class="divider"></li>
+<li><a href="https://r-graphics.netlify.com/" target="blank">Published with netlify</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">数据科学与 R 语言</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="case-cran" class="section level1">
+<h1><span class="header-section-number">第 22 章</span> 案例：分析 CRAN</h1>
+<div class="sourceCode" id="cb775"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb775-1"><a href="cs-cran-network.html#cb775-1"></a><span class="kw">library</span>(ggplot2)</span>
+<span id="cb775-2"><a href="cs-cran-network.html#cb775-2"></a><span class="kw">library</span>(magrittr)</span>
+<span id="cb775-3"><a href="cs-cran-network.html#cb775-3"></a><span class="kw">options</span>(</span>
+<span id="cb775-4"><a href="cs-cran-network.html#cb775-4"></a>  <span class="dt">ggplot2.continuous.colour =</span> <span class="st">&quot;viridis&quot;</span>,</span>
+<span id="cb775-5"><a href="cs-cran-network.html#cb775-5"></a>  <span class="dt">ggplot2.continuous.fill =</span> <span class="st">&quot;viridis&quot;</span></span>
+<span id="cb775-6"><a href="cs-cran-network.html#cb775-6"></a>)</span></code></pre></div>
+<p>首先我们从 CRAN 官网下载 R 包描述信息</p>
+<div class="sourceCode" id="cb776"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb776-1"><a href="cs-cran-network.html#cb776-1"></a>pdb &lt;-<span class="st"> </span>tools<span class="op">::</span><span class="kw">CRAN_package_db</span>()</span></code></pre></div>
+<p>接着，我们可以看看CRAN 上发布的 R 包数量</p>
+<div class="sourceCode" id="cb777"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb777-1"><a href="cs-cran-network.html#cb777-1"></a><span class="kw">length</span>(pdb[, <span class="st">&quot;Package&quot;</span>])</span>
+<span id="cb777-2"><a href="cs-cran-network.html#cb777-2"></a><span class="co">#&gt; [1] 15367</span></span></code></pre></div>
+<p>经过与官网发布的数据来对比，我们发现这里计算的结果与实际不符，多出来了几十个R包，所以我们再观察一下是否有重复的 R 包描述信息</p>
+<div class="sourceCode" id="cb778"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb778-1"><a href="cs-cran-network.html#cb778-1"></a>pdb[, <span class="st">&quot;Package&quot;</span>][<span class="kw">duplicated</span>(pdb[, <span class="st">&quot;Package&quot;</span>])]</span>
+<span id="cb778-2"><a href="cs-cran-network.html#cb778-2"></a><span class="co">#&gt;  [1] &quot;boot&quot;        &quot;class&quot;       &quot;cluster&quot;     &quot;codetools&quot;   &quot;foreign&quot;    </span></span>
+<span id="cb778-3"><a href="cs-cran-network.html#cb778-3"></a><span class="co">#&gt;  [6] &quot;KernSmooth&quot;  &quot;lattice&quot;     &quot;MASS&quot;        &quot;Matrix&quot;      &quot;mgcv&quot;       </span></span>
+<span id="cb778-4"><a href="cs-cran-network.html#cb778-4"></a><span class="co">#&gt; [11] &quot;nlme&quot;        &quot;nnet&quot;        &quot;rpart&quot;       &quot;spatial&quot;     &quot;survival&quot;   </span></span>
+<span id="cb778-5"><a href="cs-cran-network.html#cb778-5"></a><span class="co">#&gt; [16] &quot;adimpro&quot;     &quot;aws&quot;         &quot;frailtypack&quot; &quot;mpmi&quot;</span></span></code></pre></div>
+<p>不难发现，果然有！所以去掉重复的 R 包信息，就是 CRAN 上实际发布的 R 包数量</p>
+<div class="sourceCode" id="cb779"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb779-1"><a href="cs-cran-network.html#cb779-1"></a><span class="kw">dim</span>(<span class="kw">subset</span>(pdb, <span class="dt">subset =</span> <span class="op">!</span><span class="kw">duplicated</span>(pdb[, <span class="st">&quot;Package&quot;</span>])))[<span class="dv">1</span>]</span>
+<span id="cb779-2"><a href="cs-cran-network.html#cb779-2"></a><span class="co">#&gt; [1] 15348</span></span></code></pre></div>
+<p>接下来就是分析去掉重复信息后的数据矩阵 pdb</p>
+<div class="sourceCode" id="cb780"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb780-1"><a href="cs-cran-network.html#cb780-1"></a>pdb &lt;-<span class="st"> </span><span class="kw">subset</span>(pdb, <span class="dt">subset =</span> <span class="op">!</span><span class="kw">duplicated</span>(pdb[, <span class="st">&quot;Package&quot;</span>]))</span></code></pre></div>
+<div id="R-Core-Team" class="section level2">
+<h2><span class="header-section-number">22.1</span> R 核心团队</h2>
+<p>R 核心团队除了维护开发 Base R 包以外，还开发了哪些 R 包，我们依据这些开发者邮箱 <code>&lt;Firstname&gt;.&lt;Lastname&gt;@R-project.org</code> 的特点，从数据集 pdb 中提取他们开发的 R 包</p>
+<div class="sourceCode" id="cb781"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb781-1"><a href="cs-cran-network.html#cb781-1"></a>core_pdb &lt;-<span class="st"> </span><span class="kw">subset</span>(pdb,</span>
+<span id="cb781-2"><a href="cs-cran-network.html#cb781-2"></a>  <span class="dt">subset =</span> <span class="kw">grepl</span>(</span>
+<span id="cb781-3"><a href="cs-cran-network.html#cb781-3"></a>    <span class="dt">x =</span> pdb[, <span class="st">&quot;Maintainer&quot;</span>],</span>
+<span id="cb781-4"><a href="cs-cran-network.html#cb781-4"></a>    <span class="dt">pattern =</span> <span class="st">&quot;(@R-project</span><span class="ch">\\</span><span class="st">.org)&quot;</span></span>
+<span id="cb781-5"><a href="cs-cran-network.html#cb781-5"></a>  ),</span>
+<span id="cb781-6"><a href="cs-cran-network.html#cb781-6"></a>  <span class="dt">select =</span> <span class="kw">c</span>(<span class="st">&quot;Package&quot;</span>, <span class="st">&quot;Maintainer&quot;</span>)</span>
+<span id="cb781-7"><a href="cs-cran-network.html#cb781-7"></a>)</span>
+<span id="cb781-8"><a href="cs-cran-network.html#cb781-8"></a><span class="kw">dim</span>(core_pdb[<span class="kw">order</span>(core_pdb[, <span class="st">&quot;Maintainer&quot;</span>]), ])</span>
+<span id="cb781-9"><a href="cs-cran-network.html#cb781-9"></a><span class="co">#&gt; [1] 95  2</span></span></code></pre></div>
+<p>这么少，是不是有点意外，看来很多大佬更喜欢用自己的邮箱，比如 Paul Murrell， 他的邮箱是 <a href="mailto:paul@stat.auckland.ac.nz" class="email">paul@stat.auckland.ac.nz</a></p>
+<div class="sourceCode" id="cb782"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb782-1"><a href="cs-cran-network.html#cb782-1"></a><span class="kw">subset</span>(pdb, <span class="dt">subset =</span> <span class="kw">grepl</span>(<span class="dt">x =</span> pdb[, <span class="st">&quot;Maintainer&quot;</span>], <span class="dt">pattern =</span> <span class="st">&quot;(Paul Murrell)&quot;</span>), </span>
+<span id="cb782-2"><a href="cs-cran-network.html#cb782-2"></a>                   <span class="dt">select =</span> <span class="kw">c</span>(<span class="st">&quot;Package&quot;</span>, <span class="st">&quot;Maintainer&quot;</span>))</span>
+<span id="cb782-3"><a href="cs-cran-network.html#cb782-3"></a><span class="co">#&gt;            Package                              Maintainer</span></span>
+<span id="cb782-4"><a href="cs-cran-network.html#cb782-4"></a><span class="co">#&gt; 2100       compare Paul Murrell &lt;p.murrell@auckland.ac.nz&gt;</span></span>
+<span id="cb782-5"><a href="cs-cran-network.html#cb782-5"></a><span class="co">#&gt; 5310    graphicsQC Paul Murrell &lt;paul@stat.auckland.ac.nz&gt;</span></span>
+<span id="cb782-6"><a href="cs-cran-network.html#cb782-6"></a><span class="co">#&gt; 5342      gridBase Paul Murrell &lt;paul@stat.auckland.ac.nz&gt;</span></span>
+<span id="cb782-7"><a href="cs-cran-network.html#cb782-7"></a><span class="co">#&gt; 5343    gridBezier Paul Murrell &lt;paul@stat.auckland.ac.nz&gt;</span></span>
+<span id="cb782-8"><a href="cs-cran-network.html#cb782-8"></a><span class="co">#&gt; 5344     gridDebug Paul Murrell &lt;p.murrell@auckland.ac.nz&gt;</span></span>
+<span id="cb782-9"><a href="cs-cran-network.html#cb782-9"></a><span class="co">#&gt; 5346  gridGeometry Paul Murrell &lt;paul@stat.auckland.ac.nz&gt;</span></span>
+<span id="cb782-10"><a href="cs-cran-network.html#cb782-10"></a><span class="co">#&gt; 5347  gridGraphics Paul Murrell &lt;paul@stat.auckland.ac.nz&gt;</span></span>
+<span id="cb782-11"><a href="cs-cran-network.html#cb782-11"></a><span class="co">#&gt; 5348  gridGraphviz Paul Murrell &lt;p.murrell@auckland.ac.nz&gt;</span></span>
+<span id="cb782-12"><a href="cs-cran-network.html#cb782-12"></a><span class="co">#&gt; 5351       gridSVG Paul Murrell &lt;paul@stat.auckland.ac.nz&gt;</span></span>
+<span id="cb782-13"><a href="cs-cran-network.html#cb782-13"></a>....</span></code></pre></div>
+<p>所以这种方式不行了，只能列举所有 R Core Team 成员，挨个去匹配，幸好 <code>contributors()</code> 函数已经收集了成员名单，不需要我们去官网找了。</p>
+<div class="sourceCode" id="cb783"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb783-1"><a href="cs-cran-network.html#cb783-1"></a>core_team &lt;-<span class="st"> </span><span class="kw">read.table</span>(</span>
+<span id="cb783-2"><a href="cs-cran-network.html#cb783-2"></a>  <span class="dt">text =</span> <span class="st">&quot;</span></span>
+<span id="cb783-3"><a href="cs-cran-network.html#cb783-3"></a><span class="st">Douglas Bates</span></span>
+<span id="cb783-4"><a href="cs-cran-network.html#cb783-4"></a><span class="st">John Chambers</span></span>
+<span id="cb783-5"><a href="cs-cran-network.html#cb783-5"></a><span class="st">Peter Dalgaard</span></span>
+<span id="cb783-6"><a href="cs-cran-network.html#cb783-6"></a><span class="st">Robert Gentleman</span></span>
+<span id="cb783-7"><a href="cs-cran-network.html#cb783-7"></a><span class="st">Kurt Hornik</span></span>
+<span id="cb783-8"><a href="cs-cran-network.html#cb783-8"></a><span class="st">Ross Ihaka</span></span>
+<span id="cb783-9"><a href="cs-cran-network.html#cb783-9"></a><span class="st">Tomas Kalibera</span></span>
+<span id="cb783-10"><a href="cs-cran-network.html#cb783-10"></a><span class="st">Michael Lawrence</span></span>
+<span id="cb783-11"><a href="cs-cran-network.html#cb783-11"></a><span class="st">Friedrich Leisch</span></span>
+<span id="cb783-12"><a href="cs-cran-network.html#cb783-12"></a><span class="st">Uwe Ligges</span></span>
+<span id="cb783-13"><a href="cs-cran-network.html#cb783-13"></a><span class="st">Thomas Lumley</span></span>
+<span id="cb783-14"><a href="cs-cran-network.html#cb783-14"></a><span class="st">Martin Maechler</span></span>
+<span id="cb783-15"><a href="cs-cran-network.html#cb783-15"></a><span class="st">Martin Morgan</span></span>
+<span id="cb783-16"><a href="cs-cran-network.html#cb783-16"></a><span class="st">Paul Murrell</span></span>
+<span id="cb783-17"><a href="cs-cran-network.html#cb783-17"></a><span class="st">Martyn Plummer</span></span>
+<span id="cb783-18"><a href="cs-cran-network.html#cb783-18"></a><span class="st">Brian Ripley</span></span>
+<span id="cb783-19"><a href="cs-cran-network.html#cb783-19"></a><span class="st">Deepayan Sarkar</span></span>
+<span id="cb783-20"><a href="cs-cran-network.html#cb783-20"></a><span class="st">Duncan Temple Lang</span></span>
+<span id="cb783-21"><a href="cs-cran-network.html#cb783-21"></a><span class="st">Luke Tierney</span></span>
+<span id="cb783-22"><a href="cs-cran-network.html#cb783-22"></a><span class="st">Simon Urbanek</span></span>
+<span id="cb783-23"><a href="cs-cran-network.html#cb783-23"></a><span class="st">Heiner Schwarte</span></span>
+<span id="cb783-24"><a href="cs-cran-network.html#cb783-24"></a><span class="st">Guido Masarotto</span></span>
+<span id="cb783-25"><a href="cs-cran-network.html#cb783-25"></a><span class="st">Stefano Iacus</span></span>
+<span id="cb783-26"><a href="cs-cran-network.html#cb783-26"></a><span class="st">Seth Falcon</span></span>
+<span id="cb783-27"><a href="cs-cran-network.html#cb783-27"></a><span class="st">Duncan Murdoch</span></span>
+<span id="cb783-28"><a href="cs-cran-network.html#cb783-28"></a><span class="st">David Meyer</span></span>
+<span id="cb783-29"><a href="cs-cran-network.html#cb783-29"></a><span class="st">Simon Wood</span></span>
+<span id="cb783-30"><a href="cs-cran-network.html#cb783-30"></a><span class="st">&quot;</span>, <span class="dt">header =</span> <span class="ot">FALSE</span>, <span class="dt">sep =</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>, <span class="dt">check.names =</span> <span class="ot">FALSE</span>, <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>,</span>
+<span id="cb783-31"><a href="cs-cran-network.html#cb783-31"></a>  <span class="dt">colClasses =</span> <span class="st">&quot;character&quot;</span>, <span class="dt">comment.char =</span> <span class="st">&quot;&quot;</span>, <span class="dt">col.names =</span> <span class="st">&quot;name&quot;</span></span>
+<span id="cb783-32"><a href="cs-cran-network.html#cb783-32"></a>)</span></code></pre></div>
+<p>R 核心团队维护的 R 包及其最新发布的日期</p>
+<div class="sourceCode" id="cb784"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb784-1"><a href="cs-cran-network.html#cb784-1"></a>core_pdb &lt;-<span class="st"> </span><span class="kw">subset</span>(pdb,</span>
+<span id="cb784-2"><a href="cs-cran-network.html#cb784-2"></a>  <span class="dt">subset =</span> <span class="kw">grepl</span>(</span>
+<span id="cb784-3"><a href="cs-cran-network.html#cb784-3"></a>    <span class="dt">x =</span> pdb[, <span class="st">&quot;Maintainer&quot;</span>],</span>
+<span id="cb784-4"><a href="cs-cran-network.html#cb784-4"></a>    <span class="dt">pattern =</span> <span class="kw">paste</span>(<span class="st">&quot;(&quot;</span>, core_team<span class="op">$</span>name, <span class="st">&quot;)&quot;</span>, <span class="dt">collapse =</span> <span class="st">&quot;|&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>)</span>
+<span id="cb784-5"><a href="cs-cran-network.html#cb784-5"></a>  ),</span>
+<span id="cb784-6"><a href="cs-cran-network.html#cb784-6"></a>  <span class="dt">select =</span> <span class="kw">c</span>(<span class="st">&quot;Package&quot;</span>, <span class="st">&quot;Maintainer&quot;</span>, <span class="st">&quot;Published&quot;</span>)</span>
+<span id="cb784-7"><a href="cs-cran-network.html#cb784-7"></a>)</span></code></pre></div>
+<p>清理 Maintainer 字段中的邮箱部分，方便表格展示</p>
+<div class="sourceCode" id="cb785"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb785-1"><a href="cs-cran-network.html#cb785-1"></a>clean_maintainer &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</span>
+<span id="cb785-2"><a href="cs-cran-network.html#cb785-2"></a>  <span class="co"># 去掉邮箱</span></span>
+<span id="cb785-3"><a href="cs-cran-network.html#cb785-3"></a>  x &lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot;&lt;([^&lt;&gt;]*)&gt;&quot;</span>, <span class="st">&quot;&quot;</span>, x)</span>
+<span id="cb785-4"><a href="cs-cran-network.html#cb785-4"></a>  <span class="co"># 去掉 \n \t \&#39; \&quot; 和 &#39;</span></span>
+<span id="cb785-5"><a href="cs-cran-network.html#cb785-5"></a>  x &lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot;(</span><span class="ch">\\\n</span><span class="st">)|(</span><span class="ch">\\\t</span><span class="st">)|(</span><span class="ch">\\\&quot;</span><span class="st">)|(</span><span class="ch">\\\&#39;</span><span class="st">)|(&#39;)&quot;</span>, <span class="st">&quot;&quot;</span>, x)</span>
+<span id="cb785-6"><a href="cs-cran-network.html#cb785-6"></a>  <span class="co"># 去掉末尾空格</span></span>
+<span id="cb785-7"><a href="cs-cran-network.html#cb785-7"></a>  x &lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot; +$&quot;</span>, <span class="st">&quot;&quot;</span>, x)</span>
+<span id="cb785-8"><a href="cs-cran-network.html#cb785-8"></a>}</span>
+<span id="cb785-9"><a href="cs-cran-network.html#cb785-9"></a>core_pdb[, <span class="st">&quot;Maintainer&quot;</span>] &lt;-<span class="st"> </span><span class="kw">clean_maintainer</span>(core_pdb[, <span class="st">&quot;Maintainer&quot;</span>])</span></code></pre></div>
+<p>我们可以看到 R 核心团队总共开发维护有 172 个 R 包</p>
+<div class="sourceCode" id="cb786"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb786-1"><a href="cs-cran-network.html#cb786-1"></a><span class="kw">dim</span>(core_pdb)</span>
+<span id="cb786-2"><a href="cs-cran-network.html#cb786-2"></a><span class="co">#&gt; [1] 172   3</span></span></code></pre></div>
+<p>篇幅所限，我们就展示部分人和R包，见表 <a href="cs-cran-network.html#tab:r-core-team">22.1</a> 按照拼音顺序 Brian Ripley 是第一位</p>
+<div class="sourceCode" id="cb787"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb787-1"><a href="cs-cran-network.html#cb787-1"></a>knitr<span class="op">::</span><span class="kw">kable</span>(<span class="kw">head</span>(core_pdb[<span class="kw">order</span>(</span>
+<span id="cb787-2"><a href="cs-cran-network.html#cb787-2"></a>  core_pdb[, <span class="st">&quot;Maintainer&quot;</span>],</span>
+<span id="cb787-3"><a href="cs-cran-network.html#cb787-3"></a>  core_pdb[, <span class="st">&quot;Published&quot;</span>]</span>
+<span id="cb787-4"><a href="cs-cran-network.html#cb787-4"></a>), ], <span class="dv">10</span>),</span>
+<span id="cb787-5"><a href="cs-cran-network.html#cb787-5"></a><span class="dt">caption =</span> <span class="st">&quot;R Core Team 维护的 R 包（展示部分）&quot;</span>, </span>
+<span id="cb787-6"><a href="cs-cran-network.html#cb787-6"></a><span class="dt">booktabs =</span> <span class="ot">TRUE</span>, <span class="dt">row.names =</span> <span class="ot">FALSE</span></span>
+<span id="cb787-7"><a href="cs-cran-network.html#cb787-7"></a>)</span></code></pre></div>
+<table>
+<caption><span id="tab:r-core-team">表 22.1: </span>R Core Team 维护的 R 包（展示部分）</caption>
+<thead>
+<tr class="header">
+<th align="left">Package</th>
+<th align="left">Maintainer</th>
+<th align="left">Published</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">spatial</td>
+<td align="left">Brian Ripley</td>
+<td align="left">2015-08-30</td>
+</tr>
+<tr class="even">
+<td align="left">nnet</td>
+<td align="left">Brian Ripley</td>
+<td align="left">2016-02-02</td>
+</tr>
+<tr class="odd">
+<td align="left">mix</td>
+<td align="left">Brian Ripley</td>
+<td align="left">2017-06-12</td>
+</tr>
+<tr class="even">
+<td align="left">pspline</td>
+<td align="left">Brian Ripley</td>
+<td align="left">2017-06-12</td>
+</tr>
+<tr class="odd">
+<td align="left">class</td>
+<td align="left">Brian Ripley</td>
+<td align="left">2019-01-01</td>
+</tr>
+<tr class="even">
+<td align="left">tree</td>
+<td align="left">Brian Ripley</td>
+<td align="left">2019-04-26</td>
+</tr>
+<tr class="odd">
+<td align="left">fastICA</td>
+<td align="left">Brian Ripley</td>
+<td align="left">2019-07-08</td>
+</tr>
+<tr class="even">
+<td align="left">RODBC</td>
+<td align="left">Brian Ripley</td>
+<td align="left">2019-09-03</td>
+</tr>
+<tr class="odd">
+<td align="left">KernSmooth</td>
+<td align="left">Brian Ripley</td>
+<td align="left">2019-10-15</td>
+</tr>
+<tr class="even">
+<td align="left">gee</td>
+<td align="left">Brian Ripley</td>
+<td align="left">2019-11-07</td>
+</tr>
+</tbody>
+</table>
+<p>分组计数，看看每个核心开发者维护的 R 包有多少</p>
+<div class="sourceCode" id="cb788"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb788-1"><a href="cs-cran-network.html#cb788-1"></a><span class="kw">sort</span>(<span class="kw">table</span>(core_pdb[, <span class="st">&quot;Maintainer&quot;</span>]), <span class="dt">decreasing =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb788-2"><a href="cs-cran-network.html#cb788-2"></a><span class="co">#&gt; </span></span>
+<span id="cb788-3"><a href="cs-cran-network.html#cb788-3"></a><span class="co">#&gt;        Kurt Hornik    Martin Maechler      Simon Urbanek       Paul Murrell </span></span>
+<span id="cb788-4"><a href="cs-cran-network.html#cb788-4"></a><span class="co">#&gt;                 28                 26                 24                 18 </span></span>
+<span id="cb788-5"><a href="cs-cran-network.html#cb788-5"></a><span class="co">#&gt;       Brian Ripley      Thomas Lumley         Uwe Ligges     Duncan Murdoch </span></span>
+<span id="cb788-6"><a href="cs-cran-network.html#cb788-6"></a><span class="co">#&gt;                 12                 10                  9                  7 </span></span>
+<span id="cb788-7"><a href="cs-cran-network.html#cb788-7"></a><span class="co">#&gt;   Michael Lawrence        David Meyer   Friedrich Leisch       Luke Tierney </span></span>
+<span id="cb788-8"><a href="cs-cran-network.html#cb788-8"></a><span class="co">#&gt;                  7                  6                  5                  5 </span></span>
+<span id="cb788-9"><a href="cs-cran-network.html#cb788-9"></a><span class="co">#&gt;      Douglas Bates      John Chambers         Simon Wood    Deepayan Sarkar </span></span>
+<span id="cb788-10"><a href="cs-cran-network.html#cb788-10"></a><span class="co">#&gt;                  3                  3                  3                  2 </span></span>
+<span id="cb788-11"><a href="cs-cran-network.html#cb788-11"></a><span class="co">#&gt;     Martyn Plummer Duncan Temple Lang     Peter Dalgaard </span></span>
+<span id="cb788-12"><a href="cs-cran-network.html#cb788-12"></a><span class="co">#&gt;                  2                  1                  1</span></span></code></pre></div>
+</div>
+<div id="Top-Creators" class="section level2">
+<h2><span class="header-section-number">22.2</span> 高产的开发者</h2>
+<blockquote>
+<p>这些人的个人简介</p>
+</blockquote>
+<p>接下来，我们再来查看一些比较高产的 R 包开发者谢益辉都维护了哪些R包，如表 <a href="cs-cran-network.html#tab:rmarkdown-ecology">22.2</a> 所示</p>
+<div class="sourceCode" id="cb789"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb789-1"><a href="cs-cran-network.html#cb789-1"></a>yihui_pdb &lt;-<span class="st"> </span><span class="kw">subset</span>(pdb,</span>
+<span id="cb789-2"><a href="cs-cran-network.html#cb789-2"></a>  <span class="dt">subset =</span> <span class="kw">grepl</span>(<span class="st">&quot;Yihui Xie&quot;</span>, pdb[, <span class="st">&quot;Maintainer&quot;</span>]),</span>
+<span id="cb789-3"><a href="cs-cran-network.html#cb789-3"></a>  <span class="dt">select =</span> <span class="kw">c</span>(<span class="st">&quot;Package&quot;</span>, <span class="st">&quot;Title&quot;</span>)</span>
+<span id="cb789-4"><a href="cs-cran-network.html#cb789-4"></a>)</span>
+<span id="cb789-5"><a href="cs-cran-network.html#cb789-5"></a>yihui_pdb[, <span class="st">&quot;Title&quot;</span>] &lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot;(</span><span class="ch">\\\n</span><span class="st">)&quot;</span>, <span class="st">&quot; &quot;</span>, yihui_pdb[, <span class="st">&quot;Title&quot;</span>])</span>
+<span id="cb789-6"><a href="cs-cran-network.html#cb789-6"></a>knitr<span class="op">::</span><span class="kw">kable</span>(yihui_pdb, <span class="dt">caption =</span> <span class="st">&quot;谢益辉维护的 R Markdown 生态&quot;</span>, </span>
+<span id="cb789-7"><a href="cs-cran-network.html#cb789-7"></a>             <span class="dt">booktabs =</span> <span class="ot">TRUE</span>, <span class="dt">row.names =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
+<table>
+<caption><span id="tab:rmarkdown-ecology">表 22.2: </span>谢益辉维护的 R Markdown 生态</caption>
+<thead>
+<tr class="header">
+<th align="left">Package</th>
+<th align="left">Title</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">animation</td>
+<td align="left">A Gallery of Animations in Statistics and Utilities to Create Animations</td>
+</tr>
+<tr class="even">
+<td align="left">blogdown</td>
+<td align="left">Create Blogs and Websites with R Markdown</td>
+</tr>
+<tr class="odd">
+<td align="left">bookdown</td>
+<td align="left">Authoring Books and Technical Documents with R Markdown</td>
+</tr>
+<tr class="even">
+<td align="left">DT</td>
+<td align="left">A Wrapper of the JavaScript Library ‘DataTables’</td>
+</tr>
+<tr class="odd">
+<td align="left">evaluate</td>
+<td align="left">Parsing and Evaluation Tools that Provide More Details than the Default</td>
+</tr>
+<tr class="even">
+<td align="left">formatR</td>
+<td align="left">Format R Code Automatically</td>
+</tr>
+<tr class="odd">
+<td align="left">fun</td>
+<td align="left">Use R for Fun</td>
+</tr>
+<tr class="even">
+<td align="left">highr</td>
+<td align="left">Syntax Highlighting for R Source Code</td>
+</tr>
+<tr class="odd">
+<td align="left">knitr</td>
+<td align="left">A General-Purpose Package for Dynamic Report Generation in R</td>
+</tr>
+<tr class="even">
+<td align="left">markdown</td>
+<td align="left">Render Markdown with the C Library ‘Sundown’</td>
+</tr>
+<tr class="odd">
+<td align="left">mime</td>
+<td align="left">Map Filenames to MIME Types</td>
+</tr>
+<tr class="even">
+<td align="left">MSG</td>
+<td align="left">Data and Functions for the Book Modern Statistical Graphics</td>
+</tr>
+<tr class="odd">
+<td align="left">pagedown</td>
+<td align="left">Paginate the HTML Output of R Markdown with CSS for Print</td>
+</tr>
+<tr class="even">
+<td align="left">printr</td>
+<td align="left">Automatically Print R Objects to Appropriate Formats According to the ‘knitr’ Output Format</td>
+</tr>
+<tr class="odd">
+<td align="left">Rd2roxygen</td>
+<td align="left">Convert Rd to ‘Roxygen’ Documentation</td>
+</tr>
+<tr class="even">
+<td align="left">rmarkdown</td>
+<td align="left">Dynamic Documents for R</td>
+</tr>
+<tr class="odd">
+<td align="left">rolldown</td>
+<td align="left">R Markdown Output Formats for Storytelling</td>
+</tr>
+<tr class="even">
+<td align="left">rticles</td>
+<td align="left">Article Formats for R Markdown</td>
+</tr>
+<tr class="odd">
+<td align="left">servr</td>
+<td align="left">A Simple HTTP Server to Serve Static Files or Dynamic Documents</td>
+</tr>
+<tr class="even">
+<td align="left">testit</td>
+<td align="left">A Simple Package for Testing R Packages</td>
+</tr>
+<tr class="odd">
+<td align="left">tinytex</td>
+<td align="left">Helper Functions to Install and Maintain ‘TeX Live’, and Compile ‘LaTeX’ Documents</td>
+</tr>
+<tr class="even">
+<td align="left">tufte</td>
+<td align="left">Tufte’s Styles for R Markdown Documents</td>
+</tr>
+<tr class="odd">
+<td align="left">xaringan</td>
+<td align="left">Presentation Ninja</td>
+</tr>
+<tr class="even">
+<td align="left">xfun</td>
+<td align="left">Miscellaneous Functions by ‘Yihui Xie’</td>
+</tr>
+</tbody>
+</table>
+<p>Jeroen Ooms 维护从 C++ 世界搬运进来的库，如图像处理 magick 包、 视频处理 av 包、 PDF 文档操作 qpdf 包</p>
+<div class="sourceCode" id="cb790"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb790-1"><a href="cs-cran-network.html#cb790-1"></a><span class="kw">subset</span>(pdb, <span class="dt">subset =</span> <span class="kw">grepl</span>(<span class="st">&quot;Jeroen Ooms&quot;</span>, pdb[, <span class="st">&quot;Maintainer&quot;</span>]),</span>
+<span id="cb790-2"><a href="cs-cran-network.html#cb790-2"></a>       <span class="dt">select =</span> <span class="st">&#39;Package&#39;</span>, <span class="dt">drop =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb790-3"><a href="cs-cran-network.html#cb790-3"></a><span class="co">#&gt;  [1] &quot;antiword&quot;    &quot;askpass&quot;     &quot;av&quot;          &quot;base64&quot;      &quot;bcrypt&quot;     </span></span>
+<span id="cb790-4"><a href="cs-cran-network.html#cb790-4"></a><span class="co">#&gt;  [6] &quot;brotli&quot;      &quot;cld2&quot;        &quot;cld3&quot;        &quot;commonmark&quot;  &quot;credentials&quot;</span></span>
+<span id="cb790-5"><a href="cs-cran-network.html#cb790-5"></a><span class="co">#&gt; [11] &quot;curl&quot;        &quot;gert&quot;        &quot;gifski&quot;      &quot;gpg&quot;         &quot;graphql&quot;    </span></span>
+<span id="cb790-6"><a href="cs-cran-network.html#cb790-6"></a><span class="co">#&gt; [16] &quot;hunspell&quot;    &quot;jenkins&quot;     &quot;jose&quot;        &quot;js&quot;          &quot;jsonld&quot;     </span></span>
+<span id="cb790-7"><a href="cs-cran-network.html#cb790-7"></a><span class="co">#&gt; [21] &quot;jsonlite&quot;    &quot;magick&quot;      &quot;minimist&quot;    &quot;mongolite&quot;   &quot;opencpu&quot;    </span></span>
+<span id="cb790-8"><a href="cs-cran-network.html#cb790-8"></a><span class="co">#&gt; [26] &quot;opencv&quot;      &quot;openssl&quot;     &quot;pdftools&quot;    &quot;protolite&quot;   &quot;qpdf&quot;       </span></span>
+<span id="cb790-9"><a href="cs-cran-network.html#cb790-9"></a><span class="co">#&gt; [31] &quot;RAppArmor&quot;   &quot;rjade&quot;       &quot;RMySQL&quot;      &quot;rsvg&quot;        &quot;rzmq&quot;       </span></span>
+<span id="cb790-10"><a href="cs-cran-network.html#cb790-10"></a><span class="co">#&gt; [36] &quot;sodium&quot;      &quot;spelling&quot;    &quot;ssh&quot;         &quot;sys&quot;         &quot;tesseract&quot;  </span></span>
+<span id="cb790-11"><a href="cs-cran-network.html#cb790-11"></a><span class="co">#&gt; [41] &quot;unix&quot;        &quot;unrtf&quot;       &quot;V8&quot;          &quot;webp&quot;        &quot;webutils&quot;   </span></span>
+<span id="cb790-12"><a href="cs-cran-network.html#cb790-12"></a><span class="co">#&gt; [46] &quot;writexl&quot;     &quot;xslt&quot;</span></span></code></pre></div>
+<p>Dirk Eddelbuettel 维护 Rcpp 生态</p>
+<div class="sourceCode" id="cb791"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb791-1"><a href="cs-cran-network.html#cb791-1"></a><span class="kw">subset</span>(pdb, <span class="dt">subset =</span> <span class="kw">grepl</span>(<span class="st">&quot;Dirk Eddelbuettel&quot;</span>, pdb[, <span class="st">&quot;Maintainer&quot;</span>]),</span>
+<span id="cb791-2"><a href="cs-cran-network.html#cb791-2"></a>       <span class="dt">select =</span> <span class="st">&#39;Package&#39;</span>, <span class="dt">drop =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb791-3"><a href="cs-cran-network.html#cb791-3"></a><span class="co">#&gt;  [1] &quot;anytime&quot;             &quot;AsioHeaders&quot;         &quot;BH&quot;                 </span></span>
+<span id="cb791-4"><a href="cs-cran-network.html#cb791-4"></a><span class="co">#&gt;  [4] &quot;binb&quot;                &quot;dang&quot;                &quot;digest&quot;             </span></span>
+<span id="cb791-5"><a href="cs-cran-network.html#cb791-5"></a><span class="co">#&gt;  [7] &quot;drat&quot;                &quot;gaussfacts&quot;          &quot;gcbd&quot;               </span></span>
+<span id="cb791-6"><a href="cs-cran-network.html#cb791-6"></a><span class="co">#&gt; [10] &quot;gettz&quot;               &quot;gunsales&quot;            &quot;inline&quot;             </span></span>
+<span id="cb791-7"><a href="cs-cran-network.html#cb791-7"></a><span class="co">#&gt; [13] &quot;linl&quot;                &quot;littler&quot;             &quot;nanotime&quot;           </span></span>
+<span id="cb791-8"><a href="cs-cran-network.html#cb791-8"></a><span class="co">#&gt; [16] &quot;pinp&quot;                &quot;pkgKitten&quot;           &quot;prrd&quot;               </span></span>
+<span id="cb791-9"><a href="cs-cran-network.html#cb791-9"></a><span class="co">#&gt; [19] &quot;random&quot;              &quot;RApiDatetime&quot;        &quot;RApiSerialize&quot;      </span></span>
+<span id="cb791-10"><a href="cs-cran-network.html#cb791-10"></a><span class="co">#&gt; [22] &quot;Rblpapi&quot;             &quot;Rcpp&quot;                &quot;RcppAnnoy&quot;          </span></span>
+<span id="cb791-11"><a href="cs-cran-network.html#cb791-11"></a><span class="co">#&gt; [25] &quot;RcppAPT&quot;             &quot;RcppArmadillo&quot;       &quot;RcppBDT&quot;            </span></span>
+<span id="cb791-12"><a href="cs-cran-network.html#cb791-12"></a><span class="co">#&gt; [28] &quot;RcppCCTZ&quot;            &quot;RcppClassic&quot;         &quot;RcppClassicExamples&quot;</span></span>
+<span id="cb791-13"><a href="cs-cran-network.html#cb791-13"></a><span class="co">#&gt; [31] &quot;RcppCNPy&quot;            &quot;RcppDE&quot;              &quot;RcppEigen&quot;          </span></span>
+<span id="cb791-14"><a href="cs-cran-network.html#cb791-14"></a><span class="co">#&gt; [34] &quot;RcppExamples&quot;        &quot;RcppGetconf&quot;         &quot;RcppGSL&quot;            </span></span>
+<span id="cb791-15"><a href="cs-cran-network.html#cb791-15"></a><span class="co">#&gt; [37] &quot;RcppMsgPack&quot;         &quot;RcppNLoptExample&quot;    &quot;RcppQuantuccia&quot;     </span></span>
+<span id="cb791-16"><a href="cs-cran-network.html#cb791-16"></a><span class="co">#&gt; [40] &quot;RcppRedis&quot;           &quot;RcppSMC&quot;             &quot;RcppStreams&quot;        </span></span>
+<span id="cb791-17"><a href="cs-cran-network.html#cb791-17"></a><span class="co">#&gt; [43] &quot;RcppTOML&quot;            &quot;RcppXts&quot;             &quot;RcppZiggurat&quot;       </span></span>
+<span id="cb791-18"><a href="cs-cran-network.html#cb791-18"></a><span class="co">#&gt; [46] &quot;RDieHarder&quot;          &quot;rfoaas&quot;              &quot;RInside&quot;            </span></span>
+<span id="cb791-19"><a href="cs-cran-network.html#cb791-19"></a><span class="co">#&gt; [49] &quot;rmsfact&quot;             &quot;RProtoBuf&quot;           &quot;RPushbullet&quot;        </span></span>
+<span id="cb791-20"><a href="cs-cran-network.html#cb791-20"></a><span class="co">#&gt; [52] &quot;RQuantLib&quot;           &quot;RVowpalWabbit&quot;       &quot;sanitizers&quot;         </span></span>
+<span id="cb791-21"><a href="cs-cran-network.html#cb791-21"></a><span class="co">#&gt; [55] &quot;tint&quot;                &quot;ttdo&quot;                &quot;x13binary&quot;</span></span></code></pre></div>
+<p>Hadley Wickham 维护 tidyverse 生态</p>
+<div class="sourceCode" id="cb792"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb792-1"><a href="cs-cran-network.html#cb792-1"></a><span class="kw">subset</span>(pdb, <span class="dt">subset =</span> <span class="kw">grepl</span>(<span class="st">&quot;Hadley Wickham&quot;</span>, pdb[, <span class="st">&quot;Maintainer&quot;</span>]),</span>
+<span id="cb792-2"><a href="cs-cran-network.html#cb792-2"></a>       <span class="dt">select =</span> <span class="st">&#39;Package&#39;</span>, <span class="dt">drop =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb792-3"><a href="cs-cran-network.html#cb792-3"></a><span class="co">#&gt;  [1] &quot;assertthat&quot;    &quot;babynames&quot;     &quot;bigrquery&quot;     &quot;classifly&quot;    </span></span>
+<span id="cb792-4"><a href="cs-cran-network.html#cb792-4"></a><span class="co">#&gt;  [5] &quot;clusterfly&quot;    &quot;conflicted&quot;    &quot;dbplyr&quot;        &quot;dplyr&quot;        </span></span>
+<span id="cb792-5"><a href="cs-cran-network.html#cb792-5"></a><span class="co">#&gt;  [9] &quot;dtplyr&quot;        &quot;ellipsis&quot;      &quot;feather&quot;       &quot;forcats&quot;      </span></span>
+<span id="cb792-6"><a href="cs-cran-network.html#cb792-6"></a><span class="co">#&gt; [13] &quot;fueleconomy&quot;   &quot;ggplot2&quot;       &quot;ggplot2movies&quot; &quot;gtable&quot;       </span></span>
+<span id="cb792-7"><a href="cs-cran-network.html#cb792-7"></a><span class="co">#&gt; [17] &quot;haven&quot;         &quot;hflights&quot;      &quot;highlight&quot;     &quot;httr&quot;         </span></span>
+<span id="cb792-8"><a href="cs-cran-network.html#cb792-8"></a><span class="co">#&gt; [21] &quot;lazyeval&quot;      &quot;lobstr&quot;        &quot;lvplot&quot;        &quot;meifly&quot;       </span></span>
+<span id="cb792-9"><a href="cs-cran-network.html#cb792-9"></a><span class="co">#&gt; [25] &quot;modelr&quot;        &quot;nasaweather&quot;   &quot;nycflights13&quot;  &quot;pkgdown&quot;      </span></span>
+<span id="cb792-10"><a href="cs-cran-network.html#cb792-10"></a><span class="co">#&gt; [29] &quot;plyr&quot;          &quot;productplots&quot;  &quot;profr&quot;         &quot;proto&quot;        </span></span>
+<span id="cb792-11"><a href="cs-cran-network.html#cb792-11"></a><span class="co">#&gt; [33] &quot;pryr&quot;          &quot;rappdirs&quot;      &quot;reshape&quot;       &quot;reshape2&quot;     </span></span>
+<span id="cb792-12"><a href="cs-cran-network.html#cb792-12"></a><span class="co">#&gt; [37] &quot;rggobi&quot;        &quot;roxygen2&quot;      &quot;rvest&quot;         &quot;scales&quot;       </span></span>
+<span id="cb792-13"><a href="cs-cran-network.html#cb792-13"></a><span class="co">#&gt; [41] &quot;sloop&quot;         &quot;stringr&quot;       &quot;testthat&quot;      &quot;tidyr&quot;        </span></span>
+<span id="cb792-14"><a href="cs-cran-network.html#cb792-14"></a><span class="co">#&gt; [45] &quot;tidyverse&quot;     &quot;vctrs&quot;</span></span></code></pre></div>
+<p><a href="https://scottchamberlain.info/">Scott Chamberlain</a> 是非营利性组织 <a href="https://ropensci.org/">rOpenSci</a> 的联合创始人，但是没几个 R 包听说过</p>
+<div class="sourceCode" id="cb793"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb793-1"><a href="cs-cran-network.html#cb793-1"></a><span class="kw">subset</span>(pdb, <span class="dt">subset =</span> <span class="kw">grepl</span>(<span class="st">&quot;Scott Chamberlain&quot;</span>, pdb[, <span class="st">&quot;Maintainer&quot;</span>]),</span>
+<span id="cb793-2"><a href="cs-cran-network.html#cb793-2"></a>       <span class="dt">select =</span> <span class="st">&#39;Package&#39;</span>, <span class="dt">drop =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb793-3"><a href="cs-cran-network.html#cb793-3"></a><span class="co">#&gt;  [1] &quot;analogsea&quot;   &quot;bold&quot;        &quot;brranching&quot;  &quot;ccafs&quot;       &quot;charlatan&quot;  </span></span>
+<span id="cb793-4"><a href="cs-cran-network.html#cb793-4"></a><span class="co">#&gt;  [6] &quot;citecorp&quot;    &quot;ckanr&quot;       &quot;conditionz&quot;  &quot;cowsay&quot;      &quot;crminer&quot;    </span></span>
+<span id="cb793-5"><a href="cs-cran-network.html#cb793-5"></a><span class="co">#&gt; [11] &quot;crul&quot;        &quot;discgolf&quot;    &quot;elastic&quot;     &quot;fauxpas&quot;     &quot;finch&quot;      </span></span>
+<span id="cb793-6"><a href="cs-cran-network.html#cb793-6"></a><span class="co">#&gt; [16] &quot;fulltext&quot;    &quot;geoaxe&quot;      &quot;geojson&quot;     &quot;geojsonio&quot;   &quot;geojsonlint&quot;</span></span>
+<span id="cb793-7"><a href="cs-cran-network.html#cb793-7"></a><span class="co">#&gt; [21] &quot;geoops&quot;      &quot;getlandsat&quot;  &quot;gistr&quot;       &quot;handlr&quot;      &quot;hoardr&quot;     </span></span>
+<span id="cb793-8"><a href="cs-cran-network.html#cb793-8"></a><span class="co">#&gt; [26] &quot;httpcode&quot;    &quot;httping&quot;     &quot;isdparser&quot;   &quot;jaod&quot;        &quot;jqr&quot;        </span></span>
+<span id="cb793-9"><a href="cs-cran-network.html#cb793-9"></a><span class="co">#&gt; [31] &quot;lawn&quot;        &quot;mapr&quot;        &quot;microdemic&quot;  &quot;mregions&quot;    &quot;natserv&quot;    </span></span>
+<span id="cb793-10"><a href="cs-cran-network.html#cb793-10"></a><span class="co">#&gt; [36] &quot;nodbi&quot;       &quot;oai&quot;         &quot;openadds&quot;    &quot;originr&quot;     &quot;pangaear&quot;   </span></span>
+<span id="cb793-11"><a href="cs-cran-network.html#cb793-11"></a><span class="co">#&gt; [41] &quot;phylocomr&quot;   &quot;pleiades&quot;    &quot;pubchunks&quot;   &quot;randgeo&quot;     &quot;rbhl&quot;       </span></span>
+<span id="cb793-12"><a href="cs-cran-network.html#cb793-12"></a><span class="co">#&gt; [46] &quot;rbison&quot;      &quot;rbraries&quot;    &quot;rcitoid&quot;     &quot;rcoreoa&quot;     &quot;rcrossref&quot;  </span></span>
+<span id="cb793-13"><a href="cs-cran-network.html#cb793-13"></a><span class="co">#&gt; [51] &quot;rdatacite&quot;   &quot;rdpla&quot;       &quot;rdryad&quot;      &quot;request&quot;     &quot;rerddap&quot;    </span></span>
+<span id="cb793-14"><a href="cs-cran-network.html#cb793-14"></a><span class="co">#&gt; [56] &quot;rgbif&quot;       &quot;rif&quot;         &quot;ritis&quot;       &quot;rjsonapi&quot;    &quot;rnoaa&quot;      </span></span>
+<span id="cb793-15"><a href="cs-cran-network.html#cb793-15"></a><span class="co">#&gt; [61] &quot;rnpn&quot;        &quot;rorcid&quot;      &quot;rphylopic&quot;   &quot;rplos&quot;       &quot;rredlist&quot;   </span></span>
+<span id="cb793-16"><a href="cs-cran-network.html#cb793-16"></a><span class="co">#&gt; [66] &quot;rsnps&quot;       &quot;rvertnet&quot;    &quot;scrubr&quot;      &quot;seaaroundus&quot; &quot;sofa&quot;       </span></span>
+<span id="cb793-17"><a href="cs-cran-network.html#cb793-17"></a><span class="co">#&gt; [71] &quot;solrium&quot;     &quot;spocc&quot;       &quot;taxize&quot;      &quot;taxizedb&quot;    &quot;traits&quot;     </span></span>
+<span id="cb793-18"><a href="cs-cran-network.html#cb793-18"></a><span class="co">#&gt; [76] &quot;vcr&quot;         &quot;webmockr&quot;    &quot;wellknown&quot;   &quot;wikitaxa&quot;    &quot;worrms&quot;     </span></span>
+<span id="cb793-19"><a href="cs-cran-network.html#cb793-19"></a><span class="co">#&gt; [81] &quot;zbank&quot;</span></span></code></pre></div>
+</div>
+<div id="R-Package-Developers" class="section level2">
+<h2><span class="header-section-number">22.3</span> 社区开发者</h2>
+<p>接下来，我们想看看 R 包维护者数量有多少</p>
+<div class="sourceCode" id="cb794"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb794-1"><a href="cs-cran-network.html#cb794-1"></a><span class="kw">length</span>(<span class="kw">unique</span>(pdb[, <span class="st">&quot;Maintainer&quot;</span>]))</span>
+<span id="cb794-2"><a href="cs-cran-network.html#cb794-2"></a><span class="co">#&gt; [1] 9056</span></span></code></pre></div>
+<p>可实际上没有这么多的开发者，因为存在这样的情况，以 R 包维护者 Hadley Wickham 为例，由于他曾使用过不同的邮箱，所以在维护者字段出现了不一致的情况，实际却是同一个人。</p>
+<div class="sourceCode" id="cb795"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb795-1"><a href="cs-cran-network.html#cb795-1"></a><span class="kw">subset</span>(pdb,</span>
+<span id="cb795-2"><a href="cs-cran-network.html#cb795-2"></a>  <span class="dt">subset =</span> <span class="kw">grepl</span>(<span class="st">&quot;Hadley Wickham&quot;</span>, pdb[, <span class="st">&quot;Maintainer&quot;</span>]),</span>
+<span id="cb795-3"><a href="cs-cran-network.html#cb795-3"></a>  <span class="dt">select =</span> <span class="kw">c</span>(<span class="st">&quot;Package&quot;</span>, <span class="st">&quot;Maintainer&quot;</span>)</span>
+<span id="cb795-4"><a href="cs-cran-network.html#cb795-4"></a>)</span>
+<span id="cb795-5"><a href="cs-cran-network.html#cb795-5"></a><span class="co">#&gt;             Package                             Maintainer</span></span>
+<span id="cb795-6"><a href="cs-cran-network.html#cb795-6"></a><span class="co">#&gt; 511      assertthat    Hadley Wickham &lt;hadley@rstudio.com&gt;</span></span>
+<span id="cb795-7"><a href="cs-cran-network.html#cb795-7"></a><span class="co">#&gt; 640       babynames    Hadley Wickham &lt;hadley@rstudio.com&gt;</span></span>
+<span id="cb795-8"><a href="cs-cran-network.html#cb795-8"></a><span class="co">#&gt; 1024      bigrquery    Hadley Wickham &lt;hadley@rstudio.com&gt;</span></span>
+<span id="cb795-9"><a href="cs-cran-network.html#cb795-9"></a><span class="co">#&gt; 1830      classifly   Hadley Wickham &lt;h.wickham@gmail.com&gt;</span></span>
+<span id="cb795-10"><a href="cs-cran-network.html#cb795-10"></a><span class="co">#&gt; 1916     clusterfly   Hadley Wickham &lt;h.wickham@gmail.com&gt;</span></span>
+<span id="cb795-11"><a href="cs-cran-network.html#cb795-11"></a><span class="co">#&gt; 2171     conflicted    Hadley Wickham &lt;hadley@rstudio.com&gt;</span></span>
+<span id="cb795-12"><a href="cs-cran-network.html#cb795-12"></a><span class="co">#&gt; 2705         dbplyr    Hadley Wickham &lt;hadley@rstudio.com&gt;</span></span>
+<span id="cb795-13"><a href="cs-cran-network.html#cb795-13"></a><span class="co">#&gt; 3210          dplyr    Hadley Wickham &lt;hadley@rstudio.com&gt;</span></span>
+<span id="cb795-14"><a href="cs-cran-network.html#cb795-14"></a><span class="co">#&gt; 3296         dtplyr    Hadley Wickham &lt;hadley@rstudio.com&gt;</span></span>
+<span id="cb795-15"><a href="cs-cran-network.html#cb795-15"></a>....</span></code></pre></div>
+<p>因此，有必要先把 Maintainer 字段中的邮箱部分去掉，这样我们可以得到比较靠谱的R包维护者数量了！</p>
+<div class="sourceCode" id="cb796"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb796-1"><a href="cs-cran-network.html#cb796-1"></a>pdb[, <span class="st">&quot;Maintainer&quot;</span>] &lt;-<span class="st"> </span><span class="kw">clean_maintainer</span>(pdb[, <span class="st">&quot;Maintainer&quot;</span>])</span>
+<span id="cb796-2"><a href="cs-cran-network.html#cb796-2"></a><span class="kw">length</span>(<span class="kw">unique</span>(pdb[, <span class="st">&quot;Maintainer&quot;</span>]))</span>
+<span id="cb796-3"><a href="cs-cran-network.html#cb796-3"></a><span class="co">#&gt; [1] 8374</span></span></code></pre></div>
+<p>接下来，我们还想把 R 包维护者，按照其维护的R包数量排个序，用条形图<a href="cs-cran-network.html#fig:top-maintainers">22.1</a> 表示</p>
+<div class="sourceCode" id="cb797"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb797-1"><a href="cs-cran-network.html#cb797-1"></a>top_maintainer &lt;-<span class="st"> </span><span class="kw">head</span>(<span class="kw">sort</span>(<span class="kw">table</span>(pdb[, <span class="st">&quot;Maintainer&quot;</span>]), <span class="dt">decreasing =</span> <span class="ot">TRUE</span>), <span class="dv">20</span>)</span>
+<span id="cb797-2"><a href="cs-cran-network.html#cb797-2"></a></span>
+<span id="cb797-3"><a href="cs-cran-network.html#cb797-3"></a><span class="kw">par</span>(<span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">7</span>, <span class="dv">1</span>, <span class="dv">1</span>))</span>
+<span id="cb797-4"><a href="cs-cran-network.html#cb797-4"></a>barCenters &lt;-<span class="st"> </span><span class="kw">barplot</span>(top_maintainer,</span>
+<span id="cb797-5"><a href="cs-cran-network.html#cb797-5"></a>  <span class="dt">col =</span> <span class="st">&quot;lightblue&quot;</span>, <span class="dt">axes =</span> <span class="ot">FALSE</span>,</span>
+<span id="cb797-6"><a href="cs-cran-network.html#cb797-6"></a>  <span class="dt">axisnames =</span> <span class="ot">FALSE</span>, <span class="dt">horiz =</span> <span class="ot">TRUE</span>, <span class="dt">border =</span> <span class="st">&quot;white&quot;</span></span>
+<span id="cb797-7"><a href="cs-cran-network.html#cb797-7"></a>)</span>
+<span id="cb797-8"><a href="cs-cran-network.html#cb797-8"></a><span class="kw">text</span>(</span>
+<span id="cb797-9"><a href="cs-cran-network.html#cb797-9"></a>  <span class="dt">y =</span> barCenters, <span class="dt">x =</span> <span class="kw">par</span>(<span class="st">&quot;usr&quot;</span>)[<span class="dv">3</span>],</span>
+<span id="cb797-10"><a href="cs-cran-network.html#cb797-10"></a>  <span class="dt">adj =</span> <span class="dv">1</span>, <span class="dt">labels =</span> <span class="kw">names</span>(top_maintainer), <span class="dt">xpd =</span> <span class="ot">TRUE</span></span>
+<span id="cb797-11"><a href="cs-cran-network.html#cb797-11"></a>)</span>
+<span id="cb797-12"><a href="cs-cran-network.html#cb797-12"></a><span class="kw">axis</span>(<span class="dv">1</span>,</span>
+<span id="cb797-13"><a href="cs-cran-network.html#cb797-13"></a>  <span class="dt">labels =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">90</span>, <span class="dt">by =</span> <span class="dv">10</span>), <span class="dt">at =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">90</span>, <span class="dt">by =</span> <span class="dv">10</span>),</span>
+<span id="cb797-14"><a href="cs-cran-network.html#cb797-14"></a>  <span class="dt">las =</span> <span class="dv">1</span>, <span class="dt">col =</span> <span class="st">&quot;gray&quot;</span></span>
+<span id="cb797-15"><a href="cs-cran-network.html#cb797-15"></a>)</span>
+<span id="cb797-16"><a href="cs-cran-network.html#cb797-16"></a><span class="kw">grid</span>()</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:top-maintainers"></span>
+<img src="cs-cran-network_files/figure-html/top-maintainers-1.png" alt="维护R包数量最多的20个人53" width="55%" />
+<p class="caption">
+图 22.1: 维护R包数量最多的20个人<a href="#fn53" class="footnote-ref" id="fnref53"><sup>53</sup></a>
+</p>
+</div>
+<p>调用 ggplot2 包绘图要求输入的数据类型是 <code>data.frame</code>，所以我们首先将 <code>top_maintainer</code> 转化为数据框类型</p>
+<div class="sourceCode" id="cb798"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb798-1"><a href="cs-cran-network.html#cb798-1"></a>top_maintainer &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(top_maintainer)</span>
+<span id="cb798-2"><a href="cs-cran-network.html#cb798-2"></a><span class="kw">colnames</span>(top_maintainer) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Maintainer&quot;</span>, <span class="st">&quot;Freq&quot;</span>)</span>
+<span id="cb798-3"><a href="cs-cran-network.html#cb798-3"></a></span>
+<span id="cb798-4"><a href="cs-cran-network.html#cb798-4"></a><span class="kw">ggplot</span>(top_maintainer) <span class="op">+</span></span>
+<span id="cb798-5"><a href="cs-cran-network.html#cb798-5"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Maintainer, <span class="dt">y =</span> Freq), <span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="op">+</span></span>
+<span id="cb798-6"><a href="cs-cran-network.html#cb798-6"></a><span class="st">  </span><span class="kw">coord_flip</span>() <span class="op">+</span></span>
+<span id="cb798-7"><a href="cs-cran-network.html#cb798-7"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Maintainer&quot;</span>) <span class="op">+</span></span>
+<span id="cb798-8"><a href="cs-cran-network.html#cb798-8"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Numbers of Package&quot;</span>)</span></code></pre></div>
+<p><img src="cs-cran-network_files/figure-html/unnamed-chunk-22-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p>条形图在柱子很多的情况下，点线图是一种更加简洁的替代方式</p>
+<div class="sourceCode" id="cb799"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb799-1"><a href="cs-cran-network.html#cb799-1"></a><span class="kw">ggplot</span>(top_maintainer, <span class="kw">aes</span>(<span class="dt">x =</span> Freq, <span class="dt">y =</span> Maintainer)) <span class="op">+</span></span>
+<span id="cb799-2"><a href="cs-cran-network.html#cb799-2"></a><span class="st">  </span><span class="kw">geom_segment</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="dv">20</span>, <span class="dt">xend =</span> Freq, <span class="dt">yend =</span> Maintainer), <span class="dt">colour =</span> <span class="st">&quot;grey50&quot;</span>) <span class="op">+</span></span>
+<span id="cb799-3"><a href="cs-cran-network.html#cb799-3"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">2</span>, <span class="dt">colour =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span></span>
+<span id="cb799-4"><a href="cs-cran-network.html#cb799-4"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot; # of Packages &quot;</span>, <span class="dt">y =</span> <span class="st">&quot; Maintainer &quot;</span>)</span></code></pre></div>
+<p><img src="cs-cran-network_files/figure-html/unnamed-chunk-23-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p>接下来，我们想看看开发者维护的 R 包数量的分布，仅从上图，我们知道有的人能维护 80 多个 R 包，总体的分布情况又是如何呢？如图所示，我们将纵轴刻度设置为 log 模式，随着开发的R包数量的增加，开发者人数是指数级递减，可见开发R包依然是一个门槛很高的工作！</p>
+<div class="sourceCode" id="cb800"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb800-1"><a href="cs-cran-network.html#cb800-1"></a><span class="kw">barplot</span>(<span class="kw">table</span>(<span class="kw">table</span>(pdb[, <span class="st">&quot;Maintainer&quot;</span>])),</span>
+<span id="cb800-2"><a href="cs-cran-network.html#cb800-2"></a>  <span class="dt">col =</span> <span class="st">&quot;lightblue&quot;</span>, <span class="dt">log =</span> <span class="st">&quot;y&quot;</span>, <span class="dt">border =</span> <span class="st">&quot;white&quot;</span>,</span>
+<span id="cb800-3"><a href="cs-cran-network.html#cb800-3"></a>  <span class="dt">xlab =</span> <span class="st">&quot;# of Packages&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;# of Maintainers (log)&quot;</span>,</span>
+<span id="cb800-4"><a href="cs-cran-network.html#cb800-4"></a>  <span class="dt">panel.first =</span> <span class="kw">grid</span>()</span>
+<span id="cb800-5"><a href="cs-cran-network.html#cb800-5"></a>)</span></code></pre></div>
+<p><img src="cs-cran-network_files/figure-html/unnamed-chunk-24-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p>只开发一个 R 包的人数达到 5276 人，占开发者总数的 67.31%，约为2/3。</p>
+</div>
+<div id="first-commit" class="section level2">
+<h2><span class="header-section-number">22.4</span> 首次贡献 R 包</h2>
+<p>我们还想进一步了解这些人是不是就自己开发自己维护，基本没有其他人参与，答案是 Almost Sure. 这些人其实占了大部分，相比于前面的 R 核心开发团队或者 R Markdown 生态的维护者，他们绝大部分属于金字塔底部的人，二八定律似乎在这里再次得到印证。</p>
+<div class="sourceCode" id="cb801"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb801-1"><a href="cs-cran-network.html#cb801-1"></a>sub_pdb &lt;-<span class="st"> </span><span class="kw">subset</span>(pdb, <span class="dt">select =</span> <span class="kw">c</span>(<span class="st">&quot;Package&quot;</span>, <span class="st">&quot;Maintainer&quot;</span>, <span class="st">&quot;Author&quot;</span>))</span></code></pre></div>
+<p>接着先清理一下 Maintainer 和 Author 字段，Author 字段的内容比起 Maintainer 复杂一些</p>
+<div class="sourceCode" id="cb802"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb802-1"><a href="cs-cran-network.html#cb802-1"></a>clean_author &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</span>
+<span id="cb802-2"><a href="cs-cran-network.html#cb802-2"></a>  <span class="co"># 去掉中括号及其内容 [aut] [aut, cre]</span></span>
+<span id="cb802-3"><a href="cs-cran-network.html#cb802-3"></a>  x &lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot;(</span><span class="ch">\\</span><span class="st">[.*?</span><span class="ch">\\</span><span class="st">])&quot;</span>, <span class="st">&quot;&quot;</span>, x)</span>
+<span id="cb802-4"><a href="cs-cran-network.html#cb802-4"></a>  <span class="co"># 去掉小括号及其内容 ()</span></span>
+<span id="cb802-5"><a href="cs-cran-network.html#cb802-5"></a>  x &lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot;(</span><span class="ch">\\</span><span class="st">(.*?</span><span class="ch">\\</span><span class="st">))&quot;</span>, <span class="st">&quot;&quot;</span>, x)</span>
+<span id="cb802-6"><a href="cs-cran-network.html#cb802-6"></a>  <span class="co"># 去掉尖括号及其内容 &lt; &gt;</span></span>
+<span id="cb802-7"><a href="cs-cran-network.html#cb802-7"></a>  x &lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot;(&lt;.*?&gt;)&quot;</span>, <span class="st">&quot;&quot;</span>, x)</span>
+<span id="cb802-8"><a href="cs-cran-network.html#cb802-8"></a>  <span class="co"># 去掉 \n</span></span>
+<span id="cb802-9"><a href="cs-cran-network.html#cb802-9"></a>  x &lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot;(</span><span class="ch">\\\n</span><span class="st">)&quot;</span>, <span class="st">&quot;&quot;</span>, x)</span>
+<span id="cb802-10"><a href="cs-cran-network.html#cb802-10"></a>  <span class="co"># 去掉制表符、双引号、单引号和 \&#39;，如 &#39;Hadley Wickham&#39; 中的单引号 &#39; 等</span></span>
+<span id="cb802-11"><a href="cs-cran-network.html#cb802-11"></a>  x &lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot;(</span><span class="ch">\\\t</span><span class="st">)|(</span><span class="ch">\\\&quot;</span><span class="st">)|(</span><span class="ch">\\\&#39;</span><span class="st">)|(&#39;)|(</span><span class="ch">\\</span><span class="st">))&quot;</span>, <span class="st">&quot;&quot;</span>, x)</span>
+<span id="cb802-12"><a href="cs-cran-network.html#cb802-12"></a>  <span class="co"># Christian P. Robert, Universite Paris Dauphine, and Jean-Michel\n        Marin, Universite Montpellier 2</span></span>
+<span id="cb802-13"><a href="cs-cran-network.html#cb802-13"></a>  x &lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot;(and)&quot;</span>, <span class="st">&quot;&quot;</span>, x)</span>
+<span id="cb802-14"><a href="cs-cran-network.html#cb802-14"></a>  <span class="co"># 两个以上的空格替换为一个空格</span></span>
+<span id="cb802-15"><a href="cs-cran-network.html#cb802-15"></a>  x &lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot;( {2,})&quot;</span>,<span class="st">&quot; &quot;</span>,x)</span>
+<span id="cb802-16"><a href="cs-cran-network.html#cb802-16"></a>  x</span>
+<span id="cb802-17"><a href="cs-cran-network.html#cb802-17"></a>}</span>
+<span id="cb802-18"><a href="cs-cran-network.html#cb802-18"></a></span>
+<span id="cb802-19"><a href="cs-cran-network.html#cb802-19"></a>sub_pdb[, <span class="st">&quot;Maintainer&quot;</span>] &lt;-<span class="st"> </span><span class="kw">clean_maintainer</span>(sub_pdb[, <span class="st">&quot;Maintainer&quot;</span>])</span>
+<span id="cb802-20"><a href="cs-cran-network.html#cb802-20"></a>sub_pdb[, <span class="st">&quot;Author&quot;</span>] &lt;-<span class="st"> </span><span class="kw">clean_author</span>(sub_pdb[, <span class="st">&quot;Author&quot;</span>])</span></code></pre></div>
+<p>维护多个 R 包的开发者数量</p>
+<div class="sourceCode" id="cb803"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb803-1"><a href="cs-cran-network.html#cb803-1"></a><span class="kw">length</span>(<span class="kw">unique</span>(sub_pdb[, <span class="st">&quot;Maintainer&quot;</span>][<span class="kw">duplicated</span>(sub_pdb[, <span class="st">&quot;Maintainer&quot;</span>])]))</span>
+<span id="cb803-2"><a href="cs-cran-network.html#cb803-2"></a><span class="co">#&gt; [1] 2725</span></span></code></pre></div>
+<p>总的开发者中去掉开发了多个R包的人，就剩下只维护1个R包的开发者，共有</p>
+<div class="sourceCode" id="cb804"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb804-1"><a href="cs-cran-network.html#cb804-1"></a>first_ctb &lt;-<span class="st"> </span><span class="kw">setdiff</span>(</span>
+<span id="cb804-2"><a href="cs-cran-network.html#cb804-2"></a>  sub_pdb[, <span class="st">&quot;Maintainer&quot;</span>][<span class="op">!</span><span class="kw">duplicated</span>(sub_pdb[, <span class="st">&quot;Maintainer&quot;</span>])],</span>
+<span id="cb804-3"><a href="cs-cran-network.html#cb804-3"></a>  <span class="kw">unique</span>(sub_pdb[, <span class="st">&quot;Maintainer&quot;</span>][<span class="kw">duplicated</span>(sub_pdb[, <span class="st">&quot;Maintainer&quot;</span>])])</span>
+<span id="cb804-4"><a href="cs-cran-network.html#cb804-4"></a>)</span></code></pre></div>
+<p>按照每个R包贡献者的数量分组，如图所示，有一个或者没有贡献者的占总数占 70.60%，说明这些 R 包的开发者基本在单干，有 4 个及以下的贡献者占总数（这个总数是指只开发了一个R包的那些开发者）的 90.85%。</p>
+<div class="sourceCode" id="cb805"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb805-1"><a href="cs-cran-network.html#cb805-1"></a>ctb_num &lt;-<span class="st"> </span><span class="kw">unlist</span>(</span>
+<span id="cb805-2"><a href="cs-cran-network.html#cb805-2"></a>  <span class="kw">lapply</span>(</span>
+<span id="cb805-3"><a href="cs-cran-network.html#cb805-3"></a>    <span class="kw">strsplit</span>(</span>
+<span id="cb805-4"><a href="cs-cran-network.html#cb805-4"></a>      <span class="kw">subset</span>(sub_pdb,</span>
+<span id="cb805-5"><a href="cs-cran-network.html#cb805-5"></a>             <span class="dt">subset =</span> sub_pdb[, <span class="st">&quot;Maintainer&quot;</span>] <span class="op">%in%</span><span class="st"> </span>first_ctb,</span>
+<span id="cb805-6"><a href="cs-cran-network.html#cb805-6"></a>             <span class="dt">select =</span> <span class="st">&quot;Author&quot;</span>, <span class="dt">drop =</span> <span class="ot">TRUE</span> <span class="co"># drop out data.frame return vector</span></span>
+<span id="cb805-7"><a href="cs-cran-network.html#cb805-7"></a>      ),</span>
+<span id="cb805-8"><a href="cs-cran-network.html#cb805-8"></a>      <span class="dt">split =</span> <span class="st">&quot;,&quot;</span></span>
+<span id="cb805-9"><a href="cs-cran-network.html#cb805-9"></a>    ), length</span>
+<span id="cb805-10"><a href="cs-cran-network.html#cb805-10"></a>  )</span>
+<span id="cb805-11"><a href="cs-cran-network.html#cb805-11"></a>)</span>
+<span id="cb805-12"><a href="cs-cran-network.html#cb805-12"></a><span class="kw">hist</span>(ctb_num, <span class="dt">col =</span> <span class="st">&quot;lightblue&quot;</span>, <span class="dt">border =</span> <span class="st">&quot;white&quot;</span>, <span class="dt">probability =</span> <span class="ot">TRUE</span>, <span class="dt">labels =</span> <span class="ot">TRUE</span>,</span>
+<span id="cb805-13"><a href="cs-cran-network.html#cb805-13"></a>     <span class="dt">xlab =</span> <span class="st">&quot;# of Contributors&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Proportion&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;&quot;</span>,</span>
+<span id="cb805-14"><a href="cs-cran-network.html#cb805-14"></a>     <span class="dt">panel.first =</span> <span class="kw">grid</span>(), <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">10</span>))</span></code></pre></div>
+<p><img src="cs-cran-network_files/figure-html/unnamed-chunk-29-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p>这些基本单干的R包开发者是否参与其它 R 包的贡献？如果不参与，则他们对社区的贡献非常有限，仅限于为社区带来数量上的堆积！</p>
+<div class="sourceCode" id="cb806"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb806-1"><a href="cs-cran-network.html#cb806-1"></a><span class="kw">table</span>(ctb_num)</span>
+<span id="cb806-2"><a href="cs-cran-network.html#cb806-2"></a><span class="co">#&gt; ctb_num</span></span>
+<span id="cb806-3"><a href="cs-cran-network.html#cb806-3"></a><span class="co">#&gt;    1    2    3    4    5    6    7    8    9   10   11   12   13   14   15 </span></span>
+<span id="cb806-4"><a href="cs-cran-network.html#cb806-4"></a><span class="co">#&gt; 2733 1178  744  452  201  112   78   49   30   26    9    8    3    4    3 </span></span>
+<span id="cb806-5"><a href="cs-cran-network.html#cb806-5"></a><span class="co">#&gt;   16   17   18   19   21   22   27   42 </span></span>
+<span id="cb806-6"><a href="cs-cran-network.html#cb806-6"></a><span class="co">#&gt;    5    3    2    1    3    2    2    1</span></span></code></pre></div>
+<p>有意思的是，有一个开发者虽然只开发了一个 R 包，但是却引来37位贡献者（包括开发者本人在内），下面把这个颇受欢迎的 R 包找出来</p>
+<div class="sourceCode" id="cb807"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb807-1"><a href="cs-cran-network.html#cb807-1"></a><span class="co"># 找到开发者</span></span>
+<span id="cb807-2"><a href="cs-cran-network.html#cb807-2"></a>first_ctb[<span class="kw">which.max</span>(ctb_num)]</span>
+<span id="cb807-3"><a href="cs-cran-network.html#cb807-3"></a><span class="co">#&gt; [1] &quot;Matt Dowle&quot;</span></span>
+<span id="cb807-4"><a href="cs-cran-network.html#cb807-4"></a><span class="co"># 找到 R 包</span></span>
+<span id="cb807-5"><a href="cs-cran-network.html#cb807-5"></a><span class="kw">subset</span>(sub_pdb, <span class="dt">subset =</span> <span class="kw">grepl</span>(<span class="st">&quot;Matt Dowle&quot;</span>, sub_pdb[, <span class="st">&quot;Maintainer&quot;</span>]), <span class="dt">select =</span> <span class="st">&quot;Package&quot;</span>)</span>
+<span id="cb807-6"><a href="cs-cran-network.html#cb807-6"></a><span class="co">#&gt;         Package</span></span>
+<span id="cb807-7"><a href="cs-cran-network.html#cb807-7"></a><span class="co">#&gt; 2668 data.table</span></span></code></pre></div>
+<p>哇，大名鼎鼎的 <a href="https://github.com/Rdatatable/data.table">data.table</a> 包！！ I JUST find it!! 这是个异数，我们知道 data.table 在R社区享有盛名，影响范围很广，从 Matt Dowle 的 <a href="https://github.com/mattdowle">Github 主页</a> 来看，他确实只开发了这一个 R 包！黑天鹅在这里出现了！如果按照谁的贡献者多谁影响力大的规律来看，有 10 个以上贡献者的其它几个 R 包也必定是名器！这里留给读者把它找出来吧！</p>
+</div>
+<div id="Contribution-Network" class="section level2">
+<h2><span class="header-section-number">22.5</span> 贡献关系网络</h2>
+<!-- 综合上面的分析，社区的主要推动者是余下的 1/3，他们相互之间的合作应该比较多，我们接下来想分析一下他们之间的贡献网络。 -->
+<p>接下来进入本节最核心的部分，分析所有的开发者之间的贡献网络，在第<a href="cs-cran-network.html#first-commit">22.4</a>节清理 Author 字段的正则表达式几乎不可能覆盖到所有的情况，所以既然 Maintainer 字段是比较好清理的，不妨以它作为匹配的模式去匹配 Author 字段，这样做的代价就是迭代次数会很多，增加一定的计算负担，但是为了更加准确的清理结果，也是拼了！</p>
+<div class="sourceCode" id="cb808"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb808-1"><a href="cs-cran-network.html#cb808-1"></a>net_pdb &lt;-<span class="st"> </span><span class="kw">subset</span>(pdb, <span class="dt">select =</span> <span class="kw">c</span>(<span class="st">&quot;Maintainer&quot;</span>, <span class="st">&quot;Author&quot;</span>))</span>
+<span id="cb808-2"><a href="cs-cran-network.html#cb808-2"></a>net_pdb[, <span class="st">&quot;Maintainer&quot;</span>] &lt;-<span class="st"> </span><span class="kw">clean_maintainer</span>(net_pdb[, <span class="st">&quot;Maintainer&quot;</span>])</span>
+<span id="cb808-3"><a href="cs-cran-network.html#cb808-3"></a>total_maintainer &lt;-<span class="st"> </span><span class="kw">unique</span>(net_pdb[, <span class="st">&quot;Maintainer&quot;</span>])</span>
+<span id="cb808-4"><a href="cs-cran-network.html#cb808-4"></a>clean_author &lt;-<span class="st"> </span><span class="cf">function</span>(maintainer) {</span>
+<span id="cb808-5"><a href="cs-cran-network.html#cb808-5"></a>  <span class="kw">sapply</span>(net_pdb[, <span class="st">&quot;Author&quot;</span>], grepl, <span class="dt">pattern =</span> <span class="kw">paste0</span>(<span class="st">&quot;(&quot;</span>, maintainer, <span class="st">&quot;)&quot;</span>))</span>
+<span id="cb808-6"><a href="cs-cran-network.html#cb808-6"></a>}</span></code></pre></div>
+<p>接下来是非常耗时的一步，实际是两层循环 1.2 亿次左右的查找计算， <code>grepl</code> 耗时 30分钟左右，正则表达式本身的性能优化问题，<code>maintainer_author</code> 逻辑型矩阵占用内存空间 430 M 左右</p>
+<div class="sourceCode" id="cb809"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb809-1"><a href="cs-cran-network.html#cb809-1"></a>maintainer_author &lt;-<span class="st"> </span><span class="kw">Reduce</span>(<span class="st">&quot;cbind&quot;</span>, <span class="kw">lapply</span>(total_maintainer, clean_author))</span>
+<span id="cb809-2"><a href="cs-cran-network.html#cb809-2"></a><span class="kw">colnames</span>(maintainer_author) &lt;-<span class="st"> </span>total_maintainer</span>
+<span id="cb809-3"><a href="cs-cran-network.html#cb809-3"></a><span class="kw">rownames</span>(maintainer_author) &lt;-<span class="st"> </span>net_pdb[, <span class="st">&quot;Maintainer&quot;</span>]</span></code></pre></div>
+<p>为了重复运行这段耗时很长的代码，我们将中间结果保存到磁盘，推荐保存为 R 支持的序列化后的数据格式 <code>*.rds</code>，相比于 <code>*.csv</code> 格式能极大地减少磁盘存储空间，读者可运行下面两行保存数据的代码，比较看看！</p>
+<div class="sourceCode" id="cb810"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb810-1"><a href="cs-cran-network.html#cb810-1"></a><span class="kw">saveRDS</span>(maintainer_author, <span class="dt">file =</span> <span class="st">&quot;data/maintainer_author.rds&quot;</span>)</span>
+<span id="cb810-2"><a href="cs-cran-network.html#cb810-2"></a><span class="kw">write.table</span>(maintainer_author,<span class="dt">file =</span> <span class="st">&quot;data/maintainer_author.csv&quot;</span>, <span class="dt">row.names =</span> <span class="ot">TRUE</span>, <span class="dt">col.names =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<p>查看 <code>maintainer_author</code> 数据集占用内存空间的大小</p>
+<div class="sourceCode" id="cb811"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb811-1"><a href="cs-cran-network.html#cb811-1"></a><span class="kw">format</span>(<span class="kw">object.size</span>(maintainer_author), <span class="dt">units =</span> <span class="st">&quot;auto&quot;</span>)</span>
+<span id="cb811-2"><a href="cs-cran-network.html#cb811-2"></a><span class="co">#&gt; [1] &quot;430.5 Mb&quot;</span></span></code></pre></div>
+<p>看几个数字，R 包贡献者最多的有 62 人,这个 R 包的粉丝是真多！有一个开发者对 137 个 R 包的做出过贡献，其中包括自己开发的 R 包，快来快来抓住他！</p>
+<div class="sourceCode" id="cb812"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb812-1"><a href="cs-cran-network.html#cb812-1"></a><span class="kw">max</span>(<span class="kw">rowSums</span>(maintainer_author))</span>
+<span id="cb812-2"><a href="cs-cran-network.html#cb812-2"></a><span class="co">#&gt; [1] 62</span></span>
+<span id="cb812-3"><a href="cs-cran-network.html#cb812-3"></a><span class="kw">max</span>(<span class="kw">colSums</span>(maintainer_author))</span>
+<span id="cb812-4"><a href="cs-cran-network.html#cb812-4"></a><span class="co">#&gt; [1] 137</span></span></code></pre></div>
+<p>继续看看每个开发者对外贡献的量的分布情况，由图可知，绝大部分开发者对外输出不超过 3，其表示对其它 R 包的贡献不超过 3个</p>
+<div class="sourceCode" id="cb813"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb813-1"><a href="cs-cran-network.html#cb813-1"></a><span class="kw">hist</span>(<span class="kw">colSums</span>(maintainer_author)[<span class="kw">colSums</span>(maintainer_author) <span class="op">&lt;=</span><span class="st"> </span><span class="dv">10</span>], </span>
+<span id="cb813-2"><a href="cs-cran-network.html#cb813-2"></a>     <span class="dt">probability =</span> <span class="ot">FALSE</span>, <span class="dt">xlab =</span> <span class="st">&quot;&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<p><img src="cs-cran-network_files/figure-html/unnamed-chunk-38-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p>每个 R 包参与贡献的人数分布又是如何呢？如图所示，基本集中在1~2个人的样子</p>
+<div class="sourceCode" id="cb814"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb814-1"><a href="cs-cran-network.html#cb814-1"></a><span class="kw">hist</span>(<span class="kw">rowSums</span>(maintainer_author)[<span class="kw">rowSums</span>(maintainer_author) <span class="op">&lt;=</span><span class="st"> </span><span class="dv">20</span>], </span>
+<span id="cb814-2"><a href="cs-cran-network.html#cb814-2"></a>     <span class="dt">xlab =</span> <span class="st">&quot;&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;&quot;</span>,<span class="dt">probability =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
+<p><img src="cs-cran-network_files/figure-html/unnamed-chunk-39-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p>好了，接下来我们要深入挖掘贡献协作网络中的结构特点，看看是不是由几位领导人在完全掌控，还有一大群人其实是自己搞自己的那点事，写论文、发布 R 包、投稿等如此循环。其实这就是 R 社区的特点，也决定了它不会像 Python 那样应用性强，有足够多的工程开发人员加入。大多数人写 R 包只是为了配合发论文而已，并不关心有没有人来用自己的 R 包！此外，没有人来做功能整合和持续维护，所以发展缓慢！各自造轮子的事情太多！</p>
+<p>接着，先从表面看看开发者和贡献者的关系矩阵，<code>maintainer_author</code> 是一个大型的超稀疏矩阵，非零元素最多的行、列分别只占 0.79% 和 0.95%，都不到百分之一。</p>
+<div class="sourceCode" id="cb815"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb815-1"><a href="cs-cran-network.html#cb815-1"></a><span class="co"># 非零元素最多的行</span></span>
+<span id="cb815-2"><a href="cs-cran-network.html#cb815-2"></a><span class="kw">max</span>(<span class="kw">rowMeans</span>(maintainer_author))</span>
+<span id="cb815-3"><a href="cs-cran-network.html#cb815-3"></a><span class="co">#&gt; [1] 0.007904131</span></span>
+<span id="cb815-4"><a href="cs-cran-network.html#cb815-4"></a><span class="co"># 非零元素最多的列</span></span>
+<span id="cb815-5"><a href="cs-cran-network.html#cb815-5"></a><span class="kw">max</span>(<span class="kw">colMeans</span>(maintainer_author))</span>
+<span id="cb815-6"><a href="cs-cran-network.html#cb815-6"></a><span class="co">#&gt; [1] 0.009548369</span></span></code></pre></div>
+<blockquote>
+<p>用稀疏索引的方式重新编码矩阵，然后用<a href="https://bommaritollc.com/2012/06/17/summary-community-detection-algorithms-igraph-0-6/">社群检测的算法</a>找到其中的结构，网络关系图用 Gephi 画，igraph 肯定是不行了，参考文献 <a href="https://cosx.org/2011/04/exploring-renren-social-network">社会网络分析：探索人人网好友推荐系统</a> 网络的统计建模分析<a href="#fn51" class="footnote-ref" id="fnref51"><sup>51</sup></a></p>
+</blockquote>
+<p>重新获取 <code>maintainer_author</code> 矩阵，存储指标向量，然后调用 Matrix 生成稀疏矩阵，后续的数据操作就好办了，因为 Matrix 包是内置的，它定义的稀疏矩阵类其它 R 包也都支持。先以一个简单的例子说明构造稀疏矩阵的过程</p>
+<div class="sourceCode" id="cb816"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb816-1"><a href="cs-cran-network.html#cb816-1"></a><span class="kw">library</span>(Matrix)</span>
+<span id="cb816-2"><a href="cs-cran-network.html#cb816-2"></a>spM &lt;-<span class="st"> </span><span class="kw">spMatrix</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dt">i =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">3</span>), </span>
+<span id="cb816-3"><a href="cs-cran-network.html#cb816-3"></a>                <span class="dt">j =</span> <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">3</span>),</span>
+<span id="cb816-4"><a href="cs-cran-network.html#cb816-4"></a>                <span class="dt">x =</span> <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">8</span>))</span>
+<span id="cb816-5"><a href="cs-cran-network.html#cb816-5"></a>spM</span>
+<span id="cb816-6"><a href="cs-cran-network.html#cb816-6"></a><span class="co">#&gt; 3 x 4 sparse Matrix of class &quot;dgTMatrix&quot;</span></span>
+<span id="cb816-7"><a href="cs-cran-network.html#cb816-7"></a><span class="co">#&gt;             </span></span>
+<span id="cb816-8"><a href="cs-cran-network.html#cb816-8"></a><span class="co">#&gt; [1,] 4 . . 4</span></span>
+<span id="cb816-9"><a href="cs-cran-network.html#cb816-9"></a><span class="co">#&gt; [2,] . 1 . .</span></span>
+<span id="cb816-10"><a href="cs-cran-network.html#cb816-10"></a><span class="co">#&gt; [3,] 4 . 8 .</span></span>
+<span id="cb816-11"><a href="cs-cran-network.html#cb816-11"></a><span class="kw">image</span>(spM)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:vis-sparse-mat"></span>
+<img src="cs-cran-network_files/figure-html/vis-sparse-mat-1.png" alt="稀疏矩阵的图表示" width="70%" />
+<p class="caption">
+图 22.2: 稀疏矩阵的图表示
+</p>
+</div>
+<p><code>i</code> 和 <code>j</code> 表示矩阵中有值的位置，<code>x</code> 表示对应位置上的值，<code>i</code>，<code>j</code> 和 <code>x</code> 是三个长度相等的数值型向量，我们还可以调用 <code>image</code>函数，把稀疏矩阵可视化出来，对于大型稀疏矩阵可视化其稀疏模式是重要的。</p>
+<blockquote>
+<p>贡献网络可视化<a href="#fn52" class="footnote-ref" id="fnref52"><sup>52</sup></a></p>
+</blockquote>
+<div class="sourceCode" id="cb817"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb817-1"><a href="cs-cran-network.html#cb817-1"></a>clean_net_pdb &lt;-<span class="st"> </span><span class="cf">function</span>(maintainer) {</span>
+<span id="cb817-2"><a href="cs-cran-network.html#cb817-2"></a>  index &lt;-<span class="st"> </span><span class="kw">clean_author</span>(maintainer)</span>
+<span id="cb817-3"><a href="cs-cran-network.html#cb817-3"></a>  <span class="cf">if</span> (<span class="kw">sum</span>(index) <span class="op">==</span><span class="st"> </span><span class="dv">0</span>) {</span>
+<span id="cb817-4"><a href="cs-cran-network.html#cb817-4"></a>    <span class="kw">return</span>(<span class="ot">NULL</span>)</span>
+<span id="cb817-5"><a href="cs-cran-network.html#cb817-5"></a>  }</span>
+<span id="cb817-6"><a href="cs-cran-network.html#cb817-6"></a>  <span class="kw">data.frame</span>(</span>
+<span id="cb817-7"><a href="cs-cran-network.html#cb817-7"></a>    <span class="dt">from_id =</span> maintainer,</span>
+<span id="cb817-8"><a href="cs-cran-network.html#cb817-8"></a>    <span class="dt">to_id =</span> net_pdb[, <span class="st">&quot;Maintainer&quot;</span>][index],</span>
+<span id="cb817-9"><a href="cs-cran-network.html#cb817-9"></a>    <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span></span>
+<span id="cb817-10"><a href="cs-cran-network.html#cb817-10"></a>  )</span>
+<span id="cb817-11"><a href="cs-cran-network.html#cb817-11"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb818"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb818-1"><a href="cs-cran-network.html#cb818-1"></a><span class="co"># maintainer_author &lt;- data.table::rbindlist(lapply(total_maintainer, clean_net_pdb))</span></span>
+<span id="cb818-2"><a href="cs-cran-network.html#cb818-2"></a><span class="co"># saveRDS(maintainer_author, file = &quot;data/maintainer_author.rds&quot;)</span></span>
+<span id="cb818-3"><a href="cs-cran-network.html#cb818-3"></a>toc &lt;-<span class="st"> </span><span class="kw">system.time</span>({</span>
+<span id="cb818-4"><a href="cs-cran-network.html#cb818-4"></a>  maintainer_author_net &lt;-<span class="st"> </span><span class="kw">Reduce</span>(<span class="st">&quot;rbind&quot;</span>, <span class="kw">lapply</span>(total_maintainer, clean_net_pdb))</span>
+<span id="cb818-5"><a href="cs-cran-network.html#cb818-5"></a>}, <span class="dt">gcFirst =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<p>分组统计开发者之间贡献次数，从开发者到</p>
+<div class="sourceCode" id="cb819"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb819-1"><a href="cs-cran-network.html#cb819-1"></a>maintainer_author_net<span class="op">$</span>weight &lt;-<span class="st"> </span><span class="dv">1</span></span>
+<span id="cb819-2"><a href="cs-cran-network.html#cb819-2"></a>edges &lt;-<span class="st"> </span><span class="kw">aggregate</span>(weight <span class="op">~</span><span class="st"> </span>from_id <span class="op">+</span><span class="st"> </span>to_id, <span class="dt">data =</span> maintainer_author_net, sum)</span>
+<span id="cb819-3"><a href="cs-cran-network.html#cb819-3"></a></span>
+<span id="cb819-4"><a href="cs-cran-network.html#cb819-4"></a>dup_edges &lt;-<span class="st"> </span>edges[edges[, <span class="dv">1</span>] <span class="op">!=</span><span class="st"> </span>edges[, <span class="dv">2</span>], ]</span>
+<span id="cb819-5"><a href="cs-cran-network.html#cb819-5"></a></span>
+<span id="cb819-6"><a href="cs-cran-network.html#cb819-6"></a><span class="kw">library</span>(geomnet)</span>
+<span id="cb819-7"><a href="cs-cran-network.html#cb819-7"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> dup_edges, <span class="kw">aes</span>(<span class="dt">from_id =</span> from_id, <span class="dt">to_id =</span> to_id)) <span class="op">+</span></span>
+<span id="cb819-8"><a href="cs-cran-network.html#cb819-8"></a><span class="st">  </span><span class="kw">geom_net</span>(<span class="kw">aes</span>(<span class="dt">linewidth =</span> weight),</span>
+<span id="cb819-9"><a href="cs-cran-network.html#cb819-9"></a>    <span class="dt">layout.alg =</span> <span class="st">&quot;kamadakawai&quot;</span>,</span>
+<span id="cb819-10"><a href="cs-cran-network.html#cb819-10"></a>    <span class="dt">labelon =</span> <span class="ot">FALSE</span>, <span class="dt">directed =</span> <span class="ot">TRUE</span>, <span class="dt">show.legend =</span> <span class="ot">FALSE</span>, <span class="dt">ealpha =</span> <span class="dv">1</span>,</span>
+<span id="cb819-11"><a href="cs-cran-network.html#cb819-11"></a>    <span class="dt">ecolour =</span> <span class="st">&quot;grey70&quot;</span>, <span class="dt">arrowsize =</span> <span class="fl">0.1</span>, <span class="dt">size =</span> <span class="fl">0.5</span></span>
+<span id="cb819-12"><a href="cs-cran-network.html#cb819-12"></a>  ) <span class="op">+</span></span>
+<span id="cb819-13"><a href="cs-cran-network.html#cb819-13"></a><span class="st">  </span><span class="kw">theme_net</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb820"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb820-1"><a href="cs-cran-network.html#cb820-1"></a><span class="co"># https://smallstats.blogspot.jp/2012/12/loading-huge-graphs-with-igraph-and-r.html</span></span>
+<span id="cb820-2"><a href="cs-cran-network.html#cb820-2"></a><span class="kw">library</span>(igraph)</span>
+<span id="cb820-3"><a href="cs-cran-network.html#cb820-3"></a><span class="co"># 贡献矩阵</span></span>
+<span id="cb820-4"><a href="cs-cran-network.html#cb820-4"></a>ctb_df &lt;-<span class="st"> </span><span class="kw">graph.data.frame</span>(maintainer_author, <span class="dt">directed =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb820-5"><a href="cs-cran-network.html#cb820-5"></a></span>
+<span id="cb820-6"><a href="cs-cran-network.html#cb820-6"></a>vertex.attrs &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">name =</span> <span class="kw">unique</span>(<span class="kw">c</span>(ctb_df<span class="op">$</span>from_id, ctb_df<span class="op">$</span>to_id)))</span>
+<span id="cb820-7"><a href="cs-cran-network.html#cb820-7"></a>edges &lt;-<span class="st"> </span><span class="kw">rbind</span>(</span>
+<span id="cb820-8"><a href="cs-cran-network.html#cb820-8"></a>  <span class="kw">match</span>(ctb_df<span class="op">$</span>from_id, vertex.attrs<span class="op">$</span>name),</span>
+<span id="cb820-9"><a href="cs-cran-network.html#cb820-9"></a>  <span class="kw">match</span>(ctb_df<span class="op">$</span>to_id, vertex.attrs<span class="op">$</span>name)</span>
+<span id="cb820-10"><a href="cs-cran-network.html#cb820-10"></a>)</span>
+<span id="cb820-11"><a href="cs-cran-network.html#cb820-11"></a></span>
+<span id="cb820-12"><a href="cs-cran-network.html#cb820-12"></a>ctb_net &lt;-<span class="st"> </span><span class="kw">graph.empty</span>(<span class="dt">n =</span> <span class="dv">0</span>, <span class="dt">directed =</span> T)</span>
+<span id="cb820-13"><a href="cs-cran-network.html#cb820-13"></a>ctb_net &lt;-<span class="st"> </span><span class="kw">add.vertices</span>(ctb_net, <span class="kw">length</span>(vertex.attrs<span class="op">$</span>name), <span class="dt">attr =</span> vertex.attrs)</span>
+<span id="cb820-14"><a href="cs-cran-network.html#cb820-14"></a>ctb_net &lt;-<span class="st"> </span><span class="kw">add.edges</span>(ctb_net, edges)</span></code></pre></div>
+
+</div>
+<div id="CRAN-Update-Packages" class="section level2">
+<h2><span class="header-section-number">22.6</span> 更新知多少</h2>
+<p>这节标题取其字面意思表达 CRAN 服务器的特殊日子 2012-10-29，那天 CRAN 更新了一大波 R 包，像一根擎天柱一样支撑这幅图！</p>
+<div class="sourceCode" id="cb821"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb821-1"><a href="cs-cran-network.html#cb821-1"></a>update_pdb &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(pdb[, <span class="kw">c</span>(<span class="st">&quot;Package&quot;</span>, <span class="st">&quot;Published&quot;</span>)], <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)</span>
+<span id="cb821-2"><a href="cs-cran-network.html#cb821-2"></a><span class="co"># 这天要更新的R包最多</span></span>
+<span id="cb821-3"><a href="cs-cran-network.html#cb821-3"></a><span class="kw">sort</span>(<span class="kw">table</span>(update_pdb[,<span class="st">&quot;Published&quot;</span>]), <span class="dt">decreasing =</span> <span class="ot">TRUE</span>)[<span class="dv">1</span>]</span>
+<span id="cb821-4"><a href="cs-cran-network.html#cb821-4"></a><span class="co">#&gt; 2012-10-29 </span></span>
+<span id="cb821-5"><a href="cs-cran-network.html#cb821-5"></a><span class="co">#&gt;        127</span></span>
+<span id="cb821-6"><a href="cs-cran-network.html#cb821-6"></a></span>
+<span id="cb821-7"><a href="cs-cran-network.html#cb821-7"></a><span class="kw">ggplot</span>(update_pdb, <span class="kw">aes</span>(<span class="kw">as.Date</span>(Published))) <span class="op">+</span></span>
+<span id="cb821-8"><a href="cs-cran-network.html#cb821-8"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">color =</span> <span class="st">&quot;skyblue4&quot;</span>) <span class="op">+</span></span>
+<span id="cb821-9"><a href="cs-cran-network.html#cb821-9"></a><span class="st">  </span><span class="kw">geom_line</span>(</span>
+<span id="cb821-10"><a href="cs-cran-network.html#cb821-10"></a>    <span class="dt">data =</span> <span class="kw">data.frame</span>(</span>
+<span id="cb821-11"><a href="cs-cran-network.html#cb821-11"></a>      <span class="dt">date =</span> <span class="kw">as.Date</span>(<span class="kw">c</span>(<span class="st">&quot;2011-01-01&quot;</span>, <span class="st">&quot;2012-10-20&quot;</span>)),</span>
+<span id="cb821-12"><a href="cs-cran-network.html#cb821-12"></a>      <span class="dt">count =</span> <span class="kw">c</span>(<span class="dv">80</span>, <span class="dv">100</span>)</span>
+<span id="cb821-13"><a href="cs-cran-network.html#cb821-13"></a>    ), <span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> count),</span>
+<span id="cb821-14"><a href="cs-cran-network.html#cb821-14"></a>    <span class="dt">arrow =</span> <span class="kw">arrow</span>(<span class="dt">angle =</span> <span class="dv">15</span>, <span class="dt">length =</span> <span class="kw">unit</span>(<span class="fl">0.15</span>, <span class="st">&quot;inches&quot;</span>))</span>
+<span id="cb821-15"><a href="cs-cran-network.html#cb821-15"></a>  ) <span class="op">+</span></span>
+<span id="cb821-16"><a href="cs-cran-network.html#cb821-16"></a><span class="st">  </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="dt">x =</span> <span class="kw">as.Date</span>(<span class="st">&quot;2010-11-01&quot;</span>), <span class="dt">y =</span> <span class="dv">75</span>, <span class="dt">label =</span> <span class="st">&quot;(2012-10-29,130)&quot;</span>) <span class="op">+</span></span>
+<span id="cb821-17"><a href="cs-cran-network.html#cb821-17"></a><span class="st">  </span><span class="kw">scale_x_date</span>(<span class="dt">date_breaks =</span> <span class="st">&quot;1 year&quot;</span>, <span class="dt">date_labels =</span> <span class="st">&quot;%Y&quot;</span>) <span class="op">+</span></span>
+<span id="cb821-18"><a href="cs-cran-network.html#cb821-18"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Published Date&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Count&quot;</span>) <span class="op">+</span></span>
+<span id="cb821-19"><a href="cs-cran-network.html#cb821-19"></a><span class="st">  </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:pdb-update-history"></span>
+<img src="cs-cran-network_files/figure-html/pdb-update-history-1.png" alt="R 包更新历史" width="70%" />
+<p class="caption">
+图 22.3: R 包更新历史
+</p>
+</div>
+<p>当日发布的R包，不论是新增还是更新之前发布的R包都视为最新版，当日之前的都是旧版本，它们可能存在已经修复的 BUG！这句子好奇怪是吧，因为很多 R 包要么托管在 Github 上，要么托管在 <a href="https://r-forge.r-project.org/">R-Forge</a> 上开发，而 CRAN 上的版本除了发布日外，一般来讲都会落后。如图所示待更新的 R 包在日期上的分布，有的已经10来年没有更新了，最老的 R 包可以追溯到 2006-03-15，它是 coxrobust！！</p>
+</div>
+<div id="Package-Licenses" class="section level2">
+<h2><span class="header-section-number">22.7</span> 使用许可证</h2>
+<blockquote>
+<p>列举 R 社区使用的许可证及其区别和联系
+R 开源还体现在许可证信息，顺便谈谈美国和中国技术封锁，开源社区可能面临的风险</p>
+</blockquote>
+<p>社区主要使用 GPL 及其相关授权协议，因为 R 软件本身也是授权在 GPL-2 或 GPL-3 下</p>
+<div class="sourceCode" id="cb822"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb822-1"><a href="cs-cran-network.html#cb822-1"></a>license_pdb &lt;-<span class="st"> </span><span class="kw">head</span>(<span class="kw">sort</span>(<span class="kw">table</span>(pdb[, <span class="st">&quot;License&quot;</span>]), <span class="dt">decreasing =</span> <span class="ot">TRUE</span>), <span class="dv">20</span>)</span>
+<span id="cb822-2"><a href="cs-cran-network.html#cb822-2"></a><span class="kw">par</span>(<span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">12</span>, <span class="fl">0.5</span>, <span class="dv">0</span>))</span>
+<span id="cb822-3"><a href="cs-cran-network.html#cb822-3"></a><span class="kw">plot</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="fl">1e1</span>, <span class="fl">1e2</span>, <span class="fl">1e3</span>, <span class="fl">1e4</span>), <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">20</span>),</span>
+<span id="cb822-4"><a href="cs-cran-network.html#cb822-4"></a>     <span class="dt">type =</span> <span class="st">&quot;n&quot;</span>,<span class="dt">panel.first =</span> <span class="kw">grid</span>(),</span>
+<span id="cb822-5"><a href="cs-cran-network.html#cb822-5"></a>     <span class="dt">ann =</span> <span class="ot">FALSE</span>, <span class="dt">log =</span> <span class="st">&quot;x&quot;</span>, <span class="dt">axes =</span> <span class="ot">FALSE</span></span>
+<span id="cb822-6"><a href="cs-cran-network.html#cb822-6"></a>)</span>
+<span id="cb822-7"><a href="cs-cran-network.html#cb822-7"></a><span class="kw">axis</span>(<span class="dv">1</span>,</span>
+<span id="cb822-8"><a href="cs-cran-network.html#cb822-8"></a>     <span class="dt">at =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="fl">1e1</span>, <span class="fl">1e2</span>, <span class="fl">1e3</span>, <span class="fl">1e4</span>),</span>
+<span id="cb822-9"><a href="cs-cran-network.html#cb822-9"></a>     <span class="dt">labels =</span> <span class="kw">expression</span>(<span class="dv">1</span>, <span class="dv">10</span><span class="op">^</span><span class="dv">1</span>, <span class="dv">10</span><span class="op">^</span><span class="dv">2</span>, <span class="dv">10</span><span class="op">^</span><span class="dv">3</span>, <span class="dv">10</span><span class="op">^</span><span class="dv">4</span>)</span>
+<span id="cb822-10"><a href="cs-cran-network.html#cb822-10"></a>)</span>
+<span id="cb822-11"><a href="cs-cran-network.html#cb822-11"></a><span class="kw">text</span>(</span>
+<span id="cb822-12"><a href="cs-cran-network.html#cb822-12"></a>  <span class="dt">y =</span> <span class="kw">seq</span>(<span class="kw">length</span>(license_pdb)), <span class="dt">x =</span> <span class="dv">1</span>, <span class="dt">cex =</span> <span class="dv">1</span>, <span class="dt">offset =</span> <span class="dv">1</span>,</span>
+<span id="cb822-13"><a href="cs-cran-network.html#cb822-13"></a>  <span class="dt">pos =</span> <span class="dv">2</span>, <span class="dt">labels =</span> <span class="kw">names</span>(license_pdb), <span class="dt">xpd =</span> <span class="ot">TRUE</span></span>
+<span id="cb822-14"><a href="cs-cran-network.html#cb822-14"></a>)</span>
+<span id="cb822-15"><a href="cs-cran-network.html#cb822-15"></a><span class="kw">text</span>(<span class="fl">1e3</span>, <span class="dv">15</span>, <span class="st">&quot;CRAN&quot;</span>)</span>
+<span id="cb822-16"><a href="cs-cran-network.html#cb822-16"></a><span class="kw">segments</span>(<span class="dt">x0 =</span> <span class="dv">1</span>, <span class="dt">y0 =</span> <span class="kw">seq</span>(<span class="kw">length</span>(license_pdb)), </span>
+<span id="cb822-17"><a href="cs-cran-network.html#cb822-17"></a>         <span class="dt">x1 =</span> license_pdb, <span class="dt">y1 =</span> <span class="kw">seq</span>(<span class="kw">length</span>(license_pdb)), </span>
+<span id="cb822-18"><a href="cs-cran-network.html#cb822-18"></a>         <span class="dt">col =</span> <span class="st">&quot;lightblue&quot;</span>, <span class="dt">lwd =</span> <span class="dv">4</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:license-cran"></span>
+<img src="cs-cran-network_files/figure-html/license-cran-1.png" alt="CRAN 上采用的发布协议" width="70%" />
+<p class="caption">
+图 22.4: CRAN 上采用的发布协议
+</p>
+</div>
+<div class="sourceCode" id="cb823"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb823-1"><a href="cs-cran-network.html#cb823-1"></a>rforge_pdb &lt;-<span class="st"> </span><span class="kw">available.packages</span>(<span class="dt">repos =</span> <span class="st">&quot;http://R-Forge.R-project.org&quot;</span>)</span>
+<span id="cb823-2"><a href="cs-cran-network.html#cb823-2"></a>license_rforge_pdb &lt;-<span class="st"> </span><span class="kw">head</span>(<span class="kw">sort</span>(<span class="kw">table</span>(rforge_pdb[, <span class="st">&quot;License&quot;</span>]), <span class="dt">decreasing =</span> <span class="ot">TRUE</span>), <span class="dv">20</span>)</span>
+<span id="cb823-3"><a href="cs-cran-network.html#cb823-3"></a><span class="kw">par</span>(<span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">12</span>, <span class="fl">0.5</span>, <span class="dv">0</span>))</span>
+<span id="cb823-4"><a href="cs-cran-network.html#cb823-4"></a><span class="kw">plot</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="fl">1e1</span>, <span class="fl">1e2</span>, <span class="fl">1e3</span>), <span class="kw">seq</span>(<span class="dt">from =</span> <span class="dv">1</span>, <span class="dt">to =</span> <span class="dv">20</span>,<span class="dt">length.out =</span> <span class="dv">4</span>),</span>
+<span id="cb823-5"><a href="cs-cran-network.html#cb823-5"></a>  <span class="dt">type =</span> <span class="st">&quot;n&quot;</span>,<span class="dt">panel.first =</span> <span class="kw">grid</span>(),</span>
+<span id="cb823-6"><a href="cs-cran-network.html#cb823-6"></a>  <span class="dt">ann =</span> <span class="ot">FALSE</span>, <span class="dt">log =</span> <span class="st">&quot;x&quot;</span>, <span class="dt">axes =</span> <span class="ot">FALSE</span></span>
+<span id="cb823-7"><a href="cs-cran-network.html#cb823-7"></a>)</span>
+<span id="cb823-8"><a href="cs-cran-network.html#cb823-8"></a><span class="kw">axis</span>(<span class="dv">1</span>,</span>
+<span id="cb823-9"><a href="cs-cran-network.html#cb823-9"></a>  <span class="dt">at =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="fl">1e1</span>, <span class="fl">1e2</span>, <span class="fl">1e3</span>),</span>
+<span id="cb823-10"><a href="cs-cran-network.html#cb823-10"></a>  <span class="dt">labels =</span> <span class="kw">expression</span>(<span class="dv">1</span>, <span class="dv">10</span><span class="op">^</span><span class="dv">1</span>, <span class="dv">10</span><span class="op">^</span><span class="dv">2</span>, <span class="dv">10</span><span class="op">^</span><span class="dv">3</span>)</span>
+<span id="cb823-11"><a href="cs-cran-network.html#cb823-11"></a>)</span>
+<span id="cb823-12"><a href="cs-cran-network.html#cb823-12"></a></span>
+<span id="cb823-13"><a href="cs-cran-network.html#cb823-13"></a><span class="kw">text</span>(</span>
+<span id="cb823-14"><a href="cs-cran-network.html#cb823-14"></a>  <span class="dt">y =</span> <span class="kw">seq</span>(<span class="kw">length</span>(license_rforge_pdb)), <span class="dt">x =</span> <span class="dv">1</span>, <span class="dt">cex =</span> <span class="dv">1</span>, <span class="dt">offset =</span> <span class="dv">1</span>,</span>
+<span id="cb823-15"><a href="cs-cran-network.html#cb823-15"></a>  <span class="dt">pos =</span> <span class="dv">2</span>, <span class="dt">labels =</span> <span class="kw">names</span>(license_rforge_pdb), <span class="dt">xpd =</span> <span class="ot">TRUE</span></span>
+<span id="cb823-16"><a href="cs-cran-network.html#cb823-16"></a>)</span>
+<span id="cb823-17"><a href="cs-cran-network.html#cb823-17"></a><span class="kw">text</span>(<span class="fl">1e2</span>, <span class="dv">15</span>, <span class="st">&quot;R-Forge&quot;</span>)</span>
+<span id="cb823-18"><a href="cs-cran-network.html#cb823-18"></a><span class="kw">segments</span>(<span class="dt">x0 =</span> <span class="dv">1</span>, <span class="dt">y0 =</span> <span class="kw">seq</span>(<span class="kw">length</span>(license_rforge_pdb)), </span>
+<span id="cb823-19"><a href="cs-cran-network.html#cb823-19"></a>         <span class="dt">x1 =</span> license_rforge_pdb, <span class="dt">y1 =</span> <span class="kw">seq</span>(<span class="kw">length</span>(license_rforge_pdb)), </span>
+<span id="cb823-20"><a href="cs-cran-network.html#cb823-20"></a>         <span class="dt">lwd =</span> <span class="dv">4</span>, <span class="dt">col =</span> <span class="st">&quot;lightblue&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:license-rforge"></span>
+<img src="cs-cran-network_files/figure-html/license-rforge-1.png" alt="R-Forge 开发者采用的发布协议" width="70%" />
+<p class="caption">
+图 22.5: R-Forge 开发者采用的发布协议
+</p>
+</div>
+<blockquote>
+<p>改进的方向是含义相同的进行合并，这需要研究一下各个许可证，然后使用对比型条形图合并上面两个图</p>
+</blockquote>
+<p>CRAN 会检测 R 包的授权，只有授权协议包含在数据库中的才可以在 CRAN 上发布 <a href="https://svn.r-project.org/R/trunk/share/licenses/license.db" class="uri">https://svn.r-project.org/R/trunk/share/licenses/license.db</a></p>
+</div>
+<div id="r-包增长速度" class="section level2">
+<h2><span class="header-section-number">22.8</span> R 包增长速度</h2>
+<div class="sourceCode" id="cb824"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb824-1"><a href="cs-cran-network.html#cb824-1"></a><span class="co"># 抓取网页数据</span></span>
+<span id="cb824-2"><a href="cs-cran-network.html#cb824-2"></a><span class="kw">library</span>(rvest)</span>
+<span id="cb824-3"><a href="cs-cran-network.html#cb824-3"></a><span class="kw">library</span>(dplyr)</span>
+<span id="cb824-4"><a href="cs-cran-network.html#cb824-4"></a><span class="kw">library</span>(zoo)</span>
+<span id="cb824-5"><a href="cs-cran-network.html#cb824-5"></a>url &lt;-<span class="st"> &quot;https://cran.r-project.org/web/packages/available_packages_by_date.html&quot;</span></span>
+<span id="cb824-6"><a href="cs-cran-network.html#cb824-6"></a>page &lt;-<span class="st"> </span><span class="kw">read_html</span>(url)</span>
+<span id="cb824-7"><a href="cs-cran-network.html#cb824-7"></a>page <span class="op">%&gt;%</span></span>
+<span id="cb824-8"><a href="cs-cran-network.html#cb824-8"></a><span class="st">  </span><span class="kw">html_node</span>(<span class="st">&quot;table&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb824-9"><a href="cs-cran-network.html#cb824-9"></a><span class="st">  </span><span class="kw">html_table</span>() <span class="op">%&gt;%</span></span>
+<span id="cb824-10"><a href="cs-cran-network.html#cb824-10"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">count =</span> <span class="kw">rev</span>(<span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(.))) <span class="op">%&gt;%</span></span>
+<span id="cb824-11"><a href="cs-cran-network.html#cb824-11"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Date =</span> <span class="kw">as.Date</span>(Date)) <span class="op">%&gt;%</span></span>
+<span id="cb824-12"><a href="cs-cran-network.html#cb824-12"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Month =</span> <span class="kw">format</span>(Date, <span class="dt">format =</span> <span class="st">&quot;%Y-%m&quot;</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb824-13"><a href="cs-cran-network.html#cb824-13"></a><span class="st">  </span><span class="kw">group_by</span>(Month) <span class="op">%&gt;%</span></span>
+<span id="cb824-14"><a href="cs-cran-network.html#cb824-14"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">published =</span> <span class="kw">min</span>(count)) <span class="op">%&gt;%</span></span>
+<span id="cb824-15"><a href="cs-cran-network.html#cb824-15"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Date =</span> <span class="kw">as.Date</span>(<span class="kw">as.yearmon</span>(Month))) -&gt;<span class="st"> </span>pkgs</span>
+<span id="cb824-16"><a href="cs-cran-network.html#cb824-16"></a><span class="co"># 计算自2013年以来R包增长速度</span></span>
+<span id="cb824-17"><a href="cs-cran-network.html#cb824-17"></a>pkgs <span class="op">%&gt;%</span></span>
+<span id="cb824-18"><a href="cs-cran-network.html#cb824-18"></a><span class="st">  </span><span class="kw">filter</span>(Date <span class="op">&gt;</span><span class="st"> </span><span class="kw">as.Date</span>(<span class="st">&quot;2012-12-31&quot;</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb824-19"><a href="cs-cran-network.html#cb824-19"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">publishedGrowth =</span> <span class="kw">c</span>(<span class="kw">tail</span>(.<span class="op">$</span>published, <span class="dv">-1</span>), <span class="ot">NA</span>) <span class="op">/</span><span class="st"> </span>published) <span class="op">%&gt;%</span></span>
+<span id="cb824-20"><a href="cs-cran-network.html#cb824-20"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">counter =</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(.)) -&gt;<span class="st"> </span>new_pkgs</span>
+<span id="cb824-21"><a href="cs-cran-network.html#cb824-21"></a><span class="co"># 绘图</span></span>
+<span id="cb824-22"><a href="cs-cran-network.html#cb824-22"></a><span class="kw">library</span>(ggplot2)</span>
+<span id="cb824-23"><a href="cs-cran-network.html#cb824-23"></a><span class="kw">library</span>(grid)</span>
+<span id="cb824-24"><a href="cs-cran-network.html#cb824-24"></a>gg &lt;-<span class="st"> </span><span class="kw">ggplot</span>(pkgs, <span class="kw">aes</span>(<span class="dt">x =</span> Date, <span class="dt">y =</span> published)) <span class="op">+</span></span>
+<span id="cb824-25"><a href="cs-cran-network.html#cb824-25"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">size =</span> <span class="fl">1.5</span>) <span class="op">+</span></span>
+<span id="cb824-26"><a href="cs-cran-network.html#cb824-26"></a><span class="st">  </span><span class="kw">scale_y_log10</span>(</span>
+<span id="cb824-27"><a href="cs-cran-network.html#cb824-27"></a>    <span class="dt">breaks =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">100</span>, <span class="dv">1000</span>, <span class="dv">10000</span>),</span>
+<span id="cb824-28"><a href="cs-cran-network.html#cb824-28"></a>    <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;1&quot;</span>, <span class="st">&quot;10&quot;</span>, <span class="st">&quot;100&quot;</span>, <span class="st">&quot;1.000&quot;</span>, <span class="st">&quot;10.000&quot;</span>)</span>
+<span id="cb824-29"><a href="cs-cran-network.html#cb824-29"></a>  ) <span class="op">+</span></span>
+<span id="cb824-30"><a href="cs-cran-network.html#cb824-30"></a><span class="st">  </span><span class="kw">labs</span>(</span>
+<span id="cb824-31"><a href="cs-cran-network.html#cb824-31"></a>    <span class="dt">x =</span> <span class="st">&quot;&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;# Packages (log)&quot;</span>,</span>
+<span id="cb824-32"><a href="cs-cran-network.html#cb824-32"></a>    <span class="dt">title =</span> <span class="st">&quot;Packages published on CRAN ever since&quot;</span></span>
+<span id="cb824-33"><a href="cs-cran-network.html#cb824-33"></a>  ) <span class="op">+</span></span>
+<span id="cb824-34"><a href="cs-cran-network.html#cb824-34"></a><span class="st">  </span><span class="kw">theme_minimal</span>(<span class="dt">base_size =</span> <span class="dv">14</span>, <span class="dt">base_family =</span> <span class="st">&quot;sans&quot;</span>) <span class="op">+</span></span>
+<span id="cb824-35"><a href="cs-cran-network.html#cb824-35"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">panel.grid.major.x =</span> <span class="kw">element_blank</span>()) <span class="op">+</span></span>
+<span id="cb824-36"><a href="cs-cran-network.html#cb824-36"></a><span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="dv">0</span>, <span class="dt">size =</span> <span class="dv">1</span>, <span class="dt">colour =</span> <span class="st">&quot;#535353&quot;</span>)</span>
+<span id="cb824-37"><a href="cs-cran-network.html#cb824-37"></a></span>
+<span id="cb824-38"><a href="cs-cran-network.html#cb824-38"></a>gg2 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(new_pkgs, <span class="kw">aes</span>(<span class="dt">x =</span> Date, <span class="dt">y =</span> published)) <span class="op">+</span></span>
+<span id="cb824-39"><a href="cs-cran-network.html#cb824-39"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">size =</span> <span class="dv">1</span>) <span class="op">+</span></span>
+<span id="cb824-40"><a href="cs-cran-network.html#cb824-40"></a><span class="st">  </span><span class="kw">geom_line</span>(</span>
+<span id="cb824-41"><a href="cs-cran-network.html#cb824-41"></a>    <span class="dt">data =</span> new_pkgs, <span class="kw">aes</span>(<span class="dt">y =</span> (<span class="kw">min</span>(published) <span class="op">*</span><span class="st"> </span><span class="fl">1.048</span><span class="op">^</span>counter)),</span>
+<span id="cb824-42"><a href="cs-cran-network.html#cb824-42"></a>    <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">size =</span> <span class="fl">.7</span>, <span class="dt">linetype =</span> <span class="dv">1</span></span>
+<span id="cb824-43"><a href="cs-cran-network.html#cb824-43"></a>  ) <span class="op">+</span></span>
+<span id="cb824-44"><a href="cs-cran-network.html#cb824-44"></a><span class="st">  </span><span class="kw">annotate</span>(<span class="st">&quot;segment&quot;</span>,</span>
+<span id="cb824-45"><a href="cs-cran-network.html#cb824-45"></a>           <span class="dt">x =</span> <span class="kw">as.Date</span>(<span class="st">&quot;2015-04-01&quot;</span>), <span class="dt">xend =</span> <span class="kw">as.Date</span>(<span class="st">&quot;2015-08-01&quot;</span>),</span>
+<span id="cb824-46"><a href="cs-cran-network.html#cb824-46"></a>           <span class="dt">y =</span> <span class="dv">1000</span>, <span class="dt">yend =</span> <span class="dv">1000</span>, <span class="dt">colour =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">size =</span> <span class="dv">1</span></span>
+<span id="cb824-47"><a href="cs-cran-network.html#cb824-47"></a>  ) <span class="op">+</span></span>
+<span id="cb824-48"><a href="cs-cran-network.html#cb824-48"></a><span class="st">  </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>,</span>
+<span id="cb824-49"><a href="cs-cran-network.html#cb824-49"></a>           <span class="dt">x =</span> <span class="kw">as.Date</span>(<span class="st">&quot;2016-12-01&quot;</span>),</span>
+<span id="cb824-50"><a href="cs-cran-network.html#cb824-50"></a>           <span class="dt">y =</span> <span class="dv">1000</span>, <span class="dt">label =</span> <span class="st">&quot;4.6% growth estimation&quot;</span>, <span class="dt">size =</span> <span class="fl">3.5</span></span>
+<span id="cb824-51"><a href="cs-cran-network.html#cb824-51"></a>  ) <span class="op">+</span></span>
+<span id="cb824-52"><a href="cs-cran-network.html#cb824-52"></a><span class="st">  </span><span class="kw">scale_y_continuous</span>(</span>
+<span id="cb824-53"><a href="cs-cran-network.html#cb824-53"></a>    <span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dt">from =</span> <span class="dv">0</span>, <span class="dt">to =</span> <span class="dv">12000</span>, <span class="dt">by =</span> <span class="dv">2000</span>),</span>
+<span id="cb824-54"><a href="cs-cran-network.html#cb824-54"></a>    <span class="dt">labels =</span> <span class="kw">seq</span>(<span class="dt">from =</span> <span class="dv">0</span>, <span class="dt">to =</span> <span class="dv">12000</span>, <span class="dt">by =</span> <span class="dv">2000</span>)</span>
+<span id="cb824-55"><a href="cs-cran-network.html#cb824-55"></a>  ) <span class="op">+</span></span>
+<span id="cb824-56"><a href="cs-cran-network.html#cb824-56"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">y =</span> <span class="st">&quot;# Packages&quot;</span>, <span class="dt">x =</span> <span class="st">&quot;&quot;</span>, </span>
+<span id="cb824-57"><a href="cs-cran-network.html#cb824-57"></a>       <span class="dt">subtitle =</span> <span class="st">&quot;Packages published on CRAN since 2013&quot;</span>) <span class="op">+</span></span>
+<span id="cb824-58"><a href="cs-cran-network.html#cb824-58"></a><span class="st">  </span><span class="kw">theme_minimal</span>(</span>
+<span id="cb824-59"><a href="cs-cran-network.html#cb824-59"></a>    <span class="dt">base_size =</span> <span class="dv">11</span>, <span class="dt">base_family =</span> <span class="st">&quot;sans&quot;</span></span>
+<span id="cb824-60"><a href="cs-cran-network.html#cb824-60"></a>  ) <span class="op">+</span></span>
+<span id="cb824-61"><a href="cs-cran-network.html#cb824-61"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">panel.grid.major.x =</span> <span class="kw">element_blank</span>()) <span class="op">+</span></span>
+<span id="cb824-62"><a href="cs-cran-network.html#cb824-62"></a><span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="dv">0</span>, <span class="dt">size =</span> <span class="fl">.6</span>, <span class="dt">colour =</span> <span class="st">&quot;#535353&quot;</span>)</span>
+<span id="cb824-63"><a href="cs-cran-network.html#cb824-63"></a>gg</span>
+<span id="cb824-64"><a href="cs-cran-network.html#cb824-64"></a><span class="kw">print</span>(gg2, <span class="dt">vp =</span> <span class="kw">viewport</span>(.<span class="dv">70</span>, <span class="fl">.31</span>, <span class="fl">.43</span>, <span class="fl">.43</span>))</span></code></pre></div>
+</div>
+<div id="Choose-Package" class="section level2">
+<h2><span class="header-section-number">22.9</span> 选择 R 包</h2>
+<p>R 社区开发的 R 包实在太多了，重复造的轮子也很多，哪个轮子结实好用就选哪个，挑选合适的 R 包</p>
+<div class="sourceCode" id="cb825"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb825-1"><a href="cs-cran-network.html#cb825-1"></a><span class="kw">install.packages</span>(<span class="st">&quot;formattable&quot;</span>)</span>
+<span id="cb825-2"><a href="cs-cran-network.html#cb825-2"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;ropenscilabs/packagemetrics&quot;</span>)</span>
+<span id="cb825-3"><a href="cs-cran-network.html#cb825-3"></a></span>
+<span id="cb825-4"><a href="cs-cran-network.html#cb825-4"></a><span class="kw">library</span>(formattable)</span>
+<span id="cb825-5"><a href="cs-cran-network.html#cb825-5"></a><span class="kw">library</span>(packagemetrics)</span>
+<span id="cb825-6"><a href="cs-cran-network.html#cb825-6"></a><span class="kw">library</span>(dplyr)</span>
+<span id="cb825-7"><a href="cs-cran-network.html#cb825-7"></a></span>
+<span id="cb825-8"><a href="cs-cran-network.html#cb825-8"></a>address &lt;-<span class="st"> </span><span class="kw">sprintf</span>(<span class="st">&quot;%s/web/packages/packages.rds&quot;</span>, <span class="kw">getOption</span>(<span class="st">&quot;repos&quot;</span>)[<span class="st">&quot;CRAN&quot;</span>])</span>
+<span id="cb825-9"><a href="cs-cran-network.html#cb825-9"></a>con &lt;-<span class="st"> </span><span class="kw">url</span>(address, <span class="st">&quot;rb&quot;</span>)</span>
+<span id="cb825-10"><a href="cs-cran-network.html#cb825-10"></a>pdb &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(<span class="kw">readRDS</span>(<span class="kw">gzcon</span>(con)), <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)</span>
+<span id="cb825-11"><a href="cs-cran-network.html#cb825-11"></a><span class="kw">close</span>(con)</span>
+<span id="cb825-12"><a href="cs-cran-network.html#cb825-12"></a></span>
+<span id="cb825-13"><a href="cs-cran-network.html#cb825-13"></a>packages &lt;-<span class="st"> </span><span class="kw">subset</span>(pdb, Maintainer <span class="op">==</span><span class="st"> </span><span class="kw">maintainer</span>(<span class="st">&quot;rmarkdown&quot;</span>), <span class="dt">select =</span> <span class="st">&quot;Package&quot;</span>)</span>
+<span id="cb825-14"><a href="cs-cran-network.html#cb825-14"></a></span>
+<span id="cb825-15"><a href="cs-cran-network.html#cb825-15"></a>pd &lt;-<span class="st"> </span><span class="kw">apply</span>(packages, <span class="dv">1</span>, combine_metrics) <span class="op">%&gt;%</span></span>
+<span id="cb825-16"><a href="cs-cran-network.html#cb825-16"></a><span class="st">  </span>data.table<span class="op">::</span><span class="kw">rbindlist</span>() <span class="op">%&gt;%</span></span>
+<span id="cb825-17"><a href="cs-cran-network.html#cb825-17"></a><span class="st">  </span><span class="kw">select</span>(</span>
+<span id="cb825-18"><a href="cs-cran-network.html#cb825-18"></a>    package, published, dl_last_month,</span>
+<span id="cb825-19"><a href="cs-cran-network.html#cb825-19"></a>    stars, forks, last_commit,</span>
+<span id="cb825-20"><a href="cs-cran-network.html#cb825-20"></a>    depends_count, watchers</span>
+<span id="cb825-21"><a href="cs-cran-network.html#cb825-21"></a>  ) <span class="op">%&gt;%</span></span>
+<span id="cb825-22"><a href="cs-cran-network.html#cb825-22"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">last_commit =</span> <span class="kw">round</span>(last_commit, <span class="dv">1</span>))</span>
+<span id="cb825-23"><a href="cs-cran-network.html#cb825-23"></a></span>
+<span id="cb825-24"><a href="cs-cran-network.html#cb825-24"></a>pd[<span class="kw">is.na</span>(pd)] &lt;-<span class="st"> &quot;&quot;</span></span>
+<span id="cb825-25"><a href="cs-cran-network.html#cb825-25"></a></span>
+<span id="cb825-26"><a href="cs-cran-network.html#cb825-26"></a><span class="kw">formattable</span>(pd, <span class="kw">list</span>(</span>
+<span id="cb825-27"><a href="cs-cran-network.html#cb825-27"></a>  <span class="dt">package =</span> <span class="kw">formatter</span>(<span class="st">&quot;span&quot;</span>,</span>
+<span id="cb825-28"><a href="cs-cran-network.html#cb825-28"></a>    <span class="dt">style =</span> x <span class="op">~</span><span class="st"> </span><span class="kw">style</span>(<span class="dt">font.weight =</span> <span class="st">&quot;bold&quot;</span>)</span>
+<span id="cb825-29"><a href="cs-cran-network.html#cb825-29"></a>  ),</span>
+<span id="cb825-30"><a href="cs-cran-network.html#cb825-30"></a>  <span class="dt">contributors =</span> <span class="kw">color_tile</span>(<span class="st">&quot;white&quot;</span>, <span class="st">&quot;#1CC2E3&quot;</span>),</span>
+<span id="cb825-31"><a href="cs-cran-network.html#cb825-31"></a>  <span class="dt">depends_count =</span> <span class="kw">color_tile</span>(<span class="st">&quot;white&quot;</span>, <span class="st">&quot;#1CC2E3&quot;</span>),</span>
+<span id="cb825-32"><a href="cs-cran-network.html#cb825-32"></a>  <span class="dt">reverse_count =</span> <span class="kw">color_tile</span>(<span class="st">&quot;white&quot;</span>, <span class="st">&quot;#1CC2E3&quot;</span>),</span>
+<span id="cb825-33"><a href="cs-cran-network.html#cb825-33"></a>  <span class="dt">tidyverse_happy =</span> <span class="kw">formatter</span>(<span class="st">&quot;span&quot;</span>,</span>
+<span id="cb825-34"><a href="cs-cran-network.html#cb825-34"></a>    <span class="dt">style =</span> x <span class="op">~</span><span class="st"> </span><span class="kw">style</span>(<span class="dt">color =</span> <span class="kw">ifelse</span>(x, <span class="st">&quot;purple&quot;</span>, <span class="st">&quot;white&quot;</span>)),</span>
+<span id="cb825-35"><a href="cs-cran-network.html#cb825-35"></a>    x <span class="op">~</span><span class="st"> </span><span class="kw">icontext</span>(<span class="kw">ifelse</span>(x, <span class="st">&quot;glass&quot;</span>, <span class="st">&quot;glass&quot;</span>))</span>
+<span id="cb825-36"><a href="cs-cran-network.html#cb825-36"></a>  ),</span>
+<span id="cb825-37"><a href="cs-cran-network.html#cb825-37"></a>  <span class="dt">vignette =</span> <span class="kw">formatter</span>(<span class="st">&quot;span&quot;</span>,</span>
+<span id="cb825-38"><a href="cs-cran-network.html#cb825-38"></a>    <span class="dt">style =</span> x <span class="op">~</span><span class="st"> </span><span class="kw">style</span>(<span class="dt">color =</span> <span class="kw">ifelse</span>(x, <span class="st">&quot;green&quot;</span>, <span class="st">&quot;white&quot;</span>)),</span>
+<span id="cb825-39"><a href="cs-cran-network.html#cb825-39"></a>    x <span class="op">~</span><span class="st"> </span><span class="kw">icontext</span>(<span class="kw">ifelse</span>(x, <span class="st">&quot;ok&quot;</span>, <span class="st">&quot;ok&quot;</span>))</span>
+<span id="cb825-40"><a href="cs-cran-network.html#cb825-40"></a>  ),</span>
+<span id="cb825-41"><a href="cs-cran-network.html#cb825-41"></a>  <span class="dt">has_tests =</span> <span class="kw">formatter</span>(<span class="st">&quot;span&quot;</span>,</span>
+<span id="cb825-42"><a href="cs-cran-network.html#cb825-42"></a>    <span class="dt">style =</span> x <span class="op">~</span><span class="st"> </span><span class="kw">style</span>(<span class="dt">color =</span> <span class="kw">ifelse</span>(x, <span class="st">&quot;green&quot;</span>, <span class="st">&quot;red&quot;</span>)),</span>
+<span id="cb825-43"><a href="cs-cran-network.html#cb825-43"></a>    x <span class="op">~</span><span class="st"> </span><span class="kw">icontext</span>(<span class="kw">ifelse</span>(x, <span class="st">&quot;ok&quot;</span>, <span class="st">&quot;remove&quot;</span>))</span>
+<span id="cb825-44"><a href="cs-cran-network.html#cb825-44"></a>  ),</span>
+<span id="cb825-45"><a href="cs-cran-network.html#cb825-45"></a>  <span class="dt">dl_last_month =</span> <span class="kw">color_bar</span>(<span class="st">&quot;#56A33E&quot;</span>),</span>
+<span id="cb825-46"><a href="cs-cran-network.html#cb825-46"></a>  <span class="dt">forks =</span> <span class="kw">color_tile</span>(<span class="st">&quot;white&quot;</span>, <span class="st">&quot;#56A33E&quot;</span>),</span>
+<span id="cb825-47"><a href="cs-cran-network.html#cb825-47"></a>  <span class="dt">stars =</span> <span class="kw">color_tile</span>(<span class="st">&quot;white&quot;</span>, <span class="st">&quot;#56A33E&quot;</span>),</span>
+<span id="cb825-48"><a href="cs-cran-network.html#cb825-48"></a>  <span class="dt">last_commit =</span> <span class="kw">color_tile</span>(<span class="st">&quot;#F06B13&quot;</span>, <span class="st">&quot;white&quot;</span>, <span class="dt">na.rm =</span> T)</span>
+<span id="cb825-49"><a href="cs-cran-network.html#cb825-49"></a>))</span>
+<span id="cb825-50"><a href="cs-cran-network.html#cb825-50"></a></span>
+<span id="cb825-51"><a href="cs-cran-network.html#cb825-51"></a>webshot<span class="op">::</span><span class="kw">webshot</span>(<span class="dt">url =</span> <span class="st">&quot;http://localhost:16977/session/viewhtml150c673821fc/index.html&quot;</span>,<span class="dt">file =</span> <span class="st">&quot;figures/packages.png&quot;</span>)</span></code></pre></div>
+</div>
+<div id="cs-network-session-info" class="section level2">
+<h2><span class="header-section-number">22.10</span> 运行环境</h2>
+<div class="sourceCode" id="cb826"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb826-1"><a href="cs-cran-network.html#cb826-1"></a>xfun<span class="op">::</span><span class="kw">session_info</span>()</span>
+<span id="cb826-2"><a href="cs-cran-network.html#cb826-2"></a><span class="co">#&gt; R Under development (unstable) (2019-12-29 r77627)</span></span>
+<span id="cb826-3"><a href="cs-cran-network.html#cb826-3"></a><span class="co">#&gt; Platform: x86_64-pc-linux-gnu (64-bit)</span></span>
+<span id="cb826-4"><a href="cs-cran-network.html#cb826-4"></a><span class="co">#&gt; Running under: Ubuntu 16.04.6 LTS</span></span>
+<span id="cb826-5"><a href="cs-cran-network.html#cb826-5"></a><span class="co">#&gt; </span></span>
+<span id="cb826-6"><a href="cs-cran-network.html#cb826-6"></a><span class="co">#&gt; Locale:</span></span>
+<span id="cb826-7"><a href="cs-cran-network.html#cb826-7"></a><span class="co">#&gt;   LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              </span></span>
+<span id="cb826-8"><a href="cs-cran-network.html#cb826-8"></a><span class="co">#&gt;   LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    </span></span>
+<span id="cb826-9"><a href="cs-cran-network.html#cb826-9"></a><span class="co">#&gt;   LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   </span></span>
+<span id="cb826-10"><a href="cs-cran-network.html#cb826-10"></a><span class="co">#&gt;   LC_PAPER=en_US.UTF-8       LC_NAME=C                 </span></span>
+<span id="cb826-11"><a href="cs-cran-network.html#cb826-11"></a><span class="co">#&gt;   LC_ADDRESS=C               LC_TELEPHONE=C            </span></span>
+<span id="cb826-12"><a href="cs-cran-network.html#cb826-12"></a><span class="co">#&gt;   LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       </span></span>
+<span id="cb826-13"><a href="cs-cran-network.html#cb826-13"></a><span class="co">#&gt; </span></span>
+<span id="cb826-14"><a href="cs-cran-network.html#cb826-14"></a><span class="co">#&gt; Package version:</span></span>
+<span id="cb826-15"><a href="cs-cran-network.html#cb826-15"></a><span class="co">#&gt;   assertthat_0.2.1   backports_1.1.5    base64enc_0.1.3   </span></span>
+<span id="cb826-16"><a href="cs-cran-network.html#cb826-16"></a><span class="co">#&gt;   BH_1.72.0.2        bookdown_0.16      cli_2.0.0         </span></span>
+<span id="cb826-17"><a href="cs-cran-network.html#cb826-17"></a><span class="co">#&gt;   colorspace_1.4-1   compiler_4.0.0     crayon_1.3.4      </span></span>
+<span id="cb826-18"><a href="cs-cran-network.html#cb826-18"></a><span class="co">#&gt;   curl_4.3           digest_0.6.23      dplyr_0.8.3       </span></span>
+<span id="cb826-19"><a href="cs-cran-network.html#cb826-19"></a><span class="co">#&gt;   ellipsis_0.3.0     evaluate_0.14      fansi_0.4.0       </span></span>
+<span id="cb826-20"><a href="cs-cran-network.html#cb826-20"></a><span class="co">#&gt;   farver_2.0.1       ggplot2_3.2.1      glue_1.3.1        </span></span>
+<span id="cb826-21"><a href="cs-cran-network.html#cb826-21"></a><span class="co">#&gt;   graphics_4.0.0     grDevices_4.0.0    grid_4.0.0        </span></span>
+<span id="cb826-22"><a href="cs-cran-network.html#cb826-22"></a><span class="co">#&gt;   gtable_0.3.0       highr_0.8          htmltools_0.4.0   </span></span>
+<span id="cb826-23"><a href="cs-cran-network.html#cb826-23"></a><span class="co">#&gt;   jsonlite_1.6       knitr_1.26         labeling_0.3      </span></span>
+<span id="cb826-24"><a href="cs-cran-network.html#cb826-24"></a><span class="co">#&gt;   lattice_0.20-38    lazyeval_0.2.2     lifecycle_0.1.0   </span></span>
+<span id="cb826-25"><a href="cs-cran-network.html#cb826-25"></a><span class="co">#&gt;   magrittr_1.5       markdown_1.1       MASS_7.3.51.5     </span></span>
+<span id="cb826-26"><a href="cs-cran-network.html#cb826-26"></a><span class="co">#&gt;   Matrix_1.2-18      methods_4.0.0      mgcv_1.8.31       </span></span>
+<span id="cb826-27"><a href="cs-cran-network.html#cb826-27"></a><span class="co">#&gt;   mime_0.8           munsell_0.5.0      nlme_3.1.143      </span></span>
+<span id="cb826-28"><a href="cs-cran-network.html#cb826-28"></a><span class="co">#&gt;   pillar_1.4.3       pkgconfig_2.0.3    plogr_0.2.0       </span></span>
+<span id="cb826-29"><a href="cs-cran-network.html#cb826-29"></a><span class="co">#&gt;   plyr_1.8.5         purrr_0.3.3        R6_2.4.1          </span></span>
+<span id="cb826-30"><a href="cs-cran-network.html#cb826-30"></a><span class="co">#&gt;   RColorBrewer_1.1.2 Rcpp_1.0.3         reshape2_1.4.3    </span></span>
+<span id="cb826-31"><a href="cs-cran-network.html#cb826-31"></a><span class="co">#&gt;   rlang_0.4.2        rmarkdown_2.0      scales_1.1.0      </span></span>
+<span id="cb826-32"><a href="cs-cran-network.html#cb826-32"></a><span class="co">#&gt;   splines_4.0.0      stats_4.0.0        stringi_1.4.3     </span></span>
+<span id="cb826-33"><a href="cs-cran-network.html#cb826-33"></a><span class="co">#&gt;   stringr_1.4.0      tibble_2.1.3       tidyselect_0.2.5  </span></span>
+<span id="cb826-34"><a href="cs-cran-network.html#cb826-34"></a><span class="co">#&gt;   tinytex_0.18       tools_4.0.0        utf8_1.1.4        </span></span>
+<span id="cb826-35"><a href="cs-cran-network.html#cb826-35"></a><span class="co">#&gt;   utils_4.0.0        vctrs_0.2.1        viridisLite_0.3.0 </span></span>
+<span id="cb826-36"><a href="cs-cran-network.html#cb826-36"></a><span class="co">#&gt;   withr_2.1.2        xfun_0.11          yaml_2.2.0        </span></span>
+<span id="cb826-37"><a href="cs-cran-network.html#cb826-37"></a><span class="co">#&gt;   zeallot_0.1.0</span></span></code></pre></div>
+
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="53">
+<li id="fn53"><p>其中 Orphaned 表示之前的R包维护者不愿意继续维护了，后来有人接手维护，Orphaned 表示这一类接盘侠<a href="cs-cran-network.html#fnref53" class="footnote-back">↩︎</a></p></li>
+<li id="fn51"><p>Statistical Modeling of Networks in R <a href="https://user2010.org/Invited/handcockuser2010.pdf" class="uri">https://user2010.org/Invited/handcockuser2010.pdf</a><a href="cs-cran-network.html#fnref51" class="footnote-back">↩︎</a></p></li>
+<li id="fn52"><p>Network Analysis and Visualization with R and igraph <a href="https://kateto.net/networks-r-igraph" class="uri">https://kateto.net/networks-r-igraph</a> with <a href="https://kateto.net/wp-content/uploads/2016/01/NetSciX_2016_Workshop.pdf">PDF</a><a href="cs-cran-network.html#fnref52" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+<script>
+window.onload = function() {
+
+  var imgs = document.querySelectorAll('img');
+
+  // Upon clicking an image, open a new window with the
+  // dimensions of the image, pointing the `data-url` link
+  var on_click = function (e) {
+    var d = e.target.dataset || {};
+    if (d.url) {
+      // Add some extra height for the modebar
+      var height = 'height=' + (e.target.clientHeight * 1.05);
+      var width = 'width=' + e.target.clientWidth;
+      var param = 'location=yes,' + height + ',' + width + ',scrollbars=yes,status=yes';
+      window.open(e.target.dataset.url, '_blank', param);
+    }
+  };
+
+  var on_hover = function (e) {
+    var d = e.target.dataset || {};
+    if (d.url) {
+      e.target.style.cursor = 'pointer';
+    }
+  };
+
+  for (var i = 0; i < imgs.length; i++) {
+    imgs[i].addEventListener('click', on_click);
+    imgs[i].addEventListener('mouseover', on_hover);
+  }
+};
+</script>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="interactive-graphics.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="99-references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": {}
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/XiangyunHuang/RGraphics/edit/master/cs-cran-network.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub", "_main.mobi", "https://github.com/XiangyunHuang/RGraphics/raw/master/cs-cran-network.Rmd"],
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

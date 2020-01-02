@@ -650,6 +650,6 @@ sessionInfo()
 #>  [9] highr_0.8         pdftools_2.3      tools_4.0.0       grid_4.0.0       
 #> [13] tikzDevice_0.12.3 xfun_0.11         tinytex_0.18      askpass_1.1      
 #> [17] htmltools_0.4.0   yaml_2.2.0        digest_0.6.23     qpdf_1.1         
-#> [21] bookdown_0.16     codetools_0.2-16  curl_4.3          evaluate_0.14    
-#> [25] rmarkdown_2.0     stringi_1.4.3     compiler_4.0.0    magick_2.2
+#> [21] bookdown_0.16     curl_4.3          evaluate_0.14     rmarkdown_2.0    
+#> [25] stringi_1.4.3     compiler_4.0.0    magick_2.2
 ```

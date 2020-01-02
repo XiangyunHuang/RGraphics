@@ -1,11 +1,13 @@
 
 # highcharter 图形 {#chap:highcharter}
 
+
+
 > The combination of some data and an aching desire for an answer does not ensure that a reasonable answer can be extracted from a given body of data.
 >
 >   --- John W. Tukey [@John_1986_Sunset]
       
-      
+
 这才是真的动态图形，底层设计的图形语法已经与 ggplot2 大不相同，和用户交互是核心的部分
 
 [rgl](https://r-forge.r-project.org/projects/rgl/) 只是一种展现形式，它是基于 OpenGL，不拘泥于显示设备， [plotly](https://github.com/ropensci/plotly) 包 [@plotly2020] 和 [highcharter](https://github.com/jbkunst/highcharter) 是基于网页的
@@ -87,7 +89,6 @@ Package                Title
 
 - `highchart()` hc 对象
 - `hc_*` 系列函数分类整理出 R 包结构，归纳出学习路径
-
 - `hc_color()` 配色
 - `hc_xAxis()` X 轴
 - `hc_yAxis()` Y 轴
@@ -104,14 +105,6 @@ Package                Title
 
 ```r
 library(highcharter)
-#> Registered S3 method overwritten by 'xts':
-#>   method     from
-#>   as.zoo.xts zoo
-#> Registered S3 method overwritten by 'quantmod':
-#>   method            from
-#>   as.zoo.data.frame zoo
-#> Highcharts (www.highcharts.com) is a Highsoft software product which is
-#> not free for commercial and Governmental use
 highchart() %>% 
   hc_xAxis(type = "datetime") %>% 
   hc_title(text = "Yearly Numbers of Important Discoveries",
@@ -131,7 +124,6 @@ highchart() %>%
 
 
 ```r
-library(ggplot2)
 ggplot(data = BOD, aes(x = Time, y = demand)) +
   geom_point() +
   geom_line() +
@@ -142,7 +134,6 @@ ggplot(data = BOD, aes(x = Time, y = demand)) +
 
 
 ```r
-library(highcharter)
 hchart(BOD, "line", hcaes(x = Time, y = demand))
 ```
 
@@ -178,12 +169,8 @@ hchart(Orange, "line", hcaes(x = age, y = circumference, group = Tree))
 ### 时间序列图 {#subsubsec:ts-hc-line}
 
 
-```r
-library(ggfortify)
-```
-
 ::: rmdtip
-**ggfortify** 包 [@Tang_2016_ggfortify] 大大扩展了 **ggplot2** 包内置的函数 `autoplot()` 的功能，使得它可以适用 67 种数据对象的直接绘图
+**ggfortify** 包 [@Tang_2016_ggfortify] 大大扩展了 **ggplot2** 包内置的函数 `autoplot()` 的功能，使得它可以适用多种数据对象的直接绘图
 :::
 
 Base R 对时间序列类型 ts 的数据对象提供了泛型函数 `plot.ts()` 支持
@@ -191,8 +178,6 @@ Base R 对时间序列类型 ts 的数据对象提供了泛型函数 `plot.ts()`
 
 ```r
 plot(Nile, main = "Flow of the River Nile")
-
-library(ggfortify)
 autoplot(Nile, xlab = "Time", ylab = "Nile", main = "Flow of the River Nile") +
   theme_minimal()
 ```
@@ -278,8 +263,6 @@ barplot(
   data = BOD, demand ~ Time, col = "#4285F4",
   border = "white", horiz = TRUE, xlim = c(0, 20)
 )
-
-library(ggplot2)
 ggplot(data = BOD, aes(x = factor(Time), y = demand)) +
   geom_col(fill = "#4285F4") +
   coord_flip() +

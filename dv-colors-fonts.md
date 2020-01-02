@@ -285,18 +285,6 @@ ggplot(mtcars, aes(x = mpg * 0.43, y = wt * 0.4535924, colour = factor(cyl))) +
   ) +
   theme_fira() +
   scale_colour_fira()
-#> Scanning ttf files in /home/travis/R/Library/firatheme/font ...
-#> Extracting .afm files from .ttf files...
-#> /home/travis/R/Library/firatheme/font/FiraSans-Bold.ttf => /home/travis/R/Library/extrafontdb/metrics/FiraSans-Bold
-#> /home/travis/R/Library/firatheme/font/FiraSans-BoldItalic.ttf => /home/travis/R/Library/extrafontdb/metrics/FiraSans-BoldItalic
-#> /home/travis/R/Library/firatheme/font/FiraSans-Italic.ttf => /home/travis/R/Library/extrafontdb/metrics/FiraSans-Italic
-#> /home/travis/R/Library/firatheme/font/FiraSans-Medium.ttf => /home/travis/R/Library/extrafontdb/metrics/FiraSans-Medium
-#> /home/travis/R/Library/firatheme/font/FiraSans-MediumItalic.ttf => /home/travis/R/Library/extrafontdb/metrics/FiraSans-MediumItalic
-#> /home/travis/R/Library/firatheme/font/FiraSans-Regular.ttf => /home/travis/R/Library/extrafontdb/metrics/FiraSans-Regular
-#> Found FontName for 6 fonts.
-#> Scanning afm files in /home/travis/R/Library/extrafontdb/metrics
-#> Writing font table in /home/travis/R/Library/extrafontdb/fontmap/fonttable.csv
-#> Writing Fontmap to /home/travis/R/Library/extrafontdb/fontmap/Fontmap...
 #> `geom_smooth()` using method = 'loess' and formula 'y ~ x'
 ```
 

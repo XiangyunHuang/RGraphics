@@ -388,9 +388,9 @@ d <- function() data.frame(
   )
 microbenchmark::microbenchmark(s(), d())
 #> Unit: microseconds
-#>  expr     min       lq      mean   median       uq      max neval
-#>   s()  14.536  16.8740  51.09609  22.8385  24.3745 2671.458   100
-#>   d() 176.210 181.4675 223.98592 185.1920 196.9560 2515.501   100
+#>  expr     min      lq     mean   median       uq      max neval
+#>   s()  14.853  17.480  63.3388  23.1955  25.9435 3740.629   100
+#>   d() 178.701 189.743 234.7430 199.7185 213.2850 2909.459   100
 ```
 
 ### 移除缺失记录 {#remove-missing-values}
@@ -550,36 +550,35 @@ xfun::session_info()
 #>   askpass_1.1          assertthat_0.2.1     backports_1.1.5     
 #>   base64enc_0.1.3      BH_1.72.0.2          bookdown_0.16       
 #>   broom_0.5.3          callr_3.4.0          cellranger_1.1.0    
-#>   cli_2.0.0            clipr_0.7.0          codetools_0.2-16    
-#>   colorspace_1.4-1     compiler_4.0.0       crayon_1.3.4        
-#>   curl_4.3             DBI_1.1.0            dbplyr_1.4.2        
-#>   desc_1.2.0           digest_0.6.23        dplyr_0.8.3         
-#>   ellipsis_0.3.0       evaluate_0.14        fansi_0.4.0         
-#>   farver_2.0.1         forcats_0.4.0        fs_1.3.1            
-#>   generics_0.0.2       ggplot2_3.2.1        glue_1.3.1          
-#>   graphics_4.0.0       grDevices_4.0.0      grid_4.0.0          
-#>   gtable_0.3.0         haven_2.2.0          highr_0.8           
-#>   hms_0.5.2            htmltools_0.4.0      httr_1.4.1          
-#>   jsonlite_1.6         knitr_1.26           labeling_0.3        
-#>   lattice_0.20-38      lazyeval_0.2.2       lifecycle_0.1.0     
-#>   lubridate_1.7.4      magrittr_1.5         markdown_1.1        
-#>   MASS_7.3.51.5        Matrix_1.2.18        methods_4.0.0       
-#>   mgcv_1.8.31          microbenchmark_1.4-7 mime_0.8            
-#>   modelr_0.1.5         munsell_0.5.0        nlme_3.1-143        
-#>   openssl_1.4.1        pillar_1.4.3         pkgconfig_2.0.3     
-#>   plogr_0.2.0          plyr_1.8.5           prettyunits_1.0.2   
-#>   processx_3.4.1       progress_1.2.2       ps_1.3.0            
-#>   purrr_0.3.3          R6_2.4.1             RColorBrewer_1.1.2  
-#>   Rcpp_1.0.3           readr_1.3.1          readxl_1.3.1        
-#>   rematch_1.0.1        reprex_0.3.0         reshape2_1.4.3      
-#>   rlang_0.4.2          rmarkdown_2.0        rprojroot_1.3-2     
-#>   rstudioapi_0.10      rvest_0.3.5          scales_1.1.0        
-#>   selectr_0.4.2        splines_4.0.0        stats_4.0.0         
-#>   stringi_1.4.3        stringr_1.4.0        sys_3.3             
-#>   tibble_2.1.3         tidyr_1.0.0          tidyselect_0.2.5    
-#>   tidyverse_1.3.0      tinytex_0.18         tools_4.0.0         
-#>   utf8_1.1.4           utils_4.0.0          vctrs_0.2.1         
-#>   viridisLite_0.3.0    whisker_0.4          withr_2.1.2         
-#>   xfun_0.11            xml2_1.2.2           yaml_2.2.0          
-#>   zeallot_0.1.0
+#>   cli_2.0.0            clipr_0.7.0          colorspace_1.4-1    
+#>   compiler_4.0.0       crayon_1.3.4         curl_4.3            
+#>   DBI_1.1.0            dbplyr_1.4.2         desc_1.2.0          
+#>   digest_0.6.23        dplyr_0.8.3          ellipsis_0.3.0      
+#>   evaluate_0.14        fansi_0.4.0          farver_2.0.1        
+#>   forcats_0.4.0        fs_1.3.1             generics_0.0.2      
+#>   ggplot2_3.2.1        glue_1.3.1           graphics_4.0.0      
+#>   grDevices_4.0.0      grid_4.0.0           gtable_0.3.0        
+#>   haven_2.2.0          highr_0.8            hms_0.5.2           
+#>   htmltools_0.4.0      httr_1.4.1           jsonlite_1.6        
+#>   knitr_1.26           labeling_0.3         lattice_0.20-38     
+#>   lazyeval_0.2.2       lifecycle_0.1.0      lubridate_1.7.4     
+#>   magrittr_1.5         markdown_1.1         MASS_7.3.51.5       
+#>   Matrix_1.2.18        methods_4.0.0        mgcv_1.8.31         
+#>   microbenchmark_1.4-7 mime_0.8             modelr_0.1.5        
+#>   munsell_0.5.0        nlme_3.1-143         openssl_1.4.1       
+#>   pillar_1.4.3         pkgconfig_2.0.3      plogr_0.2.0         
+#>   plyr_1.8.5           prettyunits_1.0.2    processx_3.4.1      
+#>   progress_1.2.2       ps_1.3.0             purrr_0.3.3         
+#>   R6_2.4.1             RColorBrewer_1.1.2   Rcpp_1.0.3          
+#>   readr_1.3.1          readxl_1.3.1         rematch_1.0.1       
+#>   reprex_0.3.0         reshape2_1.4.3       rlang_0.4.2         
+#>   rmarkdown_2.0        rprojroot_1.3-2      rstudioapi_0.10     
+#>   rvest_0.3.5          scales_1.1.0         selectr_0.4.2       
+#>   splines_4.0.0        stats_4.0.0          stringi_1.4.3       
+#>   stringr_1.4.0        sys_3.3              tibble_2.1.3        
+#>   tidyr_1.0.0          tidyselect_0.2.5     tidyverse_1.3.0     
+#>   tinytex_0.18         tools_4.0.0          utf8_1.1.4          
+#>   utils_4.0.0          vctrs_0.2.1          viridisLite_0.3.0   
+#>   whisker_0.4          withr_2.1.2          xfun_0.11           
+#>   xml2_1.2.2           yaml_2.2.0           zeallot_0.1.0
 ```

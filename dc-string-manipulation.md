@@ -237,24 +237,26 @@ grepl("^package:", search())
 # list.files(path = ".", pattern = "\\.Rmd$")
 # 而不是 endsWith(list.files(), "\\.Rmd")
 endsWith(list.files(), ".Rmd")
-#>  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE  TRUE
-#> [13] FALSE  TRUE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE
-#> [25] FALSE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE
-#> [37] FALSE  TRUE FALSE  TRUE  TRUE FALSE FALSE  TRUE  TRUE FALSE FALSE  TRUE
-#> [49]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE
-#> [61]  TRUE FALSE FALSE FALSE FALSE  TRUE FALSE  TRUE FALSE FALSE FALSE FALSE
-#> [73] FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE
-#> [85] FALSE FALSE FALSE FALSE
+#>   [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE  TRUE
+#>  [13] FALSE  TRUE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE
+#>  [25] FALSE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE
+#>  [37] FALSE FALSE  TRUE FALSE  TRUE  TRUE FALSE FALSE  TRUE  TRUE FALSE FALSE
+#>  [49] FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE  TRUE
+#>  [61]  TRUE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE  TRUE FALSE  TRUE FALSE
+#>  [73] FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE  TRUE FALSE
+#>  [85]  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE
+#>  [97] FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE
 # 或者
 grepl("\\.Rmd$", list.files())
-#>  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE  TRUE
-#> [13] FALSE  TRUE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE
-#> [25] FALSE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE
-#> [37] FALSE  TRUE FALSE  TRUE  TRUE FALSE FALSE  TRUE  TRUE FALSE FALSE  TRUE
-#> [49]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE
-#> [61]  TRUE FALSE FALSE FALSE FALSE  TRUE FALSE  TRUE FALSE FALSE FALSE FALSE
-#> [73] FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE
-#> [85] FALSE FALSE FALSE FALSE
+#>   [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE  TRUE
+#>  [13] FALSE  TRUE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE
+#>  [25] FALSE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE
+#>  [37] FALSE FALSE  TRUE FALSE  TRUE  TRUE FALSE FALSE  TRUE  TRUE FALSE FALSE
+#>  [49] FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE  TRUE
+#>  [61]  TRUE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE  TRUE FALSE  TRUE FALSE
+#>  [73] FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE  TRUE FALSE
+#>  [85]  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE
+#>  [97] FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE
 ```
 
 部分匹配(Partial String Matching)
@@ -1253,18 +1255,17 @@ xfun::session_info()
 #> 
 #> Package version:
 #>   assertthat_0.2.1 backports_1.1.5  base64enc_0.1.3  BH_1.72.0.2     
-#>   bookdown_0.16    cli_2.0.0        codetools_0.2-16 compiler_4.0.0  
-#>   crayon_1.3.4     curl_4.3         digest_0.6.23    dplyr_0.8.3     
-#>   ellipsis_0.3.0   evaluate_0.14    fansi_0.4.0      glue_1.3.1      
-#>   graphics_4.0.0   grDevices_4.0.0  highr_0.8        htmltools_0.4.0 
-#>   jsonlite_1.6     knitr_1.26       lifecycle_0.1.0  magrittr_1.5    
-#>   markdown_1.1     methods_4.0.0    mime_0.8         pillar_1.4.3    
-#>   pkgconfig_2.0.3  plogr_0.2.0      purrr_0.3.3      R6_2.4.1        
-#>   Rcpp_1.0.3       rlang_0.4.2      rmarkdown_2.0    stats_4.0.0     
-#>   stringi_1.4.3    stringr_1.4.0    tibble_2.1.3     tidyr_1.0.0     
-#>   tidyselect_0.2.5 tinytex_0.18     tools_4.0.0      utf8_1.1.4      
-#>   utils_4.0.0      vctrs_0.2.1      xfun_0.11        yaml_2.2.0      
-#>   zeallot_0.1.0
+#>   bookdown_0.16    cli_2.0.0        compiler_4.0.0   crayon_1.3.4    
+#>   curl_4.3         digest_0.6.23    dplyr_0.8.3      ellipsis_0.3.0  
+#>   evaluate_0.14    fansi_0.4.0      glue_1.3.1       graphics_4.0.0  
+#>   grDevices_4.0.0  highr_0.8        htmltools_0.4.0  jsonlite_1.6    
+#>   knitr_1.26       lifecycle_0.1.0  magrittr_1.5     markdown_1.1    
+#>   methods_4.0.0    mime_0.8         pillar_1.4.3     pkgconfig_2.0.3 
+#>   plogr_0.2.0      purrr_0.3.3      R6_2.4.1         Rcpp_1.0.3      
+#>   rlang_0.4.2      rmarkdown_2.0    stats_4.0.0      stringi_1.4.3   
+#>   stringr_1.4.0    tibble_2.1.3     tidyr_1.0.0      tidyselect_0.2.5
+#>   tinytex_0.18     tools_4.0.0      utf8_1.1.4       utils_4.0.0     
+#>   vctrs_0.2.1      xfun_0.11        yaml_2.2.0       zeallot_0.1.0
 ```
 
 [^regexp]: https://homepage.divms.uiowa.edu/~luke/R/regexp.html
