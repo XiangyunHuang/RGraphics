@@ -110,7 +110,7 @@ reshape(df, timevar = "visit", idvar = "id", direction = "wide", v.names = "x")
 
 更加复杂的例子， gambia 数据集，重塑的效果是使得个体水平的长格式变为村庄水平的宽格式
 
-```{r}
+```{r,eval=FALSE}
 # data(gambia, package = "geoR")
 # 在线下载数据集
 gambia <- read.table(
@@ -126,16 +126,6 @@ ind <- paste("x", gambia[, 1], "y", gambia[, 2], sep = "")
 village <- gambia[!duplicated(ind), c(1:2, 7:8)]
 village$prev <- as.vector(tapply(gambia$pos, ind, mean))
 head(village)
-```
-
-将长格式的 PlantGrowth 数据集变成宽格式
-
-```{r}
-tmp <- split(PlantGrowth, f = PlantGrowth$group) # 分组
-l <- lapply(tmp, subset, select = "weight") # 选择
-dat <- Reduce("cbind", l)  # 合并
-colnames(dat) <- names(l)
-dat
 ```
 
 ## 数据转换 {#base-transform}
