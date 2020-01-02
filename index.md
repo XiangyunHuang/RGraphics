@@ -3,7 +3,7 @@
 title: "数据科学与 R 语言"
 subtitle: "Data Science with R"
 author: "黄湘云"
-date: "2019-12-31 09:11:23 CST"
+date: "2020-01-02 22:46:56 CST"
 site: bookdown::bookdown_site
 documentclass: book
 biblio-style: apalike
@@ -111,7 +111,7 @@ GNU R 最初由 [Ross Ihaka](https://en.wikipedia.org/wiki/Ross_Ihaka) 和 [Robe
 
 ```r
 xfun::session_info(c("rmarkdown", "bookdown"))
-#> R Under development (unstable) (2019-11-17 r77427)
+#> R Under development (unstable) (2019-12-29 r77627)
 #> Platform: x86_64-pc-linux-gnu (64-bit)
 #> Running under: Ubuntu 16.04.6 LTS
 #> 
@@ -124,12 +124,12 @@ xfun::session_info(c("rmarkdown", "bookdown"))
 #>   LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
 #> 
 #> Package version:
-#>   base64enc_0.1.3 bookdown_0.15   digest_0.6.22   evaluate_0.14  
+#>   base64enc_0.1.3 bookdown_0.16   digest_0.6.23   evaluate_0.14  
 #>   glue_1.3.1      graphics_4.0.0  grDevices_4.0.0 highr_0.8      
 #>   htmltools_0.4.0 jsonlite_1.6    knitr_1.26      magrittr_1.5   
-#>   markdown_1.1    methods_4.0.0   mime_0.7        Rcpp_1.0.3     
-#>   rlang_0.4.1     rmarkdown_1.17  stats_4.0.0     stringi_1.4.3  
-#>   stringr_1.4.0   tinytex_0.17    tools_4.0.0     utils_4.0.0    
+#>   markdown_1.1    methods_4.0.0   mime_0.8        Rcpp_1.0.3     
+#>   rlang_0.4.2     rmarkdown_2.0   stats_4.0.0     stringi_1.4.3  
+#>   stringr_1.4.0   tinytex_0.18    tools_4.0.0     utils_4.0.0    
 #>   xfun_0.11       yaml_2.2.0     
 #> 
 #> Pandoc version: 2.7.3

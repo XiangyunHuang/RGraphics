@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>第 12 章 交互式图形 | 数据科学与 R 语言</title>
+  <title>第 3 章 对象在哪里 | 数据科学与 R 语言</title>
   <meta name="description" content="数据操作、数据分析、数据建模、动态报告和数据可视化" />
   <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="第 12 章 交互式图形 | 数据科学与 R 语言" />
+  <meta property="og:title" content="第 3 章 对象在哪里 | 数据科学与 R 语言" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://bookdown.org/xiangyun/RGraphics/" />
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="XiangyunHuang/RGraphics" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="第 12 章 交互式图形 | 数据科学与 R 语言" />
+  <meta name="twitter:title" content="第 3 章 对象在哪里 | 数据科学与 R 语言" />
   
   <meta name="twitter:description" content="数据操作、数据分析、数据建模、动态报告和数据可视化" />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="dv-ggplot2.html"/>
-<link rel="next" href="dv-plot3d.html"/>
+<link rel="prev" href="files.html"/>
+<link rel="next" href="data-import.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -494,77 +494,394 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="interactive-graphics" class="section level1">
-<h1><span class="header-section-number">第 12 章</span> 交互式图形</h1>
-<div id="plotly" class="section level2">
-<h2><span class="header-section-number">12.1</span> plotly</h2>
-<div class="sourceCode" id="cb598"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb598-1"><a href="dv-plotly.html#cb598-1"></a><span class="kw">library</span>(plotly, <span class="dt">warn.conflicts =</span> <span class="ot">FALSE</span>, <span class="dt">quietly =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb598-2"><a href="dv-plotly.html#cb598-2"></a>p1 &lt;-<span class="st"> </span><span class="kw">plot_ly</span>(diamonds, <span class="dt">x =</span> <span class="op">~</span>price) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">add_histogram</span>(<span class="dt">name =</span> <span class="st">&quot;plotly.js&quot;</span>)</span>
-<span id="cb598-3"><a href="dv-plotly.html#cb598-3"></a></span>
-<span id="cb598-4"><a href="dv-plotly.html#cb598-4"></a>price_hist &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">method =</span> <span class="st">&quot;FD&quot;</span>) {</span>
-<span id="cb598-5"><a href="dv-plotly.html#cb598-5"></a>  h &lt;-<span class="st"> </span><span class="kw">hist</span>(diamonds<span class="op">$</span>price, <span class="dt">breaks =</span> method, <span class="dt">plot =</span> <span class="ot">FALSE</span>)</span>
-<span id="cb598-6"><a href="dv-plotly.html#cb598-6"></a>  <span class="kw">plot_ly</span>(<span class="dt">x =</span> h<span class="op">$</span>mids, <span class="dt">y =</span> h<span class="op">$</span>counts) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">add_bars</span>(<span class="dt">name =</span> method)</span>
-<span id="cb598-7"><a href="dv-plotly.html#cb598-7"></a>}</span>
-<span id="cb598-8"><a href="dv-plotly.html#cb598-8"></a></span>
-<span id="cb598-9"><a href="dv-plotly.html#cb598-9"></a><span class="kw">subplot</span>(</span>
-<span id="cb598-10"><a href="dv-plotly.html#cb598-10"></a>  p1, <span class="kw">price_hist</span>(), <span class="kw">price_hist</span>(<span class="st">&quot;Sturges&quot;</span>),  <span class="kw">price_hist</span>(<span class="st">&quot;Scott&quot;</span>),</span>
-<span id="cb598-11"><a href="dv-plotly.html#cb598-11"></a>  <span class="dt">nrows =</span> <span class="dv">4</span>, <span class="dt">shareX =</span> <span class="ot">TRUE</span></span>
-<span id="cb598-12"><a href="dv-plotly.html#cb598-12"></a>)</span></code></pre></div>
-<p>Orca (Open-source Report Creator App) 软件针对 plotly.js 库渲染的图形具有很强的导出功能，<a href="https://github.com/plotly/orca#installation">安装 Orca</a> 后，<code>plotly::orca</code> 函数可以将基于 htmlwidget 的 plotly 图形对象导出为高质量静态图片，支持导出 png、pdf 和 svg 等格式。</p>
-<div class="figure" style="text-align: center"><span id="fig:bars-numeric"></span>
-<img src="interactives/bars-numeric.svg" alt="直方图" width="70%" data-url="/interactives/bars-numeric.html" />
-<p class="caption">
-图 12.1: 直方图
-</p>
+<div id="data-object" class="section level1">
+<h1><span class="header-section-number">第 3 章</span> 对象在哪里</h1>
+<blockquote>
+<p>可用于绘图的数据对象，向量 vector 等，只涉及基础操作和绘图，关键在入门引导式的介绍，点到即止</p>
+</blockquote>
+<p>数据类型：字符、数值：字符数据操作：按数据类型介绍各类数据操作，重复之处如前所述，数据处理的分类：按数据类型来，一共是 table matrix data.frame 和 vector</p>
+<blockquote>
+<p>The trouble with nonstandard evaluation is that it doesn’t follow standard
+evaluation rules…</p>
+<p>— Peter Dalgaard (about nonstandard evaluation in the <code>curve()</code> function)
+R-help (June 2011)</p>
+</blockquote>
+<!-- 详细介绍 data.frame 和 data.table，而不简略介绍 tibble 和 dplyr -->
+<p>向量，列表，</p>
+<p>数据框 data frame 在 R 里面可以用三种不同类型的数据对象来表达</p>
+<blockquote>
+<p>从历史脉络来看，为什么会出现三种不同的东西，它们之间的区别和联系是什么，能否用一张表来描述</p>
+</blockquote>
+<p>data.frame 设计的历史，首次包含在 R 里面是什么时候，R 是否一发布就包含了这个数据类型</p>
+<p>The function <code>data.frame()</code> creates data frames, tightly coupled collections of variables which share many of the properties of matrices and of lists, used as the fundamental data structure by most of R’s modeling software.</p>
+<p><strong>data.table</strong> 2006 年 4 月 15 日首次登陆 CRAN 发布 1.0 版本，差不多恰好 10 年后</p>
+<p><strong>tibble</strong> 在 2016 年 3 月 23 日首次登陆 CRAN 发布 1.0 版本</p>
+<p><code>data.frame()</code>， <code>tibble()</code> 和 <code>data.table()</code> 的区别，去看函数的帮助文档</p>
+<p>Provides a ‘tbl_df’ class (the ‘tibble’) that provides stricter checking and better formatting than the traditional data frame.</p>
+<p><a href="https://github.com/r-lib/vctrs">vctrs</a> 和 <a href="https://github.com/r-lib/rlang">rlang</a> 包
+R 内置的 <a href="https://cran.r-project.org/doc/manuals/r-release/R-lang.html">R Language Definition</a></p>
+<div id="subsec:typeof" class="section level2">
+<h2><span class="header-section-number">3.1</span> 类型</h2>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="data-objects.html#cb109-1"></a>x &lt;-<span class="st"> &quot;abc&quot;</span> <span class="co"># 数据对象</span></span>
+<span id="cb109-2"><a href="data-objects.html#cb109-2"></a><span class="kw">typeof</span>(x) <span class="co"># 数据类型</span></span>
+<span id="cb109-3"><a href="data-objects.html#cb109-3"></a><span class="co">#&gt; [1] &quot;character&quot;</span></span>
+<span id="cb109-4"><a href="data-objects.html#cb109-4"></a><span class="kw">mode</span>(x) <span class="co"># 存储模式</span></span>
+<span id="cb109-5"><a href="data-objects.html#cb109-5"></a><span class="co">#&gt; [1] &quot;character&quot;</span></span>
+<span id="cb109-6"><a href="data-objects.html#cb109-6"></a><span class="kw">storage.mode</span>(x) <span class="co"># 存储类型</span></span>
+<span id="cb109-7"><a href="data-objects.html#cb109-7"></a><span class="co">#&gt; [1] &quot;character&quot;</span></span></code></pre></div>
+<table>
+<caption><span id="tab:all-data-type">表 3.1: </span> 函数 <code>typeof()</code> 返回的数据类型<a href="#fn14" class="footnote-ref" id="fnref14"><sup>14</sup></a></caption>
+<thead>
+<tr class="header">
+<th align="left">符号</th>
+<th align="left">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>NULL</code></td>
+<td align="left">空值</td>
+</tr>
+<tr class="even">
+<td align="left"><code>symbol</code></td>
+<td align="left">可变的名称/变量</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>pairlist</code></td>
+<td align="left">pairlist 对象***</td>
+</tr>
+<tr class="even">
+<td align="left"><code>closure</code></td>
+<td align="left">函数闭包</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>environment</code></td>
+<td align="left">环境</td>
+</tr>
+<tr class="even">
+<td align="left"><code>promise</code></td>
+<td align="left">实现惰性求值的对象</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>language</code></td>
+<td align="left">R 语言构造</td>
+</tr>
+<tr class="even">
+<td align="left"><code>special</code></td>
+<td align="left">内部函数，不计算参数</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>builtin</code></td>
+<td align="left">内部函数，计算参数</td>
+</tr>
+<tr class="even">
+<td align="left"><code>char</code></td>
+<td align="left">scalar 型字符对象***</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>logical</code></td>
+<td align="left">逻辑向量</td>
+</tr>
+<tr class="even">
+<td align="left"><code>integer</code></td>
+<td align="left">整数向量</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>double</code></td>
+<td align="left">实值向量</td>
+</tr>
+<tr class="even">
+<td align="left"><code>complex</code></td>
+<td align="left">复值向量</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>character</code></td>
+<td align="left">字符向量</td>
+</tr>
+<tr class="even">
+<td align="left"><code>...</code></td>
+<td align="left">可变长度的参数***</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>any</code></td>
+<td align="left">匹配任意类型</td>
+</tr>
+<tr class="even">
+<td align="left"><code>expression</code></td>
+<td align="left">表达式对象</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>list</code></td>
+<td align="left">列表</td>
+</tr>
+<tr class="even">
+<td align="left"><code>bytecode</code></td>
+<td align="left">位代码***</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>externalptr</code></td>
+<td align="left">外部指针对象</td>
+</tr>
+<tr class="even">
+<td align="left"><code>weakref</code></td>
+<td align="left">弱引用对象</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>raw</code></td>
+<td align="left">位向量</td>
+</tr>
+<tr class="even">
+<td align="left"><code>S4</code></td>
+<td align="left">S4 对象</td>
+</tr>
+</tbody>
+</table>
+<table>
+<caption><span id="tab:basic-data-type">表 3.2: </span> R/Rcpp 提供的基本数据类型</caption>
+<colgroup>
+<col width="7%" />
+<col width="10%" />
+<col width="31%" />
+<col width="31%" />
+<col width="10%" />
+<col width="9%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Value</th>
+<th align="center">R vector</th>
+<th align="center">Rcpp vector</th>
+<th align="center">Rcpp matrix</th>
+<th align="center">Rcpp scalar</th>
+<th align="center">C++ scalar</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">Logical</td>
+<td align="center"><code>logical</code></td>
+<td align="center"><code>LogicalVector</code></td>
+<td align="center"><code>LogicalMatrix</code></td>
+<td align="center">-</td>
+<td align="center"><code>bool</code></td>
+</tr>
+<tr class="even">
+<td align="center">Integer</td>
+<td align="center"><code>integer</code></td>
+<td align="center"><code>IntegerVector</code></td>
+<td align="center"><code>IntegerMatrix</code></td>
+<td align="center">-</td>
+<td align="center"><code>int</code></td>
+</tr>
+<tr class="odd">
+<td align="center">Real</td>
+<td align="center"><code>numeric</code></td>
+<td align="center"><code>NumericVector</code></td>
+<td align="center"><code>NumericMatrix</code></td>
+<td align="center">-</td>
+<td align="center"><code>double</code></td>
+</tr>
+<tr class="even">
+<td align="center">Complex</td>
+<td align="center"><code>complex</code></td>
+<td align="center"><code>ComplexVector</code></td>
+<td align="center"><code>ComplexMatrix</code></td>
+<td align="center"><code>Rcomplex</code></td>
+<td align="center"><code>complex</code></td>
+</tr>
+<tr class="odd">
+<td align="center">String</td>
+<td align="center"><code>character</code></td>
+<td align="center"><code>CharacterVector</code> (<code>StringVector</code>)</td>
+<td align="center"><code>CharacterMatrix</code> (<code>StringMatrix</code>)</td>
+<td align="center"><code>String</code></td>
+<td align="center"><code>string</code></td>
+</tr>
+<tr class="even">
+<td align="center">Date</td>
+<td align="center"><code>Date</code></td>
+<td align="center"><code>DateVector</code></td>
+<td align="center">-</td>
+<td align="center"><code>Date</code></td>
+<td align="center">-</td>
+</tr>
+<tr class="odd">
+<td align="center">Datetime</td>
+<td align="center"><code>POSIXct</code></td>
+<td align="center"><code>DatetimeVector</code></td>
+<td align="center">-</td>
+<td align="center"><code>Datetime</code></td>
+<td align="center"><code>time_t</code></td>
+</tr>
+</tbody>
+</table>
 </div>
+<div id="subsec:date-time" class="section level2">
+<h2><span class="header-section-number">3.2</span> 日期</h2>
+<p>注意观察时间转化</p>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="data-objects.html#cb110-1"></a><span class="kw">Sys.Date</span>()</span>
+<span id="cb110-2"><a href="data-objects.html#cb110-2"></a><span class="co">#&gt; [1] &quot;2020-01-02&quot;</span></span>
+<span id="cb110-3"><a href="data-objects.html#cb110-3"></a><span class="kw">Sys.time</span>()</span>
+<span id="cb110-4"><a href="data-objects.html#cb110-4"></a><span class="co">#&gt; [1] &quot;2020-01-02 14:47:05 UTC&quot;</span></span>
+<span id="cb110-5"><a href="data-objects.html#cb110-5"></a><span class="kw">c</span>(<span class="kw">Sys.time</span>(), <span class="kw">Sys.Date</span>())</span>
+<span id="cb110-6"><a href="data-objects.html#cb110-6"></a><span class="co">#&gt; [1] &quot;2020-01-02 14:47:05 UTC&quot; &quot;1970-01-01 05:04:23 UTC&quot;</span></span>
+<span id="cb110-7"><a href="data-objects.html#cb110-7"></a>data.table<span class="op">::</span><span class="kw">year</span>(<span class="kw">Sys.Date</span>())</span>
+<span id="cb110-8"><a href="data-objects.html#cb110-8"></a><span class="co">#&gt; [1] 2020</span></span>
+<span id="cb110-9"><a href="data-objects.html#cb110-9"></a>data.table<span class="op">::</span><span class="kw">year</span>(<span class="kw">Sys.time</span>())</span>
+<span id="cb110-10"><a href="data-objects.html#cb110-10"></a><span class="co">#&gt; [1] 2020</span></span>
+<span id="cb110-11"><a href="data-objects.html#cb110-11"></a>data.table<span class="op">::</span><span class="kw">year</span>(<span class="kw">c</span>(<span class="kw">Sys.time</span>(), <span class="kw">Sys.Date</span>()))</span>
+<span id="cb110-12"><a href="data-objects.html#cb110-12"></a><span class="co">#&gt; [1] 2020 1970</span></span></code></pre></div>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="data-objects.html#cb111-1"></a>x &lt;-<span class="st"> </span><span class="kw">Sys.time</span>()</span>
+<span id="cb111-2"><a href="data-objects.html#cb111-2"></a><span class="kw">class</span>(x)</span>
+<span id="cb111-3"><a href="data-objects.html#cb111-3"></a><span class="co">#&gt; [1] &quot;POSIXct&quot; &quot;POSIXt&quot;</span></span>
+<span id="cb111-4"><a href="data-objects.html#cb111-4"></a><span class="kw">format</span>(x, <span class="dt">format =</span> <span class="st">&quot;%Y-%m-%d&quot;</span>)</span>
+<span id="cb111-5"><a href="data-objects.html#cb111-5"></a><span class="co">#&gt; [1] &quot;2020-01-02&quot;</span></span></code></pre></div>
+<div class="rmdnote">
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="data-objects.html#cb112-1"></a>x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;2019-12-21&quot;</span>, <span class="st">&quot;2019/12/21&quot;</span>)</span>
+<span id="cb112-2"><a href="data-objects.html#cb112-2"></a>data.table<span class="op">::</span><span class="kw">year</span>(<span class="st">&quot;2019-12-21&quot;</span>)</span>
+<span id="cb112-3"><a href="data-objects.html#cb112-3"></a><span class="co">#&gt; [1] 2019</span></span>
+<span id="cb112-4"><a href="data-objects.html#cb112-4"></a>data.table<span class="op">::</span><span class="kw">year</span>(<span class="st">&quot;2019/12/21&quot;</span>)</span>
+<span id="cb112-5"><a href="data-objects.html#cb112-5"></a><span class="co">#&gt; [1] 2019</span></span></code></pre></div>
+<p>但是，下面这样会报错</p>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="data-objects.html#cb113-1"></a>data.table<span class="op">::</span><span class="kw">year</span>(x)</span>
+<span id="cb113-2"><a href="data-objects.html#cb113-2"></a><span class="co">#&gt; Error in as.POSIXlt.character(x): character string is not in a standard unambiguous format</span></span></code></pre></div>
+<p>正确的姿势是首先将表示日期的字符串格式统一</p>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="data-objects.html#cb114-1"></a><span class="kw">gsub</span>(<span class="dt">pattern =</span> <span class="st">&quot;/&quot;</span>, <span class="dt">replacement =</span> <span class="st">&quot;-&quot;</span>, x) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb114-2"><a href="data-objects.html#cb114-2"></a><span class="st">  </span>data.table<span class="op">::</span><span class="kw">year</span>()</span>
+<span id="cb114-3"><a href="data-objects.html#cb114-3"></a><span class="co">#&gt; [1] 2019 2019</span></span></code></pre></div>
+</div>
+<p>date-times 表示 POSIXct 和 POSIXlt 类型的日期对象</p>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="data-objects.html#cb115-1"></a>(x &lt;-<span class="st"> </span><span class="kw">Sys.time</span>())</span>
+<span id="cb115-2"><a href="data-objects.html#cb115-2"></a><span class="co">#&gt; [1] &quot;2020-01-02 14:47:05 UTC&quot;</span></span>
+<span id="cb115-3"><a href="data-objects.html#cb115-3"></a><span class="kw">class</span>(x)</span>
+<span id="cb115-4"><a href="data-objects.html#cb115-4"></a><span class="co">#&gt; [1] &quot;POSIXct&quot; &quot;POSIXt&quot;</span></span>
+<span id="cb115-5"><a href="data-objects.html#cb115-5"></a></span>
+<span id="cb115-6"><a href="data-objects.html#cb115-6"></a>data.table<span class="op">::</span><span class="kw">second</span>(x) <span class="co"># 取秒</span></span>
+<span id="cb115-7"><a href="data-objects.html#cb115-7"></a><span class="co">#&gt; [1] 5</span></span>
+<span id="cb115-8"><a href="data-objects.html#cb115-8"></a><span class="kw">format</span>(x, <span class="dt">format =</span> <span class="st">&quot;%S&quot;</span>)</span>
+<span id="cb115-9"><a href="data-objects.html#cb115-9"></a><span class="co">#&gt; [1] &quot;05&quot;</span></span>
+<span id="cb115-10"><a href="data-objects.html#cb115-10"></a></span>
+<span id="cb115-11"><a href="data-objects.html#cb115-11"></a>data.table<span class="op">::</span><span class="kw">minute</span>(x) <span class="co"># 取分</span></span>
+<span id="cb115-12"><a href="data-objects.html#cb115-12"></a><span class="co">#&gt; [1] 47</span></span>
+<span id="cb115-13"><a href="data-objects.html#cb115-13"></a><span class="kw">format</span>(x, <span class="dt">format =</span> <span class="st">&quot;%M&quot;</span>)</span>
+<span id="cb115-14"><a href="data-objects.html#cb115-14"></a><span class="co">#&gt; [1] &quot;47&quot;</span></span>
+<span id="cb115-15"><a href="data-objects.html#cb115-15"></a></span>
+<span id="cb115-16"><a href="data-objects.html#cb115-16"></a>data.table<span class="op">::</span><span class="kw">hour</span>(x) <span class="co"># 取时</span></span>
+<span id="cb115-17"><a href="data-objects.html#cb115-17"></a><span class="co">#&gt; [1] 14</span></span>
+<span id="cb115-18"><a href="data-objects.html#cb115-18"></a><span class="kw">format</span>(x, <span class="dt">format =</span> <span class="st">&quot;%H&quot;</span>)</span>
+<span id="cb115-19"><a href="data-objects.html#cb115-19"></a><span class="co">#&gt; [1] &quot;14&quot;</span></span>
+<span id="cb115-20"><a href="data-objects.html#cb115-20"></a>data.table<span class="op">::</span><span class="kw">yday</span>(x) <span class="co"># 此刻在一年的第几天</span></span>
+<span id="cb115-21"><a href="data-objects.html#cb115-21"></a><span class="co">#&gt; [1] 2</span></span>
+<span id="cb115-22"><a href="data-objects.html#cb115-22"></a></span>
+<span id="cb115-23"><a href="data-objects.html#cb115-23"></a>data.table<span class="op">::</span><span class="kw">wday</span>(x) <span class="co"># 此刻在一周的第几天，星期日是第1天，星期六是第7天</span></span>
+<span id="cb115-24"><a href="data-objects.html#cb115-24"></a><span class="co">#&gt; [1] 5</span></span>
+<span id="cb115-25"><a href="data-objects.html#cb115-25"></a>data.table<span class="op">::</span><span class="kw">mday</span>(x) <span class="co"># 此刻在当月第几天</span></span>
+<span id="cb115-26"><a href="data-objects.html#cb115-26"></a><span class="co">#&gt; [1] 2</span></span>
+<span id="cb115-27"><a href="data-objects.html#cb115-27"></a><span class="kw">format</span>(x, <span class="dt">format =</span> <span class="st">&quot;%d&quot;</span>)</span>
+<span id="cb115-28"><a href="data-objects.html#cb115-28"></a><span class="co">#&gt; [1] &quot;02&quot;</span></span>
+<span id="cb115-29"><a href="data-objects.html#cb115-29"></a></span>
+<span id="cb115-30"><a href="data-objects.html#cb115-30"></a><span class="kw">weekdays</span>(x)</span>
+<span id="cb115-31"><a href="data-objects.html#cb115-31"></a><span class="co">#&gt; [1] &quot;Thursday&quot;</span></span>
+<span id="cb115-32"><a href="data-objects.html#cb115-32"></a><span class="kw">weekdays</span>(x, <span class="dt">abbreviate =</span> T)</span>
+<span id="cb115-33"><a href="data-objects.html#cb115-33"></a><span class="co">#&gt; [1] &quot;Thu&quot;</span></span>
+<span id="cb115-34"><a href="data-objects.html#cb115-34"></a></span>
+<span id="cb115-35"><a href="data-objects.html#cb115-35"></a>data.table<span class="op">::</span><span class="kw">week</span>(x) <span class="co"># 此刻在第几周</span></span>
+<span id="cb115-36"><a href="data-objects.html#cb115-36"></a><span class="co">#&gt; [1] 1</span></span>
+<span id="cb115-37"><a href="data-objects.html#cb115-37"></a>data.table<span class="op">::</span><span class="kw">isoweek</span>(x)</span>
+<span id="cb115-38"><a href="data-objects.html#cb115-38"></a><span class="co">#&gt; [1] 1</span></span>
+<span id="cb115-39"><a href="data-objects.html#cb115-39"></a></span>
+<span id="cb115-40"><a href="data-objects.html#cb115-40"></a>data.table<span class="op">::</span><span class="kw">month</span>(x) <span class="co"># 此刻在第几月</span></span>
+<span id="cb115-41"><a href="data-objects.html#cb115-41"></a><span class="co">#&gt; [1] 1</span></span>
+<span id="cb115-42"><a href="data-objects.html#cb115-42"></a><span class="kw">format</span>(x, <span class="dt">format =</span> <span class="st">&quot;%m&quot;</span>)</span>
+<span id="cb115-43"><a href="data-objects.html#cb115-43"></a><span class="co">#&gt; [1] &quot;01&quot;</span></span>
+<span id="cb115-44"><a href="data-objects.html#cb115-44"></a></span>
+<span id="cb115-45"><a href="data-objects.html#cb115-45"></a><span class="kw">months</span>(x)</span>
+<span id="cb115-46"><a href="data-objects.html#cb115-46"></a><span class="co">#&gt; [1] &quot;January&quot;</span></span>
+<span id="cb115-47"><a href="data-objects.html#cb115-47"></a><span class="kw">months</span>(x, <span class="dt">abbreviate =</span> T)</span>
+<span id="cb115-48"><a href="data-objects.html#cb115-48"></a><span class="co">#&gt; [1] &quot;Jan&quot;</span></span>
+<span id="cb115-49"><a href="data-objects.html#cb115-49"></a></span>
+<span id="cb115-50"><a href="data-objects.html#cb115-50"></a>data.table<span class="op">::</span><span class="kw">quarter</span>(x) <span class="co"># 此刻在第几季度</span></span>
+<span id="cb115-51"><a href="data-objects.html#cb115-51"></a><span class="co">#&gt; [1] 1</span></span>
+<span id="cb115-52"><a href="data-objects.html#cb115-52"></a><span class="kw">quarters</span>(x)</span>
+<span id="cb115-53"><a href="data-objects.html#cb115-53"></a><span class="co">#&gt; [1] &quot;Q1&quot;</span></span>
+<span id="cb115-54"><a href="data-objects.html#cb115-54"></a></span>
+<span id="cb115-55"><a href="data-objects.html#cb115-55"></a>data.table<span class="op">::</span><span class="kw">year</span>(x) <span class="co"># 取年</span></span>
+<span id="cb115-56"><a href="data-objects.html#cb115-56"></a><span class="co">#&gt; [1] 2020</span></span>
+<span id="cb115-57"><a href="data-objects.html#cb115-57"></a><span class="kw">format</span>(x, <span class="dt">format =</span> <span class="st">&quot;%Y&quot;</span>)</span>
+<span id="cb115-58"><a href="data-objects.html#cb115-58"></a><span class="co">#&gt; [1] &quot;2020&quot;</span></span></code></pre></div>
+<div class="rmdtip">
+<p><code>format()</code> 是一个泛型函数，此刻命名空间有 76 方法。
+<code>format.Date()</code>， <code>format.difftime()</code>， <code>format.POSIXct()</code> 和 <code>format.POSIXlt()</code> 四个函数通过格式化不同类型的日期数据对象抽取指定部分。</p>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="data-objects.html#cb116-1"></a><span class="kw">format</span>(<span class="kw">difftime</span>(<span class="kw">Sys.time</span>(), x, <span class="dt">units =</span> <span class="st">&quot;secs&quot;</span>))</span>
+<span id="cb116-2"><a href="data-objects.html#cb116-2"></a><span class="co">#&gt; [1] &quot;0.05330873 secs&quot;</span></span></code></pre></div>
+<p>日期转化详见 <span class="citation">(<span class="citeproc-not-found" data-reference-id="Brian_2001_date"><strong>???</strong></span>; <span class="citeproc-not-found" data-reference-id="Gabor_2004_date"><strong>???</strong></span>)</span></p>
+</div>
+</div>
+<div id="subsec:null" class="section level2">
+<h2><span class="header-section-number">3.3</span> 空值</h2>
+<p>移除<code>list()</code> 列表里的为 <code>NULL</code> 元素</p>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="data-objects.html#cb117-1"></a>rm_null &lt;-<span class="st"> </span><span class="cf">function</span>(l) <span class="kw">Filter</span>(<span class="kw">Negate</span>(is.null), l)</span></code></pre></div>
+</div>
+<div id="subsec:character" class="section level2">
+<h2><span class="header-section-number">3.4</span> 字符串</h2>
+</div>
+<div id="subsec:expression" class="section level2">
+<h2><span class="header-section-number">3.5</span> 表达式</h2>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="data-objects.html#cb118-1"></a><span class="co"># %||% 中缀符</span></span>
+<span id="cb118-2"><a href="data-objects.html#cb118-2"></a><span class="co"># x 是空值或者长度为 0 则保留 y 否则保留 x</span></span>
+<span id="cb118-3"><a href="data-objects.html#cb118-3"></a><span class="cf">function</span>(x, y) <span class="cf">if</span> (<span class="kw">is.null</span>(x) <span class="op">||</span><span class="st"> </span><span class="kw">length</span>(x) <span class="op">==</span><span class="st"> </span><span class="dv">0</span>) y <span class="cf">else</span> x</span>
+<span id="cb118-4"><a href="data-objects.html#cb118-4"></a><span class="co">#&gt; function(x, y) if (is.null(x) || length(x) == 0) y else x</span></span></code></pre></div>
+</div>
+<div id="oop-matrix" class="section level2">
+<h2><span class="header-section-number">3.6</span> 矩阵</h2>
+</div>
+<div id="oop-array" class="section level2">
+<h2><span class="header-section-number">3.7</span> 数组</h2>
+<p>更多数组操作 <a href="https://github.com/r-lib/rray">rray</a></p>
+</div>
+<div id="oop-data.frame" class="section level2">
+<h2><span class="header-section-number">3.8</span> 数据框</h2>
+</div>
+<div id="oop-table" class="section level2">
+<h2><span class="header-section-number">3.9</span> 表格</h2>
+</div>
+<div id="oop-list" class="section level2">
+<h2><span class="header-section-number">3.10</span> 列表</h2>
+</div>
+<div id="oop-ts" class="section level2">
+<h2><span class="header-section-number">3.11</span> 时间序列</h2>
+<p><a href="https://blog.revolutionanalytics.com/2011/07/the-r-files-jeff-ryan.html">Jeffrey A. Ryan</a> 开发的 <a href="https://github.com/joshuaulrich/xts">xts</a> 和 <a href="https://github.com/joshuaulrich/quantmod">quantmod</a> 包，Joshua M. Ulrich 开发的 <a href="https://r-forge.r-project.org/projects/zoo/">zoo</a> 是处理时间序列数据的主要工具</p>
+<p>Jeffrey A. Ryan 在开设了一门免费课程教大家如何在 R 语言中使用 xts 和 zoo 包操作时间序列数据<a href="#fn15" class="footnote-ref" id="fnref15"><sup>15</sup></a></p>
+<p>xts (eXtensible Time Series) 扩展的 zoo 对象</p>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="data-objects.html#cb119-1"></a><span class="kw">xts</span>(<span class="dt">x =</span> <span class="ot">NULL</span>,</span>
+<span id="cb119-2"><a href="data-objects.html#cb119-2"></a>    <span class="dt">order.by =</span> <span class="kw">index</span>(x),</span>
+<span id="cb119-3"><a href="data-objects.html#cb119-3"></a>    <span class="dt">frequency =</span> <span class="ot">NULL</span>,</span>
+<span id="cb119-4"><a href="data-objects.html#cb119-4"></a>    <span class="dt">unique =</span> <span class="ot">TRUE</span>,</span>
+<span id="cb119-5"><a href="data-objects.html#cb119-5"></a>    <span class="dt">tzone =</span> <span class="kw">Sys.getenv</span>(<span class="st">&quot;TZ&quot;</span>),</span>
+<span id="cb119-6"><a href="data-objects.html#cb119-6"></a>    ...)</span></code></pre></div>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="data-objects.html#cb120-1"></a><span class="kw">library</span>(zoo)</span>
+<span id="cb120-2"><a href="data-objects.html#cb120-2"></a><span class="kw">library</span>(xts)</span>
+<span id="cb120-3"><a href="data-objects.html#cb120-3"></a>x =<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, <span class="dt">ncol =</span> <span class="dv">2</span>,<span class="dt">nrow =</span> <span class="dv">2</span>)</span>
+<span id="cb120-4"><a href="data-objects.html#cb120-4"></a>idx &lt;-<span class="st"> </span><span class="kw">as.Date</span>(<span class="kw">c</span>(<span class="st">&quot;2018-01-01&quot;</span>, <span class="st">&quot;2019-12-12&quot;</span>))</span>
+<span id="cb120-5"><a href="data-objects.html#cb120-5"></a><span class="co"># xts = matrix + index</span></span>
+<span id="cb120-6"><a href="data-objects.html#cb120-6"></a><span class="kw">xts</span>(x, <span class="dt">order.by =</span> idx)</span>
+<span id="cb120-7"><a href="data-objects.html#cb120-7"></a><span class="co">#&gt;            [,1] [,2]</span></span>
+<span id="cb120-8"><a href="data-objects.html#cb120-8"></a><span class="co">#&gt; 2018-01-01    1    3</span></span>
+<span id="cb120-9"><a href="data-objects.html#cb120-9"></a><span class="co">#&gt; 2019-12-12    2    4</span></span></code></pre></div>
+<p>Date，POSIX times，timeDate，chron 等各种各样处理日期数据的对象</p>
+</div>
+<div id="oop-sf" class="section level2">
+<h2><span class="header-section-number">3.12</span> 空间数据</h2>
+<p>sp sf raster 等对象</p>
 
 </div>
-<div id="sec:pie" class="section level2">
-<h2><span class="header-section-number">12.2</span> 饼图</h2>
-<div class="sourceCode" id="cb599"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb599-1"><a href="dv-plotly.html#cb599-1"></a><span class="kw">library</span>(ggplot2)</span>
-<span id="cb599-2"><a href="dv-plotly.html#cb599-2"></a><span class="kw">library</span>(plotly)</span>
-<span id="cb599-3"><a href="dv-plotly.html#cb599-3"></a><span class="co">#&gt; </span></span>
-<span id="cb599-4"><a href="dv-plotly.html#cb599-4"></a><span class="co">#&gt; Attaching package: &#39;plotly&#39;</span></span>
-<span id="cb599-5"><a href="dv-plotly.html#cb599-5"></a><span class="co">#&gt; The following object is masked from &#39;package:ggplot2&#39;:</span></span>
-<span id="cb599-6"><a href="dv-plotly.html#cb599-6"></a><span class="co">#&gt; </span></span>
-<span id="cb599-7"><a href="dv-plotly.html#cb599-7"></a><span class="co">#&gt;     last_plot</span></span>
-<span id="cb599-8"><a href="dv-plotly.html#cb599-8"></a><span class="co">#&gt; The following object is masked from &#39;package:stats&#39;:</span></span>
-<span id="cb599-9"><a href="dv-plotly.html#cb599-9"></a><span class="co">#&gt; </span></span>
-<span id="cb599-10"><a href="dv-plotly.html#cb599-10"></a><span class="co">#&gt;     filter</span></span>
-<span id="cb599-11"><a href="dv-plotly.html#cb599-11"></a><span class="co">#&gt; The following object is masked from &#39;package:graphics&#39;:</span></span>
-<span id="cb599-12"><a href="dv-plotly.html#cb599-12"></a><span class="co">#&gt; </span></span>
-<span id="cb599-13"><a href="dv-plotly.html#cb599-13"></a><span class="co">#&gt;     layout</span></span>
-<span id="cb599-14"><a href="dv-plotly.html#cb599-14"></a></span>
-<span id="cb599-15"><a href="dv-plotly.html#cb599-15"></a>USPersonalExpenditure &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="st">&quot;Categorie&quot;</span> =<span class="st"> </span><span class="kw">rownames</span>(USPersonalExpenditure), USPersonalExpenditure)</span>
-<span id="cb599-16"><a href="dv-plotly.html#cb599-16"></a>data &lt;-<span class="st"> </span>USPersonalExpenditure[, <span class="kw">c</span>(<span class="st">&quot;Categorie&quot;</span>, <span class="st">&quot;X1960&quot;</span>)]</span>
-<span id="cb599-17"><a href="dv-plotly.html#cb599-17"></a></span>
-<span id="cb599-18"><a href="dv-plotly.html#cb599-18"></a>colors &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;rgb(211,94,96)&quot;</span>, <span class="st">&quot;rgb(128,133,133)&quot;</span>, <span class="st">&quot;rgb(144,103,167)&quot;</span>, <span class="st">&quot;rgb(171,104,87)&quot;</span>, <span class="st">&quot;rgb(114,147,203)&quot;</span>)</span>
-<span id="cb599-19"><a href="dv-plotly.html#cb599-19"></a></span>
-<span id="cb599-20"><a href="dv-plotly.html#cb599-20"></a>p &lt;-<span class="st"> </span><span class="kw">plot_ly</span>(data,</span>
-<span id="cb599-21"><a href="dv-plotly.html#cb599-21"></a>  <span class="dt">labels =</span> <span class="op">~</span>Categorie, <span class="dt">values =</span> <span class="op">~</span>X1960, <span class="dt">type =</span> <span class="st">&quot;pie&quot;</span>,</span>
-<span id="cb599-22"><a href="dv-plotly.html#cb599-22"></a>  <span class="dt">textposition =</span> <span class="st">&quot;inside&quot;</span>,</span>
-<span id="cb599-23"><a href="dv-plotly.html#cb599-23"></a>  <span class="dt">textinfo =</span> <span class="st">&quot;label+percent&quot;</span>,</span>
-<span id="cb599-24"><a href="dv-plotly.html#cb599-24"></a>  <span class="dt">insidetextfont =</span> <span class="kw">list</span>(<span class="dt">color =</span> <span class="st">&quot;#FFFFFF&quot;</span>),</span>
-<span id="cb599-25"><a href="dv-plotly.html#cb599-25"></a>  <span class="dt">hoverinfo =</span> <span class="st">&quot;text&quot;</span>,</span>
-<span id="cb599-26"><a href="dv-plotly.html#cb599-26"></a>  <span class="dt">text =</span> <span class="op">~</span><span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot;$&quot;</span>, X1960, <span class="st">&quot; billions&quot;</span>),</span>
-<span id="cb599-27"><a href="dv-plotly.html#cb599-27"></a>  <span class="dt">marker =</span> <span class="kw">list</span>(</span>
-<span id="cb599-28"><a href="dv-plotly.html#cb599-28"></a>    <span class="dt">colors =</span> colors,</span>
-<span id="cb599-29"><a href="dv-plotly.html#cb599-29"></a>    <span class="dt">line =</span> <span class="kw">list</span>(<span class="dt">color =</span> <span class="st">&quot;#FFFFFF&quot;</span>, <span class="dt">width =</span> <span class="dv">1</span>)</span>
-<span id="cb599-30"><a href="dv-plotly.html#cb599-30"></a>  ),</span>
-<span id="cb599-31"><a href="dv-plotly.html#cb599-31"></a>  <span class="co"># The &#39;pull&#39; attribute can also be used to create space between the sectors</span></span>
-<span id="cb599-32"><a href="dv-plotly.html#cb599-32"></a>  <span class="dt">showlegend =</span> <span class="ot">FALSE</span></span>
-<span id="cb599-33"><a href="dv-plotly.html#cb599-33"></a>) <span class="op">%&gt;%</span></span>
-<span id="cb599-34"><a href="dv-plotly.html#cb599-34"></a><span class="st">  </span><span class="kw">layout</span>(</span>
-<span id="cb599-35"><a href="dv-plotly.html#cb599-35"></a>    <span class="dt">title =</span> <span class="st">&quot;United States Personal Expenditures by Categories in 1960&quot;</span>,</span>
-<span id="cb599-36"><a href="dv-plotly.html#cb599-36"></a>    <span class="dt">xaxis =</span> <span class="kw">list</span>(<span class="dt">showgrid =</span> <span class="ot">FALSE</span>, <span class="dt">zeroline =</span> <span class="ot">FALSE</span>, <span class="dt">showticklabels =</span> <span class="ot">FALSE</span>),</span>
-<span id="cb599-37"><a href="dv-plotly.html#cb599-37"></a>    <span class="dt">yaxis =</span> <span class="kw">list</span>(<span class="dt">showgrid =</span> <span class="ot">FALSE</span>, <span class="dt">zeroline =</span> <span class="ot">FALSE</span>, <span class="dt">showticklabels =</span> <span class="ot">FALSE</span>)</span>
-<span id="cb599-38"><a href="dv-plotly.html#cb599-38"></a>  )</span>
-<span id="cb599-39"><a href="dv-plotly.html#cb599-39"></a></span>
-<span id="cb599-40"><a href="dv-plotly.html#cb599-40"></a>p</span></code></pre></div>
-<div id="htmlwidget-0eb6828b6c1154486afe" style="width:70%;height:1112.4px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-0eb6828b6c1154486afe">{"x":{"visdat":{"278133ad0565":["function () ","plotlyVisDat"]},"cur_data":"278133ad0565","attrs":{"278133ad0565":{"labels":{},"values":{},"textposition":"inside","textinfo":"label+percent","insidetextfont":{"color":"#FFFFFF"},"hoverinfo":"text","text":{},"marker":{"colors":["rgb(211,94,96)","rgb(128,133,133)","rgb(144,103,167)","rgb(171,104,87)","rgb(114,147,203)"],"line":{"color":"#FFFFFF","width":1}},"showlegend":false,"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"pie"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"United States Personal Expenditures by Categories in 1960","xaxis":{"showgrid":false,"zeroline":false,"showticklabels":false},"yaxis":{"showgrid":false,"zeroline":false,"showticklabels":false},"hovermode":"closest","showlegend":true},"source":"A","config":{"showSendToCloud":false},"data":[{"labels":["Food and Tobacco","Household Operation","Medical and Health","Personal Care","Private Education"],"values":[86.8,46.2,21.1,5.4,3.64],"textposition":["inside","inside","inside","inside","inside"],"textinfo":"label+percent","insidetextfont":{"color":"#FFFFFF"},"hoverinfo":["text","text","text","text","text"],"text":["$ 86.8  billions","$ 46.2  billions","$ 21.1  billions","$ 5.4  billions","$ 3.64  billions"],"marker":{"color":"rgba(31,119,180,1)","colors":["rgb(211,94,96)","rgb(128,133,133)","rgb(144,103,167)","rgb(171,104,87)","rgb(114,147,203)"],"line":{"color":"#FFFFFF","width":1}},"showlegend":false,"type":"pie","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
-
 </div>
+<div class="footnotes">
+<hr />
+<ol start="14">
+<li id="fn14"><p>表格中带 *** 标记的类型，用户不能轻易获得<a href="data-objects.html#fnref14" class="footnote-back">↩︎</a></p></li>
+<li id="fn15"><p><a href="https://www.datacamp.com/courses/manipulating-time-series-data-in-r-with-xts-zoo" class="uri">https://www.datacamp.com/courses/manipulating-time-series-data-in-r-with-xts-zoo</a><a href="data-objects.html#fnref15" class="footnote-back">↩︎</a></p></li>
+</ol>
 </div>
 <script>
 window.onload = function() {
@@ -602,8 +919,8 @@ window.onload = function() {
           </div>
         </div>
       </div>
-<a href="dv-ggplot2.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="dv-plot3d.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="files.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="data-import.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -634,7 +951,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/XiangyunHuang/RGraphics/edit/master/dv-plotly.Rmd",
+"link": "https://github.com/XiangyunHuang/RGraphics/edit/master/data-objects.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -645,7 +962,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["_main.pdf", "_main.epub", "_main.mobi", "https://github.com/XiangyunHuang/RGraphics/raw/master/dv-plotly.Rmd"],
+"download": ["_main.pdf", "_main.epub", "_main.mobi", "https://github.com/XiangyunHuang/RGraphics/raw/master/data-objects.Rmd"],
 "toc": {
 "collapse": "section"
 }

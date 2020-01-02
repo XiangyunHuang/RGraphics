@@ -620,7 +620,7 @@ apropos("dev.")
 
 ```r
 sessionInfo()
-#> R Under development (unstable) (2019-11-17 r77429)
+#> R Under development (unstable) (2019-12-29 r77627)
 #> Platform: x86_64-pc-linux-gnu (64-bit)
 #> Running under: Ubuntu 16.04.6 LTS
 #> 
@@ -641,15 +641,15 @@ sessionInfo()
 #> 
 #> other attached packages:
 #> [1] lattice_0.20-38      latex2exp_0.4.0      rsm_2.10            
-#> [4] MBA_0.0-9            plot3D_1.1.1         scatterplot3d_0.3-41
-#> [7] plotrix_3.7-6        barsurf_0.3.1       
+#> [4] MBA_0.0-9            plot3D_1.3           scatterplot3d_0.3-41
+#> [7] plotrix_3.7-7        barsurf_0.3.1       
 #> 
 #> loaded via a namespace (and not attached):
 #>  [1] Rcpp_1.0.3        knitr_1.26        magrittr_1.5      misc3d_0.8-4     
-#>  [5] colorspace_1.4-2  rlang_0.4.1       filehash_2.4-2    highr_0.8        
-#>  [9] stringr_1.4.0     pdftools_2.3      tools_4.0.0       grid_4.0.0       
-#> [13] tikzDevice_0.12.3 xfun_0.11         tinytex_0.17      askpass_1.1      
-#> [17] htmltools_0.4.0   yaml_2.2.0        digest_0.6.22     qpdf_1.1         
-#> [21] bookdown_0.15     codetools_0.2-16  curl_4.2          evaluate_0.14    
-#> [25] rmarkdown_1.17    stringi_1.4.3     compiler_4.0.0    magick_2.2
+#>  [5] colorspace_1.4-1  rlang_0.4.2       filehash_2.4-2    stringr_1.4.0    
+#>  [9] highr_0.8         pdftools_2.3      tools_4.0.0       grid_4.0.0       
+#> [13] tikzDevice_0.12.3 xfun_0.11         tinytex_0.18      askpass_1.1      
+#> [17] htmltools_0.4.0   yaml_2.2.0        digest_0.6.23     qpdf_1.1         
+#> [21] bookdown_0.16     codetools_0.2-16  curl_4.3          evaluate_0.14    
+#> [25] rmarkdown_2.0     stringi_1.4.3     compiler_4.0.0    magick_2.2
 ```

@@ -177,8 +177,13 @@ hchart(Orange, "line", hcaes(x = age, y = circumference, group = Tree))
 
 ### 时间序列图 {#subsubsec:ts-hc-line}
 
+
+```r
+library(ggfortify)
+```
+
 ::: rmdtip
-**ggfortify** 包 [@Tang_2016_ggfortify] 大大扩展了 **ggplot2** 包内置的函数 `autoplot()` 的功能，使得它可以适用 2 种数据对象的直接绘图
+**ggfortify** 包 [@Tang_2016_ggfortify] 大大扩展了 **ggplot2** 包内置的函数 `autoplot()` 的功能，使得它可以适用 67 种数据对象的直接绘图
 :::
 
 Base R 对时间序列类型 ts 的数据对象提供了泛型函数 `plot.ts()` 支持

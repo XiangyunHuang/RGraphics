@@ -21,7 +21,6 @@ Table: (\#tab:ggplot2-eco)ggplot2 生态系统
 
 Package                 Title                                                                                      
 ----------------------  -------------------------------------------------------------------------------------------
-**gg.gap**              Define Segments in y-Axis for ggplot2                                                      
 **ggallin**             Grab Bag of ggplot2 Functions                                                              
 **ggalluvial**          Alluvial Plots in ggplot2                                                                  
 **ggalt**               Extra Coordinate Systems, Geoms, Statistical Transformations, Scales and Fonts for ggplot2 
@@ -52,6 +51,7 @@ Package                 Title
 **ggforce**             Accelerating ggplot2                                                                       
 **ggformula**           Formula Interface to the Grammar of Graphics                                               
 **ggfortify**           Data Visualization Tools for Statistical Analysis Results                                  
+**gg.gap**              Define Segments in y-Axis for ggplot2                                                      
 **gggenes**             Draw Gene Arrow Maps in ggplot2                                                            
 **ggghost**             Capture the Spirit of Your ggplot2 Calls                                                   
 **gggibbous**           Moon Charts, a Pie Chart Alternative                                                       
@@ -84,13 +84,13 @@ Package                 Title
 **ggparliament**        Parliament Plots                                                                           
 **ggparty**             ggplot Visualizations for the partykit Package                                             
 **ggperiodic**          Easy Plotting of Periodic Data with ggplot2                                                
-**ggplot.multistats**   Multiple Summary Statistics for Binned Stats/Geometries                                    
 **ggplot2**             Create Elegant Data Visualisations Using the Grammar of Graphics                           
 **ggplot2movies**       Movies Data                                                                                
 **ggplotAssist**        RStudio Addin for Teaching and Learning ggplot2                                            
 **ggplotgui**           Create Ggplots via a Graphical User Interface                                              
 **ggplotify**           Convert Plot to grob or ggplot Object                                                      
 **ggplotlyExtra**       Extra Convenience Functions for Plotly                                                     
+**ggplot.multistats**   Multiple Summary Statistics for Binned Stats/Geometries                                    
 **ggpmisc**             Miscellaneous Extensions to ggplot2                                                        
 **ggPMX**               ggplot2 Based Tool to Facilitate Diagnostic Plots for NLME Models                          
 **ggpointdensity**      A Cross Between a 2D Density Plot and a Scatter Plot                                       
@@ -1355,7 +1355,7 @@ xfun::session_info(
     "nlme", "mgcv", "ggbeeswarm", "ggridges", "hexbin"
   )
 )
-#> R Under development (unstable) (2019-11-17 r77429)
+#> R Under development (unstable) (2019-12-29 r77627)
 #> Platform: x86_64-pc-linux-gnu (64-bit)
 #> Running under: Ubuntu 16.04.6 LTS
 #> 
@@ -1369,21 +1369,22 @@ xfun::session_info(
 #> 
 #> Package version:
 #>   assertthat_0.2.1   backports_1.1.5    beeswarm_0.2.3    
-#>   cli_1.1.0          colorspace_1.4-2   crayon_1.3.4      
-#>   digest_0.6.22      ellipsis_0.3.0     fansi_0.4.0       
-#>   ggbeeswarm_0.6.0   ggplot2_3.2.1      ggridges_0.5.1    
-#>   glue_1.3.1         graphics_4.0.0     grDevices_4.0.0   
-#>   grid_4.0.0         gtable_0.3.0       hexbin_1.28.0     
-#>   labeling_0.3       lattice_0.20.38    lazyeval_0.2.2    
-#>   magrittr_1.5       MASS_7.3.51.4      Matrix_1.2.17     
-#>   methods_4.0.0      mgcv_1.8-31        munsell_0.5.0     
-#>   nlme_3.1-142       pillar_1.4.2       pkgconfig_2.0.3   
-#>   plyr_1.8.4         R6_2.4.1           RColorBrewer_1.1.2
-#>   Rcpp_1.0.3         reshape2_1.4.3     rlang_0.4.1       
-#>   scales_1.0.0       splines_4.0.0      stats_4.0.0       
-#>   stringi_1.4.3      stringr_1.4.0      tibble_2.1.3      
-#>   tools_4.0.0        utf8_1.1.4         utils_4.0.0       
-#>   vctrs_0.2.0        vipor_0.4.5        viridisLite_0.3.0 
-#>   withr_2.1.2        zeallot_0.1.0
+#>   cli_2.0.0          colorspace_1.4-1   crayon_1.3.4      
+#>   digest_0.6.23      ellipsis_0.3.0     fansi_0.4.0       
+#>   farver_2.0.1       ggbeeswarm_0.6.0   ggplot2_3.2.1     
+#>   ggridges_0.5.1     glue_1.3.1         graphics_4.0.0    
+#>   grDevices_4.0.0    grid_4.0.0         gtable_0.3.0      
+#>   hexbin_1.28.0      labeling_0.3       lattice_0.20.38   
+#>   lazyeval_0.2.2     lifecycle_0.1.0    magrittr_1.5      
+#>   MASS_7.3.51.5      Matrix_1.2.18      methods_4.0.0     
+#>   mgcv_1.8-31        munsell_0.5.0      nlme_3.1-143      
+#>   pillar_1.4.3       pkgconfig_2.0.3    plyr_1.8.5        
+#>   R6_2.4.1           RColorBrewer_1.1.2 Rcpp_1.0.3        
+#>   reshape2_1.4.3     rlang_0.4.2        scales_1.1.0      
+#>   splines_4.0.0      stats_4.0.0        stringi_1.4.3     
+#>   stringr_1.4.0      tibble_2.1.3       tools_4.0.0       
+#>   utf8_1.1.4         utils_4.0.0        vctrs_0.2.1       
+#>   vipor_0.4.5        viridisLite_0.3.0  withr_2.1.2       
+#>   zeallot_0.1.0
 ```
 
