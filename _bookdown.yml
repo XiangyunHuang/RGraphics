@@ -21,6 +21,7 @@ rmd_files:
 - "data-frame.Rmd"
 - "data-tibble.Rmd"
 - "data-table.Rmd"
+- "data-parallel.Rmd"
 
 - "dc-string-manipulation.Rmd"
 - "dc-regular-expressions.Rmd"

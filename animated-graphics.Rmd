@@ -43,7 +43,8 @@ p <- ggplot(airquality, aes(Day, Temp)) +
 
 # Render and show the video
 q <- 2
-df <- animate(p, renderer = av_renderer('animation.mp4'), width = 720*q, height = 480*q, res = 72*q, fps = 25)                                               
+df <- animate(p, renderer = av_renderer('animation.mp4'), 
+         width = 720*q, height = 480*q, res = 72*q, fps = 25)                                               
 
 utils::browseURL('animation.mp4')
 ```

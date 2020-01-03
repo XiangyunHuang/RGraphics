@@ -408,6 +408,44 @@ df[!duplicated(df[, 1:2]), ]
 ```
 
 
+## 数据缺失 {#base-missing}
+
+缺失数据操作
+
+```{r}
+data("airquality")
+head(airquality)
+```
+
+对缺失值的处理默认是 `na.action = na.omit`
+
+```{r}
+# Ozone 最高的那天
+aggregate(data = airquality, Ozone ~ Month, max)
+# 每月 Ozone, Solar.R, Wind, Temp 平均值
+aggregate(data = airquality, Ozone ~ Month, mean)
+```
+
+缺失值处理
+
+```{r,eval=FALSE}
+library(DataExplorer)
+plot_missing(airquality)
+```
+
+查看包含缺失的记录，不完整的记录
+
+```{r}
+airquality[!complete.cases(airquality), ]
+```
+
+Ozone 和 Solar.R 同时包含缺失值的行
+
+```{r}
+airquality[is.na(airquality$Ozone) & is.na(airquality$Solar.R), ]
+```
+
+
 ## 数据聚合 {#base-aggregate}
 
 分组求和 <https://stackoverflow.com/questions/1660124>
