@@ -20,6 +20,7 @@ pandoc_version: 2.7.3
 env:
   global:
     - MAKEFLAGS="-j 2"
+    - TRAVIS_PYTHON_VERSION="3.7"
 
 repos:
   CRAN: https://cloud.r-project.org
@@ -72,6 +73,17 @@ addons:
       ## rgl
       -  libglu1-mesa-dev 
       -  libx11-dev
+
+install:
+  - wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
+  - bash miniconda.sh -b -p $HOME/miniconda
+  - export PATH="$HOME/miniconda/bin:$PATH"
+  - hash -r
+  - conda config --set always_yes yes --set changeps1 no
+  - conda update -q conda
+  - conda info -a
+  - conda create -q -n ml python=$TRAVIS_PYTHON_VERSION
+  - source activate ml
 
 before_script:
   - mkdir -p ~/.R ~/.fonts

@@ -6,10 +6,16 @@ library(knitr)
 library(rmarkdown)
 library(shiny)
 library(magrittr)
+knitr::opts_chunk$set(python.reticulate = TRUE)
+reticulate::use_condaenv(condaenv = "ml")
 ```
 
 <!-- 不要安装新的 R 包，以截图的方式辅助说明即可 -->
 
+```{python}
+import os
+print(os.listdir())
+```
 
 ::: rmdnote
 R Markdown 文档[@xie2018rmarkdown] 中的 Python 代码块是由 knitr 包 [@xie2015knitr] 负责调度处理的，展示 Matplotlib 绘图的结果使用了 reticulate 包 [@R-reticulate] 提供的 Python 引擎而不是 knitr 自带的。
@@ -19,18 +25,10 @@ R Markdown 文档[@xie2018rmarkdown] 中的 Python 代码块是由 knitr 包 [@x
 - [周沫凡](https://morvanzhou.github.io/) 制作的莫烦 Python 系列视频教程之 [Matplotlib 数据可视化神器](https://morvanzhou.github.io/tutorials/data-manipulation/plt/)
 - 陈治兵维护的在线 [Matplotlib 中文文档](https://www.matplotlib.org.cn/)
 
-## 软件信息 {#sessioninfo .unnumbered} 
-
 编译书籍使用的 Python 3 模块有
 
 ```{bash,results='asis',eval=FALSE}
 pip3 list --format=columns
-```
-
-R 代码运行环境
-
-```{r}
-sessionInfo()
 ```
 
 ::: rmdtip
@@ -45,20 +43,18 @@ R 和 Python 之间的交互，Python 负责数据处理和建模， R 负责绘
 
 pandas 读取数据，整理后由 reticulate 包传递给 R 环境中的 data.frame 对象，加载 ggplot2 绘图
 
-```{r,echo=FALSE,eval=!file.exists('iris.csv'),eval=FALSE}
+```{r,echo=FALSE,eval=!file.exists('iris.csv')}
 write.csv(iris, file = 'iris.csv', row.names = F)
 ```
-```{python,eval=FALSE}
+```{python}
 import pandas as pd
 iris2 = pd.read_csv('iris.csv')
 ```
-```{r,echo=FALSE,results='hide',eval=FALSE}
+```{r,echo=FALSE,results='hide'}
 if(file.exists('iris.csv')) file.remove('iris.csv')
 ```
 
-
-
-```{r reti-plot,fig.cap="散点图",eval=FALSE}
+```{r reti-plot,fig.cap="散点图"}
 library(reticulate)
 library(ggplot2)
 ggplot(py$iris2, aes(x = Sepal.Length, y = Sepal.Width)) +
@@ -71,6 +67,21 @@ library(ggplot2)
 ggplot(faithfuld, aes(waiting, eruptions)) +
   geom_raster(aes(fill = density)) +
   scale_fill_continuous()
+```
+
+如图 \@ref(fig:demo) 所示
+
+```{python demo,fig.cap="Python Graphics"}
+import matplotlib.pyplot as plt
+import numpy as np
+n = 1024    # data size
+X = np.random.normal(0, 1, n)
+Y = np.random.normal(0, 1, n)
+T = np.arctan2(Y,X) # for color value
+plt.scatter(X, Y, s=75, c=T, alpha=.5)
+plt.xlim(-1.5, 1.5)
+plt.ylim(-1.5, 1.5)
+plt.show()
 ```
 
 [^r-blogdown]: 有些内容也会放在我的博客上 <https://r-bloggers.netlify.com/>，博客使用 blogdown 包 [@xie2017blogdown] 搭建的
