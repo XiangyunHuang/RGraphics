@@ -20,7 +20,7 @@ pandoc_version: 2.7.3
 env:
   global:
     - MAKEFLAGS="-j 2"
-    - TRAVIS_PYTHON_VERSION="3.7"
+    - TRAVIS_PYTHON_VERSION="3.6"
 
 repos:
   CRAN: https://cloud.r-project.org
@@ -84,7 +84,7 @@ install:
   - conda info -a
   - conda create -q -n ml python=$TRAVIS_PYTHON_VERSION
   - source activate ml
-  - conda install matplotlib numpy scipy pandas
+  - conda install matplotlib pandas
 
 before_script:
   - mkdir -p ~/.R ~/.fonts
