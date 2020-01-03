@@ -84,7 +84,7 @@ install:
   - conda info -a
   - conda create -q -n ml python=$TRAVIS_PYTHON_VERSION
   - source activate ml
-  - conda install matplotlib numpy scipy
+  - conda install matplotlib numpy scipy pandas
 
 before_script:
   - mkdir -p ~/.R ~/.fonts
