@@ -81,8 +81,6 @@ addons:
 
 install:
   - virtualenv -p /usr/bin/python3 /opt/pyenv/shims/r-tensorflow
-  - chown -R root:$(whoami) /opt/pyenv
-  - chmod -R g+w /opt/pyenv
   - source /opt/pyenv/shims/r-tensorflow/bin/activate
   - pip install numpy matplotlib tensorflow
 #  - echo "source /opt/pyenv/shims/r-tensorflow/bin/activate" | tee -a ~/.bashrc
