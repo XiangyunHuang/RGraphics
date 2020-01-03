@@ -21,6 +21,7 @@ Table: (\#tab:ggplot2-eco)ggplot2 生态系统
 
 Package                 Title                                                                                      
 ----------------------  -------------------------------------------------------------------------------------------
+**gg.gap**              Define Segments in y-Axis for ggplot2                                                      
 **ggallin**             Grab Bag of ggplot2 Functions                                                              
 **ggalluvial**          Alluvial Plots in ggplot2                                                                  
 **ggalt**               Extra Coordinate Systems, Geoms, Statistical Transformations, Scales and Fonts for ggplot2 
@@ -51,7 +52,6 @@ Package                 Title
 **ggforce**             Accelerating ggplot2                                                                       
 **ggformula**           Formula Interface to the Grammar of Graphics                                               
 **ggfortify**           Data Visualization Tools for Statistical Analysis Results                                  
-**gg.gap**              Define Segments in y-Axis for ggplot2                                                      
 **gggenes**             Draw Gene Arrow Maps in ggplot2                                                            
 **ggghost**             Capture the Spirit of Your ggplot2 Calls                                                   
 **gggibbous**           Moon Charts, a Pie Chart Alternative                                                       
@@ -84,13 +84,13 @@ Package                 Title
 **ggparliament**        Parliament Plots                                                                           
 **ggparty**             ggplot Visualizations for the partykit Package                                             
 **ggperiodic**          Easy Plotting of Periodic Data with ggplot2                                                
+**ggplot.multistats**   Multiple Summary Statistics for Binned Stats/Geometries                                    
 **ggplot2**             Create Elegant Data Visualisations Using the Grammar of Graphics                           
 **ggplot2movies**       Movies Data                                                                                
 **ggplotAssist**        RStudio Addin for Teaching and Learning ggplot2                                            
 **ggplotgui**           Create Ggplots via a Graphical User Interface                                              
 **ggplotify**           Convert Plot to grob or ggplot Object                                                      
 **ggplotlyExtra**       Extra Convenience Functions for Plotly                                                     
-**ggplot.multistats**   Multiple Summary Statistics for Binned Stats/Geometries                                    
 **ggpmisc**             Miscellaneous Extensions to ggplot2                                                        
 **ggPMX**               ggplot2 Based Tool to Facilitate Diagnostic Plots for NLME Models                          
 **ggpointdensity**      A Cross Between a 2D Density Plot and a Scatter Plot                                       
@@ -1355,7 +1355,7 @@ xfun::session_info(
     "nlme", "mgcv", "ggbeeswarm", "ggridges", "hexbin"
   )
 )
-#> R Under development (unstable) (2019-12-29 r77627)
+#> R Under development (unstable) (2020-01-03 r77628)
 #> Platform: x86_64-pc-linux-gnu (64-bit)
 #> Running under: Ubuntu 16.04.6 LTS
 #> 

@@ -36,42 +36,44 @@ library(fs)
    # list.dirs(path = '.', full.names = TRUE, recursive = TRUE)
    list.dirs(path = '.', full.names = TRUE, recursive = FALSE)
    #>  [1] "./_book"                        "./_bookdown_files"             
-   #>  [3] "./.git"                         "./data"                        
-   #>  [5] "./data-frame_cache"             "./data-frame_files"            
-   #>  [7] "./data-import_cache"            "./data-objects_cache"          
-   #>  [9] "./data-table_cache"             "./data-tibble_cache"           
-   #> [11] "./dc-regular-expressions_cache" "./dc-string-manipulation_cache"
-   #> [13] "./demos"                        "./dv-colors-fonts_cache"       
-   #> [15] "./dv-colors-fonts_files"        "./dv-ggplot2_cache"            
-   #> [17] "./dv-ggplot2_files"             "./dv-highcharter_cache"        
-   #> [19] "./dv-highcharter_files"         "./dv-lattice_cache"            
-   #> [21] "./dv-lattice_files"             "./dv-plot_cache"               
-   #> [23] "./dv-plot_files"                "./dv-plot3d_cache"             
-   #> [25] "./dv-plot3d_files"              "./dv-plotly_cache"             
-   #> [27] "./dv-spatio-temporal_files"     "./dynamic-documents_cache"     
-   #> [29] "./dynamic-documents_files"      "./figures"                     
-   #> [31] "./files_cache"                  "./includes"                    
-   #> [33] "./index_cache"                  "./interactives"                
-   #> [35] "./preface_cache"                "./ubuntu"
+   #>  [3] "./.git"                         "./animated-graphics_files"     
+   #>  [5] "./cs-cran-network_files"        "./data"                        
+   #>  [7] "./data-frame_cache"             "./data-frame_files"            
+   #>  [9] "./data-import_cache"            "./data-objects_cache"          
+   #> [11] "./data-table_cache"             "./data-tibble_cache"           
+   #> [13] "./dc-regular-expressions_cache" "./dc-string-manipulation_cache"
+   #> [15] "./demos"                        "./dv-colors-fonts_cache"       
+   #> [17] "./dv-colors-fonts_files"        "./dv-ggplot2_cache"            
+   #> [19] "./dv-ggplot2_files"             "./dv-highcharter_cache"        
+   #> [21] "./dv-highcharter_files"         "./dv-lattice_cache"            
+   #> [23] "./dv-lattice_files"             "./dv-plot_cache"               
+   #> [25] "./dv-plot_files"                "./dv-plot3d_cache"             
+   #> [27] "./dv-plot3d_files"              "./dv-plotly_cache"             
+   #> [29] "./dv-spatio-temporal_files"     "./dynamic-documents_cache"     
+   #> [31] "./dynamic-documents_files"      "./figures"                     
+   #> [33] "./files_cache"                  "./includes"                    
+   #> [35] "./index_cache"                  "./interactives"                
+   #> [37] "./preface_cache"                "./ubuntu"
    list.dirs(path = '.', full.names = FALSE, recursive = FALSE)
    #>  [1] "_book"                        "_bookdown_files"             
-   #>  [3] ".git"                         "data"                        
-   #>  [5] "data-frame_cache"             "data-frame_files"            
-   #>  [7] "data-import_cache"            "data-objects_cache"          
-   #>  [9] "data-table_cache"             "data-tibble_cache"           
-   #> [11] "dc-regular-expressions_cache" "dc-string-manipulation_cache"
-   #> [13] "demos"                        "dv-colors-fonts_cache"       
-   #> [15] "dv-colors-fonts_files"        "dv-ggplot2_cache"            
-   #> [17] "dv-ggplot2_files"             "dv-highcharter_cache"        
-   #> [19] "dv-highcharter_files"         "dv-lattice_cache"            
-   #> [21] "dv-lattice_files"             "dv-plot_cache"               
-   #> [23] "dv-plot_files"                "dv-plot3d_cache"             
-   #> [25] "dv-plot3d_files"              "dv-plotly_cache"             
-   #> [27] "dv-spatio-temporal_files"     "dynamic-documents_cache"     
-   #> [29] "dynamic-documents_files"      "figures"                     
-   #> [31] "files_cache"                  "includes"                    
-   #> [33] "index_cache"                  "interactives"                
-   #> [35] "preface_cache"                "ubuntu"
+   #>  [3] ".git"                         "animated-graphics_files"     
+   #>  [5] "cs-cran-network_files"        "data"                        
+   #>  [7] "data-frame_cache"             "data-frame_files"            
+   #>  [9] "data-import_cache"            "data-objects_cache"          
+   #> [11] "data-table_cache"             "data-tibble_cache"           
+   #> [13] "dc-regular-expressions_cache" "dc-string-manipulation_cache"
+   #> [15] "demos"                        "dv-colors-fonts_cache"       
+   #> [17] "dv-colors-fonts_files"        "dv-ggplot2_cache"            
+   #> [19] "dv-ggplot2_files"             "dv-highcharter_cache"        
+   #> [21] "dv-highcharter_files"         "dv-lattice_cache"            
+   #> [23] "dv-lattice_files"             "dv-plot_cache"               
+   #> [25] "dv-plot_files"                "dv-plot3d_cache"             
+   #> [27] "dv-plot3d_files"              "dv-plotly_cache"             
+   #> [29] "dv-spatio-temporal_files"     "dynamic-documents_cache"     
+   #> [31] "dynamic-documents_files"      "figures"                     
+   #> [33] "files_cache"                  "includes"                    
+   #> [35] "index_cache"                  "interactives"                
+   #> [37] "preface_cache"                "ubuntu"
    ```
 
 *  `list.files(path = ".", pattern = NULL, all.files = FALSE, full.names = FALSE, recursive = FALSE,ignore.case = FALSE, include.dirs = FALSE, no.. = FALSE)`
@@ -102,31 +104,31 @@ library(fs)
     #>                                                size isdir mode
     #> /home/travis/R-bin/lib/R/include/Rinternals.h 62346 FALSE  644
     #>                                                             mtime
-    #> /home/travis/R-bin/lib/R/include/Rinternals.h 2019-12-29 01:18:27
+    #> /home/travis/R-bin/lib/R/include/Rinternals.h 2020-01-03 08:20:01
     #>                                                             ctime
-    #> /home/travis/R-bin/lib/R/include/Rinternals.h 2020-01-02 15:30:13
+    #> /home/travis/R-bin/lib/R/include/Rinternals.h 2020-01-03 13:11:15
     #>                                                             atime  uid  gid
-    #> /home/travis/R-bin/lib/R/include/Rinternals.h 2020-01-02 15:32:44 2000 2000
+    #> /home/travis/R-bin/lib/R/include/Rinternals.h 2020-01-03 13:11:15 2000 2000
     #>                                                uname grname
     #> /home/travis/R-bin/lib/R/include/Rinternals.h travis travis
     file.mode(rinternals)
     #> [1] "644"
     file.mtime(rinternals)
-    #> [1] "2019-12-29 01:18:27 UTC"
+    #> [1] "2020-01-03 08:20:01 UTC"
     file.size(rinternals)
     #> [1] 62346
     # 查看当前目录的权限
     file.info(".")
     #>   size isdir mode               mtime               ctime               atime
-    #> . 4096  TRUE  775 2020-01-02 15:34:48 2020-01-02 15:34:48 2020-01-02 15:34:48
+    #> . 4096  TRUE  775 2020-01-03 13:13:59 2020-01-03 13:13:59 2020-01-03 13:14:00
     #>    uid  gid  uname grname
     #> . 2000 2000 travis travis
     # 查看指定目录权限
     file.info("./_book/")    
     #>          size isdir mode               mtime               ctime
-    #> ./_book/ 4096  TRUE  775 2020-01-02 15:34:46 2020-01-02 15:34:46
+    #> ./_book/ 4096  TRUE  775 2020-01-03 13:13:57 2020-01-03 13:13:57
     #>                        atime  uid  gid  uname grname
-    #> ./_book/ 2020-01-02 15:34:46 2000 2000 travis travis
+    #> ./_book/ 2020-01-03 13:13:57 2000 2000 travis travis
     ```
 
 * `file.access(names, mode = 0)`  
@@ -172,7 +174,7 @@ library(fs)
     #>  [5] "_common.R"                    "_deploy.sh"                  
     #>  [7] "_main.rds"                    "_output.yml"                 
     #>  [9] "_render.R"                    "99-references.Rmd"           
-    #> [11] "Adobe-Fonts.zip"              "animated-graphics.Rmd"       
+    #> [11] "Adobe-Fonts.zip"              "animated-graphics_files"     
     ....
     # 查看指定目录的子目录和文件
     dir(path = "./")
@@ -181,19 +183,19 @@ library(fs)
     #>  [5] "_common.R"                    "_deploy.sh"                  
     #>  [7] "_main.rds"                    "_output.yml"                 
     #>  [9] "_render.R"                    "99-references.Rmd"           
-    #> [11] "Adobe-Fonts.zip"              "animated-graphics.Rmd"       
+    #> [11] "Adobe-Fonts.zip"              "animated-graphics_files"     
     ....
     # 只列出以字母R开头的子目录和文件
     dir(path = "./", pattern = "^R")
     #> [1] "README.md"       "RGraphics.Rproj"
     # 列出目录下所有目录和文件，包括隐藏文件
     dir(path = "./", all.files = TRUE)
-    #>  [1] "_book"                        "_bookdown_files"             
-    #>  [3] "_bookdown.yml"                "_build.sh"                   
-    #>  [5] "_common.R"                    "_deploy.sh"                  
-    #>  [7] "_main.rds"                    "_output.yml"                 
-    #>  [9] "_render.R"                    "."                           
-    #> [11] ".."                           ".git"                        
+    #>   [1] "_book"                        "_bookdown_files"             
+    #>   [3] "_bookdown.yml"                "_build.sh"                   
+    #>   [5] "_common.R"                    "_deploy.sh"                  
+    #>   [7] "_main.rds"                    "_output.yml"                 
+    #>   [9] "_render.R"                    "."                           
+    #>  [11] ".."                           ".git"                        
     ....
     # 支持正则表达式
     dir(pattern = '^[A-Z]+[.]txt$', full.names=TRUE, system.file('doc', 'SuiteSparse', package='Matrix'))
@@ -651,7 +653,7 @@ help.search(keyword = "character", package = "base")
     
     ```r
     Sys.getpid()
-    #> [1] 19928
+    #> [1] 18613
     ```
 
 - `proc.time()` R 会话运行时间，常用于计算R程序在当前R控制台的运行时间
@@ -662,7 +664,7 @@ help.search(keyword = "character", package = "base")
     tmp <- rnorm(1e6)
     proc.time() - t1
     #>    user  system elapsed 
-    #>   0.063   0.003   0.067
+    #>   0.059   0.008   0.066
     ```
 
 - `system.time` 计算 R 表达式/程序块运行耗费的CPU时间
@@ -673,7 +675,7 @@ help.search(keyword = "character", package = "base")
       rnorm(1e6)
     }, gcFirst = TRUE)
     #>    user  system elapsed 
-    #>   0.061   0.004   0.066
+    #>   0.060   0.004   0.063
     ```
 
 - `gc.time`  报告垃圾回收耗费的时间
@@ -744,10 +746,10 @@ system2(command = 'pdflatex', args = '--version')
     ```r
     # 此时美国洛杉矶时间
     format(Sys.time(), tz = 'America/Los_Angeles', usetz = TRUE)
-    #> [1] "2020-01-02 07:34:49 PST"
+    #> [1] "2020-01-03 05:14:00 PST"
     # 此时加拿大东部时间
     format(Sys.time(), tz = 'Canada/Eastern', usetz = TRUE)
-    #> [1] "2020-01-02 10:34:49 EST"
+    #> [1] "2020-01-03 08:14:00 EST"
     ```
 
 1. `Sys.Date` 显示当前时区下的日期，精确到日，返回数据类型为 `date`
@@ -755,7 +757,7 @@ system2(command = 'pdflatex', args = '--version')
     
     ```r
     Sys.Date()
-    #> [1] "2020-01-02"
+    #> [1] "2020-01-03"
     ```
 
 1. `date` 返回当前系统日期和时间，数据类型是字符串
@@ -763,10 +765,10 @@ system2(command = 'pdflatex', args = '--version')
     
     ```r
     date()
-    #> [1] "Thu Jan  2 15:34:49 2020"
+    #> [1] "Fri Jan  3 13:14:00 2020"
     ## 也可以这样表示
     format(Sys.time(), "%a %b %d %H:%M:%S %Y")
-    #> [1] "Thu Jan 02 15:34:49 2020"
+    #> [1] "Fri Jan 03 13:14:00 2020"
     ```
 
 1. `as.POSIX*` 是一个 Date-time 转换函数
@@ -774,7 +776,7 @@ system2(command = 'pdflatex', args = '--version')
     
     ```r
     as.POSIXlt(Sys.time(), "GMT") # the current time in GMT
-    #> [1] "2020-01-02 15:34:49 GMT"
+    #> [1] "2020-01-03 13:14:00 GMT"
     ```
 
 1. 时间计算
@@ -782,10 +784,10 @@ system2(command = 'pdflatex', args = '--version')
     
     ```r
     (z <- Sys.time())             # the current date, as class "POSIXct"
-    #> [1] "2020-01-02 15:34:49 UTC"
+    #> [1] "2020-01-03 13:14:00 UTC"
     
     Sys.time() - 3600             # an hour ago
-    #> [1] "2020-01-02 14:34:49 UTC"
+    #> [1] "2020-01-03 12:14:00 UTC"
     ```
 
 1. `.leap.seconds` 是内置的日期序列
@@ -829,16 +831,16 @@ system2(command = 'pdflatex', args = '--version')
     # 修改时间前
     file.info('./_common.R')
     #>             size isdir mode               mtime               ctime
-    #> ./_common.R 2093 FALSE  664 2020-01-02 15:32:07 2020-01-02 15:32:07
+    #> ./_common.R 2093 FALSE  664 2020-01-03 13:12:53 2020-01-03 13:12:53
     #>                           atime  uid  gid  uname grname
-    #> ./_common.R 2020-01-02 15:32:07 2000 2000 travis travis
+    #> ./_common.R 2020-01-03 13:12:53 2000 2000 travis travis
     # 修改时间后，对比一下
     Sys.setFileTime(path = './_common.R', time = Sys.time())
     file.info('./_common.R')
     #>             size isdir mode               mtime               ctime
-    #> ./_common.R 2093 FALSE  664 2020-01-02 15:34:49 2020-01-02 15:34:49
+    #> ./_common.R 2093 FALSE  664 2020-01-03 13:14:00 2020-01-03 13:14:00
     #>                           atime  uid  gid  uname grname
-    #> ./_common.R 2020-01-02 15:34:49 2000 2000 travis travis
+    #> ./_common.R 2020-01-03 13:14:00 2000 2000 travis travis
     ```
 
 1. `strptime` 用于字符串与 `POSIXlt`、 `POSIXct` 类对象之间的转化，`format` 默认 `tz = ""` 且 `usetz = TRUE` 
@@ -850,11 +852,11 @@ system2(command = 'pdflatex', args = '--version')
     #> character(0)
     # 比较不同的打印方式
     strptime(Sys.time(), format ="%Y-%m-%d %H:%M:%S", tz = "Asia/Taipei")
-    #> [1] "2020-01-02 15:34:49 CST"
+    #> [1] "2020-01-03 13:14:00 CST"
     format(Sys.time(), format = "%Y-%m-%d %H:%M:%S") # 默认情形
-    #> [1] "2020-01-02 15:34:49"
+    #> [1] "2020-01-03 13:14:00"
     format(Sys.time(), format = "%Y-%m-%d %H:%M:%S", tz = "Asia/Taipei", usetz = TRUE)
-    #> [1] "2020-01-02 23:34:49 CST"
+    #> [1] "2020-01-03 21:14:00 CST"
     ```
 
 1. 设置时区
@@ -1092,7 +1094,7 @@ body
 #>         fun <- get(fun, mode = "function", envir = parent.frame())
 #>     .Internal(body(fun))
 #> }
-#> <bytecode: 0x405e1d8>
+#> <bytecode: 0x3a29908>
 #> <environment: namespace:base>
 ```
 
@@ -1134,7 +1136,7 @@ SEXP attribute_hidden do_body(SEXP call, SEXP op, SEXP args, SEXP rho)
 
 ```r
 xfun::session_info(packages = c("magrittr", "fs"))
-#> R Under development (unstable) (2019-12-29 r77627)
+#> R Under development (unstable) (2020-01-03 r77628)
 #> Platform: x86_64-pc-linux-gnu (64-bit)
 #> Running under: Ubuntu 16.04.6 LTS
 #> 

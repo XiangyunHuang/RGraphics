@@ -388,9 +388,9 @@ d <- function() data.frame(
   )
 microbenchmark::microbenchmark(s(), d())
 #> Unit: microseconds
-#>  expr     min      lq     mean   median       uq      max neval
-#>   s()  14.853  17.480  63.3388  23.1955  25.9435 3740.629   100
-#>   d() 178.701 189.743 234.7430 199.7185 213.2850 2909.459   100
+#>  expr     min      lq     mean   median      uq      max neval
+#>   s()  14.281  16.064  48.8543  20.1890  23.841 2628.173   100
+#>   d() 174.106 179.158 214.9525 183.6065 191.868 2637.402   100
 ```
 
 ### 移除缺失记录 {#remove-missing-values}
@@ -534,7 +534,7 @@ one_abs
 
 ```r
 xfun::session_info()
-#> R Under development (unstable) (2019-12-29 r77627)
+#> R Under development (unstable) (2020-01-03 r77628)
 #> Platform: x86_64-pc-linux-gnu (64-bit)
 #> Running under: Ubuntu 16.04.6 LTS
 #> 

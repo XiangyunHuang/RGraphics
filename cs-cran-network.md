@@ -372,7 +372,7 @@ subset(pdb,
 #> 640       babynames    Hadley Wickham <hadley@rstudio.com>
 #> 1024      bigrquery    Hadley Wickham <hadley@rstudio.com>
 #> 1830      classifly   Hadley Wickham <h.wickham@gmail.com>
-#> 1916     clusterfly   Hadley Wickham <h.wickham@gmail.com>
+#> 1917     clusterfly   Hadley Wickham <h.wickham@gmail.com>
 #> 2171     conflicted    Hadley Wickham <hadley@rstudio.com>
 #> 2705         dbplyr    Hadley Wickham <hadley@rstudio.com>
 #> 3210          dplyr    Hadley Wickham <hadley@rstudio.com>
@@ -556,7 +556,7 @@ first_ctb[which.max(ctb_num)]
 # 找到 R 包
 subset(sub_pdb, subset = grepl("Matt Dowle", sub_pdb[, "Maintainer"]), select = "Package")
 #>         Package
-#> 2668 data.table
+#> 2627 data.table
 ```
 
 哇，大名鼎鼎的 [data.table](https://github.com/Rdatatable/data.table) 包！！ I JUST find it!! 这是个异数，我们知道 data.table 在R社区享有盛名，影响范围很广，从 Matt Dowle 的 [Github 主页](https://github.com/mattdowle) 来看，他确实只开发了这一个 R 包！黑天鹅在这里出现了！如果按照谁的贡献者多谁影响力大的规律来看，有 10 个以上贡献者的其它几个 R 包也必定是名器！这里留给读者把它找出来吧！
@@ -986,7 +986,7 @@ webshot::webshot(url = "http://localhost:16977/session/viewhtml150c673821fc/inde
 
 ```r
 xfun::session_info()
-#> R Under development (unstable) (2019-12-29 r77627)
+#> R Under development (unstable) (2020-01-03 r77628)
 #> Platform: x86_64-pc-linux-gnu (64-bit)
 #> Running under: Ubuntu 16.04.6 LTS
 #> 

@@ -3,7 +3,7 @@
 title: "数据科学与 R 语言"
 subtitle: "Data Science with R"
 author: "黄湘云"
-date: "2020-01-02 23:34:47 CST"
+date: "2020-01-03 21:13:58 CST"
 site: bookdown::bookdown_site
 documentclass: book
 biblio-style: apalike
@@ -111,7 +111,7 @@ GNU R 最初由 [Ross Ihaka](https://en.wikipedia.org/wiki/Ross_Ihaka) 和 [Robe
 
 ```r
 xfun::session_info(c("rmarkdown", "bookdown"))
-#> R Under development (unstable) (2019-12-29 r77627)
+#> R Under development (unstable) (2020-01-03 r77628)
 #> Platform: x86_64-pc-linux-gnu (64-bit)
 #> Running under: Ubuntu 16.04.6 LTS
 #> 

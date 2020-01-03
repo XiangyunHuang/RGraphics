@@ -2211,7 +2211,7 @@ title(main = "Maunga Whau Volcano", font.main = 4)
 
 ```r
 xfun::session_info()
-#> R Under development (unstable) (2019-12-29 r77627)
+#> R Under development (unstable) (2020-01-03 r77628)
 #> Platform: x86_64-pc-linux-gnu (64-bit)
 #> Running under: Ubuntu 16.04.6 LTS
 #> 

@@ -781,6 +781,114 @@ df[!duplicated(df[, 1:2]), ]
 ```
 
 
+## 数据缺失 {#base-missing}
+
+缺失数据操作
+
+
+```r
+data("airquality")
+head(airquality)
+#>   Ozone Solar.R Wind Temp Month Day
+#> 1    41     190  7.4   67     5   1
+#> 2    36     118  8.0   72     5   2
+#> 3    12     149 12.6   74     5   3
+#> 4    18     313 11.5   62     5   4
+#> 5    NA      NA 14.3   56     5   5
+#> 6    28      NA 14.9   66     5   6
+```
+
+对缺失值的处理默认是 `na.action = na.omit`
+
+
+```r
+# Ozone 最高的那天
+aggregate(data = airquality, Ozone ~ Month, max)
+#>   Month Ozone
+#> 1     5   115
+#> 2     6    71
+#> 3     7   135
+#> 4     8   168
+#> 5     9    96
+# 每月 Ozone, Solar.R, Wind, Temp 平均值
+aggregate(data = airquality, Ozone ~ Month, mean)
+#>   Month    Ozone
+#> 1     5 23.61538
+#> 2     6 29.44444
+#> 3     7 59.11538
+#> 4     8 59.96154
+#> 5     9 31.44828
+```
+
+缺失值处理
+
+
+```r
+library(DataExplorer)
+plot_missing(airquality)
+```
+
+查看包含缺失的记录，不完整的记录
+
+
+```r
+airquality[!complete.cases(airquality), ]
+#>     Ozone Solar.R Wind Temp Month Day
+#> 5      NA      NA 14.3   56     5   5
+#> 6      28      NA 14.9   66     5   6
+#> 10     NA     194  8.6   69     5  10
+#> 11      7      NA  6.9   74     5  11
+#> 25     NA      66 16.6   57     5  25
+#> 26     NA     266 14.9   58     5  26
+#> 27     NA      NA  8.0   57     5  27
+#> 32     NA     286  8.6   78     6   1
+#> 33     NA     287  9.7   74     6   2
+#> 34     NA     242 16.1   67     6   3
+#> 35     NA     186  9.2   84     6   4
+#> 36     NA     220  8.6   85     6   5
+#> 37     NA     264 14.3   79     6   6
+#> 39     NA     273  6.9   87     6   8
+#> 42     NA     259 10.9   93     6  11
+#> 43     NA     250  9.2   92     6  12
+#> 45     NA     332 13.8   80     6  14
+#> 46     NA     322 11.5   79     6  15
+#> 52     NA     150  6.3   77     6  21
+#> 53     NA      59  1.7   76     6  22
+#> 54     NA      91  4.6   76     6  23
+#> 55     NA     250  6.3   76     6  24
+#> 56     NA     135  8.0   75     6  25
+#> 57     NA     127  8.0   78     6  26
+#> 58     NA      47 10.3   73     6  27
+#> 59     NA      98 11.5   80     6  28
+#> 60     NA      31 14.9   77     6  29
+#> 61     NA     138  8.0   83     6  30
+#> 65     NA     101 10.9   84     7   4
+#> 72     NA     139  8.6   82     7  11
+#> 75     NA     291 14.9   91     7  14
+#> 83     NA     258  9.7   81     7  22
+#> 84     NA     295 11.5   82     7  23
+#> 96     78      NA  6.9   86     8   4
+#> 97     35      NA  7.4   85     8   5
+#> 98     66      NA  4.6   87     8   6
+#> 102    NA     222  8.6   92     8  10
+#> 103    NA     137 11.5   86     8  11
+#> 107    NA      64 11.5   79     8  15
+#> 115    NA     255 12.6   75     8  23
+#> 119    NA     153  5.7   88     8  27
+#> 150    NA     145 13.2   77     9  27
+```
+
+Ozone 和 Solar.R 同时包含缺失值的行
+
+
+```r
+airquality[is.na(airquality$Ozone) & is.na(airquality$Solar.R), ]
+#>    Ozone Solar.R Wind Temp Month Day
+#> 5     NA      NA 14.3   56     5   5
+#> 27    NA      NA  8.0   57     5  27
+```
+
+
 ## 数据聚合 {#base-aggregate}
 
 分组求和 <https://stackoverflow.com/questions/1660124>
@@ -1806,7 +1914,7 @@ transform(
 
 ```r
 xfun::session_info()
-#> R Under development (unstable) (2019-12-29 r77627)
+#> R Under development (unstable) (2020-01-03 r77628)
 #> Platform: x86_64-pc-linux-gnu (64-bit)
 #> Running under: Ubuntu 16.04.6 LTS
 #> 

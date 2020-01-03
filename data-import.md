@@ -215,7 +215,7 @@ fil <- tempfile(fileext = ".data")
 cat("TITLE extra line", "2 3 5 7", "", "11 13 17", file = fil,
     sep = "\n")
 fil
-#> [1] "/tmp/RtmpMBI1kR/file4e0a32eb5fa.data"
+#> [1] "/tmp/Rtmpus3bvC/file48e775c0912b.data"
 ```
 
 设置参数 `n = -1` 表示将文件 fil 的内容从头读到尾
@@ -246,7 +246,7 @@ cat("123\nabc")
 fil <- tempfile("test")
 cat("123\nabc\n", file = fil, append = TRUE)
 fil
-#> [1] "/tmp/RtmpMBI1kR/test4e0a5fc6fbf0"
+#> [1] "/tmp/Rtmpus3bvC/test48e72462384a"
 readLines(fil)
 #> [1] "123" "abc"
 ```
@@ -369,15 +369,15 @@ yaml::read_yaml(file = '_bookdown.yml')
 #>  [3] "setup.Rmd"                  "files.Rmd"                 
 #>  [5] "data-objects.Rmd"           "data-import.Rmd"           
 #>  [7] "data-frame.Rmd"             "data-tibble.Rmd"           
-#>  [9] "data-table.Rmd"             "dc-string-manipulation.Rmd"
-#> [11] "dc-regular-expressions.Rmd" "dv-plot.Rmd"               
-#> [13] "dv-ggplot2.Rmd"             "dv-plotly.Rmd"             
-#> [15] "dv-plot3d.Rmd"              "dv-colors-fonts.Rmd"       
-#> [17] "dv-highcharter.Rmd"         "dv-lattice.Rmd"            
-#> [19] "dv-network.Rmd"             "dv-spatio-temporal.Rmd"    
-#> [21] "dynamic-documents.Rmd"      "animated-graphics.Rmd"     
-#> [23] "interactive-graphics.Rmd"   "cs-cran-network.Rmd"       
-#> [25] "99-references.Rmd"
+#>  [9] "data-table.Rmd"             "data-parallel.Rmd"         
+#> [11] "dc-string-manipulation.Rmd" "dc-regular-expressions.Rmd"
+#> [13] "dv-plot.Rmd"                "dv-ggplot2.Rmd"            
+#> [15] "dv-plotly.Rmd"              "dv-plot3d.Rmd"             
+#> [17] "dv-colors-fonts.Rmd"        "dv-highcharter.Rmd"        
+#> [19] "dv-lattice.Rmd"             "dv-network.Rmd"            
+#> [21] "dv-spatio-temporal.Rmd"     "dynamic-documents.Rmd"     
+#> [23] "animated-graphics.Rmd"      "interactive-graphics.Rmd"  
+#> [25] "cs-cran-network.Rmd"        "99-references.Rmd"
 ```
 
 Table: (\#tab:other-softwares) 导入来自其它数据分析软件产生的数据集
@@ -1268,7 +1268,7 @@ structure(c(112, 118, 132, 129, 121, 135, 148, 148, 136, 119,
 
 ```r
 xfun::session_info()
-#> R Under development (unstable) (2019-12-29 r77627)
+#> R Under development (unstable) (2020-01-03 r77628)
 #> Platform: x86_64-pc-linux-gnu (64-bit)
 #> Running under: Ubuntu 16.04.6 LTS
 #> 
