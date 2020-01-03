@@ -82,7 +82,7 @@ addons:
 install:
   - virtualenv -p /usr/bin/python3 /opt/pyenv/shims/r-tensorflow
   - source /opt/pyenv/shims/r-tensorflow/bin/activate
-  - pip install numpy matplotlib tensorflow
+  - pip install numpy matplotlib tensorflow pandas
 #  - echo "source /opt/pyenv/shims/r-tensorflow/bin/activate" | tee -a ~/.bashrc
 #  - source ~/.bashrc
 
