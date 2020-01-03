@@ -106,9 +106,9 @@ library(fs)
     #>                                                             mtime
     #> /home/travis/R-bin/lib/R/include/Rinternals.h 2020-01-03 08:20:01
     #>                                                             ctime
-    #> /home/travis/R-bin/lib/R/include/Rinternals.h 2020-01-03 13:11:15
+    #> /home/travis/R-bin/lib/R/include/Rinternals.h 2020-01-03 16:12:32
     #>                                                             atime  uid  gid
-    #> /home/travis/R-bin/lib/R/include/Rinternals.h 2020-01-03 13:11:15 2000 2000
+    #> /home/travis/R-bin/lib/R/include/Rinternals.h 2020-01-03 16:12:32 2000 2000
     #>                                                uname grname
     #> /home/travis/R-bin/lib/R/include/Rinternals.h travis travis
     file.mode(rinternals)
@@ -120,15 +120,15 @@ library(fs)
     # 查看当前目录的权限
     file.info(".")
     #>   size isdir mode               mtime               ctime               atime
-    #> . 4096  TRUE  775 2020-01-03 13:13:59 2020-01-03 13:13:59 2020-01-03 13:14:00
+    #> . 4096  TRUE  775 2020-01-03 16:15:44 2020-01-03 16:15:44 2020-01-03 16:15:45
     #>    uid  gid  uname grname
     #> . 2000 2000 travis travis
     # 查看指定目录权限
     file.info("./_book/")    
     #>          size isdir mode               mtime               ctime
-    #> ./_book/ 4096  TRUE  775 2020-01-03 13:13:57 2020-01-03 13:13:57
+    #> ./_book/ 4096  TRUE  775 2020-01-03 16:15:42 2020-01-03 16:15:42
     #>                        atime  uid  gid  uname grname
-    #> ./_book/ 2020-01-03 13:13:57 2000 2000 travis travis
+    #> ./_book/ 2020-01-03 16:15:42 2000 2000 travis travis
     ```
 
 * `file.access(names, mode = 0)`  
@@ -366,7 +366,7 @@ untar(tarfile, files = NULL, list = FALSE, exdir = ".",
 ```r
 # 获取环境变量
 Sys.getenv("PATH")
-#> [1] "/home/travis/.TinyTeX/bin/x86_64-linux:/home/travis/.rvm/gems/ruby-2.5.3/bin:/home/travis/.rvm/gems/ruby-2.5.3@global/bin:/home/travis/.rvm/rubies/ruby-2.5.3/bin:/home/travis/.rvm/bin:/usr/lib/postgresql/9.6/bin:/home/travis/R-bin/bin:/home/travis/bin:/home/travis/.local/bin:/usr/local/lib/jvm/openjdk11/bin:/opt/pyenv/shims:/home/travis/.phpenv/shims:/home/travis/perl5/perlbrew/bin:/home/travis/.nvm/versions/node/v8.12.0/bin:/home/travis/.kiex/elixirs/elixir-1.7.4/bin:/home/travis/.kiex/bin:/home/travis/gopath/bin:/home/travis/.gimme/versions/go1.11.1.linux.amd64/bin:/usr/local/cmake-3.12.4/bin:/usr/local/clang-7.0.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin:/opt/ghc/bin:/home/travis/.phpenv/bin:/opt/pyenv/bin:/home/travis/.yarn/bin"
+#> [1] "/home/travis/.TinyTeX/bin/x86_64-linux:/opt/pyenv/shims/r-tensorflow/bin:/home/travis/.rvm/gems/ruby-2.5.3/bin:/home/travis/.rvm/gems/ruby-2.5.3@global/bin:/home/travis/.rvm/rubies/ruby-2.5.3/bin:/home/travis/.rvm/bin:/usr/lib/postgresql/9.6/bin:/home/travis/R-bin/bin:/home/travis/bin:/home/travis/.local/bin:/usr/local/lib/jvm/openjdk11/bin:/opt/pyenv/shims:/home/travis/.phpenv/shims:/home/travis/perl5/perlbrew/bin:/home/travis/.nvm/versions/node/v8.12.0/bin:/home/travis/.kiex/elixirs/elixir-1.7.4/bin:/home/travis/.kiex/bin:/home/travis/gopath/bin:/home/travis/.gimme/versions/go1.11.1.linux.amd64/bin:/usr/local/cmake-3.12.4/bin:/usr/local/clang-7.0.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin:/opt/ghc/bin:/home/travis/.phpenv/bin:/opt/pyenv/bin:/home/travis/.yarn/bin"
 # 设置环境变量 Windows
 # Sys.setenv(R_GSCMD = "C:/Program Files/gs/gs9.26/bin/gswin64c.exe")
 # 设置 pandoc 环境变量
@@ -653,7 +653,7 @@ help.search(keyword = "character", package = "base")
     
     ```r
     Sys.getpid()
-    #> [1] 18613
+    #> [1] 18682
     ```
 
 - `proc.time()` R 会话运行时间，常用于计算R程序在当前R控制台的运行时间
@@ -664,7 +664,7 @@ help.search(keyword = "character", package = "base")
     tmp <- rnorm(1e6)
     proc.time() - t1
     #>    user  system elapsed 
-    #>   0.059   0.008   0.066
+    #>   0.053   0.012   0.065
     ```
 
 - `system.time` 计算 R 表达式/程序块运行耗费的CPU时间
@@ -675,7 +675,7 @@ help.search(keyword = "character", package = "base")
       rnorm(1e6)
     }, gcFirst = TRUE)
     #>    user  system elapsed 
-    #>   0.060   0.004   0.063
+    #>   0.056   0.008   0.064
     ```
 
 - `gc.time`  报告垃圾回收耗费的时间
@@ -746,10 +746,10 @@ system2(command = 'pdflatex', args = '--version')
     ```r
     # 此时美国洛杉矶时间
     format(Sys.time(), tz = 'America/Los_Angeles', usetz = TRUE)
-    #> [1] "2020-01-03 05:14:00 PST"
+    #> [1] "2020-01-03 08:15:45 PST"
     # 此时加拿大东部时间
     format(Sys.time(), tz = 'Canada/Eastern', usetz = TRUE)
-    #> [1] "2020-01-03 08:14:00 EST"
+    #> [1] "2020-01-03 11:15:45 EST"
     ```
 
 1. `Sys.Date` 显示当前时区下的日期，精确到日，返回数据类型为 `date`
@@ -765,10 +765,10 @@ system2(command = 'pdflatex', args = '--version')
     
     ```r
     date()
-    #> [1] "Fri Jan  3 13:14:00 2020"
+    #> [1] "Fri Jan  3 16:15:45 2020"
     ## 也可以这样表示
     format(Sys.time(), "%a %b %d %H:%M:%S %Y")
-    #> [1] "Fri Jan 03 13:14:00 2020"
+    #> [1] "Fri Jan 03 16:15:45 2020"
     ```
 
 1. `as.POSIX*` 是一个 Date-time 转换函数
@@ -776,7 +776,7 @@ system2(command = 'pdflatex', args = '--version')
     
     ```r
     as.POSIXlt(Sys.time(), "GMT") # the current time in GMT
-    #> [1] "2020-01-03 13:14:00 GMT"
+    #> [1] "2020-01-03 16:15:45 GMT"
     ```
 
 1. 时间计算
@@ -784,10 +784,10 @@ system2(command = 'pdflatex', args = '--version')
     
     ```r
     (z <- Sys.time())             # the current date, as class "POSIXct"
-    #> [1] "2020-01-03 13:14:00 UTC"
+    #> [1] "2020-01-03 16:15:45 UTC"
     
     Sys.time() - 3600             # an hour ago
-    #> [1] "2020-01-03 12:14:00 UTC"
+    #> [1] "2020-01-03 15:15:45 UTC"
     ```
 
 1. `.leap.seconds` 是内置的日期序列
@@ -831,16 +831,16 @@ system2(command = 'pdflatex', args = '--version')
     # 修改时间前
     file.info('./_common.R')
     #>             size isdir mode               mtime               ctime
-    #> ./_common.R 2093 FALSE  664 2020-01-03 13:12:53 2020-01-03 13:12:53
+    #> ./_common.R 2093 FALSE  664 2020-01-03 16:14:11 2020-01-03 16:14:11
     #>                           atime  uid  gid  uname grname
-    #> ./_common.R 2020-01-03 13:12:53 2000 2000 travis travis
+    #> ./_common.R 2020-01-03 16:14:11 2000 2000 travis travis
     # 修改时间后，对比一下
     Sys.setFileTime(path = './_common.R', time = Sys.time())
     file.info('./_common.R')
     #>             size isdir mode               mtime               ctime
-    #> ./_common.R 2093 FALSE  664 2020-01-03 13:14:00 2020-01-03 13:14:00
+    #> ./_common.R 2093 FALSE  664 2020-01-03 16:15:45 2020-01-03 16:15:45
     #>                           atime  uid  gid  uname grname
-    #> ./_common.R 2020-01-03 13:14:00 2000 2000 travis travis
+    #> ./_common.R 2020-01-03 16:15:45 2000 2000 travis travis
     ```
 
 1. `strptime` 用于字符串与 `POSIXlt`、 `POSIXct` 类对象之间的转化，`format` 默认 `tz = ""` 且 `usetz = TRUE` 
@@ -852,11 +852,11 @@ system2(command = 'pdflatex', args = '--version')
     #> character(0)
     # 比较不同的打印方式
     strptime(Sys.time(), format ="%Y-%m-%d %H:%M:%S", tz = "Asia/Taipei")
-    #> [1] "2020-01-03 13:14:00 CST"
+    #> [1] "2020-01-03 16:15:45 CST"
     format(Sys.time(), format = "%Y-%m-%d %H:%M:%S") # 默认情形
-    #> [1] "2020-01-03 13:14:00"
+    #> [1] "2020-01-03 16:15:45"
     format(Sys.time(), format = "%Y-%m-%d %H:%M:%S", tz = "Asia/Taipei", usetz = TRUE)
-    #> [1] "2020-01-03 21:14:00 CST"
+    #> [1] "2020-01-04 00:15:45 CST"
     ```
 
 1. 设置时区
@@ -906,8 +906,8 @@ apropos('package')
     
     ```r
     available.packages()[,"Package"] %>% head()
-    #>       A3    aaSEA   ABACUS   abbyyR      abc   abcADM 
-    #>     "A3"  "aaSEA" "ABACUS" "abbyyR"    "abc" "abcADM"
+    #>         A3      aaSEA     ABACUS     abbyyR        abc   abc.data 
+    #>       "A3"    "aaSEA"   "ABACUS"   "abbyyR"      "abc" "abc.data"
     ```
     
     查询 repos 的 R 包
@@ -1026,16 +1026,16 @@ apropos('package')
     pdb <- available.packages()
     gg <- tools::dependsOnPkgs("ggplot2", recursive = FALSE, installed = pdb)
     grep("^gg", gg, value = TRUE)
-    #>   [1] "ggallin"           "ggalluvial"        "ggalt"            
-    #>   [4] "gganimate"         "ggasym"            "ggbeeswarm"       
-    #>   [7] "ggBubbles"         "ggbuildr"          "ggChernoff"       
-    #>  [10] "ggconf"            "ggcorrplot"        "ggdag"            
-    #>  [13] "ggdark"            "ggdemetra"         "ggdendro"         
-    #>  [16] "ggdistribute"      "ggdmc"             "ggedit"           
-    #>  [19] "ggenealogy"        "ggetho"            "ggExtra"          
-    #>  [22] "ggfan"             "ggfittext"         "ggfocus"          
-    #>  [25] "ggforce"           "ggformula"         "ggfortify"        
-    #>  [28] "gg.gap"            "gggenes"           "ggghost"          
+    #>   [1] "gg.gap"            "ggallin"           "ggalluvial"       
+    #>   [4] "ggalt"             "gganimate"         "ggasym"           
+    #>   [7] "ggbeeswarm"        "ggBubbles"         "ggbuildr"         
+    #>  [10] "ggChernoff"        "ggconf"            "ggcorrplot"       
+    #>  [13] "ggdag"             "ggdark"            "ggdemetra"        
+    #>  [16] "ggdendro"          "ggdistribute"      "ggdmc"            
+    #>  [19] "ggedit"            "ggenealogy"        "ggetho"           
+    #>  [22] "ggExtra"           "ggfan"             "ggfittext"        
+    #>  [25] "ggfocus"           "ggforce"           "ggformula"        
+    #>  [28] "ggfortify"         "gggenes"           "ggghost"          
     #>  [31] "gggibbous"         "ggguitar"          "gghalfnorm"       
     #>  [34] "gghalves"          "gghighlight"       "ggimage"          
     #>  [37] "gginference"       "gginnards"         "ggiraph"          
@@ -1045,8 +1045,8 @@ apropos('package')
     #>  [49] "ggmuller"          "ggnetwork"         "ggnewscale"       
     #>  [52] "ggnormalviolin"    "ggpage"            "ggparallel"       
     #>  [55] "ggparliament"      "ggparty"           "ggperiodic"       
-    #>  [58] "ggplotAssist"      "ggplotgui"         "ggplotify"        
-    #>  [61] "ggplotlyExtra"     "ggplot.multistats" "ggpmisc"          
+    #>  [58] "ggplot.multistats" "ggplotAssist"      "ggplotgui"        
+    #>  [61] "ggplotify"         "ggplotlyExtra"     "ggpmisc"          
     #>  [64] "ggPMX"             "ggpointdensity"    "ggpol"            
     #>  [67] "ggpolypath"        "ggpubr"            "ggpval"           
     #>  [70] "ggQC"              "ggQQunif"          "ggquickeda"       
@@ -1094,7 +1094,7 @@ body
 #>         fun <- get(fun, mode = "function", envir = parent.frame())
 #>     .Internal(body(fun))
 #> }
-#> <bytecode: 0x3a29908>
+#> <bytecode: 0x4611918>
 #> <environment: namespace:base>
 ```
 

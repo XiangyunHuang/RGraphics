@@ -356,7 +356,7 @@ subset(pdb, subset = grepl("Scott Chamberlain", pdb[, "Maintainer"]),
 
 ```r
 length(unique(pdb[, "Maintainer"]))
-#> [1] 9056
+#> [1] 9057
 ```
 
 可实际上没有这么多的开发者，因为存在这样的情况，以 R 包维护者 Hadley Wickham 为例，由于他曾使用过不同的邮箱，所以在维护者字段出现了不一致的情况，实际却是同一个人。
