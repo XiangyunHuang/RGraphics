@@ -19,7 +19,7 @@ print(os.listdir())
 ```
 
 ::: rmdnote
-R Markdown 文档[@xie2018rmarkdown] 中的 Python 代码块是由 knitr 包 [@xie2015knitr] 负责调度处理的，展示 Matplotlib 绘图的结果使用了 reticulate 包 [@R-reticulate] 提供的 Python 引擎而不是 knitr 自带的。
+R Markdown 文档[@xie2018rmarkdown] 中的 Python 代码块是由 knitr 包 [@xie_2015_knitr] 负责调度处理的，展示 Matplotlib 绘图的结果使用了 reticulate 包 [@R-reticulate] 提供的 Python 引擎而不是 knitr 自带的。
 :::
 
 - LaTeX 专家黄晨成写的译文 [Matplotlib 教程](https://liam.page/2014/09/11/matplotlib-tutorial-zh-cn/)
@@ -28,7 +28,7 @@ R Markdown 文档[@xie2018rmarkdown] 中的 Python 代码块是由 knitr 包 [@x
 
 编译书籍使用的 Python 3 模块有
 
-```{bash,results='asis',eval=FALSE}
+```{bash,results='asis'}
 pip3 list --format=columns
 ```
 
@@ -74,6 +74,7 @@ ggplot(faithfuld, aes(waiting, eruptions)) +
 
 ```{python demo,fig.cap="Python Graphics"}
 import matplotlib.pyplot as plt
+plt.switch_backend('agg')
 import numpy as np
 n = 1024    # data size
 X = np.random.normal(0, 1, n)
