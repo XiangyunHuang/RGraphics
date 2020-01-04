@@ -388,9 +388,9 @@ d <- function() data.frame(
   )
 microbenchmark::microbenchmark(s(), d())
 #> Unit: microseconds
-#>  expr     min       lq      mean   median       uq      max neval
-#>   s()  14.530  16.7765  49.83311  19.2575  23.9115 2686.885   100
-#>   d() 173.361 178.3950 213.21384 184.1050 192.2720 2496.069   100
+#>  expr     min      lq     mean   median       uq      max neval
+#>   s()  14.538  16.546  48.0555  19.2205  23.3265 2553.241   100
+#>   d() 171.395 177.790 210.1287 182.4505 189.0410 2473.135   100
 ```
 
 ### 移除缺失记录 {#remove-missing-values}

@@ -106,9 +106,9 @@ library(fs)
     #>                                                             mtime
     #> /home/travis/R-bin/lib/R/include/Rinternals.h 2020-01-03 08:20:01
     #>                                                             ctime
-    #> /home/travis/R-bin/lib/R/include/Rinternals.h 2020-01-03 16:12:32
+    #> /home/travis/R-bin/lib/R/include/Rinternals.h 2020-01-04 03:12:45
     #>                                                             atime  uid  gid
-    #> /home/travis/R-bin/lib/R/include/Rinternals.h 2020-01-03 16:12:32 2000 2000
+    #> /home/travis/R-bin/lib/R/include/Rinternals.h 2020-01-04 03:12:45 2000 2000
     #>                                                uname grname
     #> /home/travis/R-bin/lib/R/include/Rinternals.h travis travis
     file.mode(rinternals)
@@ -120,15 +120,15 @@ library(fs)
     # 查看当前目录的权限
     file.info(".")
     #>   size isdir mode               mtime               ctime               atime
-    #> . 4096  TRUE  775 2020-01-03 16:15:44 2020-01-03 16:15:44 2020-01-03 16:15:45
+    #> . 4096  TRUE  775 2020-01-04 03:15:46 2020-01-04 03:15:46 2020-01-04 03:15:47
     #>    uid  gid  uname grname
     #> . 2000 2000 travis travis
     # 查看指定目录权限
     file.info("./_book/")    
     #>          size isdir mode               mtime               ctime
-    #> ./_book/ 4096  TRUE  775 2020-01-03 16:15:42 2020-01-03 16:15:42
+    #> ./_book/ 4096  TRUE  775 2020-01-04 03:15:45 2020-01-04 03:15:45
     #>                        atime  uid  gid  uname grname
-    #> ./_book/ 2020-01-03 16:15:42 2000 2000 travis travis
+    #> ./_book/ 2020-01-04 03:15:45 2000 2000 travis travis
     ```
 
 * `file.access(names, mode = 0)`  
@@ -653,7 +653,7 @@ help.search(keyword = "character", package = "base")
     
     ```r
     Sys.getpid()
-    #> [1] 18682
+    #> [1] 18659
     ```
 
 - `proc.time()` R 会话运行时间，常用于计算R程序在当前R控制台的运行时间
@@ -664,7 +664,7 @@ help.search(keyword = "character", package = "base")
     tmp <- rnorm(1e6)
     proc.time() - t1
     #>    user  system elapsed 
-    #>   0.053   0.012   0.065
+    #>   0.049   0.017   0.065
     ```
 
 - `system.time` 计算 R 表达式/程序块运行耗费的CPU时间
@@ -675,7 +675,7 @@ help.search(keyword = "character", package = "base")
       rnorm(1e6)
     }, gcFirst = TRUE)
     #>    user  system elapsed 
-    #>   0.056   0.008   0.064
+    #>   0.059   0.007   0.066
     ```
 
 - `gc.time`  报告垃圾回收耗费的时间
@@ -746,10 +746,10 @@ system2(command = 'pdflatex', args = '--version')
     ```r
     # 此时美国洛杉矶时间
     format(Sys.time(), tz = 'America/Los_Angeles', usetz = TRUE)
-    #> [1] "2020-01-03 08:15:45 PST"
+    #> [1] "2020-01-03 19:15:47 PST"
     # 此时加拿大东部时间
     format(Sys.time(), tz = 'Canada/Eastern', usetz = TRUE)
-    #> [1] "2020-01-03 11:15:45 EST"
+    #> [1] "2020-01-03 22:15:47 EST"
     ```
 
 1. `Sys.Date` 显示当前时区下的日期，精确到日，返回数据类型为 `date`
@@ -757,7 +757,7 @@ system2(command = 'pdflatex', args = '--version')
     
     ```r
     Sys.Date()
-    #> [1] "2020-01-03"
+    #> [1] "2020-01-04"
     ```
 
 1. `date` 返回当前系统日期和时间，数据类型是字符串
@@ -765,10 +765,10 @@ system2(command = 'pdflatex', args = '--version')
     
     ```r
     date()
-    #> [1] "Fri Jan  3 16:15:45 2020"
+    #> [1] "Sat Jan  4 03:15:47 2020"
     ## 也可以这样表示
     format(Sys.time(), "%a %b %d %H:%M:%S %Y")
-    #> [1] "Fri Jan 03 16:15:45 2020"
+    #> [1] "Sat Jan 04 03:15:47 2020"
     ```
 
 1. `as.POSIX*` 是一个 Date-time 转换函数
@@ -776,7 +776,7 @@ system2(command = 'pdflatex', args = '--version')
     
     ```r
     as.POSIXlt(Sys.time(), "GMT") # the current time in GMT
-    #> [1] "2020-01-03 16:15:45 GMT"
+    #> [1] "2020-01-04 03:15:47 GMT"
     ```
 
 1. 时间计算
@@ -784,10 +784,10 @@ system2(command = 'pdflatex', args = '--version')
     
     ```r
     (z <- Sys.time())             # the current date, as class "POSIXct"
-    #> [1] "2020-01-03 16:15:45 UTC"
+    #> [1] "2020-01-04 03:15:47 UTC"
     
     Sys.time() - 3600             # an hour ago
-    #> [1] "2020-01-03 15:15:45 UTC"
+    #> [1] "2020-01-04 02:15:47 UTC"
     ```
 
 1. `.leap.seconds` 是内置的日期序列
@@ -831,16 +831,16 @@ system2(command = 'pdflatex', args = '--version')
     # 修改时间前
     file.info('./_common.R')
     #>             size isdir mode               mtime               ctime
-    #> ./_common.R 2093 FALSE  664 2020-01-03 16:14:11 2020-01-03 16:14:11
+    #> ./_common.R 2093 FALSE  664 2020-01-04 03:14:25 2020-01-04 03:14:25
     #>                           atime  uid  gid  uname grname
-    #> ./_common.R 2020-01-03 16:14:11 2000 2000 travis travis
+    #> ./_common.R 2020-01-04 03:14:25 2000 2000 travis travis
     # 修改时间后，对比一下
     Sys.setFileTime(path = './_common.R', time = Sys.time())
     file.info('./_common.R')
     #>             size isdir mode               mtime               ctime
-    #> ./_common.R 2093 FALSE  664 2020-01-03 16:15:45 2020-01-03 16:15:45
+    #> ./_common.R 2093 FALSE  664 2020-01-04 03:15:47 2020-01-04 03:15:47
     #>                           atime  uid  gid  uname grname
-    #> ./_common.R 2020-01-03 16:15:45 2000 2000 travis travis
+    #> ./_common.R 2020-01-04 03:15:47 2000 2000 travis travis
     ```
 
 1. `strptime` 用于字符串与 `POSIXlt`、 `POSIXct` 类对象之间的转化，`format` 默认 `tz = ""` 且 `usetz = TRUE` 
@@ -852,11 +852,11 @@ system2(command = 'pdflatex', args = '--version')
     #> character(0)
     # 比较不同的打印方式
     strptime(Sys.time(), format ="%Y-%m-%d %H:%M:%S", tz = "Asia/Taipei")
-    #> [1] "2020-01-03 16:15:45 CST"
+    #> [1] "2020-01-04 03:15:47 CST"
     format(Sys.time(), format = "%Y-%m-%d %H:%M:%S") # 默认情形
-    #> [1] "2020-01-03 16:15:45"
+    #> [1] "2020-01-04 03:15:47"
     format(Sys.time(), format = "%Y-%m-%d %H:%M:%S", tz = "Asia/Taipei", usetz = TRUE)
-    #> [1] "2020-01-04 00:15:45 CST"
+    #> [1] "2020-01-04 11:15:48 CST"
     ```
 
 1. 设置时区
@@ -1094,7 +1094,7 @@ body
 #>         fun <- get(fun, mode = "function", envir = parent.frame())
 #>     .Internal(body(fun))
 #> }
-#> <bytecode: 0x4611918>
+#> <bytecode: 0x3798918>
 #> <environment: namespace:base>
 ```
 

@@ -828,11 +828,11 @@ R 内置的 <a href="https://cran.r-project.org/doc/manuals/r-release/R-lang.htm
 <h2><span class="header-section-number">3.2</span> 日期</h2>
 <p>注意观察时间转化</p>
 <div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="data-objects.html#cb110-1"></a><span class="kw">Sys.Date</span>()</span>
-<span id="cb110-2"><a href="data-objects.html#cb110-2"></a><span class="co">#&gt; [1] &quot;2020-01-03&quot;</span></span>
+<span id="cb110-2"><a href="data-objects.html#cb110-2"></a><span class="co">#&gt; [1] &quot;2020-01-04&quot;</span></span>
 <span id="cb110-3"><a href="data-objects.html#cb110-3"></a><span class="kw">Sys.time</span>()</span>
-<span id="cb110-4"><a href="data-objects.html#cb110-4"></a><span class="co">#&gt; [1] &quot;2020-01-03 16:15:51 UTC&quot;</span></span>
+<span id="cb110-4"><a href="data-objects.html#cb110-4"></a><span class="co">#&gt; [1] &quot;2020-01-04 03:15:54 UTC&quot;</span></span>
 <span id="cb110-5"><a href="data-objects.html#cb110-5"></a><span class="kw">c</span>(<span class="kw">Sys.time</span>(), <span class="kw">Sys.Date</span>())</span>
-<span id="cb110-6"><a href="data-objects.html#cb110-6"></a><span class="co">#&gt; [1] &quot;2020-01-03 16:15:51 UTC&quot; &quot;1970-01-01 05:04:24 UTC&quot;</span></span>
+<span id="cb110-6"><a href="data-objects.html#cb110-6"></a><span class="co">#&gt; [1] &quot;2020-01-04 03:15:54 UTC&quot; &quot;1970-01-01 05:04:25 UTC&quot;</span></span>
 <span id="cb110-7"><a href="data-objects.html#cb110-7"></a>data.table<span class="op">::</span><span class="kw">year</span>(<span class="kw">Sys.Date</span>())</span>
 <span id="cb110-8"><a href="data-objects.html#cb110-8"></a><span class="co">#&gt; [1] 2020</span></span>
 <span id="cb110-9"><a href="data-objects.html#cb110-9"></a>data.table<span class="op">::</span><span class="kw">year</span>(<span class="kw">Sys.time</span>())</span>
@@ -843,7 +843,7 @@ R 内置的 <a href="https://cran.r-project.org/doc/manuals/r-release/R-lang.htm
 <span id="cb111-2"><a href="data-objects.html#cb111-2"></a><span class="kw">class</span>(x)</span>
 <span id="cb111-3"><a href="data-objects.html#cb111-3"></a><span class="co">#&gt; [1] &quot;POSIXct&quot; &quot;POSIXt&quot;</span></span>
 <span id="cb111-4"><a href="data-objects.html#cb111-4"></a><span class="kw">format</span>(x, <span class="dt">format =</span> <span class="st">&quot;%Y-%m-%d&quot;</span>)</span>
-<span id="cb111-5"><a href="data-objects.html#cb111-5"></a><span class="co">#&gt; [1] &quot;2020-01-03&quot;</span></span></code></pre></div>
+<span id="cb111-5"><a href="data-objects.html#cb111-5"></a><span class="co">#&gt; [1] &quot;2020-01-04&quot;</span></span></code></pre></div>
 <div class="rmdnote">
 <div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="data-objects.html#cb112-1"></a>x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;2019-12-21&quot;</span>, <span class="st">&quot;2019/12/21&quot;</span>)</span>
 <span id="cb112-2"><a href="data-objects.html#cb112-2"></a>data.table<span class="op">::</span><span class="kw">year</span>(<span class="st">&quot;2019-12-21&quot;</span>)</span>
@@ -860,14 +860,14 @@ R 内置的 <a href="https://cran.r-project.org/doc/manuals/r-release/R-lang.htm
 </div>
 <p>date-times 表示 POSIXct 和 POSIXlt 类型的日期对象</p>
 <div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="data-objects.html#cb115-1"></a>(x &lt;-<span class="st"> </span><span class="kw">Sys.time</span>())</span>
-<span id="cb115-2"><a href="data-objects.html#cb115-2"></a><span class="co">#&gt; [1] &quot;2020-01-03 16:15:51 UTC&quot;</span></span>
+<span id="cb115-2"><a href="data-objects.html#cb115-2"></a><span class="co">#&gt; [1] &quot;2020-01-04 03:15:54 UTC&quot;</span></span>
 <span id="cb115-3"><a href="data-objects.html#cb115-3"></a><span class="kw">class</span>(x)</span>
 <span id="cb115-4"><a href="data-objects.html#cb115-4"></a><span class="co">#&gt; [1] &quot;POSIXct&quot; &quot;POSIXt&quot;</span></span>
 <span id="cb115-5"><a href="data-objects.html#cb115-5"></a></span>
 <span id="cb115-6"><a href="data-objects.html#cb115-6"></a>data.table<span class="op">::</span><span class="kw">second</span>(x) <span class="co"># 取秒</span></span>
-<span id="cb115-7"><a href="data-objects.html#cb115-7"></a><span class="co">#&gt; [1] 51</span></span>
+<span id="cb115-7"><a href="data-objects.html#cb115-7"></a><span class="co">#&gt; [1] 54</span></span>
 <span id="cb115-8"><a href="data-objects.html#cb115-8"></a><span class="kw">format</span>(x, <span class="dt">format =</span> <span class="st">&quot;%S&quot;</span>)</span>
-<span id="cb115-9"><a href="data-objects.html#cb115-9"></a><span class="co">#&gt; [1] &quot;51&quot;</span></span>
+<span id="cb115-9"><a href="data-objects.html#cb115-9"></a><span class="co">#&gt; [1] &quot;54&quot;</span></span>
 <span id="cb115-10"><a href="data-objects.html#cb115-10"></a></span>
 <span id="cb115-11"><a href="data-objects.html#cb115-11"></a>data.table<span class="op">::</span><span class="kw">minute</span>(x) <span class="co"># 取分</span></span>
 <span id="cb115-12"><a href="data-objects.html#cb115-12"></a><span class="co">#&gt; [1] 15</span></span>
@@ -875,23 +875,23 @@ R 内置的 <a href="https://cran.r-project.org/doc/manuals/r-release/R-lang.htm
 <span id="cb115-14"><a href="data-objects.html#cb115-14"></a><span class="co">#&gt; [1] &quot;15&quot;</span></span>
 <span id="cb115-15"><a href="data-objects.html#cb115-15"></a></span>
 <span id="cb115-16"><a href="data-objects.html#cb115-16"></a>data.table<span class="op">::</span><span class="kw">hour</span>(x) <span class="co"># 取时</span></span>
-<span id="cb115-17"><a href="data-objects.html#cb115-17"></a><span class="co">#&gt; [1] 16</span></span>
+<span id="cb115-17"><a href="data-objects.html#cb115-17"></a><span class="co">#&gt; [1] 3</span></span>
 <span id="cb115-18"><a href="data-objects.html#cb115-18"></a><span class="kw">format</span>(x, <span class="dt">format =</span> <span class="st">&quot;%H&quot;</span>)</span>
-<span id="cb115-19"><a href="data-objects.html#cb115-19"></a><span class="co">#&gt; [1] &quot;16&quot;</span></span>
+<span id="cb115-19"><a href="data-objects.html#cb115-19"></a><span class="co">#&gt; [1] &quot;03&quot;</span></span>
 <span id="cb115-20"><a href="data-objects.html#cb115-20"></a>data.table<span class="op">::</span><span class="kw">yday</span>(x) <span class="co"># 此刻在一年的第几天</span></span>
-<span id="cb115-21"><a href="data-objects.html#cb115-21"></a><span class="co">#&gt; [1] 3</span></span>
+<span id="cb115-21"><a href="data-objects.html#cb115-21"></a><span class="co">#&gt; [1] 4</span></span>
 <span id="cb115-22"><a href="data-objects.html#cb115-22"></a></span>
 <span id="cb115-23"><a href="data-objects.html#cb115-23"></a>data.table<span class="op">::</span><span class="kw">wday</span>(x) <span class="co"># 此刻在一周的第几天，星期日是第1天，星期六是第7天</span></span>
-<span id="cb115-24"><a href="data-objects.html#cb115-24"></a><span class="co">#&gt; [1] 6</span></span>
+<span id="cb115-24"><a href="data-objects.html#cb115-24"></a><span class="co">#&gt; [1] 7</span></span>
 <span id="cb115-25"><a href="data-objects.html#cb115-25"></a>data.table<span class="op">::</span><span class="kw">mday</span>(x) <span class="co"># 此刻在当月第几天</span></span>
-<span id="cb115-26"><a href="data-objects.html#cb115-26"></a><span class="co">#&gt; [1] 3</span></span>
+<span id="cb115-26"><a href="data-objects.html#cb115-26"></a><span class="co">#&gt; [1] 4</span></span>
 <span id="cb115-27"><a href="data-objects.html#cb115-27"></a><span class="kw">format</span>(x, <span class="dt">format =</span> <span class="st">&quot;%d&quot;</span>)</span>
-<span id="cb115-28"><a href="data-objects.html#cb115-28"></a><span class="co">#&gt; [1] &quot;03&quot;</span></span>
+<span id="cb115-28"><a href="data-objects.html#cb115-28"></a><span class="co">#&gt; [1] &quot;04&quot;</span></span>
 <span id="cb115-29"><a href="data-objects.html#cb115-29"></a></span>
 <span id="cb115-30"><a href="data-objects.html#cb115-30"></a><span class="kw">weekdays</span>(x)</span>
-<span id="cb115-31"><a href="data-objects.html#cb115-31"></a><span class="co">#&gt; [1] &quot;Friday&quot;</span></span>
+<span id="cb115-31"><a href="data-objects.html#cb115-31"></a><span class="co">#&gt; [1] &quot;Saturday&quot;</span></span>
 <span id="cb115-32"><a href="data-objects.html#cb115-32"></a><span class="kw">weekdays</span>(x, <span class="dt">abbreviate =</span> T)</span>
-<span id="cb115-33"><a href="data-objects.html#cb115-33"></a><span class="co">#&gt; [1] &quot;Fri&quot;</span></span>
+<span id="cb115-33"><a href="data-objects.html#cb115-33"></a><span class="co">#&gt; [1] &quot;Sat&quot;</span></span>
 <span id="cb115-34"><a href="data-objects.html#cb115-34"></a></span>
 <span id="cb115-35"><a href="data-objects.html#cb115-35"></a>data.table<span class="op">::</span><span class="kw">week</span>(x) <span class="co"># 此刻在第几周</span></span>
 <span id="cb115-36"><a href="data-objects.html#cb115-36"></a><span class="co">#&gt; [1] 1</span></span>
@@ -921,7 +921,7 @@ R 内置的 <a href="https://cran.r-project.org/doc/manuals/r-release/R-lang.htm
 <p><code>format()</code> 是一个泛型函数，此刻命名空间有 76 方法。
 <code>format.Date()</code>， <code>format.difftime()</code>， <code>format.POSIXct()</code> 和 <code>format.POSIXlt()</code> 四个函数通过格式化不同类型的日期数据对象抽取指定部分。</p>
 <div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="data-objects.html#cb116-1"></a><span class="kw">format</span>(<span class="kw">difftime</span>(<span class="kw">Sys.time</span>(), x, <span class="dt">units =</span> <span class="st">&quot;secs&quot;</span>))</span>
-<span id="cb116-2"><a href="data-objects.html#cb116-2"></a><span class="co">#&gt; [1] &quot;0.05081654 secs&quot;</span></span></code></pre></div>
+<span id="cb116-2"><a href="data-objects.html#cb116-2"></a><span class="co">#&gt; [1] &quot;0.04950523 secs&quot;</span></span></code></pre></div>
 <p>日期转化详见 <span class="citation">(<span class="citeproc-not-found" data-reference-id="Brian_2001_date"><strong>???</strong></span>; <span class="citeproc-not-found" data-reference-id="Gabor_2004_date"><strong>???</strong></span>)</span></p>
 </div>
 </div>
