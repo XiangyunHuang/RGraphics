@@ -19,12 +19,12 @@ pandoc_version: 2.7.3
 
 env:
   global:
+    - TZ="Asia/Shanghai"
     - MAKEFLAGS="-j 2"
-    - TRAVIS_PYTHON_VERSION="3.6"
+    - RETICULATE_PYTHON_ENV="$HOME/.virtualenvs/r-tensorflow"
 
 repos:
   CRAN: https://cloud.r-project.org
-#  RForge: https://r-forge.r-project.org
   Geo: https://nowosad.github.io/drat/
 
 addons:
@@ -79,11 +79,13 @@ addons:
       - python3-tk
 
 install:
-  - virtualenv -p /usr/bin/python3 /opt/pyenv/shims/r-tensorflow
-  - source /opt/pyenv/shims/r-tensorflow/bin/activate
-  - pip install numpy matplotlib tensorflow pandas
-#  - echo "source /opt/pyenv/shims/r-tensorflow/bin/activate" | tee -a ~/.bashrc
-#  - source ~/.bashrc
+  ## Python Env
+  - virtualenv -p /usr/bin/python3 $RETICULATE_PYTHON_ENV
+  - source $RETICULATE_PYTHON_ENV/bin/activate
+  # Install modules
+  - pip install -r requirements.txt
+  - pip list --format=columns
+  - deactivate
 
 before_script:
   - mkdir -p ~/.R ~/.fonts

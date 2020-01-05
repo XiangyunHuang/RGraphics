@@ -6,9 +6,9 @@ library(knitr)
 library(rmarkdown)
 library(shiny)
 library(magrittr)
+library(reticulate)
 knitr::opts_chunk$set(python.reticulate = TRUE)
-# reticulate::use_condaenv(condaenv = "ml")
-reticulate::use_virtualenv(virtualenv = "r-tensorflow")
+reticulate::use_virtualenv(virtualenv = Sys.getenv("RETICULATE_PYTHON_ENV"), required = TRUE)
 ```
 
 <!-- 不要安装新的 R 包，以截图的方式辅助说明即可 -->
