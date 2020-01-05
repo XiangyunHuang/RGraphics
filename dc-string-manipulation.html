@@ -772,18 +772,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb390-9"><a href="dc-string-manipulation.html#cb390-9"></a><span class="co">#&gt;  [61] FALSE FALSE  TRUE  TRUE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE  TRUE</span></span>
 <span id="cb390-10"><a href="dc-string-manipulation.html#cb390-10"></a><span class="co">#&gt;  [73] FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE</span></span>
 <span id="cb390-11"><a href="dc-string-manipulation.html#cb390-11"></a><span class="co">#&gt;  [85] FALSE  TRUE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</span></span>
-<span id="cb390-12"><a href="dc-string-manipulation.html#cb390-12"></a><span class="co">#&gt;  [97]  TRUE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE</span></span>
-<span id="cb390-13"><a href="dc-string-manipulation.html#cb390-13"></a><span class="co"># 或者</span></span>
-<span id="cb390-14"><a href="dc-string-manipulation.html#cb390-14"></a><span class="kw">grepl</span>(<span class="st">&quot;</span><span class="ch">\\</span><span class="st">.Rmd$&quot;</span>, <span class="kw">list.files</span>())</span>
-<span id="cb390-15"><a href="dc-string-manipulation.html#cb390-15"></a><span class="co">#&gt;   [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE</span></span>
-<span id="cb390-16"><a href="dc-string-manipulation.html#cb390-16"></a><span class="co">#&gt;  [13]  TRUE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE</span></span>
-<span id="cb390-17"><a href="dc-string-manipulation.html#cb390-17"></a><span class="co">#&gt;  [25] FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE FALSE</span></span>
-<span id="cb390-18"><a href="dc-string-manipulation.html#cb390-18"></a><span class="co">#&gt;  [37]  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE  TRUE  TRUE FALSE</span></span>
-<span id="cb390-19"><a href="dc-string-manipulation.html#cb390-19"></a><span class="co">#&gt;  [49] FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE  TRUE</span></span>
-<span id="cb390-20"><a href="dc-string-manipulation.html#cb390-20"></a><span class="co">#&gt;  [61] FALSE FALSE  TRUE  TRUE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE  TRUE</span></span>
-<span id="cb390-21"><a href="dc-string-manipulation.html#cb390-21"></a><span class="co">#&gt;  [73] FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE</span></span>
-<span id="cb390-22"><a href="dc-string-manipulation.html#cb390-22"></a><span class="co">#&gt;  [85] FALSE  TRUE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</span></span>
-<span id="cb390-23"><a href="dc-string-manipulation.html#cb390-23"></a><span class="co">#&gt;  [97]  TRUE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE</span></span></code></pre></div>
+<span id="cb390-12"><a href="dc-string-manipulation.html#cb390-12"></a><span class="co">#&gt;  [97]  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE</span></span>
+<span id="cb390-13"><a href="dc-string-manipulation.html#cb390-13"></a><span class="co">#&gt; [109] FALSE</span></span>
+<span id="cb390-14"><a href="dc-string-manipulation.html#cb390-14"></a><span class="co"># 或者</span></span>
+<span id="cb390-15"><a href="dc-string-manipulation.html#cb390-15"></a><span class="kw">grepl</span>(<span class="st">&quot;</span><span class="ch">\\</span><span class="st">.Rmd$&quot;</span>, <span class="kw">list.files</span>())</span>
+<span id="cb390-16"><a href="dc-string-manipulation.html#cb390-16"></a><span class="co">#&gt;   [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE</span></span>
+<span id="cb390-17"><a href="dc-string-manipulation.html#cb390-17"></a><span class="co">#&gt;  [13]  TRUE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE</span></span>
+<span id="cb390-18"><a href="dc-string-manipulation.html#cb390-18"></a><span class="co">#&gt;  [25] FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE FALSE</span></span>
+<span id="cb390-19"><a href="dc-string-manipulation.html#cb390-19"></a><span class="co">#&gt;  [37]  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE  TRUE  TRUE FALSE</span></span>
+<span id="cb390-20"><a href="dc-string-manipulation.html#cb390-20"></a><span class="co">#&gt;  [49] FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE  TRUE</span></span>
+<span id="cb390-21"><a href="dc-string-manipulation.html#cb390-21"></a><span class="co">#&gt;  [61] FALSE FALSE  TRUE  TRUE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE  TRUE</span></span>
+<span id="cb390-22"><a href="dc-string-manipulation.html#cb390-22"></a><span class="co">#&gt;  [73] FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE</span></span>
+<span id="cb390-23"><a href="dc-string-manipulation.html#cb390-23"></a><span class="co">#&gt;  [85] FALSE  TRUE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</span></span>
+<span id="cb390-24"><a href="dc-string-manipulation.html#cb390-24"></a><span class="co">#&gt;  [97]  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE</span></span>
+<span id="cb390-25"><a href="dc-string-manipulation.html#cb390-25"></a><span class="co">#&gt; [109] FALSE</span></span></code></pre></div>
 <p>部分匹配(Partial String Matching)</p>
 <div class="sourceCode" id="cb391"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb391-1"><a href="dc-string-manipulation.html#cb391-1"></a><span class="kw">match</span>(x, table, <span class="dt">nomatch =</span> <span class="ot">NA_integer_</span>, <span class="dt">incomparables =</span> <span class="ot">NULL</span>)</span>
 <span id="cb391-2"><a href="dc-string-manipulation.html#cb391-2"></a>x <span class="op">%in%</span><span class="st"> </span>table</span>

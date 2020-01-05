@@ -104,31 +104,31 @@ library(fs)
     #>                                                size isdir mode
     #> /home/travis/R-bin/lib/R/include/Rinternals.h 62346 FALSE  644
     #>                                                             mtime
-    #> /home/travis/R-bin/lib/R/include/Rinternals.h 2020-01-03 08:20:01
+    #> /home/travis/R-bin/lib/R/include/Rinternals.h 2020-01-03 16:20:01
     #>                                                             ctime
-    #> /home/travis/R-bin/lib/R/include/Rinternals.h 2020-01-04 03:12:45
+    #> /home/travis/R-bin/lib/R/include/Rinternals.h 2020-01-05 17:32:32
     #>                                                             atime  uid  gid
-    #> /home/travis/R-bin/lib/R/include/Rinternals.h 2020-01-04 03:12:45 2000 2000
+    #> /home/travis/R-bin/lib/R/include/Rinternals.h 2020-01-05 17:32:32 2000 2000
     #>                                                uname grname
     #> /home/travis/R-bin/lib/R/include/Rinternals.h travis travis
     file.mode(rinternals)
     #> [1] "644"
     file.mtime(rinternals)
-    #> [1] "2020-01-03 08:20:01 UTC"
+    #> [1] "2020-01-03 16:20:01 CST"
     file.size(rinternals)
     #> [1] 62346
     # 查看当前目录的权限
     file.info(".")
     #>   size isdir mode               mtime               ctime               atime
-    #> . 4096  TRUE  775 2020-01-04 03:15:46 2020-01-04 03:15:46 2020-01-04 03:15:47
+    #> . 4096  TRUE  775 2020-01-05 17:35:42 2020-01-05 17:35:42 2020-01-05 17:35:43
     #>    uid  gid  uname grname
     #> . 2000 2000 travis travis
     # 查看指定目录权限
     file.info("./_book/")    
     #>          size isdir mode               mtime               ctime
-    #> ./_book/ 4096  TRUE  775 2020-01-04 03:15:45 2020-01-04 03:15:45
+    #> ./_book/ 4096  TRUE  775 2020-01-05 17:35:40 2020-01-05 17:35:40
     #>                        atime  uid  gid  uname grname
-    #> ./_book/ 2020-01-04 03:15:45 2000 2000 travis travis
+    #> ./_book/ 2020-01-05 17:35:40 2000 2000 travis travis
     ```
 
 * `file.access(names, mode = 0)`  
@@ -366,7 +366,7 @@ untar(tarfile, files = NULL, list = FALSE, exdir = ".",
 ```r
 # 获取环境变量
 Sys.getenv("PATH")
-#> [1] "/home/travis/.TinyTeX/bin/x86_64-linux:/opt/pyenv/shims/r-tensorflow/bin:/home/travis/.rvm/gems/ruby-2.5.3/bin:/home/travis/.rvm/gems/ruby-2.5.3@global/bin:/home/travis/.rvm/rubies/ruby-2.5.3/bin:/home/travis/.rvm/bin:/usr/lib/postgresql/9.6/bin:/home/travis/R-bin/bin:/home/travis/bin:/home/travis/.local/bin:/usr/local/lib/jvm/openjdk11/bin:/opt/pyenv/shims:/home/travis/.phpenv/shims:/home/travis/perl5/perlbrew/bin:/home/travis/.nvm/versions/node/v8.12.0/bin:/home/travis/.kiex/elixirs/elixir-1.7.4/bin:/home/travis/.kiex/bin:/home/travis/gopath/bin:/home/travis/.gimme/versions/go1.11.1.linux.amd64/bin:/usr/local/cmake-3.12.4/bin:/usr/local/clang-7.0.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin:/opt/ghc/bin:/home/travis/.phpenv/bin:/opt/pyenv/bin:/home/travis/.yarn/bin"
+#> [1] "/home/travis/.TinyTeX/bin/x86_64-linux:/home/travis/.rvm/gems/ruby-2.5.3/bin:/home/travis/.rvm/gems/ruby-2.5.3@global/bin:/home/travis/.rvm/rubies/ruby-2.5.3/bin:/home/travis/.rvm/bin:/usr/lib/postgresql/9.6/bin:/home/travis/R-bin/bin:/home/travis/bin:/home/travis/.local/bin:/usr/local/lib/jvm/openjdk11/bin:/opt/pyenv/shims:/home/travis/.phpenv/shims:/home/travis/perl5/perlbrew/bin:/home/travis/.nvm/versions/node/v8.12.0/bin:/home/travis/.kiex/elixirs/elixir-1.7.4/bin:/home/travis/.kiex/bin:/home/travis/gopath/bin:/home/travis/.gimme/versions/go1.11.1.linux.amd64/bin:/usr/local/cmake-3.12.4/bin:/usr/local/clang-7.0.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin:/opt/ghc/bin:/home/travis/.phpenv/bin:/opt/pyenv/bin:/home/travis/.yarn/bin"
 # 设置环境变量 Windows
 # Sys.setenv(R_GSCMD = "C:/Program Files/gs/gs9.26/bin/gswin64c.exe")
 # 设置 pandoc 环境变量
@@ -653,7 +653,7 @@ help.search(keyword = "character", package = "base")
     
     ```r
     Sys.getpid()
-    #> [1] 18659
+    #> [1] 18611
     ```
 
 - `proc.time()` R 会话运行时间，常用于计算R程序在当前R控制台的运行时间
@@ -664,7 +664,7 @@ help.search(keyword = "character", package = "base")
     tmp <- rnorm(1e6)
     proc.time() - t1
     #>    user  system elapsed 
-    #>   0.049   0.017   0.065
+    #>   0.067   0.000   0.067
     ```
 
 - `system.time` 计算 R 表达式/程序块运行耗费的CPU时间
@@ -675,7 +675,7 @@ help.search(keyword = "character", package = "base")
       rnorm(1e6)
     }, gcFirst = TRUE)
     #>    user  system elapsed 
-    #>   0.059   0.007   0.066
+    #>   0.057   0.008   0.065
     ```
 
 - `gc.time`  报告垃圾回收耗费的时间
@@ -737,7 +737,7 @@ system2(command = 'pdflatex', args = '--version')
     
     ```r
     Sys.timezone(location = TRUE)
-    #> [1] "UTC"
+    #> [1] "Asia/Shanghai"
     ```
 
 1. `Sys.time` 系统时间，可以给定时区下，显示当前时间，精确到秒，返回数据类型为 `POSIXct`
@@ -746,10 +746,10 @@ system2(command = 'pdflatex', args = '--version')
     ```r
     # 此时美国洛杉矶时间
     format(Sys.time(), tz = 'America/Los_Angeles', usetz = TRUE)
-    #> [1] "2020-01-03 19:15:47 PST"
+    #> [1] "2020-01-05 01:35:43 PST"
     # 此时加拿大东部时间
     format(Sys.time(), tz = 'Canada/Eastern', usetz = TRUE)
-    #> [1] "2020-01-03 22:15:47 EST"
+    #> [1] "2020-01-05 04:35:43 EST"
     ```
 
 1. `Sys.Date` 显示当前时区下的日期，精确到日，返回数据类型为 `date`
@@ -757,7 +757,7 @@ system2(command = 'pdflatex', args = '--version')
     
     ```r
     Sys.Date()
-    #> [1] "2020-01-04"
+    #> [1] "2020-01-05"
     ```
 
 1. `date` 返回当前系统日期和时间，数据类型是字符串
@@ -765,10 +765,10 @@ system2(command = 'pdflatex', args = '--version')
     
     ```r
     date()
-    #> [1] "Sat Jan  4 03:15:47 2020"
+    #> [1] "Sun Jan  5 17:35:43 2020"
     ## 也可以这样表示
     format(Sys.time(), "%a %b %d %H:%M:%S %Y")
-    #> [1] "Sat Jan 04 03:15:47 2020"
+    #> [1] "Sun Jan 05 17:35:43 2020"
     ```
 
 1. `as.POSIX*` 是一个 Date-time 转换函数
@@ -776,7 +776,7 @@ system2(command = 'pdflatex', args = '--version')
     
     ```r
     as.POSIXlt(Sys.time(), "GMT") # the current time in GMT
-    #> [1] "2020-01-04 03:15:47 GMT"
+    #> [1] "2020-01-05 09:35:43 GMT"
     ```
 
 1. 时间计算
@@ -784,10 +784,10 @@ system2(command = 'pdflatex', args = '--version')
     
     ```r
     (z <- Sys.time())             # the current date, as class "POSIXct"
-    #> [1] "2020-01-04 03:15:47 UTC"
+    #> [1] "2020-01-05 17:35:43 CST"
     
     Sys.time() - 3600             # an hour ago
-    #> [1] "2020-01-04 02:15:47 UTC"
+    #> [1] "2020-01-05 16:35:43 CST"
     ```
 
 1. `.leap.seconds` 是内置的日期序列
@@ -795,13 +795,20 @@ system2(command = 'pdflatex', args = '--version')
     
     ```r
     .leap.seconds
-    #>  [1] "1972-07-01 UTC" "1973-01-01 UTC" "1974-01-01 UTC" "1975-01-01 UTC"
-    #>  [5] "1976-01-01 UTC" "1977-01-01 UTC" "1978-01-01 UTC" "1979-01-01 UTC"
-    #>  [9] "1980-01-01 UTC" "1981-07-01 UTC" "1982-07-01 UTC" "1983-07-01 UTC"
-    #> [13] "1985-07-01 UTC" "1988-01-01 UTC" "1990-01-01 UTC" "1991-01-01 UTC"
-    #> [17] "1992-07-01 UTC" "1993-07-01 UTC" "1994-07-01 UTC" "1996-01-01 UTC"
-    #> [21] "1997-07-01 UTC" "1999-01-01 UTC" "2006-01-01 UTC" "2009-01-01 UTC"
-    #> [25] "2012-07-01 UTC" "2015-07-01 UTC" "2017-01-01 UTC"
+    #>  [1] "1972-07-01 08:00:00 CST" "1973-01-01 08:00:00 CST"
+    #>  [3] "1974-01-01 08:00:00 CST" "1975-01-01 08:00:00 CST"
+    #>  [5] "1976-01-01 08:00:00 CST" "1977-01-01 08:00:00 CST"
+    #>  [7] "1978-01-01 08:00:00 CST" "1979-01-01 08:00:00 CST"
+    #>  [9] "1980-01-01 08:00:00 CST" "1981-07-01 08:00:00 CST"
+    #> [11] "1982-07-01 08:00:00 CST" "1983-07-01 08:00:00 CST"
+    #> [13] "1985-07-01 08:00:00 CST" "1988-01-01 08:00:00 CST"
+    #> [15] "1990-01-01 08:00:00 CST" "1991-01-01 08:00:00 CST"
+    #> [17] "1992-07-01 08:00:00 CST" "1993-07-01 08:00:00 CST"
+    #> [19] "1994-07-01 08:00:00 CST" "1996-01-01 08:00:00 CST"
+    #> [21] "1997-07-01 08:00:00 CST" "1999-01-01 08:00:00 CST"
+    #> [23] "2006-01-01 08:00:00 CST" "2009-01-01 08:00:00 CST"
+    #> [25] "2012-07-01 08:00:00 CST" "2015-07-01 08:00:00 CST"
+    #> [27] "2017-01-01 08:00:00 CST"
     ```
 
     计算日期对应的星期`weekdays`，月 `months` 和季度 `quarters`
@@ -831,16 +838,16 @@ system2(command = 'pdflatex', args = '--version')
     # 修改时间前
     file.info('./_common.R')
     #>             size isdir mode               mtime               ctime
-    #> ./_common.R 2093 FALSE  664 2020-01-04 03:14:25 2020-01-04 03:14:25
+    #> ./_common.R 2093 FALSE  664 2020-01-05 17:34:09 2020-01-05 17:34:09
     #>                           atime  uid  gid  uname grname
-    #> ./_common.R 2020-01-04 03:14:25 2000 2000 travis travis
+    #> ./_common.R 2020-01-05 17:34:09 2000 2000 travis travis
     # 修改时间后，对比一下
     Sys.setFileTime(path = './_common.R', time = Sys.time())
     file.info('./_common.R')
     #>             size isdir mode               mtime               ctime
-    #> ./_common.R 2093 FALSE  664 2020-01-04 03:15:47 2020-01-04 03:15:47
+    #> ./_common.R 2093 FALSE  664 2020-01-05 17:35:43 2020-01-05 17:35:43
     #>                           atime  uid  gid  uname grname
-    #> ./_common.R 2020-01-04 03:15:47 2000 2000 travis travis
+    #> ./_common.R 2020-01-05 17:35:43 2000 2000 travis travis
     ```
 
 1. `strptime` 用于字符串与 `POSIXlt`、 `POSIXct` 类对象之间的转化，`format` 默认 `tz = ""` 且 `usetz = TRUE` 
@@ -852,11 +859,11 @@ system2(command = 'pdflatex', args = '--version')
     #> character(0)
     # 比较不同的打印方式
     strptime(Sys.time(), format ="%Y-%m-%d %H:%M:%S", tz = "Asia/Taipei")
-    #> [1] "2020-01-04 03:15:47 CST"
+    #> [1] "2020-01-05 17:35:43 CST"
     format(Sys.time(), format = "%Y-%m-%d %H:%M:%S") # 默认情形
-    #> [1] "2020-01-04 03:15:47"
+    #> [1] "2020-01-05 17:35:43"
     format(Sys.time(), format = "%Y-%m-%d %H:%M:%S", tz = "Asia/Taipei", usetz = TRUE)
-    #> [1] "2020-01-04 11:15:48 CST"
+    #> [1] "2020-01-05 17:35:43 CST"
     ```
 
 1. 设置时区
@@ -864,7 +871,7 @@ system2(command = 'pdflatex', args = '--version')
     
     ```r
     Sys.timezone()
-    #> [1] "UTC"
+    #> [1] "Asia/Shanghai"
     Sys.setenv(TZ = "Asia/Shanghai")
     Sys.timezone()
     #> [1] "Asia/Shanghai"
@@ -1094,7 +1101,7 @@ body
 #>         fun <- get(fun, mode = "function", envir = parent.frame())
 #>     .Internal(body(fun))
 #> }
-#> <bytecode: 0x3798918>
+#> <bytecode: 0x3fc38f8>
 #> <environment: namespace:base>
 ```
 
