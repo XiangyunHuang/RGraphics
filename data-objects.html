@@ -830,9 +830,9 @@ R 内置的 <a href="https://cran.r-project.org/doc/manuals/r-release/R-lang.htm
 <div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="data-objects.html#cb110-1"></a><span class="kw">Sys.Date</span>()</span>
 <span id="cb110-2"><a href="data-objects.html#cb110-2"></a><span class="co">#&gt; [1] &quot;2020-02-05&quot;</span></span>
 <span id="cb110-3"><a href="data-objects.html#cb110-3"></a><span class="kw">Sys.time</span>()</span>
-<span id="cb110-4"><a href="data-objects.html#cb110-4"></a><span class="co">#&gt; [1] &quot;2020-02-05 11:55:39 CST&quot;</span></span>
+<span id="cb110-4"><a href="data-objects.html#cb110-4"></a><span class="co">#&gt; [1] &quot;2020-02-05 13:15:01 CST&quot;</span></span>
 <span id="cb110-5"><a href="data-objects.html#cb110-5"></a><span class="kw">c</span>(<span class="kw">Sys.time</span>(), <span class="kw">Sys.Date</span>())</span>
-<span id="cb110-6"><a href="data-objects.html#cb110-6"></a><span class="co">#&gt; [1] &quot;2020-02-05 11:55:39 CST&quot; &quot;1970-01-01 13:04:57 CST&quot;</span></span>
+<span id="cb110-6"><a href="data-objects.html#cb110-6"></a><span class="co">#&gt; [1] &quot;2020-02-05 13:15:01 CST&quot; &quot;1970-01-01 13:04:57 CST&quot;</span></span>
 <span id="cb110-7"><a href="data-objects.html#cb110-7"></a>data.table<span class="op">::</span><span class="kw">year</span>(<span class="kw">Sys.Date</span>())</span>
 <span id="cb110-8"><a href="data-objects.html#cb110-8"></a><span class="co">#&gt; [1] 2020</span></span>
 <span id="cb110-9"><a href="data-objects.html#cb110-9"></a>data.table<span class="op">::</span><span class="kw">year</span>(<span class="kw">Sys.time</span>())</span>
@@ -860,24 +860,24 @@ R 内置的 <a href="https://cran.r-project.org/doc/manuals/r-release/R-lang.htm
 </div>
 <p>date-times 表示 POSIXct 和 POSIXlt 类型的日期对象</p>
 <div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="data-objects.html#cb115-1"></a>(x &lt;-<span class="st"> </span><span class="kw">Sys.time</span>())</span>
-<span id="cb115-2"><a href="data-objects.html#cb115-2"></a><span class="co">#&gt; [1] &quot;2020-02-05 11:55:39 CST&quot;</span></span>
+<span id="cb115-2"><a href="data-objects.html#cb115-2"></a><span class="co">#&gt; [1] &quot;2020-02-05 13:15:01 CST&quot;</span></span>
 <span id="cb115-3"><a href="data-objects.html#cb115-3"></a><span class="kw">class</span>(x)</span>
 <span id="cb115-4"><a href="data-objects.html#cb115-4"></a><span class="co">#&gt; [1] &quot;POSIXct&quot; &quot;POSIXt&quot;</span></span>
 <span id="cb115-5"><a href="data-objects.html#cb115-5"></a></span>
 <span id="cb115-6"><a href="data-objects.html#cb115-6"></a>data.table<span class="op">::</span><span class="kw">second</span>(x) <span class="co"># 取秒</span></span>
-<span id="cb115-7"><a href="data-objects.html#cb115-7"></a><span class="co">#&gt; [1] 39</span></span>
+<span id="cb115-7"><a href="data-objects.html#cb115-7"></a><span class="co">#&gt; [1] 1</span></span>
 <span id="cb115-8"><a href="data-objects.html#cb115-8"></a><span class="kw">format</span>(x, <span class="dt">format =</span> <span class="st">&quot;%S&quot;</span>)</span>
-<span id="cb115-9"><a href="data-objects.html#cb115-9"></a><span class="co">#&gt; [1] &quot;39&quot;</span></span>
+<span id="cb115-9"><a href="data-objects.html#cb115-9"></a><span class="co">#&gt; [1] &quot;01&quot;</span></span>
 <span id="cb115-10"><a href="data-objects.html#cb115-10"></a></span>
 <span id="cb115-11"><a href="data-objects.html#cb115-11"></a>data.table<span class="op">::</span><span class="kw">minute</span>(x) <span class="co"># 取分</span></span>
-<span id="cb115-12"><a href="data-objects.html#cb115-12"></a><span class="co">#&gt; [1] 55</span></span>
+<span id="cb115-12"><a href="data-objects.html#cb115-12"></a><span class="co">#&gt; [1] 15</span></span>
 <span id="cb115-13"><a href="data-objects.html#cb115-13"></a><span class="kw">format</span>(x, <span class="dt">format =</span> <span class="st">&quot;%M&quot;</span>)</span>
-<span id="cb115-14"><a href="data-objects.html#cb115-14"></a><span class="co">#&gt; [1] &quot;55&quot;</span></span>
+<span id="cb115-14"><a href="data-objects.html#cb115-14"></a><span class="co">#&gt; [1] &quot;15&quot;</span></span>
 <span id="cb115-15"><a href="data-objects.html#cb115-15"></a></span>
 <span id="cb115-16"><a href="data-objects.html#cb115-16"></a>data.table<span class="op">::</span><span class="kw">hour</span>(x) <span class="co"># 取时</span></span>
-<span id="cb115-17"><a href="data-objects.html#cb115-17"></a><span class="co">#&gt; [1] 11</span></span>
+<span id="cb115-17"><a href="data-objects.html#cb115-17"></a><span class="co">#&gt; [1] 13</span></span>
 <span id="cb115-18"><a href="data-objects.html#cb115-18"></a><span class="kw">format</span>(x, <span class="dt">format =</span> <span class="st">&quot;%H&quot;</span>)</span>
-<span id="cb115-19"><a href="data-objects.html#cb115-19"></a><span class="co">#&gt; [1] &quot;11&quot;</span></span>
+<span id="cb115-19"><a href="data-objects.html#cb115-19"></a><span class="co">#&gt; [1] &quot;13&quot;</span></span>
 <span id="cb115-20"><a href="data-objects.html#cb115-20"></a>data.table<span class="op">::</span><span class="kw">yday</span>(x) <span class="co"># 此刻在一年的第几天</span></span>
 <span id="cb115-21"><a href="data-objects.html#cb115-21"></a><span class="co">#&gt; [1] 36</span></span>
 <span id="cb115-22"><a href="data-objects.html#cb115-22"></a></span>
@@ -921,7 +921,7 @@ R 内置的 <a href="https://cran.r-project.org/doc/manuals/r-release/R-lang.htm
 <p><code>format()</code> 是一个泛型函数，此刻命名空间有 76 方法。
 <code>format.Date()</code>， <code>format.difftime()</code>， <code>format.POSIXct()</code> 和 <code>format.POSIXlt()</code> 四个函数通过格式化不同类型的日期数据对象抽取指定部分。</p>
 <div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="data-objects.html#cb116-1"></a><span class="kw">format</span>(<span class="kw">difftime</span>(<span class="kw">Sys.time</span>(), x, <span class="dt">units =</span> <span class="st">&quot;secs&quot;</span>))</span>
-<span id="cb116-2"><a href="data-objects.html#cb116-2"></a><span class="co">#&gt; [1] &quot;0.05176735 secs&quot;</span></span></code></pre></div>
+<span id="cb116-2"><a href="data-objects.html#cb116-2"></a><span class="co">#&gt; [1] &quot;0.05605173 secs&quot;</span></span></code></pre></div>
 <p>日期转化详见 <span class="citation">(<span class="citeproc-not-found" data-reference-id="Brian_2001_date"><strong>???</strong></span>; <span class="citeproc-not-found" data-reference-id="Gabor_2004_date"><strong>???</strong></span>)</span></p>
 </div>
 </div>

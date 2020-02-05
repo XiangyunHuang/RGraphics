@@ -3,7 +3,7 @@
 title: "数据科学与 R 语言"
 subtitle: "Data Science with R"
 author: "黄湘云"
-date: "2020-02-05 11:55:30 CST"
+date: "2020-02-05 13:14:51 CST"
 site: bookdown::bookdown_site
 documentclass: book
 biblio-style: apalike

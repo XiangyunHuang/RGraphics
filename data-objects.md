@@ -107,9 +107,9 @@ Table: (\#tab:basic-data-type) R/Rcpp 提供的基本数据类型
 Sys.Date()
 #> [1] "2020-02-05"
 Sys.time()
-#> [1] "2020-02-05 11:55:39 CST"
+#> [1] "2020-02-05 13:15:01 CST"
 c(Sys.time(), Sys.Date())
-#> [1] "2020-02-05 11:55:39 CST" "1970-01-01 13:04:57 CST"
+#> [1] "2020-02-05 13:15:01 CST" "1970-01-01 13:04:57 CST"
 data.table::year(Sys.Date())
 #> [1] 2020
 data.table::year(Sys.time())
@@ -162,24 +162,24 @@ date-times 表示 POSIXct 和 POSIXlt 类型的日期对象
 
 ```r
 (x <- Sys.time())
-#> [1] "2020-02-05 11:55:39 CST"
+#> [1] "2020-02-05 13:15:01 CST"
 class(x)
 #> [1] "POSIXct" "POSIXt"
 
 data.table::second(x) # 取秒
-#> [1] 39
+#> [1] 1
 format(x, format = "%S")
-#> [1] "39"
+#> [1] "01"
 
 data.table::minute(x) # 取分
-#> [1] 55
+#> [1] 15
 format(x, format = "%M")
-#> [1] "55"
+#> [1] "15"
 
 data.table::hour(x) # 取时
-#> [1] 11
+#> [1] 13
 format(x, format = "%H")
-#> [1] "11"
+#> [1] "13"
 data.table::yday(x) # 此刻在一年的第几天
 #> [1] 36
 
@@ -228,7 +228,7 @@ format(x, format = "%Y")
 
 ```r
 format(difftime(Sys.time(), x, units = "secs"))
-#> [1] "0.05176735 secs"
+#> [1] "0.05605173 secs"
 ```
 
 日期转化详见 [@Brian_2001_date;@Gabor_2004_date]

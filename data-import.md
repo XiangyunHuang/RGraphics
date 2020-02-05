@@ -215,7 +215,7 @@ fil <- tempfile(fileext = ".data")
 cat("TITLE extra line", "2 3 5 7", "", "11 13 17", file = fil,
     sep = "\n")
 fil
-#> [1] "/tmp/RtmpoQ6z0Q/file6bdf129efb96.data"
+#> [1] "/tmp/RtmpSNk2fa/file4b57479cd947.data"
 ```
 
 设置参数 `n = -1` 表示将文件 fil 的内容从头读到尾
@@ -246,7 +246,7 @@ cat("123\nabc")
 fil <- tempfile("test")
 cat("123\nabc\n", file = fil, append = TRUE)
 fil
-#> [1] "/tmp/RtmpoQ6z0Q/test6bdf203165c0"
+#> [1] "/tmp/RtmpSNk2fa/test4b5750c4f64a"
 readLines(fil)
 #> [1] "123" "abc"
 ```
