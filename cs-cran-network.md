@@ -23,7 +23,7 @@ pdb <- tools::CRAN_package_db()
 
 ```r
 length(pdb[, "Package"])
-#> [1] 15367
+#> [1] 15352
 ```
 
 经过与官网发布的数据来对比，我们发现这里计算的结果与实际不符，多出来了几十个R包，所以我们再观察一下是否有重复的 R 包描述信息
@@ -42,7 +42,7 @@ pdb[, "Package"][duplicated(pdb[, "Package"])]
 
 ```r
 dim(subset(pdb, subset = !duplicated(pdb[, "Package"])))[1]
-#> [1] 15348
+#> [1] 15333
 ```
 
 接下来就是分析去掉重复信息后的数据矩阵 pdb
@@ -66,7 +66,7 @@ core_pdb <- subset(pdb,
   select = c("Package", "Maintainer")
 )
 dim(core_pdb[order(core_pdb[, "Maintainer"]), ])
-#> [1] 95  2
+#> [1] 96  2
 ```
 
 这么少，是不是有点意外，看来很多大佬更喜欢用自己的邮箱，比如 Paul Murrell， 他的邮箱是 <paul@stat.auckland.ac.nz>
@@ -76,15 +76,15 @@ dim(core_pdb[order(core_pdb[, "Maintainer"]), ])
 subset(pdb, subset = grepl(x = pdb[, "Maintainer"], pattern = "(Paul Murrell)"), 
                    select = c("Package", "Maintainer"))
 #>            Package                              Maintainer
-#> 2100       compare Paul Murrell <p.murrell@auckland.ac.nz>
-#> 5310    graphicsQC Paul Murrell <paul@stat.auckland.ac.nz>
-#> 5342      gridBase Paul Murrell <paul@stat.auckland.ac.nz>
-#> 5343    gridBezier Paul Murrell <paul@stat.auckland.ac.nz>
-#> 5344     gridDebug Paul Murrell <p.murrell@auckland.ac.nz>
-#> 5346  gridGeometry Paul Murrell <paul@stat.auckland.ac.nz>
-#> 5347  gridGraphics Paul Murrell <paul@stat.auckland.ac.nz>
-#> 5348  gridGraphviz Paul Murrell <p.murrell@auckland.ac.nz>
-#> 5351       gridSVG Paul Murrell <paul@stat.auckland.ac.nz>
+#> 2086       compare Paul Murrell <p.murrell@auckland.ac.nz>
+#> 5304    graphicsQC Paul Murrell <paul@stat.auckland.ac.nz>
+#> 5337      gridBase Paul Murrell <paul@stat.auckland.ac.nz>
+#> 5338    gridBezier Paul Murrell <paul@stat.auckland.ac.nz>
+#> 5339     gridDebug Paul Murrell <p.murrell@auckland.ac.nz>
+#> 5341  gridGeometry Paul Murrell <paul@stat.auckland.ac.nz>
+#> 5342  gridGraphics Paul Murrell <paul@stat.auckland.ac.nz>
+#> 5343  gridGraphviz Paul Murrell <p.murrell@auckland.ac.nz>
+#> 5346       gridSVG Paul Murrell <paul@stat.auckland.ac.nz>
 ....
 ```
 
@@ -198,16 +198,16 @@ gee          Brian Ripley   2019-11-07
 ```r
 sort(table(core_pdb[, "Maintainer"]), decreasing = TRUE)
 #> 
-#>        Kurt Hornik    Martin Maechler      Simon Urbanek       Paul Murrell 
-#>                 28                 26                 24                 18 
-#>       Brian Ripley      Thomas Lumley         Uwe Ligges     Duncan Murdoch 
-#>                 12                 10                  9                  7 
-#>   Michael Lawrence        David Meyer   Friedrich Leisch       Luke Tierney 
-#>                  7                  6                  5                  5 
-#>      Douglas Bates      John Chambers         Simon Wood    Deepayan Sarkar 
-#>                  3                  3                  3                  2 
-#>     Martyn Plummer Duncan Temple Lang     Peter Dalgaard 
-#>                  2                  1                  1
+#>      Kurt Hornik  Martin Maechler    Simon Urbanek     Paul Murrell 
+#>               28               27               24               18 
+#>     Brian Ripley    Thomas Lumley       Uwe Ligges   Duncan Murdoch 
+#>               12               10                9                7 
+#> Michael Lawrence      David Meyer Friedrich Leisch     Luke Tierney 
+#>                7                6                5                5 
+#>    Douglas Bates    John Chambers       Simon Wood  Deepayan Sarkar 
+#>                3                3                3                2 
+#>   Martyn Plummer   Peter Dalgaard 
+#>                2                1
 ```
 
 
@@ -331,22 +331,22 @@ subset(pdb, subset = grepl("Hadley Wickham", pdb[, "Maintainer"]),
 subset(pdb, subset = grepl("Scott Chamberlain", pdb[, "Maintainer"]),
        select = 'Package', drop = TRUE)
 #>  [1] "analogsea"   "bold"        "brranching"  "ccafs"       "charlatan"  
-#>  [6] "citecorp"    "ckanr"       "conditionz"  "cowsay"      "crminer"    
-#> [11] "crul"        "discgolf"    "elastic"     "fauxpas"     "finch"      
-#> [16] "fulltext"    "geoaxe"      "geojson"     "geojsonio"   "geojsonlint"
-#> [21] "geoops"      "getlandsat"  "gistr"       "handlr"      "hoardr"     
-#> [26] "httpcode"    "httping"     "isdparser"   "jaod"        "jqr"        
-#> [31] "lawn"        "mapr"        "microdemic"  "mregions"    "natserv"    
-#> [36] "nodbi"       "oai"         "openadds"    "originr"     "pangaear"   
-#> [41] "phylocomr"   "pleiades"    "pubchunks"   "randgeo"     "rbhl"       
-#> [46] "rbison"      "rbraries"    "rcitoid"     "rcoreoa"     "rcrossref"  
-#> [51] "rdatacite"   "rdpla"       "rdryad"      "request"     "rerddap"    
-#> [56] "rgbif"       "rif"         "ritis"       "rjsonapi"    "rnoaa"      
-#> [61] "rnpn"        "rorcid"      "rphylopic"   "rplos"       "rredlist"   
-#> [66] "rsnps"       "rvertnet"    "scrubr"      "seaaroundus" "sofa"       
-#> [71] "solrium"     "spocc"       "taxize"      "taxizedb"    "traits"     
-#> [76] "vcr"         "webmockr"    "wellknown"   "wikitaxa"    "worrms"     
-#> [81] "zbank"
+#>  [6] "citecorp"    "ckanr"       "conditionz"  "cowsay"      "crevents"   
+#> [11] "crminer"     "crul"        "discgolf"    "elastic"     "fauxpas"    
+#> [16] "finch"       "fulltext"    "geoaxe"      "geojson"     "geojsonio"  
+#> [21] "geojsonlint" "geoops"      "getlandsat"  "gistr"       "handlr"     
+#> [26] "hoardr"      "httpcode"    "httping"     "isdparser"   "jaod"       
+#> [31] "jqr"         "lawn"        "mapr"        "microdemic"  "mregions"   
+#> [36] "natserv"     "nodbi"       "oai"         "openadds"    "originr"    
+#> [41] "pangaear"    "phylocomr"   "pleiades"    "pubchunks"   "randgeo"    
+#> [46] "rbhl"        "rbison"      "rbraries"    "rcitoid"     "rcoreoa"    
+#> [51] "rcrossref"   "rdatacite"   "rdpla"       "rdryad"      "request"    
+#> [56] "rerddap"     "rgbif"       "rif"         "ritis"       "rjsonapi"   
+#> [61] "rnoaa"       "rnpn"        "rorcid"      "rphylopic"   "rplos"      
+#> [66] "rredlist"    "rsnps"       "rvertnet"    "scrubr"      "seaaroundus"
+#> [71] "sofa"        "solrium"     "spocc"       "taxize"      "taxizedb"   
+#> [76] "traits"      "vcr"         "webmockr"    "wellknown"   "wikitaxa"   
+#> [81] "worrms"      "zbank"
 ```
 
 ## 社区开发者 {#R-Package-Developers}
@@ -356,7 +356,7 @@ subset(pdb, subset = grepl("Scott Chamberlain", pdb[, "Maintainer"]),
 
 ```r
 length(unique(pdb[, "Maintainer"]))
-#> [1] 9057
+#> [1] 9059
 ```
 
 可实际上没有这么多的开发者，因为存在这样的情况，以 R 包维护者 Hadley Wickham 为例，由于他曾使用过不同的邮箱，所以在维护者字段出现了不一致的情况，实际却是同一个人。
@@ -368,15 +368,15 @@ subset(pdb,
   select = c("Package", "Maintainer")
 )
 #>             Package                             Maintainer
-#> 511      assertthat    Hadley Wickham <hadley@rstudio.com>
-#> 640       babynames    Hadley Wickham <hadley@rstudio.com>
-#> 1024      bigrquery    Hadley Wickham <hadley@rstudio.com>
-#> 1830      classifly   Hadley Wickham <h.wickham@gmail.com>
-#> 1917     clusterfly   Hadley Wickham <h.wickham@gmail.com>
-#> 2171     conflicted    Hadley Wickham <hadley@rstudio.com>
-#> 2705         dbplyr    Hadley Wickham <hadley@rstudio.com>
-#> 3210          dplyr    Hadley Wickham <hadley@rstudio.com>
-#> 3296         dtplyr    Hadley Wickham <hadley@rstudio.com>
+#> 509      assertthat    Hadley Wickham <hadley@rstudio.com>
+#> 626       babynames    Hadley Wickham <hadley@rstudio.com>
+#> 1006      bigrquery    Hadley Wickham <hadley@rstudio.com>
+#> 1817      classifly   Hadley Wickham <h.wickham@gmail.com>
+#> 1903     clusterfly   Hadley Wickham <h.wickham@gmail.com>
+#> 2156     conflicted    Hadley Wickham <hadley@rstudio.com>
+#> 2692         dbplyr    Hadley Wickham <hadley@rstudio.com>
+#> 3199          dplyr    Hadley Wickham <hadley@rstudio.com>
+#> 3286         dtplyr    Hadley Wickham <hadley@rstudio.com>
 ....
 ```
 
@@ -386,7 +386,7 @@ subset(pdb,
 ```r
 pdb[, "Maintainer"] <- clean_maintainer(pdb[, "Maintainer"])
 length(unique(pdb[, "Maintainer"]))
-#> [1] 8374
+#> [1] 8381
 ```
 
 接下来，我们还想把 R 包维护者，按照其维护的R包数量排个序，用条形图\@ref(fig:top-maintainers) 表示
@@ -541,7 +541,7 @@ hist(ctb_num, col = "lightblue", border = "white", probability = TRUE, labels = 
 table(ctb_num)
 #> ctb_num
 #>    1    2    3    4    5    6    7    8    9   10   11   12   13   14   15 
-#> 2733 1178  744  452  201  112   78   49   30   26    9    8    3    4    3 
+#> 2724 1183  742  457  215  107   76   49   32   23   10   10    3    3    3 
 #>   16   17   18   19   21   22   27   42 
 #>    5    3    2    1    3    2    2    1
 ```
@@ -556,7 +556,7 @@ first_ctb[which.max(ctb_num)]
 # 找到 R 包
 subset(sub_pdb, subset = grepl("Matt Dowle", sub_pdb[, "Maintainer"]), select = "Package")
 #>         Package
-#> 2627 data.table
+#> 2614 data.table
 ```
 
 哇，大名鼎鼎的 [data.table](https://github.com/Rdatatable/data.table) 包！！ I JUST find it!! 这是个异数，我们知道 data.table 在R社区享有盛名，影响范围很广，从 Matt Dowle 的 [Github 主页](https://github.com/mattdowle) 来看，他确实只开发了这一个 R 包！黑天鹅在这里出现了！如果按照谁的贡献者多谁影响力大的规律来看，有 10 个以上贡献者的其它几个 R 包也必定是名器！这里留给读者把它找出来吧！
@@ -986,7 +986,7 @@ webshot::webshot(url = "http://localhost:16977/session/viewhtml150c673821fc/inde
 
 ```r
 xfun::session_info()
-#> R Under development (unstable) (2020-01-03 r77628)
+#> R Under development (unstable) (2020-02-04 r77771)
 #> Platform: x86_64-pc-linux-gnu (64-bit)
 #> Running under: Ubuntu 16.04.6 LTS
 #> 
@@ -999,28 +999,27 @@ xfun::session_info()
 #>   LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
 #> 
 #> Package version:
-#>   assertthat_0.2.1   backports_1.1.5    base64enc_0.1.3   
-#>   BH_1.72.0.2        bookdown_0.16      cli_2.0.0         
-#>   colorspace_1.4-1   compiler_4.0.0     crayon_1.3.4      
-#>   curl_4.3           digest_0.6.23      dplyr_0.8.3       
-#>   ellipsis_0.3.0     evaluate_0.14      fansi_0.4.0       
-#>   farver_2.0.1       ggplot2_3.2.1      glue_1.3.1        
-#>   graphics_4.0.0     grDevices_4.0.0    grid_4.0.0        
-#>   gtable_0.3.0       highr_0.8          htmltools_0.4.0   
-#>   jsonlite_1.6       knitr_1.26         labeling_0.3      
-#>   lattice_0.20-38    lazyeval_0.2.2     lifecycle_0.1.0   
-#>   magrittr_1.5       markdown_1.1       MASS_7.3.51.5     
-#>   Matrix_1.2-18      methods_4.0.0      mgcv_1.8.31       
-#>   mime_0.8           munsell_0.5.0      nlme_3.1.143      
-#>   pillar_1.4.3       pkgconfig_2.0.3    plogr_0.2.0       
-#>   plyr_1.8.5         purrr_0.3.3        R6_2.4.1          
-#>   RColorBrewer_1.1.2 Rcpp_1.0.3         reshape2_1.4.3    
-#>   rlang_0.4.2        rmarkdown_2.0      scales_1.1.0      
-#>   splines_4.0.0      stats_4.0.0        stringi_1.4.3     
-#>   stringr_1.4.0      tibble_2.1.3       tidyselect_0.2.5  
-#>   tinytex_0.18       tools_4.0.0        utf8_1.1.4        
-#>   utils_4.0.0        vctrs_0.2.1        viridisLite_0.3.0 
-#>   withr_2.1.2        xfun_0.11          yaml_2.2.0        
-#>   zeallot_0.1.0
+#>   assertthat_0.2.1   base64enc_0.1.3    BH_1.72.0.3       
+#>   bookdown_0.17      cli_2.0.1          colorspace_1.4-1  
+#>   compiler_4.0.0     crayon_1.3.4       curl_4.3          
+#>   digest_0.6.23      dplyr_0.8.4        ellipsis_0.3.0    
+#>   evaluate_0.14      fansi_0.4.1        farver_2.0.3      
+#>   ggplot2_3.2.1      glue_1.3.1         graphics_4.0.0    
+#>   grDevices_4.0.0    grid_4.0.0         gtable_0.3.0      
+#>   highr_0.8          htmltools_0.4.0    jsonlite_1.6.1    
+#>   knitr_1.26         labeling_0.3       lattice_0.20-38   
+#>   lazyeval_0.2.2     lifecycle_0.1.0    magrittr_1.5      
+#>   markdown_1.1       MASS_7.3.51.5      Matrix_1.2-18     
+#>   methods_4.0.0      mgcv_1.8.31        mime_0.9          
+#>   munsell_0.5.0      nlme_3.1.143       pillar_1.4.3      
+#>   pkgconfig_2.0.3    plogr_0.2.0        plyr_1.8.5        
+#>   purrr_0.3.3        R6_2.4.1           RColorBrewer_1.1.2
+#>   Rcpp_1.0.3         reshape2_1.4.3     rlang_0.4.4       
+#>   rmarkdown_2.1      scales_1.1.0       splines_4.0.0     
+#>   stats_4.0.0        stringi_1.4.5      stringr_1.4.0     
+#>   tibble_2.1.3       tidyselect_1.0.0   tinytex_0.19      
+#>   tools_4.0.0        utf8_1.1.4         utils_4.0.0       
+#>   vctrs_0.2.2        viridisLite_0.3.0  withr_2.1.2       
+#>   xfun_0.12          yaml_2.2.1
 ```
 

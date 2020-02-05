@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
 <head>
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>第 4 章 数据搬运工 | 数据科学与 R 语言</title>
   <meta name="description" content="数据操作、数据分析、数据建模、动态报告和数据可视化" />
-  <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
 
   <meta property="og:title" content="第 4 章 数据搬运工 | 数据科学与 R 语言" />
   <meta property="og:type" content="book" />
@@ -754,7 +754,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb134-2"><a href="data-import.html#cb134-2"></a><span class="kw">cat</span>(<span class="st">&quot;TITLE extra line&quot;</span>, <span class="st">&quot;2 3 5 7&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="st">&quot;11 13 17&quot;</span>, <span class="dt">file =</span> fil,</span>
 <span id="cb134-3"><a href="data-import.html#cb134-3"></a>    <span class="dt">sep =</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</span>
 <span id="cb134-4"><a href="data-import.html#cb134-4"></a>fil</span>
-<span id="cb134-5"><a href="data-import.html#cb134-5"></a><span class="co">#&gt; [1] &quot;/tmp/RtmpcfVmfN/file48ea4808e0df.data&quot;</span></span></code></pre></div>
+<span id="cb134-5"><a href="data-import.html#cb134-5"></a><span class="co">#&gt; [1] &quot;/tmp/RtmpoQ6z0Q/file6bdf129efb96.data&quot;</span></span></code></pre></div>
 <p>设置参数 <code>n = -1</code> 表示将文件 fil 的内容从头读到尾</p>
 <div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="data-import.html#cb135-1"></a><span class="kw">readLines</span>(fil, <span class="dt">n =</span> <span class="dv">-1</span>)</span>
 <span id="cb135-2"><a href="data-import.html#cb135-2"></a><span class="co">#&gt; [1] &quot;TITLE extra line&quot; &quot;2 3 5 7&quot;          &quot;&quot;                 &quot;11 13 17&quot;</span></span></code></pre></div>
@@ -767,7 +767,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="data-import.html#cb138-1"></a>fil &lt;-<span class="st"> </span><span class="kw">tempfile</span>(<span class="st">&quot;test&quot;</span>)</span>
 <span id="cb138-2"><a href="data-import.html#cb138-2"></a><span class="kw">cat</span>(<span class="st">&quot;123</span><span class="ch">\n</span><span class="st">abc</span><span class="ch">\n</span><span class="st">&quot;</span>, <span class="dt">file =</span> fil, <span class="dt">append =</span> <span class="ot">TRUE</span>)</span>
 <span id="cb138-3"><a href="data-import.html#cb138-3"></a>fil</span>
-<span id="cb138-4"><a href="data-import.html#cb138-4"></a><span class="co">#&gt; [1] &quot;/tmp/RtmpcfVmfN/test48ea435df64f&quot;</span></span>
+<span id="cb138-4"><a href="data-import.html#cb138-4"></a><span class="co">#&gt; [1] &quot;/tmp/RtmpoQ6z0Q/test6bdf203165c0&quot;</span></span>
 <span id="cb138-5"><a href="data-import.html#cb138-5"></a><span class="kw">readLines</span>(fil)</span>
 <span id="cb138-6"><a href="data-import.html#cb138-6"></a><span class="co">#&gt; [1] &quot;123&quot; &quot;abc&quot;</span></span></code></pre></div>
 <p>这次读取文件的过程给出了警告，原因是 fil 没有以空行结尾，<code>warn = TRUE</code> 表示这种情况要给出警告，如果设置参数 <code>warn = FALSE</code> 就没有警告。我们还是建议大家尽量遵循规范。</p>
@@ -1607,7 +1607,7 @@ idate = params$date # 将参数化日期传递给 idate 变量
 <div id="dm-session-info" class="section level2">
 <h2><span class="header-section-number">4.8</span> 运行环境</h2>
 <div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="data-import.html#cb214-1"></a>xfun<span class="op">::</span><span class="kw">session_info</span>()</span>
-<span id="cb214-2"><a href="data-import.html#cb214-2"></a><span class="co">#&gt; R Under development (unstable) (2020-01-03 r77628)</span></span>
+<span id="cb214-2"><a href="data-import.html#cb214-2"></a><span class="co">#&gt; R Under development (unstable) (2020-02-04 r77771)</span></span>
 <span id="cb214-3"><a href="data-import.html#cb214-3"></a><span class="co">#&gt; Platform: x86_64-pc-linux-gnu (64-bit)</span></span>
 <span id="cb214-4"><a href="data-import.html#cb214-4"></a><span class="co">#&gt; Running under: Ubuntu 16.04.6 LTS</span></span>
 <span id="cb214-5"><a href="data-import.html#cb214-5"></a><span class="co">#&gt; </span></span>
@@ -1620,13 +1620,13 @@ idate = params$date # 将参数化日期传递给 idate 变量
 <span id="cb214-12"><a href="data-import.html#cb214-12"></a><span class="co">#&gt;   LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       </span></span>
 <span id="cb214-13"><a href="data-import.html#cb214-13"></a><span class="co">#&gt; </span></span>
 <span id="cb214-14"><a href="data-import.html#cb214-14"></a><span class="co">#&gt; Package version:</span></span>
-<span id="cb214-15"><a href="data-import.html#cb214-15"></a><span class="co">#&gt;   base64enc_0.1.3 bookdown_0.16   compiler_4.0.0  curl_4.3       </span></span>
+<span id="cb214-15"><a href="data-import.html#cb214-15"></a><span class="co">#&gt;   base64enc_0.1.3 bookdown_0.17   compiler_4.0.0  curl_4.3       </span></span>
 <span id="cb214-16"><a href="data-import.html#cb214-16"></a><span class="co">#&gt;   digest_0.6.23   evaluate_0.14   glue_1.3.1      graphics_4.0.0 </span></span>
-<span id="cb214-17"><a href="data-import.html#cb214-17"></a><span class="co">#&gt;   grDevices_4.0.0 highr_0.8       htmltools_0.4.0 jsonlite_1.6   </span></span>
+<span id="cb214-17"><a href="data-import.html#cb214-17"></a><span class="co">#&gt;   grDevices_4.0.0 highr_0.8       htmltools_0.4.0 jsonlite_1.6.1 </span></span>
 <span id="cb214-18"><a href="data-import.html#cb214-18"></a><span class="co">#&gt;   knitr_1.26      magrittr_1.5    markdown_1.1    methods_4.0.0  </span></span>
-<span id="cb214-19"><a href="data-import.html#cb214-19"></a><span class="co">#&gt;   mime_0.8        Rcpp_1.0.3      rlang_0.4.2     rmarkdown_2.0  </span></span>
-<span id="cb214-20"><a href="data-import.html#cb214-20"></a><span class="co">#&gt;   stats_4.0.0     stringi_1.4.3   stringr_1.4.0   tinytex_0.18   </span></span>
-<span id="cb214-21"><a href="data-import.html#cb214-21"></a><span class="co">#&gt;   tools_4.0.0     utils_4.0.0     xfun_0.11       yaml_2.2.0</span></span></code></pre></div>
+<span id="cb214-19"><a href="data-import.html#cb214-19"></a><span class="co">#&gt;   mime_0.9        Rcpp_1.0.3      rlang_0.4.4     rmarkdown_2.1  </span></span>
+<span id="cb214-20"><a href="data-import.html#cb214-20"></a><span class="co">#&gt;   stats_4.0.0     stringi_1.4.5   stringr_1.4.0   tinytex_0.19   </span></span>
+<span id="cb214-21"><a href="data-import.html#cb214-21"></a><span class="co">#&gt;   tools_4.0.0     utils_4.0.0     xfun_0.12       yaml_2.2.1</span></span></code></pre></div>
 
 </div>
 </div>

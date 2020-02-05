@@ -531,9 +531,11 @@ tidyr 包提供数据变形的函数 `tidyr::pivot_longer()` 和 `tidyr::pivot_w
 
 ```r
 tidyr::pivot_wider(data = sleep, names_from = "ID", values_from = "extra")
-#>   group   1    2    3    4    5   6   7   8   9  10
-#> 1     1 0.7 -1.6 -0.2 -1.2 -0.1 3.4 3.7 0.8 0.0 2.0
-#> 2     2 1.9  0.8  1.1  0.1 -0.1 4.4 5.5 1.6 4.6 3.4
+#> # A tibble: 2 x 11
+#>   group   `1`   `2`   `3`   `4`   `5`   `6`   `7`   `8`   `9`  `10`
+#>   <fct> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
+#> 1 1       0.7  -1.6  -0.2  -1.2  -0.1   3.4   3.7   0.8   0     2  
+#> 2 2       1.9   0.8   1.1   0.1  -0.1   4.4   5.5   1.6   4.6   3.4
 reshape(data = sleep, v.names = "extra", idvar = "group", timevar = "ID", direction = "wide")
 #>    group extra.1 extra.2 extra.3 extra.4 extra.5 extra.6 extra.7 extra.8
 #> 1:     1     0.7    -1.6    -0.2    -1.2    -0.1     3.4     3.7     0.8

@@ -419,6 +419,9 @@ treemap(GNI2014,
   type = "comp", palette = hcl.colors(6),
   draw = TRUE
 )
+#> Warning in if (class(try(col2rgb(palette), silent = TRUE)) == "try-error")
+#> stop("color palette is not correct"): the condition has length > 1 and only the
+#> first element will be used
 ```
 
 <img src="dv-highcharter_files/figure-html/GNI2014-treemap-1.png" width="70%" style="display: block; margin: auto;" />
@@ -431,6 +434,9 @@ tm <- treemap(GNI2014,
   type = "comp", palette = hcl.colors(6),
   draw = FALSE
 )
+#> Warning in if (class(try(col2rgb(palette), silent = TRUE)) == "try-error")
+#> stop("color palette is not correct"): the condition has length > 1 and only the
+#> first element will be used
 hctreemap(tm, allowDrillToNode = TRUE, layoutAlgorithm = "squarified") %>%
   hc_title(text = "Gross National Income World Data") %>%
   hc_tooltip(pointFormat = "<b>{point.name}</b>:<br>

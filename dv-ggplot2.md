@@ -41,6 +41,7 @@ Package                 Title
 **ggdistribute**        A ggplot2 Extension for Plotting Unimodal Distributions                                    
 **ggdmc**               Cognitive Models                                                                           
 **gge**                 Genotype Plus Genotype-by-Environment Biplots                                              
+**ggeasy**              Easy Access to ggplot2 Commands                                                            
 **ggedit**              Interactive ggplot2 Layer and Theme Aesthetic Editor                                       
 **ggeffects**           Create Tidy Data Frames of Marginal Effects for ggplot from Model Outputs                  
 **ggenealogy**          Visualization Tools for Genealogical Data                                                  
@@ -48,7 +49,7 @@ Package                 Title
 **ggExtra**             Add Marginal Histograms to ggplot2, and More ggplot2 Enhancements                          
 **ggfan**               Summarise a Distribution Through Coloured Intervals                                        
 **ggfittext**           Fit Text Inside a Box in ggplot2                                                           
-**ggfocus**             Focus on Specific Factor Levels in your ggplot()                                           
+**ggfocus**             Scales that Focus Specific Levels in your ggplot()                                         
 **ggforce**             Accelerating ggplot2                                                                       
 **ggformula**           Formula Interface to the Grammar of Graphics                                               
 **ggfortify**           Data Visualization Tools for Statistical Analysis Results                                  
@@ -118,7 +119,7 @@ Package                 Title
 **ggsn**                North Symbols and Scale Bars for Maps Created with ggplot2 or ggmap                        
 **ggsoccer**            Plot Soccer Event Data                                                                     
 **ggsolvencyii**        A ggplot2-Plot of Composition of Solvency II SCR: SF and IM                                
-**ggsom**               New Data Visualisations for SOMs Cluster                                                   
+**ggsom**               New Data Visualisations for SOMs Networks                                                  
 **ggspatial**           Spatial Data Framework for ggplot2                                                         
 **ggspectra**           Extensions to ggplot2 for Radiation Spectra                                                
 **ggstance**            Horizontal ggplot2 Components                                                              
@@ -1355,7 +1356,7 @@ xfun::session_info(
     "nlme", "mgcv", "ggbeeswarm", "ggridges", "hexbin"
   )
 )
-#> R Under development (unstable) (2020-01-03 r77628)
+#> R Under development (unstable) (2020-02-04 r77771)
 #> Platform: x86_64-pc-linux-gnu (64-bit)
 #> Running under: Ubuntu 16.04.6 LTS
 #> 
@@ -1368,23 +1369,22 @@ xfun::session_info(
 #>   LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
 #> 
 #> Package version:
-#>   assertthat_0.2.1   backports_1.1.5    beeswarm_0.2.3    
-#>   cli_2.0.0          colorspace_1.4-1   crayon_1.3.4      
-#>   digest_0.6.23      ellipsis_0.3.0     fansi_0.4.0       
-#>   farver_2.0.1       ggbeeswarm_0.6.0   ggplot2_3.2.1     
-#>   ggridges_0.5.1     glue_1.3.1         graphics_4.0.0    
-#>   grDevices_4.0.0    grid_4.0.0         gtable_0.3.0      
-#>   hexbin_1.28.0      labeling_0.3       lattice_0.20.38   
-#>   lazyeval_0.2.2     lifecycle_0.1.0    magrittr_1.5      
-#>   MASS_7.3.51.5      Matrix_1.2.18      methods_4.0.0     
-#>   mgcv_1.8-31        munsell_0.5.0      nlme_3.1-143      
-#>   pillar_1.4.3       pkgconfig_2.0.3    plyr_1.8.5        
-#>   R6_2.4.1           RColorBrewer_1.1.2 Rcpp_1.0.3        
-#>   reshape2_1.4.3     rlang_0.4.2        scales_1.1.0      
-#>   splines_4.0.0      stats_4.0.0        stringi_1.4.3     
-#>   stringr_1.4.0      tibble_2.1.3       tools_4.0.0       
-#>   utf8_1.1.4         utils_4.0.0        vctrs_0.2.1       
-#>   vipor_0.4.5        viridisLite_0.3.0  withr_2.1.2       
-#>   zeallot_0.1.0
+#>   assertthat_0.2.1   beeswarm_0.2.3     cli_2.0.1         
+#>   colorspace_1.4-1   crayon_1.3.4       digest_0.6.23     
+#>   ellipsis_0.3.0     fansi_0.4.1        farver_2.0.3      
+#>   ggbeeswarm_0.6.0   ggplot2_3.2.1      ggridges_0.5.2    
+#>   glue_1.3.1         graphics_4.0.0     grDevices_4.0.0   
+#>   grid_4.0.0         gtable_0.3.0       hexbin_1.28.1     
+#>   labeling_0.3       lattice_0.20.38    lazyeval_0.2.2    
+#>   lifecycle_0.1.0    magrittr_1.5       MASS_7.3.51.5     
+#>   Matrix_1.2.18      methods_4.0.0      mgcv_1.8-31       
+#>   munsell_0.5.0      nlme_3.1-143       pillar_1.4.3      
+#>   pkgconfig_2.0.3    plyr_1.8.5         R6_2.4.1          
+#>   RColorBrewer_1.1.2 Rcpp_1.0.3         reshape2_1.4.3    
+#>   rlang_0.4.4        scales_1.1.0       splines_4.0.0     
+#>   stats_4.0.0        stringi_1.4.5      stringr_1.4.0     
+#>   tibble_2.1.3       tools_4.0.0        utf8_1.1.4        
+#>   utils_4.0.0        vctrs_0.2.2        vipor_0.4.5       
+#>   viridisLite_0.3.0  withr_2.1.2
 ```
 

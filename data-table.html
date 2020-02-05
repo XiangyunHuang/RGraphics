@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
 <head>
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>第 7 章 高级数据操作 | 数据科学与 R 语言</title>
   <meta name="description" content="数据操作、数据分析、数据建模、动态报告和数据可视化" />
-  <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
 
   <meta property="og:title" content="第 7 章 高级数据操作 | 数据科学与 R 语言" />
   <meta property="og:type" content="book" />
@@ -978,16 +978,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sidebar">
 <p>tidyr 包提供数据变形的函数 <code>tidyr::pivot_longer()</code> 和 <code>tidyr::pivot_wider()</code> 相比于 Base R 提供的 <code>reshape()</code> 和 data.table 提供的 <code>melt()</code> 和 <code>dcast()</code> 更加形象的命名</p>
 <div class="sourceCode" id="cb355"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb355-1"><a href="data-table.html#cb355-1"></a>tidyr<span class="op">::</span><span class="kw">pivot_wider</span>(<span class="dt">data =</span> sleep, <span class="dt">names_from =</span> <span class="st">&quot;ID&quot;</span>, <span class="dt">values_from =</span> <span class="st">&quot;extra&quot;</span>)</span>
-<span id="cb355-2"><a href="data-table.html#cb355-2"></a><span class="co">#&gt;   group   1    2    3    4    5   6   7   8   9  10</span></span>
-<span id="cb355-3"><a href="data-table.html#cb355-3"></a><span class="co">#&gt; 1     1 0.7 -1.6 -0.2 -1.2 -0.1 3.4 3.7 0.8 0.0 2.0</span></span>
-<span id="cb355-4"><a href="data-table.html#cb355-4"></a><span class="co">#&gt; 2     2 1.9  0.8  1.1  0.1 -0.1 4.4 5.5 1.6 4.6 3.4</span></span>
-<span id="cb355-5"><a href="data-table.html#cb355-5"></a><span class="kw">reshape</span>(<span class="dt">data =</span> sleep, <span class="dt">v.names =</span> <span class="st">&quot;extra&quot;</span>, <span class="dt">idvar =</span> <span class="st">&quot;group&quot;</span>, <span class="dt">timevar =</span> <span class="st">&quot;ID&quot;</span>, <span class="dt">direction =</span> <span class="st">&quot;wide&quot;</span>)</span>
-<span id="cb355-6"><a href="data-table.html#cb355-6"></a><span class="co">#&gt;    group extra.1 extra.2 extra.3 extra.4 extra.5 extra.6 extra.7 extra.8</span></span>
-<span id="cb355-7"><a href="data-table.html#cb355-7"></a><span class="co">#&gt; 1:     1     0.7    -1.6    -0.2    -1.2    -0.1     3.4     3.7     0.8</span></span>
-<span id="cb355-8"><a href="data-table.html#cb355-8"></a><span class="co">#&gt; 2:     2     1.9     0.8     1.1     0.1    -0.1     4.4     5.5     1.6</span></span>
-<span id="cb355-9"><a href="data-table.html#cb355-9"></a><span class="co">#&gt;    extra.9 extra.10</span></span>
-<span id="cb355-10"><a href="data-table.html#cb355-10"></a><span class="co">#&gt; 1:     0.0      2.0</span></span>
-<span id="cb355-11"><a href="data-table.html#cb355-11"></a><span class="co">#&gt; 2:     4.6      3.4</span></span></code></pre></div>
+<span id="cb355-2"><a href="data-table.html#cb355-2"></a><span class="co">#&gt; # A tibble: 2 x 11</span></span>
+<span id="cb355-3"><a href="data-table.html#cb355-3"></a><span class="co">#&gt;   group   `1`   `2`   `3`   `4`   `5`   `6`   `7`   `8`   `9`  `10`</span></span>
+<span id="cb355-4"><a href="data-table.html#cb355-4"></a><span class="co">#&gt;   &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span id="cb355-5"><a href="data-table.html#cb355-5"></a><span class="co">#&gt; 1 1       0.7  -1.6  -0.2  -1.2  -0.1   3.4   3.7   0.8   0     2  </span></span>
+<span id="cb355-6"><a href="data-table.html#cb355-6"></a><span class="co">#&gt; 2 2       1.9   0.8   1.1   0.1  -0.1   4.4   5.5   1.6   4.6   3.4</span></span>
+<span id="cb355-7"><a href="data-table.html#cb355-7"></a><span class="kw">reshape</span>(<span class="dt">data =</span> sleep, <span class="dt">v.names =</span> <span class="st">&quot;extra&quot;</span>, <span class="dt">idvar =</span> <span class="st">&quot;group&quot;</span>, <span class="dt">timevar =</span> <span class="st">&quot;ID&quot;</span>, <span class="dt">direction =</span> <span class="st">&quot;wide&quot;</span>)</span>
+<span id="cb355-8"><a href="data-table.html#cb355-8"></a><span class="co">#&gt;    group extra.1 extra.2 extra.3 extra.4 extra.5 extra.6 extra.7 extra.8</span></span>
+<span id="cb355-9"><a href="data-table.html#cb355-9"></a><span class="co">#&gt; 1:     1     0.7    -1.6    -0.2    -1.2    -0.1     3.4     3.7     0.8</span></span>
+<span id="cb355-10"><a href="data-table.html#cb355-10"></a><span class="co">#&gt; 2:     2     1.9     0.8     1.1     0.1    -0.1     4.4     5.5     1.6</span></span>
+<span id="cb355-11"><a href="data-table.html#cb355-11"></a><span class="co">#&gt;    extra.9 extra.10</span></span>
+<span id="cb355-12"><a href="data-table.html#cb355-12"></a><span class="co">#&gt; 1:     0.0      2.0</span></span>
+<span id="cb355-13"><a href="data-table.html#cb355-13"></a><span class="co">#&gt; 2:     4.6      3.4</span></span></code></pre></div>
 <ul>
 <li><code>idvar</code> 分组变量</li>
 <li><code>timevar</code> 组内编号</li>

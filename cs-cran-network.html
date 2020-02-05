@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
 <head>
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>第 23 章 案例：分析 CRAN | 数据科学与 R 语言</title>
   <meta name="description" content="数据操作、数据分析、数据建模、动态报告和数据可视化" />
-  <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
 
   <meta property="og:title" content="第 23 章 案例：分析 CRAN | 数据科学与 R 语言" />
   <meta property="og:type" content="book" />
@@ -614,7 +614,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb796"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb796-1"><a href="cs-cran-network.html#cb796-1"></a>pdb &lt;-<span class="st"> </span>tools<span class="op">::</span><span class="kw">CRAN_package_db</span>()</span></code></pre></div>
 <p>接着，我们可以看看CRAN 上发布的 R 包数量</p>
 <div class="sourceCode" id="cb797"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb797-1"><a href="cs-cran-network.html#cb797-1"></a><span class="kw">length</span>(pdb[, <span class="st">&quot;Package&quot;</span>])</span>
-<span id="cb797-2"><a href="cs-cran-network.html#cb797-2"></a><span class="co">#&gt; [1] 15367</span></span></code></pre></div>
+<span id="cb797-2"><a href="cs-cran-network.html#cb797-2"></a><span class="co">#&gt; [1] 15352</span></span></code></pre></div>
 <p>经过与官网发布的数据来对比，我们发现这里计算的结果与实际不符，多出来了几十个R包，所以我们再观察一下是否有重复的 R 包描述信息</p>
 <div class="sourceCode" id="cb798"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb798-1"><a href="cs-cran-network.html#cb798-1"></a>pdb[, <span class="st">&quot;Package&quot;</span>][<span class="kw">duplicated</span>(pdb[, <span class="st">&quot;Package&quot;</span>])]</span>
 <span id="cb798-2"><a href="cs-cran-network.html#cb798-2"></a><span class="co">#&gt;  [1] &quot;boot&quot;        &quot;class&quot;       &quot;cluster&quot;     &quot;codetools&quot;   &quot;foreign&quot;    </span></span>
@@ -623,7 +623,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb798-5"><a href="cs-cran-network.html#cb798-5"></a><span class="co">#&gt; [16] &quot;adimpro&quot;     &quot;aws&quot;         &quot;frailtypack&quot; &quot;mpmi&quot;</span></span></code></pre></div>
 <p>不难发现，果然有！所以去掉重复的 R 包信息，就是 CRAN 上实际发布的 R 包数量</p>
 <div class="sourceCode" id="cb799"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb799-1"><a href="cs-cran-network.html#cb799-1"></a><span class="kw">dim</span>(<span class="kw">subset</span>(pdb, <span class="dt">subset =</span> <span class="op">!</span><span class="kw">duplicated</span>(pdb[, <span class="st">&quot;Package&quot;</span>])))[<span class="dv">1</span>]</span>
-<span id="cb799-2"><a href="cs-cran-network.html#cb799-2"></a><span class="co">#&gt; [1] 15348</span></span></code></pre></div>
+<span id="cb799-2"><a href="cs-cran-network.html#cb799-2"></a><span class="co">#&gt; [1] 15333</span></span></code></pre></div>
 <p>接下来就是分析去掉重复信息后的数据矩阵 pdb</p>
 <div class="sourceCode" id="cb800"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb800-1"><a href="cs-cran-network.html#cb800-1"></a>pdb &lt;-<span class="st"> </span><span class="kw">subset</span>(pdb, <span class="dt">subset =</span> <span class="op">!</span><span class="kw">duplicated</span>(pdb[, <span class="st">&quot;Package&quot;</span>]))</span></code></pre></div>
 <div id="R-Core-Team" class="section level2">
@@ -637,20 +637,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb801-6"><a href="cs-cran-network.html#cb801-6"></a>  <span class="dt">select =</span> <span class="kw">c</span>(<span class="st">&quot;Package&quot;</span>, <span class="st">&quot;Maintainer&quot;</span>)</span>
 <span id="cb801-7"><a href="cs-cran-network.html#cb801-7"></a>)</span>
 <span id="cb801-8"><a href="cs-cran-network.html#cb801-8"></a><span class="kw">dim</span>(core_pdb[<span class="kw">order</span>(core_pdb[, <span class="st">&quot;Maintainer&quot;</span>]), ])</span>
-<span id="cb801-9"><a href="cs-cran-network.html#cb801-9"></a><span class="co">#&gt; [1] 95  2</span></span></code></pre></div>
+<span id="cb801-9"><a href="cs-cran-network.html#cb801-9"></a><span class="co">#&gt; [1] 96  2</span></span></code></pre></div>
 <p>这么少，是不是有点意外，看来很多大佬更喜欢用自己的邮箱，比如 Paul Murrell， 他的邮箱是 <a href="mailto:paul@stat.auckland.ac.nz" class="email">paul@stat.auckland.ac.nz</a></p>
 <div class="sourceCode" id="cb802"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb802-1"><a href="cs-cran-network.html#cb802-1"></a><span class="kw">subset</span>(pdb, <span class="dt">subset =</span> <span class="kw">grepl</span>(<span class="dt">x =</span> pdb[, <span class="st">&quot;Maintainer&quot;</span>], <span class="dt">pattern =</span> <span class="st">&quot;(Paul Murrell)&quot;</span>), </span>
 <span id="cb802-2"><a href="cs-cran-network.html#cb802-2"></a>                   <span class="dt">select =</span> <span class="kw">c</span>(<span class="st">&quot;Package&quot;</span>, <span class="st">&quot;Maintainer&quot;</span>))</span>
 <span id="cb802-3"><a href="cs-cran-network.html#cb802-3"></a><span class="co">#&gt;            Package                              Maintainer</span></span>
-<span id="cb802-4"><a href="cs-cran-network.html#cb802-4"></a><span class="co">#&gt; 2100       compare Paul Murrell &lt;p.murrell@auckland.ac.nz&gt;</span></span>
-<span id="cb802-5"><a href="cs-cran-network.html#cb802-5"></a><span class="co">#&gt; 5310    graphicsQC Paul Murrell &lt;paul@stat.auckland.ac.nz&gt;</span></span>
-<span id="cb802-6"><a href="cs-cran-network.html#cb802-6"></a><span class="co">#&gt; 5342      gridBase Paul Murrell &lt;paul@stat.auckland.ac.nz&gt;</span></span>
-<span id="cb802-7"><a href="cs-cran-network.html#cb802-7"></a><span class="co">#&gt; 5343    gridBezier Paul Murrell &lt;paul@stat.auckland.ac.nz&gt;</span></span>
-<span id="cb802-8"><a href="cs-cran-network.html#cb802-8"></a><span class="co">#&gt; 5344     gridDebug Paul Murrell &lt;p.murrell@auckland.ac.nz&gt;</span></span>
-<span id="cb802-9"><a href="cs-cran-network.html#cb802-9"></a><span class="co">#&gt; 5346  gridGeometry Paul Murrell &lt;paul@stat.auckland.ac.nz&gt;</span></span>
-<span id="cb802-10"><a href="cs-cran-network.html#cb802-10"></a><span class="co">#&gt; 5347  gridGraphics Paul Murrell &lt;paul@stat.auckland.ac.nz&gt;</span></span>
-<span id="cb802-11"><a href="cs-cran-network.html#cb802-11"></a><span class="co">#&gt; 5348  gridGraphviz Paul Murrell &lt;p.murrell@auckland.ac.nz&gt;</span></span>
-<span id="cb802-12"><a href="cs-cran-network.html#cb802-12"></a><span class="co">#&gt; 5351       gridSVG Paul Murrell &lt;paul@stat.auckland.ac.nz&gt;</span></span>
+<span id="cb802-4"><a href="cs-cran-network.html#cb802-4"></a><span class="co">#&gt; 2086       compare Paul Murrell &lt;p.murrell@auckland.ac.nz&gt;</span></span>
+<span id="cb802-5"><a href="cs-cran-network.html#cb802-5"></a><span class="co">#&gt; 5304    graphicsQC Paul Murrell &lt;paul@stat.auckland.ac.nz&gt;</span></span>
+<span id="cb802-6"><a href="cs-cran-network.html#cb802-6"></a><span class="co">#&gt; 5337      gridBase Paul Murrell &lt;paul@stat.auckland.ac.nz&gt;</span></span>
+<span id="cb802-7"><a href="cs-cran-network.html#cb802-7"></a><span class="co">#&gt; 5338    gridBezier Paul Murrell &lt;paul@stat.auckland.ac.nz&gt;</span></span>
+<span id="cb802-8"><a href="cs-cran-network.html#cb802-8"></a><span class="co">#&gt; 5339     gridDebug Paul Murrell &lt;p.murrell@auckland.ac.nz&gt;</span></span>
+<span id="cb802-9"><a href="cs-cran-network.html#cb802-9"></a><span class="co">#&gt; 5341  gridGeometry Paul Murrell &lt;paul@stat.auckland.ac.nz&gt;</span></span>
+<span id="cb802-10"><a href="cs-cran-network.html#cb802-10"></a><span class="co">#&gt; 5342  gridGraphics Paul Murrell &lt;paul@stat.auckland.ac.nz&gt;</span></span>
+<span id="cb802-11"><a href="cs-cran-network.html#cb802-11"></a><span class="co">#&gt; 5343  gridGraphviz Paul Murrell &lt;p.murrell@auckland.ac.nz&gt;</span></span>
+<span id="cb802-12"><a href="cs-cran-network.html#cb802-12"></a><span class="co">#&gt; 5346       gridSVG Paul Murrell &lt;paul@stat.auckland.ac.nz&gt;</span></span>
 <span id="cb802-13"><a href="cs-cran-network.html#cb802-13"></a>....</span></code></pre></div>
 <p>所以这种方式不行了，只能列举所有 R Core Team 成员，挨个去匹配，幸好 <code>contributors()</code> 函数已经收集了成员名单，不需要我们去官网找了。</p>
 <div class="sourceCode" id="cb803"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb803-1"><a href="cs-cran-network.html#cb803-1"></a>core_team &lt;-<span class="st"> </span><span class="kw">read.table</span>(</span>
@@ -779,16 +779,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>分组计数，看看每个核心开发者维护的 R 包有多少</p>
 <div class="sourceCode" id="cb808"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb808-1"><a href="cs-cran-network.html#cb808-1"></a><span class="kw">sort</span>(<span class="kw">table</span>(core_pdb[, <span class="st">&quot;Maintainer&quot;</span>]), <span class="dt">decreasing =</span> <span class="ot">TRUE</span>)</span>
 <span id="cb808-2"><a href="cs-cran-network.html#cb808-2"></a><span class="co">#&gt; </span></span>
-<span id="cb808-3"><a href="cs-cran-network.html#cb808-3"></a><span class="co">#&gt;        Kurt Hornik    Martin Maechler      Simon Urbanek       Paul Murrell </span></span>
-<span id="cb808-4"><a href="cs-cran-network.html#cb808-4"></a><span class="co">#&gt;                 28                 26                 24                 18 </span></span>
-<span id="cb808-5"><a href="cs-cran-network.html#cb808-5"></a><span class="co">#&gt;       Brian Ripley      Thomas Lumley         Uwe Ligges     Duncan Murdoch </span></span>
-<span id="cb808-6"><a href="cs-cran-network.html#cb808-6"></a><span class="co">#&gt;                 12                 10                  9                  7 </span></span>
-<span id="cb808-7"><a href="cs-cran-network.html#cb808-7"></a><span class="co">#&gt;   Michael Lawrence        David Meyer   Friedrich Leisch       Luke Tierney </span></span>
-<span id="cb808-8"><a href="cs-cran-network.html#cb808-8"></a><span class="co">#&gt;                  7                  6                  5                  5 </span></span>
-<span id="cb808-9"><a href="cs-cran-network.html#cb808-9"></a><span class="co">#&gt;      Douglas Bates      John Chambers         Simon Wood    Deepayan Sarkar </span></span>
-<span id="cb808-10"><a href="cs-cran-network.html#cb808-10"></a><span class="co">#&gt;                  3                  3                  3                  2 </span></span>
-<span id="cb808-11"><a href="cs-cran-network.html#cb808-11"></a><span class="co">#&gt;     Martyn Plummer Duncan Temple Lang     Peter Dalgaard </span></span>
-<span id="cb808-12"><a href="cs-cran-network.html#cb808-12"></a><span class="co">#&gt;                  2                  1                  1</span></span></code></pre></div>
+<span id="cb808-3"><a href="cs-cran-network.html#cb808-3"></a><span class="co">#&gt;      Kurt Hornik  Martin Maechler    Simon Urbanek     Paul Murrell </span></span>
+<span id="cb808-4"><a href="cs-cran-network.html#cb808-4"></a><span class="co">#&gt;               28               27               24               18 </span></span>
+<span id="cb808-5"><a href="cs-cran-network.html#cb808-5"></a><span class="co">#&gt;     Brian Ripley    Thomas Lumley       Uwe Ligges   Duncan Murdoch </span></span>
+<span id="cb808-6"><a href="cs-cran-network.html#cb808-6"></a><span class="co">#&gt;               12               10                9                7 </span></span>
+<span id="cb808-7"><a href="cs-cran-network.html#cb808-7"></a><span class="co">#&gt; Michael Lawrence      David Meyer Friedrich Leisch     Luke Tierney </span></span>
+<span id="cb808-8"><a href="cs-cran-network.html#cb808-8"></a><span class="co">#&gt;                7                6                5                5 </span></span>
+<span id="cb808-9"><a href="cs-cran-network.html#cb808-9"></a><span class="co">#&gt;    Douglas Bates    John Chambers       Simon Wood  Deepayan Sarkar </span></span>
+<span id="cb808-10"><a href="cs-cran-network.html#cb808-10"></a><span class="co">#&gt;                3                3                3                2 </span></span>
+<span id="cb808-11"><a href="cs-cran-network.html#cb808-11"></a><span class="co">#&gt;   Martyn Plummer   Peter Dalgaard </span></span>
+<span id="cb808-12"><a href="cs-cran-network.html#cb808-12"></a><span class="co">#&gt;                2                1</span></span></code></pre></div>
 </div>
 <div id="Top-Creators" class="section level2">
 <h2><span class="header-section-number">23.2</span> 高产的开发者</h2>
@@ -964,48 +964,48 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb813"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb813-1"><a href="cs-cran-network.html#cb813-1"></a><span class="kw">subset</span>(pdb, <span class="dt">subset =</span> <span class="kw">grepl</span>(<span class="st">&quot;Scott Chamberlain&quot;</span>, pdb[, <span class="st">&quot;Maintainer&quot;</span>]),</span>
 <span id="cb813-2"><a href="cs-cran-network.html#cb813-2"></a>       <span class="dt">select =</span> <span class="st">&#39;Package&#39;</span>, <span class="dt">drop =</span> <span class="ot">TRUE</span>)</span>
 <span id="cb813-3"><a href="cs-cran-network.html#cb813-3"></a><span class="co">#&gt;  [1] &quot;analogsea&quot;   &quot;bold&quot;        &quot;brranching&quot;  &quot;ccafs&quot;       &quot;charlatan&quot;  </span></span>
-<span id="cb813-4"><a href="cs-cran-network.html#cb813-4"></a><span class="co">#&gt;  [6] &quot;citecorp&quot;    &quot;ckanr&quot;       &quot;conditionz&quot;  &quot;cowsay&quot;      &quot;crminer&quot;    </span></span>
-<span id="cb813-5"><a href="cs-cran-network.html#cb813-5"></a><span class="co">#&gt; [11] &quot;crul&quot;        &quot;discgolf&quot;    &quot;elastic&quot;     &quot;fauxpas&quot;     &quot;finch&quot;      </span></span>
-<span id="cb813-6"><a href="cs-cran-network.html#cb813-6"></a><span class="co">#&gt; [16] &quot;fulltext&quot;    &quot;geoaxe&quot;      &quot;geojson&quot;     &quot;geojsonio&quot;   &quot;geojsonlint&quot;</span></span>
-<span id="cb813-7"><a href="cs-cran-network.html#cb813-7"></a><span class="co">#&gt; [21] &quot;geoops&quot;      &quot;getlandsat&quot;  &quot;gistr&quot;       &quot;handlr&quot;      &quot;hoardr&quot;     </span></span>
-<span id="cb813-8"><a href="cs-cran-network.html#cb813-8"></a><span class="co">#&gt; [26] &quot;httpcode&quot;    &quot;httping&quot;     &quot;isdparser&quot;   &quot;jaod&quot;        &quot;jqr&quot;        </span></span>
-<span id="cb813-9"><a href="cs-cran-network.html#cb813-9"></a><span class="co">#&gt; [31] &quot;lawn&quot;        &quot;mapr&quot;        &quot;microdemic&quot;  &quot;mregions&quot;    &quot;natserv&quot;    </span></span>
-<span id="cb813-10"><a href="cs-cran-network.html#cb813-10"></a><span class="co">#&gt; [36] &quot;nodbi&quot;       &quot;oai&quot;         &quot;openadds&quot;    &quot;originr&quot;     &quot;pangaear&quot;   </span></span>
-<span id="cb813-11"><a href="cs-cran-network.html#cb813-11"></a><span class="co">#&gt; [41] &quot;phylocomr&quot;   &quot;pleiades&quot;    &quot;pubchunks&quot;   &quot;randgeo&quot;     &quot;rbhl&quot;       </span></span>
-<span id="cb813-12"><a href="cs-cran-network.html#cb813-12"></a><span class="co">#&gt; [46] &quot;rbison&quot;      &quot;rbraries&quot;    &quot;rcitoid&quot;     &quot;rcoreoa&quot;     &quot;rcrossref&quot;  </span></span>
-<span id="cb813-13"><a href="cs-cran-network.html#cb813-13"></a><span class="co">#&gt; [51] &quot;rdatacite&quot;   &quot;rdpla&quot;       &quot;rdryad&quot;      &quot;request&quot;     &quot;rerddap&quot;    </span></span>
-<span id="cb813-14"><a href="cs-cran-network.html#cb813-14"></a><span class="co">#&gt; [56] &quot;rgbif&quot;       &quot;rif&quot;         &quot;ritis&quot;       &quot;rjsonapi&quot;    &quot;rnoaa&quot;      </span></span>
-<span id="cb813-15"><a href="cs-cran-network.html#cb813-15"></a><span class="co">#&gt; [61] &quot;rnpn&quot;        &quot;rorcid&quot;      &quot;rphylopic&quot;   &quot;rplos&quot;       &quot;rredlist&quot;   </span></span>
-<span id="cb813-16"><a href="cs-cran-network.html#cb813-16"></a><span class="co">#&gt; [66] &quot;rsnps&quot;       &quot;rvertnet&quot;    &quot;scrubr&quot;      &quot;seaaroundus&quot; &quot;sofa&quot;       </span></span>
-<span id="cb813-17"><a href="cs-cran-network.html#cb813-17"></a><span class="co">#&gt; [71] &quot;solrium&quot;     &quot;spocc&quot;       &quot;taxize&quot;      &quot;taxizedb&quot;    &quot;traits&quot;     </span></span>
-<span id="cb813-18"><a href="cs-cran-network.html#cb813-18"></a><span class="co">#&gt; [76] &quot;vcr&quot;         &quot;webmockr&quot;    &quot;wellknown&quot;   &quot;wikitaxa&quot;    &quot;worrms&quot;     </span></span>
-<span id="cb813-19"><a href="cs-cran-network.html#cb813-19"></a><span class="co">#&gt; [81] &quot;zbank&quot;</span></span></code></pre></div>
+<span id="cb813-4"><a href="cs-cran-network.html#cb813-4"></a><span class="co">#&gt;  [6] &quot;citecorp&quot;    &quot;ckanr&quot;       &quot;conditionz&quot;  &quot;cowsay&quot;      &quot;crevents&quot;   </span></span>
+<span id="cb813-5"><a href="cs-cran-network.html#cb813-5"></a><span class="co">#&gt; [11] &quot;crminer&quot;     &quot;crul&quot;        &quot;discgolf&quot;    &quot;elastic&quot;     &quot;fauxpas&quot;    </span></span>
+<span id="cb813-6"><a href="cs-cran-network.html#cb813-6"></a><span class="co">#&gt; [16] &quot;finch&quot;       &quot;fulltext&quot;    &quot;geoaxe&quot;      &quot;geojson&quot;     &quot;geojsonio&quot;  </span></span>
+<span id="cb813-7"><a href="cs-cran-network.html#cb813-7"></a><span class="co">#&gt; [21] &quot;geojsonlint&quot; &quot;geoops&quot;      &quot;getlandsat&quot;  &quot;gistr&quot;       &quot;handlr&quot;     </span></span>
+<span id="cb813-8"><a href="cs-cran-network.html#cb813-8"></a><span class="co">#&gt; [26] &quot;hoardr&quot;      &quot;httpcode&quot;    &quot;httping&quot;     &quot;isdparser&quot;   &quot;jaod&quot;       </span></span>
+<span id="cb813-9"><a href="cs-cran-network.html#cb813-9"></a><span class="co">#&gt; [31] &quot;jqr&quot;         &quot;lawn&quot;        &quot;mapr&quot;        &quot;microdemic&quot;  &quot;mregions&quot;   </span></span>
+<span id="cb813-10"><a href="cs-cran-network.html#cb813-10"></a><span class="co">#&gt; [36] &quot;natserv&quot;     &quot;nodbi&quot;       &quot;oai&quot;         &quot;openadds&quot;    &quot;originr&quot;    </span></span>
+<span id="cb813-11"><a href="cs-cran-network.html#cb813-11"></a><span class="co">#&gt; [41] &quot;pangaear&quot;    &quot;phylocomr&quot;   &quot;pleiades&quot;    &quot;pubchunks&quot;   &quot;randgeo&quot;    </span></span>
+<span id="cb813-12"><a href="cs-cran-network.html#cb813-12"></a><span class="co">#&gt; [46] &quot;rbhl&quot;        &quot;rbison&quot;      &quot;rbraries&quot;    &quot;rcitoid&quot;     &quot;rcoreoa&quot;    </span></span>
+<span id="cb813-13"><a href="cs-cran-network.html#cb813-13"></a><span class="co">#&gt; [51] &quot;rcrossref&quot;   &quot;rdatacite&quot;   &quot;rdpla&quot;       &quot;rdryad&quot;      &quot;request&quot;    </span></span>
+<span id="cb813-14"><a href="cs-cran-network.html#cb813-14"></a><span class="co">#&gt; [56] &quot;rerddap&quot;     &quot;rgbif&quot;       &quot;rif&quot;         &quot;ritis&quot;       &quot;rjsonapi&quot;   </span></span>
+<span id="cb813-15"><a href="cs-cran-network.html#cb813-15"></a><span class="co">#&gt; [61] &quot;rnoaa&quot;       &quot;rnpn&quot;        &quot;rorcid&quot;      &quot;rphylopic&quot;   &quot;rplos&quot;      </span></span>
+<span id="cb813-16"><a href="cs-cran-network.html#cb813-16"></a><span class="co">#&gt; [66] &quot;rredlist&quot;    &quot;rsnps&quot;       &quot;rvertnet&quot;    &quot;scrubr&quot;      &quot;seaaroundus&quot;</span></span>
+<span id="cb813-17"><a href="cs-cran-network.html#cb813-17"></a><span class="co">#&gt; [71] &quot;sofa&quot;        &quot;solrium&quot;     &quot;spocc&quot;       &quot;taxize&quot;      &quot;taxizedb&quot;   </span></span>
+<span id="cb813-18"><a href="cs-cran-network.html#cb813-18"></a><span class="co">#&gt; [76] &quot;traits&quot;      &quot;vcr&quot;         &quot;webmockr&quot;    &quot;wellknown&quot;   &quot;wikitaxa&quot;   </span></span>
+<span id="cb813-19"><a href="cs-cran-network.html#cb813-19"></a><span class="co">#&gt; [81] &quot;worrms&quot;      &quot;zbank&quot;</span></span></code></pre></div>
 </div>
 <div id="R-Package-Developers" class="section level2">
 <h2><span class="header-section-number">23.3</span> 社区开发者</h2>
 <p>接下来，我们想看看 R 包维护者数量有多少</p>
 <div class="sourceCode" id="cb814"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb814-1"><a href="cs-cran-network.html#cb814-1"></a><span class="kw">length</span>(<span class="kw">unique</span>(pdb[, <span class="st">&quot;Maintainer&quot;</span>]))</span>
-<span id="cb814-2"><a href="cs-cran-network.html#cb814-2"></a><span class="co">#&gt; [1] 9057</span></span></code></pre></div>
+<span id="cb814-2"><a href="cs-cran-network.html#cb814-2"></a><span class="co">#&gt; [1] 9059</span></span></code></pre></div>
 <p>可实际上没有这么多的开发者，因为存在这样的情况，以 R 包维护者 Hadley Wickham 为例，由于他曾使用过不同的邮箱，所以在维护者字段出现了不一致的情况，实际却是同一个人。</p>
 <div class="sourceCode" id="cb815"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb815-1"><a href="cs-cran-network.html#cb815-1"></a><span class="kw">subset</span>(pdb,</span>
 <span id="cb815-2"><a href="cs-cran-network.html#cb815-2"></a>  <span class="dt">subset =</span> <span class="kw">grepl</span>(<span class="st">&quot;Hadley Wickham&quot;</span>, pdb[, <span class="st">&quot;Maintainer&quot;</span>]),</span>
 <span id="cb815-3"><a href="cs-cran-network.html#cb815-3"></a>  <span class="dt">select =</span> <span class="kw">c</span>(<span class="st">&quot;Package&quot;</span>, <span class="st">&quot;Maintainer&quot;</span>)</span>
 <span id="cb815-4"><a href="cs-cran-network.html#cb815-4"></a>)</span>
 <span id="cb815-5"><a href="cs-cran-network.html#cb815-5"></a><span class="co">#&gt;             Package                             Maintainer</span></span>
-<span id="cb815-6"><a href="cs-cran-network.html#cb815-6"></a><span class="co">#&gt; 511      assertthat    Hadley Wickham &lt;hadley@rstudio.com&gt;</span></span>
-<span id="cb815-7"><a href="cs-cran-network.html#cb815-7"></a><span class="co">#&gt; 640       babynames    Hadley Wickham &lt;hadley@rstudio.com&gt;</span></span>
-<span id="cb815-8"><a href="cs-cran-network.html#cb815-8"></a><span class="co">#&gt; 1024      bigrquery    Hadley Wickham &lt;hadley@rstudio.com&gt;</span></span>
-<span id="cb815-9"><a href="cs-cran-network.html#cb815-9"></a><span class="co">#&gt; 1830      classifly   Hadley Wickham &lt;h.wickham@gmail.com&gt;</span></span>
-<span id="cb815-10"><a href="cs-cran-network.html#cb815-10"></a><span class="co">#&gt; 1917     clusterfly   Hadley Wickham &lt;h.wickham@gmail.com&gt;</span></span>
-<span id="cb815-11"><a href="cs-cran-network.html#cb815-11"></a><span class="co">#&gt; 2171     conflicted    Hadley Wickham &lt;hadley@rstudio.com&gt;</span></span>
-<span id="cb815-12"><a href="cs-cran-network.html#cb815-12"></a><span class="co">#&gt; 2705         dbplyr    Hadley Wickham &lt;hadley@rstudio.com&gt;</span></span>
-<span id="cb815-13"><a href="cs-cran-network.html#cb815-13"></a><span class="co">#&gt; 3210          dplyr    Hadley Wickham &lt;hadley@rstudio.com&gt;</span></span>
-<span id="cb815-14"><a href="cs-cran-network.html#cb815-14"></a><span class="co">#&gt; 3296         dtplyr    Hadley Wickham &lt;hadley@rstudio.com&gt;</span></span>
+<span id="cb815-6"><a href="cs-cran-network.html#cb815-6"></a><span class="co">#&gt; 509      assertthat    Hadley Wickham &lt;hadley@rstudio.com&gt;</span></span>
+<span id="cb815-7"><a href="cs-cran-network.html#cb815-7"></a><span class="co">#&gt; 626       babynames    Hadley Wickham &lt;hadley@rstudio.com&gt;</span></span>
+<span id="cb815-8"><a href="cs-cran-network.html#cb815-8"></a><span class="co">#&gt; 1006      bigrquery    Hadley Wickham &lt;hadley@rstudio.com&gt;</span></span>
+<span id="cb815-9"><a href="cs-cran-network.html#cb815-9"></a><span class="co">#&gt; 1817      classifly   Hadley Wickham &lt;h.wickham@gmail.com&gt;</span></span>
+<span id="cb815-10"><a href="cs-cran-network.html#cb815-10"></a><span class="co">#&gt; 1903     clusterfly   Hadley Wickham &lt;h.wickham@gmail.com&gt;</span></span>
+<span id="cb815-11"><a href="cs-cran-network.html#cb815-11"></a><span class="co">#&gt; 2156     conflicted    Hadley Wickham &lt;hadley@rstudio.com&gt;</span></span>
+<span id="cb815-12"><a href="cs-cran-network.html#cb815-12"></a><span class="co">#&gt; 2692         dbplyr    Hadley Wickham &lt;hadley@rstudio.com&gt;</span></span>
+<span id="cb815-13"><a href="cs-cran-network.html#cb815-13"></a><span class="co">#&gt; 3199          dplyr    Hadley Wickham &lt;hadley@rstudio.com&gt;</span></span>
+<span id="cb815-14"><a href="cs-cran-network.html#cb815-14"></a><span class="co">#&gt; 3286         dtplyr    Hadley Wickham &lt;hadley@rstudio.com&gt;</span></span>
 <span id="cb815-15"><a href="cs-cran-network.html#cb815-15"></a>....</span></code></pre></div>
 <p>因此，有必要先把 Maintainer 字段中的邮箱部分去掉，这样我们可以得到比较靠谱的R包维护者数量了！</p>
 <div class="sourceCode" id="cb816"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb816-1"><a href="cs-cran-network.html#cb816-1"></a>pdb[, <span class="st">&quot;Maintainer&quot;</span>] &lt;-<span class="st"> </span><span class="kw">clean_maintainer</span>(pdb[, <span class="st">&quot;Maintainer&quot;</span>])</span>
 <span id="cb816-2"><a href="cs-cran-network.html#cb816-2"></a><span class="kw">length</span>(<span class="kw">unique</span>(pdb[, <span class="st">&quot;Maintainer&quot;</span>]))</span>
-<span id="cb816-3"><a href="cs-cran-network.html#cb816-3"></a><span class="co">#&gt; [1] 8374</span></span></code></pre></div>
+<span id="cb816-3"><a href="cs-cran-network.html#cb816-3"></a><span class="co">#&gt; [1] 8381</span></span></code></pre></div>
 <p>接下来，我们还想把 R 包维护者，按照其维护的R包数量排个序，用条形图<a href="cs-cran-network.html#fig:top-maintainers">23.1</a> 表示</p>
 <div class="sourceCode" id="cb817"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb817-1"><a href="cs-cran-network.html#cb817-1"></a>top_maintainer &lt;-<span class="st"> </span><span class="kw">head</span>(<span class="kw">sort</span>(<span class="kw">table</span>(pdb[, <span class="st">&quot;Maintainer&quot;</span>]), <span class="dt">decreasing =</span> <span class="ot">TRUE</span>), <span class="dv">20</span>)</span>
 <span id="cb817-2"><a href="cs-cran-network.html#cb817-2"></a></span>
@@ -1107,7 +1107,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb826"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb826-1"><a href="cs-cran-network.html#cb826-1"></a><span class="kw">table</span>(ctb_num)</span>
 <span id="cb826-2"><a href="cs-cran-network.html#cb826-2"></a><span class="co">#&gt; ctb_num</span></span>
 <span id="cb826-3"><a href="cs-cran-network.html#cb826-3"></a><span class="co">#&gt;    1    2    3    4    5    6    7    8    9   10   11   12   13   14   15 </span></span>
-<span id="cb826-4"><a href="cs-cran-network.html#cb826-4"></a><span class="co">#&gt; 2733 1178  744  452  201  112   78   49   30   26    9    8    3    4    3 </span></span>
+<span id="cb826-4"><a href="cs-cran-network.html#cb826-4"></a><span class="co">#&gt; 2724 1183  742  457  215  107   76   49   32   23   10   10    3    3    3 </span></span>
 <span id="cb826-5"><a href="cs-cran-network.html#cb826-5"></a><span class="co">#&gt;   16   17   18   19   21   22   27   42 </span></span>
 <span id="cb826-6"><a href="cs-cran-network.html#cb826-6"></a><span class="co">#&gt;    5    3    2    1    3    2    2    1</span></span></code></pre></div>
 <p>有意思的是，有一个开发者虽然只开发了一个 R 包，但是却引来37位贡献者（包括开发者本人在内），下面把这个颇受欢迎的 R 包找出来</p>
@@ -1117,7 +1117,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb827-4"><a href="cs-cran-network.html#cb827-4"></a><span class="co"># 找到 R 包</span></span>
 <span id="cb827-5"><a href="cs-cran-network.html#cb827-5"></a><span class="kw">subset</span>(sub_pdb, <span class="dt">subset =</span> <span class="kw">grepl</span>(<span class="st">&quot;Matt Dowle&quot;</span>, sub_pdb[, <span class="st">&quot;Maintainer&quot;</span>]), <span class="dt">select =</span> <span class="st">&quot;Package&quot;</span>)</span>
 <span id="cb827-6"><a href="cs-cran-network.html#cb827-6"></a><span class="co">#&gt;         Package</span></span>
-<span id="cb827-7"><a href="cs-cran-network.html#cb827-7"></a><span class="co">#&gt; 2627 data.table</span></span></code></pre></div>
+<span id="cb827-7"><a href="cs-cran-network.html#cb827-7"></a><span class="co">#&gt; 2614 data.table</span></span></code></pre></div>
 <p>哇，大名鼎鼎的 <a href="https://github.com/Rdatatable/data.table">data.table</a> 包！！ I JUST find it!! 这是个异数，我们知道 data.table 在R社区享有盛名，影响范围很广，从 Matt Dowle 的 <a href="https://github.com/mattdowle">Github 主页</a> 来看，他确实只开发了这一个 R 包！黑天鹅在这里出现了！如果按照谁的贡献者多谁影响力大的规律来看，有 10 个以上贡献者的其它几个 R 包也必定是名器！这里留给读者把它找出来吧！</p>
 </div>
 <div id="Contribution-Network" class="section level2">
@@ -1449,7 +1449,7 @@ R 开源还体现在许可证信息，顺便谈谈美国和中国技术封锁，
 <div id="cs-network-session-info" class="section level2">
 <h2><span class="header-section-number">23.10</span> 运行环境</h2>
 <div class="sourceCode" id="cb846"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb846-1"><a href="cs-cran-network.html#cb846-1"></a>xfun<span class="op">::</span><span class="kw">session_info</span>()</span>
-<span id="cb846-2"><a href="cs-cran-network.html#cb846-2"></a><span class="co">#&gt; R Under development (unstable) (2020-01-03 r77628)</span></span>
+<span id="cb846-2"><a href="cs-cran-network.html#cb846-2"></a><span class="co">#&gt; R Under development (unstable) (2020-02-04 r77771)</span></span>
 <span id="cb846-3"><a href="cs-cran-network.html#cb846-3"></a><span class="co">#&gt; Platform: x86_64-pc-linux-gnu (64-bit)</span></span>
 <span id="cb846-4"><a href="cs-cran-network.html#cb846-4"></a><span class="co">#&gt; Running under: Ubuntu 16.04.6 LTS</span></span>
 <span id="cb846-5"><a href="cs-cran-network.html#cb846-5"></a><span class="co">#&gt; </span></span>
@@ -1462,29 +1462,28 @@ R 开源还体现在许可证信息，顺便谈谈美国和中国技术封锁，
 <span id="cb846-12"><a href="cs-cran-network.html#cb846-12"></a><span class="co">#&gt;   LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       </span></span>
 <span id="cb846-13"><a href="cs-cran-network.html#cb846-13"></a><span class="co">#&gt; </span></span>
 <span id="cb846-14"><a href="cs-cran-network.html#cb846-14"></a><span class="co">#&gt; Package version:</span></span>
-<span id="cb846-15"><a href="cs-cran-network.html#cb846-15"></a><span class="co">#&gt;   assertthat_0.2.1   backports_1.1.5    base64enc_0.1.3   </span></span>
-<span id="cb846-16"><a href="cs-cran-network.html#cb846-16"></a><span class="co">#&gt;   BH_1.72.0.2        bookdown_0.16      cli_2.0.0         </span></span>
-<span id="cb846-17"><a href="cs-cran-network.html#cb846-17"></a><span class="co">#&gt;   colorspace_1.4-1   compiler_4.0.0     crayon_1.3.4      </span></span>
-<span id="cb846-18"><a href="cs-cran-network.html#cb846-18"></a><span class="co">#&gt;   curl_4.3           digest_0.6.23      dplyr_0.8.3       </span></span>
-<span id="cb846-19"><a href="cs-cran-network.html#cb846-19"></a><span class="co">#&gt;   ellipsis_0.3.0     evaluate_0.14      fansi_0.4.0       </span></span>
-<span id="cb846-20"><a href="cs-cran-network.html#cb846-20"></a><span class="co">#&gt;   farver_2.0.1       ggplot2_3.2.1      glue_1.3.1        </span></span>
-<span id="cb846-21"><a href="cs-cran-network.html#cb846-21"></a><span class="co">#&gt;   graphics_4.0.0     grDevices_4.0.0    grid_4.0.0        </span></span>
-<span id="cb846-22"><a href="cs-cran-network.html#cb846-22"></a><span class="co">#&gt;   gtable_0.3.0       highr_0.8          htmltools_0.4.0   </span></span>
-<span id="cb846-23"><a href="cs-cran-network.html#cb846-23"></a><span class="co">#&gt;   jsonlite_1.6       knitr_1.26         labeling_0.3      </span></span>
-<span id="cb846-24"><a href="cs-cran-network.html#cb846-24"></a><span class="co">#&gt;   lattice_0.20-38    lazyeval_0.2.2     lifecycle_0.1.0   </span></span>
-<span id="cb846-25"><a href="cs-cran-network.html#cb846-25"></a><span class="co">#&gt;   magrittr_1.5       markdown_1.1       MASS_7.3.51.5     </span></span>
-<span id="cb846-26"><a href="cs-cran-network.html#cb846-26"></a><span class="co">#&gt;   Matrix_1.2-18      methods_4.0.0      mgcv_1.8.31       </span></span>
-<span id="cb846-27"><a href="cs-cran-network.html#cb846-27"></a><span class="co">#&gt;   mime_0.8           munsell_0.5.0      nlme_3.1.143      </span></span>
-<span id="cb846-28"><a href="cs-cran-network.html#cb846-28"></a><span class="co">#&gt;   pillar_1.4.3       pkgconfig_2.0.3    plogr_0.2.0       </span></span>
-<span id="cb846-29"><a href="cs-cran-network.html#cb846-29"></a><span class="co">#&gt;   plyr_1.8.5         purrr_0.3.3        R6_2.4.1          </span></span>
-<span id="cb846-30"><a href="cs-cran-network.html#cb846-30"></a><span class="co">#&gt;   RColorBrewer_1.1.2 Rcpp_1.0.3         reshape2_1.4.3    </span></span>
-<span id="cb846-31"><a href="cs-cran-network.html#cb846-31"></a><span class="co">#&gt;   rlang_0.4.2        rmarkdown_2.0      scales_1.1.0      </span></span>
-<span id="cb846-32"><a href="cs-cran-network.html#cb846-32"></a><span class="co">#&gt;   splines_4.0.0      stats_4.0.0        stringi_1.4.3     </span></span>
-<span id="cb846-33"><a href="cs-cran-network.html#cb846-33"></a><span class="co">#&gt;   stringr_1.4.0      tibble_2.1.3       tidyselect_0.2.5  </span></span>
-<span id="cb846-34"><a href="cs-cran-network.html#cb846-34"></a><span class="co">#&gt;   tinytex_0.18       tools_4.0.0        utf8_1.1.4        </span></span>
-<span id="cb846-35"><a href="cs-cran-network.html#cb846-35"></a><span class="co">#&gt;   utils_4.0.0        vctrs_0.2.1        viridisLite_0.3.0 </span></span>
-<span id="cb846-36"><a href="cs-cran-network.html#cb846-36"></a><span class="co">#&gt;   withr_2.1.2        xfun_0.11          yaml_2.2.0        </span></span>
-<span id="cb846-37"><a href="cs-cran-network.html#cb846-37"></a><span class="co">#&gt;   zeallot_0.1.0</span></span></code></pre></div>
+<span id="cb846-15"><a href="cs-cran-network.html#cb846-15"></a><span class="co">#&gt;   assertthat_0.2.1   base64enc_0.1.3    BH_1.72.0.3       </span></span>
+<span id="cb846-16"><a href="cs-cran-network.html#cb846-16"></a><span class="co">#&gt;   bookdown_0.17      cli_2.0.1          colorspace_1.4-1  </span></span>
+<span id="cb846-17"><a href="cs-cran-network.html#cb846-17"></a><span class="co">#&gt;   compiler_4.0.0     crayon_1.3.4       curl_4.3          </span></span>
+<span id="cb846-18"><a href="cs-cran-network.html#cb846-18"></a><span class="co">#&gt;   digest_0.6.23      dplyr_0.8.4        ellipsis_0.3.0    </span></span>
+<span id="cb846-19"><a href="cs-cran-network.html#cb846-19"></a><span class="co">#&gt;   evaluate_0.14      fansi_0.4.1        farver_2.0.3      </span></span>
+<span id="cb846-20"><a href="cs-cran-network.html#cb846-20"></a><span class="co">#&gt;   ggplot2_3.2.1      glue_1.3.1         graphics_4.0.0    </span></span>
+<span id="cb846-21"><a href="cs-cran-network.html#cb846-21"></a><span class="co">#&gt;   grDevices_4.0.0    grid_4.0.0         gtable_0.3.0      </span></span>
+<span id="cb846-22"><a href="cs-cran-network.html#cb846-22"></a><span class="co">#&gt;   highr_0.8          htmltools_0.4.0    jsonlite_1.6.1    </span></span>
+<span id="cb846-23"><a href="cs-cran-network.html#cb846-23"></a><span class="co">#&gt;   knitr_1.26         labeling_0.3       lattice_0.20-38   </span></span>
+<span id="cb846-24"><a href="cs-cran-network.html#cb846-24"></a><span class="co">#&gt;   lazyeval_0.2.2     lifecycle_0.1.0    magrittr_1.5      </span></span>
+<span id="cb846-25"><a href="cs-cran-network.html#cb846-25"></a><span class="co">#&gt;   markdown_1.1       MASS_7.3.51.5      Matrix_1.2-18     </span></span>
+<span id="cb846-26"><a href="cs-cran-network.html#cb846-26"></a><span class="co">#&gt;   methods_4.0.0      mgcv_1.8.31        mime_0.9          </span></span>
+<span id="cb846-27"><a href="cs-cran-network.html#cb846-27"></a><span class="co">#&gt;   munsell_0.5.0      nlme_3.1.143       pillar_1.4.3      </span></span>
+<span id="cb846-28"><a href="cs-cran-network.html#cb846-28"></a><span class="co">#&gt;   pkgconfig_2.0.3    plogr_0.2.0        plyr_1.8.5        </span></span>
+<span id="cb846-29"><a href="cs-cran-network.html#cb846-29"></a><span class="co">#&gt;   purrr_0.3.3        R6_2.4.1           RColorBrewer_1.1.2</span></span>
+<span id="cb846-30"><a href="cs-cran-network.html#cb846-30"></a><span class="co">#&gt;   Rcpp_1.0.3         reshape2_1.4.3     rlang_0.4.4       </span></span>
+<span id="cb846-31"><a href="cs-cran-network.html#cb846-31"></a><span class="co">#&gt;   rmarkdown_2.1      scales_1.1.0       splines_4.0.0     </span></span>
+<span id="cb846-32"><a href="cs-cran-network.html#cb846-32"></a><span class="co">#&gt;   stats_4.0.0        stringi_1.4.5      stringr_1.4.0     </span></span>
+<span id="cb846-33"><a href="cs-cran-network.html#cb846-33"></a><span class="co">#&gt;   tibble_2.1.3       tidyselect_1.0.0   tinytex_0.19      </span></span>
+<span id="cb846-34"><a href="cs-cran-network.html#cb846-34"></a><span class="co">#&gt;   tools_4.0.0        utf8_1.1.4         utils_4.0.0       </span></span>
+<span id="cb846-35"><a href="cs-cran-network.html#cb846-35"></a><span class="co">#&gt;   vctrs_0.2.2        viridisLite_0.3.0  withr_2.1.2       </span></span>
+<span id="cb846-36"><a href="cs-cran-network.html#cb846-36"></a><span class="co">#&gt;   xfun_0.12          yaml_2.2.1</span></span></code></pre></div>
 
 </div>
 </div>

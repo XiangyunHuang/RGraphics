@@ -2211,7 +2211,7 @@ title(main = "Maunga Whau Volcano", font.main = 4)
 
 ```r
 xfun::session_info()
-#> R Under development (unstable) (2020-01-03 r77628)
+#> R Under development (unstable) (2020-02-04 r77771)
 #> Platform: x86_64-pc-linux-gnu (64-bit)
 #> Running under: Ubuntu 16.04.6 LTS
 #> 
@@ -2224,19 +2224,19 @@ xfun::session_info()
 #>   LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
 #> 
 #> Package version:
-#>   base64enc_0.1.3    bookdown_0.16      codetools_0.2-16  
+#>   base64enc_0.1.3    bookdown_0.17      codetools_0.2-16  
 #>   compiler_4.0.0     curl_4.3           digest_0.6.23     
 #>   evaluate_0.14      glue_1.3.1         graphics_4.0.0    
 #>   grDevices_4.0.0    grid_4.0.0         highr_0.8         
-#>   htmltools_0.4.0    jsonlite_1.6       KernSmooth_2.23-16
+#>   htmltools_0.4.0    jsonlite_1.6.1     KernSmooth_2.23-16
 #>   knitr_1.26         lattice_0.20-38    magrittr_1.5      
 #>   markdown_1.1       MASS_7.3-51.5      Matrix_1.2-18     
-#>   methods_4.0.0      mime_0.8           pracma_2.2.9      
-#>   raster_3.0-7       Rcpp_1.0.3         rgdal_1.4-8       
-#>   rlang_0.4.2        rmarkdown_2.0      sp_1.3-2          
+#>   methods_4.0.0      mime_0.9           pracma_2.2.9      
+#>   raster_3.0-12      Rcpp_1.0.3         rgdal_1.4-8       
+#>   rlang_0.4.4        rmarkdown_2.1      sp_1.3-2          
 #>   spDataLarge_0.3.1  splines_4.0.0      stats_4.0.0       
-#>   stringi_1.4.3      stringr_1.4.0      survival_3.1-8    
-#>   tinytex_0.18       tools_4.0.0        utils_4.0.0       
-#>   xfun_0.11          yaml_2.2.0
+#>   stringi_1.4.5      stringr_1.4.0      survival_3.1-8    
+#>   tinytex_0.19       tools_4.0.0        utils_4.0.0       
+#>   xfun_0.12          yaml_2.2.1
 ```
 

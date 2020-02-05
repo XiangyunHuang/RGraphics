@@ -19,7 +19,7 @@ help.search(keyword = "character", package = "base")
 nchar(c("Hello", "world", "!"))
 #> [1] 5 5 1
 R.version.string
-#> [1] "R Under development (unstable) (2020-01-03 r77628)"
+#> [1] "R Under development (unstable) (2020-02-04 r77771)"
 nchar(R.version.string)
 #> [1] 50
 deparse(base::mean)
@@ -1243,7 +1243,7 @@ trimws(x, "r")
 
 ```r
 xfun::session_info()
-#> R Under development (unstable) (2020-01-03 r77628)
+#> R Under development (unstable) (2020-02-04 r77771)
 #> Platform: x86_64-pc-linux-gnu (64-bit)
 #> Running under: Ubuntu 16.04.6 LTS
 #> 
@@ -1256,18 +1256,18 @@ xfun::session_info()
 #>   LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
 #> 
 #> Package version:
-#>   assertthat_0.2.1 backports_1.1.5  base64enc_0.1.3  BH_1.72.0.2     
-#>   bookdown_0.16    cli_2.0.0        compiler_4.0.0   crayon_1.3.4    
-#>   curl_4.3         digest_0.6.23    dplyr_0.8.3      ellipsis_0.3.0  
-#>   evaluate_0.14    fansi_0.4.0      glue_1.3.1       graphics_4.0.0  
-#>   grDevices_4.0.0  highr_0.8        htmltools_0.4.0  jsonlite_1.6    
-#>   knitr_1.26       lifecycle_0.1.0  magrittr_1.5     markdown_1.1    
-#>   methods_4.0.0    mime_0.8         pillar_1.4.3     pkgconfig_2.0.3 
-#>   plogr_0.2.0      purrr_0.3.3      R6_2.4.1         Rcpp_1.0.3      
-#>   rlang_0.4.2      rmarkdown_2.0    stats_4.0.0      stringi_1.4.3   
-#>   stringr_1.4.0    tibble_2.1.3     tidyr_1.0.0      tidyselect_0.2.5
-#>   tinytex_0.18     tools_4.0.0      utf8_1.1.4       utils_4.0.0     
-#>   vctrs_0.2.1      xfun_0.11        yaml_2.2.0       zeallot_0.1.0
+#>   assertthat_0.2.1 base64enc_0.1.3  BH_1.72.0.3      bookdown_0.17   
+#>   cli_2.0.1        compiler_4.0.0   crayon_1.3.4     curl_4.3        
+#>   digest_0.6.23    dplyr_0.8.4      ellipsis_0.3.0   evaluate_0.14   
+#>   fansi_0.4.1      glue_1.3.1       graphics_4.0.0   grDevices_4.0.0 
+#>   highr_0.8        htmltools_0.4.0  jsonlite_1.6.1   knitr_1.26      
+#>   lifecycle_0.1.0  magrittr_1.5     markdown_1.1     methods_4.0.0   
+#>   mime_0.9         pillar_1.4.3     pkgconfig_2.0.3  plogr_0.2.0     
+#>   purrr_0.3.3      R6_2.4.1         Rcpp_1.0.3       rlang_0.4.4     
+#>   rmarkdown_2.1    stats_4.0.0      stringi_1.4.5    stringr_1.4.0   
+#>   tibble_2.1.3     tidyr_1.0.2      tidyselect_1.0.0 tinytex_0.19    
+#>   tools_4.0.0      utf8_1.1.4       utils_4.0.0      vctrs_0.2.2     
+#>   xfun_0.12        yaml_2.2.1
 ```
 
 [^regexp]: https://homepage.divms.uiowa.edu/~luke/R/regexp.html

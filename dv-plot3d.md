@@ -620,7 +620,7 @@ apropos("dev.")
 
 ```r
 sessionInfo()
-#> R Under development (unstable) (2020-01-03 r77628)
+#> R Under development (unstable) (2020-02-04 r77771)
 #> Platform: x86_64-pc-linux-gnu (64-bit)
 #> Running under: Ubuntu 16.04.6 LTS
 #> 
@@ -646,10 +646,10 @@ sessionInfo()
 #> 
 #> loaded via a namespace (and not attached):
 #>  [1] Rcpp_1.0.3        knitr_1.26        magrittr_1.5      misc3d_0.8-4     
-#>  [5] colorspace_1.4-1  rlang_0.4.2       filehash_2.4-2    stringr_1.4.0    
+#>  [5] colorspace_1.4-1  rlang_0.4.4       filehash_2.4-2    stringr_1.4.0    
 #>  [9] highr_0.8         pdftools_2.3      tools_4.0.0       grid_4.0.0       
-#> [13] tikzDevice_0.12.3 xfun_0.11         tinytex_0.18      askpass_1.1      
-#> [17] htmltools_0.4.0   yaml_2.2.0        digest_0.6.23     qpdf_1.1         
-#> [21] bookdown_0.16     curl_4.3          evaluate_0.14     rmarkdown_2.0    
-#> [25] stringi_1.4.3     compiler_4.0.0    magick_2.2
+#> [13] tikzDevice_0.12.3 xfun_0.12         tinytex_0.19      askpass_1.1      
+#> [17] htmltools_0.4.0   yaml_2.2.1        digest_0.6.23     qpdf_1.1         
+#> [21] bookdown_0.17     curl_4.3          evaluate_0.14     rmarkdown_2.1    
+#> [25] stringi_1.4.5     compiler_4.0.0    magick_2.3
 ```

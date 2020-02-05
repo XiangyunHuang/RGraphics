@@ -324,7 +324,7 @@ xyplot(Sepal.Length ~ Petal.Length,
 
 ```r
 sessionInfo()
-#> R Under development (unstable) (2020-01-03 r77628)
+#> R Under development (unstable) (2020-02-04 r77771)
 #> Platform: x86_64-pc-linux-gnu (64-bit)
 #> Running under: Ubuntu 16.04.6 LTS
 #> 
@@ -345,15 +345,15 @@ sessionInfo()
 #> [8] base     
 #> 
 #> other attached packages:
-#> [1] mapproj_1.2.6       maps_3.3.0          mgcv_1.8-31        
+#> [1] mapproj_1.2.7       maps_3.3.0          mgcv_1.8-31        
 #> [4] MASS_7.3-51.5       nlme_3.1-143        latticeExtra_0.6-29
 #> [7] RColorBrewer_1.1-2  lattice_0.20-38    
 #> 
 #> loaded via a namespace (and not attached):
 #>  [1] Rcpp_1.0.3      knitr_1.26      magrittr_1.5    jpeg_0.1-8.1   
-#>  [5] rlang_0.4.2     stringr_1.4.0   tools_4.0.0     grid_4.0.0     
-#>  [9] xfun_0.11       png_0.1-7       htmltools_0.4.0 yaml_2.2.0     
-#> [13] digest_0.6.23   bookdown_0.16   Matrix_1.2-18   curl_4.3       
-#> [17] evaluate_0.14   rmarkdown_2.0   stringi_1.4.3   compiler_4.0.0
+#>  [5] rlang_0.4.4     stringr_1.4.0   tools_4.0.0     grid_4.0.0     
+#>  [9] xfun_0.12       png_0.1-7       htmltools_0.4.0 yaml_2.2.1     
+#> [13] digest_0.6.23   bookdown_0.17   Matrix_1.2-18   curl_4.3       
+#> [17] evaluate_0.14   rmarkdown_2.1   stringi_1.4.5   compiler_4.0.0
 ```
 
