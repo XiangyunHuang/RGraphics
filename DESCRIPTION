@@ -62,6 +62,6 @@ Imports:
   tweenr,
   vegawidget,
   visNetwork
-Remotes: vankesteren/firatheme, jbkunst/highcharter, javierluraschi/nomnoml
+Remotes: vankesteren/firatheme, jbkunst/highcharter, javierluraschi/nomnoml, yihui/knitr
 URL: https://r-graphics.netlify.com, https://bookdown.org/xiangyun/RGraphics/
 BugReports: https://github.com/XiangyunHuang/RGraphics/issues

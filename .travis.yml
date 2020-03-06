@@ -105,8 +105,7 @@ before_script:
   - fc-cache -fsv
   - Rscript -e "sessionInfo(.packages(T));capabilities()"
   - Rscript -e 'update.packages(lib.loc = .libPaths()[1], ask = FALSE)'
-  - Rscript -e "install.packages('remotes')"
-  - Rscript -e 'remotes::install_version("knitr", version = "1.26")'  
+  - Rscript -e "install.packages('remotes');remotes::install_deps()"
   - Rscript -e 'library(tikzDevice);tikzTest();tikzTest("$\\sin(x^2/2 - y^2/4 + 3) \\cos(2 x + 1 - \\exp(y))$")'
 
 
