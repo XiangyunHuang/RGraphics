@@ -82,6 +82,7 @@ install:
   ## Python Env
   - virtualenv -p /usr/bin/python3 $RETICULATE_PYTHON_ENV
   - source $RETICULATE_PYTHON_ENV/bin/activate
+  - python3 -V
   # Install modules
   - pip install -r requirements.txt
   - pip list --format=columns
