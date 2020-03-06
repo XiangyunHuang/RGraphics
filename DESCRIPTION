@@ -26,7 +26,6 @@ Imports:
   ggwordcloud,
   plotrix,
   plot3D,
-  plotly,
   scatterplot3d,
   magick,
   odbc,
