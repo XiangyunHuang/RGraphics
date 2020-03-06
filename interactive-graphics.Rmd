@@ -7,10 +7,6 @@ R ggplot2 "bindings" for Vega-Lite [vegalite](https://github.com/hrbrmstr/vegali
 
 rgl 基于 opengl 的交互式三维图形可视化工具包
 
-```r
-library(rgl)
-```
-
 ## rgl
 
 ```{r}
@@ -94,85 +90,6 @@ leaflet() %>%
   addPopups(-93.65, 42.0285, 'Here is the <b>Department of Statistics</b>, ISU')
 ```
 
-## highcharter
-
-### 时序图 {#highcharter-ts}
-
-可能需要研究下 highcharts.js 的 API <https://api.highcharts.com/highcharts/series>
-
-```{r}
-library(highcharter)
-methods(hchart)
-getAnywhere(hchart.mts)
-class(EuStockMarkets)
-# hchart(EuStockMarkets) # 为何不能绘制
-```
-
-```{r}
-hchart(AirPassengers)
-```
-
-```{r}
-highchart() %>% 
-  hc_chart(type = "line") %>% 
-  hc_title(text = "Monthly Average Temperature") %>% 
-  hc_subtitle(text = "Source: WorldClimate.com") %>% 
-  hc_xAxis(categories = c("Jan", "Feb", "Mar", "Apr", "May", "Jun",
-                          "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")) %>% 
-  hc_yAxis(title = list(text = "Temperature (C)")) %>% 
-  hc_plotOptions(line = list(
-    dataLabels = list(enabled = TRUE),
-    enableMouseTracking = FALSE)
-    ) %>% 
-  hc_series(
-    list(
-      name = "Tokyo",
-      data = c(7.0, 6.9, 9.5, 14.5, 18.4, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6)
-    ),
-    list(
-      name = "London",
-      data = c(3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8)
-    )
-  )
-```
-
-### 散点图 {#highcharter-scatter}
-
-```{r}
-data(diamonds, mpg, package = "ggplot2")
-hchart(mpg, "scatter", hcaes(x = displ, y = hwy, group = class))
-```
-
-### 地图 {#highcharter-map}
-
-美国失业率数据
-
-```{r,eval=FALSE}
-data(unemployment, package = "highcharter")
-temp <- unlist(strsplit(unemployment[, 2], ",")) # 拆成两列
-unique(temp[seq(from = 2, to = length(temp), by = 2)]) # 51 个州
-# US Counties unemployment rate
-# code: The county code.
-#
-# name: The county name.
-#
-# value: The unemployment.
-# A data.frame with 3 variables and 3216 observations.
-```
-
-```{r}
-data(unemployment)
-hcmap("countries/us/us-all-all",
-  data = unemployment,
-  name = "Unemployment", value = "value", joinBy = c("hc-key", "code"),
-  borderColor = "transparent"
-) %>%
-  hc_colorAxis(dataClasses = color_classes(c(seq(0, 10, by = 2), 50))) %>%
-  hc_legend(
-    layout = "vertical", align = "right",
-    floating = TRUE, valueDecimals = 0, valueSuffix = "%"
-  )
-```
 
 ## vegawidget
 
