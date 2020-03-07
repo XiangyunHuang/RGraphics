@@ -117,7 +117,7 @@ script:
   - chmod +x ./_deploy.sh
   # build book
   - mkdir -p _book/interactives && cp -r interactives/* _book/interactives
-#  - make gitbook
+  - make gitbook
 
 #script:
 #  - export DOCKER_HOST_IP=$(ip route|awk '/docker0/ { print $9 }')
@@ -126,8 +126,8 @@ script:
 #  - docker-compose run book bash -c "cp odbc.ini ~/.odbc.ini;make gitbook"
 #  - docker-compose down
 
-#after_success:
-#  - ./_deploy.sh
+after_success:
+  - ./_deploy.sh
 
 before_cache:
 - nvm install stable
