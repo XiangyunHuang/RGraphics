@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>第 17 章 Lattice 图形 | 数据科学与 R 语言</title>
+  <title>第 16 章 Lattice 图形 | 数据科学与 R 语言</title>
   <meta name="description" content="数据操作、数据分析、数据建模、动态报告和数据可视化" />
-  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="第 17 章 Lattice 图形 | 数据科学与 R 语言" />
+  <meta property="og:title" content="第 16 章 Lattice 图形 | 数据科学与 R 语言" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://bookdown.org/xiangyun/RGraphics/" />
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="XiangyunHuang/RGraphics" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="第 17 章 Lattice 图形 | 数据科学与 R 语言" />
+  <meta name="twitter:title" content="第 16 章 Lattice 图形 | 数据科学与 R 语言" />
   
   <meta name="twitter:description" content="数据操作、数据分析、数据建模、动态报告和数据可视化" />
   
@@ -50,55 +50,45 @@
 
 
 <script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
-<script src="libs/plotly-binding-4.9.1/plotly.js"></script>
-<script src="libs/typedarray-0.1/typedarray.min.js"></script>
-<link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
-<script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
-<link href="libs/plotly-htmlwidgets-css-1.49.4/plotly-htmlwidgets.css" rel="stylesheet" />
-<script src="libs/plotly-main-1.49.4/plotly-latest.min.js"></script>
 <script src="libs/proj4js-2.3.15/proj4.js"></script>
-<link href="libs/highcharts-7.2.1/css/motion.css" rel="stylesheet" />
-<script src="libs/highcharts-7.2.1/highcharts.js"></script>
-<script src="libs/highcharts-7.2.1/highcharts-3d.js"></script>
-<script src="libs/highcharts-7.2.1/highcharts-more.js"></script>
-<script src="libs/highcharts-7.2.1/modules/stock.js"></script>
-<script src="libs/highcharts-7.2.1/modules/map.js"></script>
-<script src="libs/highcharts-7.2.1/modules/annotations.js"></script>
-<script src="libs/highcharts-7.2.1/modules/boost.js"></script>
-<script src="libs/highcharts-7.2.1/modules/data.js"></script>
-<script src="libs/highcharts-7.2.1/modules/drag-panes.js"></script>
-<script src="libs/highcharts-7.2.1/modules/drilldown.js"></script>
-<script src="libs/highcharts-7.2.1/modules/item-series.js"></script>
-<script src="libs/highcharts-7.2.1/modules/offline-exporting.js"></script>
-<script src="libs/highcharts-7.2.1/modules/overlapping-datalabels.js"></script>
-<script src="libs/highcharts-7.2.1/modules/exporting.js"></script>
-<script src="libs/highcharts-7.2.1/modules/export-data.js"></script>
-<script src="libs/highcharts-7.2.1/modules/funnel.js"></script>
-<script src="libs/highcharts-7.2.1/modules/heatmap.js"></script>
-<script src="libs/highcharts-7.2.1/modules/treemap.js"></script>
-<script src="libs/highcharts-7.2.1/modules/sankey.js"></script>
-<script src="libs/highcharts-7.2.1/modules/organization.js"></script>
-<script src="libs/highcharts-7.2.1/modules/solid-gauge.js"></script>
-<script src="libs/highcharts-7.2.1/modules/streamgraph.js"></script>
-<script src="libs/highcharts-7.2.1/modules/sunburst.js"></script>
-<script src="libs/highcharts-7.2.1/modules/vector.js"></script>
-<script src="libs/highcharts-7.2.1/modules/wordcloud.js"></script>
-<script src="libs/highcharts-7.2.1/modules/xrange.js"></script>
-<script src="libs/highcharts-7.2.1/modules/tilemap.js"></script>
-<script src="libs/highcharts-7.2.1/modules/venn.js"></script>
-<script src="libs/highcharts-7.2.1/modules/gantt.js"></script>
-<script src="libs/highcharts-7.2.1/modules/timeline.js"></script>
-<script src="libs/highcharts-7.2.1/modules/parallel-coordinates.js"></script>
-<script src="libs/highcharts-7.2.1/modules/bullet.js"></script>
-<script src="libs/highcharts-7.2.1/modules/coloraxis.js"></script>
-<script src="libs/highcharts-7.2.1/plugins/motion.js"></script>
-<script src="libs/highcharts-7.2.1/custom/reset.js"></script>
+<link href="libs/highcharts-8.0.0/css/motion.css" rel="stylesheet" />
+<script src="libs/highcharts-8.0.0/highcharts.js"></script>
+<script src="libs/highcharts-8.0.0/highcharts-3d.js"></script>
+<script src="libs/highcharts-8.0.0/highcharts-more.js"></script>
+<script src="libs/highcharts-8.0.0/modules/stock.js"></script>
+<script src="libs/highcharts-8.0.0/modules/map.js"></script>
+<script src="libs/highcharts-8.0.0/modules/annotations.js"></script>
+<script src="libs/highcharts-8.0.0/modules/boost.js"></script>
+<script src="libs/highcharts-8.0.0/modules/data.js"></script>
+<script src="libs/highcharts-8.0.0/modules/drag-panes.js"></script>
+<script src="libs/highcharts-8.0.0/modules/drilldown.js"></script>
+<script src="libs/highcharts-8.0.0/modules/item-series.js"></script>
+<script src="libs/highcharts-8.0.0/modules/offline-exporting.js"></script>
+<script src="libs/highcharts-8.0.0/modules/overlapping-datalabels.js"></script>
+<script src="libs/highcharts-8.0.0/modules/exporting.js"></script>
+<script src="libs/highcharts-8.0.0/modules/export-data.js"></script>
+<script src="libs/highcharts-8.0.0/modules/funnel.js"></script>
+<script src="libs/highcharts-8.0.0/modules/heatmap.js"></script>
+<script src="libs/highcharts-8.0.0/modules/treemap.js"></script>
+<script src="libs/highcharts-8.0.0/modules/sankey.js"></script>
+<script src="libs/highcharts-8.0.0/modules/organization.js"></script>
+<script src="libs/highcharts-8.0.0/modules/solid-gauge.js"></script>
+<script src="libs/highcharts-8.0.0/modules/streamgraph.js"></script>
+<script src="libs/highcharts-8.0.0/modules/sunburst.js"></script>
+<script src="libs/highcharts-8.0.0/modules/vector.js"></script>
+<script src="libs/highcharts-8.0.0/modules/wordcloud.js"></script>
+<script src="libs/highcharts-8.0.0/modules/xrange.js"></script>
+<script src="libs/highcharts-8.0.0/modules/tilemap.js"></script>
+<script src="libs/highcharts-8.0.0/modules/venn.js"></script>
+<script src="libs/highcharts-8.0.0/modules/gantt.js"></script>
+<script src="libs/highcharts-8.0.0/modules/timeline.js"></script>
+<script src="libs/highcharts-8.0.0/modules/parallel-coordinates.js"></script>
+<script src="libs/highcharts-8.0.0/modules/bullet.js"></script>
+<script src="libs/highcharts-8.0.0/modules/coloraxis.js"></script>
+<script src="libs/highcharts-8.0.0/modules/dumbbell.js"></script>
+<script src="libs/highcharts-8.0.0/plugins/motion.js"></script>
+<script src="libs/highcharts-8.0.0/custom/reset.js"></script>
 <script src="libs/highchart-binding-0.7.0.9001/highchart.js"></script>
-<script src="libs/d3-5.7.0/d3.min.js"></script>
-<script src="libs/d3-lasso-0.0.5/d3-lasso.min.js"></script>
-<link href="libs/ggiraphjs-0.2.0/styles.css" rel="stylesheet" />
-<script src="libs/ggiraphjs-0.2.0/ggiraphjs.min.js"></script>
-<script src="libs/girafe-binding-0.7.0/girafe.js"></script>
 <script src="libs/dagre-0.0.1/dagre.min.js"></script>
 <script src="libs/lodash-3.7.0/lodash.js"></script>
 <script src="libs/nomnoml-0.2.0/nomnoml.js"></script>
@@ -441,145 +431,132 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="12.3" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-session-info"><i class="fa fa-check"></i><b>12.3</b> 运行环境</a></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="dv-plotly.html"><a href="dv-plotly.html"><i class="fa fa-check"></i><b>13</b> 交互式图形</a><ul>
-<li class="chapter" data-level="13.1" data-path="dv-plotly.html"><a href="dv-plotly.html#plotly"><i class="fa fa-check"></i><b>13.1</b> plotly</a></li>
-<li class="chapter" data-level="13.2" data-path="dv-plotly.html"><a href="dv-plotly.html#sec:pie"><i class="fa fa-check"></i><b>13.2</b> 饼图</a></li>
+<li class="chapter" data-level="13" data-path="dv-plot3d.html"><a href="dv-plot3d.html"><i class="fa fa-check"></i><b>13</b> 三维可视化</a><ul>
+<li class="chapter" data-level="13.1" data-path="dv-plot3d.html"><a href="dv-plot3d.html#pie-3d"><i class="fa fa-check"></i><b>13.1</b> 饼图</a></li>
+<li class="chapter" data-level="13.2" data-path="dv-plot3d.html"><a href="dv-plot3d.html#bar-3d"><i class="fa fa-check"></i><b>13.2</b> 柱形图</a></li>
+<li class="chapter" data-level="13.3" data-path="dv-plot3d.html"><a href="dv-plot3d.html#scatter-3d"><i class="fa fa-check"></i><b>13.3</b> 散点图</a></li>
+<li class="chapter" data-level="13.4" data-path="dv-plot3d.html"><a href="dv-plot3d.html#curve-3d"><i class="fa fa-check"></i><b>13.4</b> 函数图</a></li>
+<li class="chapter" data-level="13.5" data-path="dv-plot3d.html"><a href="dv-plot3d.html#persp-3d"><i class="fa fa-check"></i><b>13.5</b> 透视图</a></li>
+<li class="chapter" data-level="13.6" data-path="dv-plot3d.html"><a href="dv-plot3d.html#tikz"><i class="fa fa-check"></i><b>13.6</b> TikZ 绘图</a></li>
+<li class="chapter" data-level="13.7" data-path="dv-plot3d.html"><a href="dv-plot3d.html#export-save"><i class="fa fa-check"></i><b>13.7</b> 图形导出</a></li>
+<li class="chapter" data-level="13.8" data-path="dv-plot3d.html"><a href="dv-plot3d.html#plot3d-sessionInfo"><i class="fa fa-check"></i><b>13.8</b> 软件信息</a></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="dv-plot3d.html"><a href="dv-plot3d.html"><i class="fa fa-check"></i><b>14</b> 三维可视化</a><ul>
-<li class="chapter" data-level="14.1" data-path="dv-plot3d.html"><a href="dv-plot3d.html#pie-3d"><i class="fa fa-check"></i><b>14.1</b> 饼图</a></li>
-<li class="chapter" data-level="14.2" data-path="dv-plot3d.html"><a href="dv-plot3d.html#bar-3d"><i class="fa fa-check"></i><b>14.2</b> 柱形图</a></li>
-<li class="chapter" data-level="14.3" data-path="dv-plot3d.html"><a href="dv-plot3d.html#scatter-3d"><i class="fa fa-check"></i><b>14.3</b> 散点图</a></li>
-<li class="chapter" data-level="14.4" data-path="dv-plot3d.html"><a href="dv-plot3d.html#curve-3d"><i class="fa fa-check"></i><b>14.4</b> 函数图</a></li>
-<li class="chapter" data-level="14.5" data-path="dv-plot3d.html"><a href="dv-plot3d.html#persp-3d"><i class="fa fa-check"></i><b>14.5</b> 透视图</a></li>
-<li class="chapter" data-level="14.6" data-path="dv-plot3d.html"><a href="dv-plot3d.html#tikz"><i class="fa fa-check"></i><b>14.6</b> TikZ 绘图</a></li>
-<li class="chapter" data-level="14.7" data-path="dv-plot3d.html"><a href="dv-plot3d.html#export-save"><i class="fa fa-check"></i><b>14.7</b> 图形导出</a></li>
-<li class="chapter" data-level="14.8" data-path="dv-plot3d.html"><a href="dv-plot3d.html#plot3d-sessionInfo"><i class="fa fa-check"></i><b>14.8</b> 软件信息</a></li>
+<li class="chapter" data-level="14" data-path="dv-colors-fonts.html"><a href="dv-colors-fonts.html"><i class="fa fa-check"></i><b>14</b> 色彩与字体</a><ul>
+<li class="chapter" data-level="14.1" data-path="dv-colors-fonts.html"><a href="dv-colors-fonts.html#colors-in-r"><i class="fa fa-check"></i><b>14.1</b> 颜色</a></li>
+<li class="chapter" data-level="14.2" data-path="dv-colors-fonts.html"><a href="dv-colors-fonts.html#choose-colors"><i class="fa fa-check"></i><b>14.2</b> 配色</a><ul>
+<li class="chapter" data-level="14.2.1" data-path="dv-colors-fonts.html"><a href="dv-colors-fonts.html#colourlovers"><i class="fa fa-check"></i><b>14.2.1</b> colourlovers</a></li>
 </ul></li>
-<li class="chapter" data-level="15" data-path="dv-colors-fonts.html"><a href="dv-colors-fonts.html"><i class="fa fa-check"></i><b>15</b> 色彩与字体</a><ul>
-<li class="chapter" data-level="15.1" data-path="dv-colors-fonts.html"><a href="dv-colors-fonts.html#colors-in-r"><i class="fa fa-check"></i><b>15.1</b> 颜色</a></li>
-<li class="chapter" data-level="15.2" data-path="dv-colors-fonts.html"><a href="dv-colors-fonts.html#choose-colors"><i class="fa fa-check"></i><b>15.2</b> 配色</a><ul>
-<li class="chapter" data-level="15.2.1" data-path="dv-colors-fonts.html"><a href="dv-colors-fonts.html#colourlovers"><i class="fa fa-check"></i><b>15.2.1</b> colourlovers</a></li>
+<li class="chapter" data-level="14.3" data-path="dv-colors-fonts.html"><a href="dv-colors-fonts.html#fonts"><i class="fa fa-check"></i><b>14.3</b> 字体</a></li>
 </ul></li>
-<li class="chapter" data-level="15.3" data-path="dv-colors-fonts.html"><a href="dv-colors-fonts.html#fonts"><i class="fa fa-check"></i><b>15.3</b> 字体</a></li>
+<li class="chapter" data-level="15" data-path="dv-highcharter.html"><a href="dv-highcharter.html"><i class="fa fa-check"></i><b>15</b> highcharter 图形</a><ul>
+<li class="chapter" data-level="15.1" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsec:hc-line"><i class="fa fa-check"></i><b>15.1</b> 折线图</a><ul>
+<li class="chapter" data-level="15.1.1" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsubsec:simple-hc-line"><i class="fa fa-check"></i><b>15.1.1</b> 简单折线图</a></li>
+<li class="chapter" data-level="15.1.2" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsubsec:group-hc-line"><i class="fa fa-check"></i><b>15.1.2</b> 分组折线图</a></li>
+<li class="chapter" data-level="15.1.3" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsubsec:ts-hc-line"><i class="fa fa-check"></i><b>15.1.3</b> 时间序列图</a></li>
 </ul></li>
-<li class="chapter" data-level="16" data-path="dv-highcharter.html"><a href="dv-highcharter.html"><i class="fa fa-check"></i><b>16</b> highcharter 图形</a><ul>
-<li class="chapter" data-level="16.1" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsec:hc-line"><i class="fa fa-check"></i><b>16.1</b> 折线图</a><ul>
-<li class="chapter" data-level="16.1.1" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsubsec:simple-hc-line"><i class="fa fa-check"></i><b>16.1.1</b> 简单折线图</a></li>
-<li class="chapter" data-level="16.1.2" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsubsec:group-hc-line"><i class="fa fa-check"></i><b>16.1.2</b> 分组折线图</a></li>
-<li class="chapter" data-level="16.1.3" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsubsec:ts-hc-line"><i class="fa fa-check"></i><b>16.1.3</b> 时间序列图</a></li>
+<li class="chapter" data-level="15.2" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsec:hc-scatter"><i class="fa fa-check"></i><b>15.2</b> 散点图</a><ul>
+<li class="chapter" data-level="15.2.1" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsubsec:simple-hc-scatter"><i class="fa fa-check"></i><b>15.2.1</b> 简单散点图</a></li>
+<li class="chapter" data-level="15.2.2" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsubsec:group-hc-scatter"><i class="fa fa-check"></i><b>15.2.2</b> 分组散点图</a></li>
 </ul></li>
-<li class="chapter" data-level="16.2" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsec:hc-scatter"><i class="fa fa-check"></i><b>16.2</b> 散点图</a><ul>
-<li class="chapter" data-level="16.2.1" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsubsec:simple-hc-scatter"><i class="fa fa-check"></i><b>16.2.1</b> 简单散点图</a></li>
-<li class="chapter" data-level="16.2.2" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsubsec:group-hc-scatter"><i class="fa fa-check"></i><b>16.2.2</b> 分组散点图</a></li>
+<li class="chapter" data-level="15.3" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsec:hc-bar"><i class="fa fa-check"></i><b>15.3</b> 条形图</a><ul>
+<li class="chapter" data-level="15.3.1" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsubsec:simple-hc-bar"><i class="fa fa-check"></i><b>15.3.1</b> 简单条形图</a></li>
+<li class="chapter" data-level="15.3.2" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsubsec:dodge-hc-bar"><i class="fa fa-check"></i><b>15.3.2</b> 复合条形图</a></li>
+<li class="chapter" data-level="15.3.3" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsubsec:stack-hc-bar"><i class="fa fa-check"></i><b>15.3.3</b> 堆积条形图</a></li>
+<li class="chapter" data-level="15.3.4" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsubsec:fill-hc-bar"><i class="fa fa-check"></i><b>15.3.4</b> 百分比条形图</a></li>
 </ul></li>
-<li class="chapter" data-level="16.3" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsec:hc-bar"><i class="fa fa-check"></i><b>16.3</b> 条形图</a><ul>
-<li class="chapter" data-level="16.3.1" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsubsec:simple-hc-bar"><i class="fa fa-check"></i><b>16.3.1</b> 简单条形图</a></li>
-<li class="chapter" data-level="16.3.2" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsubsec:dodge-hc-bar"><i class="fa fa-check"></i><b>16.3.2</b> 复合条形图</a></li>
-<li class="chapter" data-level="16.3.3" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsubsec:stack-hc-bar"><i class="fa fa-check"></i><b>16.3.3</b> 堆积条形图</a></li>
-<li class="chapter" data-level="16.3.4" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsubsec:fill-hc-bar"><i class="fa fa-check"></i><b>16.3.4</b> 百分比条形图</a></li>
+<li class="chapter" data-level="15.4" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsec:hc-boxplot"><i class="fa fa-check"></i><b>15.4</b> 箱线图</a><ul>
+<li class="chapter" data-level="15.4.1" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsubsec:simple-hc-boxplot"><i class="fa fa-check"></i><b>15.4.1</b> 简单箱线图</a></li>
+<li class="chapter" data-level="15.4.2" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subssubsec:dodge-hc-boxplot"><i class="fa fa-check"></i><b>15.4.2</b> 复合箱线图</a></li>
 </ul></li>
-<li class="chapter" data-level="16.4" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsec:hc-boxplot"><i class="fa fa-check"></i><b>16.4</b> 箱线图</a><ul>
-<li class="chapter" data-level="16.4.1" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsubsec:simple-hc-boxplot"><i class="fa fa-check"></i><b>16.4.1</b> 简单箱线图</a></li>
-<li class="chapter" data-level="16.4.2" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subssubsec:dodge-hc-boxplot"><i class="fa fa-check"></i><b>16.4.2</b> 复合箱线图</a></li>
+<li class="chapter" data-level="15.5" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsec:hc-density"><i class="fa fa-check"></i><b>15.5</b> 密度图</a></li>
+<li class="chapter" data-level="15.6" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsec:hc-hist"><i class="fa fa-check"></i><b>15.6</b> 直方图</a></li>
+<li class="chapter" data-level="15.7" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsec:hc-survival"><i class="fa fa-check"></i><b>15.7</b> 生存图</a></li>
+<li class="chapter" data-level="15.8" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsec:hc-heatmap"><i class="fa fa-check"></i><b>15.8</b> 等高图</a></li>
+<li class="chapter" data-level="15.9" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsec:hc-corrplot"><i class="fa fa-check"></i><b>15.9</b> 相关图</a></li>
+<li class="chapter" data-level="15.10" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsec:hc-treemap"><i class="fa fa-check"></i><b>15.10</b> 矩阵图</a></li>
+<li class="chapter" data-level="15.11" data-path="dv-highcharter.html"><a href="dv-highcharter.html#highcharter-map"><i class="fa fa-check"></i><b>15.11</b> 地图</a></li>
 </ul></li>
-<li class="chapter" data-level="16.5" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsec:hc-density"><i class="fa fa-check"></i><b>16.5</b> 密度图</a></li>
-<li class="chapter" data-level="16.6" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsec:hc-hist"><i class="fa fa-check"></i><b>16.6</b> 直方图</a></li>
-<li class="chapter" data-level="16.7" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsec:hc-survival"><i class="fa fa-check"></i><b>16.7</b> 生存图</a></li>
-<li class="chapter" data-level="16.8" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsec:hc-heatmap"><i class="fa fa-check"></i><b>16.8</b> 等高图</a></li>
-<li class="chapter" data-level="16.9" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsec:hc-corrplot"><i class="fa fa-check"></i><b>16.9</b> 相关图</a></li>
-<li class="chapter" data-level="16.10" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsec:hc-treemap"><i class="fa fa-check"></i><b>16.10</b> 矩阵图</a></li>
+<li class="chapter" data-level="16" data-path="dv-lattice.html"><a href="dv-lattice.html"><i class="fa fa-check"></i><b>16</b> Lattice 图形</a><ul>
+<li class="chapter" data-level="16.1" data-path="dv-lattice.html"><a href="dv-lattice.html#sec:boxplot"><i class="fa fa-check"></i><b>16.1</b> 箱线图</a></li>
+<li class="chapter" data-level="16.2" data-path="dv-lattice.html"><a href="dv-lattice.html#sec:line"><i class="fa fa-check"></i><b>16.2</b> 折线图</a></li>
+<li class="chapter" data-level="16.3" data-path="dv-lattice.html"><a href="dv-lattice.html#sec:smooth"><i class="fa fa-check"></i><b>16.3</b> 平滑图</a></li>
+<li class="chapter" data-level="16.4" data-path="dv-lattice.html"><a href="dv-lattice.html#sec:dotplot"><i class="fa fa-check"></i><b>16.4</b> 点图</a></li>
+<li class="chapter" data-level="16.5" data-path="dv-lattice.html"><a href="dv-lattice.html#sec:step"><i class="fa fa-check"></i><b>16.5</b> 阶梯图</a></li>
+<li class="chapter" data-level="16.6" data-path="dv-lattice.html"><a href="dv-lattice.html#sec:facet"><i class="fa fa-check"></i><b>16.6</b> 分面图</a></li>
+<li class="chapter" data-level="16.7" data-path="dv-lattice.html"><a href="dv-lattice.html#sec:contour"><i class="fa fa-check"></i><b>16.7</b> 等高线图</a></li>
+<li class="chapter" data-level="16.8" data-path="dv-lattice.html"><a href="dv-lattice.html#sub:map"><i class="fa fa-check"></i><b>16.8</b> 地图</a></li>
+<li class="chapter" data-level="16.9" data-path="dv-lattice.html"><a href="dv-lattice.html#sub:cluster"><i class="fa fa-check"></i><b>16.9</b> 聚类图</a></li>
+<li class="chapter" data-level="16.10" data-path="dv-lattice.html"><a href="dv-lattice.html#sec:lattice-sessioninfo"><i class="fa fa-check"></i><b>16.10</b> 运行环境</a></li>
 </ul></li>
-<li class="chapter" data-level="17" data-path="dv-lattice.html"><a href="dv-lattice.html"><i class="fa fa-check"></i><b>17</b> Lattice 图形</a><ul>
-<li class="chapter" data-level="17.1" data-path="dv-lattice.html"><a href="dv-lattice.html#sec:boxplot"><i class="fa fa-check"></i><b>17.1</b> 箱线图</a></li>
-<li class="chapter" data-level="17.2" data-path="dv-lattice.html"><a href="dv-lattice.html#sec:line"><i class="fa fa-check"></i><b>17.2</b> 折线图</a></li>
-<li class="chapter" data-level="17.3" data-path="dv-lattice.html"><a href="dv-lattice.html#sec:smooth"><i class="fa fa-check"></i><b>17.3</b> 平滑图</a></li>
-<li class="chapter" data-level="17.4" data-path="dv-lattice.html"><a href="dv-lattice.html#sec:dotplot"><i class="fa fa-check"></i><b>17.4</b> 点图</a></li>
-<li class="chapter" data-level="17.5" data-path="dv-lattice.html"><a href="dv-lattice.html#sec:step"><i class="fa fa-check"></i><b>17.5</b> 阶梯图</a></li>
-<li class="chapter" data-level="17.6" data-path="dv-lattice.html"><a href="dv-lattice.html#sec:facet"><i class="fa fa-check"></i><b>17.6</b> 分面图</a></li>
-<li class="chapter" data-level="17.7" data-path="dv-lattice.html"><a href="dv-lattice.html#sec:contour"><i class="fa fa-check"></i><b>17.7</b> 等高线图</a></li>
-<li class="chapter" data-level="17.8" data-path="dv-lattice.html"><a href="dv-lattice.html#sub:map"><i class="fa fa-check"></i><b>17.8</b> 地图</a></li>
-<li class="chapter" data-level="17.9" data-path="dv-lattice.html"><a href="dv-lattice.html#sub:cluster"><i class="fa fa-check"></i><b>17.9</b> 聚类图</a></li>
-<li class="chapter" data-level="17.10" data-path="dv-lattice.html"><a href="dv-lattice.html#sec:lattice-sessioninfo"><i class="fa fa-check"></i><b>17.10</b> 运行环境</a></li>
+<li class="chapter" data-level="17" data-path="dv-network.html"><a href="dv-network.html"><i class="fa fa-check"></i><b>17</b> 网络数据</a></li>
+<li class="chapter" data-level="18" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html"><i class="fa fa-check"></i><b>18</b> 时空可视化</a><ul>
+<li class="chapter" data-level="18.1" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#map"><i class="fa fa-check"></i><b>18.1</b> 地图</a><ul>
+<li class="chapter" data-level="18.1.1" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#project-orientation"><i class="fa fa-check"></i><b>18.1.1</b> 投影和观察方位</a></li>
+<li class="chapter" data-level="18.1.2" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#USA-crime-rates"><i class="fa fa-check"></i><b>18.1.2</b> 美国各州犯罪率</a></li>
+<li class="chapter" data-level="18.1.3" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#fiji-earthquake-map"><i class="fa fa-check"></i><b>18.1.3</b> 斐济地震带</a></li>
+<li class="chapter" data-level="18.1.4" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#USA-unemployment-ratio"><i class="fa fa-check"></i><b>18.1.4</b> 美国各城镇失业率</a></li>
 </ul></li>
-<li class="chapter" data-level="18" data-path="dv-network.html"><a href="dv-network.html"><i class="fa fa-check"></i><b>18</b> 网络数据</a></li>
-<li class="chapter" data-level="19" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html"><i class="fa fa-check"></i><b>19</b> 时空可视化</a><ul>
-<li class="chapter" data-level="19.1" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#map"><i class="fa fa-check"></i><b>19.1</b> 地图</a><ul>
-<li class="chapter" data-level="19.1.1" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#project-orientation"><i class="fa fa-check"></i><b>19.1.1</b> 投影和观察方位</a></li>
-<li class="chapter" data-level="19.1.2" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#USA-crime-rates"><i class="fa fa-check"></i><b>19.1.2</b> 美国各州犯罪率</a></li>
-<li class="chapter" data-level="19.1.3" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#fiji-earthquake-map"><i class="fa fa-check"></i><b>19.1.3</b> 斐济地震带</a></li>
-<li class="chapter" data-level="19.1.4" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#USA-unemployment-ratio"><i class="fa fa-check"></i><b>19.1.4</b> 美国各城镇失业率</a></li>
-</ul></li>
-<li class="chapter" data-level="19.2" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#spatial-op"><i class="fa fa-check"></i><b>19.2</b> 空间数据对象</a><ul>
-<li class="chapter" data-level="19.2.1" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#ggplot2-sp"><i class="fa fa-check"></i><b>19.2.1</b> sp</a></li>
-<li class="chapter" data-level="19.2.2" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#ggplot2-raster"><i class="fa fa-check"></i><b>19.2.2</b> raster</a></li>
-<li class="chapter" data-level="19.2.3" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#ggplot2-sf"><i class="fa fa-check"></i><b>19.2.3</b> sf</a></li>
+<li class="chapter" data-level="18.2" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#spatial-op"><i class="fa fa-check"></i><b>18.2</b> 空间数据对象</a><ul>
+<li class="chapter" data-level="18.2.1" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#ggplot2-sp"><i class="fa fa-check"></i><b>18.2.1</b> sp</a></li>
+<li class="chapter" data-level="18.2.2" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#ggplot2-raster"><i class="fa fa-check"></i><b>18.2.2</b> raster</a></li>
+<li class="chapter" data-level="18.2.3" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#ggplot2-sf"><i class="fa fa-check"></i><b>18.2.3</b> sf</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="20" data-path="dynamic-documents.html"><a href="dynamic-documents.html"><i class="fa fa-check"></i><b>20</b> 动态性文档</a><ul>
+<li class="chapter" data-level="19" data-path="dynamic-documents.html"><a href="dynamic-documents.html"><i class="fa fa-check"></i><b>19</b> 动态性文档</a><ul>
 <li class="chapter" data-level="" data-path="dynamic-documents.html"><a href="dynamic-documents.html#r-call-python"><i class="fa fa-check"></i>R 调用 Python</a></li>
-<li class="chapter" data-level="20.1" data-path="dynamic-documents.html"><a href="dynamic-documents.html#markdown"><i class="fa fa-check"></i><b>20.1</b> Markdown</a><ul>
-<li class="chapter" data-level="20.1.1" data-path="dynamic-documents.html"><a href="dynamic-documents.html#markdown-list"><i class="fa fa-check"></i><b>20.1.1</b> 列表</a></li>
-<li class="chapter" data-level="20.1.2" data-path="dynamic-documents.html"><a href="dynamic-documents.html#markdown-emphasis"><i class="fa fa-check"></i><b>20.1.2</b> 强调</a></li>
-<li class="chapter" data-level="20.1.3" data-path="dynamic-documents.html"><a href="dynamic-documents.html#markdown-quote"><i class="fa fa-check"></i><b>20.1.3</b> 引用</a></li>
-<li class="chapter" data-level="20.1.4" data-path="dynamic-documents.html"><a href="dynamic-documents.html#markdown-table"><i class="fa fa-check"></i><b>20.1.4</b> 表格</a></li>
-<li class="chapter" data-level="20.1.5" data-path="dynamic-documents.html"><a href="dynamic-documents.html#image"><i class="fa fa-check"></i><b>20.1.5</b> 图片</a></li>
-<li class="chapter" data-level="20.1.6" data-path="dynamic-documents.html"><a href="dynamic-documents.html#markdown-math"><i class="fa fa-check"></i><b>20.1.6</b> 公式</a></li>
+<li class="chapter" data-level="19.1" data-path="dynamic-documents.html"><a href="dynamic-documents.html#markdown"><i class="fa fa-check"></i><b>19.1</b> Markdown</a><ul>
+<li class="chapter" data-level="19.1.1" data-path="dynamic-documents.html"><a href="dynamic-documents.html#markdown-list"><i class="fa fa-check"></i><b>19.1.1</b> 列表</a></li>
+<li class="chapter" data-level="19.1.2" data-path="dynamic-documents.html"><a href="dynamic-documents.html#markdown-emphasis"><i class="fa fa-check"></i><b>19.1.2</b> 强调</a></li>
+<li class="chapter" data-level="19.1.3" data-path="dynamic-documents.html"><a href="dynamic-documents.html#markdown-quote"><i class="fa fa-check"></i><b>19.1.3</b> 引用</a></li>
+<li class="chapter" data-level="19.1.4" data-path="dynamic-documents.html"><a href="dynamic-documents.html#markdown-table"><i class="fa fa-check"></i><b>19.1.4</b> 表格</a></li>
+<li class="chapter" data-level="19.1.5" data-path="dynamic-documents.html"><a href="dynamic-documents.html#image"><i class="fa fa-check"></i><b>19.1.5</b> 图片</a></li>
+<li class="chapter" data-level="19.1.6" data-path="dynamic-documents.html"><a href="dynamic-documents.html#markdown-math"><i class="fa fa-check"></i><b>19.1.6</b> 公式</a></li>
 </ul></li>
-<li class="chapter" data-level="20.2" data-path="dynamic-documents.html"><a href="dynamic-documents.html#pandoc-markdown"><i class="fa fa-check"></i><b>20.2</b> Pandoc’s Markdown</a></li>
-<li class="chapter" data-level="20.3" data-path="dynamic-documents.html"><a href="dynamic-documents.html#r-markdown"><i class="fa fa-check"></i><b>20.3</b> R Markdown</a><ul>
-<li class="chapter" data-level="20.3.1" data-path="dynamic-documents.html"><a href="dynamic-documents.html#语法高亮"><i class="fa fa-check"></i><b>20.3.1</b> 语法高亮</a></li>
+<li class="chapter" data-level="19.2" data-path="dynamic-documents.html"><a href="dynamic-documents.html#pandoc-markdown"><i class="fa fa-check"></i><b>19.2</b> Pandoc’s Markdown</a></li>
+<li class="chapter" data-level="19.3" data-path="dynamic-documents.html"><a href="dynamic-documents.html#r-markdown"><i class="fa fa-check"></i><b>19.3</b> R Markdown</a><ul>
+<li class="chapter" data-level="19.3.1" data-path="dynamic-documents.html"><a href="dynamic-documents.html#语法高亮"><i class="fa fa-check"></i><b>19.3.1</b> 语法高亮</a></li>
 </ul></li>
-<li class="chapter" data-level="20.4" data-path="dynamic-documents.html"><a href="dynamic-documents.html#table-style"><i class="fa fa-check"></i><b>20.4</b> 表格样式</a><ul>
-<li class="chapter" data-level="20.4.1" data-path="dynamic-documents.html"><a href="dynamic-documents.html#table-html"><i class="fa fa-check"></i><b>20.4.1</b> HTML 样式</a></li>
-<li class="chapter" data-level="20.4.2" data-path="dynamic-documents.html"><a href="dynamic-documents.html#table-latex"><i class="fa fa-check"></i><b>20.4.2</b> LaTeX 样式</a></li>
+<li class="chapter" data-level="19.4" data-path="dynamic-documents.html"><a href="dynamic-documents.html#table-style"><i class="fa fa-check"></i><b>19.4</b> 表格样式</a><ul>
+<li class="chapter" data-level="19.4.1" data-path="dynamic-documents.html"><a href="dynamic-documents.html#table-html"><i class="fa fa-check"></i><b>19.4.1</b> HTML 样式</a></li>
+<li class="chapter" data-level="19.4.2" data-path="dynamic-documents.html"><a href="dynamic-documents.html#table-latex"><i class="fa fa-check"></i><b>19.4.2</b> LaTeX 样式</a></li>
 </ul></li>
-<li class="chapter" data-level="20.5" data-path="dynamic-documents.html"><a href="dynamic-documents.html#rmarkdown-addins"><i class="fa fa-check"></i><b>20.5</b> 插件</a></li>
-<li class="chapter" data-level="20.6" data-path="dynamic-documents.html"><a href="dynamic-documents.html#subsec:rmarkdown"><i class="fa fa-check"></i><b>20.6</b> 报告</a></li>
-<li class="chapter" data-level="20.7" data-path="dynamic-documents.html"><a href="dynamic-documents.html#subsec:pagedown"><i class="fa fa-check"></i><b>20.7</b> 简历</a></li>
-<li class="chapter" data-level="20.8" data-path="dynamic-documents.html"><a href="dynamic-documents.html#subsec:bookdown"><i class="fa fa-check"></i><b>20.8</b> 书籍</a></li>
-<li class="chapter" data-level="20.9" data-path="dynamic-documents.html"><a href="dynamic-documents.html#subsec:blogdown"><i class="fa fa-check"></i><b>20.9</b> 网站</a></li>
-<li class="chapter" data-level="20.10" data-path="dynamic-documents.html"><a href="dynamic-documents.html#subsec:dashboard"><i class="fa fa-check"></i><b>20.10</b> Shiny</a></li>
-<li class="chapter" data-level="20.11" data-path="dynamic-documents.html"><a href="dynamic-documents.html#subsec:xaringan"><i class="fa fa-check"></i><b>20.11</b> 幻灯片</a></li>
-<li class="chapter" data-level="20.12" data-path="dynamic-documents.html"><a href="dynamic-documents.html#sec:animation-video"><i class="fa fa-check"></i><b>20.12</b> 动画视频</a></li>
-<li class="chapter" data-level="20.13" data-path="dynamic-documents.html"><a href="dynamic-documents.html#sec:diagram-table"><i class="fa fa-check"></i><b>20.13</b> 图表</a><ul>
-<li class="chapter" data-level="20.13.1" data-path="dynamic-documents.html"><a href="dynamic-documents.html#tikz-1"><i class="fa fa-check"></i><b>20.13.1</b> TikZ</a></li>
-<li class="chapter" data-level="20.13.2" data-path="dynamic-documents.html"><a href="dynamic-documents.html#dot"><i class="fa fa-check"></i><b>20.13.2</b> DOT</a></li>
-<li class="chapter" data-level="20.13.3" data-path="dynamic-documents.html"><a href="dynamic-documents.html#subsec:uml"><i class="fa fa-check"></i><b>20.13.3</b> UML</a></li>
-<li class="chapter" data-level="20.13.4" data-path="dynamic-documents.html"><a href="dynamic-documents.html#subsec:table"><i class="fa fa-check"></i><b>20.13.4</b> 表格</a></li>
+<li class="chapter" data-level="19.5" data-path="dynamic-documents.html"><a href="dynamic-documents.html#rmarkdown-addins"><i class="fa fa-check"></i><b>19.5</b> 插件</a></li>
+<li class="chapter" data-level="19.6" data-path="dynamic-documents.html"><a href="dynamic-documents.html#subsec:rmarkdown"><i class="fa fa-check"></i><b>19.6</b> 报告</a></li>
+<li class="chapter" data-level="19.7" data-path="dynamic-documents.html"><a href="dynamic-documents.html#subsec:pagedown"><i class="fa fa-check"></i><b>19.7</b> 简历</a></li>
+<li class="chapter" data-level="19.8" data-path="dynamic-documents.html"><a href="dynamic-documents.html#subsec:bookdown"><i class="fa fa-check"></i><b>19.8</b> 书籍</a></li>
+<li class="chapter" data-level="19.9" data-path="dynamic-documents.html"><a href="dynamic-documents.html#subsec:blogdown"><i class="fa fa-check"></i><b>19.9</b> 网站</a></li>
+<li class="chapter" data-level="19.10" data-path="dynamic-documents.html"><a href="dynamic-documents.html#subsec:dashboard"><i class="fa fa-check"></i><b>19.10</b> Shiny</a></li>
+<li class="chapter" data-level="19.11" data-path="dynamic-documents.html"><a href="dynamic-documents.html#subsec:xaringan"><i class="fa fa-check"></i><b>19.11</b> 幻灯片</a></li>
+<li class="chapter" data-level="19.12" data-path="dynamic-documents.html"><a href="dynamic-documents.html#sec:animation-video"><i class="fa fa-check"></i><b>19.12</b> 动画视频</a></li>
+<li class="chapter" data-level="19.13" data-path="dynamic-documents.html"><a href="dynamic-documents.html#sec:diagram-table"><i class="fa fa-check"></i><b>19.13</b> 图表</a><ul>
+<li class="chapter" data-level="19.13.1" data-path="dynamic-documents.html"><a href="dynamic-documents.html#tikz-1"><i class="fa fa-check"></i><b>19.13.1</b> TikZ</a></li>
+<li class="chapter" data-level="19.13.2" data-path="dynamic-documents.html"><a href="dynamic-documents.html#dot"><i class="fa fa-check"></i><b>19.13.2</b> DOT</a></li>
+<li class="chapter" data-level="19.13.3" data-path="dynamic-documents.html"><a href="dynamic-documents.html#subsec:uml"><i class="fa fa-check"></i><b>19.13.3</b> UML</a></li>
+<li class="chapter" data-level="19.13.4" data-path="dynamic-documents.html"><a href="dynamic-documents.html#subsec:table"><i class="fa fa-check"></i><b>19.13.4</b> 表格</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="21" data-path="animated-graphics.html"><a href="animated-graphics.html"><i class="fa fa-check"></i><b>21</b> 动画</a><ul>
-<li class="chapter" data-level="21.1" data-path="animated-graphics.html"><a href="animated-graphics.html#gganimate"><i class="fa fa-check"></i><b>21.1</b> gganimate</a></li>
-<li class="chapter" data-level="21.2" data-path="animated-graphics.html"><a href="animated-graphics.html#magick"><i class="fa fa-check"></i><b>21.2</b> magick</a></li>
+<li class="chapter" data-level="20" data-path="animated-graphics.html"><a href="animated-graphics.html"><i class="fa fa-check"></i><b>20</b> 动画</a><ul>
+<li class="chapter" data-level="20.1" data-path="animated-graphics.html"><a href="animated-graphics.html#gganimate"><i class="fa fa-check"></i><b>20.1</b> gganimate</a></li>
+<li class="chapter" data-level="20.2" data-path="animated-graphics.html"><a href="animated-graphics.html#magick"><i class="fa fa-check"></i><b>20.2</b> magick</a></li>
 </ul></li>
-<li class="chapter" data-level="22" data-path="interactive-graphics.html"><a href="interactive-graphics.html"><i class="fa fa-check"></i><b>22</b> 交互式图形</a><ul>
-<li class="chapter" data-level="22.1" data-path="interactive-graphics.html"><a href="interactive-graphics.html#rgl"><i class="fa fa-check"></i><b>22.1</b> rgl</a></li>
-<li class="chapter" data-level="22.2" data-path="interactive-graphics.html"><a href="interactive-graphics.html#plotly-1"><i class="fa fa-check"></i><b>22.2</b> plotly</a><ul>
-<li class="chapter" data-level="22.2.1" data-path="interactive-graphics.html"><a href="interactive-graphics.html#plotly-histogram"><i class="fa fa-check"></i><b>22.2.1</b> 直方图</a></li>
-<li class="chapter" data-level="22.2.2" data-path="interactive-graphics.html"><a href="interactive-graphics.html#plotly-map"><i class="fa fa-check"></i><b>22.2.2</b> 地图</a></li>
-<li class="chapter" data-level="22.2.3" data-path="interactive-graphics.html"><a href="interactive-graphics.html#plotly-heatmap"><i class="fa fa-check"></i><b>22.2.3</b> 热力图</a></li>
+<li class="chapter" data-level="21" data-path="interactive-graphics.html"><a href="interactive-graphics.html"><i class="fa fa-check"></i><b>21</b> 交互式图形</a><ul>
+<li class="chapter" data-level="21.1" data-path="interactive-graphics.html"><a href="interactive-graphics.html#rgl"><i class="fa fa-check"></i><b>21.1</b> rgl</a></li>
+<li class="chapter" data-level="21.2" data-path="interactive-graphics.html"><a href="interactive-graphics.html#leaflet"><i class="fa fa-check"></i><b>21.2</b> leaflet</a></li>
+<li class="chapter" data-level="21.3" data-path="interactive-graphics.html"><a href="interactive-graphics.html#vegawidget"><i class="fa fa-check"></i><b>21.3</b> vegawidget</a></li>
+<li class="chapter" data-level="21.4" data-path="interactive-graphics.html"><a href="interactive-graphics.html#network"><i class="fa fa-check"></i><b>21.4</b> 网络图</a></li>
+<li class="chapter" data-level="21.5" data-path="interactive-graphics.html"><a href="interactive-graphics.html#threejs"><i class="fa fa-check"></i><b>21.5</b> threejs</a></li>
 </ul></li>
-<li class="chapter" data-level="22.3" data-path="interactive-graphics.html"><a href="interactive-graphics.html#leaflet"><i class="fa fa-check"></i><b>22.3</b> leaflet</a></li>
-<li class="chapter" data-level="22.4" data-path="interactive-graphics.html"><a href="interactive-graphics.html#highcharter"><i class="fa fa-check"></i><b>22.4</b> highcharter</a><ul>
-<li class="chapter" data-level="22.4.1" data-path="interactive-graphics.html"><a href="interactive-graphics.html#highcharter-ts"><i class="fa fa-check"></i><b>22.4.1</b> 时序图</a></li>
-<li class="chapter" data-level="22.4.2" data-path="interactive-graphics.html"><a href="interactive-graphics.html#highcharter-scatter"><i class="fa fa-check"></i><b>22.4.2</b> 散点图</a></li>
-<li class="chapter" data-level="22.4.3" data-path="interactive-graphics.html"><a href="interactive-graphics.html#highcharter-map"><i class="fa fa-check"></i><b>22.4.3</b> 地图</a></li>
-</ul></li>
-<li class="chapter" data-level="22.5" data-path="interactive-graphics.html"><a href="interactive-graphics.html#vegawidget"><i class="fa fa-check"></i><b>22.5</b> vegawidget</a></li>
-<li class="chapter" data-level="22.6" data-path="interactive-graphics.html"><a href="interactive-graphics.html#network"><i class="fa fa-check"></i><b>22.6</b> 网络图</a></li>
-<li class="chapter" data-level="22.7" data-path="interactive-graphics.html"><a href="interactive-graphics.html#threejs"><i class="fa fa-check"></i><b>22.7</b> threejs</a></li>
-</ul></li>
-<li class="chapter" data-level="23" data-path="cs-cran-network.html"><a href="cs-cran-network.html"><i class="fa fa-check"></i><b>23</b> 案例：分析 CRAN</a><ul>
-<li class="chapter" data-level="23.1" data-path="cs-cran-network.html"><a href="cs-cran-network.html#R-Core-Team"><i class="fa fa-check"></i><b>23.1</b> R 核心团队</a></li>
-<li class="chapter" data-level="23.2" data-path="cs-cran-network.html"><a href="cs-cran-network.html#Top-Creators"><i class="fa fa-check"></i><b>23.2</b> 高产的开发者</a></li>
-<li class="chapter" data-level="23.3" data-path="cs-cran-network.html"><a href="cs-cran-network.html#R-Package-Developers"><i class="fa fa-check"></i><b>23.3</b> 社区开发者</a></li>
-<li class="chapter" data-level="23.4" data-path="cs-cran-network.html"><a href="cs-cran-network.html#first-commit"><i class="fa fa-check"></i><b>23.4</b> 首次贡献 R 包</a></li>
-<li class="chapter" data-level="23.5" data-path="cs-cran-network.html"><a href="cs-cran-network.html#Contribution-Network"><i class="fa fa-check"></i><b>23.5</b> 贡献关系网络</a></li>
-<li class="chapter" data-level="23.6" data-path="cs-cran-network.html"><a href="cs-cran-network.html#CRAN-Update-Packages"><i class="fa fa-check"></i><b>23.6</b> 更新知多少</a></li>
-<li class="chapter" data-level="23.7" data-path="cs-cran-network.html"><a href="cs-cran-network.html#Package-Licenses"><i class="fa fa-check"></i><b>23.7</b> 使用许可证</a></li>
-<li class="chapter" data-level="23.8" data-path="cs-cran-network.html"><a href="cs-cran-network.html#r-包增长速度"><i class="fa fa-check"></i><b>23.8</b> R 包增长速度</a></li>
-<li class="chapter" data-level="23.9" data-path="cs-cran-network.html"><a href="cs-cran-network.html#Choose-Package"><i class="fa fa-check"></i><b>23.9</b> 选择 R 包</a></li>
-<li class="chapter" data-level="23.10" data-path="cs-cran-network.html"><a href="cs-cran-network.html#cs-network-session-info"><i class="fa fa-check"></i><b>23.10</b> 运行环境</a></li>
+<li class="chapter" data-level="22" data-path="cs-cran-network.html"><a href="cs-cran-network.html"><i class="fa fa-check"></i><b>22</b> 案例：分析 CRAN</a><ul>
+<li class="chapter" data-level="22.1" data-path="cs-cran-network.html"><a href="cs-cran-network.html#R-Core-Team"><i class="fa fa-check"></i><b>22.1</b> R 核心团队</a></li>
+<li class="chapter" data-level="22.2" data-path="cs-cran-network.html"><a href="cs-cran-network.html#Top-Creators"><i class="fa fa-check"></i><b>22.2</b> 高产的开发者</a></li>
+<li class="chapter" data-level="22.3" data-path="cs-cran-network.html"><a href="cs-cran-network.html#R-Package-Developers"><i class="fa fa-check"></i><b>22.3</b> 社区开发者</a></li>
+<li class="chapter" data-level="22.4" data-path="cs-cran-network.html"><a href="cs-cran-network.html#first-commit"><i class="fa fa-check"></i><b>22.4</b> 首次贡献 R 包</a></li>
+<li class="chapter" data-level="22.5" data-path="cs-cran-network.html"><a href="cs-cran-network.html#Contribution-Network"><i class="fa fa-check"></i><b>22.5</b> 贡献关系网络</a></li>
+<li class="chapter" data-level="22.6" data-path="cs-cran-network.html"><a href="cs-cran-network.html#CRAN-Update-Packages"><i class="fa fa-check"></i><b>22.6</b> 更新知多少</a></li>
+<li class="chapter" data-level="22.7" data-path="cs-cran-network.html"><a href="cs-cran-network.html#Package-Licenses"><i class="fa fa-check"></i><b>22.7</b> 使用许可证</a></li>
+<li class="chapter" data-level="22.8" data-path="cs-cran-network.html"><a href="cs-cran-network.html#r-包增长速度"><i class="fa fa-check"></i><b>22.8</b> R 包增长速度</a></li>
+<li class="chapter" data-level="22.9" data-path="cs-cran-network.html"><a href="cs-cran-network.html#Choose-Package"><i class="fa fa-check"></i><b>22.9</b> 选择 R 包</a></li>
+<li class="chapter" data-level="22.10" data-path="cs-cran-network.html"><a href="cs-cran-network.html#cs-network-session-info"><i class="fa fa-check"></i><b>22.10</b> 运行环境</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="99-references.html"><a href="99-references.html"><i class="fa fa-check"></i>参考文献</a></li>
 <li class="divider"></li>
@@ -603,260 +580,260 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="chap:lattice" class="section level1">
-<h1><span class="header-section-number">第 17 章</span> Lattice 图形</h1>
+<h1><span class="header-section-number">第 16 章</span> Lattice 图形</h1>
 <blockquote>
 <p>If you imagine that this pen is Trellis, then Lattice is not this pen.</p>
 <p>— Paul Murrell<a href="#fn50" class="footnote-ref" id="fnref50"><sup>50</sup></a></p>
 </blockquote>
 <p>把网站搬出来，汉化 <a href="http://latticeextra.r-forge.r-project.org/" class="uri">http://latticeextra.r-forge.r-project.org/</a></p>
 <div id="sec:boxplot" class="section level2">
-<h2><span class="header-section-number">17.1</span> 箱线图</h2>
-<div class="sourceCode" id="cb696"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb696-1"><a href="dv-lattice.html#cb696-1"></a><span class="kw">library</span>(lattice)</span>
-<span id="cb696-2"><a href="dv-lattice.html#cb696-2"></a><span class="kw">bwplot</span>(voice.part <span class="op">~</span><span class="st"> </span>height, <span class="dt">data =</span> singer)</span></code></pre></div>
-<p><img src="dv-lattice_files/figure-html/unnamed-chunk-2-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<h2><span class="header-section-number">16.1</span> 箱线图</h2>
+<div class="sourceCode" id="cb695"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb695-1"><a href="dv-lattice.html#cb695-1"></a><span class="kw">library</span>(lattice)</span>
+<span id="cb695-2"><a href="dv-lattice.html#cb695-2"></a><span class="kw">bwplot</span>(voice.part <span class="op">~</span><span class="st"> </span>height, <span class="dt">data =</span> singer)</span></code></pre></div>
+<p><img src="dv-lattice_files/figure-html/unnamed-chunk-1-1.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="sec:line" class="section level2">
-<h2><span class="header-section-number">17.2</span> 折线图</h2>
+<h2><span class="header-section-number">16.2</span> 折线图</h2>
 <p>latticeExtra 包提供了强大的图层函数 <code>layer()</code></p>
 <p>多元时间序列</p>
-<div class="sourceCode" id="cb697"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb697-1"><a href="dv-lattice.html#cb697-1"></a><span class="kw">library</span>(RColorBrewer)</span>
-<span id="cb697-2"><a href="dv-lattice.html#cb697-2"></a><span class="kw">library</span>(latticeExtra)</span>
-<span id="cb697-3"><a href="dv-lattice.html#cb697-3"></a><span class="kw">xyplot</span>(EuStockMarkets) <span class="op">+</span></span>
-<span id="cb697-4"><a href="dv-lattice.html#cb697-4"></a><span class="st">  </span><span class="kw">layer</span>(<span class="kw">panel.scaleArrow</span>(</span>
-<span id="cb697-5"><a href="dv-lattice.html#cb697-5"></a>    <span class="dt">x =</span> <span class="fl">0.99</span>, <span class="dt">append =</span> <span class="st">&quot; units&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;grey&quot;</span>, <span class="dt">srt =</span> <span class="dv">90</span>, <span class="dt">cex =</span> <span class="fl">0.8</span></span>
-<span id="cb697-6"><a href="dv-lattice.html#cb697-6"></a>  ))</span></code></pre></div>
-<p><img src="dv-lattice_files/figure-html/unnamed-chunk-3-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb696"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb696-1"><a href="dv-lattice.html#cb696-1"></a><span class="kw">library</span>(RColorBrewer)</span>
+<span id="cb696-2"><a href="dv-lattice.html#cb696-2"></a><span class="kw">library</span>(latticeExtra)</span>
+<span id="cb696-3"><a href="dv-lattice.html#cb696-3"></a><span class="kw">xyplot</span>(EuStockMarkets) <span class="op">+</span></span>
+<span id="cb696-4"><a href="dv-lattice.html#cb696-4"></a><span class="st">  </span><span class="kw">layer</span>(<span class="kw">panel.scaleArrow</span>(</span>
+<span id="cb696-5"><a href="dv-lattice.html#cb696-5"></a>    <span class="dt">x =</span> <span class="fl">0.99</span>, <span class="dt">append =</span> <span class="st">&quot; units&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;grey&quot;</span>, <span class="dt">srt =</span> <span class="dv">90</span>, <span class="dt">cex =</span> <span class="fl">0.8</span></span>
+<span id="cb696-6"><a href="dv-lattice.html#cb696-6"></a>  ))</span></code></pre></div>
+<p><img src="dv-lattice_files/figure-html/unnamed-chunk-2-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>如何解释</p>
 <p>时序图</p>
 <p>Plot many time series in parallel</p>
-<div class="sourceCode" id="cb698"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb698-1"><a href="dv-lattice.html#cb698-1"></a><span class="kw">horizonplot</span>(EuStockMarkets,</span>
-<span id="cb698-2"><a href="dv-lattice.html#cb698-2"></a>  <span class="dt">colorkey =</span> <span class="ot">TRUE</span>,</span>
-<span id="cb698-3"><a href="dv-lattice.html#cb698-3"></a>  <span class="dt">origin =</span> <span class="dv">4000</span>, <span class="dt">horizonscale =</span> <span class="dv">1000</span></span>
-<span id="cb698-4"><a href="dv-lattice.html#cb698-4"></a>) <span class="op">+</span></span>
-<span id="cb698-5"><a href="dv-lattice.html#cb698-5"></a><span class="st">  </span><span class="kw">layer</span>(<span class="kw">panel.scaleArrow</span>(</span>
-<span id="cb698-6"><a href="dv-lattice.html#cb698-6"></a>    <span class="dt">x =</span> <span class="fl">0.99</span>, <span class="dt">digits =</span> <span class="dv">1</span>, <span class="dt">col =</span> <span class="st">&quot;grey&quot;</span>,</span>
-<span id="cb698-7"><a href="dv-lattice.html#cb698-7"></a>    <span class="dt">srt =</span> <span class="dv">90</span>, <span class="dt">cex =</span> <span class="fl">0.7</span></span>
-<span id="cb698-8"><a href="dv-lattice.html#cb698-8"></a>  )) <span class="op">+</span></span>
-<span id="cb698-9"><a href="dv-lattice.html#cb698-9"></a><span class="st">  </span><span class="kw">layer</span>(</span>
-<span id="cb698-10"><a href="dv-lattice.html#cb698-10"></a>    lim &lt;-<span class="st"> </span><span class="kw">current.panel.limits</span>(),</span>
-<span id="cb698-11"><a href="dv-lattice.html#cb698-11"></a>    <span class="kw">panel.text</span>(lim<span class="op">$</span>x[<span class="dv">1</span>], lim<span class="op">$</span>y[<span class="dv">1</span>], <span class="kw">round</span>(lim<span class="op">$</span>y[<span class="dv">1</span>], <span class="dv">1</span>),</span>
-<span id="cb698-12"><a href="dv-lattice.html#cb698-12"></a>      <span class="dt">font =</span> <span class="dv">2</span>,</span>
-<span id="cb698-13"><a href="dv-lattice.html#cb698-13"></a>      <span class="dt">cex =</span> <span class="fl">0.7</span>, <span class="dt">adj =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">0.5</span>, <span class="fl">-0.5</span>), <span class="dt">col =</span> <span class="st">&quot;#9FC8DC&quot;</span></span>
-<span id="cb698-14"><a href="dv-lattice.html#cb698-14"></a>    )</span>
-<span id="cb698-15"><a href="dv-lattice.html#cb698-15"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb697"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb697-1"><a href="dv-lattice.html#cb697-1"></a><span class="kw">horizonplot</span>(EuStockMarkets,</span>
+<span id="cb697-2"><a href="dv-lattice.html#cb697-2"></a>  <span class="dt">colorkey =</span> <span class="ot">TRUE</span>,</span>
+<span id="cb697-3"><a href="dv-lattice.html#cb697-3"></a>  <span class="dt">origin =</span> <span class="dv">4000</span>, <span class="dt">horizonscale =</span> <span class="dv">1000</span></span>
+<span id="cb697-4"><a href="dv-lattice.html#cb697-4"></a>) <span class="op">+</span></span>
+<span id="cb697-5"><a href="dv-lattice.html#cb697-5"></a><span class="st">  </span><span class="kw">layer</span>(<span class="kw">panel.scaleArrow</span>(</span>
+<span id="cb697-6"><a href="dv-lattice.html#cb697-6"></a>    <span class="dt">x =</span> <span class="fl">0.99</span>, <span class="dt">digits =</span> <span class="dv">1</span>, <span class="dt">col =</span> <span class="st">&quot;grey&quot;</span>,</span>
+<span id="cb697-7"><a href="dv-lattice.html#cb697-7"></a>    <span class="dt">srt =</span> <span class="dv">90</span>, <span class="dt">cex =</span> <span class="fl">0.7</span></span>
+<span id="cb697-8"><a href="dv-lattice.html#cb697-8"></a>  )) <span class="op">+</span></span>
+<span id="cb697-9"><a href="dv-lattice.html#cb697-9"></a><span class="st">  </span><span class="kw">layer</span>(</span>
+<span id="cb697-10"><a href="dv-lattice.html#cb697-10"></a>    lim &lt;-<span class="st"> </span><span class="kw">current.panel.limits</span>(),</span>
+<span id="cb697-11"><a href="dv-lattice.html#cb697-11"></a>    <span class="kw">panel.text</span>(lim<span class="op">$</span>x[<span class="dv">1</span>], lim<span class="op">$</span>y[<span class="dv">1</span>], <span class="kw">round</span>(lim<span class="op">$</span>y[<span class="dv">1</span>], <span class="dv">1</span>),</span>
+<span id="cb697-12"><a href="dv-lattice.html#cb697-12"></a>      <span class="dt">font =</span> <span class="dv">2</span>,</span>
+<span id="cb697-13"><a href="dv-lattice.html#cb697-13"></a>      <span class="dt">cex =</span> <span class="fl">0.7</span>, <span class="dt">adj =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">0.5</span>, <span class="fl">-0.5</span>), <span class="dt">col =</span> <span class="st">&quot;#9FC8DC&quot;</span></span>
+<span id="cb697-14"><a href="dv-lattice.html#cb697-14"></a>    )</span>
+<span id="cb697-15"><a href="dv-lattice.html#cb697-15"></a>  )</span></code></pre></div>
+<p><img src="dv-lattice_files/figure-html/unnamed-chunk-3-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb698"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb698-1"><a href="dv-lattice.html#cb698-1"></a><span class="co"># # https://stackoverflow.com/questions/25109196/r-lattice-package-add-legend-to-a-figure</span></span>
+<span id="cb698-2"><a href="dv-lattice.html#cb698-2"></a><span class="kw">library</span>(lattice)</span>
+<span id="cb698-3"><a href="dv-lattice.html#cb698-3"></a><span class="kw">library</span>(nlme)</span>
+<span id="cb698-4"><a href="dv-lattice.html#cb698-4"></a></span>
+<span id="cb698-5"><a href="dv-lattice.html#cb698-5"></a><span class="kw">plot</span>(Orange,</span>
+<span id="cb698-6"><a href="dv-lattice.html#cb698-6"></a>  <span class="dt">outer =</span> <span class="op">~</span><span class="dv">1</span>,</span>
+<span id="cb698-7"><a href="dv-lattice.html#cb698-7"></a>  <span class="dt">key =</span> <span class="kw">list</span>(</span>
+<span id="cb698-8"><a href="dv-lattice.html#cb698-8"></a>    <span class="dt">space =</span> <span class="st">&quot;right&quot;</span>, <span class="dt">title =</span> <span class="st">&quot;Tree&quot;</span>, <span class="dt">cex.title =</span> <span class="dv">1</span>,</span>
+<span id="cb698-9"><a href="dv-lattice.html#cb698-9"></a>    <span class="dt">lines =</span> <span class="kw">list</span>(<span class="dt">lty =</span> <span class="dv">1</span>, <span class="dt">col =</span> <span class="kw">hcl.colors</span>(<span class="dv">5</span>)),</span>
+<span id="cb698-10"><a href="dv-lattice.html#cb698-10"></a>    <span class="co"># points = list(pch = 1, col = hcl.colors(5)),</span></span>
+<span id="cb698-11"><a href="dv-lattice.html#cb698-11"></a>    <span class="dt">text =</span> <span class="kw">list</span>(<span class="kw">c</span>(<span class="st">&quot;3&quot;</span>, <span class="st">&quot;1&quot;</span>, <span class="st">&quot;5&quot;</span>, <span class="st">&quot;2&quot;</span>, <span class="st">&quot;4&quot;</span>))</span>
+<span id="cb698-12"><a href="dv-lattice.html#cb698-12"></a>  ),</span>
+<span id="cb698-13"><a href="dv-lattice.html#cb698-13"></a>  <span class="dt">par.settings =</span> <span class="kw">list</span>(</span>
+<span id="cb698-14"><a href="dv-lattice.html#cb698-14"></a>    <span class="co"># plot.line = list(col = hcl.colors(5), border = &quot;transparent&quot;),</span></span>
+<span id="cb698-15"><a href="dv-lattice.html#cb698-15"></a>    <span class="co"># plot.symbol = list(col = hcl.colors(5), border = &quot;transparent&quot;),</span></span>
+<span id="cb698-16"><a href="dv-lattice.html#cb698-16"></a>    <span class="dt">strip.background =</span> <span class="kw">list</span>(<span class="dt">col =</span> <span class="st">&quot;white&quot;</span>),</span>
+<span id="cb698-17"><a href="dv-lattice.html#cb698-17"></a>    <span class="dt">strip.border =</span> <span class="kw">list</span>(<span class="dt">col =</span> <span class="st">&quot;black&quot;</span>)</span>
+<span id="cb698-18"><a href="dv-lattice.html#cb698-18"></a>  )</span>
+<span id="cb698-19"><a href="dv-lattice.html#cb698-19"></a>)</span></code></pre></div>
 <p><img src="dv-lattice_files/figure-html/unnamed-chunk-4-1.png" width="70%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb699"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb699-1"><a href="dv-lattice.html#cb699-1"></a><span class="co"># # https://stackoverflow.com/questions/25109196/r-lattice-package-add-legend-to-a-figure</span></span>
+<div class="sourceCode" id="cb699"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb699-1"><a href="dv-lattice.html#cb699-1"></a><span class="kw">library</span>(MASS)</span>
 <span id="cb699-2"><a href="dv-lattice.html#cb699-2"></a><span class="kw">library</span>(lattice)</span>
-<span id="cb699-3"><a href="dv-lattice.html#cb699-3"></a><span class="kw">library</span>(nlme)</span>
+<span id="cb699-3"><a href="dv-lattice.html#cb699-3"></a><span class="co">## Plot the claims frequency against age group by engine size and district</span></span>
 <span id="cb699-4"><a href="dv-lattice.html#cb699-4"></a></span>
-<span id="cb699-5"><a href="dv-lattice.html#cb699-5"></a><span class="kw">plot</span>(Orange,</span>
-<span id="cb699-6"><a href="dv-lattice.html#cb699-6"></a>  <span class="dt">outer =</span> <span class="op">~</span><span class="dv">1</span>,</span>
-<span id="cb699-7"><a href="dv-lattice.html#cb699-7"></a>  <span class="dt">key =</span> <span class="kw">list</span>(</span>
-<span id="cb699-8"><a href="dv-lattice.html#cb699-8"></a>    <span class="dt">space =</span> <span class="st">&quot;right&quot;</span>, <span class="dt">title =</span> <span class="st">&quot;Tree&quot;</span>, <span class="dt">cex.title =</span> <span class="dv">1</span>,</span>
-<span id="cb699-9"><a href="dv-lattice.html#cb699-9"></a>    <span class="dt">lines =</span> <span class="kw">list</span>(<span class="dt">lty =</span> <span class="dv">1</span>, <span class="dt">col =</span> <span class="kw">hcl.colors</span>(<span class="dv">5</span>)),</span>
-<span id="cb699-10"><a href="dv-lattice.html#cb699-10"></a>    <span class="co"># points = list(pch = 1, col = hcl.colors(5)),</span></span>
-<span id="cb699-11"><a href="dv-lattice.html#cb699-11"></a>    <span class="dt">text =</span> <span class="kw">list</span>(<span class="kw">c</span>(<span class="st">&quot;3&quot;</span>, <span class="st">&quot;1&quot;</span>, <span class="st">&quot;5&quot;</span>, <span class="st">&quot;2&quot;</span>, <span class="st">&quot;4&quot;</span>))</span>
-<span id="cb699-12"><a href="dv-lattice.html#cb699-12"></a>  ),</span>
-<span id="cb699-13"><a href="dv-lattice.html#cb699-13"></a>  <span class="dt">par.settings =</span> <span class="kw">list</span>(</span>
-<span id="cb699-14"><a href="dv-lattice.html#cb699-14"></a>    <span class="co"># plot.line = list(col = hcl.colors(5), border = &quot;transparent&quot;),</span></span>
-<span id="cb699-15"><a href="dv-lattice.html#cb699-15"></a>    <span class="co"># plot.symbol = list(col = hcl.colors(5), border = &quot;transparent&quot;),</span></span>
-<span id="cb699-16"><a href="dv-lattice.html#cb699-16"></a>    <span class="dt">strip.background =</span> <span class="kw">list</span>(<span class="dt">col =</span> <span class="st">&quot;white&quot;</span>),</span>
-<span id="cb699-17"><a href="dv-lattice.html#cb699-17"></a>    <span class="dt">strip.border =</span> <span class="kw">list</span>(<span class="dt">col =</span> <span class="st">&quot;black&quot;</span>)</span>
-<span id="cb699-18"><a href="dv-lattice.html#cb699-18"></a>  )</span>
-<span id="cb699-19"><a href="dv-lattice.html#cb699-19"></a>)</span></code></pre></div>
+<span id="cb699-5"><a href="dv-lattice.html#cb699-5"></a><span class="kw">barchart</span>(Claims <span class="op">/</span><span class="st"> </span>Holders <span class="op">~</span><span class="st"> </span>Age <span class="op">|</span><span class="st"> </span>Group,</span>
+<span id="cb699-6"><a href="dv-lattice.html#cb699-6"></a>  <span class="dt">groups =</span> District,</span>
+<span id="cb699-7"><a href="dv-lattice.html#cb699-7"></a>  <span class="dt">data =</span> Insurance, <span class="dt">origin =</span> <span class="dv">0</span>, <span class="dt">auto.key =</span> <span class="ot">TRUE</span></span>
+<span id="cb699-8"><a href="dv-lattice.html#cb699-8"></a>)</span></code></pre></div>
 <p><img src="dv-lattice_files/figure-html/unnamed-chunk-5-1.png" width="70%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb700"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb700-1"><a href="dv-lattice.html#cb700-1"></a><span class="kw">library</span>(MASS)</span>
-<span id="cb700-2"><a href="dv-lattice.html#cb700-2"></a><span class="kw">library</span>(lattice)</span>
-<span id="cb700-3"><a href="dv-lattice.html#cb700-3"></a><span class="co">## Plot the claims frequency against age group by engine size and district</span></span>
-<span id="cb700-4"><a href="dv-lattice.html#cb700-4"></a></span>
-<span id="cb700-5"><a href="dv-lattice.html#cb700-5"></a><span class="kw">barchart</span>(Claims <span class="op">/</span><span class="st"> </span>Holders <span class="op">~</span><span class="st"> </span>Age <span class="op">|</span><span class="st"> </span>Group,</span>
-<span id="cb700-6"><a href="dv-lattice.html#cb700-6"></a>  <span class="dt">groups =</span> District,</span>
-<span id="cb700-7"><a href="dv-lattice.html#cb700-7"></a>  <span class="dt">data =</span> Insurance, <span class="dt">origin =</span> <span class="dv">0</span>, <span class="dt">auto.key =</span> <span class="ot">TRUE</span></span>
-<span id="cb700-8"><a href="dv-lattice.html#cb700-8"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb700"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb700-1"><a href="dv-lattice.html#cb700-1"></a><span class="kw">barchart</span>(Claims <span class="op">/</span><span class="st"> </span>Holders <span class="op">~</span><span class="st"> </span>Age <span class="op">|</span><span class="st"> </span>Group,</span>
+<span id="cb700-2"><a href="dv-lattice.html#cb700-2"></a>  <span class="dt">groups =</span> District, <span class="dt">data =</span> Insurance,</span>
+<span id="cb700-3"><a href="dv-lattice.html#cb700-3"></a>  <span class="dt">main =</span> <span class="st">&quot;Claims frequency&quot;</span>,</span>
+<span id="cb700-4"><a href="dv-lattice.html#cb700-4"></a>  <span class="dt">auto.key =</span> <span class="kw">list</span>(<span class="dt">space =</span> <span class="st">&quot;top&quot;</span>, <span class="dt">columns =</span> <span class="dv">4</span>, <span class="dt">title =</span> <span class="st">&quot;District&quot;</span>, <span class="dt">cex.title =</span> <span class="dv">1</span>)</span>
+<span id="cb700-5"><a href="dv-lattice.html#cb700-5"></a>)</span></code></pre></div>
 <p><img src="dv-lattice_files/figure-html/unnamed-chunk-6-1.png" width="70%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb701"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb701-1"><a href="dv-lattice.html#cb701-1"></a><span class="kw">barchart</span>(Claims <span class="op">/</span><span class="st"> </span>Holders <span class="op">~</span><span class="st"> </span>Age <span class="op">|</span><span class="st"> </span>Group,</span>
-<span id="cb701-2"><a href="dv-lattice.html#cb701-2"></a>  <span class="dt">groups =</span> District, <span class="dt">data =</span> Insurance,</span>
-<span id="cb701-3"><a href="dv-lattice.html#cb701-3"></a>  <span class="dt">main =</span> <span class="st">&quot;Claims frequency&quot;</span>,</span>
-<span id="cb701-4"><a href="dv-lattice.html#cb701-4"></a>  <span class="dt">auto.key =</span> <span class="kw">list</span>(<span class="dt">space =</span> <span class="st">&quot;top&quot;</span>, <span class="dt">columns =</span> <span class="dv">4</span>, <span class="dt">title =</span> <span class="st">&quot;District&quot;</span>, <span class="dt">cex.title =</span> <span class="dv">1</span>)</span>
-<span id="cb701-5"><a href="dv-lattice.html#cb701-5"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb701"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb701-1"><a href="dv-lattice.html#cb701-1"></a><span class="co"># lattice 的设置</span></span>
+<span id="cb701-2"><a href="dv-lattice.html#cb701-2"></a><span class="kw">show.settings</span>()</span></code></pre></div>
 <p><img src="dv-lattice_files/figure-html/unnamed-chunk-7-1.png" width="70%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb702"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb702-1"><a href="dv-lattice.html#cb702-1"></a><span class="co"># lattice 的设置</span></span>
-<span id="cb702-2"><a href="dv-lattice.html#cb702-2"></a><span class="kw">show.settings</span>()</span></code></pre></div>
-<p><img src="dv-lattice_files/figure-html/unnamed-chunk-8-1.png" width="70%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb703"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb703-1"><a href="dv-lattice.html#cb703-1"></a>myColours &lt;-<span class="st"> </span><span class="kw">brewer.pal</span>(<span class="dv">6</span>, <span class="st">&quot;Blues&quot;</span>)</span>
-<span id="cb703-2"><a href="dv-lattice.html#cb703-2"></a>my.settings &lt;-<span class="st"> </span><span class="kw">list</span>(</span>
-<span id="cb703-3"><a href="dv-lattice.html#cb703-3"></a>  <span class="dt">superpose.polygon =</span> <span class="kw">list</span>(<span class="dt">col =</span> myColours[<span class="dv">2</span><span class="op">:</span><span class="dv">5</span>], <span class="dt">border =</span> <span class="st">&quot;transparent&quot;</span>),</span>
-<span id="cb703-4"><a href="dv-lattice.html#cb703-4"></a>  <span class="dt">strip.background =</span> <span class="kw">list</span>(<span class="dt">col =</span> myColours[<span class="dv">6</span>]),</span>
-<span id="cb703-5"><a href="dv-lattice.html#cb703-5"></a>  <span class="dt">strip.border =</span> <span class="kw">list</span>(<span class="dt">col =</span> <span class="st">&quot;black&quot;</span>)</span>
-<span id="cb703-6"><a href="dv-lattice.html#cb703-6"></a>)</span>
-<span id="cb703-7"><a href="dv-lattice.html#cb703-7"></a></span>
-<span id="cb703-8"><a href="dv-lattice.html#cb703-8"></a><span class="co"># 获取参数设置</span></span>
-<span id="cb703-9"><a href="dv-lattice.html#cb703-9"></a><span class="kw">trellis.par.get</span>()</span>
-<span id="cb703-10"><a href="dv-lattice.html#cb703-10"></a></span>
-<span id="cb703-11"><a href="dv-lattice.html#cb703-11"></a><span class="co"># 全局参数设置</span></span>
-<span id="cb703-12"><a href="dv-lattice.html#cb703-12"></a><span class="kw">trellis.par.set</span>(my.settings)</span></code></pre></div>
-<div class="sourceCode" id="cb704"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb704-1"><a href="dv-lattice.html#cb704-1"></a><span class="kw">library</span>(MASS)</span>
-<span id="cb704-2"><a href="dv-lattice.html#cb704-2"></a><span class="kw">library</span>(lattice)</span>
-<span id="cb704-3"><a href="dv-lattice.html#cb704-3"></a></span>
-<span id="cb704-4"><a href="dv-lattice.html#cb704-4"></a>myColours &lt;-<span class="st"> </span><span class="kw">hcl.colors</span>(<span class="dv">6</span>)</span>
-<span id="cb704-5"><a href="dv-lattice.html#cb704-5"></a></span>
-<span id="cb704-6"><a href="dv-lattice.html#cb704-6"></a><span class="kw">barchart</span>(Claims <span class="op">/</span><span class="st"> </span>Holders <span class="op">*</span><span class="st"> </span><span class="dv">100</span> <span class="op">~</span><span class="st"> </span>Age <span class="op">|</span><span class="st"> </span>Group,</span>
-<span id="cb704-7"><a href="dv-lattice.html#cb704-7"></a>  <span class="dt">groups =</span> District, <span class="dt">data =</span> Insurance,</span>
-<span id="cb704-8"><a href="dv-lattice.html#cb704-8"></a>  <span class="dt">origin =</span> <span class="dv">0</span>, <span class="dt">main =</span> <span class="st">&quot;Motor insurance claims frequency&quot;</span>,</span>
-<span id="cb704-9"><a href="dv-lattice.html#cb704-9"></a>  <span class="dt">xlab =</span> <span class="st">&quot;Age&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Claims frequency %&quot;</span>,</span>
-<span id="cb704-10"><a href="dv-lattice.html#cb704-10"></a>  <span class="dt">scales =</span> <span class="kw">list</span>(<span class="dt">alternating =</span> <span class="dv">1</span>),</span>
-<span id="cb704-11"><a href="dv-lattice.html#cb704-11"></a>  <span class="dt">auto.key =</span> <span class="kw">list</span>(</span>
-<span id="cb704-12"><a href="dv-lattice.html#cb704-12"></a>    <span class="dt">space =</span> <span class="st">&quot;top&quot;</span>, <span class="dt">columns =</span> <span class="dv">4</span>, <span class="dt">points =</span> <span class="ot">FALSE</span>, <span class="dt">rectangles =</span> <span class="ot">TRUE</span>,</span>
-<span id="cb704-13"><a href="dv-lattice.html#cb704-13"></a>    <span class="dt">title =</span> <span class="st">&quot;District&quot;</span>, <span class="dt">cex.title =</span> <span class="dv">1</span></span>
-<span id="cb704-14"><a href="dv-lattice.html#cb704-14"></a>  ),</span>
-<span id="cb704-15"><a href="dv-lattice.html#cb704-15"></a>  <span class="dt">par.settings =</span> <span class="kw">list</span>(</span>
-<span id="cb704-16"><a href="dv-lattice.html#cb704-16"></a>    <span class="dt">superpose.polygon =</span> <span class="kw">list</span>(<span class="dt">col =</span> myColours[<span class="dv">2</span><span class="op">:</span><span class="dv">5</span>], <span class="dt">border =</span> <span class="st">&quot;transparent&quot;</span>),</span>
-<span id="cb704-17"><a href="dv-lattice.html#cb704-17"></a>    <span class="dt">strip.background =</span> <span class="kw">list</span>(<span class="dt">col =</span> myColours[<span class="dv">6</span>]),</span>
-<span id="cb704-18"><a href="dv-lattice.html#cb704-18"></a>    <span class="dt">strip.border =</span> <span class="kw">list</span>(<span class="dt">col =</span> <span class="st">&quot;black&quot;</span>)</span>
-<span id="cb704-19"><a href="dv-lattice.html#cb704-19"></a>  ),</span>
-<span id="cb704-20"><a href="dv-lattice.html#cb704-20"></a>  <span class="dt">par.strip.text =</span> <span class="kw">list</span>(<span class="dt">col =</span> <span class="st">&quot;white&quot;</span>, <span class="dt">font =</span> <span class="dv">2</span>),</span>
-<span id="cb704-21"><a href="dv-lattice.html#cb704-21"></a>  <span class="dt">panel =</span> <span class="cf">function</span>(x, y, ...) {</span>
-<span id="cb704-22"><a href="dv-lattice.html#cb704-22"></a>    <span class="kw">panel.grid</span>(<span class="dt">h =</span> <span class="dv">-1</span>, <span class="dt">v =</span> <span class="dv">0</span>)</span>
-<span id="cb704-23"><a href="dv-lattice.html#cb704-23"></a>    <span class="kw">panel.barchart</span>(x, y, ...)</span>
-<span id="cb704-24"><a href="dv-lattice.html#cb704-24"></a>  }</span>
-<span id="cb704-25"><a href="dv-lattice.html#cb704-25"></a>)</span></code></pre></div>
-<p><img src="dv-lattice_files/figure-html/unnamed-chunk-10-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb702"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb702-1"><a href="dv-lattice.html#cb702-1"></a>myColours &lt;-<span class="st"> </span><span class="kw">brewer.pal</span>(<span class="dv">6</span>, <span class="st">&quot;Blues&quot;</span>)</span>
+<span id="cb702-2"><a href="dv-lattice.html#cb702-2"></a>my.settings &lt;-<span class="st"> </span><span class="kw">list</span>(</span>
+<span id="cb702-3"><a href="dv-lattice.html#cb702-3"></a>  <span class="dt">superpose.polygon =</span> <span class="kw">list</span>(<span class="dt">col =</span> myColours[<span class="dv">2</span><span class="op">:</span><span class="dv">5</span>], <span class="dt">border =</span> <span class="st">&quot;transparent&quot;</span>),</span>
+<span id="cb702-4"><a href="dv-lattice.html#cb702-4"></a>  <span class="dt">strip.background =</span> <span class="kw">list</span>(<span class="dt">col =</span> myColours[<span class="dv">6</span>]),</span>
+<span id="cb702-5"><a href="dv-lattice.html#cb702-5"></a>  <span class="dt">strip.border =</span> <span class="kw">list</span>(<span class="dt">col =</span> <span class="st">&quot;black&quot;</span>)</span>
+<span id="cb702-6"><a href="dv-lattice.html#cb702-6"></a>)</span>
+<span id="cb702-7"><a href="dv-lattice.html#cb702-7"></a></span>
+<span id="cb702-8"><a href="dv-lattice.html#cb702-8"></a><span class="co"># 获取参数设置</span></span>
+<span id="cb702-9"><a href="dv-lattice.html#cb702-9"></a><span class="kw">trellis.par.get</span>()</span>
+<span id="cb702-10"><a href="dv-lattice.html#cb702-10"></a></span>
+<span id="cb702-11"><a href="dv-lattice.html#cb702-11"></a><span class="co"># 全局参数设置</span></span>
+<span id="cb702-12"><a href="dv-lattice.html#cb702-12"></a><span class="kw">trellis.par.set</span>(my.settings)</span></code></pre></div>
+<div class="sourceCode" id="cb703"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb703-1"><a href="dv-lattice.html#cb703-1"></a><span class="kw">library</span>(MASS)</span>
+<span id="cb703-2"><a href="dv-lattice.html#cb703-2"></a><span class="kw">library</span>(lattice)</span>
+<span id="cb703-3"><a href="dv-lattice.html#cb703-3"></a></span>
+<span id="cb703-4"><a href="dv-lattice.html#cb703-4"></a>myColours &lt;-<span class="st"> </span><span class="kw">hcl.colors</span>(<span class="dv">6</span>)</span>
+<span id="cb703-5"><a href="dv-lattice.html#cb703-5"></a></span>
+<span id="cb703-6"><a href="dv-lattice.html#cb703-6"></a><span class="kw">barchart</span>(Claims <span class="op">/</span><span class="st"> </span>Holders <span class="op">*</span><span class="st"> </span><span class="dv">100</span> <span class="op">~</span><span class="st"> </span>Age <span class="op">|</span><span class="st"> </span>Group,</span>
+<span id="cb703-7"><a href="dv-lattice.html#cb703-7"></a>  <span class="dt">groups =</span> District, <span class="dt">data =</span> Insurance,</span>
+<span id="cb703-8"><a href="dv-lattice.html#cb703-8"></a>  <span class="dt">origin =</span> <span class="dv">0</span>, <span class="dt">main =</span> <span class="st">&quot;Motor insurance claims frequency&quot;</span>,</span>
+<span id="cb703-9"><a href="dv-lattice.html#cb703-9"></a>  <span class="dt">xlab =</span> <span class="st">&quot;Age&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Claims frequency %&quot;</span>,</span>
+<span id="cb703-10"><a href="dv-lattice.html#cb703-10"></a>  <span class="dt">scales =</span> <span class="kw">list</span>(<span class="dt">alternating =</span> <span class="dv">1</span>),</span>
+<span id="cb703-11"><a href="dv-lattice.html#cb703-11"></a>  <span class="dt">auto.key =</span> <span class="kw">list</span>(</span>
+<span id="cb703-12"><a href="dv-lattice.html#cb703-12"></a>    <span class="dt">space =</span> <span class="st">&quot;top&quot;</span>, <span class="dt">columns =</span> <span class="dv">4</span>, <span class="dt">points =</span> <span class="ot">FALSE</span>, <span class="dt">rectangles =</span> <span class="ot">TRUE</span>,</span>
+<span id="cb703-13"><a href="dv-lattice.html#cb703-13"></a>    <span class="dt">title =</span> <span class="st">&quot;District&quot;</span>, <span class="dt">cex.title =</span> <span class="dv">1</span></span>
+<span id="cb703-14"><a href="dv-lattice.html#cb703-14"></a>  ),</span>
+<span id="cb703-15"><a href="dv-lattice.html#cb703-15"></a>  <span class="dt">par.settings =</span> <span class="kw">list</span>(</span>
+<span id="cb703-16"><a href="dv-lattice.html#cb703-16"></a>    <span class="dt">superpose.polygon =</span> <span class="kw">list</span>(<span class="dt">col =</span> myColours[<span class="dv">2</span><span class="op">:</span><span class="dv">5</span>], <span class="dt">border =</span> <span class="st">&quot;transparent&quot;</span>),</span>
+<span id="cb703-17"><a href="dv-lattice.html#cb703-17"></a>    <span class="dt">strip.background =</span> <span class="kw">list</span>(<span class="dt">col =</span> myColours[<span class="dv">6</span>]),</span>
+<span id="cb703-18"><a href="dv-lattice.html#cb703-18"></a>    <span class="dt">strip.border =</span> <span class="kw">list</span>(<span class="dt">col =</span> <span class="st">&quot;black&quot;</span>)</span>
+<span id="cb703-19"><a href="dv-lattice.html#cb703-19"></a>  ),</span>
+<span id="cb703-20"><a href="dv-lattice.html#cb703-20"></a>  <span class="dt">par.strip.text =</span> <span class="kw">list</span>(<span class="dt">col =</span> <span class="st">&quot;white&quot;</span>, <span class="dt">font =</span> <span class="dv">2</span>),</span>
+<span id="cb703-21"><a href="dv-lattice.html#cb703-21"></a>  <span class="dt">panel =</span> <span class="cf">function</span>(x, y, ...) {</span>
+<span id="cb703-22"><a href="dv-lattice.html#cb703-22"></a>    <span class="kw">panel.grid</span>(<span class="dt">h =</span> <span class="dv">-1</span>, <span class="dt">v =</span> <span class="dv">0</span>)</span>
+<span id="cb703-23"><a href="dv-lattice.html#cb703-23"></a>    <span class="kw">panel.barchart</span>(x, y, ...)</span>
+<span id="cb703-24"><a href="dv-lattice.html#cb703-24"></a>  }</span>
+<span id="cb703-25"><a href="dv-lattice.html#cb703-25"></a>)</span></code></pre></div>
+<p><img src="dv-lattice_files/figure-html/unnamed-chunk-9-1.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="sec:smooth" class="section level2">
-<h2><span class="header-section-number">17.3</span> 平滑图</h2>
-<div class="sourceCode" id="cb705"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb705-1"><a href="dv-lattice.html#cb705-1"></a><span class="kw">set.seed</span>(<span class="dv">1</span>)</span>
-<span id="cb705-2"><a href="dv-lattice.html#cb705-2"></a>xy &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</span>
-<span id="cb705-3"><a href="dv-lattice.html#cb705-3"></a>  <span class="dt">x =</span> <span class="kw">runif</span>(<span class="dv">100</span>),</span>
-<span id="cb705-4"><a href="dv-lattice.html#cb705-4"></a>  <span class="dt">y =</span> <span class="kw">rt</span>(<span class="dv">100</span>, <span class="dt">df =</span> <span class="dv">5</span>)</span>
-<span id="cb705-5"><a href="dv-lattice.html#cb705-5"></a>)</span>
-<span id="cb705-6"><a href="dv-lattice.html#cb705-6"></a></span>
-<span id="cb705-7"><a href="dv-lattice.html#cb705-7"></a><span class="kw">xyplot</span>(y <span class="op">~</span><span class="st"> </span>x, xy, <span class="dt">panel =</span> <span class="cf">function</span>(...) {</span>
-<span id="cb705-8"><a href="dv-lattice.html#cb705-8"></a>  <span class="kw">panel.xyplot</span>(...)</span>
-<span id="cb705-9"><a href="dv-lattice.html#cb705-9"></a>  <span class="kw">panel.smoother</span>(..., <span class="dt">span =</span> <span class="fl">0.9</span>)</span>
-<span id="cb705-10"><a href="dv-lattice.html#cb705-10"></a>})</span>
-<span id="cb705-11"><a href="dv-lattice.html#cb705-11"></a></span>
-<span id="cb705-12"><a href="dv-lattice.html#cb705-12"></a><span class="kw">library</span>(splines)</span>
-<span id="cb705-13"><a href="dv-lattice.html#cb705-13"></a><span class="kw">xyplot</span>(y <span class="op">~</span><span class="st"> </span>x, xy) <span class="op">+</span></span>
-<span id="cb705-14"><a href="dv-lattice.html#cb705-14"></a><span class="st">  </span><span class="kw">layer</span>(<span class="kw">panel.smoother</span>(y <span class="op">~</span><span class="st"> </span><span class="kw">ns</span>(x, <span class="dv">5</span>), <span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>))</span>
-<span id="cb705-15"><a href="dv-lattice.html#cb705-15"></a></span>
-<span id="cb705-16"><a href="dv-lattice.html#cb705-16"></a><span class="kw">library</span>(nlme)</span>
-<span id="cb705-17"><a href="dv-lattice.html#cb705-17"></a><span class="kw">library</span>(mgcv)</span>
-<span id="cb705-18"><a href="dv-lattice.html#cb705-18"></a><span class="kw">xyplot</span>(y <span class="op">~</span><span class="st"> </span>x, xy) <span class="op">+</span></span>
-<span id="cb705-19"><a href="dv-lattice.html#cb705-19"></a><span class="st">  </span><span class="kw">layer</span>(<span class="kw">panel.smoother</span>(y <span class="op">~</span><span class="st"> </span><span class="kw">s</span>(x), <span class="dt">method =</span> <span class="st">&quot;gam&quot;</span>))</span></code></pre></div>
-<p><img src="dv-lattice_files/figure-html/unnamed-chunk-11-1.png" width="70%" style="display: block; margin: auto;" /><img src="dv-lattice_files/figure-html/unnamed-chunk-11-2.png" width="70%" style="display: block; margin: auto;" /><img src="dv-lattice_files/figure-html/unnamed-chunk-11-3.png" width="70%" style="display: block; margin: auto;" /></p>
+<h2><span class="header-section-number">16.3</span> 平滑图</h2>
+<div class="sourceCode" id="cb704"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb704-1"><a href="dv-lattice.html#cb704-1"></a><span class="kw">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb704-2"><a href="dv-lattice.html#cb704-2"></a>xy &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</span>
+<span id="cb704-3"><a href="dv-lattice.html#cb704-3"></a>  <span class="dt">x =</span> <span class="kw">runif</span>(<span class="dv">100</span>),</span>
+<span id="cb704-4"><a href="dv-lattice.html#cb704-4"></a>  <span class="dt">y =</span> <span class="kw">rt</span>(<span class="dv">100</span>, <span class="dt">df =</span> <span class="dv">5</span>)</span>
+<span id="cb704-5"><a href="dv-lattice.html#cb704-5"></a>)</span>
+<span id="cb704-6"><a href="dv-lattice.html#cb704-6"></a></span>
+<span id="cb704-7"><a href="dv-lattice.html#cb704-7"></a><span class="kw">xyplot</span>(y <span class="op">~</span><span class="st"> </span>x, xy, <span class="dt">panel =</span> <span class="cf">function</span>(...) {</span>
+<span id="cb704-8"><a href="dv-lattice.html#cb704-8"></a>  <span class="kw">panel.xyplot</span>(...)</span>
+<span id="cb704-9"><a href="dv-lattice.html#cb704-9"></a>  <span class="kw">panel.smoother</span>(..., <span class="dt">span =</span> <span class="fl">0.9</span>)</span>
+<span id="cb704-10"><a href="dv-lattice.html#cb704-10"></a>})</span>
+<span id="cb704-11"><a href="dv-lattice.html#cb704-11"></a></span>
+<span id="cb704-12"><a href="dv-lattice.html#cb704-12"></a><span class="kw">library</span>(splines)</span>
+<span id="cb704-13"><a href="dv-lattice.html#cb704-13"></a><span class="kw">xyplot</span>(y <span class="op">~</span><span class="st"> </span>x, xy) <span class="op">+</span></span>
+<span id="cb704-14"><a href="dv-lattice.html#cb704-14"></a><span class="st">  </span><span class="kw">layer</span>(<span class="kw">panel.smoother</span>(y <span class="op">~</span><span class="st"> </span><span class="kw">ns</span>(x, <span class="dv">5</span>), <span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>))</span>
+<span id="cb704-15"><a href="dv-lattice.html#cb704-15"></a></span>
+<span id="cb704-16"><a href="dv-lattice.html#cb704-16"></a><span class="kw">library</span>(nlme)</span>
+<span id="cb704-17"><a href="dv-lattice.html#cb704-17"></a><span class="kw">library</span>(mgcv)</span>
+<span id="cb704-18"><a href="dv-lattice.html#cb704-18"></a><span class="kw">xyplot</span>(y <span class="op">~</span><span class="st"> </span>x, xy) <span class="op">+</span></span>
+<span id="cb704-19"><a href="dv-lattice.html#cb704-19"></a><span class="st">  </span><span class="kw">layer</span>(<span class="kw">panel.smoother</span>(y <span class="op">~</span><span class="st"> </span><span class="kw">s</span>(x), <span class="dt">method =</span> <span class="st">&quot;gam&quot;</span>))</span></code></pre></div>
+<p><img src="dv-lattice_files/figure-html/unnamed-chunk-10-1.png" width="70%" style="display: block; margin: auto;" /><img src="dv-lattice_files/figure-html/unnamed-chunk-10-2.png" width="70%" style="display: block; margin: auto;" /><img src="dv-lattice_files/figure-html/unnamed-chunk-10-3.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Trellis Displays of Tukey’s Hanging Rootograms</p>
-<div class="sourceCode" id="cb706"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb706-1"><a href="dv-lattice.html#cb706-1"></a>x &lt;-<span class="st"> </span><span class="kw">rpois</span>(<span class="dv">1000</span>, <span class="dt">lambda =</span> <span class="dv">50</span>)</span>
-<span id="cb706-2"><a href="dv-lattice.html#cb706-2"></a><span class="kw">rootogram</span>(<span class="op">~</span>x, <span class="dt">dfun =</span> <span class="cf">function</span>(x) <span class="kw">dpois</span>(x, <span class="dt">lambda =</span> <span class="dv">50</span>))</span></code></pre></div>
-<p><img src="dv-lattice_files/figure-html/unnamed-chunk-12-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb705"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb705-1"><a href="dv-lattice.html#cb705-1"></a>x &lt;-<span class="st"> </span><span class="kw">rpois</span>(<span class="dv">1000</span>, <span class="dt">lambda =</span> <span class="dv">50</span>)</span>
+<span id="cb705-2"><a href="dv-lattice.html#cb705-2"></a><span class="kw">rootogram</span>(<span class="op">~</span>x, <span class="dt">dfun =</span> <span class="cf">function</span>(x) <span class="kw">dpois</span>(x, <span class="dt">lambda =</span> <span class="dv">50</span>))</span></code></pre></div>
+<p><img src="dv-lattice_files/figure-html/unnamed-chunk-11-1.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="sec:dotplot" class="section level2">
-<h2><span class="header-section-number">17.4</span> 点图</h2>
-<div class="sourceCode" id="cb707"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb707-1"><a href="dv-lattice.html#cb707-1"></a><span class="co"># 添加背景网格线作为参考线</span></span>
-<span id="cb707-2"><a href="dv-lattice.html#cb707-2"></a><span class="kw">segplot</span>(<span class="kw">reorder</span>(<span class="kw">factor</span>(county), rate.male) <span class="op">~</span><span class="st"> </span>LCL95.male <span class="op">+</span><span class="st"> </span>UCL95.male,</span>
-<span id="cb707-3"><a href="dv-lattice.html#cb707-3"></a>  <span class="dt">data =</span> <span class="kw">subset</span>(USCancerRates, state <span class="op">==</span><span class="st"> &quot;Washington&quot;</span>),</span>
-<span id="cb707-4"><a href="dv-lattice.html#cb707-4"></a>  <span class="dt">draw.bands =</span> <span class="ot">FALSE</span>, <span class="dt">centers =</span> rate.male</span>
-<span id="cb707-5"><a href="dv-lattice.html#cb707-5"></a>)</span></code></pre></div>
-<p><img src="dv-lattice_files/figure-html/unnamed-chunk-13-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<h2><span class="header-section-number">16.4</span> 点图</h2>
+<div class="sourceCode" id="cb706"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb706-1"><a href="dv-lattice.html#cb706-1"></a><span class="co"># 添加背景网格线作为参考线</span></span>
+<span id="cb706-2"><a href="dv-lattice.html#cb706-2"></a><span class="kw">segplot</span>(<span class="kw">reorder</span>(<span class="kw">factor</span>(county), rate.male) <span class="op">~</span><span class="st"> </span>LCL95.male <span class="op">+</span><span class="st"> </span>UCL95.male,</span>
+<span id="cb706-3"><a href="dv-lattice.html#cb706-3"></a>  <span class="dt">data =</span> <span class="kw">subset</span>(USCancerRates, state <span class="op">==</span><span class="st"> &quot;Washington&quot;</span>),</span>
+<span id="cb706-4"><a href="dv-lattice.html#cb706-4"></a>  <span class="dt">draw.bands =</span> <span class="ot">FALSE</span>, <span class="dt">centers =</span> rate.male</span>
+<span id="cb706-5"><a href="dv-lattice.html#cb706-5"></a>)</span></code></pre></div>
+<p><img src="dv-lattice_files/figure-html/unnamed-chunk-12-1.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="sec:step" class="section level2">
-<h2><span class="header-section-number">17.5</span> 阶梯图</h2>
+<h2><span class="header-section-number">16.5</span> 阶梯图</h2>
 <p>经验累积分布图</p>
-<div class="sourceCode" id="cb708"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb708-1"><a href="dv-lattice.html#cb708-1"></a><span class="kw">ecdfplot</span>(<span class="op">~</span>height <span class="op">|</span><span class="st"> </span>voice.part, <span class="dt">data =</span> singer)</span></code></pre></div>
-<p><img src="dv-lattice_files/figure-html/unnamed-chunk-14-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb707"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb707-1"><a href="dv-lattice.html#cb707-1"></a><span class="kw">ecdfplot</span>(<span class="op">~</span>height <span class="op">|</span><span class="st"> </span>voice.part, <span class="dt">data =</span> singer)</span></code></pre></div>
+<p><img src="dv-lattice_files/figure-html/unnamed-chunk-13-1.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="sec:facet" class="section level2">
-<h2><span class="header-section-number">17.6</span> 分面图</h2>
-<div class="sourceCode" id="cb709"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb709-1"><a href="dv-lattice.html#cb709-1"></a><span class="co">## a variant of Figure 5.6 from Sarkar (2008)</span></span>
-<span id="cb709-2"><a href="dv-lattice.html#cb709-2"></a><span class="co">## http://lmdvr.r-forge.r-project.org/figures/figures.html?chapter=05;figure=05_06</span></span>
-<span id="cb709-3"><a href="dv-lattice.html#cb709-3"></a></span>
-<span id="cb709-4"><a href="dv-lattice.html#cb709-4"></a>depth.ord &lt;-<span class="st"> </span><span class="kw">rev</span>(<span class="kw">order</span>(quakes<span class="op">$</span>depth))</span>
-<span id="cb709-5"><a href="dv-lattice.html#cb709-5"></a>quakes<span class="op">$</span>Magnitude &lt;-<span class="st"> </span><span class="kw">equal.count</span>(quakes<span class="op">$</span>mag, <span class="dv">4</span>)</span>
-<span id="cb709-6"><a href="dv-lattice.html#cb709-6"></a>quakes.ordered &lt;-<span class="st"> </span>quakes[depth.ord, ]</span>
-<span id="cb709-7"><a href="dv-lattice.html#cb709-7"></a></span>
-<span id="cb709-8"><a href="dv-lattice.html#cb709-8"></a><span class="kw">levelplot</span>(depth <span class="op">~</span><span class="st"> </span>long <span class="op">+</span><span class="st"> </span>lat <span class="op">|</span><span class="st"> </span>Magnitude, <span class="dt">data =</span> quakes.ordered,</span>
-<span id="cb709-9"><a href="dv-lattice.html#cb709-9"></a>         <span class="dt">panel =</span> panel.levelplot.points, <span class="dt">type =</span> <span class="kw">c</span>(<span class="st">&quot;p&quot;</span>, <span class="st">&quot;g&quot;</span>),</span>
-<span id="cb709-10"><a href="dv-lattice.html#cb709-10"></a>         <span class="dt">aspect =</span> <span class="st">&quot;iso&quot;</span>, <span class="dt">prepanel =</span> prepanel.default.xyplot)</span></code></pre></div>
-<p><img src="dv-lattice_files/figure-html/unnamed-chunk-15-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<h2><span class="header-section-number">16.6</span> 分面图</h2>
+<div class="sourceCode" id="cb708"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb708-1"><a href="dv-lattice.html#cb708-1"></a><span class="co">## a variant of Figure 5.6 from Sarkar (2008)</span></span>
+<span id="cb708-2"><a href="dv-lattice.html#cb708-2"></a><span class="co">## http://lmdvr.r-forge.r-project.org/figures/figures.html?chapter=05;figure=05_06</span></span>
+<span id="cb708-3"><a href="dv-lattice.html#cb708-3"></a></span>
+<span id="cb708-4"><a href="dv-lattice.html#cb708-4"></a>depth.ord &lt;-<span class="st"> </span><span class="kw">rev</span>(<span class="kw">order</span>(quakes<span class="op">$</span>depth))</span>
+<span id="cb708-5"><a href="dv-lattice.html#cb708-5"></a>quakes<span class="op">$</span>Magnitude &lt;-<span class="st"> </span><span class="kw">equal.count</span>(quakes<span class="op">$</span>mag, <span class="dv">4</span>)</span>
+<span id="cb708-6"><a href="dv-lattice.html#cb708-6"></a>quakes.ordered &lt;-<span class="st"> </span>quakes[depth.ord, ]</span>
+<span id="cb708-7"><a href="dv-lattice.html#cb708-7"></a></span>
+<span id="cb708-8"><a href="dv-lattice.html#cb708-8"></a><span class="kw">levelplot</span>(depth <span class="op">~</span><span class="st"> </span>long <span class="op">+</span><span class="st"> </span>lat <span class="op">|</span><span class="st"> </span>Magnitude, <span class="dt">data =</span> quakes.ordered,</span>
+<span id="cb708-9"><a href="dv-lattice.html#cb708-9"></a>         <span class="dt">panel =</span> panel.levelplot.points, <span class="dt">type =</span> <span class="kw">c</span>(<span class="st">&quot;p&quot;</span>, <span class="st">&quot;g&quot;</span>),</span>
+<span id="cb708-10"><a href="dv-lattice.html#cb708-10"></a>         <span class="dt">aspect =</span> <span class="st">&quot;iso&quot;</span>, <span class="dt">prepanel =</span> prepanel.default.xyplot)</span></code></pre></div>
+<p><img src="dv-lattice_files/figure-html/unnamed-chunk-14-1.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="sec:contour" class="section level2">
-<h2><span class="header-section-number">17.7</span> 等高线图</h2>
-<div class="sourceCode" id="cb710"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb710-1"><a href="dv-lattice.html#cb710-1"></a><span class="kw">set.seed</span>(<span class="dv">1</span>)</span>
-<span id="cb710-2"><a href="dv-lattice.html#cb710-2"></a>xyz &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> <span class="kw">rnorm</span>(<span class="dv">100</span>), <span class="dt">y =</span> <span class="kw">rnorm</span>(<span class="dv">100</span>))</span>
-<span id="cb710-3"><a href="dv-lattice.html#cb710-3"></a>xyz<span class="op">$</span>z &lt;-<span class="st"> </span><span class="kw">with</span>(xyz, x <span class="op">*</span><span class="st"> </span>y <span class="op">+</span><span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">100</span>, <span class="dt">sd =</span> <span class="dv">1</span>))</span>
-<span id="cb710-4"><a href="dv-lattice.html#cb710-4"></a></span>
-<span id="cb710-5"><a href="dv-lattice.html#cb710-5"></a><span class="co">## GAM smoother with smoothness by cross validation</span></span>
-<span id="cb710-6"><a href="dv-lattice.html#cb710-6"></a><span class="kw">library</span>(mgcv)</span>
-<span id="cb710-7"><a href="dv-lattice.html#cb710-7"></a><span class="kw">levelplot</span>(z <span class="op">~</span><span class="st"> </span>x <span class="op">*</span><span class="st"> </span>y, xyz,</span>
-<span id="cb710-8"><a href="dv-lattice.html#cb710-8"></a>  <span class="dt">panel =</span> panel<span class="fl">.2</span>dsmoother,</span>
-<span id="cb710-9"><a href="dv-lattice.html#cb710-9"></a>  <span class="dt">form =</span> z <span class="op">~</span><span class="st"> </span><span class="kw">s</span>(x, y), <span class="dt">method =</span> <span class="st">&quot;gam&quot;</span></span>
-<span id="cb710-10"><a href="dv-lattice.html#cb710-10"></a>)</span></code></pre></div>
-<p><img src="dv-lattice_files/figure-html/unnamed-chunk-16-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<h2><span class="header-section-number">16.7</span> 等高线图</h2>
+<div class="sourceCode" id="cb709"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb709-1"><a href="dv-lattice.html#cb709-1"></a><span class="kw">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb709-2"><a href="dv-lattice.html#cb709-2"></a>xyz &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> <span class="kw">rnorm</span>(<span class="dv">100</span>), <span class="dt">y =</span> <span class="kw">rnorm</span>(<span class="dv">100</span>))</span>
+<span id="cb709-3"><a href="dv-lattice.html#cb709-3"></a>xyz<span class="op">$</span>z &lt;-<span class="st"> </span><span class="kw">with</span>(xyz, x <span class="op">*</span><span class="st"> </span>y <span class="op">+</span><span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">100</span>, <span class="dt">sd =</span> <span class="dv">1</span>))</span>
+<span id="cb709-4"><a href="dv-lattice.html#cb709-4"></a></span>
+<span id="cb709-5"><a href="dv-lattice.html#cb709-5"></a><span class="co">## GAM smoother with smoothness by cross validation</span></span>
+<span id="cb709-6"><a href="dv-lattice.html#cb709-6"></a><span class="kw">library</span>(mgcv)</span>
+<span id="cb709-7"><a href="dv-lattice.html#cb709-7"></a><span class="kw">levelplot</span>(z <span class="op">~</span><span class="st"> </span>x <span class="op">*</span><span class="st"> </span>y, xyz,</span>
+<span id="cb709-8"><a href="dv-lattice.html#cb709-8"></a>  <span class="dt">panel =</span> panel<span class="fl">.2</span>dsmoother,</span>
+<span id="cb709-9"><a href="dv-lattice.html#cb709-9"></a>  <span class="dt">form =</span> z <span class="op">~</span><span class="st"> </span><span class="kw">s</span>(x, y), <span class="dt">method =</span> <span class="st">&quot;gam&quot;</span></span>
+<span id="cb709-10"><a href="dv-lattice.html#cb709-10"></a>)</span></code></pre></div>
+<p><img src="dv-lattice_files/figure-html/unnamed-chunk-15-1.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="sub:map" class="section level2">
-<h2><span class="header-section-number">17.8</span> 地图</h2>
-<div class="sourceCode" id="cb711"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb711-1"><a href="dv-lattice.html#cb711-1"></a><span class="kw">library</span>(maps)</span>
-<span id="cb711-2"><a href="dv-lattice.html#cb711-2"></a><span class="kw">library</span>(mapproj)</span>
-<span id="cb711-3"><a href="dv-lattice.html#cb711-3"></a><span class="co"># 找一个新的 map 包含夏威夷和阿拉斯加</span></span>
-<span id="cb711-4"><a href="dv-lattice.html#cb711-4"></a><span class="co">## Note: Alaska, Hawaii and others are not included in county map;</span></span>
-<span id="cb711-5"><a href="dv-lattice.html#cb711-5"></a><span class="co">## this generates warnings with both USCancerRates and ancestry.</span></span>
-<span id="cb711-6"><a href="dv-lattice.html#cb711-6"></a><span class="kw">data</span>(USCancerRates)</span>
-<span id="cb711-7"><a href="dv-lattice.html#cb711-7"></a><span class="kw">mapplot</span>(<span class="kw">rownames</span>(USCancerRates) <span class="op">~</span><span class="st"> </span><span class="kw">log</span>(rate.male) <span class="op">+</span><span class="st"> </span><span class="kw">log</span>(rate.female),</span>
-<span id="cb711-8"><a href="dv-lattice.html#cb711-8"></a>        <span class="dt">data =</span> USCancerRates,</span>
-<span id="cb711-9"><a href="dv-lattice.html#cb711-9"></a>        <span class="dt">map =</span> <span class="kw">map</span>(<span class="st">&quot;county&quot;</span>, <span class="dt">plot =</span> <span class="ot">FALSE</span>, <span class="dt">fill =</span> <span class="ot">TRUE</span>,</span>
-<span id="cb711-10"><a href="dv-lattice.html#cb711-10"></a>                  <span class="dt">projection =</span> <span class="st">&quot;mercator&quot;</span>))</span></code></pre></div>
-<p><img src="dv-lattice_files/figure-html/unnamed-chunk-17-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<h2><span class="header-section-number">16.8</span> 地图</h2>
+<div class="sourceCode" id="cb710"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb710-1"><a href="dv-lattice.html#cb710-1"></a><span class="kw">library</span>(maps)</span>
+<span id="cb710-2"><a href="dv-lattice.html#cb710-2"></a><span class="kw">library</span>(mapproj)</span>
+<span id="cb710-3"><a href="dv-lattice.html#cb710-3"></a><span class="co"># 找一个新的 map 包含夏威夷和阿拉斯加</span></span>
+<span id="cb710-4"><a href="dv-lattice.html#cb710-4"></a><span class="co">## Note: Alaska, Hawaii and others are not included in county map;</span></span>
+<span id="cb710-5"><a href="dv-lattice.html#cb710-5"></a><span class="co">## this generates warnings with both USCancerRates and ancestry.</span></span>
+<span id="cb710-6"><a href="dv-lattice.html#cb710-6"></a><span class="kw">data</span>(USCancerRates)</span>
+<span id="cb710-7"><a href="dv-lattice.html#cb710-7"></a><span class="kw">mapplot</span>(<span class="kw">rownames</span>(USCancerRates) <span class="op">~</span><span class="st"> </span><span class="kw">log</span>(rate.male) <span class="op">+</span><span class="st"> </span><span class="kw">log</span>(rate.female),</span>
+<span id="cb710-8"><a href="dv-lattice.html#cb710-8"></a>        <span class="dt">data =</span> USCancerRates,</span>
+<span id="cb710-9"><a href="dv-lattice.html#cb710-9"></a>        <span class="dt">map =</span> <span class="kw">map</span>(<span class="st">&quot;county&quot;</span>, <span class="dt">plot =</span> <span class="ot">FALSE</span>, <span class="dt">fill =</span> <span class="ot">TRUE</span>,</span>
+<span id="cb710-10"><a href="dv-lattice.html#cb710-10"></a>                  <span class="dt">projection =</span> <span class="st">&quot;mercator&quot;</span>))</span></code></pre></div>
+<p><img src="dv-lattice_files/figure-html/unnamed-chunk-16-1.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="sub:cluster" class="section level2">
-<h2><span class="header-section-number">17.9</span> 聚类图</h2>
-<div class="sourceCode" id="cb712"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb712-1"><a href="dv-lattice.html#cb712-1"></a><span class="kw">xyplot</span>(Sepal.Length <span class="op">~</span><span class="st"> </span>Petal.Length,</span>
-<span id="cb712-2"><a href="dv-lattice.html#cb712-2"></a>  <span class="dt">groups =</span> Species,</span>
-<span id="cb712-3"><a href="dv-lattice.html#cb712-3"></a>  <span class="dt">data =</span> iris, <span class="dt">scales =</span> <span class="st">&quot;free&quot;</span>,</span>
-<span id="cb712-4"><a href="dv-lattice.html#cb712-4"></a>  <span class="dt">par.settings =</span> <span class="kw">list</span>(</span>
-<span id="cb712-5"><a href="dv-lattice.html#cb712-5"></a>    <span class="dt">superpose.symbol =</span> <span class="kw">list</span>(<span class="dt">pch =</span> <span class="kw">c</span>(<span class="dv">15</span><span class="op">:</span><span class="dv">17</span>)),</span>
-<span id="cb712-6"><a href="dv-lattice.html#cb712-6"></a>    <span class="dt">superpose.line =</span> <span class="kw">list</span>(<span class="dt">lwd =</span> <span class="dv">2</span>, <span class="dt">lty =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>)</span>
-<span id="cb712-7"><a href="dv-lattice.html#cb712-7"></a>  ),</span>
-<span id="cb712-8"><a href="dv-lattice.html#cb712-8"></a>  <span class="dt">panel =</span> <span class="cf">function</span>(x, y, ...) {</span>
-<span id="cb712-9"><a href="dv-lattice.html#cb712-9"></a>    <span class="kw">panel.xyplot</span>(x, y, ...)</span>
-<span id="cb712-10"><a href="dv-lattice.html#cb712-10"></a>    <span class="kw">panel.ellipse</span>(x, y, ...)</span>
-<span id="cb712-11"><a href="dv-lattice.html#cb712-11"></a>  },</span>
-<span id="cb712-12"><a href="dv-lattice.html#cb712-12"></a>  <span class="dt">auto.key =</span> <span class="kw">list</span>(<span class="dt">x =</span> <span class="fl">.1</span>, <span class="dt">y =</span> <span class="fl">.8</span>, <span class="dt">corner =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>))</span>
-<span id="cb712-13"><a href="dv-lattice.html#cb712-13"></a>)</span></code></pre></div>
-<p><img src="dv-lattice_files/figure-html/unnamed-chunk-18-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<h2><span class="header-section-number">16.9</span> 聚类图</h2>
+<div class="sourceCode" id="cb711"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb711-1"><a href="dv-lattice.html#cb711-1"></a><span class="kw">xyplot</span>(Sepal.Length <span class="op">~</span><span class="st"> </span>Petal.Length,</span>
+<span id="cb711-2"><a href="dv-lattice.html#cb711-2"></a>  <span class="dt">groups =</span> Species,</span>
+<span id="cb711-3"><a href="dv-lattice.html#cb711-3"></a>  <span class="dt">data =</span> iris, <span class="dt">scales =</span> <span class="st">&quot;free&quot;</span>,</span>
+<span id="cb711-4"><a href="dv-lattice.html#cb711-4"></a>  <span class="dt">par.settings =</span> <span class="kw">list</span>(</span>
+<span id="cb711-5"><a href="dv-lattice.html#cb711-5"></a>    <span class="dt">superpose.symbol =</span> <span class="kw">list</span>(<span class="dt">pch =</span> <span class="kw">c</span>(<span class="dv">15</span><span class="op">:</span><span class="dv">17</span>)),</span>
+<span id="cb711-6"><a href="dv-lattice.html#cb711-6"></a>    <span class="dt">superpose.line =</span> <span class="kw">list</span>(<span class="dt">lwd =</span> <span class="dv">2</span>, <span class="dt">lty =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>)</span>
+<span id="cb711-7"><a href="dv-lattice.html#cb711-7"></a>  ),</span>
+<span id="cb711-8"><a href="dv-lattice.html#cb711-8"></a>  <span class="dt">panel =</span> <span class="cf">function</span>(x, y, ...) {</span>
+<span id="cb711-9"><a href="dv-lattice.html#cb711-9"></a>    <span class="kw">panel.xyplot</span>(x, y, ...)</span>
+<span id="cb711-10"><a href="dv-lattice.html#cb711-10"></a>    <span class="kw">panel.ellipse</span>(x, y, ...)</span>
+<span id="cb711-11"><a href="dv-lattice.html#cb711-11"></a>  },</span>
+<span id="cb711-12"><a href="dv-lattice.html#cb711-12"></a>  <span class="dt">auto.key =</span> <span class="kw">list</span>(<span class="dt">x =</span> <span class="fl">.1</span>, <span class="dt">y =</span> <span class="fl">.8</span>, <span class="dt">corner =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>))</span>
+<span id="cb711-13"><a href="dv-lattice.html#cb711-13"></a>)</span></code></pre></div>
+<p><img src="dv-lattice_files/figure-html/unnamed-chunk-17-1.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="sec:lattice-sessioninfo" class="section level2">
-<h2><span class="header-section-number">17.10</span> 运行环境</h2>
-<div class="sourceCode" id="cb713"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb713-1"><a href="dv-lattice.html#cb713-1"></a><span class="kw">sessionInfo</span>()</span>
-<span id="cb713-2"><a href="dv-lattice.html#cb713-2"></a><span class="co">#&gt; R Under development (unstable) (2020-02-04 r77771)</span></span>
-<span id="cb713-3"><a href="dv-lattice.html#cb713-3"></a><span class="co">#&gt; Platform: x86_64-pc-linux-gnu (64-bit)</span></span>
-<span id="cb713-4"><a href="dv-lattice.html#cb713-4"></a><span class="co">#&gt; Running under: Ubuntu 16.04.6 LTS</span></span>
-<span id="cb713-5"><a href="dv-lattice.html#cb713-5"></a><span class="co">#&gt; </span></span>
-<span id="cb713-6"><a href="dv-lattice.html#cb713-6"></a><span class="co">#&gt; Matrix products: default</span></span>
-<span id="cb713-7"><a href="dv-lattice.html#cb713-7"></a><span class="co">#&gt; BLAS:   /home/travis/R-bin/lib/R/lib/libRblas.so</span></span>
-<span id="cb713-8"><a href="dv-lattice.html#cb713-8"></a><span class="co">#&gt; LAPACK: /home/travis/R-bin/lib/R/lib/libRlapack.so</span></span>
-<span id="cb713-9"><a href="dv-lattice.html#cb713-9"></a><span class="co">#&gt; </span></span>
-<span id="cb713-10"><a href="dv-lattice.html#cb713-10"></a><span class="co">#&gt; locale:</span></span>
-<span id="cb713-11"><a href="dv-lattice.html#cb713-11"></a><span class="co">#&gt;  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              </span></span>
-<span id="cb713-12"><a href="dv-lattice.html#cb713-12"></a><span class="co">#&gt;  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    </span></span>
-<span id="cb713-13"><a href="dv-lattice.html#cb713-13"></a><span class="co">#&gt;  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   </span></span>
-<span id="cb713-14"><a href="dv-lattice.html#cb713-14"></a><span class="co">#&gt;  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 </span></span>
-<span id="cb713-15"><a href="dv-lattice.html#cb713-15"></a><span class="co">#&gt;  [9] LC_ADDRESS=C               LC_TELEPHONE=C            </span></span>
-<span id="cb713-16"><a href="dv-lattice.html#cb713-16"></a><span class="co">#&gt; [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       </span></span>
-<span id="cb713-17"><a href="dv-lattice.html#cb713-17"></a><span class="co">#&gt; </span></span>
-<span id="cb713-18"><a href="dv-lattice.html#cb713-18"></a><span class="co">#&gt; attached base packages:</span></span>
-<span id="cb713-19"><a href="dv-lattice.html#cb713-19"></a><span class="co">#&gt; [1] splines   stats     graphics  grDevices utils     datasets  methods  </span></span>
-<span id="cb713-20"><a href="dv-lattice.html#cb713-20"></a><span class="co">#&gt; [8] base     </span></span>
-<span id="cb713-21"><a href="dv-lattice.html#cb713-21"></a><span class="co">#&gt; </span></span>
-<span id="cb713-22"><a href="dv-lattice.html#cb713-22"></a><span class="co">#&gt; other attached packages:</span></span>
-<span id="cb713-23"><a href="dv-lattice.html#cb713-23"></a><span class="co">#&gt; [1] mapproj_1.2.7       maps_3.3.0          mgcv_1.8-31        </span></span>
-<span id="cb713-24"><a href="dv-lattice.html#cb713-24"></a><span class="co">#&gt; [4] MASS_7.3-51.5       nlme_3.1-143        latticeExtra_0.6-29</span></span>
-<span id="cb713-25"><a href="dv-lattice.html#cb713-25"></a><span class="co">#&gt; [7] RColorBrewer_1.1-2  lattice_0.20-38    </span></span>
-<span id="cb713-26"><a href="dv-lattice.html#cb713-26"></a><span class="co">#&gt; </span></span>
-<span id="cb713-27"><a href="dv-lattice.html#cb713-27"></a><span class="co">#&gt; loaded via a namespace (and not attached):</span></span>
-<span id="cb713-28"><a href="dv-lattice.html#cb713-28"></a><span class="co">#&gt;  [1] Rcpp_1.0.3      knitr_1.26      magrittr_1.5    jpeg_0.1-8.1   </span></span>
-<span id="cb713-29"><a href="dv-lattice.html#cb713-29"></a><span class="co">#&gt;  [5] rlang_0.4.4     stringr_1.4.0   tools_4.0.0     grid_4.0.0     </span></span>
-<span id="cb713-30"><a href="dv-lattice.html#cb713-30"></a><span class="co">#&gt;  [9] xfun_0.12       png_0.1-7       htmltools_0.4.0 yaml_2.2.1     </span></span>
-<span id="cb713-31"><a href="dv-lattice.html#cb713-31"></a><span class="co">#&gt; [13] digest_0.6.23   bookdown_0.17   Matrix_1.2-18   curl_4.3       </span></span>
-<span id="cb713-32"><a href="dv-lattice.html#cb713-32"></a><span class="co">#&gt; [17] evaluate_0.14   rmarkdown_2.1   stringi_1.4.5   compiler_4.0.0</span></span></code></pre></div>
+<h2><span class="header-section-number">16.10</span> 运行环境</h2>
+<div class="sourceCode" id="cb712"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb712-1"><a href="dv-lattice.html#cb712-1"></a><span class="kw">sessionInfo</span>()</span>
+<span id="cb712-2"><a href="dv-lattice.html#cb712-2"></a><span class="co">#&gt; R Under development (unstable) (2020-03-06 r77913)</span></span>
+<span id="cb712-3"><a href="dv-lattice.html#cb712-3"></a><span class="co">#&gt; Platform: x86_64-pc-linux-gnu (64-bit)</span></span>
+<span id="cb712-4"><a href="dv-lattice.html#cb712-4"></a><span class="co">#&gt; Running under: Ubuntu 16.04.6 LTS</span></span>
+<span id="cb712-5"><a href="dv-lattice.html#cb712-5"></a><span class="co">#&gt; </span></span>
+<span id="cb712-6"><a href="dv-lattice.html#cb712-6"></a><span class="co">#&gt; Matrix products: default</span></span>
+<span id="cb712-7"><a href="dv-lattice.html#cb712-7"></a><span class="co">#&gt; BLAS:   /home/travis/R-bin/lib/R/lib/libRblas.so</span></span>
+<span id="cb712-8"><a href="dv-lattice.html#cb712-8"></a><span class="co">#&gt; LAPACK: /home/travis/R-bin/lib/R/lib/libRlapack.so</span></span>
+<span id="cb712-9"><a href="dv-lattice.html#cb712-9"></a><span class="co">#&gt; </span></span>
+<span id="cb712-10"><a href="dv-lattice.html#cb712-10"></a><span class="co">#&gt; locale:</span></span>
+<span id="cb712-11"><a href="dv-lattice.html#cb712-11"></a><span class="co">#&gt;  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              </span></span>
+<span id="cb712-12"><a href="dv-lattice.html#cb712-12"></a><span class="co">#&gt;  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    </span></span>
+<span id="cb712-13"><a href="dv-lattice.html#cb712-13"></a><span class="co">#&gt;  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   </span></span>
+<span id="cb712-14"><a href="dv-lattice.html#cb712-14"></a><span class="co">#&gt;  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 </span></span>
+<span id="cb712-15"><a href="dv-lattice.html#cb712-15"></a><span class="co">#&gt;  [9] LC_ADDRESS=C               LC_TELEPHONE=C            </span></span>
+<span id="cb712-16"><a href="dv-lattice.html#cb712-16"></a><span class="co">#&gt; [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       </span></span>
+<span id="cb712-17"><a href="dv-lattice.html#cb712-17"></a><span class="co">#&gt; </span></span>
+<span id="cb712-18"><a href="dv-lattice.html#cb712-18"></a><span class="co">#&gt; attached base packages:</span></span>
+<span id="cb712-19"><a href="dv-lattice.html#cb712-19"></a><span class="co">#&gt; [1] splines   stats     graphics  grDevices utils     datasets  methods  </span></span>
+<span id="cb712-20"><a href="dv-lattice.html#cb712-20"></a><span class="co">#&gt; [8] base     </span></span>
+<span id="cb712-21"><a href="dv-lattice.html#cb712-21"></a><span class="co">#&gt; </span></span>
+<span id="cb712-22"><a href="dv-lattice.html#cb712-22"></a><span class="co">#&gt; other attached packages:</span></span>
+<span id="cb712-23"><a href="dv-lattice.html#cb712-23"></a><span class="co">#&gt; [1] mapproj_1.2.7       maps_3.3.0          mgcv_1.8-31        </span></span>
+<span id="cb712-24"><a href="dv-lattice.html#cb712-24"></a><span class="co">#&gt; [4] MASS_7.3-51.5       nlme_3.1-145        latticeExtra_0.6-29</span></span>
+<span id="cb712-25"><a href="dv-lattice.html#cb712-25"></a><span class="co">#&gt; [7] RColorBrewer_1.1-2  lattice_0.20-40    </span></span>
+<span id="cb712-26"><a href="dv-lattice.html#cb712-26"></a><span class="co">#&gt; </span></span>
+<span id="cb712-27"><a href="dv-lattice.html#cb712-27"></a><span class="co">#&gt; loaded via a namespace (and not attached):</span></span>
+<span id="cb712-28"><a href="dv-lattice.html#cb712-28"></a><span class="co">#&gt;  [1] Rcpp_1.0.3      knitr_1.28.2    magrittr_1.5    jpeg_0.1-8.1   </span></span>
+<span id="cb712-29"><a href="dv-lattice.html#cb712-29"></a><span class="co">#&gt;  [5] rlang_0.4.5     stringr_1.4.0   tools_4.0.0     grid_4.0.0     </span></span>
+<span id="cb712-30"><a href="dv-lattice.html#cb712-30"></a><span class="co">#&gt;  [9] xfun_0.12       png_0.1-7       htmltools_0.4.0 yaml_2.2.1     </span></span>
+<span id="cb712-31"><a href="dv-lattice.html#cb712-31"></a><span class="co">#&gt; [13] digest_0.6.25   bookdown_0.18   Matrix_1.2-18   curl_4.3       </span></span>
+<span id="cb712-32"><a href="dv-lattice.html#cb712-32"></a><span class="co">#&gt; [17] evaluate_0.14   rmarkdown_2.1   stringi_1.4.6   compiler_4.0.0</span></span></code></pre></div>
 
 </div>
 </div>

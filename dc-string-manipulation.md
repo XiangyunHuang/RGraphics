@@ -1,4 +1,3 @@
-
 # 字符串操作 {#string-manipulation}
 
 字符和字符串类型的数据值得单独拿出来讲，不仅因为内容多，而且比较难，应用范围最广，特别是面对文本类型的数据时，几乎是避不开的！R 的前身是 S，S 的前身是一些 Fortran 和 C 子程序，最早在贝尔实验室是用于文本分析领域，因此在 R 基础包中提供了丰富的字符串处理函数，你可以在R控制台中执行如下一行命令查看
@@ -19,7 +18,7 @@ help.search(keyword = "character", package = "base")
 nchar(c("Hello", "world", "!"))
 #> [1] 5 5 1
 R.version.string
-#> [1] "R Under development (unstable) (2020-02-04 r77771)"
+#> [1] "R Under development (unstable) (2020-03-06 r77913)"
 nchar(R.version.string)
 #> [1] 50
 deparse(base::mean)
@@ -237,28 +236,22 @@ grepl("^package:", search())
 # list.files(path = ".", pattern = "\\.Rmd$")
 # 而不是 endsWith(list.files(), "\\.Rmd")
 endsWith(list.files(), ".Rmd")
-#>   [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE
-#>  [13]  TRUE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE
-#>  [25] FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE FALSE
-#>  [37]  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE  TRUE  TRUE FALSE
-#>  [49] FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE  TRUE
-#>  [61] FALSE FALSE  TRUE  TRUE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE  TRUE
-#>  [73] FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE
-#>  [85] FALSE  TRUE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-#>  [97]  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE
-#> [109] FALSE
+#>  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE  TRUE
+#> [13]  TRUE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE  TRUE
+#> [25] FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE  TRUE  TRUE
+#> [37]  TRUE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+#> [49]  TRUE  TRUE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE  TRUE FALSE
+#> [61] FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE
+#> [73] FALSE FALSE  TRUE FALSE FALSE FALSE FALSE
 # 或者
 grepl("\\.Rmd$", list.files())
-#>   [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE
-#>  [13]  TRUE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE
-#>  [25] FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE FALSE
-#>  [37]  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE  TRUE  TRUE FALSE
-#>  [49] FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE  TRUE
-#>  [61] FALSE FALSE  TRUE  TRUE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE  TRUE
-#>  [73] FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE
-#>  [85] FALSE  TRUE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-#>  [97]  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE
-#> [109] FALSE
+#>  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE  TRUE
+#> [13]  TRUE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE  TRUE
+#> [25] FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE  TRUE  TRUE
+#> [37]  TRUE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+#> [49]  TRUE  TRUE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE  TRUE FALSE
+#> [61] FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE
+#> [73] FALSE FALSE  TRUE FALSE FALSE FALSE FALSE
 ```
 
 部分匹配(Partial String Matching)
@@ -1086,7 +1079,37 @@ writeLines(strwrap(x, width = 60))
 #> 
 #> Many more, too numerous to mention here, have contributed
 #> by sending bug reports and suggesting various improvements.
-....
+#> 
+#> Simon Davies whilst at the University of Auckland wrote the
+#> original version of glm().
+#> 
+#> Julian Harris and Wing Kwong (Tiki) Wan whilst at the
+#> University of Auckland assisted Ross Ihaka with the
+#> original Macintosh port.
+#> 
+#> R was inspired by the S environment which has been
+#> principally developed by John Chambers, with substantial
+#> input from Douglas Bates, Rick Becker, Bill Cleveland,
+#> Trevor Hastie, Daryl Pregibon and Allan Wilks.
+#> 
+#> A special debt is owed to John Chambers who has graciously
+#> contributed advice and encouragement in the early days of R
+#> and later became a member of the core team.
+#> 
+#> The R Foundation may decide to give out
+#> <first.lastname>@R-project.org email addresses to
+#> contributors to the R Project (even without making them
+#> members of the R Foundation) when in the view of the R
+#> Foundation this would help advance the R project.
+#> 
+#> The R Core Group, Roger Bivand, Jennifer Bryan, Di Cook,
+#> Dirk Eddelbuettel, John Fox, Bettina Grün, Frank Harrell,
+#> Torsten Hothorn, Stefano Iacus, Julie Josse,
+#> Balasubramanian Narasimhan, Marc Schwartz, Heather Turner,
+#> Bill Venables, Hadley Wickham and Achim Zeileis are the
+#> ordinary members of the R Foundation. In addition, David
+#> Meyer and Simon Wood are also e-addressable by
+#> <Firstname>.<Lastname>@R-project.org.
 # 每一段的段首缩进5个字符
 writeLines(strwrap(x, width = 60, indent = 5))
 #>      J. D. Beasley, David J. Best, Richard Brent, Kevin
@@ -1109,7 +1132,38 @@ writeLines(strwrap(x, width = 60, indent = 5))
 #> 
 #>      Many more, too numerous to mention here, have
 #> contributed by sending bug reports and suggesting various
-....
+#> improvements.
+#> 
+#>      Simon Davies whilst at the University of Auckland
+#> wrote the original version of glm().
+#> 
+#>      Julian Harris and Wing Kwong (Tiki) Wan whilst at the
+#> University of Auckland assisted Ross Ihaka with the
+#> original Macintosh port.
+#> 
+#>      R was inspired by the S environment which has been
+#> principally developed by John Chambers, with substantial
+#> input from Douglas Bates, Rick Becker, Bill Cleveland,
+#> Trevor Hastie, Daryl Pregibon and Allan Wilks.
+#> 
+#>      A special debt is owed to John Chambers who has
+#> graciously contributed advice and encouragement in the
+#> early days of R and later became a member of the core team.
+#> 
+#>      The R Foundation may decide to give out
+#> <first.lastname>@R-project.org email addresses to
+#> contributors to the R Project (even without making them
+#> members of the R Foundation) when in the view of the R
+#> Foundation this would help advance the R project.
+#> 
+#>      The R Core Group, Roger Bivand, Jennifer Bryan, Di
+#> Cook, Dirk Eddelbuettel, John Fox, Bettina Grün, Frank
+#> Harrell, Torsten Hothorn, Stefano Iacus, Julie Josse,
+#> Balasubramanian Narasimhan, Marc Schwartz, Heather Turner,
+#> Bill Venables, Hadley Wickham and Achim Zeileis are the
+#> ordinary members of the R Foundation. In addition, David
+#> Meyer and Simon Wood are also e-addressable by
+#> <Firstname>.<Lastname>@R-project.org.
 # 除了段首，每一段的余下诸行都缩进5个字符
 writeLines(strwrap(x, width = 60, exdent = 5))
 #> J. D. Beasley, David J. Best, Richard Brent, Kevin Buhr,
@@ -1132,7 +1186,41 @@ writeLines(strwrap(x, width = 60, exdent = 5))
 #>      See also files under src/extras.
 #> 
 #> Many more, too numerous to mention here, have contributed
-....
+#>      by sending bug reports and suggesting various
+#>      improvements.
+#> 
+#> Simon Davies whilst at the University of Auckland wrote the
+#>      original version of glm().
+#> 
+#> Julian Harris and Wing Kwong (Tiki) Wan whilst at the
+#>      University of Auckland assisted Ross Ihaka with the
+#>      original Macintosh port.
+#> 
+#> R was inspired by the S environment which has been
+#>      principally developed by John Chambers, with
+#>      substantial input from Douglas Bates, Rick Becker,
+#>      Bill Cleveland, Trevor Hastie, Daryl Pregibon and
+#>      Allan Wilks.
+#> 
+#> A special debt is owed to John Chambers who has graciously
+#>      contributed advice and encouragement in the early days
+#>      of R and later became a member of the core team.
+#> 
+#> The R Foundation may decide to give out
+#>      <first.lastname>@R-project.org email addresses to
+#>      contributors to the R Project (even without making
+#>      them members of the R Foundation) when in the view of
+#>      the R Foundation this would help advance the R
+#>      project.
+#> 
+#> The R Core Group, Roger Bivand, Jennifer Bryan, Di Cook,
+#>      Dirk Eddelbuettel, John Fox, Bettina Grün, Frank
+#>      Harrell, Torsten Hothorn, Stefano Iacus, Julie Josse,
+#>      Balasubramanian Narasimhan, Marc Schwartz, Heather
+#>      Turner, Bill Venables, Hadley Wickham and Achim
+#>      Zeileis are the ordinary members of the R Foundation.
+#>      In addition, David Meyer and Simon Wood are also
+#>      e-addressable by <Firstname>.<Lastname>@R-project.org.
 # 在输出的每一行前面添加前缀
 writeLines(strwrap(x, prefix = "THANKS> "))
 #> THANKS> J. D. Beasley, David J. Best, Richard Brent, Kevin Buhr,
@@ -1155,7 +1243,34 @@ writeLines(strwrap(x, prefix = "THANKS> "))
 #> THANKS> sending bug reports and suggesting various improvements.
 #> THANKS> 
 #> THANKS> Simon Davies whilst at the University of Auckland wrote the
-....
+#> THANKS> original version of glm().
+#> THANKS> 
+#> THANKS> Julian Harris and Wing Kwong (Tiki) Wan whilst at the
+#> THANKS> University of Auckland assisted Ross Ihaka with the original
+#> THANKS> Macintosh port.
+#> THANKS> 
+#> THANKS> R was inspired by the S environment which has been principally
+#> THANKS> developed by John Chambers, with substantial input from
+#> THANKS> Douglas Bates, Rick Becker, Bill Cleveland, Trevor Hastie,
+#> THANKS> Daryl Pregibon and Allan Wilks.
+#> THANKS> 
+#> THANKS> A special debt is owed to John Chambers who has graciously
+#> THANKS> contributed advice and encouragement in the early days of R
+#> THANKS> and later became a member of the core team.
+#> THANKS> 
+#> THANKS> The R Foundation may decide to give out
+#> THANKS> <first.lastname>@R-project.org email addresses to contributors
+#> THANKS> to the R Project (even without making them members of the R
+#> THANKS> Foundation) when in the view of the R Foundation this would
+#> THANKS> help advance the R project.
+#> THANKS> 
+#> THANKS> The R Core Group, Roger Bivand, Jennifer Bryan, Di Cook, Dirk
+#> THANKS> Eddelbuettel, John Fox, Bettina Grün, Frank Harrell, Torsten
+#> THANKS> Hothorn, Stefano Iacus, Julie Josse, Balasubramanian
+#> THANKS> Narasimhan, Marc Schwartz, Heather Turner, Bill Venables,
+#> THANKS> Hadley Wickham and Achim Zeileis are the ordinary members of
+#> THANKS> the R Foundation. In addition, David Meyer and Simon Wood are
+#> THANKS> also e-addressable by <Firstname>.<Lastname>@R-project.org.
 ```
 
 再举一个烧脑的例子
@@ -1243,7 +1358,7 @@ trimws(x, "r")
 
 ```r
 xfun::session_info()
-#> R Under development (unstable) (2020-02-04 r77771)
+#> R Under development (unstable) (2020-03-06 r77913)
 #> Platform: x86_64-pc-linux-gnu (64-bit)
 #> Running under: Ubuntu 16.04.6 LTS
 #> 
@@ -1256,17 +1371,17 @@ xfun::session_info()
 #>   LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
 #> 
 #> Package version:
-#>   assertthat_0.2.1 base64enc_0.1.3  BH_1.72.0.3      bookdown_0.17   
-#>   cli_2.0.1        compiler_4.0.0   crayon_1.3.4     curl_4.3        
-#>   digest_0.6.23    dplyr_0.8.4      ellipsis_0.3.0   evaluate_0.14   
+#>   assertthat_0.2.1 base64enc_0.1.3  BH_1.72.0.3      bookdown_0.18   
+#>   cli_2.0.2        compiler_4.0.0   crayon_1.3.4     curl_4.3        
+#>   digest_0.6.25    dplyr_0.8.4      ellipsis_0.3.0   evaluate_0.14   
 #>   fansi_0.4.1      glue_1.3.1       graphics_4.0.0   grDevices_4.0.0 
-#>   highr_0.8        htmltools_0.4.0  jsonlite_1.6.1   knitr_1.26      
-#>   lifecycle_0.1.0  magrittr_1.5     markdown_1.1     methods_4.0.0   
+#>   highr_0.8        htmltools_0.4.0  jsonlite_1.6.1   knitr_1.28.2    
+#>   lifecycle_0.2.0  magrittr_1.5     markdown_1.1     methods_4.0.0   
 #>   mime_0.9         pillar_1.4.3     pkgconfig_2.0.3  plogr_0.2.0     
-#>   purrr_0.3.3      R6_2.4.1         Rcpp_1.0.3       rlang_0.4.4     
-#>   rmarkdown_2.1    stats_4.0.0      stringi_1.4.5    stringr_1.4.0   
-#>   tibble_2.1.3     tidyr_1.0.2      tidyselect_1.0.0 tinytex_0.19    
-#>   tools_4.0.0      utf8_1.1.4       utils_4.0.0      vctrs_0.2.2     
+#>   purrr_0.3.3      R6_2.4.1         Rcpp_1.0.3       rlang_0.4.5     
+#>   rmarkdown_2.1    stats_4.0.0      stringi_1.4.6    stringr_1.4.0   
+#>   tibble_2.1.3     tidyr_1.0.2      tidyselect_1.0.0 tinytex_0.20    
+#>   tools_4.0.0      utf8_1.1.4       utils_4.0.0      vctrs_0.2.3     
 #>   xfun_0.12        yaml_2.2.1
 ```
 

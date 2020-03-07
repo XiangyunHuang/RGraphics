@@ -1,4 +1,3 @@
-
 # 数据搬运工 {#data-import-export}
 
 导入数据与导出数据，各种数据格式，数据库
@@ -215,7 +214,7 @@ fil <- tempfile(fileext = ".data")
 cat("TITLE extra line", "2 3 5 7", "", "11 13 17", file = fil,
     sep = "\n")
 fil
-#> [1] "/tmp/RtmpSNk2fa/file4b57479cd947.data"
+#> [1] "/tmp/Rtmp8dkaTU/file4b3733b097ba.data"
 ```
 
 设置参数 `n = -1` 表示将文件 fil 的内容从头读到尾
@@ -246,7 +245,7 @@ cat("123\nabc")
 fil <- tempfile("test")
 cat("123\nabc\n", file = fil, append = TRUE)
 fil
-#> [1] "/tmp/RtmpSNk2fa/test4b5750c4f64a"
+#> [1] "/tmp/Rtmp8dkaTU/test4b37441fd3bb"
 readLines(fil)
 #> [1] "123" "abc"
 ```
@@ -372,12 +371,12 @@ yaml::read_yaml(file = '_bookdown.yml')
 #>  [9] "data-table.Rmd"             "data-parallel.Rmd"         
 #> [11] "dc-string-manipulation.Rmd" "dc-regular-expressions.Rmd"
 #> [13] "dv-plot.Rmd"                "dv-ggplot2.Rmd"            
-#> [15] "dv-plotly.Rmd"              "dv-plot3d.Rmd"             
-#> [17] "dv-colors-fonts.Rmd"        "dv-highcharter.Rmd"        
-#> [19] "dv-lattice.Rmd"             "dv-network.Rmd"            
-#> [21] "dv-spatio-temporal.Rmd"     "dynamic-documents.Rmd"     
-#> [23] "animated-graphics.Rmd"      "interactive-graphics.Rmd"  
-#> [25] "cs-cran-network.Rmd"        "99-references.Rmd"
+#> [15] "dv-plot3d.Rmd"              "dv-colors-fonts.Rmd"       
+#> [17] "dv-highcharter.Rmd"         "dv-lattice.Rmd"            
+#> [19] "dv-network.Rmd"             "dv-spatio-temporal.Rmd"    
+#> [21] "dynamic-documents.Rmd"      "animated-graphics.Rmd"     
+#> [23] "interactive-graphics.Rmd"   "cs-cran-network.Rmd"       
+#> [25] "99-references.Rmd"
 ```
 
 Table: (\#tab:other-softwares) 导入来自其它数据分析软件产生的数据集
@@ -1201,7 +1200,7 @@ cat(readLines('data/AirPassengers.txt'), sep = "\n")
 #> 422, 465, 467, 404, 347, 305, 336, 340, 318, 362, 348, 363, 435, 
 #> 491, 505, 404, 359, 310, 337, 360, 342, 406, 396, 420, 472, 548, 
 #> 559, 463, 407, 362, 405, 417, 391, 419, 461, 472, 535, 622, 606, 
-#> 508, 461, 390, 432), .Tsp = c(1949, 1960.91666666667, 12), class = "ts")
+#> 508, 461, 390, 432), .Tsp = c(1949, 1960.9166666666699, 12), class = "ts")
 ```
 
 `dput` 函数类似 `dump` 函数，保存数据对象到磁盘文件
@@ -1268,7 +1267,7 @@ structure(c(112, 118, 132, 129, 121, 135, 148, 148, 136, 119,
 
 ```r
 xfun::session_info()
-#> R Under development (unstable) (2020-02-04 r77771)
+#> R Under development (unstable) (2020-03-06 r77913)
 #> Platform: x86_64-pc-linux-gnu (64-bit)
 #> Running under: Ubuntu 16.04.6 LTS
 #> 
@@ -1281,11 +1280,11 @@ xfun::session_info()
 #>   LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
 #> 
 #> Package version:
-#>   base64enc_0.1.3 bookdown_0.17   compiler_4.0.0  curl_4.3       
-#>   digest_0.6.23   evaluate_0.14   glue_1.3.1      graphics_4.0.0 
+#>   base64enc_0.1.3 bookdown_0.18   compiler_4.0.0  curl_4.3       
+#>   digest_0.6.25   evaluate_0.14   glue_1.3.1      graphics_4.0.0 
 #>   grDevices_4.0.0 highr_0.8       htmltools_0.4.0 jsonlite_1.6.1 
-#>   knitr_1.26      magrittr_1.5    markdown_1.1    methods_4.0.0  
-#>   mime_0.9        Rcpp_1.0.3      rlang_0.4.4     rmarkdown_2.1  
-#>   stats_4.0.0     stringi_1.4.5   stringr_1.4.0   tinytex_0.19   
+#>   knitr_1.28.2    magrittr_1.5    markdown_1.1    methods_4.0.0  
+#>   mime_0.9        Rcpp_1.0.3      rlang_0.4.5     rmarkdown_2.1  
+#>   stats_4.0.0     stringi_1.4.6   stringr_1.4.0   tinytex_0.20   
 #>   tools_4.0.0     utils_4.0.0     xfun_0.12       yaml_2.2.1
 ```

@@ -1,4 +1,3 @@
-
 # 正则表达式 {#regular-expressions}
 
 > Douglas Bates: If you really want to be cautious you could use an octal

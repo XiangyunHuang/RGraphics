@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>第 9 章 字符串操作 | 数据科学与 R 语言</title>
   <meta name="description" content="数据操作、数据分析、数据建模、动态报告和数据可视化" />
-  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
   <meta property="og:title" content="第 9 章 字符串操作 | 数据科学与 R 语言" />
   <meta property="og:type" content="book" />
@@ -50,55 +50,45 @@
 
 
 <script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
-<script src="libs/plotly-binding-4.9.1/plotly.js"></script>
-<script src="libs/typedarray-0.1/typedarray.min.js"></script>
-<link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
-<script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
-<link href="libs/plotly-htmlwidgets-css-1.49.4/plotly-htmlwidgets.css" rel="stylesheet" />
-<script src="libs/plotly-main-1.49.4/plotly-latest.min.js"></script>
 <script src="libs/proj4js-2.3.15/proj4.js"></script>
-<link href="libs/highcharts-7.2.1/css/motion.css" rel="stylesheet" />
-<script src="libs/highcharts-7.2.1/highcharts.js"></script>
-<script src="libs/highcharts-7.2.1/highcharts-3d.js"></script>
-<script src="libs/highcharts-7.2.1/highcharts-more.js"></script>
-<script src="libs/highcharts-7.2.1/modules/stock.js"></script>
-<script src="libs/highcharts-7.2.1/modules/map.js"></script>
-<script src="libs/highcharts-7.2.1/modules/annotations.js"></script>
-<script src="libs/highcharts-7.2.1/modules/boost.js"></script>
-<script src="libs/highcharts-7.2.1/modules/data.js"></script>
-<script src="libs/highcharts-7.2.1/modules/drag-panes.js"></script>
-<script src="libs/highcharts-7.2.1/modules/drilldown.js"></script>
-<script src="libs/highcharts-7.2.1/modules/item-series.js"></script>
-<script src="libs/highcharts-7.2.1/modules/offline-exporting.js"></script>
-<script src="libs/highcharts-7.2.1/modules/overlapping-datalabels.js"></script>
-<script src="libs/highcharts-7.2.1/modules/exporting.js"></script>
-<script src="libs/highcharts-7.2.1/modules/export-data.js"></script>
-<script src="libs/highcharts-7.2.1/modules/funnel.js"></script>
-<script src="libs/highcharts-7.2.1/modules/heatmap.js"></script>
-<script src="libs/highcharts-7.2.1/modules/treemap.js"></script>
-<script src="libs/highcharts-7.2.1/modules/sankey.js"></script>
-<script src="libs/highcharts-7.2.1/modules/organization.js"></script>
-<script src="libs/highcharts-7.2.1/modules/solid-gauge.js"></script>
-<script src="libs/highcharts-7.2.1/modules/streamgraph.js"></script>
-<script src="libs/highcharts-7.2.1/modules/sunburst.js"></script>
-<script src="libs/highcharts-7.2.1/modules/vector.js"></script>
-<script src="libs/highcharts-7.2.1/modules/wordcloud.js"></script>
-<script src="libs/highcharts-7.2.1/modules/xrange.js"></script>
-<script src="libs/highcharts-7.2.1/modules/tilemap.js"></script>
-<script src="libs/highcharts-7.2.1/modules/venn.js"></script>
-<script src="libs/highcharts-7.2.1/modules/gantt.js"></script>
-<script src="libs/highcharts-7.2.1/modules/timeline.js"></script>
-<script src="libs/highcharts-7.2.1/modules/parallel-coordinates.js"></script>
-<script src="libs/highcharts-7.2.1/modules/bullet.js"></script>
-<script src="libs/highcharts-7.2.1/modules/coloraxis.js"></script>
-<script src="libs/highcharts-7.2.1/plugins/motion.js"></script>
-<script src="libs/highcharts-7.2.1/custom/reset.js"></script>
+<link href="libs/highcharts-8.0.0/css/motion.css" rel="stylesheet" />
+<script src="libs/highcharts-8.0.0/highcharts.js"></script>
+<script src="libs/highcharts-8.0.0/highcharts-3d.js"></script>
+<script src="libs/highcharts-8.0.0/highcharts-more.js"></script>
+<script src="libs/highcharts-8.0.0/modules/stock.js"></script>
+<script src="libs/highcharts-8.0.0/modules/map.js"></script>
+<script src="libs/highcharts-8.0.0/modules/annotations.js"></script>
+<script src="libs/highcharts-8.0.0/modules/boost.js"></script>
+<script src="libs/highcharts-8.0.0/modules/data.js"></script>
+<script src="libs/highcharts-8.0.0/modules/drag-panes.js"></script>
+<script src="libs/highcharts-8.0.0/modules/drilldown.js"></script>
+<script src="libs/highcharts-8.0.0/modules/item-series.js"></script>
+<script src="libs/highcharts-8.0.0/modules/offline-exporting.js"></script>
+<script src="libs/highcharts-8.0.0/modules/overlapping-datalabels.js"></script>
+<script src="libs/highcharts-8.0.0/modules/exporting.js"></script>
+<script src="libs/highcharts-8.0.0/modules/export-data.js"></script>
+<script src="libs/highcharts-8.0.0/modules/funnel.js"></script>
+<script src="libs/highcharts-8.0.0/modules/heatmap.js"></script>
+<script src="libs/highcharts-8.0.0/modules/treemap.js"></script>
+<script src="libs/highcharts-8.0.0/modules/sankey.js"></script>
+<script src="libs/highcharts-8.0.0/modules/organization.js"></script>
+<script src="libs/highcharts-8.0.0/modules/solid-gauge.js"></script>
+<script src="libs/highcharts-8.0.0/modules/streamgraph.js"></script>
+<script src="libs/highcharts-8.0.0/modules/sunburst.js"></script>
+<script src="libs/highcharts-8.0.0/modules/vector.js"></script>
+<script src="libs/highcharts-8.0.0/modules/wordcloud.js"></script>
+<script src="libs/highcharts-8.0.0/modules/xrange.js"></script>
+<script src="libs/highcharts-8.0.0/modules/tilemap.js"></script>
+<script src="libs/highcharts-8.0.0/modules/venn.js"></script>
+<script src="libs/highcharts-8.0.0/modules/gantt.js"></script>
+<script src="libs/highcharts-8.0.0/modules/timeline.js"></script>
+<script src="libs/highcharts-8.0.0/modules/parallel-coordinates.js"></script>
+<script src="libs/highcharts-8.0.0/modules/bullet.js"></script>
+<script src="libs/highcharts-8.0.0/modules/coloraxis.js"></script>
+<script src="libs/highcharts-8.0.0/modules/dumbbell.js"></script>
+<script src="libs/highcharts-8.0.0/plugins/motion.js"></script>
+<script src="libs/highcharts-8.0.0/custom/reset.js"></script>
 <script src="libs/highchart-binding-0.7.0.9001/highchart.js"></script>
-<script src="libs/d3-5.7.0/d3.min.js"></script>
-<script src="libs/d3-lasso-0.0.5/d3-lasso.min.js"></script>
-<link href="libs/ggiraphjs-0.2.0/styles.css" rel="stylesheet" />
-<script src="libs/ggiraphjs-0.2.0/ggiraphjs.min.js"></script>
-<script src="libs/girafe-binding-0.7.0/girafe.js"></script>
 <script src="libs/dagre-0.0.1/dagre.min.js"></script>
 <script src="libs/lodash-3.7.0/lodash.js"></script>
 <script src="libs/nomnoml-0.2.0/nomnoml.js"></script>
@@ -441,145 +431,132 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="12.3" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-session-info"><i class="fa fa-check"></i><b>12.3</b> 运行环境</a></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="dv-plotly.html"><a href="dv-plotly.html"><i class="fa fa-check"></i><b>13</b> 交互式图形</a><ul>
-<li class="chapter" data-level="13.1" data-path="dv-plotly.html"><a href="dv-plotly.html#plotly"><i class="fa fa-check"></i><b>13.1</b> plotly</a></li>
-<li class="chapter" data-level="13.2" data-path="dv-plotly.html"><a href="dv-plotly.html#sec:pie"><i class="fa fa-check"></i><b>13.2</b> 饼图</a></li>
+<li class="chapter" data-level="13" data-path="dv-plot3d.html"><a href="dv-plot3d.html"><i class="fa fa-check"></i><b>13</b> 三维可视化</a><ul>
+<li class="chapter" data-level="13.1" data-path="dv-plot3d.html"><a href="dv-plot3d.html#pie-3d"><i class="fa fa-check"></i><b>13.1</b> 饼图</a></li>
+<li class="chapter" data-level="13.2" data-path="dv-plot3d.html"><a href="dv-plot3d.html#bar-3d"><i class="fa fa-check"></i><b>13.2</b> 柱形图</a></li>
+<li class="chapter" data-level="13.3" data-path="dv-plot3d.html"><a href="dv-plot3d.html#scatter-3d"><i class="fa fa-check"></i><b>13.3</b> 散点图</a></li>
+<li class="chapter" data-level="13.4" data-path="dv-plot3d.html"><a href="dv-plot3d.html#curve-3d"><i class="fa fa-check"></i><b>13.4</b> 函数图</a></li>
+<li class="chapter" data-level="13.5" data-path="dv-plot3d.html"><a href="dv-plot3d.html#persp-3d"><i class="fa fa-check"></i><b>13.5</b> 透视图</a></li>
+<li class="chapter" data-level="13.6" data-path="dv-plot3d.html"><a href="dv-plot3d.html#tikz"><i class="fa fa-check"></i><b>13.6</b> TikZ 绘图</a></li>
+<li class="chapter" data-level="13.7" data-path="dv-plot3d.html"><a href="dv-plot3d.html#export-save"><i class="fa fa-check"></i><b>13.7</b> 图形导出</a></li>
+<li class="chapter" data-level="13.8" data-path="dv-plot3d.html"><a href="dv-plot3d.html#plot3d-sessionInfo"><i class="fa fa-check"></i><b>13.8</b> 软件信息</a></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="dv-plot3d.html"><a href="dv-plot3d.html"><i class="fa fa-check"></i><b>14</b> 三维可视化</a><ul>
-<li class="chapter" data-level="14.1" data-path="dv-plot3d.html"><a href="dv-plot3d.html#pie-3d"><i class="fa fa-check"></i><b>14.1</b> 饼图</a></li>
-<li class="chapter" data-level="14.2" data-path="dv-plot3d.html"><a href="dv-plot3d.html#bar-3d"><i class="fa fa-check"></i><b>14.2</b> 柱形图</a></li>
-<li class="chapter" data-level="14.3" data-path="dv-plot3d.html"><a href="dv-plot3d.html#scatter-3d"><i class="fa fa-check"></i><b>14.3</b> 散点图</a></li>
-<li class="chapter" data-level="14.4" data-path="dv-plot3d.html"><a href="dv-plot3d.html#curve-3d"><i class="fa fa-check"></i><b>14.4</b> 函数图</a></li>
-<li class="chapter" data-level="14.5" data-path="dv-plot3d.html"><a href="dv-plot3d.html#persp-3d"><i class="fa fa-check"></i><b>14.5</b> 透视图</a></li>
-<li class="chapter" data-level="14.6" data-path="dv-plot3d.html"><a href="dv-plot3d.html#tikz"><i class="fa fa-check"></i><b>14.6</b> TikZ 绘图</a></li>
-<li class="chapter" data-level="14.7" data-path="dv-plot3d.html"><a href="dv-plot3d.html#export-save"><i class="fa fa-check"></i><b>14.7</b> 图形导出</a></li>
-<li class="chapter" data-level="14.8" data-path="dv-plot3d.html"><a href="dv-plot3d.html#plot3d-sessionInfo"><i class="fa fa-check"></i><b>14.8</b> 软件信息</a></li>
+<li class="chapter" data-level="14" data-path="dv-colors-fonts.html"><a href="dv-colors-fonts.html"><i class="fa fa-check"></i><b>14</b> 色彩与字体</a><ul>
+<li class="chapter" data-level="14.1" data-path="dv-colors-fonts.html"><a href="dv-colors-fonts.html#colors-in-r"><i class="fa fa-check"></i><b>14.1</b> 颜色</a></li>
+<li class="chapter" data-level="14.2" data-path="dv-colors-fonts.html"><a href="dv-colors-fonts.html#choose-colors"><i class="fa fa-check"></i><b>14.2</b> 配色</a><ul>
+<li class="chapter" data-level="14.2.1" data-path="dv-colors-fonts.html"><a href="dv-colors-fonts.html#colourlovers"><i class="fa fa-check"></i><b>14.2.1</b> colourlovers</a></li>
 </ul></li>
-<li class="chapter" data-level="15" data-path="dv-colors-fonts.html"><a href="dv-colors-fonts.html"><i class="fa fa-check"></i><b>15</b> 色彩与字体</a><ul>
-<li class="chapter" data-level="15.1" data-path="dv-colors-fonts.html"><a href="dv-colors-fonts.html#colors-in-r"><i class="fa fa-check"></i><b>15.1</b> 颜色</a></li>
-<li class="chapter" data-level="15.2" data-path="dv-colors-fonts.html"><a href="dv-colors-fonts.html#choose-colors"><i class="fa fa-check"></i><b>15.2</b> 配色</a><ul>
-<li class="chapter" data-level="15.2.1" data-path="dv-colors-fonts.html"><a href="dv-colors-fonts.html#colourlovers"><i class="fa fa-check"></i><b>15.2.1</b> colourlovers</a></li>
+<li class="chapter" data-level="14.3" data-path="dv-colors-fonts.html"><a href="dv-colors-fonts.html#fonts"><i class="fa fa-check"></i><b>14.3</b> 字体</a></li>
 </ul></li>
-<li class="chapter" data-level="15.3" data-path="dv-colors-fonts.html"><a href="dv-colors-fonts.html#fonts"><i class="fa fa-check"></i><b>15.3</b> 字体</a></li>
+<li class="chapter" data-level="15" data-path="dv-highcharter.html"><a href="dv-highcharter.html"><i class="fa fa-check"></i><b>15</b> highcharter 图形</a><ul>
+<li class="chapter" data-level="15.1" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsec:hc-line"><i class="fa fa-check"></i><b>15.1</b> 折线图</a><ul>
+<li class="chapter" data-level="15.1.1" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsubsec:simple-hc-line"><i class="fa fa-check"></i><b>15.1.1</b> 简单折线图</a></li>
+<li class="chapter" data-level="15.1.2" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsubsec:group-hc-line"><i class="fa fa-check"></i><b>15.1.2</b> 分组折线图</a></li>
+<li class="chapter" data-level="15.1.3" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsubsec:ts-hc-line"><i class="fa fa-check"></i><b>15.1.3</b> 时间序列图</a></li>
 </ul></li>
-<li class="chapter" data-level="16" data-path="dv-highcharter.html"><a href="dv-highcharter.html"><i class="fa fa-check"></i><b>16</b> highcharter 图形</a><ul>
-<li class="chapter" data-level="16.1" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsec:hc-line"><i class="fa fa-check"></i><b>16.1</b> 折线图</a><ul>
-<li class="chapter" data-level="16.1.1" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsubsec:simple-hc-line"><i class="fa fa-check"></i><b>16.1.1</b> 简单折线图</a></li>
-<li class="chapter" data-level="16.1.2" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsubsec:group-hc-line"><i class="fa fa-check"></i><b>16.1.2</b> 分组折线图</a></li>
-<li class="chapter" data-level="16.1.3" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsubsec:ts-hc-line"><i class="fa fa-check"></i><b>16.1.3</b> 时间序列图</a></li>
+<li class="chapter" data-level="15.2" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsec:hc-scatter"><i class="fa fa-check"></i><b>15.2</b> 散点图</a><ul>
+<li class="chapter" data-level="15.2.1" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsubsec:simple-hc-scatter"><i class="fa fa-check"></i><b>15.2.1</b> 简单散点图</a></li>
+<li class="chapter" data-level="15.2.2" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsubsec:group-hc-scatter"><i class="fa fa-check"></i><b>15.2.2</b> 分组散点图</a></li>
 </ul></li>
-<li class="chapter" data-level="16.2" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsec:hc-scatter"><i class="fa fa-check"></i><b>16.2</b> 散点图</a><ul>
-<li class="chapter" data-level="16.2.1" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsubsec:simple-hc-scatter"><i class="fa fa-check"></i><b>16.2.1</b> 简单散点图</a></li>
-<li class="chapter" data-level="16.2.2" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsubsec:group-hc-scatter"><i class="fa fa-check"></i><b>16.2.2</b> 分组散点图</a></li>
+<li class="chapter" data-level="15.3" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsec:hc-bar"><i class="fa fa-check"></i><b>15.3</b> 条形图</a><ul>
+<li class="chapter" data-level="15.3.1" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsubsec:simple-hc-bar"><i class="fa fa-check"></i><b>15.3.1</b> 简单条形图</a></li>
+<li class="chapter" data-level="15.3.2" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsubsec:dodge-hc-bar"><i class="fa fa-check"></i><b>15.3.2</b> 复合条形图</a></li>
+<li class="chapter" data-level="15.3.3" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsubsec:stack-hc-bar"><i class="fa fa-check"></i><b>15.3.3</b> 堆积条形图</a></li>
+<li class="chapter" data-level="15.3.4" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsubsec:fill-hc-bar"><i class="fa fa-check"></i><b>15.3.4</b> 百分比条形图</a></li>
 </ul></li>
-<li class="chapter" data-level="16.3" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsec:hc-bar"><i class="fa fa-check"></i><b>16.3</b> 条形图</a><ul>
-<li class="chapter" data-level="16.3.1" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsubsec:simple-hc-bar"><i class="fa fa-check"></i><b>16.3.1</b> 简单条形图</a></li>
-<li class="chapter" data-level="16.3.2" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsubsec:dodge-hc-bar"><i class="fa fa-check"></i><b>16.3.2</b> 复合条形图</a></li>
-<li class="chapter" data-level="16.3.3" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsubsec:stack-hc-bar"><i class="fa fa-check"></i><b>16.3.3</b> 堆积条形图</a></li>
-<li class="chapter" data-level="16.3.4" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsubsec:fill-hc-bar"><i class="fa fa-check"></i><b>16.3.4</b> 百分比条形图</a></li>
+<li class="chapter" data-level="15.4" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsec:hc-boxplot"><i class="fa fa-check"></i><b>15.4</b> 箱线图</a><ul>
+<li class="chapter" data-level="15.4.1" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsubsec:simple-hc-boxplot"><i class="fa fa-check"></i><b>15.4.1</b> 简单箱线图</a></li>
+<li class="chapter" data-level="15.4.2" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subssubsec:dodge-hc-boxplot"><i class="fa fa-check"></i><b>15.4.2</b> 复合箱线图</a></li>
 </ul></li>
-<li class="chapter" data-level="16.4" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsec:hc-boxplot"><i class="fa fa-check"></i><b>16.4</b> 箱线图</a><ul>
-<li class="chapter" data-level="16.4.1" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsubsec:simple-hc-boxplot"><i class="fa fa-check"></i><b>16.4.1</b> 简单箱线图</a></li>
-<li class="chapter" data-level="16.4.2" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subssubsec:dodge-hc-boxplot"><i class="fa fa-check"></i><b>16.4.2</b> 复合箱线图</a></li>
+<li class="chapter" data-level="15.5" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsec:hc-density"><i class="fa fa-check"></i><b>15.5</b> 密度图</a></li>
+<li class="chapter" data-level="15.6" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsec:hc-hist"><i class="fa fa-check"></i><b>15.6</b> 直方图</a></li>
+<li class="chapter" data-level="15.7" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsec:hc-survival"><i class="fa fa-check"></i><b>15.7</b> 生存图</a></li>
+<li class="chapter" data-level="15.8" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsec:hc-heatmap"><i class="fa fa-check"></i><b>15.8</b> 等高图</a></li>
+<li class="chapter" data-level="15.9" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsec:hc-corrplot"><i class="fa fa-check"></i><b>15.9</b> 相关图</a></li>
+<li class="chapter" data-level="15.10" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsec:hc-treemap"><i class="fa fa-check"></i><b>15.10</b> 矩阵图</a></li>
+<li class="chapter" data-level="15.11" data-path="dv-highcharter.html"><a href="dv-highcharter.html#highcharter-map"><i class="fa fa-check"></i><b>15.11</b> 地图</a></li>
 </ul></li>
-<li class="chapter" data-level="16.5" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsec:hc-density"><i class="fa fa-check"></i><b>16.5</b> 密度图</a></li>
-<li class="chapter" data-level="16.6" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsec:hc-hist"><i class="fa fa-check"></i><b>16.6</b> 直方图</a></li>
-<li class="chapter" data-level="16.7" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsec:hc-survival"><i class="fa fa-check"></i><b>16.7</b> 生存图</a></li>
-<li class="chapter" data-level="16.8" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsec:hc-heatmap"><i class="fa fa-check"></i><b>16.8</b> 等高图</a></li>
-<li class="chapter" data-level="16.9" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsec:hc-corrplot"><i class="fa fa-check"></i><b>16.9</b> 相关图</a></li>
-<li class="chapter" data-level="16.10" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsec:hc-treemap"><i class="fa fa-check"></i><b>16.10</b> 矩阵图</a></li>
+<li class="chapter" data-level="16" data-path="dv-lattice.html"><a href="dv-lattice.html"><i class="fa fa-check"></i><b>16</b> Lattice 图形</a><ul>
+<li class="chapter" data-level="16.1" data-path="dv-lattice.html"><a href="dv-lattice.html#sec:boxplot"><i class="fa fa-check"></i><b>16.1</b> 箱线图</a></li>
+<li class="chapter" data-level="16.2" data-path="dv-lattice.html"><a href="dv-lattice.html#sec:line"><i class="fa fa-check"></i><b>16.2</b> 折线图</a></li>
+<li class="chapter" data-level="16.3" data-path="dv-lattice.html"><a href="dv-lattice.html#sec:smooth"><i class="fa fa-check"></i><b>16.3</b> 平滑图</a></li>
+<li class="chapter" data-level="16.4" data-path="dv-lattice.html"><a href="dv-lattice.html#sec:dotplot"><i class="fa fa-check"></i><b>16.4</b> 点图</a></li>
+<li class="chapter" data-level="16.5" data-path="dv-lattice.html"><a href="dv-lattice.html#sec:step"><i class="fa fa-check"></i><b>16.5</b> 阶梯图</a></li>
+<li class="chapter" data-level="16.6" data-path="dv-lattice.html"><a href="dv-lattice.html#sec:facet"><i class="fa fa-check"></i><b>16.6</b> 分面图</a></li>
+<li class="chapter" data-level="16.7" data-path="dv-lattice.html"><a href="dv-lattice.html#sec:contour"><i class="fa fa-check"></i><b>16.7</b> 等高线图</a></li>
+<li class="chapter" data-level="16.8" data-path="dv-lattice.html"><a href="dv-lattice.html#sub:map"><i class="fa fa-check"></i><b>16.8</b> 地图</a></li>
+<li class="chapter" data-level="16.9" data-path="dv-lattice.html"><a href="dv-lattice.html#sub:cluster"><i class="fa fa-check"></i><b>16.9</b> 聚类图</a></li>
+<li class="chapter" data-level="16.10" data-path="dv-lattice.html"><a href="dv-lattice.html#sec:lattice-sessioninfo"><i class="fa fa-check"></i><b>16.10</b> 运行环境</a></li>
 </ul></li>
-<li class="chapter" data-level="17" data-path="dv-lattice.html"><a href="dv-lattice.html"><i class="fa fa-check"></i><b>17</b> Lattice 图形</a><ul>
-<li class="chapter" data-level="17.1" data-path="dv-lattice.html"><a href="dv-lattice.html#sec:boxplot"><i class="fa fa-check"></i><b>17.1</b> 箱线图</a></li>
-<li class="chapter" data-level="17.2" data-path="dv-lattice.html"><a href="dv-lattice.html#sec:line"><i class="fa fa-check"></i><b>17.2</b> 折线图</a></li>
-<li class="chapter" data-level="17.3" data-path="dv-lattice.html"><a href="dv-lattice.html#sec:smooth"><i class="fa fa-check"></i><b>17.3</b> 平滑图</a></li>
-<li class="chapter" data-level="17.4" data-path="dv-lattice.html"><a href="dv-lattice.html#sec:dotplot"><i class="fa fa-check"></i><b>17.4</b> 点图</a></li>
-<li class="chapter" data-level="17.5" data-path="dv-lattice.html"><a href="dv-lattice.html#sec:step"><i class="fa fa-check"></i><b>17.5</b> 阶梯图</a></li>
-<li class="chapter" data-level="17.6" data-path="dv-lattice.html"><a href="dv-lattice.html#sec:facet"><i class="fa fa-check"></i><b>17.6</b> 分面图</a></li>
-<li class="chapter" data-level="17.7" data-path="dv-lattice.html"><a href="dv-lattice.html#sec:contour"><i class="fa fa-check"></i><b>17.7</b> 等高线图</a></li>
-<li class="chapter" data-level="17.8" data-path="dv-lattice.html"><a href="dv-lattice.html#sub:map"><i class="fa fa-check"></i><b>17.8</b> 地图</a></li>
-<li class="chapter" data-level="17.9" data-path="dv-lattice.html"><a href="dv-lattice.html#sub:cluster"><i class="fa fa-check"></i><b>17.9</b> 聚类图</a></li>
-<li class="chapter" data-level="17.10" data-path="dv-lattice.html"><a href="dv-lattice.html#sec:lattice-sessioninfo"><i class="fa fa-check"></i><b>17.10</b> 运行环境</a></li>
+<li class="chapter" data-level="17" data-path="dv-network.html"><a href="dv-network.html"><i class="fa fa-check"></i><b>17</b> 网络数据</a></li>
+<li class="chapter" data-level="18" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html"><i class="fa fa-check"></i><b>18</b> 时空可视化</a><ul>
+<li class="chapter" data-level="18.1" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#map"><i class="fa fa-check"></i><b>18.1</b> 地图</a><ul>
+<li class="chapter" data-level="18.1.1" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#project-orientation"><i class="fa fa-check"></i><b>18.1.1</b> 投影和观察方位</a></li>
+<li class="chapter" data-level="18.1.2" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#USA-crime-rates"><i class="fa fa-check"></i><b>18.1.2</b> 美国各州犯罪率</a></li>
+<li class="chapter" data-level="18.1.3" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#fiji-earthquake-map"><i class="fa fa-check"></i><b>18.1.3</b> 斐济地震带</a></li>
+<li class="chapter" data-level="18.1.4" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#USA-unemployment-ratio"><i class="fa fa-check"></i><b>18.1.4</b> 美国各城镇失业率</a></li>
 </ul></li>
-<li class="chapter" data-level="18" data-path="dv-network.html"><a href="dv-network.html"><i class="fa fa-check"></i><b>18</b> 网络数据</a></li>
-<li class="chapter" data-level="19" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html"><i class="fa fa-check"></i><b>19</b> 时空可视化</a><ul>
-<li class="chapter" data-level="19.1" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#map"><i class="fa fa-check"></i><b>19.1</b> 地图</a><ul>
-<li class="chapter" data-level="19.1.1" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#project-orientation"><i class="fa fa-check"></i><b>19.1.1</b> 投影和观察方位</a></li>
-<li class="chapter" data-level="19.1.2" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#USA-crime-rates"><i class="fa fa-check"></i><b>19.1.2</b> 美国各州犯罪率</a></li>
-<li class="chapter" data-level="19.1.3" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#fiji-earthquake-map"><i class="fa fa-check"></i><b>19.1.3</b> 斐济地震带</a></li>
-<li class="chapter" data-level="19.1.4" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#USA-unemployment-ratio"><i class="fa fa-check"></i><b>19.1.4</b> 美国各城镇失业率</a></li>
-</ul></li>
-<li class="chapter" data-level="19.2" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#spatial-op"><i class="fa fa-check"></i><b>19.2</b> 空间数据对象</a><ul>
-<li class="chapter" data-level="19.2.1" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#ggplot2-sp"><i class="fa fa-check"></i><b>19.2.1</b> sp</a></li>
-<li class="chapter" data-level="19.2.2" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#ggplot2-raster"><i class="fa fa-check"></i><b>19.2.2</b> raster</a></li>
-<li class="chapter" data-level="19.2.3" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#ggplot2-sf"><i class="fa fa-check"></i><b>19.2.3</b> sf</a></li>
+<li class="chapter" data-level="18.2" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#spatial-op"><i class="fa fa-check"></i><b>18.2</b> 空间数据对象</a><ul>
+<li class="chapter" data-level="18.2.1" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#ggplot2-sp"><i class="fa fa-check"></i><b>18.2.1</b> sp</a></li>
+<li class="chapter" data-level="18.2.2" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#ggplot2-raster"><i class="fa fa-check"></i><b>18.2.2</b> raster</a></li>
+<li class="chapter" data-level="18.2.3" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#ggplot2-sf"><i class="fa fa-check"></i><b>18.2.3</b> sf</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="20" data-path="dynamic-documents.html"><a href="dynamic-documents.html"><i class="fa fa-check"></i><b>20</b> 动态性文档</a><ul>
+<li class="chapter" data-level="19" data-path="dynamic-documents.html"><a href="dynamic-documents.html"><i class="fa fa-check"></i><b>19</b> 动态性文档</a><ul>
 <li class="chapter" data-level="" data-path="dynamic-documents.html"><a href="dynamic-documents.html#r-call-python"><i class="fa fa-check"></i>R 调用 Python</a></li>
-<li class="chapter" data-level="20.1" data-path="dynamic-documents.html"><a href="dynamic-documents.html#markdown"><i class="fa fa-check"></i><b>20.1</b> Markdown</a><ul>
-<li class="chapter" data-level="20.1.1" data-path="dynamic-documents.html"><a href="dynamic-documents.html#markdown-list"><i class="fa fa-check"></i><b>20.1.1</b> 列表</a></li>
-<li class="chapter" data-level="20.1.2" data-path="dynamic-documents.html"><a href="dynamic-documents.html#markdown-emphasis"><i class="fa fa-check"></i><b>20.1.2</b> 强调</a></li>
-<li class="chapter" data-level="20.1.3" data-path="dynamic-documents.html"><a href="dynamic-documents.html#markdown-quote"><i class="fa fa-check"></i><b>20.1.3</b> 引用</a></li>
-<li class="chapter" data-level="20.1.4" data-path="dynamic-documents.html"><a href="dynamic-documents.html#markdown-table"><i class="fa fa-check"></i><b>20.1.4</b> 表格</a></li>
-<li class="chapter" data-level="20.1.5" data-path="dynamic-documents.html"><a href="dynamic-documents.html#image"><i class="fa fa-check"></i><b>20.1.5</b> 图片</a></li>
-<li class="chapter" data-level="20.1.6" data-path="dynamic-documents.html"><a href="dynamic-documents.html#markdown-math"><i class="fa fa-check"></i><b>20.1.6</b> 公式</a></li>
+<li class="chapter" data-level="19.1" data-path="dynamic-documents.html"><a href="dynamic-documents.html#markdown"><i class="fa fa-check"></i><b>19.1</b> Markdown</a><ul>
+<li class="chapter" data-level="19.1.1" data-path="dynamic-documents.html"><a href="dynamic-documents.html#markdown-list"><i class="fa fa-check"></i><b>19.1.1</b> 列表</a></li>
+<li class="chapter" data-level="19.1.2" data-path="dynamic-documents.html"><a href="dynamic-documents.html#markdown-emphasis"><i class="fa fa-check"></i><b>19.1.2</b> 强调</a></li>
+<li class="chapter" data-level="19.1.3" data-path="dynamic-documents.html"><a href="dynamic-documents.html#markdown-quote"><i class="fa fa-check"></i><b>19.1.3</b> 引用</a></li>
+<li class="chapter" data-level="19.1.4" data-path="dynamic-documents.html"><a href="dynamic-documents.html#markdown-table"><i class="fa fa-check"></i><b>19.1.4</b> 表格</a></li>
+<li class="chapter" data-level="19.1.5" data-path="dynamic-documents.html"><a href="dynamic-documents.html#image"><i class="fa fa-check"></i><b>19.1.5</b> 图片</a></li>
+<li class="chapter" data-level="19.1.6" data-path="dynamic-documents.html"><a href="dynamic-documents.html#markdown-math"><i class="fa fa-check"></i><b>19.1.6</b> 公式</a></li>
 </ul></li>
-<li class="chapter" data-level="20.2" data-path="dynamic-documents.html"><a href="dynamic-documents.html#pandoc-markdown"><i class="fa fa-check"></i><b>20.2</b> Pandoc’s Markdown</a></li>
-<li class="chapter" data-level="20.3" data-path="dynamic-documents.html"><a href="dynamic-documents.html#r-markdown"><i class="fa fa-check"></i><b>20.3</b> R Markdown</a><ul>
-<li class="chapter" data-level="20.3.1" data-path="dynamic-documents.html"><a href="dynamic-documents.html#语法高亮"><i class="fa fa-check"></i><b>20.3.1</b> 语法高亮</a></li>
+<li class="chapter" data-level="19.2" data-path="dynamic-documents.html"><a href="dynamic-documents.html#pandoc-markdown"><i class="fa fa-check"></i><b>19.2</b> Pandoc’s Markdown</a></li>
+<li class="chapter" data-level="19.3" data-path="dynamic-documents.html"><a href="dynamic-documents.html#r-markdown"><i class="fa fa-check"></i><b>19.3</b> R Markdown</a><ul>
+<li class="chapter" data-level="19.3.1" data-path="dynamic-documents.html"><a href="dynamic-documents.html#语法高亮"><i class="fa fa-check"></i><b>19.3.1</b> 语法高亮</a></li>
 </ul></li>
-<li class="chapter" data-level="20.4" data-path="dynamic-documents.html"><a href="dynamic-documents.html#table-style"><i class="fa fa-check"></i><b>20.4</b> 表格样式</a><ul>
-<li class="chapter" data-level="20.4.1" data-path="dynamic-documents.html"><a href="dynamic-documents.html#table-html"><i class="fa fa-check"></i><b>20.4.1</b> HTML 样式</a></li>
-<li class="chapter" data-level="20.4.2" data-path="dynamic-documents.html"><a href="dynamic-documents.html#table-latex"><i class="fa fa-check"></i><b>20.4.2</b> LaTeX 样式</a></li>
+<li class="chapter" data-level="19.4" data-path="dynamic-documents.html"><a href="dynamic-documents.html#table-style"><i class="fa fa-check"></i><b>19.4</b> 表格样式</a><ul>
+<li class="chapter" data-level="19.4.1" data-path="dynamic-documents.html"><a href="dynamic-documents.html#table-html"><i class="fa fa-check"></i><b>19.4.1</b> HTML 样式</a></li>
+<li class="chapter" data-level="19.4.2" data-path="dynamic-documents.html"><a href="dynamic-documents.html#table-latex"><i class="fa fa-check"></i><b>19.4.2</b> LaTeX 样式</a></li>
 </ul></li>
-<li class="chapter" data-level="20.5" data-path="dynamic-documents.html"><a href="dynamic-documents.html#rmarkdown-addins"><i class="fa fa-check"></i><b>20.5</b> 插件</a></li>
-<li class="chapter" data-level="20.6" data-path="dynamic-documents.html"><a href="dynamic-documents.html#subsec:rmarkdown"><i class="fa fa-check"></i><b>20.6</b> 报告</a></li>
-<li class="chapter" data-level="20.7" data-path="dynamic-documents.html"><a href="dynamic-documents.html#subsec:pagedown"><i class="fa fa-check"></i><b>20.7</b> 简历</a></li>
-<li class="chapter" data-level="20.8" data-path="dynamic-documents.html"><a href="dynamic-documents.html#subsec:bookdown"><i class="fa fa-check"></i><b>20.8</b> 书籍</a></li>
-<li class="chapter" data-level="20.9" data-path="dynamic-documents.html"><a href="dynamic-documents.html#subsec:blogdown"><i class="fa fa-check"></i><b>20.9</b> 网站</a></li>
-<li class="chapter" data-level="20.10" data-path="dynamic-documents.html"><a href="dynamic-documents.html#subsec:dashboard"><i class="fa fa-check"></i><b>20.10</b> Shiny</a></li>
-<li class="chapter" data-level="20.11" data-path="dynamic-documents.html"><a href="dynamic-documents.html#subsec:xaringan"><i class="fa fa-check"></i><b>20.11</b> 幻灯片</a></li>
-<li class="chapter" data-level="20.12" data-path="dynamic-documents.html"><a href="dynamic-documents.html#sec:animation-video"><i class="fa fa-check"></i><b>20.12</b> 动画视频</a></li>
-<li class="chapter" data-level="20.13" data-path="dynamic-documents.html"><a href="dynamic-documents.html#sec:diagram-table"><i class="fa fa-check"></i><b>20.13</b> 图表</a><ul>
-<li class="chapter" data-level="20.13.1" data-path="dynamic-documents.html"><a href="dynamic-documents.html#tikz-1"><i class="fa fa-check"></i><b>20.13.1</b> TikZ</a></li>
-<li class="chapter" data-level="20.13.2" data-path="dynamic-documents.html"><a href="dynamic-documents.html#dot"><i class="fa fa-check"></i><b>20.13.2</b> DOT</a></li>
-<li class="chapter" data-level="20.13.3" data-path="dynamic-documents.html"><a href="dynamic-documents.html#subsec:uml"><i class="fa fa-check"></i><b>20.13.3</b> UML</a></li>
-<li class="chapter" data-level="20.13.4" data-path="dynamic-documents.html"><a href="dynamic-documents.html#subsec:table"><i class="fa fa-check"></i><b>20.13.4</b> 表格</a></li>
+<li class="chapter" data-level="19.5" data-path="dynamic-documents.html"><a href="dynamic-documents.html#rmarkdown-addins"><i class="fa fa-check"></i><b>19.5</b> 插件</a></li>
+<li class="chapter" data-level="19.6" data-path="dynamic-documents.html"><a href="dynamic-documents.html#subsec:rmarkdown"><i class="fa fa-check"></i><b>19.6</b> 报告</a></li>
+<li class="chapter" data-level="19.7" data-path="dynamic-documents.html"><a href="dynamic-documents.html#subsec:pagedown"><i class="fa fa-check"></i><b>19.7</b> 简历</a></li>
+<li class="chapter" data-level="19.8" data-path="dynamic-documents.html"><a href="dynamic-documents.html#subsec:bookdown"><i class="fa fa-check"></i><b>19.8</b> 书籍</a></li>
+<li class="chapter" data-level="19.9" data-path="dynamic-documents.html"><a href="dynamic-documents.html#subsec:blogdown"><i class="fa fa-check"></i><b>19.9</b> 网站</a></li>
+<li class="chapter" data-level="19.10" data-path="dynamic-documents.html"><a href="dynamic-documents.html#subsec:dashboard"><i class="fa fa-check"></i><b>19.10</b> Shiny</a></li>
+<li class="chapter" data-level="19.11" data-path="dynamic-documents.html"><a href="dynamic-documents.html#subsec:xaringan"><i class="fa fa-check"></i><b>19.11</b> 幻灯片</a></li>
+<li class="chapter" data-level="19.12" data-path="dynamic-documents.html"><a href="dynamic-documents.html#sec:animation-video"><i class="fa fa-check"></i><b>19.12</b> 动画视频</a></li>
+<li class="chapter" data-level="19.13" data-path="dynamic-documents.html"><a href="dynamic-documents.html#sec:diagram-table"><i class="fa fa-check"></i><b>19.13</b> 图表</a><ul>
+<li class="chapter" data-level="19.13.1" data-path="dynamic-documents.html"><a href="dynamic-documents.html#tikz-1"><i class="fa fa-check"></i><b>19.13.1</b> TikZ</a></li>
+<li class="chapter" data-level="19.13.2" data-path="dynamic-documents.html"><a href="dynamic-documents.html#dot"><i class="fa fa-check"></i><b>19.13.2</b> DOT</a></li>
+<li class="chapter" data-level="19.13.3" data-path="dynamic-documents.html"><a href="dynamic-documents.html#subsec:uml"><i class="fa fa-check"></i><b>19.13.3</b> UML</a></li>
+<li class="chapter" data-level="19.13.4" data-path="dynamic-documents.html"><a href="dynamic-documents.html#subsec:table"><i class="fa fa-check"></i><b>19.13.4</b> 表格</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="21" data-path="animated-graphics.html"><a href="animated-graphics.html"><i class="fa fa-check"></i><b>21</b> 动画</a><ul>
-<li class="chapter" data-level="21.1" data-path="animated-graphics.html"><a href="animated-graphics.html#gganimate"><i class="fa fa-check"></i><b>21.1</b> gganimate</a></li>
-<li class="chapter" data-level="21.2" data-path="animated-graphics.html"><a href="animated-graphics.html#magick"><i class="fa fa-check"></i><b>21.2</b> magick</a></li>
+<li class="chapter" data-level="20" data-path="animated-graphics.html"><a href="animated-graphics.html"><i class="fa fa-check"></i><b>20</b> 动画</a><ul>
+<li class="chapter" data-level="20.1" data-path="animated-graphics.html"><a href="animated-graphics.html#gganimate"><i class="fa fa-check"></i><b>20.1</b> gganimate</a></li>
+<li class="chapter" data-level="20.2" data-path="animated-graphics.html"><a href="animated-graphics.html#magick"><i class="fa fa-check"></i><b>20.2</b> magick</a></li>
 </ul></li>
-<li class="chapter" data-level="22" data-path="interactive-graphics.html"><a href="interactive-graphics.html"><i class="fa fa-check"></i><b>22</b> 交互式图形</a><ul>
-<li class="chapter" data-level="22.1" data-path="interactive-graphics.html"><a href="interactive-graphics.html#rgl"><i class="fa fa-check"></i><b>22.1</b> rgl</a></li>
-<li class="chapter" data-level="22.2" data-path="interactive-graphics.html"><a href="interactive-graphics.html#plotly-1"><i class="fa fa-check"></i><b>22.2</b> plotly</a><ul>
-<li class="chapter" data-level="22.2.1" data-path="interactive-graphics.html"><a href="interactive-graphics.html#plotly-histogram"><i class="fa fa-check"></i><b>22.2.1</b> 直方图</a></li>
-<li class="chapter" data-level="22.2.2" data-path="interactive-graphics.html"><a href="interactive-graphics.html#plotly-map"><i class="fa fa-check"></i><b>22.2.2</b> 地图</a></li>
-<li class="chapter" data-level="22.2.3" data-path="interactive-graphics.html"><a href="interactive-graphics.html#plotly-heatmap"><i class="fa fa-check"></i><b>22.2.3</b> 热力图</a></li>
+<li class="chapter" data-level="21" data-path="interactive-graphics.html"><a href="interactive-graphics.html"><i class="fa fa-check"></i><b>21</b> 交互式图形</a><ul>
+<li class="chapter" data-level="21.1" data-path="interactive-graphics.html"><a href="interactive-graphics.html#rgl"><i class="fa fa-check"></i><b>21.1</b> rgl</a></li>
+<li class="chapter" data-level="21.2" data-path="interactive-graphics.html"><a href="interactive-graphics.html#leaflet"><i class="fa fa-check"></i><b>21.2</b> leaflet</a></li>
+<li class="chapter" data-level="21.3" data-path="interactive-graphics.html"><a href="interactive-graphics.html#vegawidget"><i class="fa fa-check"></i><b>21.3</b> vegawidget</a></li>
+<li class="chapter" data-level="21.4" data-path="interactive-graphics.html"><a href="interactive-graphics.html#network"><i class="fa fa-check"></i><b>21.4</b> 网络图</a></li>
+<li class="chapter" data-level="21.5" data-path="interactive-graphics.html"><a href="interactive-graphics.html#threejs"><i class="fa fa-check"></i><b>21.5</b> threejs</a></li>
 </ul></li>
-<li class="chapter" data-level="22.3" data-path="interactive-graphics.html"><a href="interactive-graphics.html#leaflet"><i class="fa fa-check"></i><b>22.3</b> leaflet</a></li>
-<li class="chapter" data-level="22.4" data-path="interactive-graphics.html"><a href="interactive-graphics.html#highcharter"><i class="fa fa-check"></i><b>22.4</b> highcharter</a><ul>
-<li class="chapter" data-level="22.4.1" data-path="interactive-graphics.html"><a href="interactive-graphics.html#highcharter-ts"><i class="fa fa-check"></i><b>22.4.1</b> 时序图</a></li>
-<li class="chapter" data-level="22.4.2" data-path="interactive-graphics.html"><a href="interactive-graphics.html#highcharter-scatter"><i class="fa fa-check"></i><b>22.4.2</b> 散点图</a></li>
-<li class="chapter" data-level="22.4.3" data-path="interactive-graphics.html"><a href="interactive-graphics.html#highcharter-map"><i class="fa fa-check"></i><b>22.4.3</b> 地图</a></li>
-</ul></li>
-<li class="chapter" data-level="22.5" data-path="interactive-graphics.html"><a href="interactive-graphics.html#vegawidget"><i class="fa fa-check"></i><b>22.5</b> vegawidget</a></li>
-<li class="chapter" data-level="22.6" data-path="interactive-graphics.html"><a href="interactive-graphics.html#network"><i class="fa fa-check"></i><b>22.6</b> 网络图</a></li>
-<li class="chapter" data-level="22.7" data-path="interactive-graphics.html"><a href="interactive-graphics.html#threejs"><i class="fa fa-check"></i><b>22.7</b> threejs</a></li>
-</ul></li>
-<li class="chapter" data-level="23" data-path="cs-cran-network.html"><a href="cs-cran-network.html"><i class="fa fa-check"></i><b>23</b> 案例：分析 CRAN</a><ul>
-<li class="chapter" data-level="23.1" data-path="cs-cran-network.html"><a href="cs-cran-network.html#R-Core-Team"><i class="fa fa-check"></i><b>23.1</b> R 核心团队</a></li>
-<li class="chapter" data-level="23.2" data-path="cs-cran-network.html"><a href="cs-cran-network.html#Top-Creators"><i class="fa fa-check"></i><b>23.2</b> 高产的开发者</a></li>
-<li class="chapter" data-level="23.3" data-path="cs-cran-network.html"><a href="cs-cran-network.html#R-Package-Developers"><i class="fa fa-check"></i><b>23.3</b> 社区开发者</a></li>
-<li class="chapter" data-level="23.4" data-path="cs-cran-network.html"><a href="cs-cran-network.html#first-commit"><i class="fa fa-check"></i><b>23.4</b> 首次贡献 R 包</a></li>
-<li class="chapter" data-level="23.5" data-path="cs-cran-network.html"><a href="cs-cran-network.html#Contribution-Network"><i class="fa fa-check"></i><b>23.5</b> 贡献关系网络</a></li>
-<li class="chapter" data-level="23.6" data-path="cs-cran-network.html"><a href="cs-cran-network.html#CRAN-Update-Packages"><i class="fa fa-check"></i><b>23.6</b> 更新知多少</a></li>
-<li class="chapter" data-level="23.7" data-path="cs-cran-network.html"><a href="cs-cran-network.html#Package-Licenses"><i class="fa fa-check"></i><b>23.7</b> 使用许可证</a></li>
-<li class="chapter" data-level="23.8" data-path="cs-cran-network.html"><a href="cs-cran-network.html#r-包增长速度"><i class="fa fa-check"></i><b>23.8</b> R 包增长速度</a></li>
-<li class="chapter" data-level="23.9" data-path="cs-cran-network.html"><a href="cs-cran-network.html#Choose-Package"><i class="fa fa-check"></i><b>23.9</b> 选择 R 包</a></li>
-<li class="chapter" data-level="23.10" data-path="cs-cran-network.html"><a href="cs-cran-network.html#cs-network-session-info"><i class="fa fa-check"></i><b>23.10</b> 运行环境</a></li>
+<li class="chapter" data-level="22" data-path="cs-cran-network.html"><a href="cs-cran-network.html"><i class="fa fa-check"></i><b>22</b> 案例：分析 CRAN</a><ul>
+<li class="chapter" data-level="22.1" data-path="cs-cran-network.html"><a href="cs-cran-network.html#R-Core-Team"><i class="fa fa-check"></i><b>22.1</b> R 核心团队</a></li>
+<li class="chapter" data-level="22.2" data-path="cs-cran-network.html"><a href="cs-cran-network.html#Top-Creators"><i class="fa fa-check"></i><b>22.2</b> 高产的开发者</a></li>
+<li class="chapter" data-level="22.3" data-path="cs-cran-network.html"><a href="cs-cran-network.html#R-Package-Developers"><i class="fa fa-check"></i><b>22.3</b> 社区开发者</a></li>
+<li class="chapter" data-level="22.4" data-path="cs-cran-network.html"><a href="cs-cran-network.html#first-commit"><i class="fa fa-check"></i><b>22.4</b> 首次贡献 R 包</a></li>
+<li class="chapter" data-level="22.5" data-path="cs-cran-network.html"><a href="cs-cran-network.html#Contribution-Network"><i class="fa fa-check"></i><b>22.5</b> 贡献关系网络</a></li>
+<li class="chapter" data-level="22.6" data-path="cs-cran-network.html"><a href="cs-cran-network.html#CRAN-Update-Packages"><i class="fa fa-check"></i><b>22.6</b> 更新知多少</a></li>
+<li class="chapter" data-level="22.7" data-path="cs-cran-network.html"><a href="cs-cran-network.html#Package-Licenses"><i class="fa fa-check"></i><b>22.7</b> 使用许可证</a></li>
+<li class="chapter" data-level="22.8" data-path="cs-cran-network.html"><a href="cs-cran-network.html#r-包增长速度"><i class="fa fa-check"></i><b>22.8</b> R 包增长速度</a></li>
+<li class="chapter" data-level="22.9" data-path="cs-cran-network.html"><a href="cs-cran-network.html#Choose-Package"><i class="fa fa-check"></i><b>22.9</b> 选择 R 包</a></li>
+<li class="chapter" data-level="22.10" data-path="cs-cran-network.html"><a href="cs-cran-network.html#cs-network-session-info"><i class="fa fa-check"></i><b>22.10</b> 运行环境</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="99-references.html"><a href="99-references.html"><i class="fa fa-check"></i>参考文献</a></li>
 <li class="divider"></li>
@@ -613,7 +590,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb376"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb376-1"><a href="dc-string-manipulation.html#cb376-1"></a><span class="kw">nchar</span>(<span class="kw">c</span>(<span class="st">&quot;Hello&quot;</span>, <span class="st">&quot;world&quot;</span>, <span class="st">&quot;!&quot;</span>))</span>
 <span id="cb376-2"><a href="dc-string-manipulation.html#cb376-2"></a><span class="co">#&gt; [1] 5 5 1</span></span>
 <span id="cb376-3"><a href="dc-string-manipulation.html#cb376-3"></a>R.version.string</span>
-<span id="cb376-4"><a href="dc-string-manipulation.html#cb376-4"></a><span class="co">#&gt; [1] &quot;R Under development (unstable) (2020-02-04 r77771)&quot;</span></span>
+<span id="cb376-4"><a href="dc-string-manipulation.html#cb376-4"></a><span class="co">#&gt; [1] &quot;R Under development (unstable) (2020-03-06 r77913)&quot;</span></span>
 <span id="cb376-5"><a href="dc-string-manipulation.html#cb376-5"></a><span class="kw">nchar</span>(R.version.string)</span>
 <span id="cb376-6"><a href="dc-string-manipulation.html#cb376-6"></a><span class="co">#&gt; [1] 50</span></span>
 <span id="cb376-7"><a href="dc-string-manipulation.html#cb376-7"></a><span class="kw">deparse</span>(base<span class="op">::</span>mean)</span>
@@ -764,28 +741,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb390"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb390-1"><a href="dc-string-manipulation.html#cb390-1"></a><span class="co"># list.files(path = &quot;.&quot;, pattern = &quot;\\.Rmd$&quot;)</span></span>
 <span id="cb390-2"><a href="dc-string-manipulation.html#cb390-2"></a><span class="co"># 而不是 endsWith(list.files(), &quot;\\.Rmd&quot;)</span></span>
 <span id="cb390-3"><a href="dc-string-manipulation.html#cb390-3"></a><span class="kw">endsWith</span>(<span class="kw">list.files</span>(), <span class="st">&quot;.Rmd&quot;</span>)</span>
-<span id="cb390-4"><a href="dc-string-manipulation.html#cb390-4"></a><span class="co">#&gt;   [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE</span></span>
-<span id="cb390-5"><a href="dc-string-manipulation.html#cb390-5"></a><span class="co">#&gt;  [13]  TRUE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE</span></span>
-<span id="cb390-6"><a href="dc-string-manipulation.html#cb390-6"></a><span class="co">#&gt;  [25] FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE FALSE</span></span>
-<span id="cb390-7"><a href="dc-string-manipulation.html#cb390-7"></a><span class="co">#&gt;  [37]  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE  TRUE  TRUE FALSE</span></span>
-<span id="cb390-8"><a href="dc-string-manipulation.html#cb390-8"></a><span class="co">#&gt;  [49] FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE  TRUE</span></span>
-<span id="cb390-9"><a href="dc-string-manipulation.html#cb390-9"></a><span class="co">#&gt;  [61] FALSE FALSE  TRUE  TRUE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE  TRUE</span></span>
-<span id="cb390-10"><a href="dc-string-manipulation.html#cb390-10"></a><span class="co">#&gt;  [73] FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE</span></span>
-<span id="cb390-11"><a href="dc-string-manipulation.html#cb390-11"></a><span class="co">#&gt;  [85] FALSE  TRUE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</span></span>
-<span id="cb390-12"><a href="dc-string-manipulation.html#cb390-12"></a><span class="co">#&gt;  [97]  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE</span></span>
-<span id="cb390-13"><a href="dc-string-manipulation.html#cb390-13"></a><span class="co">#&gt; [109] FALSE</span></span>
-<span id="cb390-14"><a href="dc-string-manipulation.html#cb390-14"></a><span class="co"># 或者</span></span>
-<span id="cb390-15"><a href="dc-string-manipulation.html#cb390-15"></a><span class="kw">grepl</span>(<span class="st">&quot;</span><span class="ch">\\</span><span class="st">.Rmd$&quot;</span>, <span class="kw">list.files</span>())</span>
-<span id="cb390-16"><a href="dc-string-manipulation.html#cb390-16"></a><span class="co">#&gt;   [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE</span></span>
-<span id="cb390-17"><a href="dc-string-manipulation.html#cb390-17"></a><span class="co">#&gt;  [13]  TRUE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE</span></span>
-<span id="cb390-18"><a href="dc-string-manipulation.html#cb390-18"></a><span class="co">#&gt;  [25] FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE FALSE</span></span>
-<span id="cb390-19"><a href="dc-string-manipulation.html#cb390-19"></a><span class="co">#&gt;  [37]  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE  TRUE  TRUE FALSE</span></span>
-<span id="cb390-20"><a href="dc-string-manipulation.html#cb390-20"></a><span class="co">#&gt;  [49] FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE  TRUE</span></span>
-<span id="cb390-21"><a href="dc-string-manipulation.html#cb390-21"></a><span class="co">#&gt;  [61] FALSE FALSE  TRUE  TRUE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE  TRUE</span></span>
-<span id="cb390-22"><a href="dc-string-manipulation.html#cb390-22"></a><span class="co">#&gt;  [73] FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE</span></span>
-<span id="cb390-23"><a href="dc-string-manipulation.html#cb390-23"></a><span class="co">#&gt;  [85] FALSE  TRUE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</span></span>
-<span id="cb390-24"><a href="dc-string-manipulation.html#cb390-24"></a><span class="co">#&gt;  [97]  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE</span></span>
-<span id="cb390-25"><a href="dc-string-manipulation.html#cb390-25"></a><span class="co">#&gt; [109] FALSE</span></span></code></pre></div>
+<span id="cb390-4"><a href="dc-string-manipulation.html#cb390-4"></a><span class="co">#&gt;  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE  TRUE</span></span>
+<span id="cb390-5"><a href="dc-string-manipulation.html#cb390-5"></a><span class="co">#&gt; [13]  TRUE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE  TRUE</span></span>
+<span id="cb390-6"><a href="dc-string-manipulation.html#cb390-6"></a><span class="co">#&gt; [25] FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE  TRUE  TRUE</span></span>
+<span id="cb390-7"><a href="dc-string-manipulation.html#cb390-7"></a><span class="co">#&gt; [37]  TRUE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE</span></span>
+<span id="cb390-8"><a href="dc-string-manipulation.html#cb390-8"></a><span class="co">#&gt; [49]  TRUE  TRUE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE  TRUE FALSE</span></span>
+<span id="cb390-9"><a href="dc-string-manipulation.html#cb390-9"></a><span class="co">#&gt; [61] FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE</span></span>
+<span id="cb390-10"><a href="dc-string-manipulation.html#cb390-10"></a><span class="co">#&gt; [73] FALSE FALSE  TRUE FALSE FALSE FALSE FALSE</span></span>
+<span id="cb390-11"><a href="dc-string-manipulation.html#cb390-11"></a><span class="co"># 或者</span></span>
+<span id="cb390-12"><a href="dc-string-manipulation.html#cb390-12"></a><span class="kw">grepl</span>(<span class="st">&quot;</span><span class="ch">\\</span><span class="st">.Rmd$&quot;</span>, <span class="kw">list.files</span>())</span>
+<span id="cb390-13"><a href="dc-string-manipulation.html#cb390-13"></a><span class="co">#&gt;  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE  TRUE</span></span>
+<span id="cb390-14"><a href="dc-string-manipulation.html#cb390-14"></a><span class="co">#&gt; [13]  TRUE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE  TRUE</span></span>
+<span id="cb390-15"><a href="dc-string-manipulation.html#cb390-15"></a><span class="co">#&gt; [25] FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE  TRUE  TRUE</span></span>
+<span id="cb390-16"><a href="dc-string-manipulation.html#cb390-16"></a><span class="co">#&gt; [37]  TRUE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE</span></span>
+<span id="cb390-17"><a href="dc-string-manipulation.html#cb390-17"></a><span class="co">#&gt; [49]  TRUE  TRUE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE  TRUE FALSE</span></span>
+<span id="cb390-18"><a href="dc-string-manipulation.html#cb390-18"></a><span class="co">#&gt; [61] FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE</span></span>
+<span id="cb390-19"><a href="dc-string-manipulation.html#cb390-19"></a><span class="co">#&gt; [73] FALSE FALSE  TRUE FALSE FALSE FALSE FALSE</span></span></code></pre></div>
 <p>部分匹配(Partial String Matching)</p>
 <div class="sourceCode" id="cb391"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb391-1"><a href="dc-string-manipulation.html#cb391-1"></a><span class="kw">match</span>(x, table, <span class="dt">nomatch =</span> <span class="ot">NA_integer_</span>, <span class="dt">incomparables =</span> <span class="ot">NULL</span>)</span>
 <span id="cb391-2"><a href="dc-string-manipulation.html#cb391-2"></a>x <span class="op">%in%</span><span class="st"> </span>table</span>
@@ -1431,76 +1402,198 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb428-26"><a href="dc-string-manipulation.html#cb428-26"></a><span class="co">#&gt; </span></span>
 <span id="cb428-27"><a href="dc-string-manipulation.html#cb428-27"></a><span class="co">#&gt; Many more, too numerous to mention here, have contributed</span></span>
 <span id="cb428-28"><a href="dc-string-manipulation.html#cb428-28"></a><span class="co">#&gt; by sending bug reports and suggesting various improvements.</span></span>
-<span id="cb428-29"><a href="dc-string-manipulation.html#cb428-29"></a>....</span>
-<span id="cb428-30"><a href="dc-string-manipulation.html#cb428-30"></a><span class="co"># 每一段的段首缩进5个字符</span></span>
-<span id="cb428-31"><a href="dc-string-manipulation.html#cb428-31"></a><span class="kw">writeLines</span>(<span class="kw">strwrap</span>(x, <span class="dt">width =</span> <span class="dv">60</span>, <span class="dt">indent =</span> <span class="dv">5</span>))</span>
-<span id="cb428-32"><a href="dc-string-manipulation.html#cb428-32"></a><span class="co">#&gt;      J. D. Beasley, David J. Best, Richard Brent, Kevin</span></span>
-<span id="cb428-33"><a href="dc-string-manipulation.html#cb428-33"></a><span class="co">#&gt; Buhr, Michael A. Covington, Bill Cleveland, Robert</span></span>
-<span id="cb428-34"><a href="dc-string-manipulation.html#cb428-34"></a><span class="co">#&gt; Cleveland,, G. W. Cran, C. G. Ding, Ulrich Drepper, Paul</span></span>
-<span id="cb428-35"><a href="dc-string-manipulation.html#cb428-35"></a><span class="co">#&gt; Eggert, J. O. Evans, David M. Gay, H. Frick, G. W. Hill,</span></span>
-<span id="cb428-36"><a href="dc-string-manipulation.html#cb428-36"></a><span class="co">#&gt; Richard H. Jones, Eric Grosse, Shelby Haberman, Bruno</span></span>
-<span id="cb428-37"><a href="dc-string-manipulation.html#cb428-37"></a><span class="co">#&gt; Haible, John Hartigan, Andrew Harvey, Trevor Hastie, Min</span></span>
-<span id="cb428-38"><a href="dc-string-manipulation.html#cb428-38"></a><span class="co">#&gt; Long Lam, George Marsaglia, K. J. Martin, Gordon</span></span>
-<span id="cb428-39"><a href="dc-string-manipulation.html#cb428-39"></a><span class="co">#&gt; Matzigkeit, C. R. Mckenzie, Jean McRae, Cyrus Mehta, Fionn</span></span>
-<span id="cb428-40"><a href="dc-string-manipulation.html#cb428-40"></a><span class="co">#&gt; Murtagh, John C. Nash, Finbarr O&#39;Sullivan, R. E. Odeh,</span></span>
-<span id="cb428-41"><a href="dc-string-manipulation.html#cb428-41"></a><span class="co">#&gt; William Patefield, Nitin Patel, Alan Richardson, D. E.</span></span>
-<span id="cb428-42"><a href="dc-string-manipulation.html#cb428-42"></a><span class="co">#&gt; Roberts, Patrick Royston, Russell Lenth, Ming-Jen Shyu,</span></span>
-<span id="cb428-43"><a href="dc-string-manipulation.html#cb428-43"></a><span class="co">#&gt; Richard C. Singleton, S. G. Springer, Supoj Sutanthavibul,</span></span>
-<span id="cb428-44"><a href="dc-string-manipulation.html#cb428-44"></a><span class="co">#&gt; Irma Terpenning, G. E. Thomas, Rob Tibshirani, Wai Wan</span></span>
-<span id="cb428-45"><a href="dc-string-manipulation.html#cb428-45"></a><span class="co">#&gt; Tsang, Berwin Turlach, Gary V. Vaughan, Michael Wichura,</span></span>
-<span id="cb428-46"><a href="dc-string-manipulation.html#cb428-46"></a><span class="co">#&gt; Jingbo Wang, M. A. Wong, and the Free Software Foundation</span></span>
-<span id="cb428-47"><a href="dc-string-manipulation.html#cb428-47"></a><span class="co">#&gt; (for autoconf code and utilities). See also files under</span></span>
-<span id="cb428-48"><a href="dc-string-manipulation.html#cb428-48"></a><span class="co">#&gt; src/extras.</span></span>
-<span id="cb428-49"><a href="dc-string-manipulation.html#cb428-49"></a><span class="co">#&gt; </span></span>
-<span id="cb428-50"><a href="dc-string-manipulation.html#cb428-50"></a><span class="co">#&gt;      Many more, too numerous to mention here, have</span></span>
-<span id="cb428-51"><a href="dc-string-manipulation.html#cb428-51"></a><span class="co">#&gt; contributed by sending bug reports and suggesting various</span></span>
-<span id="cb428-52"><a href="dc-string-manipulation.html#cb428-52"></a>....</span>
-<span id="cb428-53"><a href="dc-string-manipulation.html#cb428-53"></a><span class="co"># 除了段首，每一段的余下诸行都缩进5个字符</span></span>
-<span id="cb428-54"><a href="dc-string-manipulation.html#cb428-54"></a><span class="kw">writeLines</span>(<span class="kw">strwrap</span>(x, <span class="dt">width =</span> <span class="dv">60</span>, <span class="dt">exdent =</span> <span class="dv">5</span>))</span>
-<span id="cb428-55"><a href="dc-string-manipulation.html#cb428-55"></a><span class="co">#&gt; J. D. Beasley, David J. Best, Richard Brent, Kevin Buhr,</span></span>
-<span id="cb428-56"><a href="dc-string-manipulation.html#cb428-56"></a><span class="co">#&gt;      Michael A. Covington, Bill Cleveland, Robert</span></span>
-<span id="cb428-57"><a href="dc-string-manipulation.html#cb428-57"></a><span class="co">#&gt;      Cleveland,, G. W. Cran, C. G. Ding, Ulrich Drepper,</span></span>
-<span id="cb428-58"><a href="dc-string-manipulation.html#cb428-58"></a><span class="co">#&gt;      Paul Eggert, J. O. Evans, David M. Gay, H. Frick, G.</span></span>
-<span id="cb428-59"><a href="dc-string-manipulation.html#cb428-59"></a><span class="co">#&gt;      W. Hill, Richard H. Jones, Eric Grosse, Shelby</span></span>
-<span id="cb428-60"><a href="dc-string-manipulation.html#cb428-60"></a><span class="co">#&gt;      Haberman, Bruno Haible, John Hartigan, Andrew Harvey,</span></span>
-<span id="cb428-61"><a href="dc-string-manipulation.html#cb428-61"></a><span class="co">#&gt;      Trevor Hastie, Min Long Lam, George Marsaglia, K. J.</span></span>
-<span id="cb428-62"><a href="dc-string-manipulation.html#cb428-62"></a><span class="co">#&gt;      Martin, Gordon Matzigkeit, C. R. Mckenzie, Jean McRae,</span></span>
-<span id="cb428-63"><a href="dc-string-manipulation.html#cb428-63"></a><span class="co">#&gt;      Cyrus Mehta, Fionn Murtagh, John C. Nash, Finbarr</span></span>
-<span id="cb428-64"><a href="dc-string-manipulation.html#cb428-64"></a><span class="co">#&gt;      O&#39;Sullivan, R. E. Odeh, William Patefield, Nitin</span></span>
-<span id="cb428-65"><a href="dc-string-manipulation.html#cb428-65"></a><span class="co">#&gt;      Patel, Alan Richardson, D. E. Roberts, Patrick</span></span>
-<span id="cb428-66"><a href="dc-string-manipulation.html#cb428-66"></a><span class="co">#&gt;      Royston, Russell Lenth, Ming-Jen Shyu, Richard C.</span></span>
-<span id="cb428-67"><a href="dc-string-manipulation.html#cb428-67"></a><span class="co">#&gt;      Singleton, S. G. Springer, Supoj Sutanthavibul, Irma</span></span>
-<span id="cb428-68"><a href="dc-string-manipulation.html#cb428-68"></a><span class="co">#&gt;      Terpenning, G. E. Thomas, Rob Tibshirani, Wai Wan</span></span>
-<span id="cb428-69"><a href="dc-string-manipulation.html#cb428-69"></a><span class="co">#&gt;      Tsang, Berwin Turlach, Gary V. Vaughan, Michael</span></span>
-<span id="cb428-70"><a href="dc-string-manipulation.html#cb428-70"></a><span class="co">#&gt;      Wichura, Jingbo Wang, M. A. Wong, and the Free</span></span>
-<span id="cb428-71"><a href="dc-string-manipulation.html#cb428-71"></a><span class="co">#&gt;      Software Foundation (for autoconf code and utilities).</span></span>
-<span id="cb428-72"><a href="dc-string-manipulation.html#cb428-72"></a><span class="co">#&gt;      See also files under src/extras.</span></span>
-<span id="cb428-73"><a href="dc-string-manipulation.html#cb428-73"></a><span class="co">#&gt; </span></span>
-<span id="cb428-74"><a href="dc-string-manipulation.html#cb428-74"></a><span class="co">#&gt; Many more, too numerous to mention here, have contributed</span></span>
-<span id="cb428-75"><a href="dc-string-manipulation.html#cb428-75"></a>....</span>
-<span id="cb428-76"><a href="dc-string-manipulation.html#cb428-76"></a><span class="co"># 在输出的每一行前面添加前缀</span></span>
-<span id="cb428-77"><a href="dc-string-manipulation.html#cb428-77"></a><span class="kw">writeLines</span>(<span class="kw">strwrap</span>(x, <span class="dt">prefix =</span> <span class="st">&quot;THANKS&gt; &quot;</span>))</span>
-<span id="cb428-78"><a href="dc-string-manipulation.html#cb428-78"></a><span class="co">#&gt; THANKS&gt; J. D. Beasley, David J. Best, Richard Brent, Kevin Buhr,</span></span>
-<span id="cb428-79"><a href="dc-string-manipulation.html#cb428-79"></a><span class="co">#&gt; THANKS&gt; Michael A. Covington, Bill Cleveland, Robert Cleveland,, G. W.</span></span>
-<span id="cb428-80"><a href="dc-string-manipulation.html#cb428-80"></a><span class="co">#&gt; THANKS&gt; Cran, C. G. Ding, Ulrich Drepper, Paul Eggert, J. O. Evans,</span></span>
-<span id="cb428-81"><a href="dc-string-manipulation.html#cb428-81"></a><span class="co">#&gt; THANKS&gt; David M. Gay, H. Frick, G. W. Hill, Richard H. Jones, Eric</span></span>
-<span id="cb428-82"><a href="dc-string-manipulation.html#cb428-82"></a><span class="co">#&gt; THANKS&gt; Grosse, Shelby Haberman, Bruno Haible, John Hartigan, Andrew</span></span>
-<span id="cb428-83"><a href="dc-string-manipulation.html#cb428-83"></a><span class="co">#&gt; THANKS&gt; Harvey, Trevor Hastie, Min Long Lam, George Marsaglia, K. J.</span></span>
-<span id="cb428-84"><a href="dc-string-manipulation.html#cb428-84"></a><span class="co">#&gt; THANKS&gt; Martin, Gordon Matzigkeit, C. R. Mckenzie, Jean McRae, Cyrus</span></span>
-<span id="cb428-85"><a href="dc-string-manipulation.html#cb428-85"></a><span class="co">#&gt; THANKS&gt; Mehta, Fionn Murtagh, John C. Nash, Finbarr O&#39;Sullivan, R. E.</span></span>
-<span id="cb428-86"><a href="dc-string-manipulation.html#cb428-86"></a><span class="co">#&gt; THANKS&gt; Odeh, William Patefield, Nitin Patel, Alan Richardson, D. E.</span></span>
-<span id="cb428-87"><a href="dc-string-manipulation.html#cb428-87"></a><span class="co">#&gt; THANKS&gt; Roberts, Patrick Royston, Russell Lenth, Ming-Jen Shyu,</span></span>
-<span id="cb428-88"><a href="dc-string-manipulation.html#cb428-88"></a><span class="co">#&gt; THANKS&gt; Richard C. Singleton, S. G. Springer, Supoj Sutanthavibul,</span></span>
-<span id="cb428-89"><a href="dc-string-manipulation.html#cb428-89"></a><span class="co">#&gt; THANKS&gt; Irma Terpenning, G. E. Thomas, Rob Tibshirani, Wai Wan Tsang,</span></span>
-<span id="cb428-90"><a href="dc-string-manipulation.html#cb428-90"></a><span class="co">#&gt; THANKS&gt; Berwin Turlach, Gary V. Vaughan, Michael Wichura, Jingbo Wang,</span></span>
-<span id="cb428-91"><a href="dc-string-manipulation.html#cb428-91"></a><span class="co">#&gt; THANKS&gt; M. A. Wong, and the Free Software Foundation (for autoconf</span></span>
-<span id="cb428-92"><a href="dc-string-manipulation.html#cb428-92"></a><span class="co">#&gt; THANKS&gt; code and utilities). See also files under src/extras.</span></span>
-<span id="cb428-93"><a href="dc-string-manipulation.html#cb428-93"></a><span class="co">#&gt; THANKS&gt; </span></span>
-<span id="cb428-94"><a href="dc-string-manipulation.html#cb428-94"></a><span class="co">#&gt; THANKS&gt; Many more, too numerous to mention here, have contributed by</span></span>
-<span id="cb428-95"><a href="dc-string-manipulation.html#cb428-95"></a><span class="co">#&gt; THANKS&gt; sending bug reports and suggesting various improvements.</span></span>
-<span id="cb428-96"><a href="dc-string-manipulation.html#cb428-96"></a><span class="co">#&gt; THANKS&gt; </span></span>
-<span id="cb428-97"><a href="dc-string-manipulation.html#cb428-97"></a><span class="co">#&gt; THANKS&gt; Simon Davies whilst at the University of Auckland wrote the</span></span>
-<span id="cb428-98"><a href="dc-string-manipulation.html#cb428-98"></a>....</span></code></pre></div>
+<span id="cb428-29"><a href="dc-string-manipulation.html#cb428-29"></a><span class="co">#&gt; </span></span>
+<span id="cb428-30"><a href="dc-string-manipulation.html#cb428-30"></a><span class="co">#&gt; Simon Davies whilst at the University of Auckland wrote the</span></span>
+<span id="cb428-31"><a href="dc-string-manipulation.html#cb428-31"></a><span class="co">#&gt; original version of glm().</span></span>
+<span id="cb428-32"><a href="dc-string-manipulation.html#cb428-32"></a><span class="co">#&gt; </span></span>
+<span id="cb428-33"><a href="dc-string-manipulation.html#cb428-33"></a><span class="co">#&gt; Julian Harris and Wing Kwong (Tiki) Wan whilst at the</span></span>
+<span id="cb428-34"><a href="dc-string-manipulation.html#cb428-34"></a><span class="co">#&gt; University of Auckland assisted Ross Ihaka with the</span></span>
+<span id="cb428-35"><a href="dc-string-manipulation.html#cb428-35"></a><span class="co">#&gt; original Macintosh port.</span></span>
+<span id="cb428-36"><a href="dc-string-manipulation.html#cb428-36"></a><span class="co">#&gt; </span></span>
+<span id="cb428-37"><a href="dc-string-manipulation.html#cb428-37"></a><span class="co">#&gt; R was inspired by the S environment which has been</span></span>
+<span id="cb428-38"><a href="dc-string-manipulation.html#cb428-38"></a><span class="co">#&gt; principally developed by John Chambers, with substantial</span></span>
+<span id="cb428-39"><a href="dc-string-manipulation.html#cb428-39"></a><span class="co">#&gt; input from Douglas Bates, Rick Becker, Bill Cleveland,</span></span>
+<span id="cb428-40"><a href="dc-string-manipulation.html#cb428-40"></a><span class="co">#&gt; Trevor Hastie, Daryl Pregibon and Allan Wilks.</span></span>
+<span id="cb428-41"><a href="dc-string-manipulation.html#cb428-41"></a><span class="co">#&gt; </span></span>
+<span id="cb428-42"><a href="dc-string-manipulation.html#cb428-42"></a><span class="co">#&gt; A special debt is owed to John Chambers who has graciously</span></span>
+<span id="cb428-43"><a href="dc-string-manipulation.html#cb428-43"></a><span class="co">#&gt; contributed advice and encouragement in the early days of R</span></span>
+<span id="cb428-44"><a href="dc-string-manipulation.html#cb428-44"></a><span class="co">#&gt; and later became a member of the core team.</span></span>
+<span id="cb428-45"><a href="dc-string-manipulation.html#cb428-45"></a><span class="co">#&gt; </span></span>
+<span id="cb428-46"><a href="dc-string-manipulation.html#cb428-46"></a><span class="co">#&gt; The R Foundation may decide to give out</span></span>
+<span id="cb428-47"><a href="dc-string-manipulation.html#cb428-47"></a><span class="co">#&gt; &lt;first.lastname&gt;@R-project.org email addresses to</span></span>
+<span id="cb428-48"><a href="dc-string-manipulation.html#cb428-48"></a><span class="co">#&gt; contributors to the R Project (even without making them</span></span>
+<span id="cb428-49"><a href="dc-string-manipulation.html#cb428-49"></a><span class="co">#&gt; members of the R Foundation) when in the view of the R</span></span>
+<span id="cb428-50"><a href="dc-string-manipulation.html#cb428-50"></a><span class="co">#&gt; Foundation this would help advance the R project.</span></span>
+<span id="cb428-51"><a href="dc-string-manipulation.html#cb428-51"></a><span class="co">#&gt; </span></span>
+<span id="cb428-52"><a href="dc-string-manipulation.html#cb428-52"></a><span class="co">#&gt; The R Core Group, Roger Bivand, Jennifer Bryan, Di Cook,</span></span>
+<span id="cb428-53"><a href="dc-string-manipulation.html#cb428-53"></a><span class="co">#&gt; Dirk Eddelbuettel, John Fox, Bettina Grün, Frank Harrell,</span></span>
+<span id="cb428-54"><a href="dc-string-manipulation.html#cb428-54"></a><span class="co">#&gt; Torsten Hothorn, Stefano Iacus, Julie Josse,</span></span>
+<span id="cb428-55"><a href="dc-string-manipulation.html#cb428-55"></a><span class="co">#&gt; Balasubramanian Narasimhan, Marc Schwartz, Heather Turner,</span></span>
+<span id="cb428-56"><a href="dc-string-manipulation.html#cb428-56"></a><span class="co">#&gt; Bill Venables, Hadley Wickham and Achim Zeileis are the</span></span>
+<span id="cb428-57"><a href="dc-string-manipulation.html#cb428-57"></a><span class="co">#&gt; ordinary members of the R Foundation. In addition, David</span></span>
+<span id="cb428-58"><a href="dc-string-manipulation.html#cb428-58"></a><span class="co">#&gt; Meyer and Simon Wood are also e-addressable by</span></span>
+<span id="cb428-59"><a href="dc-string-manipulation.html#cb428-59"></a><span class="co">#&gt; &lt;Firstname&gt;.&lt;Lastname&gt;@R-project.org.</span></span>
+<span id="cb428-60"><a href="dc-string-manipulation.html#cb428-60"></a><span class="co"># 每一段的段首缩进5个字符</span></span>
+<span id="cb428-61"><a href="dc-string-manipulation.html#cb428-61"></a><span class="kw">writeLines</span>(<span class="kw">strwrap</span>(x, <span class="dt">width =</span> <span class="dv">60</span>, <span class="dt">indent =</span> <span class="dv">5</span>))</span>
+<span id="cb428-62"><a href="dc-string-manipulation.html#cb428-62"></a><span class="co">#&gt;      J. D. Beasley, David J. Best, Richard Brent, Kevin</span></span>
+<span id="cb428-63"><a href="dc-string-manipulation.html#cb428-63"></a><span class="co">#&gt; Buhr, Michael A. Covington, Bill Cleveland, Robert</span></span>
+<span id="cb428-64"><a href="dc-string-manipulation.html#cb428-64"></a><span class="co">#&gt; Cleveland,, G. W. Cran, C. G. Ding, Ulrich Drepper, Paul</span></span>
+<span id="cb428-65"><a href="dc-string-manipulation.html#cb428-65"></a><span class="co">#&gt; Eggert, J. O. Evans, David M. Gay, H. Frick, G. W. Hill,</span></span>
+<span id="cb428-66"><a href="dc-string-manipulation.html#cb428-66"></a><span class="co">#&gt; Richard H. Jones, Eric Grosse, Shelby Haberman, Bruno</span></span>
+<span id="cb428-67"><a href="dc-string-manipulation.html#cb428-67"></a><span class="co">#&gt; Haible, John Hartigan, Andrew Harvey, Trevor Hastie, Min</span></span>
+<span id="cb428-68"><a href="dc-string-manipulation.html#cb428-68"></a><span class="co">#&gt; Long Lam, George Marsaglia, K. J. Martin, Gordon</span></span>
+<span id="cb428-69"><a href="dc-string-manipulation.html#cb428-69"></a><span class="co">#&gt; Matzigkeit, C. R. Mckenzie, Jean McRae, Cyrus Mehta, Fionn</span></span>
+<span id="cb428-70"><a href="dc-string-manipulation.html#cb428-70"></a><span class="co">#&gt; Murtagh, John C. Nash, Finbarr O&#39;Sullivan, R. E. Odeh,</span></span>
+<span id="cb428-71"><a href="dc-string-manipulation.html#cb428-71"></a><span class="co">#&gt; William Patefield, Nitin Patel, Alan Richardson, D. E.</span></span>
+<span id="cb428-72"><a href="dc-string-manipulation.html#cb428-72"></a><span class="co">#&gt; Roberts, Patrick Royston, Russell Lenth, Ming-Jen Shyu,</span></span>
+<span id="cb428-73"><a href="dc-string-manipulation.html#cb428-73"></a><span class="co">#&gt; Richard C. Singleton, S. G. Springer, Supoj Sutanthavibul,</span></span>
+<span id="cb428-74"><a href="dc-string-manipulation.html#cb428-74"></a><span class="co">#&gt; Irma Terpenning, G. E. Thomas, Rob Tibshirani, Wai Wan</span></span>
+<span id="cb428-75"><a href="dc-string-manipulation.html#cb428-75"></a><span class="co">#&gt; Tsang, Berwin Turlach, Gary V. Vaughan, Michael Wichura,</span></span>
+<span id="cb428-76"><a href="dc-string-manipulation.html#cb428-76"></a><span class="co">#&gt; Jingbo Wang, M. A. Wong, and the Free Software Foundation</span></span>
+<span id="cb428-77"><a href="dc-string-manipulation.html#cb428-77"></a><span class="co">#&gt; (for autoconf code and utilities). See also files under</span></span>
+<span id="cb428-78"><a href="dc-string-manipulation.html#cb428-78"></a><span class="co">#&gt; src/extras.</span></span>
+<span id="cb428-79"><a href="dc-string-manipulation.html#cb428-79"></a><span class="co">#&gt; </span></span>
+<span id="cb428-80"><a href="dc-string-manipulation.html#cb428-80"></a><span class="co">#&gt;      Many more, too numerous to mention here, have</span></span>
+<span id="cb428-81"><a href="dc-string-manipulation.html#cb428-81"></a><span class="co">#&gt; contributed by sending bug reports and suggesting various</span></span>
+<span id="cb428-82"><a href="dc-string-manipulation.html#cb428-82"></a><span class="co">#&gt; improvements.</span></span>
+<span id="cb428-83"><a href="dc-string-manipulation.html#cb428-83"></a><span class="co">#&gt; </span></span>
+<span id="cb428-84"><a href="dc-string-manipulation.html#cb428-84"></a><span class="co">#&gt;      Simon Davies whilst at the University of Auckland</span></span>
+<span id="cb428-85"><a href="dc-string-manipulation.html#cb428-85"></a><span class="co">#&gt; wrote the original version of glm().</span></span>
+<span id="cb428-86"><a href="dc-string-manipulation.html#cb428-86"></a><span class="co">#&gt; </span></span>
+<span id="cb428-87"><a href="dc-string-manipulation.html#cb428-87"></a><span class="co">#&gt;      Julian Harris and Wing Kwong (Tiki) Wan whilst at the</span></span>
+<span id="cb428-88"><a href="dc-string-manipulation.html#cb428-88"></a><span class="co">#&gt; University of Auckland assisted Ross Ihaka with the</span></span>
+<span id="cb428-89"><a href="dc-string-manipulation.html#cb428-89"></a><span class="co">#&gt; original Macintosh port.</span></span>
+<span id="cb428-90"><a href="dc-string-manipulation.html#cb428-90"></a><span class="co">#&gt; </span></span>
+<span id="cb428-91"><a href="dc-string-manipulation.html#cb428-91"></a><span class="co">#&gt;      R was inspired by the S environment which has been</span></span>
+<span id="cb428-92"><a href="dc-string-manipulation.html#cb428-92"></a><span class="co">#&gt; principally developed by John Chambers, with substantial</span></span>
+<span id="cb428-93"><a href="dc-string-manipulation.html#cb428-93"></a><span class="co">#&gt; input from Douglas Bates, Rick Becker, Bill Cleveland,</span></span>
+<span id="cb428-94"><a href="dc-string-manipulation.html#cb428-94"></a><span class="co">#&gt; Trevor Hastie, Daryl Pregibon and Allan Wilks.</span></span>
+<span id="cb428-95"><a href="dc-string-manipulation.html#cb428-95"></a><span class="co">#&gt; </span></span>
+<span id="cb428-96"><a href="dc-string-manipulation.html#cb428-96"></a><span class="co">#&gt;      A special debt is owed to John Chambers who has</span></span>
+<span id="cb428-97"><a href="dc-string-manipulation.html#cb428-97"></a><span class="co">#&gt; graciously contributed advice and encouragement in the</span></span>
+<span id="cb428-98"><a href="dc-string-manipulation.html#cb428-98"></a><span class="co">#&gt; early days of R and later became a member of the core team.</span></span>
+<span id="cb428-99"><a href="dc-string-manipulation.html#cb428-99"></a><span class="co">#&gt; </span></span>
+<span id="cb428-100"><a href="dc-string-manipulation.html#cb428-100"></a><span class="co">#&gt;      The R Foundation may decide to give out</span></span>
+<span id="cb428-101"><a href="dc-string-manipulation.html#cb428-101"></a><span class="co">#&gt; &lt;first.lastname&gt;@R-project.org email addresses to</span></span>
+<span id="cb428-102"><a href="dc-string-manipulation.html#cb428-102"></a><span class="co">#&gt; contributors to the R Project (even without making them</span></span>
+<span id="cb428-103"><a href="dc-string-manipulation.html#cb428-103"></a><span class="co">#&gt; members of the R Foundation) when in the view of the R</span></span>
+<span id="cb428-104"><a href="dc-string-manipulation.html#cb428-104"></a><span class="co">#&gt; Foundation this would help advance the R project.</span></span>
+<span id="cb428-105"><a href="dc-string-manipulation.html#cb428-105"></a><span class="co">#&gt; </span></span>
+<span id="cb428-106"><a href="dc-string-manipulation.html#cb428-106"></a><span class="co">#&gt;      The R Core Group, Roger Bivand, Jennifer Bryan, Di</span></span>
+<span id="cb428-107"><a href="dc-string-manipulation.html#cb428-107"></a><span class="co">#&gt; Cook, Dirk Eddelbuettel, John Fox, Bettina Grün, Frank</span></span>
+<span id="cb428-108"><a href="dc-string-manipulation.html#cb428-108"></a><span class="co">#&gt; Harrell, Torsten Hothorn, Stefano Iacus, Julie Josse,</span></span>
+<span id="cb428-109"><a href="dc-string-manipulation.html#cb428-109"></a><span class="co">#&gt; Balasubramanian Narasimhan, Marc Schwartz, Heather Turner,</span></span>
+<span id="cb428-110"><a href="dc-string-manipulation.html#cb428-110"></a><span class="co">#&gt; Bill Venables, Hadley Wickham and Achim Zeileis are the</span></span>
+<span id="cb428-111"><a href="dc-string-manipulation.html#cb428-111"></a><span class="co">#&gt; ordinary members of the R Foundation. In addition, David</span></span>
+<span id="cb428-112"><a href="dc-string-manipulation.html#cb428-112"></a><span class="co">#&gt; Meyer and Simon Wood are also e-addressable by</span></span>
+<span id="cb428-113"><a href="dc-string-manipulation.html#cb428-113"></a><span class="co">#&gt; &lt;Firstname&gt;.&lt;Lastname&gt;@R-project.org.</span></span>
+<span id="cb428-114"><a href="dc-string-manipulation.html#cb428-114"></a><span class="co"># 除了段首，每一段的余下诸行都缩进5个字符</span></span>
+<span id="cb428-115"><a href="dc-string-manipulation.html#cb428-115"></a><span class="kw">writeLines</span>(<span class="kw">strwrap</span>(x, <span class="dt">width =</span> <span class="dv">60</span>, <span class="dt">exdent =</span> <span class="dv">5</span>))</span>
+<span id="cb428-116"><a href="dc-string-manipulation.html#cb428-116"></a><span class="co">#&gt; J. D. Beasley, David J. Best, Richard Brent, Kevin Buhr,</span></span>
+<span id="cb428-117"><a href="dc-string-manipulation.html#cb428-117"></a><span class="co">#&gt;      Michael A. Covington, Bill Cleveland, Robert</span></span>
+<span id="cb428-118"><a href="dc-string-manipulation.html#cb428-118"></a><span class="co">#&gt;      Cleveland,, G. W. Cran, C. G. Ding, Ulrich Drepper,</span></span>
+<span id="cb428-119"><a href="dc-string-manipulation.html#cb428-119"></a><span class="co">#&gt;      Paul Eggert, J. O. Evans, David M. Gay, H. Frick, G.</span></span>
+<span id="cb428-120"><a href="dc-string-manipulation.html#cb428-120"></a><span class="co">#&gt;      W. Hill, Richard H. Jones, Eric Grosse, Shelby</span></span>
+<span id="cb428-121"><a href="dc-string-manipulation.html#cb428-121"></a><span class="co">#&gt;      Haberman, Bruno Haible, John Hartigan, Andrew Harvey,</span></span>
+<span id="cb428-122"><a href="dc-string-manipulation.html#cb428-122"></a><span class="co">#&gt;      Trevor Hastie, Min Long Lam, George Marsaglia, K. J.</span></span>
+<span id="cb428-123"><a href="dc-string-manipulation.html#cb428-123"></a><span class="co">#&gt;      Martin, Gordon Matzigkeit, C. R. Mckenzie, Jean McRae,</span></span>
+<span id="cb428-124"><a href="dc-string-manipulation.html#cb428-124"></a><span class="co">#&gt;      Cyrus Mehta, Fionn Murtagh, John C. Nash, Finbarr</span></span>
+<span id="cb428-125"><a href="dc-string-manipulation.html#cb428-125"></a><span class="co">#&gt;      O&#39;Sullivan, R. E. Odeh, William Patefield, Nitin</span></span>
+<span id="cb428-126"><a href="dc-string-manipulation.html#cb428-126"></a><span class="co">#&gt;      Patel, Alan Richardson, D. E. Roberts, Patrick</span></span>
+<span id="cb428-127"><a href="dc-string-manipulation.html#cb428-127"></a><span class="co">#&gt;      Royston, Russell Lenth, Ming-Jen Shyu, Richard C.</span></span>
+<span id="cb428-128"><a href="dc-string-manipulation.html#cb428-128"></a><span class="co">#&gt;      Singleton, S. G. Springer, Supoj Sutanthavibul, Irma</span></span>
+<span id="cb428-129"><a href="dc-string-manipulation.html#cb428-129"></a><span class="co">#&gt;      Terpenning, G. E. Thomas, Rob Tibshirani, Wai Wan</span></span>
+<span id="cb428-130"><a href="dc-string-manipulation.html#cb428-130"></a><span class="co">#&gt;      Tsang, Berwin Turlach, Gary V. Vaughan, Michael</span></span>
+<span id="cb428-131"><a href="dc-string-manipulation.html#cb428-131"></a><span class="co">#&gt;      Wichura, Jingbo Wang, M. A. Wong, and the Free</span></span>
+<span id="cb428-132"><a href="dc-string-manipulation.html#cb428-132"></a><span class="co">#&gt;      Software Foundation (for autoconf code and utilities).</span></span>
+<span id="cb428-133"><a href="dc-string-manipulation.html#cb428-133"></a><span class="co">#&gt;      See also files under src/extras.</span></span>
+<span id="cb428-134"><a href="dc-string-manipulation.html#cb428-134"></a><span class="co">#&gt; </span></span>
+<span id="cb428-135"><a href="dc-string-manipulation.html#cb428-135"></a><span class="co">#&gt; Many more, too numerous to mention here, have contributed</span></span>
+<span id="cb428-136"><a href="dc-string-manipulation.html#cb428-136"></a><span class="co">#&gt;      by sending bug reports and suggesting various</span></span>
+<span id="cb428-137"><a href="dc-string-manipulation.html#cb428-137"></a><span class="co">#&gt;      improvements.</span></span>
+<span id="cb428-138"><a href="dc-string-manipulation.html#cb428-138"></a><span class="co">#&gt; </span></span>
+<span id="cb428-139"><a href="dc-string-manipulation.html#cb428-139"></a><span class="co">#&gt; Simon Davies whilst at the University of Auckland wrote the</span></span>
+<span id="cb428-140"><a href="dc-string-manipulation.html#cb428-140"></a><span class="co">#&gt;      original version of glm().</span></span>
+<span id="cb428-141"><a href="dc-string-manipulation.html#cb428-141"></a><span class="co">#&gt; </span></span>
+<span id="cb428-142"><a href="dc-string-manipulation.html#cb428-142"></a><span class="co">#&gt; Julian Harris and Wing Kwong (Tiki) Wan whilst at the</span></span>
+<span id="cb428-143"><a href="dc-string-manipulation.html#cb428-143"></a><span class="co">#&gt;      University of Auckland assisted Ross Ihaka with the</span></span>
+<span id="cb428-144"><a href="dc-string-manipulation.html#cb428-144"></a><span class="co">#&gt;      original Macintosh port.</span></span>
+<span id="cb428-145"><a href="dc-string-manipulation.html#cb428-145"></a><span class="co">#&gt; </span></span>
+<span id="cb428-146"><a href="dc-string-manipulation.html#cb428-146"></a><span class="co">#&gt; R was inspired by the S environment which has been</span></span>
+<span id="cb428-147"><a href="dc-string-manipulation.html#cb428-147"></a><span class="co">#&gt;      principally developed by John Chambers, with</span></span>
+<span id="cb428-148"><a href="dc-string-manipulation.html#cb428-148"></a><span class="co">#&gt;      substantial input from Douglas Bates, Rick Becker,</span></span>
+<span id="cb428-149"><a href="dc-string-manipulation.html#cb428-149"></a><span class="co">#&gt;      Bill Cleveland, Trevor Hastie, Daryl Pregibon and</span></span>
+<span id="cb428-150"><a href="dc-string-manipulation.html#cb428-150"></a><span class="co">#&gt;      Allan Wilks.</span></span>
+<span id="cb428-151"><a href="dc-string-manipulation.html#cb428-151"></a><span class="co">#&gt; </span></span>
+<span id="cb428-152"><a href="dc-string-manipulation.html#cb428-152"></a><span class="co">#&gt; A special debt is owed to John Chambers who has graciously</span></span>
+<span id="cb428-153"><a href="dc-string-manipulation.html#cb428-153"></a><span class="co">#&gt;      contributed advice and encouragement in the early days</span></span>
+<span id="cb428-154"><a href="dc-string-manipulation.html#cb428-154"></a><span class="co">#&gt;      of R and later became a member of the core team.</span></span>
+<span id="cb428-155"><a href="dc-string-manipulation.html#cb428-155"></a><span class="co">#&gt; </span></span>
+<span id="cb428-156"><a href="dc-string-manipulation.html#cb428-156"></a><span class="co">#&gt; The R Foundation may decide to give out</span></span>
+<span id="cb428-157"><a href="dc-string-manipulation.html#cb428-157"></a><span class="co">#&gt;      &lt;first.lastname&gt;@R-project.org email addresses to</span></span>
+<span id="cb428-158"><a href="dc-string-manipulation.html#cb428-158"></a><span class="co">#&gt;      contributors to the R Project (even without making</span></span>
+<span id="cb428-159"><a href="dc-string-manipulation.html#cb428-159"></a><span class="co">#&gt;      them members of the R Foundation) when in the view of</span></span>
+<span id="cb428-160"><a href="dc-string-manipulation.html#cb428-160"></a><span class="co">#&gt;      the R Foundation this would help advance the R</span></span>
+<span id="cb428-161"><a href="dc-string-manipulation.html#cb428-161"></a><span class="co">#&gt;      project.</span></span>
+<span id="cb428-162"><a href="dc-string-manipulation.html#cb428-162"></a><span class="co">#&gt; </span></span>
+<span id="cb428-163"><a href="dc-string-manipulation.html#cb428-163"></a><span class="co">#&gt; The R Core Group, Roger Bivand, Jennifer Bryan, Di Cook,</span></span>
+<span id="cb428-164"><a href="dc-string-manipulation.html#cb428-164"></a><span class="co">#&gt;      Dirk Eddelbuettel, John Fox, Bettina Grün, Frank</span></span>
+<span id="cb428-165"><a href="dc-string-manipulation.html#cb428-165"></a><span class="co">#&gt;      Harrell, Torsten Hothorn, Stefano Iacus, Julie Josse,</span></span>
+<span id="cb428-166"><a href="dc-string-manipulation.html#cb428-166"></a><span class="co">#&gt;      Balasubramanian Narasimhan, Marc Schwartz, Heather</span></span>
+<span id="cb428-167"><a href="dc-string-manipulation.html#cb428-167"></a><span class="co">#&gt;      Turner, Bill Venables, Hadley Wickham and Achim</span></span>
+<span id="cb428-168"><a href="dc-string-manipulation.html#cb428-168"></a><span class="co">#&gt;      Zeileis are the ordinary members of the R Foundation.</span></span>
+<span id="cb428-169"><a href="dc-string-manipulation.html#cb428-169"></a><span class="co">#&gt;      In addition, David Meyer and Simon Wood are also</span></span>
+<span id="cb428-170"><a href="dc-string-manipulation.html#cb428-170"></a><span class="co">#&gt;      e-addressable by &lt;Firstname&gt;.&lt;Lastname&gt;@R-project.org.</span></span>
+<span id="cb428-171"><a href="dc-string-manipulation.html#cb428-171"></a><span class="co"># 在输出的每一行前面添加前缀</span></span>
+<span id="cb428-172"><a href="dc-string-manipulation.html#cb428-172"></a><span class="kw">writeLines</span>(<span class="kw">strwrap</span>(x, <span class="dt">prefix =</span> <span class="st">&quot;THANKS&gt; &quot;</span>))</span>
+<span id="cb428-173"><a href="dc-string-manipulation.html#cb428-173"></a><span class="co">#&gt; THANKS&gt; J. D. Beasley, David J. Best, Richard Brent, Kevin Buhr,</span></span>
+<span id="cb428-174"><a href="dc-string-manipulation.html#cb428-174"></a><span class="co">#&gt; THANKS&gt; Michael A. Covington, Bill Cleveland, Robert Cleveland,, G. W.</span></span>
+<span id="cb428-175"><a href="dc-string-manipulation.html#cb428-175"></a><span class="co">#&gt; THANKS&gt; Cran, C. G. Ding, Ulrich Drepper, Paul Eggert, J. O. Evans,</span></span>
+<span id="cb428-176"><a href="dc-string-manipulation.html#cb428-176"></a><span class="co">#&gt; THANKS&gt; David M. Gay, H. Frick, G. W. Hill, Richard H. Jones, Eric</span></span>
+<span id="cb428-177"><a href="dc-string-manipulation.html#cb428-177"></a><span class="co">#&gt; THANKS&gt; Grosse, Shelby Haberman, Bruno Haible, John Hartigan, Andrew</span></span>
+<span id="cb428-178"><a href="dc-string-manipulation.html#cb428-178"></a><span class="co">#&gt; THANKS&gt; Harvey, Trevor Hastie, Min Long Lam, George Marsaglia, K. J.</span></span>
+<span id="cb428-179"><a href="dc-string-manipulation.html#cb428-179"></a><span class="co">#&gt; THANKS&gt; Martin, Gordon Matzigkeit, C. R. Mckenzie, Jean McRae, Cyrus</span></span>
+<span id="cb428-180"><a href="dc-string-manipulation.html#cb428-180"></a><span class="co">#&gt; THANKS&gt; Mehta, Fionn Murtagh, John C. Nash, Finbarr O&#39;Sullivan, R. E.</span></span>
+<span id="cb428-181"><a href="dc-string-manipulation.html#cb428-181"></a><span class="co">#&gt; THANKS&gt; Odeh, William Patefield, Nitin Patel, Alan Richardson, D. E.</span></span>
+<span id="cb428-182"><a href="dc-string-manipulation.html#cb428-182"></a><span class="co">#&gt; THANKS&gt; Roberts, Patrick Royston, Russell Lenth, Ming-Jen Shyu,</span></span>
+<span id="cb428-183"><a href="dc-string-manipulation.html#cb428-183"></a><span class="co">#&gt; THANKS&gt; Richard C. Singleton, S. G. Springer, Supoj Sutanthavibul,</span></span>
+<span id="cb428-184"><a href="dc-string-manipulation.html#cb428-184"></a><span class="co">#&gt; THANKS&gt; Irma Terpenning, G. E. Thomas, Rob Tibshirani, Wai Wan Tsang,</span></span>
+<span id="cb428-185"><a href="dc-string-manipulation.html#cb428-185"></a><span class="co">#&gt; THANKS&gt; Berwin Turlach, Gary V. Vaughan, Michael Wichura, Jingbo Wang,</span></span>
+<span id="cb428-186"><a href="dc-string-manipulation.html#cb428-186"></a><span class="co">#&gt; THANKS&gt; M. A. Wong, and the Free Software Foundation (for autoconf</span></span>
+<span id="cb428-187"><a href="dc-string-manipulation.html#cb428-187"></a><span class="co">#&gt; THANKS&gt; code and utilities). See also files under src/extras.</span></span>
+<span id="cb428-188"><a href="dc-string-manipulation.html#cb428-188"></a><span class="co">#&gt; THANKS&gt; </span></span>
+<span id="cb428-189"><a href="dc-string-manipulation.html#cb428-189"></a><span class="co">#&gt; THANKS&gt; Many more, too numerous to mention here, have contributed by</span></span>
+<span id="cb428-190"><a href="dc-string-manipulation.html#cb428-190"></a><span class="co">#&gt; THANKS&gt; sending bug reports and suggesting various improvements.</span></span>
+<span id="cb428-191"><a href="dc-string-manipulation.html#cb428-191"></a><span class="co">#&gt; THANKS&gt; </span></span>
+<span id="cb428-192"><a href="dc-string-manipulation.html#cb428-192"></a><span class="co">#&gt; THANKS&gt; Simon Davies whilst at the University of Auckland wrote the</span></span>
+<span id="cb428-193"><a href="dc-string-manipulation.html#cb428-193"></a><span class="co">#&gt; THANKS&gt; original version of glm().</span></span>
+<span id="cb428-194"><a href="dc-string-manipulation.html#cb428-194"></a><span class="co">#&gt; THANKS&gt; </span></span>
+<span id="cb428-195"><a href="dc-string-manipulation.html#cb428-195"></a><span class="co">#&gt; THANKS&gt; Julian Harris and Wing Kwong (Tiki) Wan whilst at the</span></span>
+<span id="cb428-196"><a href="dc-string-manipulation.html#cb428-196"></a><span class="co">#&gt; THANKS&gt; University of Auckland assisted Ross Ihaka with the original</span></span>
+<span id="cb428-197"><a href="dc-string-manipulation.html#cb428-197"></a><span class="co">#&gt; THANKS&gt; Macintosh port.</span></span>
+<span id="cb428-198"><a href="dc-string-manipulation.html#cb428-198"></a><span class="co">#&gt; THANKS&gt; </span></span>
+<span id="cb428-199"><a href="dc-string-manipulation.html#cb428-199"></a><span class="co">#&gt; THANKS&gt; R was inspired by the S environment which has been principally</span></span>
+<span id="cb428-200"><a href="dc-string-manipulation.html#cb428-200"></a><span class="co">#&gt; THANKS&gt; developed by John Chambers, with substantial input from</span></span>
+<span id="cb428-201"><a href="dc-string-manipulation.html#cb428-201"></a><span class="co">#&gt; THANKS&gt; Douglas Bates, Rick Becker, Bill Cleveland, Trevor Hastie,</span></span>
+<span id="cb428-202"><a href="dc-string-manipulation.html#cb428-202"></a><span class="co">#&gt; THANKS&gt; Daryl Pregibon and Allan Wilks.</span></span>
+<span id="cb428-203"><a href="dc-string-manipulation.html#cb428-203"></a><span class="co">#&gt; THANKS&gt; </span></span>
+<span id="cb428-204"><a href="dc-string-manipulation.html#cb428-204"></a><span class="co">#&gt; THANKS&gt; A special debt is owed to John Chambers who has graciously</span></span>
+<span id="cb428-205"><a href="dc-string-manipulation.html#cb428-205"></a><span class="co">#&gt; THANKS&gt; contributed advice and encouragement in the early days of R</span></span>
+<span id="cb428-206"><a href="dc-string-manipulation.html#cb428-206"></a><span class="co">#&gt; THANKS&gt; and later became a member of the core team.</span></span>
+<span id="cb428-207"><a href="dc-string-manipulation.html#cb428-207"></a><span class="co">#&gt; THANKS&gt; </span></span>
+<span id="cb428-208"><a href="dc-string-manipulation.html#cb428-208"></a><span class="co">#&gt; THANKS&gt; The R Foundation may decide to give out</span></span>
+<span id="cb428-209"><a href="dc-string-manipulation.html#cb428-209"></a><span class="co">#&gt; THANKS&gt; &lt;first.lastname&gt;@R-project.org email addresses to contributors</span></span>
+<span id="cb428-210"><a href="dc-string-manipulation.html#cb428-210"></a><span class="co">#&gt; THANKS&gt; to the R Project (even without making them members of the R</span></span>
+<span id="cb428-211"><a href="dc-string-manipulation.html#cb428-211"></a><span class="co">#&gt; THANKS&gt; Foundation) when in the view of the R Foundation this would</span></span>
+<span id="cb428-212"><a href="dc-string-manipulation.html#cb428-212"></a><span class="co">#&gt; THANKS&gt; help advance the R project.</span></span>
+<span id="cb428-213"><a href="dc-string-manipulation.html#cb428-213"></a><span class="co">#&gt; THANKS&gt; </span></span>
+<span id="cb428-214"><a href="dc-string-manipulation.html#cb428-214"></a><span class="co">#&gt; THANKS&gt; The R Core Group, Roger Bivand, Jennifer Bryan, Di Cook, Dirk</span></span>
+<span id="cb428-215"><a href="dc-string-manipulation.html#cb428-215"></a><span class="co">#&gt; THANKS&gt; Eddelbuettel, John Fox, Bettina Grün, Frank Harrell, Torsten</span></span>
+<span id="cb428-216"><a href="dc-string-manipulation.html#cb428-216"></a><span class="co">#&gt; THANKS&gt; Hothorn, Stefano Iacus, Julie Josse, Balasubramanian</span></span>
+<span id="cb428-217"><a href="dc-string-manipulation.html#cb428-217"></a><span class="co">#&gt; THANKS&gt; Narasimhan, Marc Schwartz, Heather Turner, Bill Venables,</span></span>
+<span id="cb428-218"><a href="dc-string-manipulation.html#cb428-218"></a><span class="co">#&gt; THANKS&gt; Hadley Wickham and Achim Zeileis are the ordinary members of</span></span>
+<span id="cb428-219"><a href="dc-string-manipulation.html#cb428-219"></a><span class="co">#&gt; THANKS&gt; the R Foundation. In addition, David Meyer and Simon Wood are</span></span>
+<span id="cb428-220"><a href="dc-string-manipulation.html#cb428-220"></a><span class="co">#&gt; THANKS&gt; also e-addressable by &lt;Firstname&gt;.&lt;Lastname&gt;@R-project.org.</span></span></code></pre></div>
 <p>再举一个烧脑的例子</p>
 <div class="sourceCode" id="cb429"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb429-1"><a href="dc-string-manipulation.html#cb429-1"></a>x &lt;-<span class="st"> </span><span class="kw">paste</span>(<span class="kw">sapply</span>(</span>
 <span id="cb429-2"><a href="dc-string-manipulation.html#cb429-2"></a>  <span class="kw">sample</span>(<span class="dv">10</span>, <span class="dv">100</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>), <span class="co"># 从1-10个数字中有放回的随机抽取100个数</span></span>
@@ -1558,7 +1651,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="string-session-info" class="section level2">
 <h2><span class="header-section-number">9.15</span> 运行环境</h2>
 <div class="sourceCode" id="cb436"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb436-1"><a href="dc-string-manipulation.html#cb436-1"></a>xfun<span class="op">::</span><span class="kw">session_info</span>()</span>
-<span id="cb436-2"><a href="dc-string-manipulation.html#cb436-2"></a><span class="co">#&gt; R Under development (unstable) (2020-02-04 r77771)</span></span>
+<span id="cb436-2"><a href="dc-string-manipulation.html#cb436-2"></a><span class="co">#&gt; R Under development (unstable) (2020-03-06 r77913)</span></span>
 <span id="cb436-3"><a href="dc-string-manipulation.html#cb436-3"></a><span class="co">#&gt; Platform: x86_64-pc-linux-gnu (64-bit)</span></span>
 <span id="cb436-4"><a href="dc-string-manipulation.html#cb436-4"></a><span class="co">#&gt; Running under: Ubuntu 16.04.6 LTS</span></span>
 <span id="cb436-5"><a href="dc-string-manipulation.html#cb436-5"></a><span class="co">#&gt; </span></span>
@@ -1571,17 +1664,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb436-12"><a href="dc-string-manipulation.html#cb436-12"></a><span class="co">#&gt;   LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       </span></span>
 <span id="cb436-13"><a href="dc-string-manipulation.html#cb436-13"></a><span class="co">#&gt; </span></span>
 <span id="cb436-14"><a href="dc-string-manipulation.html#cb436-14"></a><span class="co">#&gt; Package version:</span></span>
-<span id="cb436-15"><a href="dc-string-manipulation.html#cb436-15"></a><span class="co">#&gt;   assertthat_0.2.1 base64enc_0.1.3  BH_1.72.0.3      bookdown_0.17   </span></span>
-<span id="cb436-16"><a href="dc-string-manipulation.html#cb436-16"></a><span class="co">#&gt;   cli_2.0.1        compiler_4.0.0   crayon_1.3.4     curl_4.3        </span></span>
-<span id="cb436-17"><a href="dc-string-manipulation.html#cb436-17"></a><span class="co">#&gt;   digest_0.6.23    dplyr_0.8.4      ellipsis_0.3.0   evaluate_0.14   </span></span>
+<span id="cb436-15"><a href="dc-string-manipulation.html#cb436-15"></a><span class="co">#&gt;   assertthat_0.2.1 base64enc_0.1.3  BH_1.72.0.3      bookdown_0.18   </span></span>
+<span id="cb436-16"><a href="dc-string-manipulation.html#cb436-16"></a><span class="co">#&gt;   cli_2.0.2        compiler_4.0.0   crayon_1.3.4     curl_4.3        </span></span>
+<span id="cb436-17"><a href="dc-string-manipulation.html#cb436-17"></a><span class="co">#&gt;   digest_0.6.25    dplyr_0.8.4      ellipsis_0.3.0   evaluate_0.14   </span></span>
 <span id="cb436-18"><a href="dc-string-manipulation.html#cb436-18"></a><span class="co">#&gt;   fansi_0.4.1      glue_1.3.1       graphics_4.0.0   grDevices_4.0.0 </span></span>
-<span id="cb436-19"><a href="dc-string-manipulation.html#cb436-19"></a><span class="co">#&gt;   highr_0.8        htmltools_0.4.0  jsonlite_1.6.1   knitr_1.26      </span></span>
-<span id="cb436-20"><a href="dc-string-manipulation.html#cb436-20"></a><span class="co">#&gt;   lifecycle_0.1.0  magrittr_1.5     markdown_1.1     methods_4.0.0   </span></span>
+<span id="cb436-19"><a href="dc-string-manipulation.html#cb436-19"></a><span class="co">#&gt;   highr_0.8        htmltools_0.4.0  jsonlite_1.6.1   knitr_1.28.2    </span></span>
+<span id="cb436-20"><a href="dc-string-manipulation.html#cb436-20"></a><span class="co">#&gt;   lifecycle_0.2.0  magrittr_1.5     markdown_1.1     methods_4.0.0   </span></span>
 <span id="cb436-21"><a href="dc-string-manipulation.html#cb436-21"></a><span class="co">#&gt;   mime_0.9         pillar_1.4.3     pkgconfig_2.0.3  plogr_0.2.0     </span></span>
-<span id="cb436-22"><a href="dc-string-manipulation.html#cb436-22"></a><span class="co">#&gt;   purrr_0.3.3      R6_2.4.1         Rcpp_1.0.3       rlang_0.4.4     </span></span>
-<span id="cb436-23"><a href="dc-string-manipulation.html#cb436-23"></a><span class="co">#&gt;   rmarkdown_2.1    stats_4.0.0      stringi_1.4.5    stringr_1.4.0   </span></span>
-<span id="cb436-24"><a href="dc-string-manipulation.html#cb436-24"></a><span class="co">#&gt;   tibble_2.1.3     tidyr_1.0.2      tidyselect_1.0.0 tinytex_0.19    </span></span>
-<span id="cb436-25"><a href="dc-string-manipulation.html#cb436-25"></a><span class="co">#&gt;   tools_4.0.0      utf8_1.1.4       utils_4.0.0      vctrs_0.2.2     </span></span>
+<span id="cb436-22"><a href="dc-string-manipulation.html#cb436-22"></a><span class="co">#&gt;   purrr_0.3.3      R6_2.4.1         Rcpp_1.0.3       rlang_0.4.5     </span></span>
+<span id="cb436-23"><a href="dc-string-manipulation.html#cb436-23"></a><span class="co">#&gt;   rmarkdown_2.1    stats_4.0.0      stringi_1.4.6    stringr_1.4.0   </span></span>
+<span id="cb436-24"><a href="dc-string-manipulation.html#cb436-24"></a><span class="co">#&gt;   tibble_2.1.3     tidyr_1.0.2      tidyselect_1.0.0 tinytex_0.20    </span></span>
+<span id="cb436-25"><a href="dc-string-manipulation.html#cb436-25"></a><span class="co">#&gt;   tools_4.0.0      utf8_1.1.4       utils_4.0.0      vctrs_0.2.3     </span></span>
 <span id="cb436-26"><a href="dc-string-manipulation.html#cb436-26"></a><span class="co">#&gt;   xfun_0.12        yaml_2.2.1</span></span></code></pre></div>
 
 </div>

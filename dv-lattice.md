@@ -1,4 +1,3 @@
-
 # Lattice 图形 {#chap:lattice}
 
 > If you imagine that this pen is Trellis, then Lattice is not this pen.
@@ -21,7 +20,7 @@ library(lattice)
 bwplot(voice.part ~ height, data = singer)
 ```
 
-<img src="dv-lattice_files/figure-html/unnamed-chunk-2-1.png" width="70%" style="display: block; margin: auto;" />
+<img src="dv-lattice_files/figure-html/unnamed-chunk-1-1.png" width="70%" style="display: block; margin: auto;" />
 
 
 ## 折线图 {#sec:line}
@@ -40,7 +39,7 @@ xyplot(EuStockMarkets) +
   ))
 ```
 
-<img src="dv-lattice_files/figure-html/unnamed-chunk-3-1.png" width="70%" style="display: block; margin: auto;" />
+<img src="dv-lattice_files/figure-html/unnamed-chunk-2-1.png" width="70%" style="display: block; margin: auto;" />
 
 
 如何解释
@@ -68,7 +67,7 @@ horizonplot(EuStockMarkets,
   )
 ```
 
-<img src="dv-lattice_files/figure-html/unnamed-chunk-4-1.png" width="70%" style="display: block; margin: auto;" />
+<img src="dv-lattice_files/figure-html/unnamed-chunk-3-1.png" width="70%" style="display: block; margin: auto;" />
 
 
 
@@ -94,7 +93,7 @@ plot(Orange,
 )
 ```
 
-<img src="dv-lattice_files/figure-html/unnamed-chunk-5-1.png" width="70%" style="display: block; margin: auto;" />
+<img src="dv-lattice_files/figure-html/unnamed-chunk-4-1.png" width="70%" style="display: block; margin: auto;" />
 
 
 ```r
@@ -108,7 +107,7 @@ barchart(Claims / Holders ~ Age | Group,
 )
 ```
 
-<img src="dv-lattice_files/figure-html/unnamed-chunk-6-1.png" width="70%" style="display: block; margin: auto;" />
+<img src="dv-lattice_files/figure-html/unnamed-chunk-5-1.png" width="70%" style="display: block; margin: auto;" />
 
 
 
@@ -120,7 +119,7 @@ barchart(Claims / Holders ~ Age | Group,
 )
 ```
 
-<img src="dv-lattice_files/figure-html/unnamed-chunk-7-1.png" width="70%" style="display: block; margin: auto;" />
+<img src="dv-lattice_files/figure-html/unnamed-chunk-6-1.png" width="70%" style="display: block; margin: auto;" />
 
 
 
@@ -129,7 +128,7 @@ barchart(Claims / Holders ~ Age | Group,
 show.settings()
 ```
 
-<img src="dv-lattice_files/figure-html/unnamed-chunk-8-1.png" width="70%" style="display: block; margin: auto;" />
+<img src="dv-lattice_files/figure-html/unnamed-chunk-7-1.png" width="70%" style="display: block; margin: auto;" />
 
 
 
@@ -178,7 +177,7 @@ barchart(Claims / Holders * 100 ~ Age | Group,
 )
 ```
 
-<img src="dv-lattice_files/figure-html/unnamed-chunk-10-1.png" width="70%" style="display: block; margin: auto;" />
+<img src="dv-lattice_files/figure-html/unnamed-chunk-9-1.png" width="70%" style="display: block; margin: auto;" />
 
 ## 平滑图 {#sec:smooth}
 
@@ -205,7 +204,7 @@ xyplot(y ~ x, xy) +
   layer(panel.smoother(y ~ s(x), method = "gam"))
 ```
 
-<img src="dv-lattice_files/figure-html/unnamed-chunk-11-1.png" width="70%" style="display: block; margin: auto;" /><img src="dv-lattice_files/figure-html/unnamed-chunk-11-2.png" width="70%" style="display: block; margin: auto;" /><img src="dv-lattice_files/figure-html/unnamed-chunk-11-3.png" width="70%" style="display: block; margin: auto;" />
+<img src="dv-lattice_files/figure-html/unnamed-chunk-10-1.png" width="70%" style="display: block; margin: auto;" /><img src="dv-lattice_files/figure-html/unnamed-chunk-10-2.png" width="70%" style="display: block; margin: auto;" /><img src="dv-lattice_files/figure-html/unnamed-chunk-10-3.png" width="70%" style="display: block; margin: auto;" />
 
 Trellis Displays of Tukey's Hanging Rootograms
 
@@ -215,7 +214,7 @@ x <- rpois(1000, lambda = 50)
 rootogram(~x, dfun = function(x) dpois(x, lambda = 50))
 ```
 
-<img src="dv-lattice_files/figure-html/unnamed-chunk-12-1.png" width="70%" style="display: block; margin: auto;" />
+<img src="dv-lattice_files/figure-html/unnamed-chunk-11-1.png" width="70%" style="display: block; margin: auto;" />
 
 ## 点图 {#sec:dotplot}
 
@@ -228,7 +227,7 @@ segplot(reorder(factor(county), rate.male) ~ LCL95.male + UCL95.male,
 )
 ```
 
-<img src="dv-lattice_files/figure-html/unnamed-chunk-13-1.png" width="70%" style="display: block; margin: auto;" />
+<img src="dv-lattice_files/figure-html/unnamed-chunk-12-1.png" width="70%" style="display: block; margin: auto;" />
 
 ## 阶梯图 {#sec:step}
 
@@ -239,7 +238,7 @@ segplot(reorder(factor(county), rate.male) ~ LCL95.male + UCL95.male,
 ecdfplot(~height | voice.part, data = singer)
 ```
 
-<img src="dv-lattice_files/figure-html/unnamed-chunk-14-1.png" width="70%" style="display: block; margin: auto;" />
+<img src="dv-lattice_files/figure-html/unnamed-chunk-13-1.png" width="70%" style="display: block; margin: auto;" />
 
 ## 分面图 {#sec:facet}
 
@@ -257,7 +256,7 @@ levelplot(depth ~ long + lat | Magnitude, data = quakes.ordered,
          aspect = "iso", prepanel = prepanel.default.xyplot)
 ```
 
-<img src="dv-lattice_files/figure-html/unnamed-chunk-15-1.png" width="70%" style="display: block; margin: auto;" />
+<img src="dv-lattice_files/figure-html/unnamed-chunk-14-1.png" width="70%" style="display: block; margin: auto;" />
 
 ## 等高线图 {#sec:contour}
 
@@ -275,7 +274,7 @@ levelplot(z ~ x * y, xyz,
 )
 ```
 
-<img src="dv-lattice_files/figure-html/unnamed-chunk-16-1.png" width="70%" style="display: block; margin: auto;" />
+<img src="dv-lattice_files/figure-html/unnamed-chunk-15-1.png" width="70%" style="display: block; margin: auto;" />
 
 ## 地图 {#sub:map}
 
@@ -293,7 +292,7 @@ mapplot(rownames(USCancerRates) ~ log(rate.male) + log(rate.female),
                   projection = "mercator"))
 ```
 
-<img src="dv-lattice_files/figure-html/unnamed-chunk-17-1.png" width="70%" style="display: block; margin: auto;" />
+<img src="dv-lattice_files/figure-html/unnamed-chunk-16-1.png" width="70%" style="display: block; margin: auto;" />
 
 
 ## 聚类图 {#sub:cluster}
@@ -316,7 +315,7 @@ xyplot(Sepal.Length ~ Petal.Length,
 )
 ```
 
-<img src="dv-lattice_files/figure-html/unnamed-chunk-18-1.png" width="70%" style="display: block; margin: auto;" />
+<img src="dv-lattice_files/figure-html/unnamed-chunk-17-1.png" width="70%" style="display: block; margin: auto;" />
 
 
 ## 运行环境 {#sec:lattice-sessioninfo}
@@ -324,7 +323,7 @@ xyplot(Sepal.Length ~ Petal.Length,
 
 ```r
 sessionInfo()
-#> R Under development (unstable) (2020-02-04 r77771)
+#> R Under development (unstable) (2020-03-06 r77913)
 #> Platform: x86_64-pc-linux-gnu (64-bit)
 #> Running under: Ubuntu 16.04.6 LTS
 #> 
@@ -346,14 +345,14 @@ sessionInfo()
 #> 
 #> other attached packages:
 #> [1] mapproj_1.2.7       maps_3.3.0          mgcv_1.8-31        
-#> [4] MASS_7.3-51.5       nlme_3.1-143        latticeExtra_0.6-29
-#> [7] RColorBrewer_1.1-2  lattice_0.20-38    
+#> [4] MASS_7.3-51.5       nlme_3.1-145        latticeExtra_0.6-29
+#> [7] RColorBrewer_1.1-2  lattice_0.20-40    
 #> 
 #> loaded via a namespace (and not attached):
-#>  [1] Rcpp_1.0.3      knitr_1.26      magrittr_1.5    jpeg_0.1-8.1   
-#>  [5] rlang_0.4.4     stringr_1.4.0   tools_4.0.0     grid_4.0.0     
+#>  [1] Rcpp_1.0.3      knitr_1.28.2    magrittr_1.5    jpeg_0.1-8.1   
+#>  [5] rlang_0.4.5     stringr_1.4.0   tools_4.0.0     grid_4.0.0     
 #>  [9] xfun_0.12       png_0.1-7       htmltools_0.4.0 yaml_2.2.1     
-#> [13] digest_0.6.23   bookdown_0.17   Matrix_1.2-18   curl_4.3       
-#> [17] evaluate_0.14   rmarkdown_2.1   stringi_1.4.5   compiler_4.0.0
+#> [13] digest_0.6.25   bookdown_0.18   Matrix_1.2-18   curl_4.3       
+#> [17] evaluate_0.14   rmarkdown_2.1   stringi_1.4.6   compiler_4.0.0
 ```
 

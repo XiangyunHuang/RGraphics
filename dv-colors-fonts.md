@@ -1,4 +1,3 @@
-
 # 色彩与字体 {#colors-fonts}
 
 ## 颜色 {#colors-in-r}
@@ -109,8 +108,8 @@ ggplot(hcl, aes(x, y)) +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="dv-colors-fonts_files/figure-html/unnamed-chunk-4-1.png" alt="HCL调色" width="70%" />
-<p class="caption">(\#fig:unnamed-chunk-4)HCL调色</p>
+<img src="dv-colors-fonts_files/figure-html/unnamed-chunk-3-1.png" alt="HCL调色" width="70%" />
+<p class="caption">(\#fig:unnamed-chunk-3)HCL调色</p>
 </div>
 
 R 内置了 502 种不同颜色的名称，下面随机地选取 20 种颜色
@@ -188,8 +187,8 @@ hist(mtcars$hp, col = "#56B4E9", border = "white", grid = grid())
 ```
 
 <div class="figure" style="text-align: center">
-<img src="dv-colors-fonts_files/figure-html/unnamed-chunk-7-1.png" alt="直方图" width="70%" />
-<p class="caption">(\#fig:unnamed-chunk-7)直方图</p>
+<img src="dv-colors-fonts_files/figure-html/unnamed-chunk-6-1.png" alt="直方图" width="70%" />
+<p class="caption">(\#fig:unnamed-chunk-6)直方图</p>
 </div>
 
 
@@ -205,8 +204,8 @@ ggplot(mtcars) +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="dv-colors-fonts_files/figure-html/unnamed-chunk-8-1.png" alt="直方图" width="70%" />
-<p class="caption">(\#fig:unnamed-chunk-8)直方图</p>
+<img src="dv-colors-fonts_files/figure-html/unnamed-chunk-7-1.png" alt="直方图" width="70%" />
+<p class="caption">(\#fig:unnamed-chunk-7)直方图</p>
 </div>
 
 ### colourlovers
@@ -235,7 +234,7 @@ barplot(VADeaths, col = swatch(palette3)[[1]], border = NA)
 barplot(VADeaths, col = swatch(palette4)[[1]], border = NA)
 ```
 
-<img src="dv-colors-fonts_files/figure-html/unnamed-chunk-10-1.png" width="70%" style="display: block; margin: auto;" />
+<img src="dv-colors-fonts_files/figure-html/unnamed-chunk-9-1.png" width="70%" style="display: block; margin: auto;" />
 
 调色板的描述信息
 
@@ -246,7 +245,7 @@ palette1
 #> Title:           Anaconda 
 #> Created by user: kunteper 
 #> Date created:    2007-08-05 14:14:15 
-#> Views:           687 
+#> Views:           700 
 #> Votes:           2 
 #> Comments:        2 
 #> Hearts:          0 
@@ -285,10 +284,22 @@ ggplot(mtcars, aes(x = mpg * 0.43, y = wt * 0.4535924, colour = factor(cyl))) +
   ) +
   theme_fira() +
   scale_colour_fira()
+#> Scanning ttf files in /home/travis/R/Library/firatheme/font ...
+#> Extracting .afm files from .ttf files...
+#> /home/travis/R/Library/firatheme/font/FiraSans-Bold.ttf => /home/travis/R/Library/extrafontdb/metrics/FiraSans-Bold
+#> /home/travis/R/Library/firatheme/font/FiraSans-BoldItalic.ttf => /home/travis/R/Library/extrafontdb/metrics/FiraSans-BoldItalic
+#> /home/travis/R/Library/firatheme/font/FiraSans-Italic.ttf => /home/travis/R/Library/extrafontdb/metrics/FiraSans-Italic
+#> /home/travis/R/Library/firatheme/font/FiraSans-Medium.ttf => /home/travis/R/Library/extrafontdb/metrics/FiraSans-Medium
+#> /home/travis/R/Library/firatheme/font/FiraSans-MediumItalic.ttf => /home/travis/R/Library/extrafontdb/metrics/FiraSans-MediumItalic
+#> /home/travis/R/Library/firatheme/font/FiraSans-Regular.ttf => /home/travis/R/Library/extrafontdb/metrics/FiraSans-Regular
+#> Found FontName for 6 fonts.
+#> Scanning afm files in /home/travis/R/Library/extrafontdb/metrics
+#> Writing font table in /home/travis/R/Library/extrafontdb/fontmap/fonttable.csv
+#> Writing Fontmap to /home/travis/R/Library/extrafontdb/fontmap/Fontmap...
 #> `geom_smooth()` using method = 'loess' and formula 'y ~ x'
 ```
 
-<img src="dv-colors-fonts_files/figure-html/unnamed-chunk-13-1.png" width="70%" style="display: block; margin: auto;" />
+<img src="dv-colors-fonts_files/figure-html/unnamed-chunk-12-1.png" width="70%" style="display: block; margin: auto;" />
 
 以常用的新罗马字体为例，在 R 绘图代码中全局设置字体 `par(family="Times")` 或者 `par(family="serif")`，数据集 cars 的含义，散点图 \@ref(fig:times-font) 表达的统计意义
  
@@ -477,7 +488,7 @@ convert -quality 100 -density 300x300 font_Impact.pdf font_Impact.png
 ```
 
 <div class="figure" style="text-align: center">
-<img src="figures/font_Impact.png" alt="Impact 字体" width="70%" />
+<img src="figures/font-impact.png" alt="Impact 字体" width="70%" />
 <p class="caption">(\#fig:fonts-Impact)Impact 字体</p>
 </div>
 

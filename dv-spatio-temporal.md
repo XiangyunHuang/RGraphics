@@ -1,4 +1,3 @@
-
 # 时空可视化 {#ggplot2-Spatio-Temporal-Data-Visualization}
 
 
@@ -52,7 +51,7 @@ ggplot(east_asia, aes(x = long, y = lat, group = group, fill = region)) +
   scale_fill_brewer(palette = "Set2")
 ```
 
-<img src="dv-spatio-temporal_files/figure-html/unnamed-chunk-3-1.png" width="70%" style="display: block; margin: auto;" />
+<img src="dv-spatio-temporal_files/figure-html/unnamed-chunk-2-1.png" width="70%" style="display: block; margin: auto;" />
 
 ### 投影和观察方位 {#project-orientation}
 
@@ -93,7 +92,7 @@ ggplot(worldmap, aes(long, lat, group = group)) +
   )
 ```
 
-<img src="dv-spatio-temporal_files/figure-html/unnamed-chunk-4-1.png" width="70%" style="display: block; margin: auto;" /><img src="dv-spatio-temporal_files/figure-html/unnamed-chunk-4-2.png" width="70%" style="display: block; margin: auto;" /><img src="dv-spatio-temporal_files/figure-html/unnamed-chunk-4-3.png" width="70%" style="display: block; margin: auto;" /><img src="dv-spatio-temporal_files/figure-html/unnamed-chunk-4-4.png" width="70%" style="display: block; margin: auto;" />
+<img src="dv-spatio-temporal_files/figure-html/unnamed-chunk-3-1.png" width="70%" style="display: block; margin: auto;" /><img src="dv-spatio-temporal_files/figure-html/unnamed-chunk-3-2.png" width="70%" style="display: block; margin: auto;" /><img src="dv-spatio-temporal_files/figure-html/unnamed-chunk-3-3.png" width="70%" style="display: block; margin: auto;" /><img src="dv-spatio-temporal_files/figure-html/unnamed-chunk-3-4.png" width="70%" style="display: block; margin: auto;" />
 
 
 
@@ -123,7 +122,7 @@ ggplot(worldmap, aes(long, lat, group = group)) +
   )
 ```
 
-<img src="dv-spatio-temporal_files/figure-html/unnamed-chunk-5-1.png" width="70%" style="display: block; margin: auto;" /><img src="dv-spatio-temporal_files/figure-html/unnamed-chunk-5-2.png" width="70%" style="display: block; margin: auto;" /><img src="dv-spatio-temporal_files/figure-html/unnamed-chunk-5-3.png" width="70%" style="display: block; margin: auto;" />
+<img src="dv-spatio-temporal_files/figure-html/unnamed-chunk-4-1.png" width="70%" style="display: block; margin: auto;" /><img src="dv-spatio-temporal_files/figure-html/unnamed-chunk-4-2.png" width="70%" style="display: block; margin: auto;" /><img src="dv-spatio-temporal_files/figure-html/unnamed-chunk-4-3.png" width="70%" style="display: block; margin: auto;" />
 
 
 ### 美国各州犯罪率 {#USA-crime-rates}
@@ -173,8 +172,8 @@ ggplot(crimes, aes(map_id = state)) +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="dv-spatio-temporal_files/figure-html/unnamed-chunk-8-1.png" alt="1973年美国各州的犯罪率数据" width="70%" />
-<p class="caption">(\#fig:unnamed-chunk-8)1973年美国各州的犯罪率数据</p>
+<img src="dv-spatio-temporal_files/figure-html/unnamed-chunk-7-1.png" alt="1973年美国各州的犯罪率数据" width="70%" />
+<p class="caption">(\#fig:unnamed-chunk-7)1973年美国各州的犯罪率数据</p>
 </div>
 
 
@@ -187,8 +186,8 @@ ggplot(crimesm, aes(map_id = state)) +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="dv-spatio-temporal_files/figure-html/unnamed-chunk-9-1.png" alt="四类犯罪在各州的分布" width="70%" />
-<p class="caption">(\#fig:unnamed-chunk-9)四类犯罪在各州的分布</p>
+<img src="dv-spatio-temporal_files/figure-html/unnamed-chunk-8-1.png" alt="四类犯罪在各州的分布" width="70%" />
+<p class="caption">(\#fig:unnamed-chunk-8)四类犯罪在各州的分布</p>
 </div>
 
 ### 斐济地震带 {#fiji-earthquake-map}
@@ -334,8 +333,8 @@ plot(meuse, axes = TRUE)
 ```
 
 <div class="figure" style="text-align: center">
-<img src="dv-spatio-temporal_files/figure-html/unnamed-chunk-11-1.png" alt="sp 对象" width="58.33%" />
-<p class="caption">(\#fig:unnamed-chunk-11)sp 对象</p>
+<img src="dv-spatio-temporal_files/figure-html/unnamed-chunk-10-1.png" alt="sp 对象" width="58.33%" />
+<p class="caption">(\#fig:unnamed-chunk-10)sp 对象</p>
 </div>
 
 
@@ -348,15 +347,15 @@ library(rgdal)
 #>  GDAL binary built with GEOS: TRUE 
 #>  Loaded PROJ.4 runtime: Rel. 4.9.2, 08 September 2015, [PJ_VERSION: 492]
 #>  Path to PROJ.4 shared files: (autodetected)
-#>  Linking to sp version: 1.3-2
+#>  Linking to sp version: 1.4-1
 crs.longlat <- CRS("+init=epsg:4326")
 meuse.longlat <- spTransform(meuse, crs.longlat)
 plot(meuse.longlat, axes = TRUE)
 ```
 
 <div class="figure" style="text-align: center">
-<img src="dv-spatio-temporal_files/figure-html/unnamed-chunk-12-1.png" alt="sp 对象" width="58.33%" />
-<p class="caption">(\#fig:unnamed-chunk-12)sp 对象</p>
+<img src="dv-spatio-temporal_files/figure-html/unnamed-chunk-11-1.png" alt="sp 对象" width="58.33%" />
+<p class="caption">(\#fig:unnamed-chunk-11)sp 对象</p>
 </div>
 
 
@@ -374,7 +373,7 @@ nc <- readShapePoly(fname, proj4string = p4s)
 plot(nc, axes = TRUE, col = grey(1 - nc$SID79 / 57))
 ```
 
-<img src="dv-spatio-temporal_files/figure-html/unnamed-chunk-13-1.png" width="70%" style="display: block; margin: auto;" />
+<img src="dv-spatio-temporal_files/figure-html/unnamed-chunk-12-1.png" width="70%" style="display: block; margin: auto;" />
 
 
 ```r
@@ -389,7 +388,7 @@ spplot(nc, c("SID74", "SID79"),
 )
 ```
 
-<img src="dv-spatio-temporal_files/figure-html/unnamed-chunk-14-1.png" width="70%" style="display: block; margin: auto;" />
+<img src="dv-spatio-temporal_files/figure-html/unnamed-chunk-13-1.png" width="70%" style="display: block; margin: auto;" />
 
 ::: warning
 maptools 提供的 `readShapePoly` 函数去读取 shp 文件的方式已经过时，推荐使用 `rgdal::readOGR` 或者 `sf::st_read` 方式读取
@@ -482,7 +481,7 @@ getAnywhere(plot.raster)
 #>     }
 #>     rasterImage(x, 0, 0, ncol(x), nrow(x), ...)
 #> }
-#> <bytecode: 0x74621e0>
+#> <bytecode: 0x1afc5a8>
 #> <environment: namespace:graphics>
 ```
 
@@ -506,7 +505,7 @@ getAnywhere(rasterImage)
 #>         ...)
 #>     invisible()
 #> }
-#> <bytecode: 0x61b8ba0>
+#> <bytecode: 0x19f1470>
 #> <environment: namespace:graphics>
 ```
 
@@ -526,8 +525,8 @@ rasterImage(image, 200, 400, 250, 450, angle = 15, interpolate = FALSE)
 ```
 
 <div class="figure" style="text-align: center">
-<img src="dv-spatio-temporal_files/figure-html/unnamed-chunk-18-1.png" alt="raster 图像" width="50%" />
-<p class="caption">(\#fig:unnamed-chunk-18)raster 图像</p>
+<img src="dv-spatio-temporal_files/figure-html/unnamed-chunk-17-1.png" alt="raster 图像" width="50%" />
+<p class="caption">(\#fig:unnamed-chunk-17)raster 图像</p>
 </div>
 
 
@@ -552,8 +551,8 @@ plot(meuse.test, legend = F)
 ```
 
 <div class="figure" style="text-align: center">
-<img src="dv-spatio-temporal_files/figure-html/unnamed-chunk-20-1.png" alt="raster 对象" width="70%" />
-<p class="caption">(\#fig:unnamed-chunk-20)raster 对象</p>
+<img src="dv-spatio-temporal_files/figure-html/unnamed-chunk-19-1.png" alt="raster 对象" width="70%" />
+<p class="caption">(\#fig:unnamed-chunk-19)raster 对象</p>
 </div>
 
 Edzer Pebesma 开发了 stars 包
@@ -577,7 +576,7 @@ ggplot() +
   scale_y_discrete(expand = c(0, 0))
 ```
 
-<img src="dv-spatio-temporal_files/figure-html/unnamed-chunk-21-1.png" width="70%" style="display: block; margin: auto;" />
+<img src="dv-spatio-temporal_files/figure-html/unnamed-chunk-20-1.png" width="70%" style="display: block; margin: auto;" />
 
 
 
@@ -594,4 +593,4 @@ ggplot() +
   facet_wrap(~VAR, ncol = 1)
 ```
 
-<img src="dv-spatio-temporal_files/figure-html/unnamed-chunk-22-1.png" width="70%" style="display: block; margin: auto;" />
+<img src="dv-spatio-temporal_files/figure-html/unnamed-chunk-21-1.png" width="70%" style="display: block; margin: auto;" />

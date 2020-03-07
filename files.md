@@ -1,4 +1,3 @@
-
 # 文件管理员 {#file-manipulation}
 
 > 考虑添加 Shell 下的命令实现，参考 [命令行的艺术](https://github.com/jlevy/the-art-of-command-line/blob/master/README-zh.md)
@@ -35,45 +34,13 @@ library(fs)
    ```r
    # list.dirs(path = '.', full.names = TRUE, recursive = TRUE)
    list.dirs(path = '.', full.names = TRUE, recursive = FALSE)
-   #>  [1] "./_book"                        "./_bookdown_files"             
-   #>  [3] "./.git"                         "./animated-graphics_files"     
-   #>  [5] "./cs-cran-network_files"        "./data"                        
-   #>  [7] "./data-frame_cache"             "./data-frame_files"            
-   #>  [9] "./data-import_cache"            "./data-objects_cache"          
-   #> [11] "./data-table_cache"             "./data-tibble_cache"           
-   #> [13] "./dc-regular-expressions_cache" "./dc-string-manipulation_cache"
-   #> [15] "./demos"                        "./dv-colors-fonts_cache"       
-   #> [17] "./dv-colors-fonts_files"        "./dv-ggplot2_cache"            
-   #> [19] "./dv-ggplot2_files"             "./dv-highcharter_cache"        
-   #> [21] "./dv-highcharter_files"         "./dv-lattice_cache"            
-   #> [23] "./dv-lattice_files"             "./dv-plot_cache"               
-   #> [25] "./dv-plot_files"                "./dv-plot3d_cache"             
-   #> [27] "./dv-plot3d_files"              "./dv-plotly_cache"             
-   #> [29] "./dv-spatio-temporal_files"     "./dynamic-documents_cache"     
-   #> [31] "./dynamic-documents_files"      "./figures"                     
-   #> [33] "./files_cache"                  "./includes"                    
-   #> [35] "./index_cache"                  "./interactives"                
-   #> [37] "./preface_cache"                "./ubuntu"
+   #> [1] "./_book"           "./_bookdown_files" "./.git"           
+   #> [4] "./data"            "./demos"           "./figures"        
+   #> [7] "./includes"        "./interactives"    "./ubuntu"
    list.dirs(path = '.', full.names = FALSE, recursive = FALSE)
-   #>  [1] "_book"                        "_bookdown_files"             
-   #>  [3] ".git"                         "animated-graphics_files"     
-   #>  [5] "cs-cran-network_files"        "data"                        
-   #>  [7] "data-frame_cache"             "data-frame_files"            
-   #>  [9] "data-import_cache"            "data-objects_cache"          
-   #> [11] "data-table_cache"             "data-tibble_cache"           
-   #> [13] "dc-regular-expressions_cache" "dc-string-manipulation_cache"
-   #> [15] "demos"                        "dv-colors-fonts_cache"       
-   #> [17] "dv-colors-fonts_files"        "dv-ggplot2_cache"            
-   #> [19] "dv-ggplot2_files"             "dv-highcharter_cache"        
-   #> [21] "dv-highcharter_files"         "dv-lattice_cache"            
-   #> [23] "dv-lattice_files"             "dv-plot_cache"               
-   #> [25] "dv-plot_files"                "dv-plot3d_cache"             
-   #> [27] "dv-plot3d_files"              "dv-plotly_cache"             
-   #> [29] "dv-spatio-temporal_files"     "dynamic-documents_cache"     
-   #> [31] "dynamic-documents_files"      "figures"                     
-   #> [33] "files_cache"                  "includes"                    
-   #> [35] "index_cache"                  "interactives"                
-   #> [37] "preface_cache"                "ubuntu"
+   #> [1] "_book"           "_bookdown_files" ".git"            "data"           
+   #> [5] "demos"           "figures"         "includes"        "interactives"   
+   #> [9] "ubuntu"
    ```
 
 *  `list.files(path = ".", pattern = NULL, all.files = FALSE, full.names = FALSE, recursive = FALSE,ignore.case = FALSE, include.dirs = FALSE, no.. = FALSE)`
@@ -102,33 +69,33 @@ library(fs)
     ```r
     file.info(rinternals)
     #>                                                size isdir mode
-    #> /home/travis/R-bin/lib/R/include/Rinternals.h 62539 FALSE  644
+    #> /home/travis/R-bin/lib/R/include/Rinternals.h 62578 FALSE  644
     #>                                                             mtime
-    #> /home/travis/R-bin/lib/R/include/Rinternals.h 2020-02-04 21:19:55
+    #> /home/travis/R-bin/lib/R/include/Rinternals.h 2020-03-07 00:19:41
     #>                                                             ctime
-    #> /home/travis/R-bin/lib/R/include/Rinternals.h 2020-02-05 13:09:12
+    #> /home/travis/R-bin/lib/R/include/Rinternals.h 2020-03-07 20:45:50
     #>                                                             atime  uid  gid
-    #> /home/travis/R-bin/lib/R/include/Rinternals.h 2020-02-05 13:09:12 2000 2000
+    #> /home/travis/R-bin/lib/R/include/Rinternals.h 2020-03-07 20:45:50 2000 2000
     #>                                                uname grname
     #> /home/travis/R-bin/lib/R/include/Rinternals.h travis travis
     file.mode(rinternals)
     #> [1] "644"
     file.mtime(rinternals)
-    #> [1] "2020-02-04 21:19:55 CST"
+    #> [1] "2020-03-07 00:19:41 CST"
     file.size(rinternals)
-    #> [1] 62539
+    #> [1] 62578
     # 查看当前目录的权限
     file.info(".")
     #>   size isdir mode               mtime               ctime               atime
-    #> . 4096  TRUE  775 2020-02-05 13:14:52 2020-02-05 13:14:52 2020-02-05 13:14:53
+    #> . 4096  TRUE  775 2020-03-07 20:51:25 2020-03-07 20:51:25 2020-03-07 20:51:25
     #>    uid  gid  uname grname
     #> . 2000 2000 travis travis
     # 查看指定目录权限
     file.info("./_book/")    
     #>          size isdir mode               mtime               ctime
-    #> ./_book/ 4096  TRUE  775 2020-02-05 13:14:50 2020-02-05 13:14:50
+    #> ./_book/ 4096  TRUE  775 2020-03-07 20:51:23 2020-03-07 20:51:23
     #>                        atime  uid  gid  uname grname
-    #> ./_book/ 2020-02-05 13:14:50 2000 2000 travis travis
+    #> ./_book/ 2020-03-07 20:51:23 2000 2000 travis travis
     ```
 
 * `file.access(names, mode = 0)`  
@@ -169,34 +136,112 @@ library(fs)
     ```r
     # 当前目录下的子目录和文件
     dir()
-    #>  [1] "_book"                        "_bookdown_files"             
-    #>  [3] "_bookdown.yml"                "_build.sh"                   
-    #>  [5] "_common.R"                    "_deploy.sh"                  
-    #>  [7] "_main.rds"                    "_output.yml"                 
-    #>  [9] "_render.R"                    "99-references.Rmd"           
-    #> [11] "Adobe-Fonts.zip"              "animated-graphics_files"     
-    ....
+    #>  [1] "_book"                      "_bookdown_files"           
+    #>  [3] "_bookdown.yml"              "_build.sh"                 
+    #>  [5] "_common.R"                  "_deploy.sh"                
+    #>  [7] "_main.rds"                  "_output.yml"               
+    #>  [9] "_render.R"                  "99-references.Rmd"         
+    #> [11] "Adobe-Fonts.zip"            "animated-graphics.Rmd"     
+    #> [13] "cs-cran-network.Rmd"        "cumcm2011A.RDS"            
+    #> [15] "data"                       "data-frame.Rmd"            
+    #> [17] "data-import.Rmd"            "data-objects.Rmd"          
+    #> [19] "data-parallel.Rmd"          "data-table.Rmd"            
+    #> [21] "data-tibble.Rmd"            "dc-regular-expressions.Rmd"
+    #> [23] "dc-string-manipulation.Rmd" "dc-stringr.Rmd"            
+    #> [25] "demos"                      "DESCRIPTION"               
+    #> [27] "docker-compose.yml"         "Dockerfile"                
+    #> [29] "dv-colors-fonts.Rmd"        "dv-ggplot2.Rmd"            
+    #> [31] "dv-highcharter.Rmd"         "dv-lattice.Rmd"            
+    #> [33] "dv-network.Rmd"             "dv-plot.Rmd"               
+    #> [35] "dv-plot3d.Rmd"              "dv-spatio-temporal.Rmd"    
+    #> [37] "dynamic-documents.Rmd"      "figures"                   
+    #> [39] "files.Rmd"                  "includes"                  
+    #> [41] "index.md"                   "index.Rmd"                 
+    #> [43] "index.utf8.md"              "interactive-graphics.Rmd"  
+    #> [45] "interactives"               "LICENSE"                   
+    #> [47] "maintainer_author.rds"      "Makefile"                  
+    #> [49] "odbc.ini"                   "preamble.tex"              
+    #> [51] "preface.md"                 "preface.Rmd"               
+    #> [53] "preface.utf8.md"            "README.md"                 
+    #> [55] "refer.bib"                  "render4aae341273f.rds"     
+    #> [57] "requirements.txt"           "RGraphics.Rproj"           
+    #> [59] "setup.md"                   "setup.Rmd"                 
+    #> [61] "setup.utf8.md"              "sidebar.lua"               
+    #> [63] "style.css"                  "ubuntu"
     # 查看指定目录的子目录和文件
     dir(path = "./")
-    #>  [1] "_book"                        "_bookdown_files"             
-    #>  [3] "_bookdown.yml"                "_build.sh"                   
-    #>  [5] "_common.R"                    "_deploy.sh"                  
-    #>  [7] "_main.rds"                    "_output.yml"                 
-    #>  [9] "_render.R"                    "99-references.Rmd"           
-    #> [11] "Adobe-Fonts.zip"              "animated-graphics_files"     
-    ....
+    #>  [1] "_book"                      "_bookdown_files"           
+    #>  [3] "_bookdown.yml"              "_build.sh"                 
+    #>  [5] "_common.R"                  "_deploy.sh"                
+    #>  [7] "_main.rds"                  "_output.yml"               
+    #>  [9] "_render.R"                  "99-references.Rmd"         
+    #> [11] "Adobe-Fonts.zip"            "animated-graphics.Rmd"     
+    #> [13] "cs-cran-network.Rmd"        "cumcm2011A.RDS"            
+    #> [15] "data"                       "data-frame.Rmd"            
+    #> [17] "data-import.Rmd"            "data-objects.Rmd"          
+    #> [19] "data-parallel.Rmd"          "data-table.Rmd"            
+    #> [21] "data-tibble.Rmd"            "dc-regular-expressions.Rmd"
+    #> [23] "dc-string-manipulation.Rmd" "dc-stringr.Rmd"            
+    #> [25] "demos"                      "DESCRIPTION"               
+    #> [27] "docker-compose.yml"         "Dockerfile"                
+    #> [29] "dv-colors-fonts.Rmd"        "dv-ggplot2.Rmd"            
+    #> [31] "dv-highcharter.Rmd"         "dv-lattice.Rmd"            
+    #> [33] "dv-network.Rmd"             "dv-plot.Rmd"               
+    #> [35] "dv-plot3d.Rmd"              "dv-spatio-temporal.Rmd"    
+    #> [37] "dynamic-documents.Rmd"      "figures"                   
+    #> [39] "files.Rmd"                  "includes"                  
+    #> [41] "index.md"                   "index.Rmd"                 
+    #> [43] "index.utf8.md"              "interactive-graphics.Rmd"  
+    #> [45] "interactives"               "LICENSE"                   
+    #> [47] "maintainer_author.rds"      "Makefile"                  
+    #> [49] "odbc.ini"                   "preamble.tex"              
+    #> [51] "preface.md"                 "preface.Rmd"               
+    #> [53] "preface.utf8.md"            "README.md"                 
+    #> [55] "refer.bib"                  "render4aae341273f.rds"     
+    #> [57] "requirements.txt"           "RGraphics.Rproj"           
+    #> [59] "setup.md"                   "setup.Rmd"                 
+    #> [61] "setup.utf8.md"              "sidebar.lua"               
+    #> [63] "style.css"                  "ubuntu"
     # 只列出以字母R开头的子目录和文件
     dir(path = "./", pattern = "^R")
     #> [1] "README.md"       "RGraphics.Rproj"
     # 列出目录下所有目录和文件，包括隐藏文件
     dir(path = "./", all.files = TRUE)
-    #>   [1] "_book"                        "_bookdown_files"             
-    #>   [3] "_bookdown.yml"                "_build.sh"                   
-    #>   [5] "_common.R"                    "_deploy.sh"                  
-    #>   [7] "_main.rds"                    "_output.yml"                 
-    #>   [9] "_render.R"                    "."                           
-    #>  [11] ".."                           ".git"                        
-    ....
+    #>  [1] "_book"                      "_bookdown_files"           
+    #>  [3] "_bookdown.yml"              "_build.sh"                 
+    #>  [5] "_common.R"                  "_deploy.sh"                
+    #>  [7] "_main.rds"                  "_output.yml"               
+    #>  [9] "_render.R"                  "."                         
+    #> [11] ".."                         ".git"                      
+    #> [13] ".gitignore"                 ".Rprofile"                 
+    #> [15] ".travis.yml"                "99-references.Rmd"         
+    #> [17] "Adobe-Fonts.zip"            "animated-graphics.Rmd"     
+    #> [19] "cs-cran-network.Rmd"        "cumcm2011A.RDS"            
+    #> [21] "data"                       "data-frame.Rmd"            
+    #> [23] "data-import.Rmd"            "data-objects.Rmd"          
+    #> [25] "data-parallel.Rmd"          "data-table.Rmd"            
+    #> [27] "data-tibble.Rmd"            "dc-regular-expressions.Rmd"
+    #> [29] "dc-string-manipulation.Rmd" "dc-stringr.Rmd"            
+    #> [31] "demos"                      "DESCRIPTION"               
+    #> [33] "docker-compose.yml"         "Dockerfile"                
+    #> [35] "dv-colors-fonts.Rmd"        "dv-ggplot2.Rmd"            
+    #> [37] "dv-highcharter.Rmd"         "dv-lattice.Rmd"            
+    #> [39] "dv-network.Rmd"             "dv-plot.Rmd"               
+    #> [41] "dv-plot3d.Rmd"              "dv-spatio-temporal.Rmd"    
+    #> [43] "dynamic-documents.Rmd"      "figures"                   
+    #> [45] "files.Rmd"                  "includes"                  
+    #> [47] "index.md"                   "index.Rmd"                 
+    #> [49] "index.utf8.md"              "interactive-graphics.Rmd"  
+    #> [51] "interactives"               "LICENSE"                   
+    #> [53] "maintainer_author.rds"      "Makefile"                  
+    #> [55] "odbc.ini"                   "preamble.tex"              
+    #> [57] "preface.md"                 "preface.Rmd"               
+    #> [59] "preface.utf8.md"            "README.md"                 
+    #> [61] "refer.bib"                  "render4aae341273f.rds"     
+    #> [63] "requirements.txt"           "RGraphics.Rproj"           
+    #> [65] "setup.md"                   "setup.Rmd"                 
+    #> [67] "setup.utf8.md"              "sidebar.lua"               
+    #> [69] "style.css"                  "ubuntu"
     # 支持正则表达式
     dir(pattern = '^[A-Z]+[.]txt$', full.names=TRUE, system.file('doc', 'SuiteSparse', package='Matrix'))
     #> [1] "/home/travis/R-bin/lib/R/library/Matrix/doc/SuiteSparse/AMD.txt"    
@@ -427,7 +472,30 @@ if (Sys.which("pandoc") == "" && !is.na(pandoc_path)) {
     #>  [4] "/home/travis/R-bin/lib/R/library/cluster/R/cluster.rdx"      
     #>  [5] "/home/travis/R-bin/lib/R/library/codetools/R/codetools.rdx"  
     #>  [6] "/home/travis/R-bin/lib/R/library/compiler/R/compiler.rdx"    
-    ....
+    #>  [7] "/home/travis/R-bin/lib/R/library/foreign/R/foreign.rdx"      
+    #>  [8] "/home/travis/R-bin/lib/R/library/graphics/R/graphics.rdx"    
+    #>  [9] "/home/travis/R-bin/lib/R/library/grDevices/R/grDevices.rdx"  
+    #> [10] "/home/travis/R-bin/lib/R/library/grid/R/grid.rdx"            
+    #> [11] "/home/travis/R-bin/lib/R/library/KernSmooth/R/KernSmooth.rdx"
+    #> [12] "/home/travis/R-bin/lib/R/library/lattice/R/lattice.rdx"      
+    #> [13] "/home/travis/R-bin/lib/R/library/MASS/R/MASS.rdx"            
+    #> [14] "/home/travis/R-bin/lib/R/library/Matrix/R/Matrix.rdx"        
+    #> [15] "/home/travis/R-bin/lib/R/library/methods/R/methods.rdx"      
+    #> [16] "/home/travis/R-bin/lib/R/library/mgcv/R/mgcv.rdx"            
+    #> [17] "/home/travis/R-bin/lib/R/library/nlme/R/nlme.rdx"            
+    #> [18] "/home/travis/R-bin/lib/R/library/nnet/R/nnet.rdx"            
+    #> [19] "/home/travis/R-bin/lib/R/library/parallel/R/parallel.rdx"    
+    #> [20] "/home/travis/R-bin/lib/R/library/rpart/R/rpart.rdx"          
+    #> [21] "/home/travis/R-bin/lib/R/library/spatial/R/spatial.rdx"      
+    #> [22] "/home/travis/R-bin/lib/R/library/splines/R/splines.rdx"      
+    #> [23] "/home/travis/R-bin/lib/R/library/stats4/R/stats4.rdx"        
+    #> [24] "/home/travis/R-bin/lib/R/library/stats/R/stats.rdx"          
+    #> [25] "/home/travis/R-bin/lib/R/library/survival/R/survival.rdx"    
+    #> [26] "/home/travis/R-bin/lib/R/library/tcltk/R/tcltk.rdx"          
+    #> [27] "/home/travis/R-bin/lib/R/library/tools/R/sysdata.rdx"        
+    #> [28] "/home/travis/R-bin/lib/R/library/tools/R/tools.rdx"          
+    #> [29] "/home/travis/R-bin/lib/R/library/utils/R/sysdata.rdx"        
+    #> [30] "/home/travis/R-bin/lib/R/library/utils/R/utils.rdx"
     ```
 
 ## 查找文件 {#find}
@@ -653,7 +721,7 @@ help.search(keyword = "character", package = "base")
     
     ```r
     Sys.getpid()
-    #> [1] 19236
+    #> [1] 19203
     ```
 
 - `proc.time()` R 会话运行时间，常用于计算R程序在当前R控制台的运行时间
@@ -664,7 +732,7 @@ help.search(keyword = "character", package = "base")
     tmp <- rnorm(1e6)
     proc.time() - t1
     #>    user  system elapsed 
-    #>   0.068   0.000   0.069
+    #>   0.064   0.000   0.066
     ```
 
 - `system.time` 计算 R 表达式/程序块运行耗费的CPU时间
@@ -675,7 +743,7 @@ help.search(keyword = "character", package = "base")
       rnorm(1e6)
     }, gcFirst = TRUE)
     #>    user  system elapsed 
-    #>   0.063   0.000   0.062
+    #>   0.055   0.008   0.063
     ```
 
 - `gc.time`  报告垃圾回收耗费的时间
@@ -746,10 +814,10 @@ system2(command = 'pdflatex', args = '--version')
     ```r
     # 此时美国洛杉矶时间
     format(Sys.time(), tz = 'America/Los_Angeles', usetz = TRUE)
-    #> [1] "2020-02-04 21:14:54 PST"
+    #> [1] "2020-03-07 04:51:26 PST"
     # 此时加拿大东部时间
     format(Sys.time(), tz = 'Canada/Eastern', usetz = TRUE)
-    #> [1] "2020-02-05 00:14:54 EST"
+    #> [1] "2020-03-07 07:51:26 EST"
     ```
 
 1. `Sys.Date` 显示当前时区下的日期，精确到日，返回数据类型为 `date`
@@ -757,7 +825,7 @@ system2(command = 'pdflatex', args = '--version')
     
     ```r
     Sys.Date()
-    #> [1] "2020-02-05"
+    #> [1] "2020-03-07"
     ```
 
 1. `date` 返回当前系统日期和时间，数据类型是字符串
@@ -765,10 +833,10 @@ system2(command = 'pdflatex', args = '--version')
     
     ```r
     date()
-    #> [1] "Wed Feb  5 13:14:54 2020"
+    #> [1] "Sat Mar  7 20:51:26 2020"
     ## 也可以这样表示
     format(Sys.time(), "%a %b %d %H:%M:%S %Y")
-    #> [1] "Wed Feb 05 13:14:54 2020"
+    #> [1] "Sat Mar 07 20:51:26 2020"
     ```
 
 1. `as.POSIX*` 是一个 Date-time 转换函数
@@ -776,7 +844,7 @@ system2(command = 'pdflatex', args = '--version')
     
     ```r
     as.POSIXlt(Sys.time(), "GMT") # the current time in GMT
-    #> [1] "2020-02-05 05:14:54 GMT"
+    #> [1] "2020-03-07 12:51:26 GMT"
     ```
 
 1. 时间计算
@@ -784,10 +852,10 @@ system2(command = 'pdflatex', args = '--version')
     
     ```r
     (z <- Sys.time())             # the current date, as class "POSIXct"
-    #> [1] "2020-02-05 13:14:54 CST"
+    #> [1] "2020-03-07 20:51:26 CST"
     
     Sys.time() - 3600             # an hour ago
-    #> [1] "2020-02-05 12:14:54 CST"
+    #> [1] "2020-03-07 19:51:26 CST"
     ```
 
 1. `.leap.seconds` 是内置的日期序列
@@ -838,16 +906,16 @@ system2(command = 'pdflatex', args = '--version')
     # 修改时间前
     file.info('./_common.R')
     #>             size isdir mode               mtime               ctime
-    #> ./_common.R 2093 FALSE  664 2020-02-05 13:10:59 2020-02-05 13:10:59
+    #> ./_common.R 2093 FALSE  664 2020-03-07 20:47:38 2020-03-07 20:47:38
     #>                           atime  uid  gid  uname grname
-    #> ./_common.R 2020-02-05 13:10:59 2000 2000 travis travis
+    #> ./_common.R 2020-03-07 20:47:38 2000 2000 travis travis
     # 修改时间后，对比一下
     Sys.setFileTime(path = './_common.R', time = Sys.time())
     file.info('./_common.R')
     #>             size isdir mode               mtime               ctime
-    #> ./_common.R 2093 FALSE  664 2020-02-05 13:14:54 2020-02-05 13:14:54
+    #> ./_common.R 2093 FALSE  664 2020-03-07 20:51:26 2020-03-07 20:51:26
     #>                           atime  uid  gid  uname grname
-    #> ./_common.R 2020-02-05 13:14:54 2000 2000 travis travis
+    #> ./_common.R 2020-03-07 20:51:26 2000 2000 travis travis
     ```
 
 1. `strptime` 用于字符串与 `POSIXlt`、 `POSIXct` 类对象之间的转化，`format` 默认 `tz = ""` 且 `usetz = TRUE` 
@@ -859,11 +927,11 @@ system2(command = 'pdflatex', args = '--version')
     #> character(0)
     # 比较不同的打印方式
     strptime(Sys.time(), format ="%Y-%m-%d %H:%M:%S", tz = "Asia/Taipei")
-    #> [1] "2020-02-05 13:14:54 CST"
+    #> [1] "2020-03-07 20:51:26 CST"
     format(Sys.time(), format = "%Y-%m-%d %H:%M:%S") # 默认情形
-    #> [1] "2020-02-05 13:14:54"
+    #> [1] "2020-03-07 20:51:26"
     format(Sys.time(), format = "%Y-%m-%d %H:%M:%S", tz = "Asia/Taipei", usetz = TRUE)
-    #> [1] "2020-02-05 13:14:54 CST"
+    #> [1] "2020-03-07 20:51:26 CST"
     ```
 
 1. 设置时区
@@ -897,7 +965,19 @@ apropos('package')
 #> [15] "findPackageEnv"                 "format.packageInfo"            
 #> [17] "getClassPackage"                "getPackageName"                
 #> [19] "install.packages"               "installed.packages"            
-....
+#> [21] "is.package_version"             "make.packages.html"            
+#> [23] "methodsPackageMetaName"         "new.packages"                  
+#> [25] "old.packages"                   "package_version"               
+#> [27] "package.skeleton"               "packageDate"                   
+#> [29] "packageDescription"             "packageEvent"                  
+#> [31] "packageHasNamespace"            "packageName"                   
+#> [33] "packageNotFoundError"           "packageSlot"                   
+#> [35] "packageSlot<-"                  "packageStartupMessage"         
+#> [37] "packageStatus"                  "packageVersion"                
+#> [39] "path_package"                   "path.package"                  
+#> [41] "print.packageInfo"              "promptPackage"                 
+#> [43] "remove.packages"                "setPackageName"                
+#> [45] "suppressPackageStartupMessages" "update.packages"
 ```
 
 1. `.packages(T)` 已安装的 R 包
@@ -905,7 +985,7 @@ apropos('package')
     
     ```r
     .packages(T) %>% length()
-    #> [1] 235
+    #> [1] 237
     ```
    
 1. `available.packages` 查询可用的 R 包
@@ -966,10 +1046,7 @@ apropos('package')
     
     ```r
     old.packages() %>% head()
-    #>       Package LibPath                  Installed Built   ReposVer
-    #> knitr "knitr" "/home/travis/R/Library" "1.26"    "4.0.0" "1.27"  
-    #>       Repository                               
-    #> knitr "https://cloud.r-project.org/src/contrib"
+    #> NULL
     ```
 
 1. `new.packages` 还没有安装的 R 包 
@@ -988,14 +1065,14 @@ apropos('package')
     #> Number of installed packages:
     #>                                   
     #>                                     ok upgrade unavailable
-    #>   /home/travis/R/Library           203       1           2
+    #>   /home/travis/R/Library           207       0           1
     #>   /usr/local/lib/R/site-library      0       0           0
     #>   /home/travis/R-bin/lib/R/library  29       0           0
     #> 
     #> Number of available packages (each package counted only once):
     #>                                             
     #>                                              installed not installed
-    #>   https://cloud.r-project.org/src/contrib          218         15101
+    #>   https://cloud.r-project.org/src/contrib          221         15099
     #>   https://nowosad.github.io/drat/src/contrib         1             0
     ```
     
@@ -1010,7 +1087,13 @@ apropos('package')
     #> Title: The R Graphics Package
     #> Author: R Core Team and contributors worldwide
     #> Maintainer: R Core Team <R-core@r-project.org>
-    ....
+    #> Description: R functions for base graphics.
+    #> Imports: grDevices
+    #> License: Part of R 4.0.0
+    #> NeedsCompilation: yes
+    #> Built: R 4.0.0; x86_64-pc-linux-gnu; 2020-03-06 16:14:00 UTC; unix
+    #> 
+    #> -- File: /home/travis/R-bin/lib/R/library/graphics/Meta/package.rds
     ```
 
 1. 查询 R 包的依赖关系
@@ -1063,14 +1146,14 @@ apropos('package')
     #>  [73] "ggquickeda"        "ggquiver"          "ggRandomForests"  
     #>  [76] "ggraph"            "ggraptR"           "ggrasp"           
     #>  [79] "ggrepel"           "ggResidpanel"      "ggridges"         
-    #>  [82] "ggROC"             "ggsci"             "ggseas"           
-    #>  [85] "ggseqlogo"         "ggsignif"          "ggsn"             
-    #>  [88] "ggsoccer"          "ggsolvencyii"      "ggsom"            
-    #>  [91] "ggspatial"         "ggspectra"         "ggstance"         
-    #>  [94] "ggstatsplot"       "ggswissmaps"       "ggtern"           
-    #>  [97] "ggThemeAssist"     "ggthemes"          "ggTimeSeries"     
-    #> [100] "ggupset"           "ggVennDiagram"     "ggvoronoi"        
-    #> [103] "ggwordcloud"
+    #>  [82] "ggrisk"            "ggROC"             "ggsci"            
+    #>  [85] "ggseas"            "ggseqlogo"         "ggsignif"         
+    #>  [88] "ggsn"              "ggsoccer"          "ggsolvencyii"     
+    #>  [91] "ggsom"             "ggspatial"         "ggspectra"        
+    #>  [94] "ggstance"          "ggstatsplot"       "ggswissmaps"      
+    #>  [97] "ggtern"            "ggThemeAssist"     "ggthemes"         
+    #> [100] "ggTimeSeries"      "ggupset"           "ggVennDiagram"    
+    #> [103] "ggvoronoi"         "ggwordcloud"
     ```
     
 
@@ -1105,7 +1188,7 @@ body
 #>         fun <- get(fun, mode = "function", envir = parent.frame())
 #>     .Internal(body(fun))
 #> }
-#> <bytecode: 0x4a9e828>
+#> <bytecode: 0x31e8a50>
 #> <environment: namespace:base>
 ```
 
@@ -1147,7 +1230,7 @@ SEXP attribute_hidden do_body(SEXP call, SEXP op, SEXP args, SEXP rho)
 
 ```r
 xfun::session_info(packages = c("magrittr", "fs"))
-#> R Under development (unstable) (2020-02-04 r77771)
+#> R Under development (unstable) (2020-03-06 r77913)
 #> Platform: x86_64-pc-linux-gnu (64-bit)
 #> Running under: Ubuntu 16.04.6 LTS
 #> 
@@ -1160,7 +1243,7 @@ xfun::session_info(packages = c("magrittr", "fs"))
 #>   LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
 #> 
 #> Package version:
-#>   fs_1.3.1        graphics_4.0.0  grDevices_4.0.0 magrittr_1.5   
+#>   fs_1.3.2        graphics_4.0.0  grDevices_4.0.0 magrittr_1.5   
 #>   methods_4.0.0   Rcpp_1.0.3      stats_4.0.0     utils_4.0.0
 ```
 

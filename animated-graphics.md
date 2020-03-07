@@ -1,4 +1,3 @@
-
 # 动画 {#Animated-Graphics}
 
 rgl 和 svg 制作的动画，包括由静态图形转化过来的图形如 animation 或者 magick 和 gganimate 制作的图形 
@@ -22,7 +21,7 @@ ggplot(mtcars, aes(disp, mpg)) +
   facet_wrap(~cyl)
 ```
 
-<img src="animated-graphics_files/figure-html/unnamed-chunk-3-1.png" width="70%" style="display: block; margin: auto;" />
+<img src="animated-graphics_files/figure-html/unnamed-chunk-2-1.png" width="70%" style="display: block; margin: auto;" />
 
 用来分面的变量 cyl 作为转场的帧
 
@@ -37,7 +36,7 @@ animate(base_pic, nframes = 100, fps = 50)
 #> nframes and fps adjusted to match transition
 ```
 
-<img src="animated-graphics_files/figure-html/unnamed-chunk-4-1.gif" width="70%" style="display: block; margin: auto;" />
+<img src="animated-graphics_files/figure-html/unnamed-chunk-3-1.gif" width="70%" style="display: block; margin: auto;" />
 
 
 ```r
@@ -120,7 +119,7 @@ ggplot(data = df2, aes(x, y, color = I(color), frame = .frame)) +
   coord_flip() +
   theme_minimal() +
   labs(x = NULL, y = NULL)
-#> Warning: Removed 52 rows containing missing values (geom_path).
+#> Warning: Removed 52 row(s) containing missing values (geom_path).
 ```
 
 <div class="figure" style="text-align: center">

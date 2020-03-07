@@ -1,4 +1,3 @@
-
 # 净土化操作 {#dplyr-manipulation}
 
 > 常用操作和高频问题需要合并进之前的 data-manipulation，本章只介绍向量化计算
@@ -388,9 +387,9 @@ d <- function() data.frame(
   )
 microbenchmark::microbenchmark(s(), d())
 #> Unit: microseconds
-#>  expr     min       lq      mean   median       uq      max neval
-#>   s()  16.802  19.5705  57.71463  23.2385  29.0040 2959.308   100
-#>   d() 187.202 197.7280 244.77946 207.0375 221.6725 2824.444   100
+#>  expr     min      lq      mean   median       uq      max neval
+#>   s()  16.226  18.514  52.08361  23.3525  26.8695 2660.224   100
+#>   d() 184.954 190.517 225.13107 194.7245 207.7230 2470.090   100
 ```
 
 ### 移除缺失记录 {#remove-missing-values}
@@ -410,7 +409,108 @@ airquality[complete.cases(airquality), ]
 #> 9       8      19 20.1   61     5   9
 #> 12     16     256  9.7   69     5  12
 #> 13     11     290  9.2   66     5  13
-....
+#> 14     14     274 10.9   68     5  14
+#> 15     18      65 13.2   58     5  15
+#> 16     14     334 11.5   64     5  16
+#> 17     34     307 12.0   66     5  17
+#> 18      6      78 18.4   57     5  18
+#> 19     30     322 11.5   68     5  19
+#> 20     11      44  9.7   62     5  20
+#> 21      1       8  9.7   59     5  21
+#> 22     11     320 16.6   73     5  22
+#> 23      4      25  9.7   61     5  23
+#> 24     32      92 12.0   61     5  24
+#> 28     23      13 12.0   67     5  28
+#> 29     45     252 14.9   81     5  29
+#> 30    115     223  5.7   79     5  30
+#> 31     37     279  7.4   76     5  31
+#> 38     29     127  9.7   82     6   7
+#> 40     71     291 13.8   90     6   9
+#> 41     39     323 11.5   87     6  10
+#> 44     23     148  8.0   82     6  13
+#> 47     21     191 14.9   77     6  16
+#> 48     37     284 20.7   72     6  17
+#> 49     20      37  9.2   65     6  18
+#> 50     12     120 11.5   73     6  19
+#> 51     13     137 10.3   76     6  20
+#> 62    135     269  4.1   84     7   1
+#> 63     49     248  9.2   85     7   2
+#> 64     32     236  9.2   81     7   3
+#> 66     64     175  4.6   83     7   5
+#> 67     40     314 10.9   83     7   6
+#> 68     77     276  5.1   88     7   7
+#> 69     97     267  6.3   92     7   8
+#> 70     97     272  5.7   92     7   9
+#> 71     85     175  7.4   89     7  10
+#> 73     10     264 14.3   73     7  12
+#> 74     27     175 14.9   81     7  13
+#> 76      7      48 14.3   80     7  15
+#> 77     48     260  6.9   81     7  16
+#> 78     35     274 10.3   82     7  17
+#> 79     61     285  6.3   84     7  18
+#> 80     79     187  5.1   87     7  19
+#> 81     63     220 11.5   85     7  20
+#> 82     16       7  6.9   74     7  21
+#> 85     80     294  8.6   86     7  24
+#> 86    108     223  8.0   85     7  25
+#> 87     20      81  8.6   82     7  26
+#> 88     52      82 12.0   86     7  27
+#> 89     82     213  7.4   88     7  28
+#> 90     50     275  7.4   86     7  29
+#> 91     64     253  7.4   83     7  30
+#> 92     59     254  9.2   81     7  31
+#> 93     39      83  6.9   81     8   1
+#> 94      9      24 13.8   81     8   2
+#> 95     16      77  7.4   82     8   3
+#> 99    122     255  4.0   89     8   7
+#> 100    89     229 10.3   90     8   8
+#> 101   110     207  8.0   90     8   9
+#> 104    44     192 11.5   86     8  12
+#> 105    28     273 11.5   82     8  13
+#> 106    65     157  9.7   80     8  14
+#> 108    22      71 10.3   77     8  16
+#> 109    59      51  6.3   79     8  17
+#> 110    23     115  7.4   76     8  18
+#> 111    31     244 10.9   78     8  19
+#> 112    44     190 10.3   78     8  20
+#> 113    21     259 15.5   77     8  21
+#> 114     9      36 14.3   72     8  22
+#> 116    45     212  9.7   79     8  24
+#> 117   168     238  3.4   81     8  25
+#> 118    73     215  8.0   86     8  26
+#> 120    76     203  9.7   97     8  28
+#> 121   118     225  2.3   94     8  29
+#> 122    84     237  6.3   96     8  30
+#> 123    85     188  6.3   94     8  31
+#> 124    96     167  6.9   91     9   1
+#> 125    78     197  5.1   92     9   2
+#> 126    73     183  2.8   93     9   3
+#> 127    91     189  4.6   93     9   4
+#> 128    47      95  7.4   87     9   5
+#> 129    32      92 15.5   84     9   6
+#> 130    20     252 10.9   80     9   7
+#> 131    23     220 10.3   78     9   8
+#> 132    21     230 10.9   75     9   9
+#> 133    24     259  9.7   73     9  10
+#> 134    44     236 14.9   81     9  11
+#> 135    21     259 15.5   76     9  12
+#> 136    28     238  6.3   77     9  13
+#> 137     9      24 10.9   71     9  14
+#> 138    13     112 11.5   71     9  15
+#> 139    46     237  6.9   78     9  16
+#> 140    18     224 13.8   67     9  17
+#> 141    13      27 10.3   76     9  18
+#> 142    24     238 10.3   68     9  19
+#> 143    16     201  8.0   82     9  20
+#> 144    13     238 12.6   64     9  21
+#> 145    23      14  9.2   71     9  22
+#> 146    36     139 10.3   81     9  23
+#> 147     7      49 10.3   69     9  24
+#> 148    14      20 16.6   63     9  25
+#> 149    30     193  6.9   70     9  26
+#> 151    14     191 14.3   75     9  28
+#> 152    18     131  8.0   76     9  29
+#> 153    20     223 11.5   68     9  30
 ```
 
 ### 数据类型转化 {#coerce-data-type}
@@ -500,10 +600,10 @@ merge_pkg <- Reduce("c", dep_pkg, accumulate = FALSE)
 miss_pkg <- setdiff(unique(merge_pkg), unique(.packages(TRUE)))
 # 除了 pkg 外，未安装的 R 包，安装 pkg 的依赖
 sort(setdiff(miss_pkg, pkg))
-#>  [1] "bayesplot"   "checkmate"   "DT"          "dygraphs"    "gtools"     
-#>  [6] "inline"      "loo"         "matrixStats" "minqa"       "mnormt"     
-#> [11] "nloptr"      "packrat"     "pkgbuild"    "rsconnect"   "rstantools" 
-#> [16] "shinystan"   "shinythemes" "StanHeaders" "threejs"
+#>  [1] "bayesplot"    "checkmate"    "DT"           "dygraphs"     "gtools"      
+#>  [6] "inline"       "loo"          "matrixStats"  "minqa"        "mnormt"      
+#> [11] "nloptr"       "packrat"      "RcppParallel" "rsconnect"    "rstantools"  
+#> [16] "shinystan"    "shinythemes"  "StanHeaders"  "threejs"
 ```
 
 转化为管道操作，增加可读性，[^pipe-r]
@@ -534,7 +634,7 @@ one_abs
 
 ```r
 xfun::session_info()
-#> R Under development (unstable) (2020-02-04 r77771)
+#> R Under development (unstable) (2020-03-06 r77913)
 #> Platform: x86_64-pc-linux-gnu (64-bit)
 #> Running under: Ubuntu 16.04.6 LTS
 #> 
@@ -548,37 +648,38 @@ xfun::session_info()
 #> 
 #> Package version:
 #>   askpass_1.1          assertthat_0.2.1     backports_1.1.5     
-#>   base64enc_0.1.3      BH_1.72.0.3          bookdown_0.17       
-#>   broom_0.5.4          callr_3.4.1          cellranger_1.1.0    
-#>   cli_2.0.1            clipr_0.7.0          colorspace_1.4-1    
+#>   base64enc_0.1.3      BH_1.72.0.3          bookdown_0.18       
+#>   broom_0.5.5          callr_3.4.2          cellranger_1.1.0    
+#>   cli_2.0.2            clipr_0.7.0          colorspace_1.4-1    
 #>   compiler_4.0.0       crayon_1.3.4         curl_4.3            
 #>   DBI_1.1.0            dbplyr_1.4.2         desc_1.2.0          
-#>   digest_0.6.23        dplyr_0.8.4          ellipsis_0.3.0      
+#>   digest_0.6.25        dplyr_0.8.4          ellipsis_0.3.0      
 #>   evaluate_0.14        fansi_0.4.1          farver_2.0.3        
-#>   forcats_0.4.0        fs_1.3.1             generics_0.0.2      
-#>   ggplot2_3.2.1        glue_1.3.1           graphics_4.0.0      
+#>   forcats_0.5.0        fs_1.3.2             generics_0.0.2      
+#>   ggplot2_3.3.0        glue_1.3.1           graphics_4.0.0      
 #>   grDevices_4.0.0      grid_4.0.0           gtable_0.3.0        
 #>   haven_2.2.0          highr_0.8            hms_0.5.3           
-#>   htmltools_0.4.0      httr_1.4.1           jsonlite_1.6.1      
-#>   knitr_1.26           labeling_0.3         lattice_0.20-38     
-#>   lazyeval_0.2.2       lifecycle_0.1.0      lubridate_1.7.4     
+#>   htmltools_0.4.0      httr_1.4.1           isoband_0.2.0       
+#>   jsonlite_1.6.1       knitr_1.28.2         labeling_0.3        
+#>   lattice_0.20-40      lifecycle_0.2.0      lubridate_1.7.4     
 #>   magrittr_1.5         markdown_1.1         MASS_7.3.51.5       
 #>   Matrix_1.2.18        methods_4.0.0        mgcv_1.8.31         
-#>   microbenchmark_1.4-7 mime_0.9             modelr_0.1.5        
-#>   munsell_0.5.0        nlme_3.1-143         openssl_1.4.1       
-#>   pillar_1.4.3         pkgconfig_2.0.3      plogr_0.2.0         
-#>   plyr_1.8.5           prettyunits_1.1.1    processx_3.4.1      
-#>   progress_1.2.2       ps_1.3.0             purrr_0.3.3         
+#>   microbenchmark_1.4-7 mime_0.9             modelr_0.1.6        
+#>   munsell_0.5.0        nlme_3.1-145         openssl_1.4.1       
+#>   pillar_1.4.3         pkgbuild_1.0.6       pkgconfig_2.0.3     
+#>   pkgload_1.0.2        plogr_0.2.0          plyr_1.8.6          
+#>   praise_1.0.0         prettyunits_1.1.1    processx_3.4.2      
+#>   progress_1.2.2       ps_1.3.2             purrr_0.3.3         
 #>   R6_2.4.1             RColorBrewer_1.1.2   Rcpp_1.0.3          
 #>   readr_1.3.1          readxl_1.3.1         rematch_1.0.1       
-#>   reprex_0.3.0         reshape2_1.4.3       rlang_0.4.4         
-#>   rmarkdown_2.1        rprojroot_1.3-2      rstudioapi_0.10     
+#>   reprex_0.3.0         reshape2_1.4.3       rlang_0.4.5         
+#>   rmarkdown_2.1        rprojroot_1.3-2      rstudioapi_0.11     
 #>   rvest_0.3.5          scales_1.1.0         selectr_0.4.2       
-#>   splines_4.0.0        stats_4.0.0          stringi_1.4.5       
-#>   stringr_1.4.0        sys_3.3              tibble_2.1.3        
-#>   tidyr_1.0.2          tidyselect_1.0.0     tidyverse_1.3.0     
-#>   tinytex_0.19         tools_4.0.0          utf8_1.1.4          
-#>   utils_4.0.0          vctrs_0.2.2          viridisLite_0.3.0   
-#>   whisker_0.4          withr_2.1.2          xfun_0.12           
-#>   xml2_1.2.2           yaml_2.2.1
+#>   splines_4.0.0        stats_4.0.0          stringi_1.4.6       
+#>   stringr_1.4.0        sys_3.3              testthat_2.3.2      
+#>   tibble_2.1.3         tidyr_1.0.2          tidyselect_1.0.0    
+#>   tidyverse_1.3.0      tinytex_0.20         tools_4.0.0         
+#>   utf8_1.1.4           utils_4.0.0          vctrs_0.2.3         
+#>   viridisLite_0.3.0    whisker_0.4          withr_2.1.2         
+#>   xfun_0.12            xml2_1.2.2           yaml_2.2.1
 ```

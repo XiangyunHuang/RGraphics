@@ -1,4 +1,3 @@
-
 # 数据可视化 {#ggplot2-visualization}
 
 
@@ -70,7 +69,7 @@ Package                 Title
 **gglogo**              Geom for Logo Sequence Plots                                                               
 **ggloop**              Create ggplot2 Plots in a Loop                                                             
 **gglorenz**            Plotting Lorenz Curve with the Blessing of ggplot2                                         
-**ggm**                 Functions for graphical Markov models                                                      
+**ggm**                 Graphical Markov Models with Mixed Graphs                                                  
 **ggmap**               Spatial Visualization with ggplot2                                                         
 **ggmcmc**              Tools for Analyzing MCMC Simulations from Bayesian Inference                               
 **ggmosaic**            Mosaic Plots in the ggplot2 Framework                                                      
@@ -78,7 +77,7 @@ Package                 Title
 **ggmsa**               Plot Multiple Sequence Alignment using ggplot2                                             
 **ggmuller**            Create Muller Plots of Evolutionary Dynamics                                               
 **ggnetwork**           Geometries to Plot Networks with ggplot2                                                   
-**ggnewscale**          Multiple Fill and Color Scales in ggplot2                                                  
+**ggnewscale**          Multiple Fill and Colour Scales in ggplot2                                                 
 **ggnormalviolin**      A ggplot2 Extension to Make Normal Violin Plots                                            
 **ggpage**              Creates Page Layout Visualizations                                                         
 **ggparallel**          Variations of Parallel Coordinate Plots for Categorical Data                               
@@ -110,6 +109,7 @@ Package                 Title
 **ggrepel**             Automatically Position Non-Overlapping Text Labels with ggplot2                            
 **ggResidpanel**        Panels and Interactive Versions of Diagnostic Plots using ggplot2                          
 **ggridges**            Ridgeline Plots in ggplot2                                                                 
+**ggrisk**              Risk Score Plot for Cox Regression                                                         
 **ggROC**               package for roc curve plot with ggplot2                                                    
 **ggroups**             Pedigree and Genetic Groups                                                                
 **ggsci**               Scientific Journal and Sci-Fi Themed Color Palettes for ggplot2                            
@@ -150,6 +150,7 @@ ggplot(mpg, aes(displ, hwy)) +
     subtitle = "Two seaters (sports cars) are an exception because of their light weight",
     caption = "Data from fueleconomy.gov"
   )
+#> `geom_smooth()` using formula 'y ~ x'
 ```
 
 <div class="figure" style="text-align: center">
@@ -178,18 +179,23 @@ ggplot(mpg, aes(displ, hwy)) +
 
 ```r
 ls("package:ggplot2", pattern = "^geom_")
-#>  [1] "geom_abline"     "geom_area"       "geom_bar"        "geom_bin2d"     
-#>  [5] "geom_blank"      "geom_boxplot"    "geom_col"        "geom_contour"   
-#>  [9] "geom_count"      "geom_crossbar"   "geom_curve"      "geom_density"   
-#> [13] "geom_density_2d" "geom_density2d"  "geom_dotplot"    "geom_errorbar"  
-#> [17] "geom_errorbarh"  "geom_freqpoly"   "geom_hex"        "geom_histogram" 
-#> [21] "geom_hline"      "geom_jitter"     "geom_label"      "geom_line"      
-#> [25] "geom_linerange"  "geom_map"        "geom_path"       "geom_point"     
-#> [29] "geom_pointrange" "geom_polygon"    "geom_qq"         "geom_qq_line"   
-#> [33] "geom_quantile"   "geom_raster"     "geom_rect"       "geom_ribbon"    
-#> [37] "geom_rug"        "geom_segment"    "geom_sf"         "geom_sf_label"  
-#> [41] "geom_sf_text"    "geom_smooth"     "geom_spoke"      "geom_step"      
-#> [45] "geom_text"       "geom_tile"       "geom_violin"     "geom_vline"
+#>  [1] "geom_abline"         "geom_area"           "geom_bar"           
+#>  [4] "geom_bin2d"          "geom_blank"          "geom_boxplot"       
+#>  [7] "geom_col"            "geom_contour"        "geom_contour_filled"
+#> [10] "geom_count"          "geom_crossbar"       "geom_curve"         
+#> [13] "geom_density"        "geom_density_2d"     "geom_density2d"     
+#> [16] "geom_dotplot"        "geom_errorbar"       "geom_errorbarh"     
+#> [19] "geom_freqpoly"       "geom_hex"            "geom_histogram"     
+#> [22] "geom_hline"          "geom_jitter"         "geom_label"         
+#> [25] "geom_line"           "geom_linerange"      "geom_map"           
+#> [28] "geom_path"           "geom_point"          "geom_pointrange"    
+#> [31] "geom_polygon"        "geom_qq"             "geom_qq_line"       
+#> [34] "geom_quantile"       "geom_raster"         "geom_rect"          
+#> [37] "geom_ribbon"         "geom_rug"            "geom_segment"       
+#> [40] "geom_sf"             "geom_sf_label"       "geom_sf_text"       
+#> [43] "geom_smooth"         "geom_spoke"          "geom_step"          
+#> [46] "geom_text"           "geom_tile"           "geom_violin"        
+#> [49] "geom_vline"
 ```
 
 生成一个散点图
@@ -200,7 +206,7 @@ ggplot(airquality, aes(x = Temp, y = Ozone)) + geom_point()
 #> Warning: Removed 37 rows containing missing values (geom_point).
 ```
 
-<img src="dv-ggplot2_files/figure-html/unnamed-chunk-4-1.png" width="70%" style="display: block; margin: auto;" />
+<img src="dv-ggplot2_files/figure-html/unnamed-chunk-3-1.png" width="70%" style="display: block; margin: auto;" />
 
 ### 主题 {#ggplot2-theme}
 
@@ -227,7 +233,7 @@ ggplot(airquality, aes(x = Temp, y = Ozone)) + geom_point() + theme_void()
 #> Warning: Removed 37 rows containing missing values (geom_point).
 ```
 
-<img src="dv-ggplot2_files/figure-html/unnamed-chunk-6-1.png" width="70%" style="display: block; margin: auto;" /><img src="dv-ggplot2_files/figure-html/unnamed-chunk-6-2.png" width="70%" style="display: block; margin: auto;" /><img src="dv-ggplot2_files/figure-html/unnamed-chunk-6-3.png" width="70%" style="display: block; margin: auto;" /><img src="dv-ggplot2_files/figure-html/unnamed-chunk-6-4.png" width="70%" style="display: block; margin: auto;" />
+<img src="dv-ggplot2_files/figure-html/unnamed-chunk-5-1.png" width="70%" style="display: block; margin: auto;" /><img src="dv-ggplot2_files/figure-html/unnamed-chunk-5-2.png" width="70%" style="display: block; margin: auto;" /><img src="dv-ggplot2_files/figure-html/unnamed-chunk-5-3.png" width="70%" style="display: block; margin: auto;" /><img src="dv-ggplot2_files/figure-html/unnamed-chunk-5-4.png" width="70%" style="display: block; margin: auto;" />
 
 除主题之外，还有一类提供一整套统一的风格样式来绘制各种统计图形，如 [ggpubr](https://github.com/kassambara/ggpubr) 和 [bbplot](https://github.com/bbc/bbplot)
 
@@ -236,16 +242,21 @@ ggplot(airquality, aes(x = Temp, y = Ozone)) + geom_point() + theme_void()
 
 ```r
 ls("package:ggplot2", pattern = "^scale_(color|fill)_")
-#>  [1] "scale_color_brewer"     "scale_color_continuous" "scale_color_discrete"  
-#>  [4] "scale_color_distiller"  "scale_color_gradient"   "scale_color_gradient2" 
-#>  [7] "scale_color_gradientn"  "scale_color_grey"       "scale_color_hue"       
-#> [10] "scale_color_identity"   "scale_color_manual"     "scale_color_viridis_c" 
-#> [13] "scale_color_viridis_d"  "scale_fill_brewer"      "scale_fill_continuous" 
-#> [16] "scale_fill_date"        "scale_fill_datetime"    "scale_fill_discrete"   
-#> [19] "scale_fill_distiller"   "scale_fill_gradient"    "scale_fill_gradient2"  
-#> [22] "scale_fill_gradientn"   "scale_fill_grey"        "scale_fill_hue"        
-#> [25] "scale_fill_identity"    "scale_fill_manual"      "scale_fill_ordinal"    
-#> [28] "scale_fill_viridis_c"   "scale_fill_viridis_d"
+#>  [1] "scale_color_binned"     "scale_color_brewer"     "scale_color_continuous"
+#>  [4] "scale_color_date"       "scale_color_datetime"   "scale_color_discrete"  
+#>  [7] "scale_color_distiller"  "scale_color_fermenter"  "scale_color_gradient"  
+#> [10] "scale_color_gradient2"  "scale_color_gradientn"  "scale_color_grey"      
+#> [13] "scale_color_hue"        "scale_color_identity"   "scale_color_manual"    
+#> [16] "scale_color_ordinal"    "scale_color_steps"      "scale_color_steps2"    
+#> [19] "scale_color_stepsn"     "scale_color_viridis_c"  "scale_color_viridis_d" 
+#> [22] "scale_fill_binned"      "scale_fill_brewer"      "scale_fill_continuous" 
+#> [25] "scale_fill_date"        "scale_fill_datetime"    "scale_fill_discrete"   
+#> [28] "scale_fill_distiller"   "scale_fill_fermenter"   "scale_fill_gradient"   
+#> [31] "scale_fill_gradient2"   "scale_fill_gradientn"   "scale_fill_grey"       
+#> [34] "scale_fill_hue"         "scale_fill_identity"    "scale_fill_manual"     
+#> [37] "scale_fill_ordinal"     "scale_fill_steps"       "scale_fill_steps2"     
+#> [40] "scale_fill_stepsn"      "scale_fill_viridis_b"   "scale_fill_viridis_c"  
+#> [43] "scale_fill_viridis_d"
 ```
 
 
@@ -256,7 +267,7 @@ ggplot(airquality, aes(x = Temp, y = Ozone, color = as.ordered(Month))) +
   geom_point(na.rm = TRUE)
 ```
 
-<img src="dv-ggplot2_files/figure-html/unnamed-chunk-8-1.png" width="70%" style="display: block; margin: auto;" /><img src="dv-ggplot2_files/figure-html/unnamed-chunk-8-2.png" width="70%" style="display: block; margin: auto;" />
+<img src="dv-ggplot2_files/figure-html/unnamed-chunk-7-1.png" width="70%" style="display: block; margin: auto;" /><img src="dv-ggplot2_files/figure-html/unnamed-chunk-7-2.png" width="70%" style="display: block; margin: auto;" />
 
 
 
@@ -265,12 +276,12 @@ ggplot(airquality, aes(x = Temp, y = Ozone, color = as.ordered(Month))) +
 
 ```r
 ls("package:ggplot2", pattern = "^scale_(x|y)_")
-#>  [1] "scale_x_continuous" "scale_x_date"       "scale_x_datetime"  
-#>  [4] "scale_x_discrete"   "scale_x_log10"      "scale_x_reverse"   
-#>  [7] "scale_x_sqrt"       "scale_x_time"       "scale_y_continuous"
-#> [10] "scale_y_date"       "scale_y_datetime"   "scale_y_discrete"  
-#> [13] "scale_y_log10"      "scale_y_reverse"    "scale_y_sqrt"      
-#> [16] "scale_y_time"
+#>  [1] "scale_x_binned"     "scale_x_continuous" "scale_x_date"      
+#>  [4] "scale_x_datetime"   "scale_x_discrete"   "scale_x_log10"     
+#>  [7] "scale_x_reverse"    "scale_x_sqrt"       "scale_x_time"      
+#> [10] "scale_y_binned"     "scale_y_continuous" "scale_y_date"      
+#> [13] "scale_y_datetime"   "scale_y_discrete"   "scale_y_log10"     
+#> [16] "scale_y_reverse"    "scale_y_sqrt"       "scale_y_time"
 ```
 
 
@@ -285,7 +296,7 @@ ggplot(airquality, aes(x = Temp, y = Ozone)) +
   scale_y_continuous(breaks = seq(0, 200, 20))
 ```
 
-<img src="dv-ggplot2_files/figure-html/unnamed-chunk-10-1.png" width="70%" style="display: block; margin: auto;" />
+<img src="dv-ggplot2_files/figure-html/unnamed-chunk-9-1.png" width="70%" style="display: block; margin: auto;" />
 
 ### 注释 {#ggplot2-annotate}
 
@@ -302,7 +313,7 @@ ggplot(airquality, aes(x = Temp, y = Ozone)) +
   geom_point(na.rm = TRUE)
 ```
 
-<img src="dv-ggplot2_files/figure-html/unnamed-chunk-12-1.png" width="70%" style="display: block; margin: auto;" />
+<img src="dv-ggplot2_files/figure-html/unnamed-chunk-11-1.png" width="70%" style="display: block; margin: auto;" />
 
 
 
@@ -333,7 +344,7 @@ ggplot(airquality) +
   facet_wrap(~ as.ordered(Month), nrow = 1)
 ```
 
-<img src="dv-ggplot2_files/figure-html/unnamed-chunk-13-1.png" width="70%" style="display: block; margin: auto;" /><img src="dv-ggplot2_files/figure-html/unnamed-chunk-13-2.png" width="70%" style="display: block; margin: auto;" />
+<img src="dv-ggplot2_files/figure-html/unnamed-chunk-12-1.png" width="70%" style="display: block; margin: auto;" /><img src="dv-ggplot2_files/figure-html/unnamed-chunk-12-2.png" width="70%" style="display: block; margin: auto;" />
 
 [cowplot](https://github.com/wilkelab/cowplot) 是以作者 [Claus O. Wilke](https://wilkelab.org/) 命名的，用来组合 ggplot 对象画图，类似的组合图形的功能包还有 [baptiste auguié](https://baptiste.github.io/) 开发的 [gridExtra](https://CRAN.R-project.org/package=gridExtra) 和 [egg](https://github.com/baptiste/egg)， [Thomas Lin Pedersen](https://www.data-imaginist.com/) 开发的 [patchwork](https://github.com/thomasp85/patchwork)
 
@@ -470,9 +481,11 @@ ggplot(sub_diamonds, aes(x = carat, y = price, group = cut)) +
 ggplot(sub_diamonds, aes(x = carat, y = price)) +
   geom_point() +
   geom_smooth(method = "lm")
+#> `geom_smooth()` using formula 'y ~ x'
 ggplot(sub_diamonds, aes(x = carat, y = price, group = cut)) +
   geom_point() +
   geom_smooth(method = "lm")
+#> `geom_smooth()` using formula 'y ~ x'
 ```
 
 <div class="figure" style="text-align: center">
@@ -487,11 +500,12 @@ ggplot(sub_diamonds, aes(x = carat, y = price, group = cut)) +
 ggplot(sub_diamonds, aes(x = carat, y = price, group = cut)) +
   geom_point() +
   geom_smooth(method = "loess")
+#> `geom_smooth()` using formula 'y ~ x'
 ```
 
 <div class="figure" style="text-align: center">
-<img src="dv-ggplot2_files/figure-html/unnamed-chunk-16-1.png" alt="局部多项式平滑" width="70%" />
-<p class="caption">(\#fig:unnamed-chunk-16)局部多项式平滑</p>
+<img src="dv-ggplot2_files/figure-html/unnamed-chunk-15-1.png" alt="局部多项式平滑" width="70%" />
+<p class="caption">(\#fig:unnamed-chunk-15)局部多项式平滑</p>
 </div>
 
 
@@ -598,8 +612,8 @@ ggplot(Wheat2, aes(longitude, latitude)) +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="dv-ggplot2_files/figure-html/unnamed-chunk-17-1.png" alt="多个图例" width="70%" />
-<p class="caption">(\#fig:unnamed-chunk-17)多个图例</p>
+<img src="dv-ggplot2_files/figure-html/unnamed-chunk-16-1.png" alt="多个图例" width="70%" />
+<p class="caption">(\#fig:unnamed-chunk-16)多个图例</p>
 </div>
   
 
@@ -628,8 +642,8 @@ ggplot(data = dat, aes(x = as.factor(year), y = as.factor(month))) +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="dv-ggplot2_files/figure-html/unnamed-chunk-18-1.png" alt="1948年至1960年航班乘客人数变化" width="70%" />
-<p class="caption">(\#fig:unnamed-chunk-18)1948年至1960年航班乘客人数变化</p>
+<img src="dv-ggplot2_files/figure-html/unnamed-chunk-17-1.png" alt="1948年至1960年航班乘客人数变化" width="70%" />
+<p class="caption">(\#fig:unnamed-chunk-17)1948年至1960年航班乘客人数变化</p>
 </div>
 
 ### 箱线图 {#ggplot2-boxplot}
@@ -672,7 +686,7 @@ boxplot(weight ~ group,
 )
 ```
 
-<img src="dv-ggplot2_files/figure-html/unnamed-chunk-20-1.png" width="70%" style="display: block; margin: auto;" />
+<img src="dv-ggplot2_files/figure-html/unnamed-chunk-19-1.png" width="70%" style="display: block; margin: auto;" />
 :::
 
 以钻石切割质量 cut 为分面依据，以钻石颜色类别 color 为 x 轴，钻石价格为 y 轴，绘制箱线图\@ref(fig:boxplot-facet-color)
@@ -735,7 +749,7 @@ cut_df <- as.data.frame(table(diamonds$cut))
 ggplot(cut_df, aes(x = Var1, y = Freq)) + geom_bar(stat = "identity")
 ```
 
-<img src="dv-ggplot2_files/figure-html/unnamed-chunk-21-1.png" width="70%" style="display: block; margin: auto;" />
+<img src="dv-ggplot2_files/figure-html/unnamed-chunk-20-1.png" width="70%" style="display: block; margin: auto;" />
 
 ```r
 ggplot(diamonds, aes(x = cut)) + geom_bar()
@@ -755,7 +769,7 @@ ggplot(diamonds, aes(x = cut, y = ..count..)) + geom_bar()
 ggplot(diamonds, aes(x = cut, y = stat(count))) + geom_bar()
 ```
 
-<img src="dv-ggplot2_files/figure-html/unnamed-chunk-22-1.png" width="70%" style="display: block; margin: auto;" /><img src="dv-ggplot2_files/figure-html/unnamed-chunk-22-2.png" width="70%" style="display: block; margin: auto;" /><img src="dv-ggplot2_files/figure-html/unnamed-chunk-22-3.png" width="70%" style="display: block; margin: auto;" />
+<img src="dv-ggplot2_files/figure-html/unnamed-chunk-21-1.png" width="70%" style="display: block; margin: auto;" /><img src="dv-ggplot2_files/figure-html/unnamed-chunk-21-2.png" width="70%" style="display: block; margin: auto;" /><img src="dv-ggplot2_files/figure-html/unnamed-chunk-21-3.png" width="70%" style="display: block; margin: auto;" />
 
 我们还可以在图 \@ref(fig:diamonds-barplot-1) 的基础上再添加一个分类变量钻石的纯净度 clarity，形成堆积条形图
 
@@ -915,8 +929,8 @@ ggplot(economics, aes(date, unemploy)) + geom_line()
 ```
 
 <div class="figure" style="text-align: center">
-<img src="dv-ggplot2_files/figure-html/unnamed-chunk-25-1.png" alt="时序图" width="70%" />
-<p class="caption">(\#fig:unnamed-chunk-25)时序图</p>
+<img src="dv-ggplot2_files/figure-html/unnamed-chunk-24-1.png" alt="时序图" width="70%" />
+<p class="caption">(\#fig:unnamed-chunk-24)时序图</p>
 </div>
 
 
@@ -930,8 +944,8 @@ ggplot(diamonds, aes(price)) + geom_histogram(bins = 30)
 ```
 
 <div class="figure" style="text-align: center">
-<img src="dv-ggplot2_files/figure-html/unnamed-chunk-26-1.png" alt="钻石价格的分布" width="70%" />
-<p class="caption">(\#fig:unnamed-chunk-26)钻石价格的分布</p>
+<img src="dv-ggplot2_files/figure-html/unnamed-chunk-25-1.png" alt="钻石价格的分布" width="70%" />
+<p class="caption">(\#fig:unnamed-chunk-25)钻石价格的分布</p>
 </div>
 
 堆积直方图
@@ -942,8 +956,8 @@ ggplot(diamonds, aes(x = price, fill = cut)) + geom_histogram(bins = 30)
 ```
 
 <div class="figure" style="text-align: center">
-<img src="dv-ggplot2_files/figure-html/unnamed-chunk-27-1.png" alt="钻石价格随切割质量的分布" width="70%" />
-<p class="caption">(\#fig:unnamed-chunk-27)钻石价格随切割质量的分布</p>
+<img src="dv-ggplot2_files/figure-html/unnamed-chunk-26-1.png" alt="钻石价格随切割质量的分布" width="70%" />
+<p class="caption">(\#fig:unnamed-chunk-26)钻石价格随切割质量的分布</p>
 </div>
 
 基础 R 包与 Ggplot2 包绘制的直方图的对比，Base R 绘图速度快，代码更加稳定，Ggplot2 代码简洁，更美观
@@ -990,8 +1004,8 @@ ggplot(mtcars) +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="dv-ggplot2_files/figure-html/unnamed-chunk-28-1.png" alt="直方图" width="70%" /><img src="dv-ggplot2_files/figure-html/unnamed-chunk-28-2.png" alt="直方图" width="70%" />
-<p class="caption">(\#fig:unnamed-chunk-28)直方图</p>
+<img src="dv-ggplot2_files/figure-html/unnamed-chunk-27-1.png" alt="直方图" width="70%" /><img src="dv-ggplot2_files/figure-html/unnamed-chunk-27-2.png" alt="直方图" width="70%" />
+<p class="caption">(\#fig:unnamed-chunk-27)直方图</p>
 </div>
 
 
@@ -1038,7 +1052,7 @@ ggplot(mpg, aes(x = class, y = hwy, color = class)) +
   ggbeeswarm::geom_quasirandom()
 ```
 
-<img src="dv-ggplot2_files/figure-html/unnamed-chunk-29-1.png" width="70%" style="display: block; margin: auto;" />
+<img src="dv-ggplot2_files/figure-html/unnamed-chunk-28-1.png" width="70%" style="display: block; margin: auto;" />
 
 
 
@@ -1053,7 +1067,7 @@ ggplot(mpg, aes(x = class, y = hwy, color = class)) +
 ggplot(mpg, aes(x = class, y = hwy, color = class)) + geom_jitter()
 ```
 
-<img src="dv-ggplot2_files/figure-html/unnamed-chunk-30-1.png" width="70%" style="display: block; margin: auto;" />
+<img src="dv-ggplot2_files/figure-html/unnamed-chunk-29-1.png" width="70%" style="display: block; margin: auto;" />
 
 抖不抖，还是抖一下
 
@@ -1073,7 +1087,7 @@ ggplot(iris, aes(x = Species, y = Sepal.Length)) +
   labs(title = "Jittered")
 ```
 
-<img src="dv-ggplot2_files/figure-html/unnamed-chunk-31-1.png" width="70%" style="display: block; margin: auto;" /><img src="dv-ggplot2_files/figure-html/unnamed-chunk-31-2.png" width="70%" style="display: block; margin: auto;" />
+<img src="dv-ggplot2_files/figure-html/unnamed-chunk-30-1.png" width="70%" style="display: block; margin: auto;" /><img src="dv-ggplot2_files/figure-html/unnamed-chunk-30-2.png" width="70%" style="display: block; margin: auto;" />
 
 在数据量比较大的时候，可以用箱线图、密度图、提琴图
 
@@ -1083,8 +1097,8 @@ ggplot(sub_diamonds, aes(x = cut, y = price)) + geom_jitter()
 ```
 
 <div class="figure" style="text-align: center">
-<img src="dv-ggplot2_files/figure-html/unnamed-chunk-32-1.png" alt="抖动图的反例" width="70%" />
-<p class="caption">(\#fig:unnamed-chunk-32)抖动图的反例</p>
+<img src="dv-ggplot2_files/figure-html/unnamed-chunk-31-1.png" alt="抖动图的反例" width="70%" />
+<p class="caption">(\#fig:unnamed-chunk-31)抖动图的反例</p>
 </div>
 
 上色和分面都不好使的抖动图，因为区分度变小
@@ -1097,8 +1111,8 @@ ggplot(sub_diamonds, aes(x = color, y = price, color = color)) +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="dv-ggplot2_files/figure-html/unnamed-chunk-33-1.png" alt="根据钻石颜色上色" width="70%" />
-<p class="caption">(\#fig:unnamed-chunk-33)根据钻石颜色上色</p>
+<img src="dv-ggplot2_files/figure-html/unnamed-chunk-32-1.png" alt="根据钻石颜色上色" width="70%" />
+<p class="caption">(\#fig:unnamed-chunk-32)根据钻石颜色上色</p>
 </div>
 
 箱线图此时不宜分的过细
@@ -1199,8 +1213,8 @@ ggplot(diamonds, aes(carat, stat(count), fill = cut)) +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="dv-ggplot2_files/figure-html/unnamed-chunk-34-1.png" alt="条件密度估计图" width="70%" />
-<p class="caption">(\#fig:unnamed-chunk-34)条件密度估计图</p>
+<img src="dv-ggplot2_files/figure-html/unnamed-chunk-33-1.png" alt="条件密度估计图" width="70%" />
+<p class="caption">(\#fig:unnamed-chunk-33)条件密度估计图</p>
 </div>
 
 
@@ -1213,7 +1227,7 @@ ggplot(diamonds) +
 #> Picking joint bandwidth of 535
 ```
 
-<img src="dv-ggplot2_files/figure-html/unnamed-chunk-35-1.png" width="70%" style="display: block; margin: auto;" />
+<img src="dv-ggplot2_files/figure-html/unnamed-chunk-34-1.png" width="70%" style="display: block; margin: auto;" />
 
 二维的密度图又是一种延伸
 
@@ -1224,7 +1238,7 @@ ggplot(diamonds, aes(x = carat, y = price)) +
   facet_grid(~cut)
 ```
 
-<img src="dv-ggplot2_files/figure-html/unnamed-chunk-36-1.png" width="70%" style="display: block; margin: auto;" />
+<img src="dv-ggplot2_files/figure-html/unnamed-chunk-35-1.png" width="70%" style="display: block; margin: auto;" />
 
 `stat` 函数，特别是 nlevel 参数，在密度曲线之间填充我们又可以得到热力图
 
@@ -1235,7 +1249,7 @@ ggplot(diamonds, aes(x = carat, y = price)) +
   facet_grid(. ~ cut)
 ```
 
-<img src="dv-ggplot2_files/figure-html/unnamed-chunk-37-1.png" width="70%" style="display: block; margin: auto;" />
+<img src="dv-ggplot2_files/figure-html/unnamed-chunk-36-1.png" width="70%" style="display: block; margin: auto;" />
 
 `gemo_hex` 也是二维密度图的一种变体，特别适合数据量比较大的情形
 
@@ -1245,7 +1259,7 @@ ggplot(diamonds, aes(x = carat, y = price)) + geom_hex() +
   scale_fill_viridis_c()
 ```
 
-<img src="dv-ggplot2_files/figure-html/unnamed-chunk-38-1.png" width="70%" style="display: block; margin: auto;" />
+<img src="dv-ggplot2_files/figure-html/unnamed-chunk-37-1.png" width="70%" style="display: block; margin: auto;" />
 
 ### 玫瑰图 {#ggplot2-rose}
 
@@ -1295,7 +1309,7 @@ p + geom_bar(position = "fill") +
   labs(x = "", y = "", fill = "Magnitude")
 ```
 
-<img src="dv-ggplot2_files/figure-html/unnamed-chunk-39-1.png" width="70%" style="display: block; margin: auto;" />
+<img src="dv-ggplot2_files/figure-html/unnamed-chunk-38-1.png" width="70%" style="display: block; margin: auto;" />
 
 
 [^nightingale-rose]: https://mbostock.github.io/protovis/ex/crimea-rose-full.html
@@ -1342,7 +1356,7 @@ ggplot(rides, aes(x = week, y = weekdays, fill = N)) +
   theme_tufte()
 ```
 
-<img src="dv-ggplot2_files/figure-html/unnamed-chunk-40-1.png" width="70%" style="display: block; margin: auto;" />
+<img src="dv-ggplot2_files/figure-html/unnamed-chunk-39-1.png" width="70%" style="display: block; margin: auto;" />
 
 
 
@@ -1356,7 +1370,7 @@ xfun::session_info(
     "nlme", "mgcv", "ggbeeswarm", "ggridges", "hexbin"
   )
 )
-#> R Under development (unstable) (2020-02-04 r77771)
+#> R Under development (unstable) (2020-03-06 r77913)
 #> Platform: x86_64-pc-linux-gnu (64-bit)
 #> Running under: Ubuntu 16.04.6 LTS
 #> 
@@ -1369,22 +1383,25 @@ xfun::session_info(
 #>   LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
 #> 
 #> Package version:
-#>   assertthat_0.2.1   beeswarm_0.2.3     cli_2.0.1         
-#>   colorspace_1.4-1   crayon_1.3.4       digest_0.6.23     
-#>   ellipsis_0.3.0     fansi_0.4.1        farver_2.0.3      
-#>   ggbeeswarm_0.6.0   ggplot2_3.2.1      ggridges_0.5.2    
-#>   glue_1.3.1         graphics_4.0.0     grDevices_4.0.0   
-#>   grid_4.0.0         gtable_0.3.0       hexbin_1.28.1     
-#>   labeling_0.3       lattice_0.20.38    lazyeval_0.2.2    
-#>   lifecycle_0.1.0    magrittr_1.5       MASS_7.3.51.5     
-#>   Matrix_1.2.18      methods_4.0.0      mgcv_1.8-31       
-#>   munsell_0.5.0      nlme_3.1-143       pillar_1.4.3      
-#>   pkgconfig_2.0.3    plyr_1.8.5         R6_2.4.1          
-#>   RColorBrewer_1.1.2 Rcpp_1.0.3         reshape2_1.4.3    
-#>   rlang_0.4.4        scales_1.1.0       splines_4.0.0     
-#>   stats_4.0.0        stringi_1.4.5      stringr_1.4.0     
-#>   tibble_2.1.3       tools_4.0.0        utf8_1.1.4        
-#>   utils_4.0.0        vctrs_0.2.2        vipor_0.4.5       
-#>   viridisLite_0.3.0  withr_2.1.2
+#>   assertthat_0.2.1   backports_1.1.5    beeswarm_0.2.3    
+#>   callr_3.4.2        cli_2.0.2          colorspace_1.4-1  
+#>   crayon_1.3.4       desc_1.2.0         digest_0.6.25     
+#>   ellipsis_0.3.0     evaluate_0.14      fansi_0.4.1       
+#>   farver_2.0.3       ggbeeswarm_0.6.0   ggplot2_3.3.0     
+#>   ggridges_0.5.2     glue_1.3.1         graphics_4.0.0    
+#>   grDevices_4.0.0    grid_4.0.0         gtable_0.3.0      
+#>   hexbin_1.28.1      isoband_0.2.0      labeling_0.3      
+#>   lattice_0.20.40    lifecycle_0.2.0    magrittr_1.5      
+#>   MASS_7.3.51.5      Matrix_1.2.18      methods_4.0.0     
+#>   mgcv_1.8-31        munsell_0.5.0      nlme_3.1-145      
+#>   pillar_1.4.3       pkgbuild_1.0.6     pkgconfig_2.0.3   
+#>   pkgload_1.0.2      plyr_1.8.6         praise_1.0.0      
+#>   prettyunits_1.1.1  processx_3.4.2     ps_1.3.2          
+#>   R6_2.4.1           RColorBrewer_1.1.2 Rcpp_1.0.3        
+#>   rlang_0.4.5        rprojroot_1.3.2    rstudioapi_0.11   
+#>   scales_1.1.0       splines_4.0.0      stats_4.0.0       
+#>   testthat_2.3.2     tibble_2.1.3       tools_4.0.0       
+#>   utf8_1.1.4         utils_4.0.0        vctrs_0.2.3       
+#>   vipor_0.4.5        viridisLite_0.3.0  withr_2.1.2
 ```
 

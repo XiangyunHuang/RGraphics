@@ -1,4 +1,3 @@
-
 # 三维可视化 {#plot-3d}
 
 画图 graphics 使用基础 R 包和基于基础包的扩展包绘图 **plotrix** [@Plotrix_2006_Lemon]， **plotrix** 饼图 pie3D  **scatterplot3d** 三维图形 **plot3D** 三维图形 **barsurf** 三维条形图、曲面图
@@ -47,14 +46,14 @@ persp(x, y, z,
 )
 ```
 
-<img src="dv-plot3d_files/figure-html/unnamed-chunk-3-1.png" width="70%" style="display: block; margin: auto;" />
+<img src="dv-plot3d_files/figure-html/unnamed-chunk-2-1.png" width="70%" style="display: block; margin: auto;" />
 
 
 ```r
 persp(x, y, z, xaxs = "i", expand = 0.5, phi = 20, theta = 60, col = color[facetcol])
 ```
 
-<img src="dv-plot3d_files/figure-html/unnamed-chunk-4-1.png" width="70%" style="display: block; margin: auto;" />
+<img src="dv-plot3d_files/figure-html/unnamed-chunk-3-1.png" width="70%" style="display: block; margin: auto;" />
 
 
 ```r
@@ -72,7 +71,7 @@ persp(x, y, z,
 )
 ```
 
-<img src="dv-plot3d_files/figure-html/unnamed-chunk-5-1.png" width="70%" style="display: block; margin: auto;" />
+<img src="dv-plot3d_files/figure-html/unnamed-chunk-4-1.png" width="70%" style="display: block; margin: auto;" />
 
 `theta`参数给出了主要方向，控制三维图的左右，`phi`给出纬度，`expand` 控制三维图的立体性
 
@@ -105,7 +104,7 @@ persp(data.lm, x ~ y,
 )
 ```
 
-<img src="dv-plot3d_files/figure-html/unnamed-chunk-6-1.png" width="70%" style="display: block; margin: auto;" />
+<img src="dv-plot3d_files/figure-html/unnamed-chunk-5-1.png" width="70%" style="display: block; margin: auto;" />
 
 
 ```r
@@ -117,7 +116,7 @@ xy <- matrix(c((-3 - 8) / 5, -3, (3 - 8) / 5, 3), ncol = 2, byrow = T)
 lines(trans3d(xy[, 2], xy[, 1], 0, pmat = res1$`y ~ x`$transf), col = 3)
 ```
 
-<img src="dv-plot3d_files/figure-html/unnamed-chunk-7-1.png" width="70%" style="display: block; margin: auto;" />
+<img src="dv-plot3d_files/figure-html/unnamed-chunk-6-1.png" width="70%" style="display: block; margin: auto;" />
 
 
 单个总体的最大似然估计，生成总体服从指数分布的随机数
@@ -151,11 +150,11 @@ facetcol <- cut(zfacet, nbcol)
 # "\n" adds one line before the label
 persp(mv, sv, z,
   xlab = "\n mu", ylab = "\n sigma", zlab = "\n log-likelihood",
-  phi = 35, theta = -30, col = color[facetcol]
+  phi = 35, theta = -30, col = color[facetcol], border = NA
 )
 ```
 
-<img src="dv-plot3d_files/figure-html/unnamed-chunk-8-1.png" width="70%" style="display: block; margin: auto;" />
+<img src="dv-plot3d_files/figure-html/unnamed-chunk-7-1.png" width="70%" style="display: block; margin: auto;" />
 
 
 第一个例子来自 Eric Lecoutre 的图库^[<http://www.ejwagenmakers.com/misc/Plotting_3d_in_R.pdf>]，这是我见过的图形中含有巨量公式，并且用 R 实现的例子。在他的基础上我修改了颜色，设置图片尺寸，基于 persp 实现的透视图，唯一不足的是 persp 不支持表达式形式的坐标轴标签。
@@ -297,8 +296,8 @@ wireframe(z ~ x1 + x2,
 ```
 
 <div class="figure" style="text-align: center">
-<img src="dv-plot3d_files/figure-html/unnamed-chunk-9-1.png" alt="表达式二元密度函数" width="70%" />
-<p class="caption">(\#fig:unnamed-chunk-9)表达式二元密度函数</p>
+<img src="dv-plot3d_files/figure-html/unnamed-chunk-8-1.png" alt="表达式二元密度函数" width="70%" />
+<p class="caption">(\#fig:unnamed-chunk-8)表达式二元密度函数</p>
 </div>
 
 
@@ -311,7 +310,7 @@ wireframe(volcano,
 )
 ```
 
-<img src="dv-plot3d_files/figure-html/unnamed-chunk-10-1.png" width="70%" style="display: block; margin: auto;" />
+<img src="dv-plot3d_files/figure-html/unnamed-chunk-9-1.png" width="70%" style="display: block; margin: auto;" />
 
 希腊字母用 unicode 字符代替，不要使用 `pdf` 不然数学符号 $\sigma$ 不能正确渲染，推荐选择 `cairo_pdf`
 
@@ -374,7 +373,7 @@ persp(mba.int,
 image(mba.int, xaxs = "r", yaxs = "r", col = gray(seq(1, 0, l = 101)))
 ```
 
-<img src="dv-plot3d_files/figure-html/unnamed-chunk-11-1.png" width="70%" style="display: block; margin: auto;" /><img src="dv-plot3d_files/figure-html/unnamed-chunk-11-2.png" width="70%" style="display: block; margin: auto;" /><img src="dv-plot3d_files/figure-html/unnamed-chunk-11-3.png" width="70%" style="display: block; margin: auto;" /><img src="dv-plot3d_files/figure-html/unnamed-chunk-11-4.png" width="70%" style="display: block; margin: auto;" />
+<img src="dv-plot3d_files/figure-html/unnamed-chunk-10-1.png" width="70%" style="display: block; margin: auto;" /><img src="dv-plot3d_files/figure-html/unnamed-chunk-10-2.png" width="70%" style="display: block; margin: auto;" /><img src="dv-plot3d_files/figure-html/unnamed-chunk-10-3.png" width="70%" style="display: block; margin: auto;" /><img src="dv-plot3d_files/figure-html/unnamed-chunk-10-4.png" width="70%" style="display: block; margin: auto;" />
 
 
 
@@ -384,12 +383,19 @@ library(barsurf)
 x <- y <- 1:4
 f <- function(x, y) x^2 + y^2
 z <- outer(x, y, f)
-plot3d.bar(, , z)
-plot3d.bar(, , volcano)
-plot3d.surf(, , volcano)
+plot_bar(, , z)
 ```
 
-<img src="dv-plot3d_files/figure-html/unnamed-chunk-12-1.png" width="70%" style="display: block; margin: auto;" /><img src="dv-plot3d_files/figure-html/unnamed-chunk-12-2.png" width="70%" style="display: block; margin: auto;" /><img src="dv-plot3d_files/figure-html/unnamed-chunk-12-3.png" width="70%" style="display: block; margin: auto;" />
+<img src="dv-plot3d_files/figure-html/unnamed-chunk-11-1.png" width="70%" style="display: block; margin: auto;" />
+
+
+
+```r
+plot_bar(, , volcano)
+plot_surface(, , volcano)
+```
+
+<img src="dv-plot3d_files/figure-html/unnamed-chunk-12-1.png" width="70%" style="display: block; margin: auto;" /><img src="dv-plot3d_files/figure-html/unnamed-chunk-12-2.png" width="70%" style="display: block; margin: auto;" />
 
 
 ## TikZ 绘图 {#tikz}
@@ -620,7 +626,7 @@ apropos("dev.")
 
 ```r
 sessionInfo()
-#> R Under development (unstable) (2020-02-04 r77771)
+#> R Under development (unstable) (2020-03-06 r77913)
 #> Platform: x86_64-pc-linux-gnu (64-bit)
 #> Running under: Ubuntu 16.04.6 LTS
 #> 
@@ -630,7 +636,7 @@ sessionInfo()
 #> 
 #> locale:
 #>  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
-#>  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+#>  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=C              
 #>  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
 #>  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
 #>  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
@@ -640,16 +646,17 @@ sessionInfo()
 #> [1] stats     graphics  grDevices utils     datasets  methods   base     
 #> 
 #> other attached packages:
-#> [1] lattice_0.20-38      latex2exp_0.4.0      rsm_2.10            
+#> [1] lattice_0.20-40      latex2exp_0.4.0      rsm_2.10            
 #> [4] MBA_0.0-9            plot3D_1.3           scatterplot3d_0.3-41
-#> [7] plotrix_3.7-7        barsurf_0.3.1       
+#> [7] plotrix_3.7-7        barsurf_0.4.0       
 #> 
 #> loaded via a namespace (and not attached):
-#>  [1] Rcpp_1.0.3        knitr_1.26        magrittr_1.5      misc3d_0.8-4     
-#>  [5] colorspace_1.4-1  rlang_0.4.4       filehash_2.4-2    stringr_1.4.0    
+#>  [1] Rcpp_1.0.3        knitr_1.28.2      magrittr_1.5      misc3d_0.8-4     
+#>  [5] colorspace_1.4-1  rlang_0.4.5       filehash_2.4-2    stringr_1.4.0    
 #>  [9] highr_0.8         pdftools_2.3      tools_4.0.0       grid_4.0.0       
-#> [13] tikzDevice_0.12.3 xfun_0.12         tinytex_0.19      askpass_1.1      
-#> [17] htmltools_0.4.0   yaml_2.2.1        digest_0.6.23     qpdf_1.1         
-#> [21] bookdown_0.17     curl_4.3          evaluate_0.14     rmarkdown_2.1    
-#> [25] stringi_1.4.5     compiler_4.0.0    magick_2.3
+#> [13] tikzDevice_0.12.3 xfun_0.12         tinytex_0.20      askpass_1.1      
+#> [17] htmltools_0.4.0   kubik_0.1.2       yaml_2.2.1        digest_0.6.25    
+#> [21] qpdf_1.1          bookdown_0.18     intoo_0.4.0       curl_4.3         
+#> [25] evaluate_0.14     rmarkdown_2.1     stringi_1.4.6     compiler_4.0.0   
+#> [29] magick_2.3
 ```
