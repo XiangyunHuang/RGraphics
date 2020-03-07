@@ -7,10 +7,6 @@ R ggplot2 "bindings" for Vega-Lite [vegalite](https://github.com/hrbrmstr/vegali
 
 rgl 基于 opengl 的交互式三维图形可视化工具包
 
-```r
-library(rgl)
-```
-
 ## rgl
 
 ```{r}
@@ -81,60 +77,6 @@ persp3d(x = z0, y = x0, z = -y0, zlim = c(-1, 1), col = "red", add = TRUE)
 ```
 
 
-
-## plotly
-
-[plotly](https://plotly-r.com) 类似 GGplot2 提供了各种交互图形的绘制函数，其中 `plot_ly` 函数提供了两种风格的绘图方式，一种是 Base R 另一种是 GGplot2，我们主要考虑使用 GGplot2 这种风格的 
-
-### 直方图 {#plotly-histogram}
-
-```{r}
-library(plotly, warn.conflicts = FALSE)
-# 生成一些随机数
-days <- abs(rnorm(1000, 80, 125))
-
-p1 <- plot_ly(as.data.frame(days), x = ~days) %>% add_histogram(name = "plotly.js")
-
-# hist 的默认方法是 Sturges
-price_hist <- function(method = "FD") {
-  h <- hist(diamonds$price, breaks = method, plot = FALSE)
-  plot_ly(x = h$mids, y = h$counts) %>% add_bars(name = method)
-}
-
-subplot(
-  p1, price_hist(), price_hist("Sturges"),  price_hist("Scott"),
-  nrows = 4, shareX = TRUE
-)
-```
-
-### 地图 {#plotly-map}
-
-```{r}
-library(maps)
-map_data("world", "china") %>%
-  group_by(group) %>%
-  plot_geo(x = ~long, y = ~lat) %>%
-  add_markers(size = I(1))
-```
-
-### 热力图 {#plotly-heatmap}
-
-```{r}
-data(geyser, package = "MASS")
-den <- MASS::kde2d(geyser$waiting, geyser$duration)
-
-# 热力图
-plot_ly(x = den$x, y = den$y, z = den$z) %>%
-  add_heatmap()
-
-# 等高线图
-plot_ly(x = den$x, y = den$y, z = den$z) %>%
-  add_contour()
-```
-
-Tal Galili 开发的 heatmaply 包[@Galili_2017_heatmaply] 层次聚类可视化
-
-
 ## leaflet {#leaflet}
 
 leaflet 基于 leaflet.js 展示空间数据
@@ -148,85 +90,6 @@ leaflet() %>%
   addPopups(-93.65, 42.0285, 'Here is the <b>Department of Statistics</b>, ISU')
 ```
 
-## highcharter
-
-### 时序图 {#highcharter-ts}
-
-可能需要研究下 highcharts.js 的 API <https://api.highcharts.com/highcharts/series>
-
-```{r}
-library(highcharter)
-methods(hchart)
-getAnywhere(hchart.mts)
-class(EuStockMarkets)
-# hchart(EuStockMarkets) # 为何不能绘制
-```
-
-```{r}
-hchart(AirPassengers)
-```
-
-```{r}
-highchart() %>% 
-  hc_chart(type = "line") %>% 
-  hc_title(text = "Monthly Average Temperature") %>% 
-  hc_subtitle(text = "Source: WorldClimate.com") %>% 
-  hc_xAxis(categories = c("Jan", "Feb", "Mar", "Apr", "May", "Jun",
-                          "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")) %>% 
-  hc_yAxis(title = list(text = "Temperature (C)")) %>% 
-  hc_plotOptions(line = list(
-    dataLabels = list(enabled = TRUE),
-    enableMouseTracking = FALSE)
-    ) %>% 
-  hc_series(
-    list(
-      name = "Tokyo",
-      data = c(7.0, 6.9, 9.5, 14.5, 18.4, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6)
-    ),
-    list(
-      name = "London",
-      data = c(3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8)
-    )
-  )
-```
-
-### 散点图 {#highcharter-scatter}
-
-```{r}
-data(diamonds, mpg, package = "ggplot2")
-hchart(mpg, "scatter", hcaes(x = displ, y = hwy, group = class))
-```
-
-### 地图 {#highcharter-map}
-
-美国失业率数据
-
-```{r,eval=FALSE}
-data(unemployment, package = "highcharter")
-temp <- unlist(strsplit(unemployment[, 2], ",")) # 拆成两列
-unique(temp[seq(from = 2, to = length(temp), by = 2)]) # 51 个州
-# US Counties unemployment rate
-# code: The county code.
-#
-# name: The county name.
-#
-# value: The unemployment.
-# A data.frame with 3 variables and 3216 observations.
-```
-
-```{r}
-data(unemployment)
-hcmap("countries/us/us-all-all",
-  data = unemployment,
-  name = "Unemployment", value = "value", joinBy = c("hc-key", "code"),
-  borderColor = "transparent"
-) %>%
-  hc_colorAxis(dataClasses = color_classes(c(seq(0, 10, by = 2), 50))) %>%
-  hc_legend(
-    layout = "vertical", align = "right",
-    floating = TRUE, valueDecimals = 0, valueSuffix = "%"
-  )
-```
 
 ## vegawidget
 
