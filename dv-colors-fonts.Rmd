@@ -366,7 +366,7 @@ convert -quality 100 -density 300x300 font_Impact.pdf font_Impact.png
 ```
 
 ```{r fonts-Impact,fig.cap="Impact 字体",echo=FALSE}
-knitr::include_graphics(path = "figures/font_Impact.png")
+knitr::include_graphics(path = "figures/font-impact.png")
 ```
 
 
