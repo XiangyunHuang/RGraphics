@@ -106,6 +106,7 @@ before_script:
   - Rscript -e "sessionInfo(.packages(T));capabilities()"
   - Rscript -e 'update.packages(lib.loc = .libPaths()[1], ask = FALSE)'
   - Rscript -e "install.packages('remotes');remotes::install_deps()"
+  - Rscript -e "install.packages('spDataLarge', repos = 'https://nowosad.github.io/drat')"
   - Rscript -e 'library(tikzDevice);tikzTest();tikzTest("$\\sin(x^2/2 - y^2/4 + 3) \\cos(2 x + 1 - \\exp(y))$")'
 
 
@@ -116,7 +117,7 @@ script:
   - chmod +x ./_deploy.sh
   # build book
   - mkdir -p _book/interactives && cp -r interactives/* _book/interactives
-  - make gitbook
+#  - make gitbook
 
 #script:
 #  - export DOCKER_HOST_IP=$(ip route|awk '/docker0/ { print $9 }')
@@ -125,8 +126,8 @@ script:
 #  - docker-compose run book bash -c "cp odbc.ini ~/.odbc.ini;make gitbook"
 #  - docker-compose down
 
-after_success:
-  - ./_deploy.sh
+#after_success:
+#  - ./_deploy.sh
 
 before_cache:
 - nvm install stable
