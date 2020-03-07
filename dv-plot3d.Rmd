@@ -133,7 +133,7 @@ facetcol <- cut(zfacet, nbcol)
 # "\n" adds one line before the label
 persp(mv, sv, z,
   xlab = "\n mu", ylab = "\n sigma", zlab = "\n log-likelihood",
-  phi = 35, theta = -30, col = color[facetcol]
+  phi = 35, theta = -30, col = color[facetcol], border = NA
 )
 ```
 
@@ -333,9 +333,13 @@ library(barsurf)
 x <- y <- 1:4
 f <- function(x, y) x^2 + y^2
 z <- outer(x, y, f)
-plot3d.bar(, , z)
-plot3d.bar(, , volcano)
-plot3d.surf(, , volcano)
+plot_bar(, , z)
+```
+
+
+```{r}
+plot_bar(, , volcano)
+plot_surface(, , volcano)
 ```
 
 
