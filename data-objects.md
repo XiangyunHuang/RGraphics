@@ -104,11 +104,11 @@ Table: (\#tab:basic-data-type) R/Rcpp 提供的基本数据类型
 
 ```r
 Sys.Date()
-#> [1] "2020-03-07"
+#> [1] "2020-03-10"
 Sys.time()
-#> [1] "2020-03-07 20:51:32 CST"
+#> [1] "2020-03-10 22:44:18 CST"
 c(Sys.time(), Sys.Date())
-#> [1] "2020-03-07 20:51:32 CST" "1970-01-01 13:05:28 CST"
+#> [1] "2020-03-10 22:44:18 CST" "1970-01-01 13:05:31 CST"
 data.table::year(Sys.Date())
 #> [1] 2020
 data.table::year(Sys.time())
@@ -123,7 +123,7 @@ x <- Sys.time()
 class(x)
 #> [1] "POSIXct" "POSIXt"
 format(x, format = "%Y-%m-%d")
-#> [1] "2020-03-07"
+#> [1] "2020-03-10"
 ```
 
 ::: rmdnote
@@ -161,43 +161,43 @@ date-times 表示 POSIXct 和 POSIXlt 类型的日期对象
 
 ```r
 (x <- Sys.time())
-#> [1] "2020-03-07 20:51:32 CST"
+#> [1] "2020-03-10 22:44:18 CST"
 class(x)
 #> [1] "POSIXct" "POSIXt"
 
 data.table::second(x) # 取秒
-#> [1] 32
+#> [1] 18
 format(x, format = "%S")
-#> [1] "32"
+#> [1] "18"
 
 data.table::minute(x) # 取分
-#> [1] 51
+#> [1] 44
 format(x, format = "%M")
-#> [1] "51"
+#> [1] "44"
 
 data.table::hour(x) # 取时
-#> [1] 20
+#> [1] 22
 format(x, format = "%H")
-#> [1] "20"
+#> [1] "22"
 data.table::yday(x) # 此刻在一年的第几天
-#> [1] 67
+#> [1] 70
 
 data.table::wday(x) # 此刻在一周的第几天，星期日是第1天，星期六是第7天
-#> [1] 7
+#> [1] 3
 data.table::mday(x) # 此刻在当月第几天
-#> [1] 7
+#> [1] 10
 format(x, format = "%d")
-#> [1] "07"
+#> [1] "10"
 
 weekdays(x)
-#> [1] "Saturday"
+#> [1] "Tuesday"
 weekdays(x, abbreviate = T)
-#> [1] "Sat"
+#> [1] "Tue"
 
 data.table::week(x) # 此刻在第几周
-#> [1] 10
+#> [1] 11
 data.table::isoweek(x)
-#> [1] 10
+#> [1] 11
 
 data.table::month(x) # 此刻在第几月
 #> [1] 3
@@ -227,7 +227,7 @@ format(x, format = "%Y")
 
 ```r
 format(difftime(Sys.time(), x, units = "secs"))
-#> [1] "0.05144835 secs"
+#> [1] "0.0512886 secs"
 ```
 
 日期转化详见 [@Brian_2001_date;@Gabor_2004_date]

@@ -387,9 +387,9 @@ d <- function() data.frame(
   )
 microbenchmark::microbenchmark(s(), d())
 #> Unit: microseconds
-#>  expr     min      lq      mean   median       uq      max neval
-#>   s()  16.226  18.514  52.08361  23.3525  26.8695 2660.224   100
-#>   d() 184.954 190.517 225.13107 194.7245 207.7230 2470.090   100
+#>  expr     min       lq      mean   median       uq      max neval
+#>   s()  16.933  19.6435  61.36974  26.2135  28.3375 3313.785   100
+#>   d() 188.074 194.9555 241.61259 203.4140 219.3065 3059.182   100
 ```
 
 ### 移除缺失记录 {#remove-missing-values}
@@ -634,7 +634,7 @@ one_abs
 
 ```r
 xfun::session_info()
-#> R Under development (unstable) (2020-03-06 r77913)
+#> R Under development (unstable) (2020-03-10 r77920)
 #> Platform: x86_64-pc-linux-gnu (64-bit)
 #> Running under: Ubuntu 16.04.6 LTS
 #> 
@@ -653,7 +653,7 @@ xfun::session_info()
 #>   cli_2.0.2            clipr_0.7.0          colorspace_1.4-1    
 #>   compiler_4.0.0       crayon_1.3.4         curl_4.3            
 #>   DBI_1.1.0            dbplyr_1.4.2         desc_1.2.0          
-#>   digest_0.6.25        dplyr_0.8.4          ellipsis_0.3.0      
+#>   digest_0.6.25        dplyr_0.8.5          ellipsis_0.3.0      
 #>   evaluate_0.14        fansi_0.4.1          farver_2.0.3        
 #>   forcats_0.5.0        fs_1.3.2             generics_0.0.2      
 #>   ggplot2_3.3.0        glue_1.3.1           graphics_4.0.0      
@@ -679,7 +679,7 @@ xfun::session_info()
 #>   stringr_1.4.0        sys_3.3              testthat_2.3.2      
 #>   tibble_2.1.3         tidyr_1.0.2          tidyselect_1.0.0    
 #>   tidyverse_1.3.0      tinytex_0.20         tools_4.0.0         
-#>   utf8_1.1.4           utils_4.0.0          vctrs_0.2.3         
+#>   utf8_1.1.4           utils_4.0.0          vctrs_0.2.4         
 #>   viridisLite_0.3.0    whisker_0.4          withr_2.1.2         
 #>   xfun_0.12            xml2_1.2.2           yaml_2.2.1
 ```

@@ -173,7 +173,7 @@ Source: gpuR Matrix [4 x 4]
 
 ```r
 xfun::session_info()
-#> R Under development (unstable) (2020-03-06 r77913)
+#> R Under development (unstable) (2020-03-10 r77920)
 #> Platform: x86_64-pc-linux-gnu (64-bit)
 #> Running under: Ubuntu 16.04.6 LTS
 #> 

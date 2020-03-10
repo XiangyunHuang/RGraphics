@@ -1370,7 +1370,7 @@ xfun::session_info(
     "nlme", "mgcv", "ggbeeswarm", "ggridges", "hexbin"
   )
 )
-#> R Under development (unstable) (2020-03-06 r77913)
+#> R Under development (unstable) (2020-03-10 r77920)
 #> Platform: x86_64-pc-linux-gnu (64-bit)
 #> Running under: Ubuntu 16.04.6 LTS
 #> 
@@ -1401,7 +1401,7 @@ xfun::session_info(
 #>   rlang_0.4.5        rprojroot_1.3.2    rstudioapi_0.11   
 #>   scales_1.1.0       splines_4.0.0      stats_4.0.0       
 #>   testthat_2.3.2     tibble_2.1.3       tools_4.0.0       
-#>   utf8_1.1.4         utils_4.0.0        vctrs_0.2.3       
+#>   utf8_1.1.4         utils_4.0.0        vctrs_0.2.4       
 #>   vipor_0.4.5        viridisLite_0.3.0  withr_2.1.2
 ```
 

@@ -214,7 +214,7 @@ fil <- tempfile(fileext = ".data")
 cat("TITLE extra line", "2 3 5 7", "", "11 13 17", file = fil,
     sep = "\n")
 fil
-#> [1] "/tmp/Rtmp8dkaTU/file4b3733b097ba.data"
+#> [1] "/tmp/RtmpKzFxY3/file4e083d520b7a.data"
 ```
 
 设置参数 `n = -1` 表示将文件 fil 的内容从头读到尾
@@ -245,7 +245,7 @@ cat("123\nabc")
 fil <- tempfile("test")
 cat("123\nabc\n", file = fil, append = TRUE)
 fil
-#> [1] "/tmp/Rtmp8dkaTU/test4b37441fd3bb"
+#> [1] "/tmp/RtmpKzFxY3/test4e084a85ea71"
 readLines(fil)
 #> [1] "123" "abc"
 ```
@@ -374,9 +374,8 @@ yaml::read_yaml(file = '_bookdown.yml')
 #> [15] "dv-plot3d.Rmd"              "dv-colors-fonts.Rmd"       
 #> [17] "dv-highcharter.Rmd"         "dv-lattice.Rmd"            
 #> [19] "dv-network.Rmd"             "dv-spatio-temporal.Rmd"    
-#> [21] "dynamic-documents.Rmd"      "animated-graphics.Rmd"     
-#> [23] "interactive-graphics.Rmd"   "cs-cran-network.Rmd"       
-#> [25] "99-references.Rmd"
+#> [21] "dynamic-documents.Rmd"      "interactive-graphics.Rmd"  
+#> [23] "cs-cran-network.Rmd"        "99-references.Rmd"
 ```
 
 Table: (\#tab:other-softwares) 导入来自其它数据分析软件产生的数据集
@@ -1267,7 +1266,7 @@ structure(c(112, 118, 132, 129, 121, 135, 148, 148, 136, 119,
 
 ```r
 xfun::session_info()
-#> R Under development (unstable) (2020-03-06 r77913)
+#> R Under development (unstable) (2020-03-10 r77920)
 #> Platform: x86_64-pc-linux-gnu (64-bit)
 #> Running under: Ubuntu 16.04.6 LTS
 #> 

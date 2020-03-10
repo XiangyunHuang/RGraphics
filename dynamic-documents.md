@@ -8,7 +8,7 @@
 ```python
 import os
 print(os.listdir())
-#> ['Dockerfile', 'interactives', 'data-table.utf8.md', 'includes', 'files.md', 'Adobe-Fonts.zip', 'dc-string-manipulation.Rmd', 'data-parallel.md', 'dv-ggplot2.utf8.md', 'RGraphics.Rproj', 'render4aae341273f.rds', '_common.R', 'dc-string-manipulation.utf8.md', 'dv-ggplot2.Rmd', 'requirements.txt', 'data-tibble.Rmd', 'odbc.ini', 'dv-colors-fonts.Rmd', 'data-import.md', 'setup.Rmd', 'dv-plot.Rmd', 'data-objects.utf8.md', 'data-parallel.utf8.md', 'dc-stringr.Rmd', 'dv-highcharter.md', '.Rprofile', 'interactive-graphics.Rmd', '_bookdown_files', 'README.md', 'dv-plot_files', 'dv-plot3d.utf8.md', '_bookdown.yml', 'preface.md', 'dv-spatio-temporal.utf8.md', 'data-frame.utf8.md', 'files.utf8.md', 'dv-highcharter.Rmd', '99-references.Rmd', 'sidebar.lua', 'Makefile', 'docker-compose.yml', 'dc-regular-expressions.utf8.md', 'figures', '_book', 'refer.bib', 'dv-highcharter_files', 'data', 'DESCRIPTION', 'dc-regular-expressions.Rmd', 'cs-cran-network.Rmd', 'dv-highcharter.utf8.md', 'data-frame.Rmd', 'dc-regular-expressions.md', 'index.utf8.md', '.gitignore', 'style.css', '_render.R', 'ubuntu', 'dv-lattice.md', 'data-parallel.Rmd', 'files.Rmd', 'index.Rmd', 'dv-plot3d.md', '_build.sh', 'dv-lattice_files', 'setup.utf8.md', 'data-objects.Rmd', 'setup.md', 'index.md', 'dynamic-documents.Rmd', 'data-import.Rmd', 'data-tibble.utf8.md', 'dv-plot3d-tikzDictionary', 'dv-spatio-temporal.md', 'data-table.Rmd', 'dv-plot.md', 'animated-graphics.Rmd', '.travis.yml', '.git', 'data-objects.md', '_main.rds', 'dv-plot3d_files', 'dv-colors-fonts.utf8.md', 'dv-ggplot2_files', 'data-frame.md', 'dv-colors-fonts.md', 'preface.Rmd', 'dv-plot3d.Rmd', 'LICENSE', 'dv-lattice.Rmd', 'data-frame_files', 'dv-network.md', 'dv-network.utf8.md', 'preface.utf8.md', 'data-tibble.md', 'demos', 'data-import.utf8.md', 'dv-spatio-temporal.Rmd', 'data-table.md', 'dv-ggplot2.md', 'cumcm2011A.RDS', 'dc-string-manipulation.md', 'dv-lattice.utf8.md', 'preamble.tex', 'dv-network.Rmd', 'maintainer_author.rds', 'dv-colors-fonts_files', '_deploy.sh', '_output.yml', 'dv-plot.utf8.md', 'dv-spatio-temporal_files']
+#> ['Dockerfile', 'interactives', 'data-table.utf8.md', 'includes', 'files.md', 'Adobe-Fonts.zip', 'dc-string-manipulation.Rmd', 'data-parallel.md', 'dv-ggplot2.utf8.md', 'RGraphics.Rproj', '_common.R', 'dc-string-manipulation.utf8.md', 'dv-ggplot2.Rmd', 'requirements.txt', 'data-tibble.Rmd', 'odbc.ini', 'dv-colors-fonts.Rmd', 'data-import.md', 'setup.Rmd', 'dv-plot.Rmd', 'data-objects.utf8.md', 'data-parallel.utf8.md', 'dc-stringr.Rmd', 'dv-highcharter.md', '.Rprofile', 'interactive-graphics.Rmd', '_bookdown_files', 'README.md', 'dv-plot_files', 'dv-plot3d.utf8.md', '_bookdown.yml', 'preface.md', 'dv-spatio-temporal.utf8.md', 'data-frame.utf8.md', 'cs-cran-network_files', 'files.utf8.md', 'dv-highcharter.Rmd', '99-references.Rmd', 'sidebar.lua', 'Makefile', 'render4d807d41920d.rds', 'docker-compose.yml', 'dc-regular-expressions.utf8.md', 'figures', '_book', 'refer.bib', 'dv-highcharter_files', 'data', 'DESCRIPTION', 'dc-regular-expressions.Rmd', 'cs-cran-network.Rmd', 'dv-highcharter.utf8.md', 'data-frame.Rmd', 'dc-regular-expressions.md', 'index.utf8.md', '.gitignore', 'style.css', '_render.R', 'ubuntu', 'dv-lattice.md', 'data-parallel.Rmd', 'files.Rmd', 'index.Rmd', 'dv-plot3d.md', '_build.sh', 'dv-lattice_files', 'setup.utf8.md', 'data-objects.Rmd', 'setup.md', 'index.md', 'dynamic-documents.Rmd', 'data-import.Rmd', 'dynamic-documents_files', 'data-tibble.utf8.md', 'dv-plot3d-tikzDictionary', 'dv-spatio-temporal.md', 'data-table.Rmd', 'dv-plot.md', '.travis.yml', '.git', 'data-objects.md', '_main.rds', 'dv-plot3d_files', 'dv-colors-fonts.utf8.md', 'dv-ggplot2_files', 'data-frame.md', 'dv-colors-fonts.md', 'preface.Rmd', 'dv-plot3d.Rmd', 'LICENSE', 'dv-lattice.Rmd', 'data-frame_files', 'dv-network.md', 'dv-network.utf8.md', 'preface.utf8.md', 'data-tibble.md', 'demos', 'data-import.utf8.md', 'dv-spatio-temporal.Rmd', 'data-table.md', 'dv-ggplot2.md', 'cumcm2011A.RDS', 'dc-string-manipulation.md', 'dv-lattice.utf8.md', 'preamble.tex', 'dv-network.Rmd', 'maintainer_author.rds', 'dv-colors-fonts_files', '_deploy.sh', '_output.yml', 'dv-plot.utf8.md', 'animated-graphics_files', 'dynamic-documents_cache', 'dv-spatio-temporal_files']
 ```
 
 ::: rmdnote
@@ -62,7 +62,7 @@ requests             2.23.0
 requests-oauthlib    1.3.0     
 rsa                  4.0       
 scipy                1.4.1     
-setuptools           45.2.0    
+setuptools           46.0.0    
 six                  1.14.0    
 tensorboard          2.1.1     
 tensorflow           2.1.0     
@@ -71,7 +71,7 @@ termcolor            1.1.0
 urllib3              1.25.8    
 Werkzeug             1.0.0     
 wheel                0.34.2    
-wrapt                1.12.0    
+wrapt                1.12.1    
 
 ::: rmdtip
 在 `knitr::opts_chunk` 中设置 `python.reticulate = TRUE` 意味着所有的 Python 代码块共享一个 Python Session，而 `python.reticulate = FALSE` 意味着使用 knitr 提供的 Python 引擎，所有的 Python 代码块独立运行。

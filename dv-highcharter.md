@@ -216,7 +216,7 @@ getAnywhere(hchart.mts)
 #>     }
 #>     hc
 #> }
-#> <bytecode: 0x7017d40>
+#> <bytecode: 0x63313c0>
 #> <environment: namespace:highcharter>
 class(EuStockMarkets)
 #> [1] "mts"    "ts"     "matrix"

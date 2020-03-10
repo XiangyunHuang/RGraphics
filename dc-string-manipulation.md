@@ -18,7 +18,7 @@ help.search(keyword = "character", package = "base")
 nchar(c("Hello", "world", "!"))
 #> [1] 5 5 1
 R.version.string
-#> [1] "R Under development (unstable) (2020-03-06 r77913)"
+#> [1] "R Under development (unstable) (2020-03-10 r77920)"
 nchar(R.version.string)
 #> [1] 50
 deparse(base::mean)
@@ -236,22 +236,24 @@ grepl("^package:", search())
 # list.files(path = ".", pattern = "\\.Rmd$")
 # 而不是 endsWith(list.files(), "\\.Rmd")
 endsWith(list.files(), ".Rmd")
-#>  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE  TRUE
-#> [13]  TRUE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE  TRUE
-#> [25] FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE  TRUE  TRUE
-#> [37]  TRUE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
-#> [49]  TRUE  TRUE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE  TRUE FALSE
-#> [61] FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE
-#> [73] FALSE FALSE  TRUE FALSE FALSE FALSE FALSE
+#>  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE
+#> [13] FALSE  TRUE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE
+#> [25]  TRUE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE  TRUE
+#> [37]  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE  TRUE FALSE  TRUE
+#> [49] FALSE  TRUE  TRUE FALSE  TRUE FALSE  TRUE FALSE  TRUE FALSE FALSE  TRUE
+#> [61] FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE  TRUE FALSE FALSE FALSE
+#> [73] FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+#> [85]  TRUE FALSE FALSE FALSE FALSE
 # 或者
 grepl("\\.Rmd$", list.files())
-#>  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE  TRUE
-#> [13]  TRUE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE  TRUE
-#> [25] FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE  TRUE  TRUE
-#> [37]  TRUE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
-#> [49]  TRUE  TRUE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE  TRUE FALSE
-#> [61] FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE
-#> [73] FALSE FALSE  TRUE FALSE FALSE FALSE FALSE
+#>  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE
+#> [13] FALSE  TRUE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE
+#> [25]  TRUE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE  TRUE
+#> [37]  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE  TRUE FALSE  TRUE
+#> [49] FALSE  TRUE  TRUE FALSE  TRUE FALSE  TRUE FALSE  TRUE FALSE FALSE  TRUE
+#> [61] FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE  TRUE FALSE FALSE FALSE
+#> [73] FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+#> [85]  TRUE FALSE FALSE FALSE FALSE
 ```
 
 部分匹配(Partial String Matching)
@@ -1358,7 +1360,7 @@ trimws(x, "r")
 
 ```r
 xfun::session_info()
-#> R Under development (unstable) (2020-03-06 r77913)
+#> R Under development (unstable) (2020-03-10 r77920)
 #> Platform: x86_64-pc-linux-gnu (64-bit)
 #> Running under: Ubuntu 16.04.6 LTS
 #> 
@@ -1373,7 +1375,7 @@ xfun::session_info()
 #> Package version:
 #>   assertthat_0.2.1 base64enc_0.1.3  BH_1.72.0.3      bookdown_0.18   
 #>   cli_2.0.2        compiler_4.0.0   crayon_1.3.4     curl_4.3        
-#>   digest_0.6.25    dplyr_0.8.4      ellipsis_0.3.0   evaluate_0.14   
+#>   digest_0.6.25    dplyr_0.8.5      ellipsis_0.3.0   evaluate_0.14   
 #>   fansi_0.4.1      glue_1.3.1       graphics_4.0.0   grDevices_4.0.0 
 #>   highr_0.8        htmltools_0.4.0  jsonlite_1.6.1   knitr_1.28.2    
 #>   lifecycle_0.2.0  magrittr_1.5     markdown_1.1     methods_4.0.0   
@@ -1381,7 +1383,7 @@ xfun::session_info()
 #>   purrr_0.3.3      R6_2.4.1         Rcpp_1.0.3       rlang_0.4.5     
 #>   rmarkdown_2.1    stats_4.0.0      stringi_1.4.6    stringr_1.4.0   
 #>   tibble_2.1.3     tidyr_1.0.2      tidyselect_1.0.0 tinytex_0.20    
-#>   tools_4.0.0      utf8_1.1.4       utils_4.0.0      vctrs_0.2.3     
+#>   tools_4.0.0      utf8_1.1.4       utils_4.0.0      vctrs_0.2.4     
 #>   xfun_0.12        yaml_2.2.1
 ```
 

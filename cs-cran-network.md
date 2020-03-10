@@ -22,7 +22,7 @@ pdb <- tools::CRAN_package_db()
 
 ```r
 length(pdb[, "Package"])
-#> [1] 15354
+#> [1] 15378
 ```
 
 经过与官网发布的数据来对比，我们发现这里计算的结果与实际不符，多出来了几十个R包，所以我们再观察一下是否有重复的 R 包描述信息
@@ -41,7 +41,7 @@ pdb[, "Package"][duplicated(pdb[, "Package"])]
 
 ```r
 dim(subset(pdb, subset = !duplicated(pdb[, "Package"])))[1]
-#> [1] 15335
+#> [1] 15359
 ```
 
 接下来就是分析去掉重复信息后的数据矩阵 pdb
@@ -75,24 +75,24 @@ dim(core_pdb[order(core_pdb[, "Maintainer"]), ])
 subset(pdb, subset = grepl(x = pdb[, "Maintainer"], pattern = "(Paul Murrell)"), 
                    select = c("Package", "Maintainer"))
 #>            Package                              Maintainer
-#> 2090       compare Paul Murrell <p.murrell@auckland.ac.nz>
-#> 5303    graphicsQC Paul Murrell <paul@stat.auckland.ac.nz>
-#> 5336      gridBase Paul Murrell <paul@stat.auckland.ac.nz>
-#> 5337    gridBezier Paul Murrell <paul@stat.auckland.ac.nz>
-#> 5338     gridDebug Paul Murrell <p.murrell@auckland.ac.nz>
-#> 5340  gridGeometry Paul Murrell <paul@stat.auckland.ac.nz>
-#> 5341  gridGraphics Paul Murrell <paul@stat.auckland.ac.nz>
-#> 5342  gridGraphviz Paul Murrell <p.murrell@auckland.ac.nz>
-#> 5345       gridSVG Paul Murrell <paul@stat.auckland.ac.nz>
-#> 5349      grImport Paul Murrell <p.murrell@auckland.ac.nz>
-#> 5350     grImport2 Paul Murrell <paul@stat.auckland.ac.nz>
-#> 5628       hexView Paul Murrell <paul@stat.auckland.ac.nz>
-#> 7659      metapost Paul Murrell <paul@stat.auckland.ac.nz>
-#> 10739    rasterize Paul Murrell <paul@stat.auckland.ac.nz>
-#> 11351    RGraphics Paul Murrell <paul@stat.auckland.ac.nz>
-#> 11729        roloc Paul Murrell <paul@stat.auckland.ac.nz>
-#> 11730 rolocISCCNBS Paul Murrell <paul@stat.auckland.ac.nz>
-#> 14935       vwline Paul Murrell <paul@stat.auckland.ac.nz>
+#> 2093       compare Paul Murrell <p.murrell@auckland.ac.nz>
+#> 5315    graphicsQC Paul Murrell <paul@stat.auckland.ac.nz>
+#> 5348      gridBase Paul Murrell <paul@stat.auckland.ac.nz>
+#> 5349    gridBezier Paul Murrell <paul@stat.auckland.ac.nz>
+#> 5350     gridDebug Paul Murrell <p.murrell@auckland.ac.nz>
+#> 5352  gridGeometry Paul Murrell <paul@stat.auckland.ac.nz>
+#> 5353  gridGraphics Paul Murrell <paul@stat.auckland.ac.nz>
+#> 5354  gridGraphviz Paul Murrell <p.murrell@auckland.ac.nz>
+#> 5357       gridSVG Paul Murrell <paul@stat.auckland.ac.nz>
+#> 5361      grImport Paul Murrell <p.murrell@auckland.ac.nz>
+#> 5362     grImport2 Paul Murrell <paul@stat.auckland.ac.nz>
+#> 5640       hexView Paul Murrell <paul@stat.auckland.ac.nz>
+#> 7673      metapost Paul Murrell <paul@stat.auckland.ac.nz>
+#> 10755    rasterize Paul Murrell <paul@stat.auckland.ac.nz>
+#> 11367    RGraphics Paul Murrell <paul@stat.auckland.ac.nz>
+#> 11746        roloc Paul Murrell <paul@stat.auckland.ac.nz>
+#> 11747 rolocISCCNBS Paul Murrell <paul@stat.auckland.ac.nz>
+#> 14960       vwline Paul Murrell <paul@stat.auckland.ac.nz>
 ```
 
 所以这种方式不行了，只能列举所有 R Core Team 成员，挨个去匹配，幸好 `contributors()` 函数已经收集了成员名单，不需要我们去官网找了。
@@ -364,7 +364,7 @@ subset(pdb, subset = grepl("Scott Chamberlain", pdb[, "Maintainer"]),
 
 ```r
 length(unique(pdb[, "Maintainer"]))
-#> [1] 9056
+#> [1] 9065
 ```
 
 可实际上没有这么多的开发者，因为存在这样的情况，以 R 包维护者 Hadley Wickham 为例，由于他曾使用过不同的邮箱，所以在维护者字段出现了不一致的情况，实际却是同一个人。
@@ -376,53 +376,53 @@ subset(pdb,
   select = c("Package", "Maintainer")
 )
 #>             Package                             Maintainer
-#> 506      assertthat    Hadley Wickham <hadley@rstudio.com>
-#> 622       babynames    Hadley Wickham <hadley@rstudio.com>
-#> 1006      bigrquery    Hadley Wickham <hadley@rstudio.com>
-#> 1825      classifly   Hadley Wickham <h.wickham@gmail.com>
-#> 1910     clusterfly   Hadley Wickham <h.wickham@gmail.com>
-#> 2159     conflicted    Hadley Wickham <hadley@rstudio.com>
-#> 2500        cubelyr    Hadley Wickham <hadley@rstudio.com>
-#> 2698         dbplyr    Hadley Wickham <hadley@rstudio.com>
-#> 3210          dplyr    Hadley Wickham <hadley@rstudio.com>
-#> 3296         dtplyr    Hadley Wickham <hadley@rstudio.com>
-#> 3575       ellipsis    Hadley Wickham <hadley@rstudio.com>
-#> 4148        feather    Hadley Wickham <hadley@rstudio.com>
-#> 4378        forcats    Hadley Wickham <hadley@rstudio.com>
-#> 4535    fueleconomy 'Hadley Wickham' <h.wickham@gmail.com>
-#> 5002        ggplot2    Hadley Wickham <hadley@rstudio.com>
-#> 5003  ggplot2movies    Hadley Wickham <hadley@rstudio.com>
-#> 5424         gtable    Hadley Wickham <hadley@rstudio.com>
-#> 5533          haven    Hadley Wickham <hadley@rstudio.com>
-#> 5629       hflights   Hadley Wickham <h.wickham@gmail.com>
-#> 5664      highlight    Hadley Wickham <hadley@rstudio.com>
-#> 5811           httr    Hadley Wickham <hadley@rstudio.com>
-#> 6784       lazyeval    Hadley Wickham <hadley@rstudio.com>
-#> 7052         lobstr    Hadley Wickham <hadley@rstudio.com>
-#> 7225         lvplot    Hadley Wickham <hadley@rstudio.com>
-#> 7579         meifly   Hadley Wickham <h.wickham@gmail.com>
-#> 8070         modelr    Hadley Wickham <hadley@rstudio.com>
-#> 8512    nasaweather 'Hadley Wickham' <h.wickham@gmail.com>
-#> 8916   nycflights13    Hadley Wickham <hadley@rstudio.com>
-#> 9771        pkgdown    Hadley Wickham <hadley@rstudio.com>
-#> 9877           plyr    Hadley Wickham <hadley@rstudio.com>
-#> 10192  productplots    Hadley Wickham <hadley@rstudio.com>
-#> 10204         profr    Hadley Wickham <hadley@rstudio.com>
-#> 10246         proto    Hadley Wickham <hadley@rstudio.com>
-#> 10269          pryr    Hadley Wickham <hadley@rstudio.com>
-#> 10721      rappdirs    Hadley Wickham <hadley@rstudio.com>
-#> 11236       reshape    Hadley Wickham <hadley@rstudio.com>
-#> 11237      reshape2   Hadley Wickham <h.wickham@gmail.com>
-#> 11337        rggobi   Hadley Wickham <h.wickham@gmail.com>
-#> 11784      roxygen2    Hadley Wickham <hadley@rstudio.com>
-#> 12108         rvest    Hadley Wickham <hadley@rstudio.com>
-#> 12299        scales    Hadley Wickham <hadley@rstudio.com>
-#> 12933         sloop    Hadley Wickham <hadley@rstudio.com>
-#> 13626       stringr    Hadley Wickham <hadley@rstudio.com>
-#> 14041      testthat    Hadley Wickham <hadley@rstudio.com>
-#> 14166         tidyr    Hadley Wickham <hadley@rstudio.com>
-#> 14180     tidyverse    Hadley Wickham <hadley@rstudio.com>
-#> 14800         vctrs    Hadley Wickham <hadley@rstudio.com>
+#> 507      assertthat    Hadley Wickham <hadley@rstudio.com>
+#> 623       babynames    Hadley Wickham <hadley@rstudio.com>
+#> 1007      bigrquery    Hadley Wickham <hadley@rstudio.com>
+#> 1827      classifly   Hadley Wickham <h.wickham@gmail.com>
+#> 1913     clusterfly   Hadley Wickham <h.wickham@gmail.com>
+#> 2162     conflicted    Hadley Wickham <hadley@rstudio.com>
+#> 2504        cubelyr    Hadley Wickham <hadley@rstudio.com>
+#> 2703         dbplyr    Hadley Wickham <hadley@rstudio.com>
+#> 3215          dplyr    Hadley Wickham <hadley@rstudio.com>
+#> 3301         dtplyr    Hadley Wickham <hadley@rstudio.com>
+#> 3582       ellipsis    Hadley Wickham <hadley@rstudio.com>
+#> 4158        feather    Hadley Wickham <hadley@rstudio.com>
+#> 4388        forcats    Hadley Wickham <hadley@rstudio.com>
+#> 4545    fueleconomy 'Hadley Wickham' <h.wickham@gmail.com>
+#> 5014        ggplot2    Hadley Wickham <hadley@rstudio.com>
+#> 5015  ggplot2movies    Hadley Wickham <hadley@rstudio.com>
+#> 5436         gtable    Hadley Wickham <hadley@rstudio.com>
+#> 5545          haven    Hadley Wickham <hadley@rstudio.com>
+#> 5641       hflights   Hadley Wickham <h.wickham@gmail.com>
+#> 5676      highlight    Hadley Wickham <hadley@rstudio.com>
+#> 5823           httr    Hadley Wickham <hadley@rstudio.com>
+#> 6797       lazyeval    Hadley Wickham <hadley@rstudio.com>
+#> 7065         lobstr    Hadley Wickham <hadley@rstudio.com>
+#> 7238         lvplot    Hadley Wickham <hadley@rstudio.com>
+#> 7593         meifly   Hadley Wickham <h.wickham@gmail.com>
+#> 8085         modelr    Hadley Wickham <hadley@rstudio.com>
+#> 8526    nasaweather 'Hadley Wickham' <h.wickham@gmail.com>
+#> 8930   nycflights13    Hadley Wickham <hadley@rstudio.com>
+#> 9786        pkgdown    Hadley Wickham <hadley@rstudio.com>
+#> 9892           plyr    Hadley Wickham <hadley@rstudio.com>
+#> 10207  productplots    Hadley Wickham <hadley@rstudio.com>
+#> 10219         profr    Hadley Wickham <hadley@rstudio.com>
+#> 10261         proto    Hadley Wickham <hadley@rstudio.com>
+#> 10284          pryr    Hadley Wickham <hadley@rstudio.com>
+#> 10736      rappdirs    Hadley Wickham <hadley@rstudio.com>
+#> 11252       reshape    Hadley Wickham <hadley@rstudio.com>
+#> 11253      reshape2   Hadley Wickham <h.wickham@gmail.com>
+#> 11353        rggobi   Hadley Wickham <h.wickham@gmail.com>
+#> 11801      roxygen2    Hadley Wickham <hadley@rstudio.com>
+#> 12127         rvest    Hadley Wickham <hadley@rstudio.com>
+#> 12319        scales    Hadley Wickham <hadley@rstudio.com>
+#> 12953         sloop    Hadley Wickham <hadley@rstudio.com>
+#> 13649       stringr    Hadley Wickham <hadley@rstudio.com>
+#> 14064      testthat    Hadley Wickham <hadley@rstudio.com>
+#> 14189         tidyr    Hadley Wickham <hadley@rstudio.com>
+#> 14203     tidyverse    Hadley Wickham <hadley@rstudio.com>
+#> 14824         vctrs    Hadley Wickham <hadley@rstudio.com>
 ```
 
 因此，有必要先把 Maintainer 字段中的邮箱部分去掉，这样我们可以得到比较靠谱的R包维护者数量了！
@@ -431,7 +431,7 @@ subset(pdb,
 ```r
 pdb[, "Maintainer"] <- clean_maintainer(pdb[, "Maintainer"])
 length(unique(pdb[, "Maintainer"]))
-#> [1] 8380
+#> [1] 8384
 ```
 
 接下来，我们还想把 R 包维护者，按照其维护的R包数量排个序，用条形图\@ref(fig:top-maintainers) 表示
@@ -544,7 +544,7 @@ sub_pdb[, "Author"] <- clean_author(sub_pdb[, "Author"])
 
 ```r
 length(unique(sub_pdb[, "Maintainer"][duplicated(sub_pdb[, "Maintainer"])]))
-#> [1] 2720
+#> [1] 2731
 ```
 
 总的开发者中去掉开发了多个R包的人，就剩下只维护1个R包的开发者，共有 
@@ -586,9 +586,9 @@ hist(ctb_num, col = "lightblue", border = "white", probability = TRUE, labels = 
 table(ctb_num)
 #> ctb_num
 #>    1    2    3    4    5    6    7    8    9   10   11   12   13   14   15 
-#> 2719 1165  748  472  217  109   77   49   32   22    8   13    4    4    3 
+#> 2713 1165  748  471  217  110   77   49   33   21    8   13    4    4    3 
 #>   16   17   18   19   21   22   27   42 
-#>    5    3    2    1    2    2    2    1
+#>    5    3    2    1    2    2    1    1
 ```
 
 有意思的是，有一个开发者虽然只开发了一个 R 包，但是却引来37位贡献者（包括开发者本人在内），下面把这个颇受欢迎的 R 包找出来
@@ -601,7 +601,7 @@ first_ctb[which.max(ctb_num)]
 # 找到 R 包
 subset(sub_pdb, subset = grepl("Matt Dowle", sub_pdb[, "Maintainer"]), select = "Package")
 #>         Package
-#> 2621 data.table
+#> 2626 data.table
 ```
 
 哇，大名鼎鼎的 [data.table](https://github.com/Rdatatable/data.table) 包！！ I JUST find it!! 这是个异数，我们知道 data.table 在R社区享有盛名，影响范围很广，从 Matt Dowle 的 [Github 主页](https://github.com/mattdowle) 来看，他确实只开发了这一个 R 包！黑天鹅在这里出现了！如果按照谁的贡献者多谁影响力大的规律来看，有 10 个以上贡献者的其它几个 R 包也必定是名器！这里留给读者把它找出来吧！
@@ -1031,7 +1031,7 @@ webshot::webshot(url = "http://localhost:16977/session/viewhtml150c673821fc/inde
 
 ```r
 xfun::session_info()
-#> R Under development (unstable) (2020-03-06 r77913)
+#> R Under development (unstable) (2020-03-10 r77920)
 #> Platform: x86_64-pc-linux-gnu (64-bit)
 #> Running under: Ubuntu 16.04.6 LTS
 #> 
@@ -1048,7 +1048,7 @@ xfun::session_info()
 #>   BH_1.72.0.3        bookdown_0.18      callr_3.4.2       
 #>   cli_2.0.2          colorspace_1.4-1   compiler_4.0.0    
 #>   crayon_1.3.4       curl_4.3           desc_1.2.0        
-#>   digest_0.6.25      dplyr_0.8.4        ellipsis_0.3.0    
+#>   digest_0.6.25      dplyr_0.8.5        ellipsis_0.3.0    
 #>   evaluate_0.14      fansi_0.4.1        farver_2.0.3      
 #>   ggplot2_3.3.0      glue_1.3.1         graphics_4.0.0    
 #>   grDevices_4.0.0    grid_4.0.0         gtable_0.3.0      
@@ -1067,7 +1067,7 @@ xfun::session_info()
 #>   stats_4.0.0        stringi_1.4.6      stringr_1.4.0     
 #>   testthat_2.3.2     tibble_2.1.3       tidyselect_1.0.0  
 #>   tinytex_0.20       tools_4.0.0        utf8_1.1.4        
-#>   utils_4.0.0        vctrs_0.2.3        viridisLite_0.3.0 
+#>   utils_4.0.0        vctrs_0.2.4        viridisLite_0.3.0 
 #>   withr_2.1.2        xfun_0.12          yaml_2.2.1
 ```
 
