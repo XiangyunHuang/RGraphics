@@ -36,8 +36,9 @@ rmd_files:
 - "dv-network.Rmd"
 
 - "dv-spatio-temporal.Rmd"
+
 - "dynamic-documents.Rmd"
-- "animated-graphics.Rmd"
+
 - "interactive-graphics.Rmd"
 
 - "cs-cran-network.Rmd"
