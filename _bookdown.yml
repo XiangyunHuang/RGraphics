@@ -34,10 +34,11 @@ rmd_files:
 - "dv-highcharter.Rmd"
 - "dv-lattice.Rmd"
 - "dv-network.Rmd"
-
+- "dv-plotly.Rmd"
 - "dv-spatio-temporal.Rmd"
+
 - "dynamic-documents.Rmd"
-- "animated-graphics.Rmd"
+
 - "interactive-graphics.Rmd"
 
 - "cs-cran-network.Rmd"

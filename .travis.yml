@@ -106,6 +106,7 @@ before_script:
   - Rscript -e "sessionInfo(.packages(T));capabilities()"
   - Rscript -e 'update.packages(lib.loc = .libPaths()[1], ask = FALSE)'
   - Rscript -e "install.packages('remotes');remotes::install_deps()"
+  - Rscript -e "install.packages('spDataLarge', repos = 'https://nowosad.github.io/drat')"
   - Rscript -e 'library(tikzDevice);tikzTest();tikzTest("$\\sin(x^2/2 - y^2/4 + 3) \\cos(2 x + 1 - \\exp(y))$")'
 
 

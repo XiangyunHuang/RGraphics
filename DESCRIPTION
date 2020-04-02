@@ -8,9 +8,11 @@ Imports:
   ggplot2,
   colourlovers,
   cowplot,
-  desc,
+  dplyr,
   DiagrammeR,
+  DT,
   firatheme,
+  formattable,
   hexbin,
   highcharter,
   igraph,
@@ -62,6 +64,11 @@ Imports:
   tweenr,
   vegawidget,
   visNetwork
-Remotes: vankesteren/firatheme, jbkunst/highcharter, javierluraschi/nomnoml, yihui/knitr
+Remotes: 
+  vankesteren/firatheme, 
+  jbkunst/highcharter, 
+  javierluraschi/nomnoml, 
+  yihui/knitr, 
+  tidyverse/dplyr
 URL: https://r-graphics.netlify.com, https://bookdown.org/xiangyun/RGraphics/
 BugReports: https://github.com/XiangyunHuang/RGraphics/issues
