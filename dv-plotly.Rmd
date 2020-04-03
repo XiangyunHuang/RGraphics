@@ -1,4 +1,4 @@
-# plotly 
+# plotly 图形 {#chap:plotly}
 
 [plotly](https://plotly-r.com) 类似 GGplot2 提供了各种交互图形的绘制函数，其中 `plot_ly` 函数提供了两种风格的绘图方式，一种是 Base R 另一种是 GGplot2，我们主要考虑使用 GGplot2 这种风格的 
 

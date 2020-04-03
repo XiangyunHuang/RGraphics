@@ -41,6 +41,6 @@ rmd_files:
 
 - "interactive-graphics.Rmd"
 
-- "cs-cran-network.Rmd"
+#- "cs-cran-network.Rmd"
 
 - "99-references.Rmd"

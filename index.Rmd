@@ -21,6 +21,7 @@ geometry:
   - rmargin=2.5cm
 bibliography: 
   - refer.bib
+  - packages.bib
 subparagraph: true
 description: "数据操作、数据分析、数据建模、动态报告和数据可视化"
 github-repo: XiangyunHuang/RGraphics

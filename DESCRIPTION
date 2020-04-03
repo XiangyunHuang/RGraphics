@@ -8,6 +8,7 @@ Imports:
   ggplot2,
   colourlovers,
   cowplot,
+  cubelyr,
   dplyr,
   DiagrammeR,
   DT,

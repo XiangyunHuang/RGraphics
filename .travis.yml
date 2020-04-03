@@ -99,7 +99,7 @@ before_script:
   - tlmgr install ctex xecjk mdwtools zhnumber ulem ms xcolor unicode-math filehook lm-math
       subfig sourcecodepro sourceserifpro sourcesanspro cancel titlepic pgf preview psnfss
       jknapltx titlesec tocbibind tocloft trimspaces savesym environ fancyhdr listings
-      psnfss realscripts relsize rsfs setspace soul xltxtra mathdesign epstopdf-pkg
+      psnfss realscripts relsize rsfs setspace soul xltxtra mathdesign epstopdf-pkg times
   - curl -fLo Adobe-Fonts.zip https://github.com/XiangyunHuang/fonts/releases/download/v0.1/Adobe-Fonts.zip
   - unzip Adobe-Fonts.zip -d ~/.fonts/adobe
   - fc-cache -fsv
@@ -117,7 +117,7 @@ script:
   - chmod +x ./_deploy.sh
   # build book
   - mkdir -p _book/interactives && cp -r interactives/* _book/interactives
-  - make gitbook
+#  - make gitbook
 
 #script:
 #  - export DOCKER_HOST_IP=$(ip route|awk '/docker0/ { print $9 }')

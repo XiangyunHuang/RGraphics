@@ -42,6 +42,7 @@ knitr::opts_chunk$set(
   fig.align = "center",
   fig.width = 6,
   fig.asp = 0.618,
+  cache = TRUE,
   fig.show='hold',
   fig.pos="!htb"
 )
