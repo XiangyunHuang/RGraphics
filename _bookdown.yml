@@ -37,10 +37,12 @@ rmd_files:
 - "dv-plotly.Rmd"
 - "dv-spatio-temporal.Rmd"
 
+- "data-visualization.Rmd"
+
 - "dynamic-documents.Rmd"
 
 - "interactive-graphics.Rmd"
 
-#- "cs-cran-network.Rmd"
+- "cs-cran-network.Rmd"
 
 - "99-references.Rmd"
