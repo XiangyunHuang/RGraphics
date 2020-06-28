@@ -44,6 +44,7 @@ Imports:
   nomnoml,
   patchwork,
   pdftools,
+  plotly,
   reticulate,
   rgdal,
   rgl,
@@ -64,7 +65,5 @@ Imports:
   tweenr,
   vegawidget,
   visNetwork
-Remotes: 
-  jbkunst/highcharter
-URL: https://r-graphics.netlify.com, https://bookdown.org/xiangyun/RGraphics/
-BugReports: https://github.com/XiangyunHuang/RGraphics/issues
+URL: https://r-graphics.netlify.com, https://bookdown.org/xiangyun/r4ds/
+BugReports: https://github.com/XiangyunHuang/r4ds/issues
