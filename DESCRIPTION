@@ -12,7 +12,6 @@ Imports:
   dplyr,
   DiagrammeR,
   DT,
-  firatheme,
   formattable,
   hexbin,
   highcharter,
@@ -66,7 +65,6 @@ Imports:
   vegawidget,
   visNetwork
 Remotes: 
-  vankesteren/firatheme, 
   jbkunst/highcharter
 URL: https://r-graphics.netlify.com, https://bookdown.org/xiangyun/RGraphics/
 BugReports: https://github.com/XiangyunHuang/RGraphics/issues
