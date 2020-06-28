@@ -114,7 +114,7 @@ script:
   - chmod +x ./_deploy.sh
   # build book
   - mkdir -p _book/interactives && cp -r interactives/* _book/interactives
-  - make gitbook
+  - travis_wait 30 make gitbook
 
 #script:
 #  - export DOCKER_HOST_IP=$(ip route|awk '/docker0/ { print $9 }')

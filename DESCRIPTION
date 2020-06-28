@@ -65,5 +65,5 @@ Imports:
   tweenr,
   vegawidget,
   visNetwork
-URL: https://r-graphics.netlify.com, https://bookdown.org/xiangyun/r4ds/
+URL: https://rbook.netlify.com, https://bookdown.org/xiangyun/r4ds/
 BugReports: https://github.com/XiangyunHuang/r4ds/issues

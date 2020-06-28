@@ -151,7 +151,4 @@ visNetwork(nodes, edges, width = "100%") %>%
 
 ## threejs 
 
-三维交互可视化库，比如交互式全球可视化 Building an Interactive Globe Visualization in R [threejs][r-threejs]
-
-
-[r-threejs]: https://www.displayr.com/interactive-globe-r/
+三维交互可视化库，比如交互式全球可视化 Building an Interactive Globe Visualization in R [threejs](https://www.displayr.com/interactive-globe-r/)

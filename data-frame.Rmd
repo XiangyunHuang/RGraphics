@@ -697,14 +697,12 @@ asplit(array(1:27, c(3, 3, 3)), 3)
 lapply(asplit(array(1:27, c(3, 3, 3)), 3), apply, 2, sum)
 ```
 
-`asplit` 和 `lapply` 组合处理多维数组的计算问题，多维数组[^matrix-list]
+`asplit` 和 `lapply` 组合处理多维数组的[计算问题](https://www.brodieg.com/2018/11/23/is-your-matrix-running-slow-try-lists)
 
 [三维数组的矩阵运算](https://d.cosx.org/d/107493) [abind](https://CRAN.R-project.org/package=abind) 包提供更多的数组操作，如合并，替换
 
 
-数组操作
-
-aperm 数组转置 Array Transposition 
+数组操作 aperm 数组转置 Array Transposition 
 
 asplit 数组拆分 其后接 lapply 或者 vapply
 
@@ -713,7 +711,7 @@ apply 数组计算
 rray 包 https://github.com/r-lib/rray
 
 
-[^matrix-list]: https://www.brodieg.com/2018/11/23/is-your-matrix-running-slow-try-lists/
+
 
 ## 其它操作 {#base-others}
 
