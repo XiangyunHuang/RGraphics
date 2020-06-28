@@ -4,6 +4,7 @@
 
 ```{r,include=FALSE}
 knitr::opts_chunk$set(warning = FALSE)
+Sys.setenv(R_CRAN_WEB = "https://mirrors.tuna.tsinghua.edu.cn/CRAN") # 用于 tools::CRAN_package_db()
 ```
 ```{r}
 library(magrittr)

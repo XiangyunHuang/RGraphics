@@ -6,87 +6,8 @@ library(knitr)
 library(rmarkdown)
 library(shiny)
 library(magrittr)
-library(reticulate)
-knitr::opts_chunk$set(python.reticulate = TRUE)
-reticulate::use_virtualenv(virtualenv = Sys.getenv("RETICULATE_PYTHON_ENV"), required = TRUE)
 ```
 
-<!-- 不要安装新的 R 包，以截图的方式辅助说明即可 -->
-
-```{python}
-import os
-print(os.listdir())
-```
-
-::: rmdnote
-R Markdown 文档[@xie2018rmarkdown] 中的 Python 代码块是由 knitr 包 [@xie_2015_knitr] 负责调度处理的，展示 Matplotlib 绘图的结果使用了 reticulate 包 [@R-reticulate] 提供的 Python 引擎而不是 knitr 自带的。
-:::
-
-- LaTeX 专家黄晨成写的译文 [Matplotlib 教程](https://liam.page/2014/09/11/matplotlib-tutorial-zh-cn/)
-- [周沫凡](https://morvanzhou.github.io/) 制作的莫烦 Python 系列视频教程之 [Matplotlib 数据可视化神器](https://morvanzhou.github.io/tutorials/data-manipulation/plt/)
-- 陈治兵维护的在线 [Matplotlib 中文文档](https://www.matplotlib.org.cn/)
-
-编译书籍使用的 Python 3 模块有
-
-```{bash,results='asis'}
-pip3 list --format=columns
-```
-
-::: rmdtip
-在 `knitr::opts_chunk` 中设置 `python.reticulate = TRUE` 意味着所有的 Python 代码块共享一个 Python Session，而 `python.reticulate = FALSE` 意味着使用 knitr 提供的 Python 引擎，所有的 Python 代码块独立运行。
-
-`python.reticulate = TRUE` 会使用 reticulate 提供的 Python 引擎，它支持 matplotlib 绘图，但是不支持图 caption，knitr 的 python 引擎是支持 caption 的
-
-R 和 Python 之间的交互，Python 负责数据处理和建模， R 负责绘图，有些复杂的机器学习模型及其相关数据操作需要在 Python 中完成，数据集清理至数据框的形式后导入到 R 中，画各种静态或者动态图，这时候需要加载 reticulate 包，只是设置 `python.reticulate = TRUE` 还不够
-:::
-
-## R 调用 Python {#r-call-python .unnumbered}
-
-pandas 读取数据，整理后由 reticulate 包传递给 R 环境中的 data.frame 对象，加载 ggplot2 绘图
-
-```{r,echo=FALSE,eval=!file.exists('iris.csv')}
-write.csv(iris, file = 'iris.csv', row.names = F)
-```
-```{python}
-import pandas as pd
-iris2 = pd.read_csv('iris.csv')
-```
-```{r,echo=FALSE,results='hide'}
-if(file.exists('iris.csv')) file.remove('iris.csv')
-```
-
-```{r reti-plot,fig.cap="散点图"}
-library(reticulate)
-library(ggplot2)
-ggplot(py$iris2, aes(x = Sepal.Length, y = Sepal.Width)) +
-  geom_point(aes(color = Species)) +
-  scale_color_viridis_d()
-```
-
-```{r}
-library(ggplot2)
-ggplot(faithfuld, aes(waiting, eruptions)) +
-  geom_raster(aes(fill = density)) +
-  scale_fill_continuous()
-```
-
-如图 \@ref(fig:demo) 所示
-
-```{python demo,fig.cap="Python Graphics"}
-import matplotlib.pyplot as plt
-plt.switch_backend('agg')
-import numpy as np
-n = 1024    # data size
-X = np.random.normal(0, 1, n)
-Y = np.random.normal(0, 1, n)
-T = np.arctan2(Y,X) # for color value
-plt.scatter(X, Y, s=75, c=T, alpha=.5)
-plt.xlim(-1.5, 1.5)
-plt.ylim(-1.5, 1.5)
-plt.show()
-```
-
-[^r-blogdown]: 有些内容也会放在我的博客上 <https://r-bloggers.netlify.com/>，博客使用 blogdown 包 [@xie2017blogdown] 搭建的
 
 
 ::: sidebar
@@ -208,36 +129,15 @@ Explanation of examples.
 
 显示反引号 `` ` ``
 
-### 强调 {#markdown-emphasis}
 
-轻微强调 
-:   这是倾斜的文字 _下划线表示强调_, and this is *星花表示强调*.
-
-特别强调 
-:   这是加粗的文字 **strong emphasis** and __with underscores__.
-
-强烈强调
-:   这是斜体加粗的文字 ***三个星花***
-
-删除线 
-:   This ~~is deleted text.~~
-
-上下标 
-:   H~2~O is a liquid.  2^10^ is 1024. C^137^ 是一种放射性元素
 
 
 ### 引用 {#markdown-quote}
 
 注意在引用末尾空两格，出处另起一行，引用名人名言:
 
-> It's always better to give 
-> than to receive.  
+> It's always better to give than to receive.  
 
-或者
-
-> A Markdown-formatted document should be publishable as-is, as plain text, without looking like it’s been marked up with tags or formatting instructions.
->
-> --- John Gruber
 
 > Trellis graphics are a bit like hash functions: 
 > you can be close to the target, but get a far-off result.[^lattice-panel]
@@ -265,13 +165,6 @@ Explanation of examples.
 
 插入表格很简单的，如表 \@ref(tab:insert-tab) 所示，还带脚注哦，复杂的表格制作可以借助 R 包 knitr 提供的 kable 函数以及 kableExtra 包^[<https://xiangyunhuang.github.io/bookdown-kableExtra/>]，此外谢益辉的书籍 [bookdown: Authoring Books and Technical Documents with R Markdown](https://bookdown.org/yihui/bookdown/) 中也有一节专门介绍表格 <https://bookdown.org/yihui/bookdown/tables.html>
 
-Table: (\#tab:insert-tab) 表格标题^[附有脚注]
-
-| First Header | Second Header |
-| :----------- | :------------ |
-| Content Cell | Content Cell  |
-| Content Cell | Content Cell  |
-
 `kable` 支持多个表格并排，如表 \@ref(tab:table-multi) 所示
 
 ```{r table-multi, tidy=FALSE}
@@ -286,32 +179,10 @@ knitr::kable(
 
 在表格中引入数学符号
 
-```{r scalescont, tidy=FALSE, echo=TRUE}
-knitr::kable(
-  rbind(c("", "continuous", "discrete"),
-        c("nominal", "", "$\\checkmark$"),
-        c("ordinal", "", "$\\checkmark$"),
-        c("interval", "$\\checkmark$", "$\\checkmark$"),
-        c("ratio", "$\\checkmark$", "$\\checkmark$")
-    
-  )
-  , caption = 'The relationship between the scales of measurement and the discrete/continuity distinction. Cells with a tick mark correspond to things that are possible.', align="lcc",
-  booktabs = TRUE
-)
-```
-
 [kableExtra](https://github.com/haozhu233/kableExtra) 、broom 和 [pixiedust](https://github.com/nutterb/pixiedust) 包实现表格样式的精细调整，如黄湘云制作的 [样例](https://xiangyunhuang.github.io/bookdown-kableExtra/) 
 
 
 ### 图片 {#image}
-
-插入图片大体遵循的语法如下
-
-```markdown
-![...](...){...}
-```
-
-中括号包含图片的标题，小括号是图片插入路径，大括号控制图片属性 
 
 利用 `knitr::include_graphics` 函数在代码块中插入图片是很简单的，如图\@ref(fig:knitr-footnote)所示，图、表的标题很长或者需要插入脚注，可以使用[文本引用][text-references]
 
@@ -324,20 +195,7 @@ par(mar = c(4.1, 4.1, 0.5, 0.5))
 plot(rnorm(10), xlab = "", ylab = "")
 ```
 
-插入一幅普通图片，如图 \@ref(fig:left-fig) 和图 \@ref(fig:full-fig) 所示分别控制图片插入的宽度[^css-position]
-
-```markdown
-![(\#fig:left-fig) 默认图片位置居左^[这里是脚注]](figures/mai.png){ width=45% }
-```
-
-![(\#fig:left-fig) 默认图片位置居左^[这里是脚注]](figures/mai.png){ width=45% }
-
-```markdown
-![(\#fig:full-fig) 一幅全宽的图片](figures/mai.png){.full}
-```
-
-![(\#fig:full-fig) 一幅全宽的图片](figures/mai.png){.full}
-
+控制图片插入的宽度参考谢益辉的博客： CSS 的位置属性以及如何居中对齐超宽元素 https://yihui.name/cn/2018/05/css-position/
 
 -   One
 
@@ -376,7 +234,6 @@ plot(AirPassengers)
 (ref:footnote) 表格标题里插入脚注，但是 ebooks 不支持这样插入脚注[^longnote]
 [^longnote]: Here's one with multiple blocks.
 [text-references]: https://bookdown.org/yihui/bookdown/markdown-extensions-by-bookdown.html#text-references
-[^css-position]: 参考谢益辉的博客： CSS 的位置属性以及如何居中对齐超宽元素 https://yihui.name/cn/2018/05/css-position/
 
 ### 公式 {#markdown-math}
 
@@ -480,20 +337,6 @@ directory/
 ### 语法高亮
 
 Pandoc 通过 LaTeX 环境 lstlisting 支持语法高亮，比如
-
-````markdown
-```TeX
-\begin{lstlisting}
-\documentclass[cn]{elegantbook} 
-\documentclass[lang=cn]{elegantbook}
-\end{lstlisting}
-
-\begin{lstlisting}[frame=single]
-\nocite{EINAV2010,Havrylchyk2018} %or include some bibitems
-\nocite{*} %include all the bibitems
-\end{lstlisting}
-```
-````
 
 ```{r}
 # knit 支持的编程语言及其语法高亮环境

@@ -23,6 +23,11 @@ names(Pkgs[Pkgs == "recommended" & !is.na(Pkgs)])
 
 数据变形，分组统计聚合等，用以作为模型的输入，绘图的对象，操作的数据对象是数据框(data.frame)类型的，而且如果没有特别说明，文中出现的数据集都是 Base R 内置的，第三方 R 包或者来源于网上的数据集都会加以说明。
 
+```{r}
+# 给定一个/些 R 包名，返回该 R 包存放的位置
+sapply(.libPaths(), function(pkg_path)  c('survival','ggplot2') %in% .packages(T, lib.loc = pkg_path))
+```
+
 ## 查看数据 {#show}
 
 查看属性

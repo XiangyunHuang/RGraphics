@@ -7,6 +7,7 @@ options(
   ggplot2.continuous.colour = "viridis",
   ggplot2.continuous.fill = "viridis"
 )
+Sys.setenv(R_CRAN_WEB = "https://mirrors.tuna.tsinghua.edu.cn/CRAN") # 用于 tools::CRAN_package_db()
 ```
 
 > 3-D bar plots are an abomination. Just because Excel can do them doesn't mean you should. (Dismount pulpit).

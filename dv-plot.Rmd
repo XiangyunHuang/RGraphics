@@ -1142,6 +1142,10 @@ data(galaxies, package = "MASS")
 galaxies <- galaxies / 1000
 # Bandwidth Selection by Pilot Estimation of Derivatives
 c(MASS::width.SJ(galaxies, method = "dpi"), MASS::width.SJ(galaxies))
+```
+
+
+```{r}
 plot(
   x = c(5, 40), y = c(0, 0.2), type = "n", bty = "l",
   xlab = "velocity of galaxy (km/s)", ylab = "density"
@@ -1152,32 +1156,38 @@ lines(density(galaxies, width = 2.56, n = 200), col = "red", lty = 3)
 ```
 
 ```{r,title.mar=TRUE,fig.asp=1,out.width="65%",fig.width=6.5}
-x <- seq(from = 110, to = 174, by = 0.5)
+x <- seq(from = 100, to = 174, by = 0.5)
 y1 <- dnorm(x, mean = 145, sd = 9)
-y2 <- dnorm(x, mean = 138, sd = 8)
+y2 <- dnorm(x, mean = 128, sd = 8)
 plot(x, y1,
-  type = "l", lwd = 2, col = "red",
-  main = "Systolic Blood Pressure Before and After Treatment",
+  type = "l", lwd = 2, col = "firebrick3",
+ main = "Systolic Blood Pressure Before and After Treatment",
   xlab = "Systolic Blood Pressure (mmHg)",
   ylab = "Frequency", yaxt = "n",
-  xlim = c(110, 175), ylim = c(0, 0.05)
+  xlim = c(100, 175), ylim = c(0, 0.05)
 )
-lines(x, y2)
-polygon(c(110, x, 175), c(0, y2, 0),
-  col = "firebrick3",
-  border = "white"
-)
-polygon(c(117, x, 175), c(0, y1, 0),
+
+lines(x, y2, col = "dodgerblue4")
+polygon(c(117, x, 175), c(0, y2, 0),
   col = "dodgerblue4",
   border = "white"
 )
-ylab <- c(seq(from = 0, to = 175, by = 25))
-y <- c(seq(from = 0, to = 0.05, length.out = 8))
-axis(2, at = y, labels = ylab, las = 1)
-text(x = 120, y = 0.045, "- Pre-Treatment BP", col = "dodgerblue4", cex = 0.9)
-text(x = 120, y = 0.04, " - Post-Treatment BP", col = "firebrick3", cex = 0.9)
-points(109, 0.0445, pch = 15, col = "dodgerblue4")
-points(109, 0.0395, pch = 15, col = "firebrick3")
+
+polygon(c(100, x, 175), c(0, y1, 0),
+  col = "firebrick3",
+  border = "white"
+)
+
+axis(2,
+  at = seq(from = 0, to = 0.05, length.out = 8),
+  labels = seq(from = 0, to = 175, by = 25), las = 1
+)
+
+text(x = 100, y = 0.0445, "Pre-Treatment BP", col = "dodgerblue4", cex = 0.9, pos = 4)
+text(x = 100, y = 0.0395, "Post-Treatment BP", col = "firebrick3", cex = 0.9, pos = 4)
+points(100, 0.0445, pch = 15, col = "dodgerblue4")
+points(100, 0.0395, pch = 15, col = "firebrick3")
+abline(v = c(145, 128), lwd = 2, lty = 2, col = 'gray')
 ```
 
 
@@ -1372,12 +1382,7 @@ densCols(x,
 `densCols` 函数根据点的局部密度生成颜色，密度估计采用核平滑法，由 **KernSmooth** 包的 `bkde2D` 函数实现。参数 `colramp` 传递一个函数，`colorRampPalette` 根据给定的几种颜色生成函数，参数 `bandwidth` 实际上是传给 `bkde2D` 函数
 
 ```{r densCols,fig.cap="根据点的密度生成颜色",fig.asp=1,out.width="45%",fig.width=4.5}
-x1 <- matrix(rnorm(1e3), ncol = 2)
-x2 <- matrix(rnorm(1e3, mean = 3, sd = 1.5), ncol = 2)
-x <- rbind(x1, x2)
-dcols <- densCols(x)
-graphics::plot(x, col = dcols, pch = 20, panel.first = grid())
-# title(main = "n = 1000", xpd = TRUE)
+plot(faithful, col = densCols(faithful), pch = 20, panel.first = grid())
 ```
 
 气泡图也是散点图的一种

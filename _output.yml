@@ -5,7 +5,7 @@ bookdown::gitbook:
     toc:
       collapse: section
       before: |
-        <li><a href="./">数据可视化与R语言</a></li>
+        <li><a href="./">数据科学与 R 语言</a></li>
       after: |
         <li><a href="https://r-graphics.netlify.com/" target="blank">Published with netlify</a></li>
     download: ["pdf", "epub", "mobi", "rmd"]

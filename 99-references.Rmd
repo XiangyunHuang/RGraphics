@@ -6,7 +6,7 @@
 # automatically create a bib database for R packages
 bib <- knitr::write_bib(
   x = c(
-    .packages(), "knitr", "rmarkdown", "bookdown", "gganimate", "gifski",
+    .packages(), "knitr", "rmarkdown", "bookdown", "gganimate", "gifski", "av",
     'gam', 'mda', 'R2jags', 'pspearman', 'Kendall', 'SuppDists', "reticulate"
   ), file = NULL, prefix = ""
 )
