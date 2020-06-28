@@ -67,9 +67,6 @@ Imports:
   visNetwork
 Remotes: 
   vankesteren/firatheme, 
-  jbkunst/highcharter, 
-  javierluraschi/nomnoml, 
-  yihui/knitr, 
-  tidyverse/dplyr
+  jbkunst/highcharter
 URL: https://r-graphics.netlify.com, https://bookdown.org/xiangyun/RGraphics/
 BugReports: https://github.com/XiangyunHuang/RGraphics/issues
