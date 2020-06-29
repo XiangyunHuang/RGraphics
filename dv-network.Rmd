@@ -11,7 +11,7 @@ options(
 
 > 介绍图的基本概念，出度、入度、有向图，邻接矩阵等，如何用 igraph 绘图表示
 
-参考 Katherine Ognyanova 的博文网络分析和可视化与 R 语言、igraph 包的介绍 [^intro-igraph]，Sam Tyner、 François Briatte 和 Heike Hofmann 总结了基于 ggplot2 的网络可视化工具包[@RJ_2017_Tyner]，Bodong Chen 编写的教材 [Applied Social Network Analysis in Education](https://bookdown.org/chen/snaEd/)， [François Briatte](https://briatte.github.io/) 介绍 [ggnet2: network visualization with ggplot2](https://briatte.github.io/ggnet/) 以及整理的 [网络分析资源大列表](https://github.com/briatte/awesome-network-analysis)。
+参考 Katherine Ognyanova 的博文网络分析和可视化与 R 语言、igraph 包的介绍 [^intro-igraph]，Sam Tyner、 François Briatte 和 Heike Hofmann 总结了基于 ggplot2 的网络可视化工具包，Bodong Chen 编写的教材 [Applied Social Network Analysis in Education](https://bookdown.org/chen/snaEd/)， [François Briatte](https://briatte.github.io/) 介绍 [ggnet2: network visualization with ggplot2](https://briatte.github.io/ggnet/) 以及整理的 [网络分析资源大列表](https://github.com/briatte/awesome-network-analysis)。
 
 [igraph](https://igraph.org/) 提供了 R 和 Python 接口 <https://github.com/igraph>。 [qgraph](https://github.com/SachaEpskamp/qgraph) 开发者 [Sacha Epskamp](http://sachaepskamp.com) 在个人主页上提供了很多网络数据分析的学习资料， [Rgraphviz](https://www.bioconductor.org/packages/release/bioc/html/Rgraphviz.html) 基于 [Graphviz](https://www.graphviz.org/)
 
@@ -19,7 +19,7 @@ options(
 BiocManager::install("Rgraphviz", version = "3.9")
 ```
 
-Gephi [@ICWSM_2009_Gephi] 和 igraph 能处理的最大网络，R 包和作者依赖关系图 14000+ 包和 7000+ 作者，CRAN 是全球R包开发者之网，自发布 R 1.0.0 (February, 2000) 距今 19 年
+Gephi 和 igraph 能处理的最大网络，R 包和作者依赖关系图 14000+ 包和 7000+ 作者，CRAN 是全球R包开发者之网，自发布 R 1.0.0 (February, 2000) 距今 19 年
 
 案例学习
 

@@ -2,7 +2,6 @@
 
 ```{r}
 library(ggplot2)
-library(magrittr)
 options(
   ggplot2.continuous.colour = "viridis",
   ggplot2.continuous.fill = "viridis"
@@ -251,10 +250,9 @@ ggplot(choropleth, aes(long, lat, group = group)) +
 
 ```{r}
 library(sp)
-crs = CRS("+init=epsg:28992")
 data("meuse")
 coordinates(meuse) <- ~x+y
-proj4string(meuse) <- crs
+proj4string(meuse) <- CRS("+init=epsg:28992")
 class(meuse)
 proj4string(meuse)
 ```
@@ -358,8 +356,8 @@ library(abind)
 library(sf)
 library(cubelyr)
 library(stars)
-x <- system.file("tif/L7_ETMs.tif", package = "stars") %>%
-  read_stars()
+x <- read_stars(system.file("tif/L7_ETMs.tif", package = "stars"))
+
 ggplot() +
   geom_stars(data = x) +
   coord_equal() +
@@ -375,7 +373,8 @@ ggplot() +
 ### sf {#ggplot2-sf}
 
 ```{r}
-nc <- system.file("gpkg/nc.gpkg", package = "sf") %>% read_sf()
+`%>%` <- magrittr::`%>%`
+nc <- read_sf(system.file("gpkg/nc.gpkg", package = "sf"))
 nc2 <- nc %>%
   dplyr::select(SID74, SID79) %>%
   tidyr::gather(VAR, SID, -geom)

@@ -11,6 +11,7 @@ options(
   tidyverse.quiet = TRUE,
   tidymodels.quiet = TRUE,
   memory.profiling = TRUE,
+  bookdown.render.file_scope = FALSE,
   width = 79,
   str = utils::strOptions(strict.width = "cut"),
   tikzDefaultEngine = "xetex",

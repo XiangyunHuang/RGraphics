@@ -36,11 +36,8 @@ rmd_files:
 - "dv-lattice.Rmd"
 - "dv-network.Rmd"
 - "dv-plotly.Rmd"
-# - "dv-shiny.Rmd"
 
 - "dv-spatio-temporal.Rmd"
-
-# - "data-visualization.Rmd"
 
 - "dynamic-documents.Rmd"
 

@@ -149,7 +149,7 @@ plot_ly(Orange, x = ~age, y = ~circumference, color = ~Tree) %>%
   add_trace(colors = "Set1", type = "scatter", mode = "markers+lines")
 ```
 
-## 条形图 
+## 条形图 {#plotly-bar}
 
 
 ```{r}
@@ -240,7 +240,7 @@ plot_ly(alpha = 0.6) %>%
 plot_ly(x = ~ rnorm(50), type = "histogram", cumulative = list(enabled = TRUE))
 ```
 
-## 箱线图 
+## 箱线图 {#plotly-box}
 
 ```{r}
 plot_ly(diamonds, x = ~cut, y = ~price) %>%

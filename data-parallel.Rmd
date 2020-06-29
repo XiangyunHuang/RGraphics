@@ -17,7 +17,7 @@ apply 家族和 `do.call`
 
 ## MapReduce {#map-reduce}
 
-高阶函数，简单来说，就是参数为函数，返回值也是函数。Base R 提供了 `Reduce` 、`Filter` 、`Find` 、`Map` 、`Negate` 和 `Position` 等常用函数，此外还有 `*apply` 族，我们把它放在第\@ref(vector-manipulation)小节向量化计算中介绍。
+高阶函数，简单来说，就是参数为函数，返回值也是函数。Base R 提供了 `Reduce` 、`Filter` 、`Find` 、`Map` 、`Negate` 和 `Position` 等常用函数，此外还有 `*apply` 族。
 
 与 `purrr::map` 比较
 
@@ -109,7 +109,7 @@ pbdMPI 包处于活跃维护状态，是 [pbdR 项目](https://github.com/RBigDa
 
 ## gpuR
 
-Charles Determan 开发的 [gpuR](https://github.com/cdeterman/gpuR) [@R-gpuR] 基于 OpenCL 加速，目前处于活跃维护状态。而 Charles Determan 开发的另一个 [gpuRcuda](https://github.com/gpuRcore/gpuRcuda) 包是基于 CUDA 加速
+Charles Determan 开发的 [gpuR](https://github.com/cdeterman/gpuR) 基于 OpenCL 加速，目前处于活跃维护状态。而 Charles Determan 开发的另一个 [gpuRcuda](https://github.com/gpuRcore/gpuRcuda) 包是基于 CUDA 加速
 
 [赵鹏](https://github.com/PatricZhao) 的博客 [ParallelR](http://www.parallelr.com/) 关注基于 [CUDA 的 GPU 加速](https://devblogs.nvidia.com/accelerate-r-applications-cuda/)
 
