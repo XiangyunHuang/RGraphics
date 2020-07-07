@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>第 8 章 并行化操作 | 数据科学与 R 语言</title>
+  <meta name="description" content="数据操作、数据分析、数据建模、动态报告和数据可视化" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="第 8 章 并行化操作 | 数据科学与 R 语言" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="https://bookdown.org/xiangyun/RGraphics/" />
+  
+  <meta property="og:description" content="数据操作、数据分析、数据建模、动态报告和数据可视化" />
+  <meta name="github-repo" content="XiangyunHuang/RGraphics" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="第 8 章 并行化操作 | 数据科学与 R 语言" />
+  
+  <meta name="twitter:description" content="数据操作、数据分析、数据建模、动态报告和数据可视化" />
+  
+
+<meta name="author" content="黄湘云" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="data-table.html"/>
+<link rel="next" href="dc-string-manipulation.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+<script src="libs/proj4js-2.3.15/proj4.js"></script>
+<link href="libs/highcharts-7.0.1/css/motion.css" rel="stylesheet" />
+<link href="libs/highcharts-7.0.1/css/htmlwdgtgrid.css" rel="stylesheet" />
+<script src="libs/highcharts-7.0.1/highcharts.js"></script>
+<script src="libs/highcharts-7.0.1/highcharts-3d.js"></script>
+<script src="libs/highcharts-7.0.1/highcharts-more.js"></script>
+<script src="libs/highcharts-7.0.1/modules/stock.js"></script>
+<script src="libs/highcharts-7.0.1/modules/map.js"></script>
+<script src="libs/highcharts-7.0.1/modules/annotations.js"></script>
+<script src="libs/highcharts-7.0.1/modules/boost.js"></script>
+<script src="libs/highcharts-7.0.1/modules/data.js"></script>
+<script src="libs/highcharts-7.0.1/modules/drag-panes.js"></script>
+<script src="libs/highcharts-7.0.1/modules/drilldown.js"></script>
+<script src="libs/highcharts-7.0.1/modules/item-series.js"></script>
+<script src="libs/highcharts-7.0.1/modules/offline-exporting.js"></script>
+<script src="libs/highcharts-7.0.1/modules/overlapping-datalabels.js"></script>
+<script src="libs/highcharts-7.0.1/modules/exporting.js"></script>
+<script src="libs/highcharts-7.0.1/modules/export-data.js"></script>
+<script src="libs/highcharts-7.0.1/modules/funnel.js"></script>
+<script src="libs/highcharts-7.0.1/modules/heatmap.js"></script>
+<script src="libs/highcharts-7.0.1/modules/treemap.js"></script>
+<script src="libs/highcharts-7.0.1/modules/sankey.js"></script>
+<script src="libs/highcharts-7.0.1/modules/solid-gauge.js"></script>
+<script src="libs/highcharts-7.0.1/modules/streamgraph.js"></script>
+<script src="libs/highcharts-7.0.1/modules/sunburst.js"></script>
+<script src="libs/highcharts-7.0.1/modules/vector.js"></script>
+<script src="libs/highcharts-7.0.1/modules/wordcloud.js"></script>
+<script src="libs/highcharts-7.0.1/modules/xrange.js"></script>
+<script src="libs/highcharts-7.0.1/modules/tilemap.js"></script>
+<script src="libs/highcharts-7.0.1/modules/venn.js"></script>
+<script src="libs/highcharts-7.0.1/modules/gantt.js"></script>
+<script src="libs/highcharts-7.0.1/modules/timeline.js"></script>
+<script src="libs/highcharts-7.0.1/modules/parallel-coordinates.js"></script>
+<script src="libs/highcharts-7.0.1/plugins/grouped-categories.js"></script>
+<script src="libs/highcharts-7.0.1/plugins/motion.js"></script>
+<script src="libs/highcharts-7.0.1/plugins/multicolor_series.js"></script>
+<script src="libs/highcharts-7.0.1/custom/reset.js"></script>
+<script src="libs/highcharts-7.0.1/custom/symbols-extra.js"></script>
+<script src="libs/highcharts-7.0.1/custom/text-symbols.js"></script>
+<script src="libs/highchart-binding-0.7.0/highchart.js"></script>
+<script src="libs/plotly-binding-4.9.2.1/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.1.0.1/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.52.2/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.52.2/plotly-latest.min.js"></script>
+<script src="libs/dagre-0.8.4/dagre.min.js"></script>
+<script src="libs/lodash-4.17.15/lodash.js"></script>
+<script src="libs/nomnoml-0.7.2/nomnoml.js"></script>
+<script src="libs/nomnoml-binding-0.2.0/nomnoml.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/Proj4Leaflet-1.0.1/proj4-compressed.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.0.3/leaflet.js"></script>
+<link href="libs/vis-4.20.1/vis.css" rel="stylesheet" />
+<script src="libs/vis-4.20.1/vis.min.js"></script>
+<script src="libs/visNetwork-binding-2.0.9/visNetwork.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">数据科学与 R 语言</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>欢迎</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#why-r"><i class="fa fa-check"></i>Why R</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#who-read-this-book"><i class="fa fa-check"></i>目标读者</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#Getting-Help-with-R"><i class="fa fa-check"></i>获取帮助</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#history-of-r"><i class="fa fa-check"></i>发展历史</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#conventions"><i class="fa fa-check"></i>记号约定</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#session-info"><i class="fa fa-check"></i>运行环境</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>前言</a><ul>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#what-talk-about"><i class="fa fa-check"></i>关于本书</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#structure-of-book"><i class="fa fa-check"></i>本书结构</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#about-author"><i class="fa fa-check"></i>关于作者</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="setup.html"><a href="setup.html"><i class="fa fa-check"></i><b>1</b> 安装与配置</a><ul>
+<li class="chapter" data-level="1.1" data-path="setup.html"><a href="setup.html#repo-install"><i class="fa fa-check"></i><b>1.1</b> 仓库安装</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="setup.html"><a href="setup.html#ubuntu"><i class="fa fa-check"></i><b>1.1.1</b> Ubuntu</a></li>
+<li class="chapter" data-level="1.1.2" data-path="setup.html"><a href="setup.html#centos"><i class="fa fa-check"></i><b>1.1.2</b> CentOS</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="setup.html"><a href="setup.html#source-install"><i class="fa fa-check"></i><b>1.2</b> 源码安装</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="setup.html"><a href="setup.html#ubuntu-1"><i class="fa fa-check"></i><b>1.2.1</b> Ubuntu</a></li>
+<li class="chapter" data-level="1.2.2" data-path="setup.html"><a href="setup.html#centos-1"><i class="fa fa-check"></i><b>1.2.2</b> CentOS</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="setup.html"><a href="setup.html#ninja-install"><i class="fa fa-check"></i><b>1.3</b> 忍者安装</a></li>
+<li class="chapter" data-level="1.4" data-path="setup.html"><a href="setup.html#settings"><i class="fa fa-check"></i><b>1.4</b> 配置</a><ul>
+<li class="chapter" data-level="1.4.1" data-path="setup.html"><a href="setup.html#init-session"><i class="fa fa-check"></i><b>1.4.1</b> 初始会话 <code>.Rprofile</code></a></li>
+<li class="chapter" data-level="1.4.2" data-path="setup.html"><a href="setup.html#environ-vars"><i class="fa fa-check"></i><b>1.4.2</b> 环境变量 <code>.Renviron</code></a></li>
+<li class="chapter" data-level="1.4.3" data-path="setup.html"><a href="setup.html#make-vars"><i class="fa fa-check"></i><b>1.4.3</b> 编译选项 <code>Makevars</code></a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="setup.html"><a href="setup.html#command-line-arguments"><i class="fa fa-check"></i><b>1.5</b> 命令行参数</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="files.html"><a href="files.html"><i class="fa fa-check"></i><b>2</b> 文件管理员</a><ul>
+<li class="chapter" data-level="2.1" data-path="files.html"><a href="files.html#list"><i class="fa fa-check"></i><b>2.1</b> 查看文件</a></li>
+<li class="chapter" data-level="2.2" data-path="files.html"><a href="files.html#manipulation"><i class="fa fa-check"></i><b>2.2</b> 操作文件</a></li>
+<li class="chapter" data-level="2.3" data-path="files.html"><a href="files.html#compression"><i class="fa fa-check"></i><b>2.3</b> 压缩文件</a></li>
+<li class="chapter" data-level="2.4" data-path="files.html"><a href="files.html#paths"><i class="fa fa-check"></i><b>2.4</b> 路径操作</a></li>
+<li class="chapter" data-level="2.5" data-path="files.html"><a href="files.html#find"><i class="fa fa-check"></i><b>2.5</b> 查找文件</a></li>
+<li class="chapter" data-level="2.6" data-path="files.html"><a href="files.html#permissions"><i class="fa fa-check"></i><b>2.6</b> 文件权限</a></li>
+<li class="chapter" data-level="2.7" data-path="files.html"><a href="files.html#locale"><i class="fa fa-check"></i><b>2.7</b> 区域设置</a></li>
+<li class="chapter" data-level="2.8" data-path="files.html"><a href="files.html#process"><i class="fa fa-check"></i><b>2.8</b> 进程管理</a></li>
+<li class="chapter" data-level="2.9" data-path="files.html"><a href="files.html#system-commands"><i class="fa fa-check"></i><b>2.9</b> 系统命令</a></li>
+<li class="chapter" data-level="2.10" data-path="files.html"><a href="files.html#time"><i class="fa fa-check"></i><b>2.10</b> 时间管理</a></li>
+<li class="chapter" data-level="2.11" data-path="files.html"><a href="files.html#package"><i class="fa fa-check"></i><b>2.11</b> R 包管理</a></li>
+<li class="chapter" data-level="2.12" data-path="files.html"><a href="files.html#lookup-function"><i class="fa fa-check"></i><b>2.12</b> 查找函数</a></li>
+<li class="chapter" data-level="2.13" data-path="files.html"><a href="files.html#files-session-info"><i class="fa fa-check"></i><b>2.13</b> 运行环境</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="data-objects.html"><a href="data-objects.html"><i class="fa fa-check"></i><b>3</b> 对象在哪里</a><ul>
+<li class="chapter" data-level="3.1" data-path="data-objects.html"><a href="data-objects.html#subsec:typeof"><i class="fa fa-check"></i><b>3.1</b> 类型</a></li>
+<li class="chapter" data-level="3.2" data-path="data-objects.html"><a href="data-objects.html#subsec:date-time"><i class="fa fa-check"></i><b>3.2</b> 日期</a></li>
+<li class="chapter" data-level="3.3" data-path="data-objects.html"><a href="data-objects.html#subsec:null"><i class="fa fa-check"></i><b>3.3</b> 空值</a></li>
+<li class="chapter" data-level="3.4" data-path="data-objects.html"><a href="data-objects.html#subsec:character"><i class="fa fa-check"></i><b>3.4</b> 字符串</a></li>
+<li class="chapter" data-level="3.5" data-path="data-objects.html"><a href="data-objects.html#subsec:expression"><i class="fa fa-check"></i><b>3.5</b> 表达式</a></li>
+<li class="chapter" data-level="3.6" data-path="data-objects.html"><a href="data-objects.html#oop-matrix"><i class="fa fa-check"></i><b>3.6</b> 矩阵</a></li>
+<li class="chapter" data-level="3.7" data-path="data-objects.html"><a href="data-objects.html#oop-array"><i class="fa fa-check"></i><b>3.7</b> 数组</a></li>
+<li class="chapter" data-level="3.8" data-path="data-objects.html"><a href="data-objects.html#oop-data.frame"><i class="fa fa-check"></i><b>3.8</b> 数据框</a></li>
+<li class="chapter" data-level="3.9" data-path="data-objects.html"><a href="data-objects.html#oop-table"><i class="fa fa-check"></i><b>3.9</b> 表格</a></li>
+<li class="chapter" data-level="3.10" data-path="data-objects.html"><a href="data-objects.html#oop-list"><i class="fa fa-check"></i><b>3.10</b> 列表</a></li>
+<li class="chapter" data-level="3.11" data-path="data-objects.html"><a href="data-objects.html#oop-ts"><i class="fa fa-check"></i><b>3.11</b> 时间序列</a></li>
+<li class="chapter" data-level="3.12" data-path="data-objects.html"><a href="data-objects.html#oop-sf"><i class="fa fa-check"></i><b>3.12</b> 空间数据</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="data-import.html"><a href="data-import.html"><i class="fa fa-check"></i><b>4</b> 数据搬运工</a><ul>
+<li class="chapter" data-level="4.1" data-path="data-import.html"><a href="data-import.html#import-data"><i class="fa fa-check"></i><b>4.1</b> 导入数据</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="data-import.html"><a href="data-import.html#scan-file"><i class="fa fa-check"></i><b>4.1.1</b> <code>scan</code></a></li>
+<li class="chapter" data-level="4.1.2" data-path="data-import.html"><a href="data-import.html#read-write-table"><i class="fa fa-check"></i><b>4.1.2</b> <code>read.table</code></a></li>
+<li class="chapter" data-level="4.1.3" data-path="data-import.html"><a href="data-import.html#read-write-lines"><i class="fa fa-check"></i><b>4.1.3</b> <code>readLines</code></a></li>
+<li class="chapter" data-level="4.1.4" data-path="data-import.html"><a href="data-import.html#read-save-rds"><i class="fa fa-check"></i><b>4.1.4</b> <code>readRDS</code></a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="data-import.html"><a href="data-import.html#other-data-source"><i class="fa fa-check"></i><b>4.2</b> 其它数据格式</a></li>
+<li class="chapter" data-level="4.3" data-path="data-import.html"><a href="data-import.html#import-large-dataset"><i class="fa fa-check"></i><b>4.3</b> 导入大数据集</a></li>
+<li class="chapter" data-level="4.4" data-path="data-import.html"><a href="data-import.html#import-data-from-database"><i class="fa fa-check"></i><b>4.4</b> 从数据库导入</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="data-import.html"><a href="data-import.html#postgresql"><i class="fa fa-check"></i><b>4.4.1</b> PostgreSQL</a></li>
+<li class="chapter" data-level="4.4.2" data-path="data-import.html"><a href="data-import.html#mysql"><i class="fa fa-check"></i><b>4.4.2</b> MySQL</a></li>
+<li class="chapter" data-level="4.4.3" data-path="data-import.html"><a href="data-import.html#spark"><i class="fa fa-check"></i><b>4.4.3</b> Spark</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="data-import.html"><a href="data-import.html#batch-import-data"><i class="fa fa-check"></i><b>4.5</b> 批量导入数据</a></li>
+<li class="chapter" data-level="4.6" data-path="data-import.html"><a href="data-import.html#batch-export-data"><i class="fa fa-check"></i><b>4.6</b> 批量导出数据</a></li>
+<li class="chapter" data-level="4.7" data-path="data-import.html"><a href="data-import.html#export-data"><i class="fa fa-check"></i><b>4.7</b> 导出数据</a><ul>
+<li class="chapter" data-level="4.7.1" data-path="data-import.html"><a href="data-import.html#export-output"><i class="fa fa-check"></i><b>4.7.1</b> 导出运行结果</a></li>
+<li class="chapter" data-level="4.7.2" data-path="data-import.html"><a href="data-import.html#export-data-object"><i class="fa fa-check"></i><b>4.7.2</b> 导出数据对象</a></li>
+</ul></li>
+<li class="chapter" data-level="4.8" data-path="data-import.html"><a href="data-import.html#dm-session-info"><i class="fa fa-check"></i><b>4.8</b> 运行环境</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="data-frame.html"><a href="data-frame.html"><i class="fa fa-check"></i><b>5</b> 数据操作手</a><ul>
+<li class="chapter" data-level="5.1" data-path="data-frame.html"><a href="data-frame.html#show"><i class="fa fa-check"></i><b>5.1</b> 查看数据</a></li>
+<li class="chapter" data-level="5.2" data-path="data-frame.html"><a href="data-frame.html#base-reshape"><i class="fa fa-check"></i><b>5.2</b> 数据变形</a></li>
+<li class="chapter" data-level="5.3" data-path="data-frame.html"><a href="data-frame.html#base-transform"><i class="fa fa-check"></i><b>5.3</b> 数据转换</a></li>
+<li class="chapter" data-level="5.4" data-path="data-frame.html"><a href="data-frame.html#base-subset"><i class="fa fa-check"></i><b>5.4</b> 提取子集</a></li>
+<li class="chapter" data-level="5.5" data-path="data-frame.html"><a href="data-frame.html#base-order"><i class="fa fa-check"></i><b>5.5</b> 按列排序</a></li>
+<li class="chapter" data-level="5.6" data-path="data-frame.html"><a href="data-frame.html#base-split"><i class="fa fa-check"></i><b>5.6</b> 数据拆分</a></li>
+<li class="chapter" data-level="5.7" data-path="data-frame.html"><a href="data-frame.html#base-merge"><i class="fa fa-check"></i><b>5.7</b> 数据合并</a></li>
+<li class="chapter" data-level="5.8" data-path="data-frame.html"><a href="data-frame.html#base-duplicated"><i class="fa fa-check"></i><b>5.8</b> 数据去重</a></li>
+<li class="chapter" data-level="5.9" data-path="data-frame.html"><a href="data-frame.html#base-missing"><i class="fa fa-check"></i><b>5.9</b> 数据缺失</a></li>
+<li class="chapter" data-level="5.10" data-path="data-frame.html"><a href="data-frame.html#base-aggregate"><i class="fa fa-check"></i><b>5.10</b> 数据聚合</a></li>
+<li class="chapter" data-level="5.11" data-path="data-frame.html"><a href="data-frame.html#base-table"><i class="fa fa-check"></i><b>5.11</b> 表格统计</a></li>
+<li class="chapter" data-level="5.12" data-path="data-frame.html"><a href="data-frame.html#base-index"><i class="fa fa-check"></i><b>5.12</b> 索引访问</a></li>
+<li class="chapter" data-level="5.13" data-path="data-frame.html"><a href="data-frame.html#base-array"><i class="fa fa-check"></i><b>5.13</b> 多维数组</a></li>
+<li class="chapter" data-level="5.14" data-path="data-frame.html"><a href="data-frame.html#base-others"><i class="fa fa-check"></i><b>5.14</b> 其它操作</a><ul>
+<li class="chapter" data-level="5.14.1" data-path="data-frame.html"><a href="data-frame.html#relist-or-unlist"><i class="fa fa-check"></i><b>5.14.1</b> 列表属性</a></li>
+<li class="chapter" data-level="5.14.2" data-path="data-frame.html"><a href="data-frame.html#stack-or-unstack"><i class="fa fa-check"></i><b>5.14.2</b> 堆叠向量</a></li>
+<li class="chapter" data-level="5.14.3" data-path="data-frame.html"><a href="data-frame.html#class-or-unclass"><i class="fa fa-check"></i><b>5.14.3</b> 属性转化</a></li>
+<li class="chapter" data-level="5.14.4" data-path="data-frame.html"><a href="data-frame.html#attach-or-detach"><i class="fa fa-check"></i><b>5.14.4</b> 绑定环境</a></li>
+<li class="chapter" data-level="5.14.5" data-path="data-frame.html"><a href="data-frame.html#with-or-within"><i class="fa fa-check"></i><b>5.14.5</b> 数据环境</a></li>
+</ul></li>
+<li class="chapter" data-level="5.15" data-path="data-frame.html"><a href="data-frame.html#dm-base-session-info"><i class="fa fa-check"></i><b>5.15</b> 运行环境</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="data-tibble.html"><a href="data-tibble.html"><i class="fa fa-check"></i><b>6</b> 净土化操作</a><ul>
+<li class="chapter" data-level="6.1" data-path="data-tibble.html"><a href="data-tibble.html#common-operations"><i class="fa fa-check"></i><b>6.1</b> 常用操作</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="data-tibble.html"><a href="data-tibble.html#tibble-show"><i class="fa fa-check"></i><b>6.1.1</b> 查看</a></li>
+<li class="chapter" data-level="6.1.2" data-path="data-tibble.html"><a href="data-tibble.html#dplyr-filter"><i class="fa fa-check"></i><b>6.1.2</b> 筛选</a></li>
+<li class="chapter" data-level="6.1.3" data-path="data-tibble.html"><a href="data-tibble.html#dplyr-arrange"><i class="fa fa-check"></i><b>6.1.3</b> 排序</a></li>
+<li class="chapter" data-level="6.1.4" data-path="data-tibble.html"><a href="data-tibble.html#dplyr-summarise"><i class="fa fa-check"></i><b>6.1.4</b> 聚合</a></li>
+<li class="chapter" data-level="6.1.5" data-path="data-tibble.html"><a href="data-tibble.html#dplyr-merge"><i class="fa fa-check"></i><b>6.1.5</b> 合并</a></li>
+<li class="chapter" data-level="6.1.6" data-path="data-tibble.html"><a href="data-tibble.html#dplyr-mutate"><i class="fa fa-check"></i><b>6.1.6</b> 变换</a></li>
+<li class="chapter" data-level="6.1.7" data-path="data-tibble.html"><a href="data-tibble.html#dplyr-duplicated"><i class="fa fa-check"></i><b>6.1.7</b> 去重</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="data-tibble.html"><a href="data-tibble.html#common-dataframe-operations"><i class="fa fa-check"></i><b>6.2</b> 高频问题</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="data-tibble.html"><a href="data-tibble.html#create-empty-dataframe"><i class="fa fa-check"></i><b>6.2.1</b> 初始化数据框</a></li>
+<li class="chapter" data-level="6.2.2" data-path="data-tibble.html"><a href="data-tibble.html#remove-missing-values"><i class="fa fa-check"></i><b>6.2.2</b> 移除缺失记录</a></li>
+<li class="chapter" data-level="6.2.3" data-path="data-tibble.html"><a href="data-tibble.html#coerce-data-type"><i class="fa fa-check"></i><b>6.2.3</b> 数据类型转化</a></li>
+<li class="chapter" data-level="6.2.4" data-path="data-tibble.html"><a href="data-tibble.html#cross-group-by"><i class="fa fa-check"></i><b>6.2.4</b> 跨列分组求和</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="data-tibble.html"><a href="data-tibble.html#pipe-manipulation"><i class="fa fa-check"></i><b>6.3</b> 管道操作</a></li>
+<li class="chapter" data-level="6.4" data-path="data-tibble.html"><a href="data-tibble.html#dm-dplyr-rsession"><i class="fa fa-check"></i><b>6.4</b> 运行环境</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="data-table.html"><a href="data-table.html"><i class="fa fa-check"></i><b>7</b> 高级数据操作</a><ul>
+<li class="chapter" data-level="7.1" data-path="data-table.html"><a href="data-table.html#基础介绍"><i class="fa fa-check"></i><b>7.1</b> 基础介绍</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="data-table.html"><a href="data-table.html#subsec:select-j"><i class="fa fa-check"></i><b>7.1.1</b> 选择</a></li>
+<li class="chapter" data-level="7.1.2" data-path="data-table.html"><a href="data-table.html#subsec:filter-i"><i class="fa fa-check"></i><b>7.1.2</b> 过滤</a></li>
+<li class="chapter" data-level="7.1.3" data-path="data-table.html"><a href="data-table.html#subsec:mutate-j"><i class="fa fa-check"></i><b>7.1.3</b> 变换</a></li>
+<li class="chapter" data-level="7.1.4" data-path="data-table.html"><a href="data-table.html#subsec:summarise-j"><i class="fa fa-check"></i><b>7.1.4</b> 聚合</a></li>
+<li class="chapter" data-level="7.1.5" data-path="data-table.html"><a href="data-table.html#subsec:duplicated-i"><i class="fa fa-check"></i><b>7.1.5</b> 去重</a></li>
+<li class="chapter" data-level="7.1.6" data-path="data-table.html"><a href="data-table.html#subsec:setname"><i class="fa fa-check"></i><b>7.1.6</b> 命名</a></li>
+<li class="chapter" data-level="7.1.7" data-path="data-table.html"><a href="data-table.html#subsec:order-by-j"><i class="fa fa-check"></i><b>7.1.7</b> 排序</a></li>
+<li class="chapter" data-level="7.1.8" data-path="data-table.html"><a href="data-table.html#subsec:reshape"><i class="fa fa-check"></i><b>7.1.8</b> 变形</a></li>
+<li class="chapter" data-level="7.1.9" data-path="data-table.html"><a href="data-table.html#subsec:group-by"><i class="fa fa-check"></i><b>7.1.9</b> 分组</a></li>
+<li class="chapter" data-level="7.1.10" data-path="data-table.html"><a href="data-table.html#subsec:merge"><i class="fa fa-check"></i><b>7.1.10</b> 合并</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="data-table.html"><a href="data-table.html#chap:data-manipulation"><i class="fa fa-check"></i><b>7.2</b> 高频操作</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="data-table.html"><a href="data-table.html#sec:select"><i class="fa fa-check"></i><b>7.2.1</b> 选择多列</a></li>
+<li class="chapter" data-level="7.2.2" data-path="data-table.html"><a href="data-table.html#sec:filter"><i class="fa fa-check"></i><b>7.2.2</b> 过滤多行</a></li>
+<li class="chapter" data-level="7.2.3" data-path="data-table.html"><a href="data-table.html#sec:duplicated"><i class="fa fa-check"></i><b>7.2.3</b> 去重多行</a></li>
+<li class="chapter" data-level="7.2.4" data-path="data-table.html"><a href="data-table.html#sec:merge"><i class="fa fa-check"></i><b>7.2.4</b> 合并操作</a></li>
+<li class="chapter" data-level="7.2.5" data-path="data-table.html"><a href="data-table.html#sec:add-columns"><i class="fa fa-check"></i><b>7.2.5</b> 新添多列</a></li>
+<li class="chapter" data-level="7.2.6" data-path="data-table.html"><a href="data-table.html#sec:delete-columns"><i class="fa fa-check"></i><b>7.2.6</b> 删除多列</a></li>
+<li class="chapter" data-level="7.2.7" data-path="data-table.html"><a href="data-table.html#sec:modify-columns-type"><i class="fa fa-check"></i><b>7.2.7</b> 修改多列类型</a></li>
+<li class="chapter" data-level="7.2.8" data-path="data-table.html"><a href="data-table.html#sec:select-first-row"><i class="fa fa-check"></i><b>7.2.8</b> 取每组第一行</a></li>
+<li class="chapter" data-level="7.2.9" data-path="data-table.html"><a href="data-table.html#subsec:mom-vs-yoy"><i class="fa fa-check"></i><b>7.2.9</b> 计算环比同比</a></li>
+<li class="chapter" data-level="7.2.10" data-path="data-table.html"><a href="data-table.html#sec:merge-multi-dfs"><i class="fa fa-check"></i><b>7.2.10</b> 合并多个数据框</a></li>
+<li class="chapter" data-level="7.2.11" data-path="data-table.html"><a href="data-table.html#sec:multiple-aggregations"><i class="fa fa-check"></i><b>7.2.11</b> 分组聚合多个指标</a></li>
+<li class="chapter" data-level="7.2.12" data-path="data-table.html"><a href="data-table.html#sec:rename-multi-cols"><i class="fa fa-check"></i><b>7.2.12</b> 重命名多个列</a></li>
+<li class="chapter" data-level="7.2.13" data-path="data-table.html"><a href="data-table.html#sec:sort-multi-cols"><i class="fa fa-check"></i><b>7.2.13</b> 对多个列依次排序</a></li>
+<li class="chapter" data-level="7.2.14" data-path="data-table.html"><a href="data-table.html#sec:rearrange-position-multi-cols"><i class="fa fa-check"></i><b>7.2.14</b> 重排多个列的位置</a></li>
+<li class="chapter" data-level="7.2.15" data-path="data-table.html"><a href="data-table.html#sec:tidy-output"><i class="fa fa-check"></i><b>7.2.15</b> 整理回归结果</a></li>
+<li class="chapter" data-level="7.2.16" data-path="data-table.html"><a href="data-table.html#sec:assignment-by-reference"><i class="fa fa-check"></i><b>7.2.16</b> <code>:=</code> 和 <code>.()</code></a></li>
+<li class="chapter" data-level="7.2.17" data-path="data-table.html"><a href="data-table.html#sec:remove-na"><i class="fa fa-check"></i><b>7.2.17</b> 去掉含有缺失值的记录</a></li>
+<li class="chapter" data-level="7.2.18" data-path="data-table.html"><a href="data-table.html#sec:match-set"><i class="fa fa-check"></i><b>7.2.18</b> 集合操作</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="data-table.html"><a href="data-table.html#sec:data-manipulation-session-info"><i class="fa fa-check"></i><b>7.3</b> 运行环境</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="data-parallel.html"><a href="data-parallel.html"><i class="fa fa-check"></i><b>8</b> 并行化操作</a><ul>
+<li class="chapter" data-level="8.1" data-path="data-parallel.html"><a href="data-parallel.html#apply"><i class="fa fa-check"></i><b>8.1</b> apply</a></li>
+<li class="chapter" data-level="8.2" data-path="data-parallel.html"><a href="data-parallel.html#map-reduce"><i class="fa fa-check"></i><b>8.2</b> MapReduce</a></li>
+<li class="chapter" data-level="8.3" data-path="data-parallel.html"><a href="data-parallel.html#parallel"><i class="fa fa-check"></i><b>8.3</b> parallel</a></li>
+<li class="chapter" data-level="8.4" data-path="data-parallel.html"><a href="data-parallel.html#rmpi"><i class="fa fa-check"></i><b>8.4</b> Rmpi</a></li>
+<li class="chapter" data-level="8.5" data-path="data-parallel.html"><a href="data-parallel.html#gpur"><i class="fa fa-check"></i><b>8.5</b> gpuR</a></li>
+<li class="chapter" data-level="8.6" data-path="data-parallel.html"><a href="data-parallel.html#dm-parallel-session-info"><i class="fa fa-check"></i><b>8.6</b> 本章运行环境</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html"><i class="fa fa-check"></i><b>9</b> 字符串操作</a><ul>
+<li class="chapter" data-level="9.1" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#base-count"><i class="fa fa-check"></i><b>9.1</b> 字符数统计</a></li>
+<li class="chapter" data-level="9.2" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#base-translations"><i class="fa fa-check"></i><b>9.2</b> 字符串翻译</a></li>
+<li class="chapter" data-level="9.3" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#base-concatenate"><i class="fa fa-check"></i><b>9.3</b> 字符串连接</a></li>
+<li class="chapter" data-level="9.4" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#base-strsplit"><i class="fa fa-check"></i><b>9.4</b> 字符串拆分</a></li>
+<li class="chapter" data-level="9.5" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#base-match"><i class="fa fa-check"></i><b>9.5</b> 字符串匹配</a></li>
+<li class="chapter" data-level="9.6" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#base-search"><i class="fa fa-check"></i><b>9.6</b> 字符串查询</a></li>
+<li class="chapter" data-level="9.7" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#base-replacement"><i class="fa fa-check"></i><b>9.7</b> 字符串替换</a></li>
+<li class="chapter" data-level="9.8" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#base-extract"><i class="fa fa-check"></i><b>9.8</b> 字符串提取</a></li>
+<li class="chapter" data-level="9.9" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#subsubsec:named-capture"><i class="fa fa-check"></i><b>9.9</b> 命名捕捉</a></li>
+<li class="chapter" data-level="9.10" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#subsubsec:exact-match"><i class="fa fa-check"></i><b>9.10</b> 精确匹配</a></li>
+<li class="chapter" data-level="9.11" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#subsubsec:fuzzy-match"><i class="fa fa-check"></i><b>9.11</b> 模糊匹配</a></li>
+<li class="chapter" data-level="9.12" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#subsubsec:replace"><i class="fa fa-check"></i><b>9.12</b> 高级的替换</a></li>
+<li class="chapter" data-level="9.13" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#subsubsec:extract"><i class="fa fa-check"></i><b>9.13</b> 高级的提取</a></li>
+<li class="chapter" data-level="9.14" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#other-string-op"><i class="fa fa-check"></i><b>9.14</b> 其它操作</a><ul>
+<li class="chapter" data-level="9.14.1" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#strwrap"><i class="fa fa-check"></i><b>9.14.1</b> strwrap</a></li>
+<li class="chapter" data-level="9.14.2" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#strtrim"><i class="fa fa-check"></i><b>9.14.2</b> strtrim</a></li>
+<li class="chapter" data-level="9.14.3" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#strrep"><i class="fa fa-check"></i><b>9.14.3</b> strrep</a></li>
+<li class="chapter" data-level="9.14.4" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#trimws"><i class="fa fa-check"></i><b>9.14.4</b> trimws</a></li>
+</ul></li>
+<li class="chapter" data-level="9.15" data-path="dc-string-manipulation.html"><a href="dc-string-manipulation.html#string-session-info"><i class="fa fa-check"></i><b>9.15</b> 运行环境</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="dc-regular-expressions.html"><a href="dc-regular-expressions.html"><i class="fa fa-check"></i><b>10</b> 正则表达式</a><ul>
+<li class="chapter" data-level="10.1" data-path="dc-regular-expressions.html"><a href="dc-regular-expressions.html#character-constants"><i class="fa fa-check"></i><b>10.1</b> 字符常量</a></li>
+<li class="chapter" data-level="10.2" data-path="dc-regular-expressions.html"><a href="dc-regular-expressions.html#environments"><i class="fa fa-check"></i><b>10.2</b> 软件环境</a></li>
+<li class="chapter" data-level="10.3" data-path="dc-regular-expressions.html"><a href="dc-regular-expressions.html#foundations"><i class="fa fa-check"></i><b>10.3</b> 基本概念</a></li>
+<li class="chapter" data-level="10.4" data-path="dc-regular-expressions.html"><a href="dc-regular-expressions.html#match"><i class="fa fa-check"></i><b>10.4</b> 字符串匹配</a></li>
+<li class="chapter" data-level="10.5" data-path="dc-regular-expressions.html"><a href="dc-regular-expressions.html#concatenation"><i class="fa fa-check"></i><b>10.5</b> 级联表达式</a></li>
+<li class="chapter" data-level="10.6" data-path="dc-regular-expressions.html"><a href="dc-regular-expressions.html#backreference"><i class="fa fa-check"></i><b>10.6</b> 反向引用</a></li>
+<li class="chapter" data-level="10.7" data-path="dc-regular-expressions.html"><a href="dc-regular-expressions.html#named-capture"><i class="fa fa-check"></i><b>10.7</b> 命名捕捉</a></li>
+<li class="chapter" data-level="10.8" data-path="dc-regular-expressions.html"><a href="dc-regular-expressions.html#comment"><i class="fa fa-check"></i><b>10.8</b> 表达式注释</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="dv-plot.html"><a href="dv-plot.html"><i class="fa fa-check"></i><b>11</b> 绘图素材库</a><ul>
+<li class="chapter" data-level="11.1" data-path="dv-plot.html"><a href="dv-plot.html#elements"><i class="fa fa-check"></i><b>11.1</b> 基本要素</a><ul>
+<li class="chapter" data-level="11.1.1" data-path="dv-plot.html"><a href="dv-plot.html#base-points"><i class="fa fa-check"></i><b>11.1.1</b> 点线</a></li>
+<li class="chapter" data-level="11.1.2" data-path="dv-plot.html"><a href="dv-plot.html#base-rect"><i class="fa fa-check"></i><b>11.1.2</b> 区域</a></li>
+<li class="chapter" data-level="11.1.3" data-path="dv-plot.html"><a href="dv-plot.html#base-lines"><i class="fa fa-check"></i><b>11.1.3</b> 参考线</a></li>
+<li class="chapter" data-level="11.1.4" data-path="dv-plot.html"><a href="dv-plot.html#base-axis"><i class="fa fa-check"></i><b>11.1.4</b> 坐标轴</a></li>
+<li class="chapter" data-level="11.1.5" data-path="dv-plot.html"><a href="dv-plot.html#base-tick"><i class="fa fa-check"></i><b>11.1.5</b> 刻度线</a></li>
+<li class="chapter" data-level="11.1.6" data-path="dv-plot.html"><a href="dv-plot.html#base-title"><i class="fa fa-check"></i><b>11.1.6</b> 标题</a></li>
+<li class="chapter" data-level="11.1.7" data-path="dv-plot.html"><a href="dv-plot.html#base-annotation"><i class="fa fa-check"></i><b>11.1.7</b> 注释</a></li>
+<li class="chapter" data-level="11.1.8" data-path="dv-plot.html"><a href="dv-plot.html#base-legend"><i class="fa fa-check"></i><b>11.1.8</b> 图例</a></li>
+<li class="chapter" data-level="11.1.9" data-path="dv-plot.html"><a href="dv-plot.html#base-par"><i class="fa fa-check"></i><b>11.1.9</b> 边空</a></li>
+<li class="chapter" data-level="11.1.10" data-path="dv-plot.html"><a href="dv-plot.html#base-layer"><i class="fa fa-check"></i><b>11.1.10</b> 图层</a></li>
+<li class="chapter" data-level="11.1.11" data-path="dv-plot.html"><a href="dv-plot.html#base-layout"><i class="fa fa-check"></i><b>11.1.11</b> 布局</a></li>
+<li class="chapter" data-level="11.1.12" data-path="dv-plot.html"><a href="dv-plot.html#base-combine"><i class="fa fa-check"></i><b>11.1.12</b> 组合</a></li>
+<li class="chapter" data-level="11.1.13" data-path="dv-plot.html"><a href="dv-plot.html#base-screen"><i class="fa fa-check"></i><b>11.1.13</b> 分屏</a></li>
+<li class="chapter" data-level="11.1.14" data-path="dv-plot.html"><a href="dv-plot.html#identify-locator"><i class="fa fa-check"></i><b>11.1.14</b> 交互</a></li>
+</ul></li>
+<li class="chapter" data-level="11.2" data-path="dv-plot.html"><a href="dv-plot.html#plot-gallary"><i class="fa fa-check"></i><b>11.2</b> 统计图形</a><ul>
+<li class="chapter" data-level="11.2.1" data-path="dv-plot.html"><a href="dv-plot.html#plot-bar"><i class="fa fa-check"></i><b>11.2.1</b> 条形图</a></li>
+<li class="chapter" data-level="11.2.2" data-path="dv-plot.html"><a href="dv-plot.html#plot-hist"><i class="fa fa-check"></i><b>11.2.2</b> 直方图</a></li>
+<li class="chapter" data-level="11.2.3" data-path="dv-plot.html"><a href="dv-plot.html#plot-density"><i class="fa fa-check"></i><b>11.2.3</b> 密度图</a></li>
+<li class="chapter" data-level="11.2.4" data-path="dv-plot.html"><a href="dv-plot.html#plot-ecdf"><i class="fa fa-check"></i><b>11.2.4</b> 经验图</a></li>
+<li class="chapter" data-level="11.2.5" data-path="dv-plot.html"><a href="dv-plot.html#plot-qqnorm"><i class="fa fa-check"></i><b>11.2.5</b> QQ 图</a></li>
+<li class="chapter" data-level="11.2.6" data-path="dv-plot.html"><a href="dv-plot.html#plot-ts"><i class="fa fa-check"></i><b>11.2.6</b> 时序图</a></li>
+<li class="chapter" data-level="11.2.7" data-path="dv-plot.html"><a href="dv-plot.html#plot-pie"><i class="fa fa-check"></i><b>11.2.7</b> 饼图</a></li>
+<li class="chapter" data-level="11.2.8" data-path="dv-plot.html"><a href="dv-plot.html#plot-stem-leaf"><i class="fa fa-check"></i><b>11.2.8</b> 茎叶图</a></li>
+<li class="chapter" data-level="11.2.9" data-path="dv-plot.html"><a href="dv-plot.html#plot-scatter"><i class="fa fa-check"></i><b>11.2.9</b> 散点图</a></li>
+<li class="chapter" data-level="11.2.10" data-path="dv-plot.html"><a href="dv-plot.html#base-jitter"><i class="fa fa-check"></i><b>11.2.10</b> 抖动图</a></li>
+<li class="chapter" data-level="11.2.11" data-path="dv-plot.html"><a href="dv-plot.html#plot-box"><i class="fa fa-check"></i><b>11.2.11</b> 箱线图</a></li>
+<li class="chapter" data-level="11.2.12" data-path="dv-plot.html"><a href="dv-plot.html#error-bars"><i class="fa fa-check"></i><b>11.2.12</b> 残差图</a></li>
+<li class="chapter" data-level="11.2.13" data-path="dv-plot.html"><a href="dv-plot.html#plot-violin"><i class="fa fa-check"></i><b>11.2.13</b> 提琴图</a></li>
+<li class="chapter" data-level="11.2.14" data-path="dv-plot.html"><a href="dv-plot.html#plot-contour"><i class="fa fa-check"></i><b>11.2.14</b> 轮廓图</a></li>
+<li class="chapter" data-level="11.2.15" data-path="dv-plot.html"><a href="dv-plot.html#plot-line"><i class="fa fa-check"></i><b>11.2.15</b> 折线图</a></li>
+<li class="chapter" data-level="11.2.16" data-path="dv-plot.html"><a href="dv-plot.html#function"><i class="fa fa-check"></i><b>11.2.16</b> 函数图</a></li>
+<li class="chapter" data-level="11.2.17" data-path="dv-plot.html"><a href="dv-plot.html#plot-mosaic"><i class="fa fa-check"></i><b>11.2.17</b> 马赛克图</a></li>
+<li class="chapter" data-level="11.2.18" data-path="dv-plot.html"><a href="dv-plot.html#plot-dotchart"><i class="fa fa-check"></i><b>11.2.18</b> 克利夫兰点图</a></li>
+<li class="chapter" data-level="11.2.19" data-path="dv-plot.html"><a href="dv-plot.html#plot-matrix"><i class="fa fa-check"></i><b>11.2.19</b> 矩阵图</a></li>
+<li class="chapter" data-level="11.2.20" data-path="dv-plot.html"><a href="dv-plot.html#plot-radar"><i class="fa fa-check"></i><b>11.2.20</b> 雷达图</a></li>
+<li class="chapter" data-level="11.2.21" data-path="dv-plot.html"><a href="dv-plot.html#plot-rose"><i class="fa fa-check"></i><b>11.2.21</b> 玫瑰图</a></li>
+<li class="chapter" data-level="11.2.22" data-path="dv-plot.html"><a href="dv-plot.html#plot-map"><i class="fa fa-check"></i><b>11.2.22</b> 地形图</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="dv-plot.html"><a href="dv-plot.html#plot-session-info"><i class="fa fa-check"></i><b>11.3</b> 运行环境</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html"><i class="fa fa-check"></i><b>12</b> 数据可视化</a><ul>
+<li class="chapter" data-level="12.1" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#intro-ggplot2"><i class="fa fa-check"></i><b>12.1</b> 基础语法</a><ul>
+<li class="chapter" data-level="12.1.1" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-layer"><i class="fa fa-check"></i><b>12.1.1</b> 图层</a></li>
+<li class="chapter" data-level="12.1.2" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-theme"><i class="fa fa-check"></i><b>12.1.2</b> 主题</a></li>
+<li class="chapter" data-level="12.1.3" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-color"><i class="fa fa-check"></i><b>12.1.3</b> 配色</a></li>
+<li class="chapter" data-level="12.1.4" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-scale"><i class="fa fa-check"></i><b>12.1.4</b> 刻度</a></li>
+<li class="chapter" data-level="12.1.5" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-annotate"><i class="fa fa-check"></i><b>12.1.5</b> 注释</a></li>
+<li class="chapter" data-level="12.1.6" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-legend"><i class="fa fa-check"></i><b>12.1.6</b> 图例</a></li>
+<li class="chapter" data-level="12.1.7" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-grid"><i class="fa fa-check"></i><b>12.1.7</b> 组合</a></li>
+<li class="chapter" data-level="12.1.8" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-coord"><i class="fa fa-check"></i><b>12.1.8</b> 坐标系</a></li>
+<li class="chapter" data-level="12.1.9" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-axes"><i class="fa fa-check"></i><b>12.1.9</b> 坐标轴</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-gallary"><i class="fa fa-check"></i><b>12.2</b> 统计图形</a><ul>
+<li class="chapter" data-level="12.2.1" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-scatter"><i class="fa fa-check"></i><b>12.2.1</b> 散点图</a></li>
+<li class="chapter" data-level="12.2.2" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-boxplot"><i class="fa fa-check"></i><b>12.2.2</b> 箱线图</a></li>
+<li class="chapter" data-level="12.2.3" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-barplot"><i class="fa fa-check"></i><b>12.2.3</b> 条形图</a></li>
+<li class="chapter" data-level="12.2.4" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-line"><i class="fa fa-check"></i><b>12.2.4</b> 折线图</a></li>
+<li class="chapter" data-level="12.2.5" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-histogram"><i class="fa fa-check"></i><b>12.2.5</b> 直方图</a></li>
+<li class="chapter" data-level="12.2.6" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-violin"><i class="fa fa-check"></i><b>12.2.6</b> 提琴图</a></li>
+<li class="chapter" data-level="12.2.7" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-jitter"><i class="fa fa-check"></i><b>12.2.7</b> 抖动图</a></li>
+<li class="chapter" data-level="12.2.8" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-ridge"><i class="fa fa-check"></i><b>12.2.8</b> 密度图</a></li>
+<li class="chapter" data-level="12.2.9" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-rose"><i class="fa fa-check"></i><b>12.2.9</b> 玫瑰图</a></li>
+<li class="chapter" data-level="12.2.10" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-wordcloud"><i class="fa fa-check"></i><b>12.2.10</b> 词云图</a></li>
+<li class="chapter" data-level="12.2.11" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#calendar-map"><i class="fa fa-check"></i><b>12.2.11</b> 日历图</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="dv-ggplot2.html"><a href="dv-ggplot2.html#ggplot2-session-info"><i class="fa fa-check"></i><b>12.3</b> 运行环境</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="dv-plot3d.html"><a href="dv-plot3d.html"><i class="fa fa-check"></i><b>13</b> 三维可视化</a><ul>
+<li class="chapter" data-level="13.1" data-path="dv-plot3d.html"><a href="dv-plot3d.html#pie-3d"><i class="fa fa-check"></i><b>13.1</b> 饼图</a></li>
+<li class="chapter" data-level="13.2" data-path="dv-plot3d.html"><a href="dv-plot3d.html#bar-3d"><i class="fa fa-check"></i><b>13.2</b> 柱形图</a></li>
+<li class="chapter" data-level="13.3" data-path="dv-plot3d.html"><a href="dv-plot3d.html#scatter-3d"><i class="fa fa-check"></i><b>13.3</b> 散点图</a></li>
+<li class="chapter" data-level="13.4" data-path="dv-plot3d.html"><a href="dv-plot3d.html#curve-3d"><i class="fa fa-check"></i><b>13.4</b> 函数图</a></li>
+<li class="chapter" data-level="13.5" data-path="dv-plot3d.html"><a href="dv-plot3d.html#persp-3d"><i class="fa fa-check"></i><b>13.5</b> 透视图</a></li>
+<li class="chapter" data-level="13.6" data-path="dv-plot3d.html"><a href="dv-plot3d.html#tikz"><i class="fa fa-check"></i><b>13.6</b> TikZ 绘图</a></li>
+<li class="chapter" data-level="13.7" data-path="dv-plot3d.html"><a href="dv-plot3d.html#export-save"><i class="fa fa-check"></i><b>13.7</b> 图形导出</a></li>
+<li class="chapter" data-level="13.8" data-path="dv-plot3d.html"><a href="dv-plot3d.html#plot3d-sessionInfo"><i class="fa fa-check"></i><b>13.8</b> 软件信息</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="dv-colors-fonts.html"><a href="dv-colors-fonts.html"><i class="fa fa-check"></i><b>14</b> 色彩与字体</a><ul>
+<li class="chapter" data-level="14.1" data-path="dv-colors-fonts.html"><a href="dv-colors-fonts.html#colors-in-r"><i class="fa fa-check"></i><b>14.1</b> 颜色</a></li>
+<li class="chapter" data-level="14.2" data-path="dv-colors-fonts.html"><a href="dv-colors-fonts.html#choose-colors"><i class="fa fa-check"></i><b>14.2</b> 配色</a><ul>
+<li class="chapter" data-level="14.2.1" data-path="dv-colors-fonts.html"><a href="dv-colors-fonts.html#colourlovers"><i class="fa fa-check"></i><b>14.2.1</b> colourlovers</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="dv-highcharter.html"><a href="dv-highcharter.html"><i class="fa fa-check"></i><b>15</b> highcharter 图形</a><ul>
+<li class="chapter" data-level="15.1" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsec:hc-line"><i class="fa fa-check"></i><b>15.1</b> 折线图</a><ul>
+<li class="chapter" data-level="15.1.1" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsubsec:simple-hc-line"><i class="fa fa-check"></i><b>15.1.1</b> 简单折线图</a></li>
+<li class="chapter" data-level="15.1.2" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsubsec:group-hc-line"><i class="fa fa-check"></i><b>15.1.2</b> 分组折线图</a></li>
+<li class="chapter" data-level="15.1.3" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsubsec:ts-hc-line"><i class="fa fa-check"></i><b>15.1.3</b> 时间序列图</a></li>
+</ul></li>
+<li class="chapter" data-level="15.2" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsec:hc-scatter"><i class="fa fa-check"></i><b>15.2</b> 散点图</a><ul>
+<li class="chapter" data-level="15.2.1" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsubsec:simple-hc-scatter"><i class="fa fa-check"></i><b>15.2.1</b> 简单散点图</a></li>
+<li class="chapter" data-level="15.2.2" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsubsec:group-hc-scatter"><i class="fa fa-check"></i><b>15.2.2</b> 分组散点图</a></li>
+</ul></li>
+<li class="chapter" data-level="15.3" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsec:hc-bar"><i class="fa fa-check"></i><b>15.3</b> 条形图</a><ul>
+<li class="chapter" data-level="15.3.1" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsubsec:simple-hc-bar"><i class="fa fa-check"></i><b>15.3.1</b> 简单条形图</a></li>
+<li class="chapter" data-level="15.3.2" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsubsec:dodge-hc-bar"><i class="fa fa-check"></i><b>15.3.2</b> 复合条形图</a></li>
+<li class="chapter" data-level="15.3.3" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsubsec:stack-hc-bar"><i class="fa fa-check"></i><b>15.3.3</b> 堆积条形图</a></li>
+<li class="chapter" data-level="15.3.4" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsubsec:fill-hc-bar"><i class="fa fa-check"></i><b>15.3.4</b> 百分比条形图</a></li>
+</ul></li>
+<li class="chapter" data-level="15.4" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsec:hc-boxplot"><i class="fa fa-check"></i><b>15.4</b> 箱线图</a><ul>
+<li class="chapter" data-level="15.4.1" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsubsec:simple-hc-boxplot"><i class="fa fa-check"></i><b>15.4.1</b> 简单箱线图</a></li>
+<li class="chapter" data-level="15.4.2" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subssubsec:dodge-hc-boxplot"><i class="fa fa-check"></i><b>15.4.2</b> 复合箱线图</a></li>
+</ul></li>
+<li class="chapter" data-level="15.5" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsec:hc-density"><i class="fa fa-check"></i><b>15.5</b> 密度图</a></li>
+<li class="chapter" data-level="15.6" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsec:hc-hist"><i class="fa fa-check"></i><b>15.6</b> 直方图</a></li>
+<li class="chapter" data-level="15.7" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsec:hc-survival"><i class="fa fa-check"></i><b>15.7</b> 生存图</a></li>
+<li class="chapter" data-level="15.8" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsec:hc-heatmap"><i class="fa fa-check"></i><b>15.8</b> 等高图</a></li>
+<li class="chapter" data-level="15.9" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsec:hc-corrplot"><i class="fa fa-check"></i><b>15.9</b> 相关图</a></li>
+<li class="chapter" data-level="15.10" data-path="dv-highcharter.html"><a href="dv-highcharter.html#subsec:hc-treemap"><i class="fa fa-check"></i><b>15.10</b> 矩阵图</a></li>
+<li class="chapter" data-level="15.11" data-path="dv-highcharter.html"><a href="dv-highcharter.html#highcharter-map"><i class="fa fa-check"></i><b>15.11</b> 地图</a></li>
+<li class="chapter" data-level="15.12" data-path="dv-highcharter.html"><a href="dv-highcharter.html#drilldown"><i class="fa fa-check"></i><b>15.12</b> 下钻图</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="dv-lattice.html"><a href="dv-lattice.html"><i class="fa fa-check"></i><b>16</b> Lattice 图形</a><ul>
+<li class="chapter" data-level="16.1" data-path="dv-lattice.html"><a href="dv-lattice.html#sec:boxplot"><i class="fa fa-check"></i><b>16.1</b> 箱线图</a></li>
+<li class="chapter" data-level="16.2" data-path="dv-lattice.html"><a href="dv-lattice.html#sec:line"><i class="fa fa-check"></i><b>16.2</b> 折线图</a></li>
+<li class="chapter" data-level="16.3" data-path="dv-lattice.html"><a href="dv-lattice.html#sec:smooth"><i class="fa fa-check"></i><b>16.3</b> 平滑图</a></li>
+<li class="chapter" data-level="16.4" data-path="dv-lattice.html"><a href="dv-lattice.html#sec:dotplot"><i class="fa fa-check"></i><b>16.4</b> 点图</a></li>
+<li class="chapter" data-level="16.5" data-path="dv-lattice.html"><a href="dv-lattice.html#sec:step"><i class="fa fa-check"></i><b>16.5</b> 阶梯图</a></li>
+<li class="chapter" data-level="16.6" data-path="dv-lattice.html"><a href="dv-lattice.html#sec:facet"><i class="fa fa-check"></i><b>16.6</b> 分面图</a></li>
+<li class="chapter" data-level="16.7" data-path="dv-lattice.html"><a href="dv-lattice.html#sec:contour"><i class="fa fa-check"></i><b>16.7</b> 等高线图</a></li>
+<li class="chapter" data-level="16.8" data-path="dv-lattice.html"><a href="dv-lattice.html#sub:map"><i class="fa fa-check"></i><b>16.8</b> 地图</a></li>
+<li class="chapter" data-level="16.9" data-path="dv-lattice.html"><a href="dv-lattice.html#sub:cluster"><i class="fa fa-check"></i><b>16.9</b> 聚类图</a></li>
+<li class="chapter" data-level="16.10" data-path="dv-lattice.html"><a href="dv-lattice.html#sec:lattice-sessioninfo"><i class="fa fa-check"></i><b>16.10</b> 运行环境</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="dv-network.html"><a href="dv-network.html"><i class="fa fa-check"></i><b>17</b> 网络数据</a></li>
+<li class="chapter" data-level="18" data-path="dv-plotly.html"><a href="dv-plotly.html"><i class="fa fa-check"></i><b>18</b> plotly 图形</a><ul>
+<li class="chapter" data-level="18.1" data-path="dv-plotly.html"><a href="dv-plotly.html#plotly-scatter"><i class="fa fa-check"></i><b>18.1</b> 散点图</a><ul>
+<li class="chapter" data-level="18.1.1" data-path="dv-plotly.html"><a href="dv-plotly.html#一行代码绘图"><i class="fa fa-check"></i><b>18.1.1</b> 一行代码绘图</a></li>
+<li class="chapter" data-level="18.1.2" data-path="dv-plotly.html"><a href="dv-plotly.html#分组散点图"><i class="fa fa-check"></i><b>18.1.2</b> 分组散点图</a></li>
+<li class="chapter" data-level="18.1.3" data-path="dv-plotly.html"><a href="dv-plotly.html#散点图汇总"><i class="fa fa-check"></i><b>18.1.3</b> 散点图汇总</a></li>
+</ul></li>
+<li class="chapter" data-level="18.2" data-path="dv-plotly.html"><a href="dv-plotly.html#折线图"><i class="fa fa-check"></i><b>18.2</b> 折线图</a></li>
+<li class="chapter" data-level="18.3" data-path="dv-plotly.html"><a href="dv-plotly.html#plotly-bar"><i class="fa fa-check"></i><b>18.3</b> 条形图</a></li>
+<li class="chapter" data-level="18.4" data-path="dv-plotly.html"><a href="dv-plotly.html#直方图"><i class="fa fa-check"></i><b>18.4</b> 直方图</a></li>
+<li class="chapter" data-level="18.5" data-path="dv-plotly.html"><a href="dv-plotly.html#plotly-box"><i class="fa fa-check"></i><b>18.5</b> 箱线图</a></li>
+<li class="chapter" data-level="18.6" data-path="dv-plotly.html"><a href="dv-plotly.html#提琴图"><i class="fa fa-check"></i><b>18.6</b> 提琴图</a></li>
+<li class="chapter" data-level="18.7" data-path="dv-plotly.html"><a href="dv-plotly.html#饼图"><i class="fa fa-check"></i><b>18.7</b> 饼图</a></li>
+<li class="chapter" data-level="18.8" data-path="dv-plotly.html"><a href="dv-plotly.html#地图"><i class="fa fa-check"></i><b>18.8</b> 地图</a></li>
+<li class="chapter" data-level="18.9" data-path="dv-plotly.html"><a href="dv-plotly.html#区域图"><i class="fa fa-check"></i><b>18.9</b> 区域图</a></li>
+<li class="chapter" data-level="18.10" data-path="dv-plotly.html"><a href="dv-plotly.html#choropleth-地图"><i class="fa fa-check"></i><b>18.10</b> choropleth 地图</a></li>
+<li class="chapter" data-level="18.11" data-path="dv-plotly.html"><a href="dv-plotly.html#多图布局"><i class="fa fa-check"></i><b>18.11</b> 多图布局</a></li>
+<li class="chapter" data-level="18.12" data-path="dv-plotly.html"><a href="dv-plotly.html#二维密度图"><i class="fa fa-check"></i><b>18.12</b> 二维密度图</a></li>
+<li class="chapter" data-level="18.13" data-path="dv-plotly.html"><a href="dv-plotly.html#热力图"><i class="fa fa-check"></i><b>18.13</b> 热力图</a></li>
+<li class="chapter" data-level="18.14" data-path="dv-plotly.html"><a href="dv-plotly.html#三维地形图"><i class="fa fa-check"></i><b>18.14</b> 三维地形图</a></li>
+<li class="chapter" data-level="18.15" data-path="dv-plotly.html"><a href="dv-plotly.html#三维散点图"><i class="fa fa-check"></i><b>18.15</b> 三维散点图</a></li>
+<li class="chapter" data-level="18.16" data-path="dv-plotly.html"><a href="dv-plotly.html#ggplotly"><i class="fa fa-check"></i><b>18.16</b> ggplotly</a></li>
+<li class="chapter" data-level="18.17" data-path="dv-plotly.html"><a href="dv-plotly.html#导出图形"><i class="fa fa-check"></i><b>18.17</b> 导出图形</a></li>
+<li class="chapter" data-level="18.18" data-path="dv-plotly.html"><a href="dv-plotly.html#plotly-语法"><i class="fa fa-check"></i><b>18.18</b> plotly 语法</a><ul>
+<li class="chapter" data-level="18.18.1" data-path="dv-plotly.html"><a href="dv-plotly.html#图形种类"><i class="fa fa-check"></i><b>18.18.1</b> 图形种类</a></li>
+<li class="chapter" data-level="18.18.2" data-path="dv-plotly.html"><a href="dv-plotly.html#图形参数"><i class="fa fa-check"></i><b>18.18.2</b> 图形参数</a></li>
+</ul></li>
+<li class="chapter" data-level="18.19" data-path="dv-plotly.html"><a href="dv-plotly.html#运行环境"><i class="fa fa-check"></i><b>18.19</b> 运行环境</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html"><i class="fa fa-check"></i><b>19</b> 时空可视化</a><ul>
+<li class="chapter" data-level="19.1" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#map"><i class="fa fa-check"></i><b>19.1</b> 地图</a><ul>
+<li class="chapter" data-level="19.1.1" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#project-orientation"><i class="fa fa-check"></i><b>19.1.1</b> 投影和观察方位</a></li>
+<li class="chapter" data-level="19.1.2" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#USA-crime-rates"><i class="fa fa-check"></i><b>19.1.2</b> 美国各州犯罪率</a></li>
+<li class="chapter" data-level="19.1.3" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#fiji-earthquake-map"><i class="fa fa-check"></i><b>19.1.3</b> 斐济地震带</a></li>
+<li class="chapter" data-level="19.1.4" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#USA-unemployment-ratio"><i class="fa fa-check"></i><b>19.1.4</b> 美国各城镇失业率</a></li>
+</ul></li>
+<li class="chapter" data-level="19.2" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#spatial-op"><i class="fa fa-check"></i><b>19.2</b> 空间数据对象</a><ul>
+<li class="chapter" data-level="19.2.1" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#ggplot2-sp"><i class="fa fa-check"></i><b>19.2.1</b> sp</a></li>
+<li class="chapter" data-level="19.2.2" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#ggplot2-raster"><i class="fa fa-check"></i><b>19.2.2</b> raster</a></li>
+<li class="chapter" data-level="19.2.3" data-path="dv-spatio-temporal.html"><a href="dv-spatio-temporal.html#ggplot2-sf"><i class="fa fa-check"></i><b>19.2.3</b> sf</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="dynamic-documents.html"><a href="dynamic-documents.html"><i class="fa fa-check"></i><b>20</b> 动态性文档</a><ul>
+<li class="chapter" data-level="20.1" data-path="dynamic-documents.html"><a href="dynamic-documents.html#markdown"><i class="fa fa-check"></i><b>20.1</b> Markdown</a><ul>
+<li class="chapter" data-level="20.1.1" data-path="dynamic-documents.html"><a href="dynamic-documents.html#markdown-list"><i class="fa fa-check"></i><b>20.1.1</b> 列表</a></li>
+<li class="chapter" data-level="20.1.2" data-path="dynamic-documents.html"><a href="dynamic-documents.html#markdown-quote"><i class="fa fa-check"></i><b>20.1.2</b> 引用</a></li>
+<li class="chapter" data-level="20.1.3" data-path="dynamic-documents.html"><a href="dynamic-documents.html#markdown-table"><i class="fa fa-check"></i><b>20.1.3</b> 表格</a></li>
+<li class="chapter" data-level="20.1.4" data-path="dynamic-documents.html"><a href="dynamic-documents.html#image"><i class="fa fa-check"></i><b>20.1.4</b> 图片</a></li>
+<li class="chapter" data-level="20.1.5" data-path="dynamic-documents.html"><a href="dynamic-documents.html#markdown-math"><i class="fa fa-check"></i><b>20.1.5</b> 公式</a></li>
+</ul></li>
+<li class="chapter" data-level="20.2" data-path="dynamic-documents.html"><a href="dynamic-documents.html#pandoc-markdown"><i class="fa fa-check"></i><b>20.2</b> Pandoc’s Markdown</a></li>
+<li class="chapter" data-level="20.3" data-path="dynamic-documents.html"><a href="dynamic-documents.html#r-markdown"><i class="fa fa-check"></i><b>20.3</b> R Markdown</a><ul>
+<li class="chapter" data-level="20.3.1" data-path="dynamic-documents.html"><a href="dynamic-documents.html#语法高亮"><i class="fa fa-check"></i><b>20.3.1</b> 语法高亮</a></li>
+</ul></li>
+<li class="chapter" data-level="20.4" data-path="dynamic-documents.html"><a href="dynamic-documents.html#table-style"><i class="fa fa-check"></i><b>20.4</b> 表格样式</a><ul>
+<li class="chapter" data-level="20.4.1" data-path="dynamic-documents.html"><a href="dynamic-documents.html#table-html"><i class="fa fa-check"></i><b>20.4.1</b> HTML 样式</a></li>
+<li class="chapter" data-level="20.4.2" data-path="dynamic-documents.html"><a href="dynamic-documents.html#table-latex"><i class="fa fa-check"></i><b>20.4.2</b> LaTeX 样式</a></li>
+</ul></li>
+<li class="chapter" data-level="20.5" data-path="dynamic-documents.html"><a href="dynamic-documents.html#rmarkdown-addins"><i class="fa fa-check"></i><b>20.5</b> 插件</a></li>
+<li class="chapter" data-level="20.6" data-path="dynamic-documents.html"><a href="dynamic-documents.html#subsec:rmarkdown"><i class="fa fa-check"></i><b>20.6</b> 报告</a></li>
+<li class="chapter" data-level="20.7" data-path="dynamic-documents.html"><a href="dynamic-documents.html#subsec:pagedown"><i class="fa fa-check"></i><b>20.7</b> 简历</a></li>
+<li class="chapter" data-level="20.8" data-path="dynamic-documents.html"><a href="dynamic-documents.html#subsec:bookdown"><i class="fa fa-check"></i><b>20.8</b> 书籍</a></li>
+<li class="chapter" data-level="20.9" data-path="dynamic-documents.html"><a href="dynamic-documents.html#subsec:blogdown"><i class="fa fa-check"></i><b>20.9</b> 网站</a></li>
+<li class="chapter" data-level="20.10" data-path="dynamic-documents.html"><a href="dynamic-documents.html#subsec:dashboard"><i class="fa fa-check"></i><b>20.10</b> Shiny</a></li>
+<li class="chapter" data-level="20.11" data-path="dynamic-documents.html"><a href="dynamic-documents.html#subsec:xaringan"><i class="fa fa-check"></i><b>20.11</b> 幻灯片</a></li>
+<li class="chapter" data-level="20.12" data-path="dynamic-documents.html"><a href="dynamic-documents.html#sec:animation-video"><i class="fa fa-check"></i><b>20.12</b> 动画视频</a></li>
+<li class="chapter" data-level="20.13" data-path="dynamic-documents.html"><a href="dynamic-documents.html#sec:diagram-table"><i class="fa fa-check"></i><b>20.13</b> 图表</a><ul>
+<li class="chapter" data-level="20.13.1" data-path="dynamic-documents.html"><a href="dynamic-documents.html#tikz-1"><i class="fa fa-check"></i><b>20.13.1</b> TikZ</a></li>
+<li class="chapter" data-level="20.13.2" data-path="dynamic-documents.html"><a href="dynamic-documents.html#dot"><i class="fa fa-check"></i><b>20.13.2</b> DOT</a></li>
+<li class="chapter" data-level="20.13.3" data-path="dynamic-documents.html"><a href="dynamic-documents.html#subsec:uml"><i class="fa fa-check"></i><b>20.13.3</b> UML</a></li>
+<li class="chapter" data-level="20.13.4" data-path="dynamic-documents.html"><a href="dynamic-documents.html#subsec:table"><i class="fa fa-check"></i><b>20.13.4</b> 表格</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="21" data-path="interactive-graphics.html"><a href="interactive-graphics.html"><i class="fa fa-check"></i><b>21</b> 交互式图形</a><ul>
+<li class="chapter" data-level="21.1" data-path="interactive-graphics.html"><a href="interactive-graphics.html#rgl"><i class="fa fa-check"></i><b>21.1</b> rgl</a></li>
+<li class="chapter" data-level="21.2" data-path="interactive-graphics.html"><a href="interactive-graphics.html#leaflet"><i class="fa fa-check"></i><b>21.2</b> leaflet</a></li>
+<li class="chapter" data-level="21.3" data-path="interactive-graphics.html"><a href="interactive-graphics.html#vegawidget"><i class="fa fa-check"></i><b>21.3</b> vegawidget</a></li>
+<li class="chapter" data-level="21.4" data-path="interactive-graphics.html"><a href="interactive-graphics.html#network"><i class="fa fa-check"></i><b>21.4</b> 网络图</a></li>
+<li class="chapter" data-level="21.5" data-path="interactive-graphics.html"><a href="interactive-graphics.html#threejs"><i class="fa fa-check"></i><b>21.5</b> threejs</a></li>
+</ul></li>
+<li class="chapter" data-level="22" data-path="cs-cran-network.html"><a href="cs-cran-network.html"><i class="fa fa-check"></i><b>22</b> 案例：分析 CRAN</a><ul>
+<li class="chapter" data-level="22.1" data-path="cs-cran-network.html"><a href="cs-cran-network.html#R-Core-Team"><i class="fa fa-check"></i><b>22.1</b> R 核心团队</a></li>
+<li class="chapter" data-level="22.2" data-path="cs-cran-network.html"><a href="cs-cran-network.html#Top-Creators"><i class="fa fa-check"></i><b>22.2</b> 高产的开发者</a></li>
+<li class="chapter" data-level="22.3" data-path="cs-cran-network.html"><a href="cs-cran-network.html#R-Package-Developers"><i class="fa fa-check"></i><b>22.3</b> 社区开发者</a></li>
+<li class="chapter" data-level="22.4" data-path="cs-cran-network.html"><a href="cs-cran-network.html#first-commit"><i class="fa fa-check"></i><b>22.4</b> 首次贡献 R 包</a></li>
+<li class="chapter" data-level="22.5" data-path="cs-cran-network.html"><a href="cs-cran-network.html#Contribution-Network"><i class="fa fa-check"></i><b>22.5</b> 贡献关系网络</a></li>
+<li class="chapter" data-level="22.6" data-path="cs-cran-network.html"><a href="cs-cran-network.html#CRAN-Update-Packages"><i class="fa fa-check"></i><b>22.6</b> 更新知多少</a></li>
+<li class="chapter" data-level="22.7" data-path="cs-cran-network.html"><a href="cs-cran-network.html#Package-Licenses"><i class="fa fa-check"></i><b>22.7</b> 使用许可证</a></li>
+<li class="chapter" data-level="22.8" data-path="cs-cran-network.html"><a href="cs-cran-network.html#r-包增长速度"><i class="fa fa-check"></i><b>22.8</b> R 包增长速度</a></li>
+<li class="chapter" data-level="22.9" data-path="cs-cran-network.html"><a href="cs-cran-network.html#Choose-Package"><i class="fa fa-check"></i><b>22.9</b> 选择 R 包</a></li>
+<li class="chapter" data-level="22.10" data-path="cs-cran-network.html"><a href="cs-cran-network.html#cs-network-session-info"><i class="fa fa-check"></i><b>22.10</b> 运行环境</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="99-references.html"><a href="99-references.html"><i class="fa fa-check"></i>参考文献</a></li>
+<li class="divider"></li>
+<li><a href="https://r-graphics.netlify.com/" target="blank">Published with netlify</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">数据科学与 R 语言</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="parallel-manipulation" class="section level1">
+<h1><span class="header-section-number">第 8 章</span> 并行化操作</h1>
+<p>向量化运算、并行运算和分布式运算</p>
+<ul>
+<li><a href="https://github.com/HenrikBengtsson/future">future</a> 在 R 语言中提供统一的并行和分布式处理框架</li>
+<li><a href="https://github.com/HenrikBengtsson/future.apply">future.apply</a> 可以替代 base R 提供的 apply 族函数</li>
+<li><a href="https://github.com/HenrikBengtsson/future.batchtools">future.batchtools</a> 使用 batchtools 实现并行和分布式处理</li>
+<li><a href="https://github.com/mllg/batchtools">batchtools</a> Map 函数的并行实现，用于高性能计算系统和分布式处理，可以单机多核并行也可以多机并行，还提供了一种抽象的机制去定义大规模计算机实验。</li>
+<li><a href="https://github.com/hadley/multidplyr">multidplyr</a> 是 dplyr 的后端，多核环境下实现数据分块，提高并行处理性能</li>
+<li><a href="https://github.com/xiaodaigh/disk.frame">disk.frame</a> 是基于磁盘的超出内存容量的快速并行数据操作框架</li>
+<li><a href="https://github.com/berndbischl/parallelMap">parallelMap</a> R package to interface some popular parallelization back-ends with a unified interface</li>
+<li><a href="https://github.com/jangorecki/big.data.table">big.data.table</a> 基于 data.table 的分布式并行计算</li>
+</ul>
+<div id="apply" class="section level2">
+<h2><span class="header-section-number">8.1</span> apply</h2>
+<p>apply 家族和 <code>do.call</code></p>
+</div>
+<div id="map-reduce" class="section level2">
+<h2><span class="header-section-number">8.2</span> MapReduce</h2>
+<p>高阶函数，简单来说，就是参数为函数，返回值也是函数。Base R 提供了 <code>Reduce</code> 、<code>Filter</code> 、<code>Find</code> 、<code>Map</code> 、<code>Negate</code> 和 <code>Position</code> 等常用函数，此外还有 <code>*apply</code> 族。</p>
+<p>与 <code>purrr::map</code> 比较</p>
+<p>在 R 语言里玩转<code>apply</code>， <code>Map()</code> 和 <code>Reduce()</code><a href="#fn24" class="footnote-ref" id="fnref24"><sup>24</sup></a>，下面分别以提取合并多张 XLSX 表格<a href="#fn25" class="footnote-ref" id="fnref25"><sup>25</sup></a>，分组计算<a href="#fn26" class="footnote-ref" id="fnref26"><sup>26</sup></a> 和子集操作<a href="#fn27" class="footnote-ref" id="fnref27"><sup>27</sup></a> 为例，从函数式编程到 MapReduce<a href="#fn28" class="footnote-ref" id="fnref28"><sup>28</sup></a>，制作数据透视表<a href="#fn29" class="footnote-ref" id="fnref29"><sup>29</sup></a>，用于数据处理的函数式编程和单元测试 Functional programming and unit testing for data munging with R 特别是第三章 <a href="https://b-rodrigues.github.io/fput/" class="uri">https://b-rodrigues.github.io/fput/</a>，然后是函数式编程与数据建模 Modeling data with functional programming in R<a href="#fn30" class="footnote-ref" id="fnref30"><sup>30</sup></a></p>
+<div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb397-1"><a href="data-parallel.html#cb397-1"></a>add &lt;-<span class="st"> </span><span class="cf">function</span>(x) <span class="kw">Reduce</span>(<span class="st">&quot;+&quot;</span>, x)</span>
+<span id="cb397-2"><a href="data-parallel.html#cb397-2"></a><span class="kw">add</span>(<span class="kw">list</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>))</span>
+<span id="cb397-3"><a href="data-parallel.html#cb397-3"></a><span class="co">#&gt; [1] 6</span></span>
+<span id="cb397-4"><a href="data-parallel.html#cb397-4"></a>add_accuml &lt;-<span class="st"> </span><span class="cf">function</span>(x) <span class="kw">Reduce</span>(<span class="st">&quot;+&quot;</span>, x, <span class="dt">accumulate =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb397-5"><a href="data-parallel.html#cb397-5"></a><span class="kw">add_accuml</span>(<span class="kw">list</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>))</span>
+<span id="cb397-6"><a href="data-parallel.html#cb397-6"></a><span class="co">#&gt; [1] 1 3 6</span></span></code></pre></div>
+</div>
+<div id="parallel" class="section level2">
+<h2><span class="header-section-number">8.3</span> parallel</h2>
+<p><a href="https://github.com/ardeeshany/Parallel_Computing">并行计算小抄</a> 将共享内存的 R 包整理在一起</p>
+<div class="sourceCode" id="cb398"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb398-1"><a href="data-parallel.html#cb398-1"></a><span class="kw">library</span>(parallel)</span></code></pre></div>
+</div>
+<div id="rmpi" class="section level2">
+<h2><span class="header-section-number">8.4</span> Rmpi</h2>
+<p><a href="http://fisher.stats.uwo.ca/faculty/yu/Rmpi/">Rmpi</a> 由卡尔顿大学的 <a href="https://www.uwo.ca/stats/people/bios/hao-yu.html">Hao Yu</a> 开发和维护</p>
+<p>首先安装 openmpi-devel 开发环境（以 Fedora 30 为例）</p>
+<div class="sourceCode" id="cb399"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb399-1"><a href="data-parallel.html#cb399-1"></a><span class="ex">yum</span> install -y openmpi-devel</span>
+<span id="cb399-2"><a href="data-parallel.html#cb399-2"></a><span class="bu">echo</span> <span class="st">&quot;export ORTED=/usr/lib64/openmpi/bin&quot;</span> <span class="op">&gt;&gt;</span> ~/.bashrc</span>
+<span id="cb399-3"><a href="data-parallel.html#cb399-3"></a><span class="co"># 或者</span></span>
+<span id="cb399-4"><a href="data-parallel.html#cb399-4"></a><span class="bu">echo</span> <span class="st">&quot;PATH=/usr/lib64/openmpi/bin:</span><span class="va">$PATH</span><span class="st">; export PATH&quot;</span> <span class="kw">|</span> <span class="fu">tee</span> -a ~/.bashrc</span>
+<span id="cb399-5"><a href="data-parallel.html#cb399-5"></a><span class="bu">source</span> ~/.bashrc</span></code></pre></div>
+<p>然后进入 R 安装 R 包 Rmpi</p>
+<div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb400-1"><a href="data-parallel.html#cb400-1"></a><span class="kw">install.packages</span>(<span class="st">&#39;Rmpi&#39;</span>)</span></code></pre></div>
+<p>使用 Rmpi 包生成两组服从均匀分布的随机数</p>
+<div class="sourceCode" id="cb401"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb401-1"><a href="data-parallel.html#cb401-1"></a><span class="co"># 加载 R 包</span></span>
+<span id="cb401-2"><a href="data-parallel.html#cb401-2"></a><span class="kw">library</span>(Rmpi)</span>
+<span id="cb401-3"><a href="data-parallel.html#cb401-3"></a><span class="co"># 检测可用的逻辑 CPU 核心数</span></span>
+<span id="cb401-4"><a href="data-parallel.html#cb401-4"></a>parallel<span class="op">::</span><span class="kw">detectCores</span>()</span>
+<span id="cb401-5"><a href="data-parallel.html#cb401-5"></a><span class="co"># 虚拟机分配四个逻辑CPU核 </span></span>
+<span id="cb401-6"><a href="data-parallel.html#cb401-6"></a><span class="co"># 1个 master 2个 worker 主机 cloud</span></span>
+<span id="cb401-7"><a href="data-parallel.html#cb401-7"></a><span class="kw">mpi.spawn.Rslaves</span>(<span class="dt">nslaves=</span><span class="dv">2</span>)</span></code></pre></div>
+<pre><code>#         2 slaves are spawned successfully. 0 failed.
+# master (rank 0, comm 1) of size 3 is running on: cloud
+# slave1 (rank 1, comm 1) of size 3 is running on: cloud
+# slave2 (rank 2, comm 1) of size 3 is running on: cloud</code></pre>
+<p>调用 <code>mpi.apply</code> 函数</p>
+<div class="sourceCode" id="cb403"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb403-1"><a href="data-parallel.html#cb403-1"></a><span class="kw">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb403-2"><a href="data-parallel.html#cb403-2"></a><span class="kw">mpi.apply</span>(<span class="kw">c</span>(<span class="dv">10</span>, <span class="dv">20</span>), runif)</span></code></pre></div>
+<pre><code>[[1]]
+ [1] 0.33684269 0.84638494 0.82776590 0.23707947 0.07593769 0.27981368
+ [7] 0.45307675 0.02878214 0.32807421 0.92854275
+
+[[2]]
+ [1] 0.63474442 0.04025071 0.01996498 0.01922093 0.41258827 0.84150414
+ [7] 0.74705002 0.07635368 0.32807392 0.94570363 0.89187667 0.67069020
+[13] 0.92996997 0.22486589 0.22118236 0.15807970 0.65619450 0.16473730
+[19] 0.85833484 0.11416449</code></pre>
+<p>用完要关闭</p>
+<div class="sourceCode" id="cb405"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb405-1"><a href="data-parallel.html#cb405-1"></a><span class="kw">mpi.close.Rslaves</span>()</span></code></pre></div>
+<p>pbdMPI 包处于活跃维护状态，是 <a href="https://github.com/RBigData">pbdR 项目</a> 的核心组件，能够以分布式计算的方式轻松处理 TB 级数据<a href="#fn31" class="footnote-ref" id="fnref31"><sup>31</sup></a></p>
+<p><a href="https://prs.ism.ac.jp/~nakama/Rhpc/">Rhpc</a> 包同样基于 MPI 方式，但是集 Rmpi 和 snow 两个包的优点于一身，在保持 apply 编程风格的同时，能够提供更好的高性能计算环境，支持长向量，能够处理一些大数据。</p>
+</div>
+<div id="gpur" class="section level2">
+<h2><span class="header-section-number">8.5</span> gpuR</h2>
+<p>Charles Determan 开发的 <a href="https://github.com/cdeterman/gpuR">gpuR</a> 基于 OpenCL 加速，目前处于活跃维护状态。而 Charles Determan 开发的另一个 <a href="https://github.com/gpuRcore/gpuRcuda">gpuRcuda</a> 包是基于 CUDA 加速</p>
+<p><a href="https://github.com/PatricZhao">赵鹏</a> 的博客 <a href="http://www.parallelr.com/">ParallelR</a> 关注基于 <a href="https://devblogs.nvidia.com/accelerate-r-applications-cuda/">CUDA 的 GPU 加速</a></p>
+<p>此外还有 <a href="https://github.com/nullsatz/gputools">gputools</a></p>
+<div class="sourceCode" id="cb406"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb406-1"><a href="data-parallel.html#cb406-1"></a><span class="kw">library</span>(gpuR)</span>
+<span id="cb406-2"><a href="data-parallel.html#cb406-2"></a><span class="kw">set.seed</span>(<span class="dv">2019</span>)</span>
+<span id="cb406-3"><a href="data-parallel.html#cb406-3"></a>gpuA &lt;-<span class="st"> </span><span class="kw">gpuMatrix</span>(<span class="kw">rnorm</span>(<span class="dv">16</span>), <span class="dt">nrow =</span> <span class="dv">4</span>, <span class="dt">ncol =</span> <span class="dv">4</span>)</span>
+<span id="cb406-4"><a href="data-parallel.html#cb406-4"></a>gpuA</span></code></pre></div>
+<pre><code>An object of class &quot;fgpuMatrix&quot;
+Slot &quot;address&quot;:
+&lt;pointer: 0x000000000fbe9760&gt;
+
+Slot &quot;.context_index&quot;:
+[1] 1
+
+Slot &quot;.platform_index&quot;:
+[1] 1
+
+Slot &quot;.platform&quot;:
+[1] &quot;Intel(R) OpenCL&quot;
+
+Slot &quot;.device_index&quot;:
+[1] 1
+
+Slot &quot;.device&quot;:
+[1] &quot;Intel(R) HD Graphics 4600&quot;</code></pre>
+<div class="sourceCode" id="cb408"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb408-1"><a href="data-parallel.html#cb408-1"></a>gpuB &lt;-<span class="st"> </span>gpuA <span class="op">%*%</span><span class="st"> </span>gpuA</span>
+<span id="cb408-2"><a href="data-parallel.html#cb408-2"></a><span class="kw">print</span>(gpuB)</span></code></pre></div>
+<pre><code>Source: gpuR Matrix [4 x 4]
+
+            [,1]      [,2]      [,3]       [,4]
+[1,]  2.61787200 -1.274909 -2.150301 -2.0073860
+[2,] -0.02231596  1.566433  0.986027  0.7339008
+[3,] -0.12862393  1.848340  3.261899  1.6919358
+[4,] -1.90084898 -1.863014 -1.312350 -0.2553876</code></pre>
+</div>
+<div id="dm-parallel-session-info" class="section level2">
+<h2><span class="header-section-number">8.6</span> 本章运行环境</h2>
+<div class="sourceCode" id="cb410"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb410-1"><a href="data-parallel.html#cb410-1"></a>xfun<span class="op">::</span><span class="kw">session_info</span>()</span>
+<span id="cb410-2"><a href="data-parallel.html#cb410-2"></a><span class="co">#&gt; R version 4.0.0 (2020-04-24)</span></span>
+<span id="cb410-3"><a href="data-parallel.html#cb410-3"></a><span class="co">#&gt; Platform: x86_64-pc-linux-gnu (64-bit)</span></span>
+<span id="cb410-4"><a href="data-parallel.html#cb410-4"></a><span class="co">#&gt; Running under: Ubuntu 16.04.6 LTS</span></span>
+<span id="cb410-5"><a href="data-parallel.html#cb410-5"></a><span class="co">#&gt; </span></span>
+<span id="cb410-6"><a href="data-parallel.html#cb410-6"></a><span class="co">#&gt; Locale:</span></span>
+<span id="cb410-7"><a href="data-parallel.html#cb410-7"></a><span class="co">#&gt;   LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              </span></span>
+<span id="cb410-8"><a href="data-parallel.html#cb410-8"></a><span class="co">#&gt;   LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    </span></span>
+<span id="cb410-9"><a href="data-parallel.html#cb410-9"></a><span class="co">#&gt;   LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   </span></span>
+<span id="cb410-10"><a href="data-parallel.html#cb410-10"></a><span class="co">#&gt;   LC_PAPER=en_US.UTF-8       LC_NAME=C                 </span></span>
+<span id="cb410-11"><a href="data-parallel.html#cb410-11"></a><span class="co">#&gt;   LC_ADDRESS=C               LC_TELEPHONE=C            </span></span>
+<span id="cb410-12"><a href="data-parallel.html#cb410-12"></a><span class="co">#&gt;   LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       </span></span>
+<span id="cb410-13"><a href="data-parallel.html#cb410-13"></a><span class="co">#&gt; </span></span>
+<span id="cb410-14"><a href="data-parallel.html#cb410-14"></a><span class="co">#&gt; Package version:</span></span>
+<span id="cb410-15"><a href="data-parallel.html#cb410-15"></a><span class="co">#&gt;   base64enc_0.1.3  bookdown_0.20    codetools_0.2-16 compiler_4.0.0  </span></span>
+<span id="cb410-16"><a href="data-parallel.html#cb410-16"></a><span class="co">#&gt;   curl_4.3         digest_0.6.25    evaluate_0.14    glue_1.4.1      </span></span>
+<span id="cb410-17"><a href="data-parallel.html#cb410-17"></a><span class="co">#&gt;   graphics_4.0.0   grDevices_4.0.0  highr_0.8        htmltools_0.5.0 </span></span>
+<span id="cb410-18"><a href="data-parallel.html#cb410-18"></a><span class="co">#&gt;   jsonlite_1.7.0   knitr_1.29       magrittr_1.5     markdown_1.1    </span></span>
+<span id="cb410-19"><a href="data-parallel.html#cb410-19"></a><span class="co">#&gt;   methods_4.0.0    mime_0.9         rlang_0.4.6      rmarkdown_2.3   </span></span>
+<span id="cb410-20"><a href="data-parallel.html#cb410-20"></a><span class="co">#&gt;   stats_4.0.0      stringi_1.4.6    stringr_1.4.0    tinytex_0.24    </span></span>
+<span id="cb410-21"><a href="data-parallel.html#cb410-21"></a><span class="co">#&gt;   tools_4.0.0      utils_4.0.0      xfun_0.15        yaml_2.2.1</span></span></code></pre></div>
+
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="24">
+<li id="fn24"><p><a href="https://stackoverflow.com/questions/3505701/grouping-functions-tapply-by-aggregate-and-the-apply-family" class="uri">https://stackoverflow.com/questions/3505701/grouping-functions-tapply-by-aggregate-and-the-apply-family</a><a href="data-parallel.html#fnref24" class="footnote-back">↩︎</a></p></li>
+<li id="fn25"><p><a href="https://trinkerrstuff.wordpress.com/2018/02/14/easily-make-multi-tabbed-xlsx-files-with-openxlsx/" class="uri">https://trinkerrstuff.wordpress.com/2018/02/14/easily-make-multi-tabbed-xlsx-files-with-openxlsx/</a><a href="data-parallel.html#fnref25" class="footnote-back">↩︎</a></p></li>
+<li id="fn26"><p><a href="https://statcompute.wordpress.com/2018/09/03/playing-map-and-reduce-in-r-by-group-calculation/" class="uri">https://statcompute.wordpress.com/2018/09/03/playing-map-and-reduce-in-r-by-group-calculation/</a><a href="data-parallel.html#fnref26" class="footnote-back">↩︎</a></p></li>
+<li id="fn27"><p><a href="https://statcompute.wordpress.com/2018/09/08/playing-map-and-reduce-in-r-subsetting/" class="uri">https://statcompute.wordpress.com/2018/09/08/playing-map-and-reduce-in-r-subsetting/</a><a href="data-parallel.html#fnref27" class="footnote-back">↩︎</a></p></li>
+<li id="fn28"><p><a href="https://cartesianfaith.com/2015/09/17/from-functional-programming-to-mapreduce-in-r/" class="uri">https://cartesianfaith.com/2015/09/17/from-functional-programming-to-mapreduce-in-r/</a><a href="data-parallel.html#fnref28" class="footnote-back">↩︎</a></p></li>
+<li id="fn29"><p><a href="https://digitheadslabnotebook.blogspot.com/2010/01/pivot-tables-in-r.html" class="uri">https://digitheadslabnotebook.blogspot.com/2010/01/pivot-tables-in-r.html</a><a href="data-parallel.html#fnref29" class="footnote-back">↩︎</a></p></li>
+<li id="fn30"><p><a href="https://cartesianfaith.files.wordpress.com/2015/12/rowe-modeling-data-with-functional-programming-in-r.pdf" class="uri">https://cartesianfaith.files.wordpress.com/2015/12/rowe-modeling-data-with-functional-programming-in-r.pdf</a><a href="data-parallel.html#fnref30" class="footnote-back">↩︎</a></p></li>
+<li id="fn31"><p>2016年国际 R 语言大会上的介绍<a href="https://github.com/snoweye/user2016.demo" class="uri">https://github.com/snoweye/user2016.demo</a> 和2018年 JSM 会 上的介绍 <a href="https://github.com/RBigData/R_JSM2018" class="uri">https://github.com/RBigData/R_JSM2018</a><a href="data-parallel.html#fnref31" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+<script>
+window.onload = function() {
+
+  var imgs = document.querySelectorAll('img');
+
+  // Upon clicking an image, open a new window with the
+  // dimensions of the image, pointing the `data-url` link
+  var on_click = function (e) {
+    var d = e.target.dataset || {};
+    if (d.url) {
+      // Add some extra height for the modebar
+      var height = 'height=' + (e.target.clientHeight * 1.05);
+      var width = 'width=' + e.target.clientWidth;
+      var param = 'location=yes,' + height + ',' + width + ',scrollbars=yes,status=yes';
+      window.open(e.target.dataset.url, '_blank', param);
+    }
+  };
+
+  var on_hover = function (e) {
+    var d = e.target.dataset || {};
+    if (d.url) {
+      e.target.style.cursor = 'pointer';
+    }
+  };
+
+  for (var i = 0; i < imgs.length; i++) {
+    imgs[i].addEventListener('click', on_click);
+    imgs[i].addEventListener('mouseover', on_hover);
+  }
+};
+</script>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="data-table.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="dc-string-manipulation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": {}
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/XiangyunHuang/RGraphics/edit/master/data-parallel.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["r4ds.pdf", "r4ds.epub", "r4ds.mobi", "https://github.com/XiangyunHuang/RGraphics/raw/master/data-parallel.Rmd"],
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

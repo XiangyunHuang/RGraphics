@@ -1,0 +1,1274 @@
+# 文件管理员 {#file-manipulation}
+
+> 考虑添加 Shell 下的命令实现，参考 [命令行的艺术](https://github.com/jlevy/the-art-of-command-line/blob/master/README-zh.md)
+
+
+```r
+library(magrittr) # 提供管道命令 %>%
+```
+
+::: sidebar
+[fs](https://github.com/r-lib/fs) 由 [Jim Hester](https://www.jimhester.com/) 开发，提供文件系统操作的统一接口，相比于 R 默认的文件系统的操作函数有显而易见的优点，详情请看 <https://fs.r-lib.org/>
+
+对于文件操作，Jim Hester 开发了 [fs 包](https://github.com/r-lib/fs) 目的是统一文件操作的命令，由于时间和历史原因，R内置的文件操作函数的命名很不统一，如 `path.expand()` 和 `normalizePath()`，`Sys.chmod()` 和 `file.access()` 等
+:::
+
+
+
+```r
+# 加载 R 包
+library(fs)
+```
+
+
+## 查看文件 {#list}
+
+文件夹只包含文件，目录既包含文件又包含文件夹，`list.dirs` 列出目录或文件夹，`list.files` 列出文件或文件夹 
+
+*  `list.dirs(path = ".", full.names = TRUE, recursive = TRUE)`
+   +  path: 指定完整路径名，默认使用当前路径 `getwd()`
+   +  full.names: TRUE 返回相对路径，FALSE 返回目录的名称
+   +  recursive: 是否递归的方式列出目录，如果是的话，目录下的子目录也会列出
+
+   
+   ```r
+   # list.dirs(path = '.', full.names = TRUE, recursive = TRUE)
+   list.dirs(path = '.', full.names = TRUE, recursive = FALSE)
+   #>  [1] "./_book"           "./_bookdown_files" "./.git"           
+   #>  [4] "./data"            "./demos"           "./figures"        
+   #>  [7] "./files_cache"     "./includes"        "./index_cache"    
+   #> [10] "./interactives"    "./preface_cache"   "./ubuntu"
+   list.dirs(path = '.', full.names = FALSE, recursive = FALSE)
+   #>  [1] "_book"           "_bookdown_files" ".git"            "data"           
+   #>  [5] "demos"           "figures"         "files_cache"     "includes"       
+   #>  [9] "index_cache"     "interactives"    "preface_cache"   "ubuntu"
+   ```
+
+*  `list.files(path = ".", pattern = NULL, all.files = FALSE, full.names = FALSE, recursive = FALSE,ignore.case = FALSE, include.dirs = FALSE, no.. = FALSE)`
+
+   是否递归的方式列出目录，如果是的话，目录下的子目录也会列出
+
+   +  path: 指定完整路径名，默认使用当前路径 `getwd()`
+   +  full.names: TRUE 返回相对路径，FALSE 返回目录的名称
+   +  recursive: 是否递归的方式列出目录，如果是的话，目录下的子目录也会列出
+
+* `file.show(..., header = rep("", nfiles), title = "R Information", delete.file = FALSE, pager = getOption("pager"),encoding = "")` 
+
+   打开文件内容，`file.show` 会在R终端中新开一个窗口显示文件
+
+    
+    ```r
+    rinternals <- file.path(R.home("include"), "Rinternals.h")
+    # file.show(rinternals)
+    ```
+
+* `file.info(..., extra_cols = TRUE)` 
+
+   获取文件信息，此外 `file.mode(...)` 、 `file.mtime(...)` 和 `file.size(...)` 分别表示文件的读写权限，修改时间和文件大小。
+
+    
+    ```r
+    file.info(rinternals)
+    #>                                                size isdir mode
+    #> /home/travis/R-bin/lib/R/include/Rinternals.h 62899 FALSE  644
+    #>                                                             mtime
+    #> /home/travis/R-bin/lib/R/include/Rinternals.h 2020-04-25 02:15:43
+    #>                                                             ctime
+    #> /home/travis/R-bin/lib/R/include/Rinternals.h 2020-07-07 19:21:25
+    #>                                                             atime  uid  gid
+    #> /home/travis/R-bin/lib/R/include/Rinternals.h 2020-07-07 19:21:25 2000 2000
+    #>                                                uname grname
+    #> /home/travis/R-bin/lib/R/include/Rinternals.h travis travis
+    file.mode(rinternals)
+    #> [1] "644"
+    file.mtime(rinternals)
+    #> [1] "2020-04-25 02:15:43 CST"
+    file.size(rinternals)
+    #> [1] 62899
+    # 查看当前目录的权限
+    file.info(".")
+    #>   size isdir mode               mtime               ctime               atime
+    #> . 4096  TRUE  775 2020-07-07 19:34:42 2020-07-07 19:34:42 2020-07-07 19:34:42
+    #>    uid  gid  uname grname
+    #> . 2000 2000 travis travis
+    # 查看指定目录权限
+    file.info("./_book/")    
+    #>          size isdir mode               mtime               ctime
+    #> ./_book/ 4096  TRUE  775 2020-07-07 19:34:39 2020-07-07 19:34:39
+    #>                        atime  uid  gid  uname grname
+    #> ./_book/ 2020-07-07 19:34:39 2000 2000 travis travis
+    ```
+
+* `file.access(names, mode = 0)`  
+
+   文件是否可以被访问，第二个参数 mode 一共有四种取值 0，1，2，4，分别表示文件的存在性，可执行，可写和可读四种，返回值 0 表示成功，返回值 -1 表示失败。
+
+    
+    ```r
+    file.access(rinternals,mode = 0)
+    #> /home/travis/R-bin/lib/R/include/Rinternals.h 
+    #>                                             0
+    file.access(rinternals,mode = 1)
+    #> /home/travis/R-bin/lib/R/include/Rinternals.h 
+    #>                                            -1
+    file.access(rinternals,mode = 2)
+    #> /home/travis/R-bin/lib/R/include/Rinternals.h 
+    #>                                             0
+    file.access(rinternals,mode = 4)
+    #> /home/travis/R-bin/lib/R/include/Rinternals.h 
+    #>                                             0
+    ```
+
+* `dir(path = ".", pattern = NULL, all.files = FALSE, full.names = FALSE, recursive = FALSE, ignore.case = FALSE, include.dirs = FALSE, no.. = FALSE)`
+   
+   查看目录，首先看看和目录操作有关的函数列表
+
+    
+    ```r
+    apropos("^dir.")
+    #>  [1] "dir_copy"   "dir_create" "dir_delete" "dir_exists" "dir_info"  
+    #>  [6] "dir_ls"     "dir_map"    "dir_tree"   "dir_walk"   "dir.create"
+    #> [11] "dir.exists" "dirname"
+    ```
+    
+   显而易见，`dir.create` 和 `dir.exists` 分别是创建目录和查看目录的存在性。`dirname` 和 `basename` 是一对函数用来操作文件路径。以当前目录/home/travis/build/XiangyunHuang/r4ds为例，`dirname(getwd())` 返回 /home/travis/build/XiangyunHuang 而 `basename(getwd())` 返回 r4ds。对于文件路径而言，`dirname(rinternals)` 返回文件所在的目录/home/travis/R-bin/lib/R/include， `basename(rinternals)` 返回文件名Rinternals.h。`dir` 函数查看指定路径或目录下的文件，支持以模式匹配和递归的方式查找目录下的文件
+
+    
+    ```r
+    # 当前目录下的子目录和文件
+    dir()
+    #>  [1] "_book"                      "_bookdown_files"           
+    #>  [3] "_bookdown.yml"              "_build.sh"                 
+    #>  [5] "_common.R"                  "_deploy.sh"                
+    #>  [7] "_output.yml"                "_render.R"                 
+    #>  [9] "99-references.Rmd"          "Adobe-Fonts.zip"           
+    #> [11] "cs-cran-network.Rmd"        "cumcm2011A.RDS"            
+    #> [13] "data"                       "data-frame.Rmd"            
+    #> [15] "data-import.Rmd"            "data-objects.Rmd"          
+    #> [17] "data-parallel.Rmd"          "data-table.Rmd"            
+    #> [19] "data-tibble.Rmd"            "dc-regular-expressions.Rmd"
+    #> [21] "dc-string-manipulation.Rmd" "dc-stringr.Rmd"            
+    #> [23] "demos"                      "DESCRIPTION"               
+    #> [25] "docker-compose.yml"         "Dockerfile"                
+    #> [27] "dv-colors-fonts.Rmd"        "dv-ggplot2.Rmd"            
+    #> [29] "dv-highcharter.Rmd"         "dv-lattice.Rmd"            
+    #> [31] "dv-network.Rmd"             "dv-plot.Rmd"               
+    #> [33] "dv-plot3d.Rmd"              "dv-plotly.Rmd"             
+    #> [35] "dv-spatio-temporal.Rmd"     "dynamic-documents.Rmd"     
+    #> [37] "figures"                    "files_cache"               
+    #> [39] "files.Rmd"                  "includes"                  
+    #> [41] "index_cache"                "index.md"                  
+    #> [43] "index.Rmd"                  "index.utf8.md"             
+    #> [45] "interactive-graphics.Rmd"   "interactives"              
+    #> [47] "LICENSE"                    "maintainer_author.rds"     
+    #> [49] "Makefile"                   "odbc.ini"                  
+    #> [51] "preamble.tex"               "preface_cache"             
+    #> [53] "preface.md"                 "preface.Rmd"               
+    #> [55] "preface.utf8.md"            "r4ds.rds"                  
+    #> [57] "r4ds.Rproj"                 "README.md"                 
+    #> [59] "refer.bib"                  "render4d985e40c109.rds"    
+    #> [61] "requirements.txt"           "setup.md"                  
+    #> [63] "setup.Rmd"                  "setup.utf8.md"             
+    #> [65] "sidebar.lua"                "style.css"                 
+    #> [67] "TinyTeX.tar.gz"             "travis_wait_2137.log"      
+    #> [69] "ubuntu"
+    # 查看指定目录的子目录和文件
+    dir(path = "./")
+    #>  [1] "_book"                      "_bookdown_files"           
+    #>  [3] "_bookdown.yml"              "_build.sh"                 
+    #>  [5] "_common.R"                  "_deploy.sh"                
+    #>  [7] "_output.yml"                "_render.R"                 
+    #>  [9] "99-references.Rmd"          "Adobe-Fonts.zip"           
+    #> [11] "cs-cran-network.Rmd"        "cumcm2011A.RDS"            
+    #> [13] "data"                       "data-frame.Rmd"            
+    #> [15] "data-import.Rmd"            "data-objects.Rmd"          
+    #> [17] "data-parallel.Rmd"          "data-table.Rmd"            
+    #> [19] "data-tibble.Rmd"            "dc-regular-expressions.Rmd"
+    #> [21] "dc-string-manipulation.Rmd" "dc-stringr.Rmd"            
+    #> [23] "demos"                      "DESCRIPTION"               
+    #> [25] "docker-compose.yml"         "Dockerfile"                
+    #> [27] "dv-colors-fonts.Rmd"        "dv-ggplot2.Rmd"            
+    #> [29] "dv-highcharter.Rmd"         "dv-lattice.Rmd"            
+    #> [31] "dv-network.Rmd"             "dv-plot.Rmd"               
+    #> [33] "dv-plot3d.Rmd"              "dv-plotly.Rmd"             
+    #> [35] "dv-spatio-temporal.Rmd"     "dynamic-documents.Rmd"     
+    #> [37] "figures"                    "files_cache"               
+    #> [39] "files.Rmd"                  "includes"                  
+    #> [41] "index_cache"                "index.md"                  
+    #> [43] "index.Rmd"                  "index.utf8.md"             
+    #> [45] "interactive-graphics.Rmd"   "interactives"              
+    #> [47] "LICENSE"                    "maintainer_author.rds"     
+    #> [49] "Makefile"                   "odbc.ini"                  
+    #> [51] "preamble.tex"               "preface_cache"             
+    #> [53] "preface.md"                 "preface.Rmd"               
+    #> [55] "preface.utf8.md"            "r4ds.rds"                  
+    #> [57] "r4ds.Rproj"                 "README.md"                 
+    #> [59] "refer.bib"                  "render4d985e40c109.rds"    
+    #> [61] "requirements.txt"           "setup.md"                  
+    #> [63] "setup.Rmd"                  "setup.utf8.md"             
+    #> [65] "sidebar.lua"                "style.css"                 
+    #> [67] "TinyTeX.tar.gz"             "travis_wait_2137.log"      
+    #> [69] "ubuntu"
+    # 只列出以字母R开头的子目录和文件
+    dir(path = "./", pattern = "^R")
+    #> [1] "README.md"
+    # 列出目录下所有目录和文件，包括隐藏文件
+    dir(path = "./", all.files = TRUE)
+    #>  [1] "_book"                      "_bookdown_files"           
+    #>  [3] "_bookdown.yml"              "_build.sh"                 
+    #>  [5] "_common.R"                  "_deploy.sh"                
+    #>  [7] "_output.yml"                "_render.R"                 
+    #>  [9] "."                          ".."                        
+    #> [11] ".git"                       ".gitignore"                
+    #> [13] ".Rprofile"                  ".travis.yml"               
+    #> [15] "99-references.Rmd"          "Adobe-Fonts.zip"           
+    #> [17] "cs-cran-network.Rmd"        "cumcm2011A.RDS"            
+    #> [19] "data"                       "data-frame.Rmd"            
+    #> [21] "data-import.Rmd"            "data-objects.Rmd"          
+    #> [23] "data-parallel.Rmd"          "data-table.Rmd"            
+    #> [25] "data-tibble.Rmd"            "dc-regular-expressions.Rmd"
+    #> [27] "dc-string-manipulation.Rmd" "dc-stringr.Rmd"            
+    #> [29] "demos"                      "DESCRIPTION"               
+    #> [31] "docker-compose.yml"         "Dockerfile"                
+    #> [33] "dv-colors-fonts.Rmd"        "dv-ggplot2.Rmd"            
+    #> [35] "dv-highcharter.Rmd"         "dv-lattice.Rmd"            
+    #> [37] "dv-network.Rmd"             "dv-plot.Rmd"               
+    #> [39] "dv-plot3d.Rmd"              "dv-plotly.Rmd"             
+    #> [41] "dv-spatio-temporal.Rmd"     "dynamic-documents.Rmd"     
+    #> [43] "figures"                    "files_cache"               
+    #> [45] "files.Rmd"                  "includes"                  
+    #> [47] "index_cache"                "index.md"                  
+    #> [49] "index.Rmd"                  "index.utf8.md"             
+    #> [51] "interactive-graphics.Rmd"   "interactives"              
+    #> [53] "LICENSE"                    "maintainer_author.rds"     
+    #> [55] "Makefile"                   "odbc.ini"                  
+    #> [57] "preamble.tex"               "preface_cache"             
+    #> [59] "preface.md"                 "preface.Rmd"               
+    #> [61] "preface.utf8.md"            "r4ds.rds"                  
+    #> [63] "r4ds.Rproj"                 "README.md"                 
+    #> [65] "refer.bib"                  "render4d985e40c109.rds"    
+    #> [67] "requirements.txt"           "setup.md"                  
+    #> [69] "setup.Rmd"                  "setup.utf8.md"             
+    #> [71] "sidebar.lua"                "style.css"                 
+    #> [73] "TinyTeX.tar.gz"             "travis_wait_2137.log"      
+    #> [75] "ubuntu"
+    # 支持正则表达式
+    dir(pattern = '^[A-Z]+[.]txt$', full.names=TRUE, system.file('doc', 'SuiteSparse', package='Matrix'))
+    #> [1] "/home/travis/R-bin/lib/R/library/Matrix/doc/SuiteSparse/AMD.txt"    
+    #> [2] "/home/travis/R-bin/lib/R/library/Matrix/doc/SuiteSparse/CHOLMOD.txt"
+    #> [3] "/home/travis/R-bin/lib/R/library/Matrix/doc/SuiteSparse/COLAMD.txt" 
+    #> [4] "/home/travis/R-bin/lib/R/library/Matrix/doc/SuiteSparse/SPQR.txt"
+    ```
+    
+    ```r
+    # 在临时目录下递归创建一个目录
+    dir.create(paste0(tempdir(), "/_book/tmp"), recursive = TRUE)
+    ```
+
+查看当前目录下的文件和文件夹 `tree -L 2 .` 或者 `ls -l .` 
+
+
+## 操作文件 {#manipulation}
+
+实现文件增删改查的函数如下
+
+
+```r
+apropos("^file.")
+#>  [1] "file_access"    "file_chmod"     "file_chown"     "file_copy"     
+#>  [5] "file_create"    "file_delete"    "file_exists"    "file_info"     
+#>  [9] "file_move"      "file_show"      "file_size"      "file_temp"     
+#> [13] "file_temp_pop"  "file_temp_push" "file_test"      "file_touch"    
+#> [17] "file.access"    "file.append"    "file.choose"    "file.copy"     
+#> [21] "file.create"    "file.edit"      "file.exists"    "file.info"     
+#> [25] "file.link"      "file.mode"      "file.mtime"     "file.path"     
+#> [29] "file.remove"    "file.rename"    "file.show"      "file.size"     
+#> [33] "file.symlink"   "fileSnapshot"
+```
+
+1. `file.create(..., showWarnings = TRUE)`
+
+   创建/删除文件，检查文件的存在性
+   
+    
+    ```r
+    file.create('demo.txt')
+    #> [1] TRUE
+    file.exists('demo.txt')
+    #> [1] TRUE
+    file.remove('demo.txt')
+    #> [1] TRUE
+    file.exists('demo.txt')
+    #> [1] FALSE
+    ```
+
+1. `file.rename(from, to)` 文件重命名
+
+    
+    ```r
+    file.create('demo.txt')
+    #> [1] TRUE
+    file.rename(from = 'demo.txt', to = 'tmp.txt')
+    #> [1] TRUE
+    file.exists('tmp.txt')
+    #> [1] TRUE
+    ```
+
+1. `file.append(file1, file2)` 追加文件 `file2` 的内容到文件 `file1` 上
+
+    
+    ```r
+    if(!dir.exists(paths = 'data/')) dir.create(path = 'data/')
+    # 创建两个临时文件
+    # file.create(c('data/tmp1.md','data/tmp2.md'))
+    # 写入内容
+    cat("AAA\n", file = 'data/tmp1.md')
+    cat("BBB\n", file = 'data/tmp2.md')
+    # 追加文件
+    file.append(file1 = 'data/tmp1.md', file2 = 'data/tmp2.md')
+    #> [1] TRUE
+    # 展示文件内容
+    readLines('data/tmp1.md')
+    #> [1] "AAA" "BBB"
+    ```
+
+1. `file.copy(from, to, overwrite = recursive, recursive = FALSE,copy.mode = TRUE, copy.date = FALSE)` 复制文件，参考 <https://blog.csdn.net/wzj_110/article/details/86497860>
+
+    
+    ```r
+    file.copy(from = 'Makefile', to = 'data/Makefile')
+    #> [1] TRUE
+    ```
+
+1. `file.symlink(from, to)` 创建符号链接 `file.link(from, to)` 创建硬链接
+
+1. `Sys.junction(from, to)` windows 平台上的函数，提供类似符号链接的功能
+
+1. `Sys.readlink(paths)` 读取文件的符号链接（软链接）
+
+1. `choose.files` 在 Windows 环境下交互式地选择一个或多个文件，所以该函数只运行于 Windows 环境
+
+    
+    ```r
+    # 选择 zip 格式的压缩文件或其它
+    if (interactive())
+         choose.files(filters = Filters[c("zip", "All"),])
+    ```
+    
+    `Filters` 参数传递一个矩阵，用来描述或标记R识别的文件类型，上面这个例子就能筛选出 zip 格式的文件
+
+1. `download.file` 文件下载
+
+    
+    ```r
+    download.file(url = 'https://mirrors.tuna.tsinghua.edu.cn/CRAN/src/base/R-latest.tar.gz',
+                  destfile = 'data/R-latest.tar.gz', method = 'auto')
+    ```
+    
+
+
+
+## 压缩文件 {#compression}
+
+tar 和 zip 是两种常见的压缩文件工具，具有免费和跨平台的特点，因此应用范围广^[<https://github.com/libarchive/libarchive/wiki/FormatTar>]。 R 内对应的压缩与解压缩命令是 `tar/untar` 
+
+```r
+tar(tarfile, files = NULL,
+    compression = c("none", "gzip", "bzip2", "xz"),
+    compression_level = 6, tar = Sys.getenv("tar"),
+    extra_flags = "")
+```
+
+比较常用的压缩文件格式是 `.tar.gz` 和 `.tar.bz2`，将目录 `_book/`及其文件分别压缩成 `_book.tar.gz` 和 `_book.tar.bz2` 压缩包的名字可以任意取，后者压缩比率高。`.tar.xz` 的压缩比率最高，需要确保系统中安装了 gzip，bzip2 和 xz-utils 软件，R 软件自带的 tar 软件来自 [Rtools](https://github.com/rwinlib/rtools35)[^rtools40]，我们可以通过设置系统环境变量 `Sys.setenv(tar="path/to/tar")` 指定外部 tar。`tar` 实际支持的压缩类型只有 `.tar.gz`^[<https://github.com/rwinlib/utils>]。`zip/unzip` 压缩与解压缩就不赘述了。
+
+
+```r
+# 打包目录 _book
+tar(tarfile = 'data/_book.tar', files = '_book', compression = 'none')
+# 文件压缩成 _book.xz 格式
+tar(tarfile = 'data/_book.tar.xz', files = 'data/_book', compression = 'xz')
+# tar -cf data/_book.tar _book 然后 xz -z data/_book.tar.xz data/_book.tar
+# 或者一次压缩到位 tar -Jcf data/_book.tar.xz _book/
+
+# 解压 xz -d data/_book.tar.xz 再次解压 tar -xf data/_book.tar
+# 或者一次解压 tar -Jxf data/_book.tar.xz
+
+# 文件压缩成 _book.tar.gz 格式
+# tar -czf data/_book.tar.gz _book
+tar(tarfile = 'data/_book.tar.gz', files = '_book', compression = 'gzip')
+# 解压 tar -xzf data/_book.tar.gz
+
+# 文件压缩成 .tar.bz2 格式
+# tar -cjf data/book2.tar.bz2 _book
+tar(tarfile = 'data/_book.tar.bz2', files = '_book', compression = 'bzip2')
+# 解压 tar -xjf data/book2.tar.bz2
+```
+
+```r
+untar(tarfile, files = NULL, list = FALSE, exdir = ".",
+      compressed = NA, extras = NULL, verbose = FALSE,
+      restore_times =  TRUE, tar = Sys.getenv("TAR"))
+```
+
+[^rtools40]: 继 Rtools35 之后， [RTools40](https://cloud.r-project.org/bin/windows/testing/rtools40.html) 主要为 R 3.6.0 准备的，包含有 GCC 8 及其它编译R包需要的[工具包](https://github.com/r-windows/rtools-packages)，详情请看的[幻灯片](https://jeroen.github.io/uros2018)
+
+
+## 路径操作 {#paths}
+
+环境变量算是路径操作
+
+
+```r
+# 获取环境变量
+Sys.getenv("PATH")
+#> [1] "/home/travis/bin:/home/travis/.rvm/gems/ruby-2.5.3/bin:/home/travis/.rvm/gems/ruby-2.5.3@global/bin:/home/travis/.rvm/rubies/ruby-2.5.3/bin:/home/travis/.rvm/bin:/usr/lib/postgresql/9.6/bin:/home/travis/R-bin/bin:/home/travis/bin:/home/travis/.local/bin:/usr/local/lib/jvm/openjdk11/bin:/opt/pyenv/shims:/home/travis/.phpenv/shims:/home/travis/perl5/perlbrew/bin:/home/travis/.nvm/versions/node/v8.12.0/bin:/home/travis/.kiex/elixirs/elixir-1.7.4/bin:/home/travis/.kiex/bin:/home/travis/gopath/bin:/home/travis/.gimme/versions/go1.11.1.linux.amd64/bin:/usr/local/cmake-3.12.4/bin:/usr/local/clang-7.0.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin:/opt/ghc/bin:/home/travis/.phpenv/bin:/opt/pyenv/bin:/home/travis/.yarn/bin"
+# 设置环境变量 Windows
+# Sys.setenv(R_GSCMD = "C:/Program Files/gs/gs9.26/bin/gswin64c.exe")
+# 设置 pandoc 环境变量
+pandoc_path <- Sys.getenv("RSTUDIO_PANDOC", NA)
+if (Sys.which("pandoc") == "" && !is.na(pandoc_path)) {
+  Sys.setenv(PATH = paste(
+    Sys.getenv("PATH"), pandoc_path,
+    sep = if (.Platform$OS.type == "unix") ":" else ";"
+  ))
+}
+```
+
+操作文件路径
+
+1. `file.path` Construct Path to File
+
+    
+    ```r
+    file.path('./_book')
+    #> [1] "./_book"
+    ```
+
+1. `path.expand(path)` Expand File Paths
+
+    
+    ```r
+    path.expand('./_book')
+    #> [1] "./_book"
+    path.expand('~')
+    #> [1] "/home/travis"
+    ```
+
+1. `normalizePath()` Express File Paths in Canonical Form
+
+    
+    ```r
+    normalizePath('~')
+    #> [1] "/home/travis"
+    normalizePath('./_book')
+    #> [1] "/home/travis/build/XiangyunHuang/r4ds/_book"
+    ```
+
+1. `shortPathName(path)`  只在 Windows 下可用，Express File Paths in Short Form
+
+    
+    ```r
+    cat(shortPathName(c(R.home(), tempdir())), sep = "\n")
+    ```
+
+1. `Sys.glob`  Wildcard Expansion on File Paths
+
+    
+    ```r
+    Sys.glob(file.path(R.home(), "library", "*", "R", "*.rdx")) 
+    #>  [1] "/home/travis/R-bin/lib/R/library/base/R/base.rdx"            
+    #>  [2] "/home/travis/R-bin/lib/R/library/boot/R/boot.rdx"            
+    #>  [3] "/home/travis/R-bin/lib/R/library/class/R/class.rdx"          
+    #>  [4] "/home/travis/R-bin/lib/R/library/cluster/R/cluster.rdx"      
+    #>  [5] "/home/travis/R-bin/lib/R/library/codetools/R/codetools.rdx"  
+    #>  [6] "/home/travis/R-bin/lib/R/library/compiler/R/compiler.rdx"    
+    #>  [7] "/home/travis/R-bin/lib/R/library/foreign/R/foreign.rdx"      
+    #>  [8] "/home/travis/R-bin/lib/R/library/graphics/R/graphics.rdx"    
+    #>  [9] "/home/travis/R-bin/lib/R/library/grDevices/R/grDevices.rdx"  
+    #> [10] "/home/travis/R-bin/lib/R/library/grid/R/grid.rdx"            
+    #> [11] "/home/travis/R-bin/lib/R/library/KernSmooth/R/KernSmooth.rdx"
+    #> [12] "/home/travis/R-bin/lib/R/library/lattice/R/lattice.rdx"      
+    #> [13] "/home/travis/R-bin/lib/R/library/MASS/R/MASS.rdx"            
+    #> [14] "/home/travis/R-bin/lib/R/library/Matrix/R/Matrix.rdx"        
+    #> [15] "/home/travis/R-bin/lib/R/library/methods/R/methods.rdx"      
+    #> [16] "/home/travis/R-bin/lib/R/library/mgcv/R/mgcv.rdx"            
+    #> [17] "/home/travis/R-bin/lib/R/library/nlme/R/nlme.rdx"            
+    #> [18] "/home/travis/R-bin/lib/R/library/nnet/R/nnet.rdx"            
+    #> [19] "/home/travis/R-bin/lib/R/library/parallel/R/parallel.rdx"    
+    #> [20] "/home/travis/R-bin/lib/R/library/rpart/R/rpart.rdx"          
+    #> [21] "/home/travis/R-bin/lib/R/library/spatial/R/spatial.rdx"      
+    #> [22] "/home/travis/R-bin/lib/R/library/splines/R/splines.rdx"      
+    #> [23] "/home/travis/R-bin/lib/R/library/stats4/R/stats4.rdx"        
+    #> [24] "/home/travis/R-bin/lib/R/library/stats/R/stats.rdx"          
+    #> [25] "/home/travis/R-bin/lib/R/library/survival/R/survival.rdx"    
+    #> [26] "/home/travis/R-bin/lib/R/library/tcltk/R/tcltk.rdx"          
+    #> [27] "/home/travis/R-bin/lib/R/library/tools/R/sysdata.rdx"        
+    #> [28] "/home/travis/R-bin/lib/R/library/tools/R/tools.rdx"          
+    #> [29] "/home/travis/R-bin/lib/R/library/utils/R/sysdata.rdx"        
+    #> [30] "/home/travis/R-bin/lib/R/library/utils/R/utils.rdx"
+    ```
+
+## 查找文件 {#find}
+
+[here](https://github.com/r-lib/here) 包用来查找你的文件，查找文件、可执行文件的完整路径、R 包
+
+1. `Sys.which` Find Full Paths to Executables
+
+    
+    ```r
+    Sys.which('pandoc')
+    #>            pandoc 
+    #> "/usr/bin/pandoc"
+    ```
+
+1. `system.file`  Find Names of R System Files
+
+    
+    ```r
+    system.file('CITATION',package = 'base')
+    #> [1] "/home/travis/R-bin/lib/R/library/base/CITATION"
+    ```
+
+1. `R.home`
+
+    
+    ```r
+    # R 安装目录
+    R.home()
+    #> [1] "/home/travis/R-bin/lib/R"
+    # R执行文件目录
+    R.home('bin')
+    #> [1] "/home/travis/R-bin/lib/R/bin"
+    # 配置文件目录
+    R.home('etc')
+    #> [1] "/home/travis/R-bin/lib/R/etc"
+    # R 基础扩展包存放目录
+    R.home('library')
+    #> [1] "/home/travis/R-bin/lib/R/library"
+    ```
+
+1. `.libPaths()` R 包存放的路径有哪些
+
+    
+    ```r
+    .libPaths()
+    #> [1] "/home/travis/R/Library"           "/usr/local/lib/R/site-library"   
+    #> [3] "/home/travis/R-bin/lib/R/library"
+    ```
+
+1. `find.package` 查找R包所在目录
+
+    
+    ```r
+    find.package(package = 'MASS')
+    #> [1] "/home/travis/R-bin/lib/R/library/MASS"
+    ```
+
+1. `file.exist` 检查文件是否存在
+
+    
+    ```r
+    file.exists(paste(R.home('etc'),"Rprofile.site",sep = .Platform$file.sep))
+    #> [1] FALSE
+    ```
+
+1. `apropos` 和 `find` 查找对象
+
+
+```r
+apropos(what, where = FALSE, ignore.case = TRUE, mode = "any")
+find(what, mode = "any", numeric = FALSE, simple.words = TRUE)
+```
+
+匹配含有 find 的函数
+
+
+```r
+apropos("find")
+#>  [1] "find"                 "Find"                 "find.package"        
+#>  [4] "findClass"            "findFunction"         "findInterval"        
+#>  [7] "findLineNum"          "findMethod"           "findMethods"         
+#> [10] "findMethodSignatures" "findPackageEnv"       "findRestart"         
+#> [13] "findUnique"
+```
+
+问号 `?` 加函数名搜索R软件内置函数的帮助文档，如 `?regrex`。如果不知道具体的函数名，可采用关键词搜索，如
+
+
+```r
+help.search(keyword = "character", package = "base")
+```
+
+`browseEnv` 函数用来在浏览器中查看当前环境下，对象的列表，默认环境是 `sys.frame()`
+
+## 文件权限 {#permissions}
+
+操作目录和文件的权限 Manipulation of Directories and File Permissions
+
+1. `dir.exists(paths)` 检查目录是否存在
+
+    
+    ```r
+    dir.exists(c('./_book','./book'))
+    #> [1]  TRUE FALSE
+    ```
+
+1. `dir.create(path, showWarnings = TRUE, recursive = FALSE, mode = "0777")` 创建目录
+
+    
+    ```r
+    dir.create('./_book/tmp')
+    ```
+
+1. `Sys.chmod(paths, mode = "0777", use_umask = TRUE)` 修改权限
+
+    
+    ```r
+    Sys.chmod('./_book/tmp')
+    ```
+
+1. `Sys.umask(mode = NA)`
+
+    
+
+
+## 区域设置 {#locale}
+
+1. `Sys.getlocale(category = "LC_ALL")` 查看当前区域设置
+
+    
+    ```r
+    Sys.getlocale(category = "LC_ALL")
+    #> [1] "LC_CTYPE=en_US.UTF-8;LC_NUMERIC=C;LC_TIME=en_US.UTF-8;LC_COLLATE=en_US.UTF-8;LC_MONETARY=en_US.UTF-8;LC_MESSAGES=en_US.UTF-8;LC_PAPER=en_US.UTF-8;LC_NAME=C;LC_ADDRESS=C;LC_TELEPHONE=C;LC_MEASUREMENT=en_US.UTF-8;LC_IDENTIFICATION=C"
+    ```
+
+1. `Sys.setlocale(category = "LC_ALL", locale = "")` 设置区域
+
+    
+    ```r
+    # 默认设置
+    Sys.setlocale(category = "LC_ALL", locale = "")
+    #> [1] "LC_CTYPE=en_US.UTF-8;LC_NUMERIC=C;LC_TIME=en_US.UTF-8;LC_COLLATE=en_US.UTF-8;LC_MONETARY=en_US.UTF-8;LC_MESSAGES=en_US.UTF-8;LC_PAPER=en_US.UTF-8;LC_NAME=C;LC_ADDRESS=C;LC_TELEPHONE=C;LC_MEASUREMENT=en_US.UTF-8;LC_IDENTIFICATION=C"
+    # 保存当前区域设置
+    old <- Sys.getlocale()
+    
+    Sys.setlocale("LC_MONETARY", locale = "")
+    #> [1] "en_US.UTF-8"
+    Sys.localeconv()
+    #>     decimal_point     thousands_sep          grouping   int_curr_symbol 
+    #>               "."                ""                ""            "USD " 
+    #>   currency_symbol mon_decimal_point mon_thousands_sep      mon_grouping 
+    #>               "$"               "."               ","        "\003\003" 
+    #>     positive_sign     negative_sign   int_frac_digits       frac_digits 
+    #>                ""               "-"               "2"               "2" 
+    #>     p_cs_precedes    p_sep_by_space     n_cs_precedes    n_sep_by_space 
+    #>               "1"               "0"               "1"               "0" 
+    #>       p_sign_posn       n_sign_posn 
+    #>               "1"               "1"
+    Sys.setlocale("LC_MONETARY", "de_AT")
+    #> Warning in Sys.setlocale("LC_MONETARY", "de_AT"): OS reports request to set
+    #> locale to "de_AT" cannot be honored
+    #> [1] ""
+    Sys.localeconv()
+    #>     decimal_point     thousands_sep          grouping   int_curr_symbol 
+    #>               "."                ""                ""            "USD " 
+    #>   currency_symbol mon_decimal_point mon_thousands_sep      mon_grouping 
+    #>               "$"               "."               ","        "\003\003" 
+    #>     positive_sign     negative_sign   int_frac_digits       frac_digits 
+    #>                ""               "-"               "2"               "2" 
+    #>     p_cs_precedes    p_sep_by_space     n_cs_precedes    n_sep_by_space 
+    #>               "1"               "0"               "1"               "0" 
+    #>       p_sign_posn       n_sign_posn 
+    #>               "1"               "1"
+    
+    # 恢复区域设置
+    Sys.setlocale(locale = old)
+    #> Warning in Sys.setlocale(locale = old): OS reports request to set locale to
+    #> "LC_CTYPE=en_US.UTF-8;LC_NUMERIC=C;LC_TIME=en_US.UTF-8;LC_COLLATE=en_US.UTF-8;LC_MONETARY=en_US.UTF-8;LC_MESSAGES=en_US.UTF-8;LC_PAPER=en_US.UTF-8;LC_NAME=C;LC_ADDRESS=C;LC_TELEPHONE=C;LC_MEASUREMENT=en_US.UTF-8;LC_IDENTIFICATION=C"
+    #> cannot be honored
+    #> [1] ""
+    ```
+
+1. `Sys.localeconv()` 当前区域设置下，数字和货币的表示
+
+    
+    ```r
+    Sys.localeconv()
+    #>     decimal_point     thousands_sep          grouping   int_curr_symbol 
+    #>               "."                ""                ""            "USD " 
+    #>   currency_symbol mon_decimal_point mon_thousands_sep      mon_grouping 
+    #>               "$"               "."               ","        "\003\003" 
+    #>     positive_sign     negative_sign   int_frac_digits       frac_digits 
+    #>                ""               "-"               "2"               "2" 
+    #>     p_cs_precedes    p_sep_by_space     n_cs_precedes    n_sep_by_space 
+    #>               "1"               "0"               "1"               "0" 
+    #>       p_sign_posn       n_sign_posn 
+    #>               "1"               "1"
+    ```
+
+    本地化信息
+
+    
+    ```r
+    l10n_info()
+    #> $MBCS
+    #> [1] TRUE
+    #> 
+    #> $`UTF-8`
+    #> [1] TRUE
+    #> 
+    #> $`Latin-1`
+    #> [1] FALSE
+    ```
+
+
+## 进程管理 {#process}
+
+ [ps](https://github.com/r-lib/ps) 包用来查询进程信息
+ 
+- `Sys.getpid` 获取当前运行中的 R 控制台（会话）的进程 ID
+
+    
+    ```r
+    Sys.getpid()
+    #> [1] 19949
+    ```
+
+- `proc.time()` R 会话运行时间，常用于计算R程序在当前R控制台的运行时间
+
+    
+    ```r
+    t1 <- proc.time()
+    tmp <- rnorm(1e6)
+    proc.time() - t1
+    #>    user  system elapsed 
+    #>   0.061   0.004   0.065
+    ```
+
+- `system.time` 计算 R 表达式/程序块运行耗费的CPU时间
+
+    
+    ```r
+    system.time({
+      rnorm(1e6)
+    }, gcFirst = TRUE)
+    #>    user  system elapsed 
+    #>   0.059   0.000   0.059
+    ```
+
+- `gc.time`  报告垃圾回收耗费的时间
+
+    
+    ```r
+    gc.time()
+    #> [1] 0 0 0 0 0
+    ```
+
+## 系统命令 {#system-commands}
+
+`system` 和 `system2` 调用系统命令，推荐使用后者，它更灵活更便携。此外，Jeroen Ooms 开发的 [sys 包](https://github.com/jeroen/sys) 可看作 `base::system2` 的替代品
+
+
+```r
+system <- function(...) cat(base::system(..., intern = TRUE), sep = '\n')
+system2 <- function(...) cat(base::system2(..., stdout = TRUE), sep = "\n")
+```
+
+```r
+system(command = "xelatex --version")
+#> XeTeX 3.14159265-2.6-0.999992 (TeX Live 2020)
+#> kpathsea version 6.3.2
+#> Copyright 2020 SIL International, Jonathan Kew and Khaled Hosny.
+#> There is NO warranty.  Redistribution of this software is
+#> covered by the terms of both the XeTeX copyright and
+#> the Lesser GNU General Public License.
+#> For more information about these matters, see the file
+#> named COPYING and the XeTeX source.
+#> Primary author of XeTeX: Jonathan Kew.
+#> Compiled with ICU version 65.1; using 65.1
+#> Compiled with zlib version 1.2.11; using 1.2.11
+#> Compiled with FreeType2 version 2.10.1; using 2.10.1
+#> Compiled with Graphite2 version 1.3.13; using 1.3.13
+#> Compiled with HarfBuzz version 2.6.4; using 2.6.4
+#> Compiled with libpng version 1.6.37; using 1.6.37
+#> Compiled with poppler version 0.68.0
+#> Compiled with fontconfig version 2.11.0; using 2.11.94
+system2(command = 'pdflatex', args = '--version')
+#> pdfTeX 3.14159265-2.6-1.40.21 (TeX Live 2020)
+#> kpathsea version 6.3.2
+#> Copyright 2020 Han The Thanh (pdfTeX) et al.
+#> There is NO warranty.  Redistribution of this software is
+#> covered by the terms of both the pdfTeX copyright and
+#> the Lesser GNU General Public License.
+#> For more information about these matters, see the file
+#> named COPYING and the pdfTeX source.
+#> Primary author of pdfTeX: Han The Thanh (pdfTeX) et al.
+#> Compiled with libpng 1.6.37; using libpng 1.6.37
+#> Compiled with zlib 1.2.11; using zlib 1.2.11
+#> Compiled with xpdf version 4.02
+```
+
+## 时间管理 {#time}
+
+1. `Sys.timezone` 获取时区信息
+
+    
+    ```r
+    Sys.timezone(location = TRUE)
+    #> [1] "Asia/Shanghai"
+    ```
+
+1. `Sys.time` 系统时间，可以给定时区下，显示当前时间，精确到秒，返回数据类型为 `POSIXct`
+
+    
+    ```r
+    # 此时美国洛杉矶时间
+    format(Sys.time(), tz = 'America/Los_Angeles', usetz = TRUE)
+    #> [1] "2020-07-07 04:34:43 PDT"
+    # 此时加拿大东部时间
+    format(Sys.time(), tz = 'Canada/Eastern', usetz = TRUE)
+    #> [1] "2020-07-07 07:34:43 EDT"
+    ```
+
+1. `Sys.Date` 显示当前时区下的日期，精确到日，返回数据类型为 `date`
+
+    
+    ```r
+    Sys.Date()
+    #> [1] "2020-07-07"
+    ```
+
+1. `date` 返回当前系统日期和时间，数据类型是字符串
+
+    
+    ```r
+    date()
+    #> [1] "Tue Jul  7 19:34:43 2020"
+    ## 也可以这样表示
+    format(Sys.time(), "%a %b %d %H:%M:%S %Y")
+    #> [1] "Tue Jul 07 19:34:43 2020"
+    ```
+
+1. `as.POSIX*` 是一个 Date-time 转换函数
+
+    
+    ```r
+    as.POSIXlt(Sys.time(), "GMT") # the current time in GMT
+    #> [1] "2020-07-07 11:34:43 GMT"
+    ```
+
+1. 时间计算
+
+    
+    ```r
+    (z <- Sys.time())             # the current date, as class "POSIXct"
+    #> [1] "2020-07-07 19:34:43 CST"
+    
+    Sys.time() - 3600             # an hour ago
+    #> [1] "2020-07-07 18:34:43 CST"
+    ```
+
+1. `.leap.seconds` 是内置的日期序列
+
+    
+    ```r
+    .leap.seconds
+    #>  [1] "1972-07-01 08:00:00 CST" "1973-01-01 08:00:00 CST"
+    #>  [3] "1974-01-01 08:00:00 CST" "1975-01-01 08:00:00 CST"
+    #>  [5] "1976-01-01 08:00:00 CST" "1977-01-01 08:00:00 CST"
+    #>  [7] "1978-01-01 08:00:00 CST" "1979-01-01 08:00:00 CST"
+    #>  [9] "1980-01-01 08:00:00 CST" "1981-07-01 08:00:00 CST"
+    #> [11] "1982-07-01 08:00:00 CST" "1983-07-01 08:00:00 CST"
+    #> [13] "1985-07-01 08:00:00 CST" "1988-01-01 08:00:00 CST"
+    #> [15] "1990-01-01 08:00:00 CST" "1991-01-01 08:00:00 CST"
+    #> [17] "1992-07-01 08:00:00 CST" "1993-07-01 08:00:00 CST"
+    #> [19] "1994-07-01 08:00:00 CST" "1996-01-01 08:00:00 CST"
+    #> [21] "1997-07-01 08:00:00 CST" "1999-01-01 08:00:00 CST"
+    #> [23] "2006-01-01 08:00:00 CST" "2009-01-01 08:00:00 CST"
+    #> [25] "2012-07-01 08:00:00 CST" "2015-07-01 08:00:00 CST"
+    #> [27] "2017-01-01 08:00:00 CST"
+    ```
+
+    计算日期对应的星期`weekdays`，月 `months` 和季度 `quarters`
+    
+    
+    ```r
+    weekdays(.leap.seconds)
+    #>  [1] "Saturday"  "Monday"    "Tuesday"   "Wednesday" "Thursday"  "Saturday" 
+    #>  [7] "Sunday"    "Monday"    "Tuesday"   "Wednesday" "Thursday"  "Friday"   
+    #> [13] "Monday"    "Friday"    "Monday"    "Tuesday"   "Wednesday" "Thursday" 
+    #> [19] "Friday"    "Monday"    "Tuesday"   "Friday"    "Sunday"    "Thursday" 
+    #> [25] "Sunday"    "Wednesday" "Sunday"
+    months(.leap.seconds)
+    #>  [1] "July"    "January" "January" "January" "January" "January" "January"
+    #>  [8] "January" "January" "July"    "July"    "July"    "July"    "January"
+    #> [15] "January" "January" "July"    "July"    "July"    "January" "July"   
+    #> [22] "January" "January" "January" "July"    "July"    "January"
+    quarters(.leap.seconds)
+    #>  [1] "Q3" "Q1" "Q1" "Q1" "Q1" "Q1" "Q1" "Q1" "Q1" "Q3" "Q3" "Q3" "Q3" "Q1" "Q1"
+    #> [16] "Q1" "Q3" "Q3" "Q3" "Q1" "Q3" "Q1" "Q1" "Q1" "Q3" "Q3" "Q1"
+    ```
+
+1. `Sys.setFileTime()` 使用系统调用 system call 设置文件或目录的时间
+
+    
+    ```r
+    # 修改时间前
+    file.info('./_common.R')
+    #>             size isdir mode               mtime               ctime
+    #> ./_common.R 2109 FALSE  664 2020-07-07 19:22:57 2020-07-07 19:22:57
+    #>                           atime  uid  gid  uname grname
+    #> ./_common.R 2020-07-07 19:22:57 2000 2000 travis travis
+    # 修改时间后，对比一下
+    Sys.setFileTime(path = './_common.R', time = Sys.time())
+    file.info('./_common.R')
+    #>             size isdir mode               mtime               ctime
+    #> ./_common.R 2109 FALSE  664 2020-07-07 19:34:43 2020-07-07 19:34:43
+    #>                           atime  uid  gid  uname grname
+    #> ./_common.R 2020-07-07 19:34:43 2000 2000 travis travis
+    ```
+
+1. `strptime` 用于字符串与 `POSIXlt`、 `POSIXct` 类对象之间的转化，`format` 默认 `tz = ""` 且 `usetz = TRUE` 
+
+    
+    ```r
+    # 存放时区信息的数据库所在目录
+    list.files(file.path(R.home("share"), "zoneinfo"))
+    #> character(0)
+    # 比较不同的打印方式
+    strptime(Sys.time(), format ="%Y-%m-%d %H:%M:%S", tz = "Asia/Taipei")
+    #> [1] "2020-07-07 19:34:43 CST"
+    format(Sys.time(), format = "%Y-%m-%d %H:%M:%S") # 默认情形
+    #> [1] "2020-07-07 19:34:43"
+    format(Sys.time(), format = "%Y-%m-%d %H:%M:%S", tz = "Asia/Taipei", usetz = TRUE)
+    #> [1] "2020-07-07 19:34:43 CST"
+    ```
+
+1. 设置时区
+
+    
+    ```r
+    Sys.timezone()
+    #> [1] "Asia/Shanghai"
+    Sys.setenv(TZ = "Asia/Shanghai")
+    Sys.timezone()
+    #> [1] "Asia/Shanghai"
+    ```
+    
+    全局修改，在文件 /home/travis/R-bin/lib/R/etc/Rprofile.site 内添加`Sys.setenv(TZ="Asia/Shanghai")`。 局部修改，就是在本地R项目下，创建 `.Rprofile`，然后同样添加 `Sys.setenv(TZ="Asia/Shanghai")`。
+
+
+## R 包管理 {#package}
+
+相关的函数大致有
+
+
+```r
+apropos('package')
+#>  [1] ".packages"                      ".packageStartupMessage"        
+#>  [3] "$.package_version"              "as.package_version"            
+#>  [5] "aspell_package_C_files"         "aspell_package_R_files"        
+#>  [7] "aspell_package_Rd_files"        "aspell_package_vignettes"      
+#>  [9] "available.packages"             "CRAN.packages"                 
+#> [11] "download.packages"              "find.package"                  
+#> [13] "findPackageEnv"                 "format.packageInfo"            
+#> [15] "getPackageName"                 "install.packages"              
+#> [17] "installed.packages"             "is.package_version"            
+#> [19] "make.packages.html"             "methodsPackageMetaName"        
+#> [21] "new.packages"                   "old.packages"                  
+#> [23] "package_version"                "package.skeleton"              
+#> [25] "packageDate"                    "packageDescription"            
+#> [27] "packageEvent"                   "packageHasNamespace"           
+#> [29] "packageName"                    "packageNotFoundError"          
+#> [31] "packageSlot"                    "packageSlot<-"                 
+#> [33] "packageStartupMessage"          "packageStatus"                 
+#> [35] "packageVersion"                 "path_package"                  
+#> [37] "path.package"                   "print.packageInfo"             
+#> [39] "promptPackage"                  "remove.packages"               
+#> [41] "setPackageName"                 "suppressPackageStartupMessages"
+#> [43] "update.packages"
+```
+
+1. `.packages(T)` 已安装的 R 包
+
+    
+    ```r
+    .packages(T) %>% length()
+    #> [1] 239
+    ```
+   
+1. `available.packages` 查询可用的 R 包
+
+    
+    ```r
+    available.packages()[,"Package"] %>% head()
+    #>         A3      aaSEA   AATtools     ABACUS     abbyyR        abc 
+    #>       "A3"    "aaSEA" "AATtools"   "ABACUS"   "abbyyR"      "abc"
+    ```
+    
+    查询 repos 的 R 包
+    
+    
+    ```r
+    rforge <- available.packages(repos = "https://r-forge.r-project.org/")
+    cran <- available.packages(repos = "https://mirrors.tuna.tsinghua.edu.cn/CRAN/")
+    setdiff(rforge[, "Package"], cran[, "Package"])
+    ```
+
+1. `download.packages` 下载 R 包
+
+    
+    ```r
+    download.packages("Rbooks", destdir = "~/", repos = "https://r-forge.r-project.org/")
+    ```
+
+1. `install.packages` 安装 R 包
+
+    
+    ```r
+    install.packages("rmarkdown")
+    ```
+
+1. `installed.packages` 已安装的 R 包
+
+    
+    ```r
+    installed.packages(fields = c("Package","Version")) %>% head()
+    ```
+
+1. `remove.packages` 卸载/删除/移除已安装的R包
+
+    
+    ```r
+    remove.packages('rmarkdown')
+    ```
+ 
+1. `update.packages` 更新已安装的 R 包
+
+    
+    ```r
+    update.packages(ask = FALSE)
+    ```
+
+1. `old.packages` 查看过时/可更新的 R 包
+
+    
+    ```r
+    old.packages() %>% head()
+    #>            Package      LibPath                            Installed  Built  
+    #> boot       "boot"       "/home/travis/R-bin/lib/R/library" "1.3-24"   "4.0.0"
+    #> class      "class"      "/home/travis/R-bin/lib/R/library" "7.3-16"   "4.0.0"
+    #> foreign    "foreign"    "/home/travis/R-bin/lib/R/library" "0.8-78"   "4.0.0"
+    #> KernSmooth "KernSmooth" "/home/travis/R-bin/lib/R/library" "2.23-16"  "4.0.0"
+    #> MASS       "MASS"       "/home/travis/R-bin/lib/R/library" "7.3-51.5" "4.0.0"
+    #> nlme       "nlme"       "/home/travis/R-bin/lib/R/library" "3.1-147"  "4.0.0"
+    #>            ReposVer   Repository                               
+    #> boot       "1.3-25"   "https://cloud.r-project.org/src/contrib"
+    #> class      "7.3-17"   "https://cloud.r-project.org/src/contrib"
+    #> foreign    "0.8-80"   "https://cloud.r-project.org/src/contrib"
+    #> KernSmooth "2.23-17"  "https://cloud.r-project.org/src/contrib"
+    #> MASS       "7.3-51.6" "https://cloud.r-project.org/src/contrib"
+    #> nlme       "3.1-148"  "https://cloud.r-project.org/src/contrib"
+    ```
+
+1. `new.packages` 还没有安装的 R 包 
+
+    
+    ```r
+    new.packages() %>% head()
+    #> [1] "A3"       "aaSEA"    "AATtools" "ABACUS"   "abbyyR"   "abc"
+    ```
+
+1. `packageStatus` 查看已安装的 R 包状态，可更新、可下载等
+
+    
+    ```r
+    packageStatus()
+    #> Number of installed packages:
+    #>                                   
+    #>                                     ok upgrade unavailable
+    #>   /home/travis/R/Library           210       0           0
+    #>   /usr/local/lib/R/site-library      0       0           0
+    #>   /home/travis/R-bin/lib/R/library  20       9           0
+    #> 
+    #> Number of available packages (each package counted only once):
+    #>                                             
+    #>                                              installed not installed
+    #>   https://cloud.r-project.org/src/contrib          224         15782
+    #>   https://nowosad.github.io/drat/src/contrib         1             0
+    ```
+    
+1. `packageDescription` 查询 R 包描述信息
+
+    
+    ```r
+    packageDescription('graphics')
+    #> Package: graphics
+    #> Version: 4.0.0
+    #> Priority: base
+    #> Title: The R Graphics Package
+    #> Author: R Core Team and contributors worldwide
+    #> Maintainer: R Core Team <R-core@r-project.org>
+    #> Description: R functions for base graphics.
+    #> Imports: grDevices
+    #> License: Part of R 4.0.0
+    #> NeedsCompilation: yes
+    #> Built: R 4.0.0; x86_64-pc-linux-gnu; 2020-04-24 18:08:56 UTC; unix
+    #> 
+    #> -- File: /home/travis/R-bin/lib/R/library/graphics/Meta/package.rds
+    ```
+
+1. 查询 R 包的依赖关系
+
+    
+    ```r
+    # rmarkdown 依赖的 R 包
+    tools::package_dependencies('rmarkdown', recursive = TRUE)
+    #> $rmarkdown
+    #>  [1] "tools"     "utils"     "knitr"     "yaml"      "htmltools" "evaluate" 
+    #>  [7] "base64enc" "jsonlite"  "mime"      "tinytex"   "xfun"      "methods"  
+    #> [13] "stringr"   "digest"    "grDevices" "rlang"     "highr"     "markdown" 
+    #> [19] "glue"      "magrittr"  "stringi"   "stats"
+    # 依赖 rmarkdown 的 R 包
+    tools::dependsOnPkgs('rmarkdown', recursive = TRUE)
+    #> [1] "bookdown"    "formattable" "reprex"      "tidyverse"
+    ```
+    
+    ggplot2 生态，仅列出以 gg 开头的 R 包
+    
+    
+    ```r
+    pdb <- available.packages()
+    gg <- tools::dependsOnPkgs("ggplot2", recursive = FALSE, installed = pdb)
+    grep("^gg", gg, value = TRUE)
+    #>   [1] "gg.gap"            "ggallin"           "ggalluvial"       
+    #>   [4] "ggalt"             "gganimate"         "ggasym"           
+    #>   [7] "ggbeeswarm"        "ggBubbles"         "ggbuildr"         
+    #>  [10] "ggbump"            "ggcharts"          "ggChernoff"       
+    #>  [13] "ggconf"            "ggcorrplot"        "ggdag"            
+    #>  [16] "ggdark"            "ggdemetra"         "ggdendro"         
+    #>  [19] "ggdist"            "ggdmc"             "ggeasy"           
+    #>  [22] "ggedit"            "ggenealogy"        "ggetho"           
+    #>  [25] "ggExtra"           "ggfan"             "ggfittext"        
+    #>  [28] "ggfocus"           "ggforce"           "ggformula"        
+    #>  [31] "ggfortify"         "gggenes"           "ggghost"          
+    #>  [34] "gggibbous"         "ggguitar"          "gghalfnorm"       
+    #>  [37] "gghalves"          "gghighlight"       "ggimage"          
+    #>  [40] "ggimg"             "gginference"       "gginnards"        
+    #>  [43] "ggiraph"           "ggiraphExtra"      "ggjoy"            
+    #>  [46] "gglogo"            "ggloop"            "gglorenz"         
+    #>  [49] "ggmap"             "ggmcmc"            "ggmosaic"         
+    #>  [52] "ggmsa"             "ggmuller"          "ggnetwork"        
+    #>  [55] "ggnewscale"        "ggnormalviolin"    "ggnuplot"         
+    #>  [58] "ggpacman"          "ggpage"            "ggparallel"       
+    #>  [61] "ggparliament"      "ggparty"           "ggperiodic"       
+    #>  [64] "ggplot.multistats" "ggplotAssist"      "ggplotgui"        
+    #>  [67] "ggplotify"         "ggplotlyExtra"     "ggpmisc"          
+    #>  [70] "ggPMX"             "ggpointdensity"    "ggpol"            
+    #>  [73] "ggpolypath"        "ggpubr"            "ggpval"           
+    #>  [76] "ggQC"              "ggQQunif"          "ggquickeda"       
+    #>  [79] "ggquiver"          "ggRandomForests"   "ggraph"           
+    #>  [82] "ggraptR"           "ggrasp"            "ggrastr"          
+    #>  [85] "ggrepel"           "ggResidpanel"      "ggridges"         
+    #>  [88] "ggrisk"            "ggROC"             "ggsci"            
+    #>  [91] "ggseas"            "ggseqlogo"         "ggsignif"         
+    #>  [94] "ggsn"              "ggsoccer"          "ggsolvencyii"     
+    #>  [97] "ggsom"             "ggspatial"         "ggspectra"        
+    #> [100] "ggstance"          "ggstar"            "ggstatsplot"      
+    #> [103] "ggstudent"         "ggswissmaps"       "ggtern"           
+    #> [106] "ggtext"            "ggThemeAssist"     "ggthemes"         
+    #> [109] "ggTimeSeries"      "ggupset"           "ggVennDiagram"    
+    #> [112] "ggvoronoi"         "ggwordcloud"
+    ```
+    
+
+1. 重装R包，与 R 版本号保持一致
+
+    
+    ```r
+    db <- installed.packages()
+    db <- as.data.frame(db, stringsAsFactors = FALSE)
+    pkgs <- db[db$Built < getRversion(), "Package"]
+    install.packages(pkgs)
+    ```
+
+## 查找函数 {#lookup-function}
+
+[lookup](https://github.com/jimhester/lookup) R 函数完整定义，包括编译的代码，S3 和 S4 方法。目前 lookup 包处于开发版，我们可以用 `remotes::install_github` 函数来安装它
+
+
+```r
+# install.packages("remotes")
+remotes::install_github("jimhester/lookup")
+```
+
+R-level 的源代码都可以直接看
+
+
+```r
+body
+#> function (fun = sys.function(sys.parent())) 
+#> {
+#>     if (is.character(fun)) 
+#>         fun <- get(fun, mode = "function", envir = parent.frame())
+#>     .Internal(body(fun))
+#> }
+#> <bytecode: 0x40762f0>
+#> <environment: namespace:base>
+```
+
+此外，`lookup` 可以定位到 C-level 的源代码，需要联网才能查看，lookup 基于 Winston Chang 在 Github 上维护的 [R 源码镜像](https://github.com/wch/r-source) 
+
+
+```r
+lookup(body)
+```
+```
+base::body [closure] 
+function (fun = sys.function(sys.parent())) 
+{
+    if (is.character(fun)) 
+        fun <- get(fun, mode = "function", envir = parent.frame())
+    .Internal(body(fun))
+}
+<bytecode: 0x00000000140d6158>
+<environment: namespace:base>
+// c source: src/main/builtin.c#L264-L277
+SEXP attribute_hidden do_body(SEXP call, SEXP op, SEXP args, SEXP rho)
+{
+    checkArity(op, args);
+    if (TYPEOF(CAR(args)) == CLOSXP) {
+        SEXP b = BODY_EXPR(CAR(args));
+        RAISE_NAMED(b, NAMED(CAR(args)));
+        return b;
+    } else {
+        if(!(TYPEOF(CAR(args)) == BUILTINSXP ||
+             TYPEOF(CAR(args)) == SPECIALSXP))
+            warningcall(call, _("argument is not a function"));
+        return R_NilValue;
+    }
+}
+```
+
+## 运行环境 {#files-session-info}
+
+
+```r
+xfun::session_info(packages = c("magrittr", "fs"))
+#> R version 4.0.0 (2020-04-24)
+#> Platform: x86_64-pc-linux-gnu (64-bit)
+#> Running under: Ubuntu 16.04.6 LTS
+#> 
+#> Locale:
+#>   LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+#>   LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+#>   LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
+#>   LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+#>   LC_ADDRESS=C               LC_TELEPHONE=C            
+#>   LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+#> 
+#> Package version:
+#>   fs_1.4.2        graphics_4.0.0  grDevices_4.0.0 magrittr_1.5   
+#>   methods_4.0.0   stats_4.0.0     utils_4.0.0
+```
+
