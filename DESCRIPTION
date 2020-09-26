@@ -52,6 +52,7 @@ Imports:
   sf,
   stars,
   raster,
+  reshape2,
   satellite,
   latex2exp,
   latticeExtra,

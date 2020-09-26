@@ -4,7 +4,7 @@ data.table 诞生于2006年4月15日（以在 CRAN 上发布的第一个版本�
 
 关于 data.table 和 dplyr 的对比，参看爆栈网的帖子 <https://stackoverflow.com/questions/21435339>
 
-::: rmdtip
+::: {.rmdtip data-latex="{提示}"}
 学习 data.table 包最快的方式就是在 R 控制台运行 `example(data.table)` 并研究其输出。
 :::
 
@@ -559,7 +559,7 @@ mtcars[order(cyl, - gear)][, .SD[1], by = list(cyl, gear, am)]
 
 以数据集 AirPassengers 为例，重新整理后见表 \@ref(tab:air-passengers)
 
-```{r}
+```{r air-passengers}
 library(magrittr)
 dat <- data.frame(
   year = rep(1949:1960, each = 12),
@@ -584,7 +584,7 @@ knitr::kable(air_passengers,
 
 ```{r}
 # 环比横向/同比纵向
-mom <- function(x) diff(x, lag = 1)/x[-length(x)]
+mom <- function(x) diff(x, lag = 1)/x[-length(x)] # month to month
 # 格式化输出
 format_mom <- function(x) formatC(mom(x), format = "f", digits = 4)
 ```
@@ -641,11 +641,17 @@ dplyr::bind_rows(all_dfs)
 
 ```{r}
 # base
-aggregate(data = mtcars, cbind(mpg, hp) ~ cyl,
-          FUN = function(x) c(mean = mean(x), median = median(x)))
+aggregate(
+  data = mtcars, cbind(mpg, hp) ~ cyl,
+  FUN = function(x) c(mean = mean(x), median = median(x))
+)
 # 数据一致性 https://d.cosx.org/d/420763-base-r
-with(aggregate(cbind(mpg, hp) ~ cyl, mtcars, function(x) c(mean = mean(x), median = median(x))), 
-     as.data.frame(cbind(cyl, mpg, hp)))
+with(
+  aggregate(cbind(mpg, hp) ~ cyl, mtcars,
+    FUN = function(x) c(mean = mean(x), median = median(x))
+  ),
+  cbind.data.frame(cyl, mpg, hp)
+)
 
 # data.table
 mtcars[, as.list(unlist(lapply(.SD, function(x) {
@@ -657,10 +663,12 @@ mtcars[, as.list(unlist(lapply(.SD, function(x) {
 by = "cyl", .SDcols = c("mpg", "hp")
 ]
 # dplyr
-mtcars %>% 
-  dplyr::group_by(cyl) %>% 
-  dplyr::summarise(mean_mpg = mean(mpg), mean_hp = mean(hp), 
-            median_mpg = mean(mpg), median_hp = mean(hp))
+mtcars %>%
+  dplyr::group_by(cyl) %>%
+  dplyr::summarise(
+    mean_mpg = mean(mpg), mean_hp = mean(hp),
+    median_mpg = mean(mpg), median_hp = mean(hp)
+  )
 ```
 
 ### 重命名多个列 {#sec:rename-multi-cols}
