@@ -1708,28 +1708,6 @@ plot(iris[, -5], col = iris$Species)
 
 ### 玫瑰图 {#plot-rose}
 
-### 地形图 {#plot-map}
-
-- 轮廓图 contour 等高线图
-- 热图 image
-
-```{r,eval=!require("spDataLarge")}
-if (!"spDataLarge" %in% .packages(TRUE)) {
-  install.packages("spDataLarge",
-    repos = "https://nowosad.github.io/drat/",
-    type = "source"
-  )
-}
-```
-
-raster 图形，Elevation raster data from SRTM of the Zion National Park area
-
-```{r,fig.cap="raster 图形",fig.asp=.8,fig.width=6,eval=require("spDataLarge")}
-library(sp)
-library(raster)
-library(spDataLarge)
-plot(elevation, asp = NA)
-```
 
 注意与 image 函数区别
 
