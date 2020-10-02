@@ -126,19 +126,19 @@ script:
 after_success:
   - ./_deploy.sh
 
-before_cache:
-- nvm install stable
-- npm install netlify-cli -g
+# before_cache:
+# - nvm install stable
+# - npm install netlify-cli -g
 
-deploy:
-  - provider: script
-    script: netlify deploy --dir _book --prod --message "$DEPLOY_MSG"    
-    skip_cleanup: true
-    on:
-      branch: master
-  - provider: script
-    script: netlify deploy --dir _book --prod --message "$DEPLOY_MSG"    
-    skip_cleanup: true
-    on:
-      all_branches: true
-      condition: $TRAVIS_BRANCH != "master"
+# deploy:
+#   - provider: script
+#     script: netlify deploy --dir _book --prod --message "$DEPLOY_MSG"    
+#     skip_cleanup: true
+#     on:
+#       branch: master
+#   - provider: script
+#     script: netlify deploy --dir _book --prod --message "$DEPLOY_MSG"    
+#     skip_cleanup: true
+#     on:
+#       all_branches: true
+#       condition: $TRAVIS_BRANCH != "master"
