@@ -158,42 +158,6 @@ BOD %>%
   add_bars()
 ```
 
-```{r}
-library(ggplot2)
-ggplot(data = diamonds, aes(x = cut, fill = clarity)) +
-  geom_bar(position = "dodge2") +
-  scale_fill_brewer(palette = "Accent")
-```
-
-复合条形图
-
-```{r}
-# 分组计数
-with(diamonds, table(cut, clarity))
-```
-
-
-
-```{r}
-plot_ly(diamonds, x = ~cut, color = ~clarity, colors = "Accent", type = "histogram")
-```
-
-
-堆积条形图
-
-```{r}
-plot_ly(diamonds, x = ~cut, color = ~clarity, colors = "Accent", type = "histogram") %>%
-  layout(barmode = "stack", yaxis = list(title = "Count"),
-         legend = list(title = list(text = "clarity")))
-```
-
-百分比堆积条形图
-
-```{r}
-plot_ly(diamonds, x = ~cut, color = ~clarity, colors = "Accent", type = "histogram") %>%
-  layout(barmode = "stack", barnorm = "percent", yaxis = list(title = "percent"), 
-         legend = list(title = list(text = "clarity")))
-```
 
 ## 直方图 
 
@@ -302,22 +266,6 @@ plot_ly(diamonds,
   )
 ```
 
-## 饼图 
-
-```{r}
-plot_ly(BOD, labels = ~Time, values = ~demand) %>%
-  add_pie() %>%
-  layout(title = "简单饼图")
-```
-
-```{r}
-plot_ly(BOD, labels = ~Time, values = ~demand,
-    textposition = "inside",
-    textinfo = "label+percent", showlegend = FALSE) %>%
-  add_pie() %>%
-  layout(title = "自定义饼图")
-```
-
 
 ## 地图 
 
@@ -375,12 +323,12 @@ plot_geo(df, locationmode = "USA-states") %>%
     z = ~total.exports, text = ~hover, locations = ~code,
     color = ~total.exports, colors = "Purples",
     marker = list(line = list(color = toRGB("white"), width = 2)) 
-    # give state boundaries a white border 州边界线设置为白色
+    # 州边界线设置为白色
   ) %>%
   colorbar(title = "Millions USD") %>%
   layout(
     title = "2011 US Agriculture Exports by State<br>(Hover for breakdown)",
-    geo = list( # specify some map projection/options 指定地图投影方式
+    geo = list( # 指定地图投影方式
       scope = "usa",
       projection = list(type = "albers usa"),
       showlakes = TRUE,
